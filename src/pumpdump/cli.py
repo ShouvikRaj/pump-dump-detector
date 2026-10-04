@@ -18,7 +18,7 @@ from pathlib import Path
 from . import db
 from .hype import hype_categories
 from .pipeline import Settings, run_collect
-from .sources.arctic_shift import ArcticShift
+from .sources.arctic_shift import BASE_URL, ArcticShift
 from .sources.stocktwits import fetch_trending
 from .store import Datastore
 from .symbols import load_symbols, refresh_symbols
@@ -26,7 +26,12 @@ from .tickers import default_extractor
 
 
 def make_client(max_retries: int = 5) -> ArcticShift:
-    return ArcticShift(max_retries=max_retries)
+    # env overrides exist for tuning politeness and for local end-to-end tests
+    return ArcticShift(
+        max_retries=max_retries,
+        min_interval=float(os.environ.get("ARCTIC_SHIFT_MIN_INTERVAL", "1.0")),
+        base_url=os.environ.get("ARCTIC_SHIFT_BASE_URL", BASE_URL),
+    )
 
 
 def render_summary(summary: dict) -> str:
@@ -70,9 +75,8 @@ def cmd_collect(args: argparse.Namespace) -> int:
     if args.summary:
         with open(args.summary, "a", encoding="utf-8") as fh:
             fh.write(text)
-    # a source outage is reported through health.json; only a total failure fails the run
-    if summary["streams"] and all(s["error"] for s in summary["streams"]):
-        return 2
+    # source outages are tracked in the state and reported by the health check, so the
+    # run still succeeds and gets pushed; only crashes fail it
     return 0
 
 

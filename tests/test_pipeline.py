@@ -200,3 +200,20 @@ def test_item_archived_late_but_inside_overlap_is_caught_by_next_run(setup):
     run(ds, server, clock, "r2")
 
     assert "t1_late2" in raw_ids(ds.raw_files()[-1])
+
+
+def test_partial_symbol_refresh_merges_into_existing_list(setup):
+    ds, server, clock = setup
+    run(ds, server, clock, "r1")  # saves SYMBOLS (AAAA, ZZZZ)
+
+    clock.now = T + 21 * 3600  # past the refresh interval
+    client = ArcticShift(get=server.get, sleep=clock.sleep, clock=clock.time, min_interval=0)
+    new = {"BBBB": {"symbol": "BBBB", "name": "New Listing", "exchange": "Nasdaq", "is_etf": 0, "cik": None, "source": "nasdaqtrader"}}
+    summary = run_collect(
+        ds, client, run_id="r2", settings=SETTINGS, fetch_symbols=lambda: (new, ["sec.gov: 403"]), fetch_trending=None, clock=clock.time
+    )
+
+    saved = {r["symbol"] for r in ds.read_csv("ref/symbols.csv")}
+    assert saved == {"AAAA", "ZZZZ", "BBBB"}  # SEC failed, so its old OTC entry (ZZZZ) is kept
+    assert any("403" in w for w in summary["warnings"])
+    assert ds.load_state()["symbols_refreshed_at"] == T + 21 * 3600

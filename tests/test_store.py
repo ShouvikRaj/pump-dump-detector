@@ -13,16 +13,24 @@ def rec(id_, created, collected):
 
 def test_raw_file_is_partitioned_by_collection_date_and_gzipped(tmp_path):
     ds = Datastore(tmp_path)
-    path = ds.write_raw([rec("t3_a", T - 100, T)], run_started=T, run_id="123")
+    paths = ds.write_raw([rec("t3_a", T - 100, T)], run_started=T, run_id="123")
 
-    assert path == tmp_path / "raw/reddit/2026/10/04/215200Z_123.jsonl.gz"
-    with gzip.open(path, "rt") as fh:
+    assert paths == [tmp_path / "raw/reddit/2026/10/04/215200Z_123.jsonl.gz"]
+    with gzip.open(paths[0], "rt") as fh:
         assert [json.loads(line) for line in fh] == [rec("t3_a", T - 100, T)]
 
 
 def test_write_raw_with_no_records_writes_nothing(tmp_path):
-    assert Datastore(tmp_path).write_raw([], run_started=T, run_id="1") is None
+    assert Datastore(tmp_path).write_raw([], run_started=T, run_id="1") == []
     assert not (tmp_path / "raw").exists()
+
+
+def test_large_runs_are_split_into_parts_that_read_back_in_order(tmp_path):
+    ds = Datastore(tmp_path)
+    records = [rec(f"t1_{i}", T - i, T) for i in range(5)]
+    paths = ds.write_raw(records, run_started=T, run_id="9", max_records_per_file=2)
+    assert [p.name for p in paths] == ["215200Z_9_p00.jsonl.gz", "215200Z_9_p01.jsonl.gz", "215200Z_9_p02.jsonl.gz"]
+    assert [r["id"] for r in ds.iter_raw()] == [f"t1_{i}" for i in range(5)]
 
 
 def test_iter_raw_reads_partitions_on_or_after_since_date(tmp_path):

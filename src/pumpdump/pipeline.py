@@ -99,6 +99,31 @@ RUN_LOG_FIELDS = [
 ]
 
 
+DATA_README = """# Collected data (branch `data`)
+
+Written by the `collect` workflow every 15 minutes. Code and docs live on `main`.
+
+| Path | What |
+|---|---|
+| `candidates/README.md` | Current candidates, human readable |
+| `candidates/episodes.csv` | One row per candidate, written the moment it was first flagged (never edited) |
+| `candidates/episode_ends.csv` | When each candidate went quiet, with its peak numbers |
+| `candidates/active.csv` | Candidates flagged in the last 24 hours |
+| `raw/reddit/YYYY/MM/DD/*.jsonl.gz` | Every post and comment, one file per run (huge runs split into `_pNN` parts), partitioned by the UTC date it was collected |
+| `daily/mention_counts/YYYY-MM.csv` | Mentions per ticker per UTC day, for all tickers (control groups) |
+| `stocktwits/trending/YYYY-MM.csv` | StockTwits trending list at each run |
+| `logs/runs/YYYY-MM.csv` | What each run fetched, lags and errors |
+| `reports/health.json` | Latest health check (an issue opens automatically when it fails) |
+| `ref/symbols.csv` | US ticker list (Nasdaq Trader + SEC); git history gives past versions |
+| `state/state.json` | Cursors and open episodes (internal) |
+
+Every record carries `created_utc` (when it was posted) and `collected_at`
+(when the collector received it). Build a SQLite database with
+`python -m pumpdump build-db --datastore <checkout of this branch>`, or
+download the `pumpdump-sqlite` artifact from the latest `nightly` run.
+"""
+
+
 @dataclass(frozen=True)
 class Settings:
     subreddits: tuple[str, ...] = ("pennystocks", "smallstreetbets", "wallstreetbets")
@@ -132,7 +157,7 @@ def iso(ts: float | None) -> str:
 
 
 def _median(values: list[float]) -> float | str:
-    return round(statistics.median(values), 1) if values else ""
+    return round(float(statistics.median(values)), 1) if values else ""
 
 
 def coverage_problem(state: dict, as_of: float, s: Settings) -> str | None:
@@ -211,8 +236,10 @@ def run_collect(
         try:
             fresh_symbols, errors = fetch_symbols()
             summary["warnings"] += [f"symbols: {e}" for e in errors]
-            if fresh_symbols and (not errors or not symbols):
-                save_symbols(ds, fresh_symbols)
+            if fresh_symbols:
+                # if a source failed, keep its old entries rather than dropping them
+                merged = {**symbols, **fresh_symbols} if errors else fresh_symbols
+                save_symbols(ds, merged)
                 symbols = load_symbols(ds)
                 state["symbols_refreshed_at"] = started
         except Exception as exc:
@@ -318,6 +345,8 @@ def run_collect(
 
     # -- persist raw items first, then everything derived ------------------------
     ds.write_raw(new_records, started, run_id)
+    if not ds.path("README.md").exists():
+        ds.write_text("README.md", DATA_README)
     summary["new_docs"] = len(new_records)
 
     extractor = default_extractor(symbols.keys())

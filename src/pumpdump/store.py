@@ -1,7 +1,7 @@
 """On-disk datastore (the `data` branch of the repo).
 
 Raw Reddit records are append-only, gzipped JSON lines partitioned by the UTC
-date they were *collected*, one file per run:
+date they were *collected*, one file per run (split into `_pNN` parts when huge):
 
     raw/reddit/YYYY/MM/DD/HHMMSSZ_<run_id>.jsonl.gz
 
@@ -43,17 +43,29 @@ class Datastore:
         return self.root / rel
 
     # raw records ---------------------------------------------------------
-    def write_raw(self, records: list[dict], run_started: float, run_id: str) -> Path | None:
+    def write_raw(
+        self, records: list[dict], run_started: float, run_id: str, max_records_per_file: int = 50_000
+    ) -> list[Path]:
+        """Write one run's records; big runs (the first backfill) are split into `_pNN` parts.
+
+        Parts keep each file far below GitHub's 100 MB limit and sort in write order.
+        """
         if not records:
-            return None
+            return []
         dt = utc_dt(run_started)
-        path = self.root / RAW_DIR / dt.strftime("%Y/%m/%d") / f"{dt.strftime('%H%M%S')}Z_{run_id}.jsonl.gz"
-        buf = io.BytesIO()
-        with gzip.GzipFile(fileobj=buf, mode="wb", mtime=0) as gz:
-            for r in records:
-                gz.write((json.dumps(r, ensure_ascii=False, separators=(",", ":")) + "\n").encode())
-        _atomic_write_bytes(path, buf.getvalue())
-        return path
+        stem = f"{dt.strftime('%H%M%S')}Z_{run_id}"
+        chunks = [records[i : i + max_records_per_file] for i in range(0, len(records), max_records_per_file)]
+        paths = []
+        for i, chunk in enumerate(chunks):
+            name = f"{stem}.jsonl.gz" if len(chunks) == 1 else f"{stem}_p{i:02d}.jsonl.gz"
+            path = self.root / RAW_DIR / dt.strftime("%Y/%m/%d") / name
+            buf = io.BytesIO()
+            with gzip.GzipFile(fileobj=buf, mode="wb", mtime=0) as gz:
+                for r in chunk:
+                    gz.write((json.dumps(r, ensure_ascii=False, separators=(",", ":")) + "\n").encode())
+            _atomic_write_bytes(path, buf.getvalue())
+            paths.append(path)
+        return paths
 
     def raw_files(self, since: float | None = None) -> list[Path]:
         base = self.root / RAW_DIR

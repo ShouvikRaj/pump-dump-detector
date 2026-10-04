@@ -38,10 +38,13 @@ def test_collect_command_writes_datastore_and_summary(tmp_path, offline):
     assert "ZZZZ" in text and "13 new" in text
 
 
-def test_collect_exits_nonzero_when_every_stream_failed(tmp_path, offline):
+def test_source_outage_is_recorded_for_the_health_check_not_a_failed_run(tmp_path, offline):
+    # a failed run would skip the push, losing the error counts the health check needs
     offline.failures = [(500, {})] * 1000
     code = cli.main(["collect", "--datastore", str(tmp_path / "ds"), "--run-id", "1", "--max-retries", "0"])
-    assert code == 2
+    assert code == 0
+    streams = Datastore(tmp_path / "ds").load_state()["streams"]
+    assert streams and all(st["consecutive_errors"] == 1 for st in streams.values())
 
 
 def test_build_db_creates_queryable_sqlite(tmp_path, offline):
