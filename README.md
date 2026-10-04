@@ -35,7 +35,10 @@ can't be used without Reddit's manual approval. Posts and comments come from the
 about 36 hours later, so they are stored but must not be used as decision-time features.
 
 StockTwits' public trending list is recorded each run as a second, independent hype signal. Ticker symbols come
-from the Nasdaq Trader symbol directory and the SEC's `company_tickers_exchange.json` (refreshed daily).
+from the Nasdaq Trader symbol directory and the SEC's `company_tickers_exchange.json` (refreshed daily). The SEC
+only answers requests whose User-Agent names a contact, so its list (which adds OTC companies) is used once the
+repository variable `SEC_USER_AGENT` is set, e.g. `pump-dump-detector you@example.com`. Until then OTC tickers
+count only when written as `$TICKER`.
 
 ## How a candidate is flagged
 

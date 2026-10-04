@@ -45,6 +45,9 @@ jobs:
         run: scripts/datastore.sh checkout datastore 9
 
       - name: Collect, extract tickers, flag spikes
+        env:
+          # optional repo variable, e.g. "pump-dump-detector you@example.com"; SEC refuses requests without a contact
+          SEC_USER_AGENT: ${{ vars.SEC_USER_AGENT }}
         run: >-
           python -m pumpdump collect
           --datastore datastore
