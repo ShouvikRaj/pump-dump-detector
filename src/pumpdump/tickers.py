@@ -10,8 +10,10 @@ symbol lists. Three ways a ticker can be mentioned, strongest first:
   cashtag   "$ABCD"  - counts if listed, or if unlisted with 3+ letters and not
             a currency/crypto coin.
   bare      "ABCD"   - must be ALL CAPS, 3-5 letters, listed, and not a common
-            English word or finance acronym (so "PUMP", "MOON", "CEO" don't
-            count unless written as cashtags).
+            English word or finance acronym/slang (so "PUMP", "MOON", "CEO",
+            "TACO" don't count unless written as cashtags). A short allowlist
+            (SPY, HOOD, ...) counts despite being English words, and
+            hyphenated compounds ("GLP-1", "GPT-5") never count.
 
 Each document yields at most one Mention per ticker (strongest method wins).
 """
@@ -25,7 +27,9 @@ from functools import lru_cache
 from importlib import resources
 from typing import Collection, Iterable
 
-EXTRACTOR_VERSION = "tickers-v1"
+# v2 (2026-10-04, after reviewing the first 165k live records): hyphen rule,
+# bare allowlist, ~45 more slang/acronym collisions (TACO, MAGA, DRAM, HBM...)
+EXTRACTOR_VERSION = "tickers-v2"
 
 _STRENGTH = {"exchange": 3, "cashtag": 2, "bare": 1}
 
@@ -41,7 +45,7 @@ _EXCHANGE_RE = re.compile(
     rf"(?<![A-Za-z0-9])(?i:({_US_EXCHANGES}|{_FOREIGN_EXCHANGES}))\s*:\s*\$?([A-Z]{{1,5}})(?:\.([A-Z]))?(?![A-Za-z0-9])"
 )
 _CASHTAG_RE = re.compile(r"(?<![\w$])\$([A-Za-z]{1,5})(?:\.([A-Za-z]))?(?![A-Za-z0-9])")
-_BARE_RE = re.compile(r"(?<![A-Za-z0-9$#@._-])([A-Z]{3,5})(?![A-Za-z0-9_])")
+_BARE_RE = re.compile(r"(?<![A-Za-z0-9$#@._-])([A-Z]{3,5})(?![A-Za-z0-9_]|-[A-Za-z0-9])")
 
 _URL_RE = re.compile(r"(?:https?://|www\.)\S+", re.IGNORECASE)
 _MD_LINK_TARGET_RE = re.compile(r"\]\([^)\s]*\)")
@@ -70,11 +74,13 @@ class TickerExtractor:
         common_words: Collection[str],
         acronyms: Collection[str],
         cashtag_block: Collection[str],
+        bare_allow: Collection[str] = (),
     ) -> None:
         self.universe = frozenset(s.upper() for s in universe)
         self.common_words = frozenset(w.lower() for w in common_words)
         self.acronyms = frozenset(a.upper() for a in acronyms)
         self.cashtag_block = frozenset(c.upper() for c in cashtag_block)
+        self.bare_allow = frozenset(b.upper() for b in bare_allow)
 
     def _with_class(self, base: str, cls: str | None) -> str:
         if cls:
@@ -111,7 +117,9 @@ class TickerExtractor:
                 add(Mention(ticker, "cashtag", False))
 
         for sym in _BARE_RE.findall(text):
-            if sym in self.universe and sym.lower() not in self.common_words and sym not in self.acronyms:
+            if sym not in self.universe or sym in self.acronyms:
+                continue
+            if sym in self.bare_allow or sym.lower() not in self.common_words:
                 add(Mention(sym, "bare", True))
 
         return sorted(found.values())
@@ -123,14 +131,15 @@ def _read_wordlist(name: str) -> list[str]:
 
 
 @lru_cache(maxsize=None)
-def packaged_wordlists() -> tuple[tuple[str, ...], tuple[str, ...], tuple[str, ...]]:
-    return (
-        tuple(_read_wordlist("common_words.txt")),
-        tuple(_read_wordlist("acronyms.txt")),
-        tuple(_read_wordlist("cashtag_block.txt")),
+def packaged_wordlists() -> tuple[tuple[str, ...], ...]:
+    return tuple(
+        tuple(_read_wordlist(name))
+        for name in ("common_words.txt", "acronyms.txt", "cashtag_block.txt", "bare_allow.txt")
     )
 
 
 def default_extractor(universe: Iterable[str]) -> TickerExtractor:
-    common, acronyms, block = packaged_wordlists()
-    return TickerExtractor(universe=set(universe), common_words=common, acronyms=acronyms, cashtag_block=block)
+    common, acronyms, block, allow = packaged_wordlists()
+    return TickerExtractor(
+        universe=set(universe), common_words=common, acronyms=acronyms, cashtag_block=block, bare_allow=allow
+    )

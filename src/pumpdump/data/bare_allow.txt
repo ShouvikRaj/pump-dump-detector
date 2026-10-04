@@ -1,0 +1,10 @@
+# Listed symbols that are English words (so the common-word filter drops them)
+# but that, written in ALL CAPS on finance Reddit, almost always mean the ticker.
+# Checked against the first 165k collected records on 2026-10-04: e.g. "SPY"
+# appeared 1,492 times, nearly all as the ETF. Words people also shout in caps
+# (OPEN, NOW, RUN, LOW, NET) stay out.
+SPY
+HOOD
+ARM
+COIN
+APP

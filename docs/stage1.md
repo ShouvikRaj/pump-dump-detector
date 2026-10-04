@@ -80,7 +80,7 @@ missing, then writes that day's per-ticker mention counts (all tickers, for cont
 On the very first run every stream backfills 9 days (1 current + 7 baseline + 1 spare), which can take more
 than one run for r/wallstreetbets; cursors make it resume.
 
-## Ticker extraction (`tickers.py`, version `tickers-v1`)
+## Ticker extraction (`tickers.py`, version `tickers-v2`)
 
 Nam & Skillicorn (2025) used regex candidates checked against exchange symbol lists. Same idea, three forms:
 
@@ -88,12 +88,19 @@ Nam & Skillicorn (2025) used regex candidates checked against exchange symbol li
 |---|---|---|
 | exchange prefix | `(NASDAQ: ABCD)`, `OTC: ABCDF`, `TSXV: XYZ` | always (US exchanges as `ABCD`, foreign ones as `TSXV:XYZ`) |
 | cashtag | `$ABCD`, `$abcd`, `$BRK.B` | listed; or unlisted with 3+ letters and not a currency/crypto coin |
-| bare | `ABCD` | ALL CAPS, 3-5 letters, listed, not a common English word (wordfreq Zipf >= 4.0) or finance acronym |
+| bare | `ABCD` | ALL CAPS, 3-5 letters, listed, not a common English word (wordfreq Zipf >= 4.0) or finance acronym/slang, not part of a hyphenated compound (`GLP-1`) |
 
 Unlisted cashtags are kept (`in_universe=0`) because non-reporting OTC pinks, the classic pump targets, are in
 neither symbol list. Known gaps: company names ("GameStop") are not matched; two-letter tickers only count as
-cashtags; tickers that are English words (`WOLF`, `HOOD`) only count as cashtags. Documents by AutoModerator and
-the WSB bots are skipped.
+cashtags; tickers that are English words (`WOLF`, `OPEN`) only count as cashtags, except a short allowlist
+(`data/bare_allow.txt`: SPY, HOOD, ARM, COIN, APP) that in caps on Reddit almost always means the ticker.
+Documents by AutoModerator and the WSB bots are skipped.
+
+v2 came from reading the bare matches in the first 165k live records: the most-mentioned "tickers" included
+`TACO` (the Trump meme), `MAGA`, `GPT`, `DRAM`/`HBM` (memory chips), `WTI` (oil), `BYD` (the carmaker, not Boyd
+Gaming), `HYSA`, `DEI`, `GLP` (from GLP-1) and SPY was missing entirely. About 45 such collisions were added to
+`data/acronyms.txt`; they still count as `$TACO` etc. Real small caps found in the same review (SOAR, SDEV, GOW,
+TGE, GYGY, WCT) were kept.
 
 ## Hype score (`hype.py`, version `hype-v1`)
 

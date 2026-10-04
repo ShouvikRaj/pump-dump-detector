@@ -137,3 +137,24 @@ def test_mention_is_hashable_value():
 def test_default_extractor_loads_packaged_word_lists():
     ext = default_extractor(universe={"PUMP", "AMC", "IMO"})
     assert ext.extract("PUMP AMC IMO") == [Mention("AMC", "bare", True)]
+
+
+def test_hyphenated_compound_is_not_a_bare_ticker():
+    # "GLP-1" drugs and "GPT-5" models were the top false matches in the first live data
+    ext = TickerExtractor(universe={"GLP", "GPT", "DRTS"}, common_words=(), acronyms=(), cashtag_block=())
+    assert tickers(ext.extract("GLP-1 drugs, GPT-5 says DRTS - cancer play")) == [("DRTS", "bare", True)]
+
+
+def test_common_word_on_bare_allowlist_counts():
+    ext = TickerExtractor(
+        universe={"SPY", "NOW"}, common_words={"spy", "now"}, acronyms=(), cashtag_block=(), bare_allow={"SPY"}
+    )
+    assert tickers(ext.extract("SPY puts NOW")) == [("SPY", "bare", True)]
+
+
+def test_default_extractor_skips_reddit_slang_that_collides_with_listed_symbols():
+    slang = "TACO MAGA GPT DRAM HBM HYSA WTI DOW DEI YALL RTH ODTE AINT BYD WEN ADP".split()
+    ext = default_extractor(universe=set(slang) | {"SPY", "HOOD", "APP", "DRTS"})
+    text = " ".join(slang) + " but SPY calls, HOOD, APP and DRTS"
+    assert [m.ticker for m in ext.extract(text)] == ["APP", "DRTS", "HOOD", "SPY"]
+    assert ext.extract("$TACO") == [Mention("TACO", "cashtag", True)]

@@ -43,8 +43,9 @@ count only when written as `$TICKER`.
 ## How a candidate is flagged
 
 1. **Ticker extraction** (after Nam & Skillicorn 2025): `$CASHTAG`, `NASDAQ: XXXX` / `OTC: XXXX`, or a bare ALL-CAPS
-   3-5 letter word that is a listed symbol and not a common English word or finance acronym (so `PUMP`, `MOON`,
-   `CEO` only count as `$PUMP` etc.). URLs and r/ u/ links are ignored. One mention per ticker per document.
+   3-5 letter word that is a listed symbol and not a common English word or finance acronym/slang (so `PUMP`,
+   `MOON`, `CEO`, `TACO` only count as `$PUMP` etc.). URLs and r/ u/ links are ignored. One mention per ticker per
+   document.
 2. **Hype score**: number of hype categories a document uses (moon/rocket, squeeze, 10x, urgency, "next GME", hidden
    gem, tendies, diamond hands, low float, price targets, fire). 2+ categories = a hype document.
 3. **Spike rule** (after Renault 2017): mentions in the trailing 24 h > mean + 2 sd of the previous 7 days, with at
