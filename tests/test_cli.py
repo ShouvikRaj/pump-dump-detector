@@ -64,3 +64,9 @@ def test_scan_prints_tickers_and_hype(capsys):
     assert cli.main(["scan", "$GME to the moon 🚀 short squeeze"]) == 0
     out = capsys.readouterr().out
     assert "GME" in out and "squeeze" in out
+
+
+def test_summary_lists_days_whose_mention_counts_were_filled_in():
+    summary = {"run_id": "1", "new_docs": 0, "started_at": "x", "streams": [], "detection": "ran", "daily": None,
+               "daily_filled": ["2026-09-26", "2026-09-27"], "new_candidates": [], "active": [], "warnings": []}
+    assert "Mention counts filled in for 2026-09-26, 2026-09-27." in cli.render_summary(summary)

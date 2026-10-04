@@ -75,7 +75,10 @@ comments), oldest first, paging with `limit=auto` and re-reading the boundary se
 lost. Known IDs are skipped. wallstreetbets comments run last so a slow catch-up there can't starve the rest.
 
 After 00:30 UTC the first run of the day re-fetches the whole previous UTC day for every stream, stores anything
-missing, then writes that day's per-ticker mention counts (all tickers, for control groups).
+missing, then writes that day's per-ticker mention counts (all tickers, for control groups). If a busy day doesn't
+fit in one run, the next run resumes the re-fetch where it stopped instead of starting over. Days that never get
+this rollover (the backfilled days, or days missed while the collector was down) get their counts once every
+stream has completed a fetch after the day ended, so rows in `daily/mention_counts/` are not in date order.
 
 On the very first run every stream backfills 9 days (1 current + 7 baseline + 1 spare), which can take more
 than one run for r/wallstreetbets; cursors make it resume.

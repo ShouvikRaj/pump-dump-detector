@@ -9,7 +9,7 @@ from __future__ import annotations
 import statistics
 import time
 from dataclasses import dataclass, field
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from typing import Callable
 
 from . import db
@@ -311,23 +311,34 @@ def run_collect(
         summary["streams"].append(row)
 
     # -- reconcile yesterday: pick up anything archived after we passed it -----
+    # A busy day may not fit in one run, so progress is kept per stream and the
+    # next run resumes where this one stopped instead of starting over.
     reconciled_day_start = None
     if rollover:
         y_start = day_start_ts - DAY
-        complete = True
+        rec = state.get("reconcile")
+        if not rec or rec.get("day") != yesterday:
+            rec = state["reconcile"] = {"day": yesterday, "after": {}, "done": []}
         for sub, kind in settings.streams():
+            key = f"{sub}/{kind}"
+            if key in rec["done"]:
+                continue
+            after = rec["after"].get(key, int(y_start) - 1)
             res, recs, fresh = _fetch_stream(
-                client, sub, kind, y_start - 1, day_start_ts, "reconcile", run_id, conn, settings, deadline
+                client, sub, kind, after, day_start_ts, "reconcile", run_id, conn, settings, deadline
             )
             new_records += fresh
-            complete &= res.complete
+            if res.newest_created is not None:
+                rec["after"][key] = max(after, res.newest_created - 1)  # re-read the boundary second
+            if res.complete:
+                rec["done"].append(key)
             log_rows.append(
                 {
                     "run_id": run_id,
                     "run_started_at_utc": iso(started),
-                    "stream": f"{sub}/{kind}",
+                    "stream": key,
                     "mode": "reconcile",
-                    "after_utc": iso(y_start),
+                    "after_utc": iso(after),
                     "fetched": len(recs),
                     "new": len(fresh),
                     "pages": res.pages,
@@ -338,10 +349,11 @@ def run_collect(
                     "error": res.error or "",
                 }
             )
-        if complete:
+        if all(f"{sub}/{kind}" in rec["done"] for sub, kind in settings.streams()):
             reconciled_day_start = int(y_start)
+            del state["reconcile"]
         else:
-            summary["warnings"].append(f"reconcile of {yesterday} incomplete, will retry next run")
+            summary["warnings"].append(f"reconcile of {yesterday} incomplete, will resume next run")
     summary["warnings"] += [
         f"arctic shift: API rejected field {f}; collecting without it" for f in getattr(client, "dropped_fields", [])
     ]
@@ -360,6 +372,7 @@ def run_collect(
         ds.append_csv(f"daily/mention_counts/{yesterday[:7]}.csv", db.DAILY_FIELDS, counts)
         state["daily_done_for"] = yesterday
         summary["daily"] = yesterday
+    summary["daily_filled"] = fill_daily_counts(ds, conn, state, started, settings)
 
     trending_rank: dict[str, int] = {}
     if fetch_trending is not None:
@@ -414,6 +427,47 @@ def run_collect(
     ds.save_state(state)
     conn.close()
     return summary
+
+
+def _midnight(d: date) -> float:
+    return datetime(d.year, d.month, d.day, tzinfo=timezone.utc).timestamp()
+
+
+def fill_daily_counts(ds: Datastore, conn, state: dict, started: float, settings: Settings) -> list[str]:
+    """Write mention counts for days up to `daily_done_for` that have none yet.
+
+    These are the backfilled days before the first rollover and days skipped
+    while the collector was down. Each was fetched after it ended, so it is
+    complete once every stream has finished a fetch after the day's end.
+    Only days still in the working database (and the sparse checkout) count.
+    """
+    if state.get("daily_done_for") is None:
+        return []
+    streams = [state["streams"].get(f"{sub}/{kind}") for sub, kind in settings.streams()]
+    if any(st is None or st.get("last_complete_at") is None for st in streams):
+        return []
+    covered_since = max(st["complete_since"] for st in streams)
+    first = utc_dt(covered_since).date()
+    if _midnight(first) < covered_since:
+        first += timedelta(days=1)  # first full day
+    first = max(first, utc_dt(started - (settings.window_days + 1) * DAY).date())
+    complete_until = min(st["last_complete_at"] for st in streams)
+    days = []
+    d = first
+    while d <= date.fromisoformat(state["daily_done_for"]) and _midnight(d) + DAY <= complete_until:
+        days.append(d.isoformat())
+        d += timedelta(days=1)
+    months = sorted({day[:7] for day in days})
+    written = {r["date"] for m in months for r in ds.read_csv(f"daily/mention_counts/{m}.csv")}
+    filled = []
+    for day in days:
+        if day in written:
+            continue
+        counts = db.daily_counts(conn, int(_midnight(date.fromisoformat(day))))
+        if counts:
+            ds.append_csv(f"daily/mention_counts/{day[:7]}.csv", db.DAILY_FIELDS, counts)
+            filled.append(day)
+    return filled
 
 
 def _episode_row(r: SpikeResult, ep: dict, conn, as_of, run_id, symbols, trending_rank, warmup) -> dict:

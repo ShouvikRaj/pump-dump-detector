@@ -30,7 +30,8 @@ def world():
 
 
 def run(ds, server, clock, run_id, **kw):
-    client = ArcticShift(get=server.get, sleep=clock.sleep, clock=clock.time, min_interval=0)
+    # min_interval > 0 makes every request cost fake time, so run budgets can run out
+    client = ArcticShift(get=server.get, sleep=clock.sleep, clock=clock.time, min_interval=kw.pop("min_interval", 0))
     return run_collect(
         ds,
         client,
@@ -159,14 +160,72 @@ def test_daily_rollover_reconciles_late_items_and_writes_counts(setup):
 
     assert summary["daily"] == "2026-10-04"
     assert "t1_late1" in raw_ids(ds.raw_files()[-1])
-    counts = {r["ticker"]: r for r in ds.read_csv("daily/mention_counts/2026-10.csv")}
-    assert counts["ZZZZ"]["date"] == "2026-10-04"
+    counts = {r["ticker"]: r for r in ds.read_csv("daily/mention_counts/2026-10.csv") if r["date"] == "2026-10-04"}
     assert counts["ZZZZ"]["mentions"] == "14"  # 12 comments + post + late comment
     assert counts["AAAA"]["mentions"] == "3"
     assert ds.load_state()["daily_done_for"] == "2026-10-04"
 
     clock.now = T + 3 * 3600 + 900
     assert run(ds, server, clock, "r3")["daily"] is None
+
+
+def daily_rows(ds):
+    return ds.read_csv("daily/mention_counts/2026-09.csv") + ds.read_csv("daily/mention_counts/2026-10.csv")
+
+
+def test_backfilled_days_get_daily_counts_once(setup):
+    ds, server, clock = setup
+    run(ds, server, clock, "r1")  # backfill from Sep 25 21:52
+
+    by_date = {}
+    for r in daily_rows(ds):
+        by_date.setdefault(r["date"], {})[r["ticker"]] = r["mentions"]
+    # Sep 25 is only partly covered; Oct 4 waits for the 00:30 re-fetch
+    assert sorted(by_date) == ["2026-09-26", "2026-09-27", "2026-09-28", "2026-09-29", "2026-09-30",
+                               "2026-10-01", "2026-10-02", "2026-10-03"]
+    assert all(day == {"AAAA": "3"} for day in by_date.values())
+
+    clock.now = T + 900
+    run(ds, server, clock, "r2")
+    assert len(daily_rows(ds)) == 8  # nothing written twice
+
+
+def test_days_missed_while_the_collector_was_down_get_counts_after_it_catches_up(setup):
+    ds, server, clock = setup
+    run(ds, server, clock, "r1")
+    server.items["comments"] += [comment("d5", T + 6 * 3600, body="AAAA"), comment("d6", T + DAY + 6 * 3600, body="AAAA")]
+
+    clock.now = T + 2 * DAY + 3 * 3600  # down until Oct 7 00:52 UTC
+    summary = run(ds, server, clock, "r2")
+
+    assert summary["daily"] == "2026-10-06"
+    dates = [r["date"] for r in daily_rows(ds) if r["ticker"] == "AAAA"]
+    assert sorted(dates)[-3:] == ["2026-10-04", "2026-10-05", "2026-10-06"]
+    assert len(dates) == len(set(dates))
+
+
+def test_daily_reconcile_that_runs_out_of_time_resumes_where_it_stopped(setup):
+    ds, server, clock = setup
+    server.items["comments"].append(comment("w0", T - 3600, sub="wallstreetbets", body="hi"))
+    run(ds, server, clock, "r1")
+    # 450 comments Arctic Shift archived late, spread over Oct 4 before our cursor overlap
+    day = T - 21 * 3600 - 52 * 60  # 2026-10-04 00:00 UTC
+    server.items["comments"] += [comment(f"late{i}", day + i * 40, sub="wallstreetbets", body="$QWRT") for i in range(450)]
+    slow = dict(min_interval=10, settings=Settings(subreddits=SETTINGS.subreddits, max_seconds=65))
+
+    clock.now = T + 3 * 3600  # 2026-10-05 00:52 UTC: one 250-item page fits in the budget
+    summary = run(ds, server, clock, "r2", **slow)
+    assert summary["daily"] is None
+    assert any("incomplete" in w for w in summary["warnings"])
+
+    calls_before = len(server.calls)
+    clock.now += 900
+    summary = run(ds, server, clock, "r3", **slow)
+    assert summary["daily"] == "2026-10-04"
+    resumed = [(url, params) for url, params in server.calls[calls_before:] if "before" in params]
+    assert {(url.rsplit("/", 2)[-2], params["subreddit"]) for url, params in resumed} == {("comments", "wallstreetbets")}
+    counts = {r["ticker"]: r for r in daily_rows(ds) if r["date"] == "2026-10-04"}
+    assert counts["QWRT"]["mentions"] == "450"
 
 
 def test_health_reports_stale_and_erroring_streams():
