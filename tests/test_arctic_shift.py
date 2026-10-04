@@ -1,6 +1,6 @@
 import pytest
 
-from fakes import FakeArcticShift, FakeClock, comment, post
+from fakes import DOC_FIELDS, FakeArcticShift, FakeClock, comment, post
 from pumpdump.sources.arctic_shift import ArcticShift, ArcticShiftError, fetch_since, to_record
 
 T0 = 1_791_000_000
@@ -130,15 +130,29 @@ def test_persistent_failure_keeps_partial_results_and_reports_error():
     assert "500" in res.error
 
 
-def test_unknown_field_rejection_falls_back_to_full_records():
-    server = FakeArcticShift(posts=[post("p1", T0, title="hi")], reject_fields=True)
+def test_default_field_lists_are_accepted_by_the_api():
+    server = FakeArcticShift(posts=[post("p1", T0, title="hi")], comments=[comment("c1", T0, body="yo")])
     client, _ = make_client(server)
 
-    res = fetch_since(client, "posts", "pennystocks", after=T0 - 1)
+    assert client.search("posts", "pennystocks", after=T0 - 1)[0]["title"] == "hi"
+    assert client.search("comments", "pennystocks", after=T0 - 1)[0]["body"] == "yo"
+    assert len(server.calls) == 2 and all("fields" in params for _, params in server.calls)
 
-    assert res.items[0]["title"] == "hi"
-    assert "fields" in server.calls[0][1]
-    assert "fields" not in server.calls[-1][1]
+
+def test_field_the_api_rejects_is_dropped_and_remembered():
+    valid = {**DOC_FIELDS, "posts": DOC_FIELDS["posts"] - {"author_flair_text"}}
+    server = FakeArcticShift(posts=[post("p1", T0, title="hi")], valid_fields=valid)
+    client, clock = make_client(server)
+
+    assert client.search("posts", "pennystocks", after=T0 - 1)[0]["title"] == "hi"
+    assert client.search("posts", "pennystocks", after=T0 - 1)[0]["title"] == "hi"
+
+    fields = [params["fields"].split(",") for _, params in server.calls]
+    assert len(fields) == 3
+    assert "author_flair_text" in fields[0]
+    assert "author_flair_text" not in fields[1] and "author_flair_text" not in fields[2]
+    assert "title" in fields[2]
+    assert client.dropped_fields == ["posts.author_flair_text"]
 
 
 def test_client_error_other_than_fields_is_raised():
@@ -182,6 +196,16 @@ def test_to_record_normalises_post():
     assert rec["run_id"] == "r1"
 
 
+def test_to_record_builds_permalinks_the_api_does_not_return():
+    p = post("abc", T0, sub="PennyStocks")
+    c = comment("xyz", T0, sub="wallstreetbets", link_id="t3_p9")
+    for item in (p, c):
+        del item["permalink"]
+        item["_collected_at"] = T0
+    assert to_record("posts", p, run_id="r")["permalink"] == "/r/pennystocks/comments/abc/"
+    assert to_record("comments", c, run_id="r")["permalink"] == "/r/wallstreetbets/comments/p9/comment/xyz/"
+
+
 def test_to_record_normalises_comment():
     item = comment("xyz", T0, body="nice", link_id="t3_p9", parent_id="t1_c1")
     item["_collected_at"] = T0 + 60
@@ -191,3 +215,12 @@ def test_to_record_normalises_comment():
     assert rec["title"] is None
     assert rec["body"] == "nice"
     assert (rec["link_id"], rec["parent_id"]) == ("t3_p9", "t1_c1")
+
+
+def test_to_record_omits_fields_the_api_never_serves():
+    # a None here would read as "not removed" / "not edited", which nobody actually knows
+    item = post("abc", T0, crosspost_parent="t3_zzz")
+    item["_collected_at"] = T0
+    rec = to_record("posts", item, run_id="r")
+    assert not {"upvote_ratio", "removed_by_category", "stickied", "edited"} & rec.keys()
+    assert rec["crosspost_parent"] == "t3_zzz"

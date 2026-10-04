@@ -34,8 +34,6 @@ DOC_COLUMNS = [
     "flair",
     "score",
     "num_comments",
-    "upvote_ratio",
-    "removed_by_category",
     "run_id",
     "fetch_mode",
 ]
@@ -59,8 +57,6 @@ CREATE TABLE IF NOT EXISTS docs (
     flair TEXT,
     score INTEGER,                       -- as received; NOT a decision-time feature
     num_comments INTEGER,
-    upvote_ratio REAL,
-    removed_by_category TEXT,
     run_id TEXT,
     fetch_mode TEXT,                     -- backfill | live | reconcile
     extracted INTEGER NOT NULL DEFAULT 0

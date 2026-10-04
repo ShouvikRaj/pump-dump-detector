@@ -71,6 +71,16 @@ def comment(id_, created, sub="pennystocks", author="bob", body="", link_id="t3_
     return item
 
 
+# `fields` values the live API accepts (api/README.md, checked 2026-10-04)
+_SHARED_FIELDS = {"author", "author_fullname", "author_flair_text", "created_utc", "distinguished", "id",
+                  "retrieved_on", "subreddit", "subreddit_id", "score"}
+DOC_FIELDS = {
+    "posts": _SHARED_FIELDS | {"crosspost_parent", "link_flair_text", "num_comments", "over_18", "post_hint",
+                               "selftext", "spoiler", "title", "url"},
+    "comments": _SHARED_FIELDS | {"body", "link_id", "parent_id"},
+}
+
+
 class FakeArcticShift:
     """Serves /api/{posts,comments}/search with the real API's filtering rules.
 
@@ -78,14 +88,16 @@ class FakeArcticShift:
     that second (the live API's behaviour is not documented).
     `failures` is a list of (status, headers) returned before normal answers.
     `auto_size` is how many items limit=auto returns.
+    `valid_fields` maps kind -> accepted `fields` names; like the live API, the
+    first unknown name gets a 400 "'name' is not a valid field".
     """
 
-    def __init__(self, posts=(), comments=(), after_inclusive=False, auto_size=250, failures=(), reject_fields=False):
+    def __init__(self, posts=(), comments=(), after_inclusive=False, auto_size=250, failures=(), valid_fields=None):
         self.items = {"posts": list(posts), "comments": list(comments)}
         self.after_inclusive = after_inclusive
         self.auto_size = auto_size
         self.failures = list(failures)
-        self.reject_fields = reject_fields
+        self.valid_fields = valid_fields or DOC_FIELDS
         self.calls: list[tuple[str, dict]] = []
 
     def get(self, url: str, params: dict, timeout: float = 30):
@@ -93,12 +105,13 @@ class FakeArcticShift:
         if self.failures:
             status, headers = self.failures.pop(0)
             return status, headers, {"error": "fake failure"}
-        if self.reject_fields and "fields" in params:
-            return 422, {}, {"error": "Invalid field"}
         path = urlparse(url).path
         kind = "posts" if path == "/api/posts/search" else "comments" if path == "/api/comments/search" else None
         if kind is None:
             return 404, {}, {"error": "not found"}
+        for name in params.get("fields", "").split(",") if "fields" in params else ():
+            if name not in self.valid_fields[kind]:
+                return 400, {}, {"data": None, "error": f"'{name}' is not a valid field"}
         rows = [it for it in self.items[kind] if it["subreddit"].lower() == str(params["subreddit"]).lower()]
         if "after" in params:
             a = int(params["after"])

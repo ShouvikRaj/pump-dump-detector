@@ -75,7 +75,7 @@ def test_first_run_backfills_and_flags_the_spiking_ticker(setup):
     assert e["exchange"] == "OTC"
     assert e["warmup"] == "1"
     assert e["first_flagged_at_utc"] == "2026-10-04T21:52:00Z"
-    assert "https://www.reddit.com/r/pennystocks/comments/p1/x/" in e["examples"]
+    assert "https://www.reddit.com/r/pennystocks/comments/p1/" in e["examples"]
     assert "ZZZZ" in (ds.root / "candidates/README.md").read_text()
     assert summary["detection"] == "ran"
 
@@ -217,3 +217,19 @@ def test_partial_symbol_refresh_merges_into_existing_list(setup):
     assert saved == {"AAAA", "ZZZZ", "BBBB"}  # SEC failed, so its old OTC entry (ZZZZ) is kept
     assert any("403" in w for w in summary["warnings"])
     assert ds.load_state()["symbols_refreshed_at"] == T + 21 * 3600
+
+
+def test_field_the_api_stopped_accepting_is_reported_once_and_collection_continues(setup):
+    from fakes import DOC_FIELDS
+
+    ds, _, clock = setup
+    posts, comments = world()
+    valid = {**DOC_FIELDS, "comments": DOC_FIELDS["comments"] - {"author_flair_text"}}
+    server = FakeArcticShift(posts=posts, comments=comments, valid_fields=valid)
+
+    summary = run(ds, server, clock, "r1")
+
+    assert summary["new_docs"] == len(posts) + len(comments)
+    assert [w for w in summary["warnings"] if "author_flair_text" in w] == [
+        "arctic shift: API rejected field comments.author_flair_text; collecting without it"
+    ]

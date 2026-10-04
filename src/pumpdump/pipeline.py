@@ -342,6 +342,9 @@ def run_collect(
             reconciled_day_start = int(y_start)
         else:
             summary["warnings"].append(f"reconcile of {yesterday} incomplete, will retry next run")
+    summary["warnings"] += [
+        f"arctic shift: API rejected field {f}; collecting without it" for f in getattr(client, "dropped_fields", [])
+    ]
 
     # -- persist raw items first, then everything derived ------------------------
     ds.write_raw(new_records, started, run_id)

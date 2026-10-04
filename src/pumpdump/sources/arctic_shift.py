@@ -12,6 +12,7 @@ usable from a snapshot collected before the decision point.
 
 from __future__ import annotations
 
+import re
 import time
 from dataclasses import dataclass, field
 from typing import Any, Callable
@@ -22,16 +23,18 @@ BASE_URL = "https://arctic-shift.photon-reddit.com"
 USER_AGENT = "pump-dump-detector/0.1 (research; https://github.com/ShouvikRaj/pump-dump-detector)"
 FULL_PAGE = 100  # a page shorter than this means we've caught up (limit=100 or limit=auto)
 
+# The API only accepts these `fields` names (api/README.md); anything else is a 400
+# "'name' is not a valid field". It doesn't serve permalinks, so to_record builds them.
 POST_FIELDS = (
-    "id,author,author_fullname,created_utc,retrieved_on,subreddit,title,selftext,url,domain,permalink,"
-    "link_flair_text,author_flair_text,score,num_comments,upvote_ratio,over_18,stickied,is_self,"
-    "removed_by_category,distinguished,edited,num_crossposts"
+    "id,author,author_fullname,created_utc,retrieved_on,subreddit,title,selftext,url,"
+    "link_flair_text,author_flair_text,score,num_comments,distinguished,crosspost_parent"
 )
 COMMENT_FIELDS = (
-    "id,author,author_fullname,created_utc,retrieved_on,subreddit,body,link_id,parent_id,score,permalink,"
-    "author_flair_text,distinguished,edited,is_submitter,stickied"
+    "id,author,author_fullname,created_utc,retrieved_on,subreddit,body,link_id,parent_id,score,"
+    "author_flair_text,distinguished"
 )
 FIELDS = {"posts": POST_FIELDS, "comments": COMMENT_FIELDS}
+_INVALID_FIELD_RE = re.compile(r"'([A-Za-z0-9_]+)' is not a valid field")
 
 Getter = Callable[..., tuple[int, dict, Any]]
 
@@ -74,7 +77,8 @@ class ArcticShift:
         self.min_interval = min_interval
         self.max_retries = max_retries
         self.base_url = base_url
-        self.use_fields = True
+        self.fields = {kind: names.split(",") for kind, names in FIELDS.items()}
+        self.dropped_fields: list[str] = []  # "kind.name" the API refused this run
         self._last_request: float | None = None
         self.requests_made = 0
 
@@ -94,13 +98,14 @@ class ArcticShift:
         sort: str = "asc",
     ) -> list[dict]:
         url = f"{self.base_url}/api/{kind}/search"
-        status, body = 0, None
-        for attempt in range(self.max_retries + 1):
+        fields = self.fields[kind]
+        attempt = 0
+        while True:
             params: dict[str, Any] = {"subreddit": subreddit, "after": int(after), "sort": sort, "limit": limit}
             if before is not None:
                 params["before"] = int(before)
-            if self.use_fields:
-                params["fields"] = FIELDS[kind]
+            if fields:
+                params["fields"] = ",".join(fields)
             self._throttle()
             self._last_request = self.clock()
             self.requests_made += 1
@@ -110,17 +115,27 @@ class ArcticShift:
                 if not isinstance(data, list):
                     raise ArcticShiftError(f"unexpected response shape: {str(body)[:200]}")
                 return data
-            if status == 422 and self.use_fields:
-                self.use_fields = False  # a field name was rejected; ask for whole records
+            bad = _rejected_field(status, body)
+            if bad in fields:
+                fields.remove(bad)  # the API stopped serving it; carry on without it
+                self.dropped_fields.append(f"{kind}.{bad}")
                 continue
             if status == 422 and limit == "auto":
                 limit = FULL_PAGE  # heavy query timed out; ask for a smaller page
             elif status not in (0, 422, 429) and status < 500:
                 raise ArcticShiftError(f"HTTP {status} for {kind} r/{subreddit}: {str(body)[:200]}")
-            if attempt == self.max_retries:
+            if attempt >= self.max_retries:
                 break
             self.sleep(_retry_wait(status, headers, attempt))
-        raise ArcticShiftError(f"HTTP {status} for {kind} r/{subreddit} after {self.max_retries + 1} tries: {str(body)[:200]}")
+            attempt += 1
+        raise ArcticShiftError(f"HTTP {status} for {kind} r/{subreddit} after {attempt + 1} tries: {str(body)[:200]}")
+
+
+def _rejected_field(status: int, body: Any) -> str | None:
+    if status != 400 or not isinstance(body, dict):
+        return None
+    m = _INVALID_FIELD_RE.search(str(body.get("error") or ""))
+    return m.group(1) if m else None
 
 
 def _retry_wait(status: int, headers: dict, attempt: int) -> float:
@@ -191,6 +206,14 @@ def fetch_since(
     return res
 
 
+def _permalink(is_post: bool, item: dict) -> str | None:
+    sub = (item.get("subreddit") or "").lower()
+    if is_post:
+        return f"/r/{sub}/comments/{item['id']}/"
+    link = item.get("link_id") or ""
+    return f"/r/{sub}/comments/{link[3:]}/comment/{item['id']}/" if link.startswith("t3_") else None
+
+
 def to_record(kind: str, item: dict, run_id: str) -> dict:
     is_post = kind == "posts"
     return {
@@ -208,15 +231,12 @@ def to_record(kind: str, item: dict, run_id: str) -> dict:
         "link_id": None if is_post else item.get("link_id"),
         "parent_id": None if is_post else item.get("parent_id"),
         "url": item.get("url"),
-        "permalink": item.get("permalink"),
+        "permalink": item.get("permalink") or _permalink(is_post, item),
         "flair": item.get("link_flair_text"),
         "author_flair": item.get("author_flair_text"),
         "score": item.get("score"),
         "num_comments": item.get("num_comments"),
-        "upvote_ratio": item.get("upvote_ratio"),
-        "removed_by_category": item.get("removed_by_category"),
         "distinguished": item.get("distinguished"),
-        "stickied": item.get("stickied"),
-        "edited": item.get("edited"),
+        "crosspost_parent": item.get("crosspost_parent"),
         "run_id": run_id,
     }

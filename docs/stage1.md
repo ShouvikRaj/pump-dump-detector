@@ -19,8 +19,12 @@ Caveats handled in code:
 - `score` and `num_comments` are 1/0 at archive time and refreshed ~36 h later. They are stored as received but are
   not decision-time features.
 - Rate limits are dynamic and undocumented. The client waits 1 s between requests, honours `429` +
-  `X-RateLimit-Reset`, retries 5xx/network errors with backoff, retries without `fields` on a `422`, and drops
-  `limit=auto` to 100 if a heavy query times out.
+  `X-RateLimit-Reset`, retries 5xx/network errors with backoff, and drops `limit=auto` to 100 if a heavy query
+  times out.
+- The API only serves a fixed list of `fields` (no `permalink`, `removed_by_category`, `edited`, `upvote_ratio`).
+  Permalinks are rebuilt from the IDs, and the other fields are not stored at all, so an empty value never
+  pretends to mean "not removed". If the API stops accepting a field (`400 'x' is not a valid field`), the client
+  drops it, carries on and the run summary warns.
 - Reddit is moving away from monotonic comment IDs, so cursors use `created_utc`, never IDs.
 
 If Reddit ever grants API access, a PRAW source can be added next to `sources/arctic_shift.py`; nothing else

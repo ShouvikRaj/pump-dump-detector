@@ -171,3 +171,9 @@ def test_daily_counts_cover_one_utc_day_for_every_ticker(conn, ext):
         "by_subreddit": '{"pennystocks":1,"wallstreetbets":1}',
     }
     assert (rows["GME"]["mentions"], rows["GME"]["authors"]) == (2, 1)
+
+
+def test_docs_table_has_no_columns_for_fields_the_source_never_fills():
+    conn = db.connect(":memory:")
+    cols = {row[1] for row in conn.execute("PRAGMA table_info(docs)")}
+    assert not {"upvote_ratio", "removed_by_category"} & cols
