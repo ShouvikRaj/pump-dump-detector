@@ -5,3 +5,9 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 37240939112,2026-10-04T22:41:09Z,pennystocks/comments,backfill,2026-09-25T22:41:09Z,0,0,0,0,,,,"HTTP 400 for comments r/pennystocks: {'data': None, 'error': ""'permalink' is not a valid field""}"
 37240939112,2026-10-04T22:41:09Z,smallstreetbets/comments,backfill,2026-09-25T22:41:09Z,0,0,0,0,,,,"HTTP 400 for comments r/smallstreetbets: {'data': None, 'error': ""'permalink' is not a valid field""}"
 37240939112,2026-10-04T22:41:09Z,wallstreetbets/comments,backfill,2026-09-25T22:41:09Z,0,0,0,0,,,,"HTTP 400 for comments r/wallstreetbets: {'data': None, 'error': ""'permalink' is not a valid field""}"
+37241270651,2026-10-04T22:46:23Z,pennystocks/posts,backfill,2026-09-25T22:41:09Z,156,156,2,1,2026-10-04T21:46:52Z,21.0,371698.0,
+37241270651,2026-10-04T22:46:23Z,smallstreetbets/posts,backfill,2026-09-25T22:41:09Z,130,130,2,1,2026-10-04T20:51:06Z,21.0,303635.7,
+37241270651,2026-10-04T22:46:23Z,wallstreetbets/posts,backfill,2026-09-25T22:41:09Z,947,947,2,1,2026-10-04T22:45:43Z,22.0,360339.2,
+37241270651,2026-10-04T22:46:23Z,pennystocks/comments,backfill,2026-09-25T22:41:09Z,2808,2808,4,1,2026-10-04T22:30:24Z,22.0,385961.1,
+37241270651,2026-10-04T22:46:23Z,smallstreetbets/comments,backfill,2026-09-25T22:41:09Z,5235,5235,9,1,2026-10-04T22:35:18Z,23.0,381246.7,
+37241270651,2026-10-04T22:46:23Z,wallstreetbets/comments,backfill,2026-09-25T22:41:09Z,82684,82684,221,0,2026-09-30T20:11:23Z,21.0,515019.4,
