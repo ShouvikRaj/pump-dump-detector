@@ -4,10 +4,21 @@
     "DRTS": {
       "episode_id": "DRTS-20261004T232358Z",
       "first_flagged_at": 1791156238.4967465,
-      "last_flagged_at": 1791207681.6601586,
-      "n_flags": 59,
+      "last_flagged_at": 1791208516.734653,
+      "n_flags": 60,
       "peak_mentions": 23,
       "peak_z": 14.402,
+      "reasons_seen": [
+        "mention_spike"
+      ]
+    },
+    "PMI": {
+      "episode_id": "PMI-20261005T135516Z",
+      "first_flagged_at": 1791208516.734653,
+      "last_flagged_at": 1791208516.734653,
+      "n_flags": 1,
+      "peak_mentions": 10,
+      "peak_z": 6.736,
       "reasons_seen": [
         "mention_spike"
       ]
@@ -15,29 +26,29 @@
     "VST": {
       "episode_id": "VST-20261005T041528Z",
       "first_flagged_at": 1791173728.1260889,
-      "last_flagged_at": 1791207681.6601586,
-      "n_flags": 42,
+      "last_flagged_at": 1791208516.734653,
+      "n_flags": 43,
       "peak_mentions": 45,
-      "peak_z": 4.927,
+      "peak_z": 4.966,
       "reasons_seen": [
         "mention_spike"
       ]
     }
   },
   "last_run": {
-    "finished_at": 1791207681.6946087,
-    "new_docs": 322,
-    "run_id": "37318668503",
-    "started_at": 1791207661.2013662
+    "finished_at": 1791208516.7700148,
+    "new_docs": 375,
+    "run_id": "37320459191",
+    "started_at": 1791208490.8132696
   },
   "live_since": 1791153669.8332794,
   "streams": {
     "pennystocks/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1791207596,
+      "cursor": 1791208456,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791207670.4149837,
+      "last_complete_at": 1791208498.3199203,
       "last_error": "HTTP 400 for comments r/pennystocks: {'data': None, 'error': \"'permalink' is not a valid field\"}",
       "last_error_at": 1791153675.398871
     },
@@ -46,16 +57,16 @@
       "consecutive_errors": 0,
       "cursor": 1791207201,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791207665.969871,
+      "last_complete_at": 1791208494.910151,
       "last_error": "HTTP 400 for posts r/pennystocks: {'data': None, 'error': \"'domain' is not a valid field\"}",
       "last_error_at": 1791153671.9130921
     },
     "smallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1791207525,
+      "cursor": 1791208064,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791207671.725322,
+      "last_complete_at": 1791208499.1947207,
       "last_error": "HTTP 400 for comments r/smallstreetbets: {'data': None, 'error': \"'permalink' is not a valid field\"}",
       "last_error_at": 1791153676.5713816
     },
@@ -64,25 +75,25 @@
       "consecutive_errors": 0,
       "cursor": 1791206007,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791207667.231923,
+      "last_complete_at": 1791208496.4739673,
       "last_error": "HTTP 400 for posts r/smallstreetbets: {'data': None, 'error': \"'domain' is not a valid field\"}",
       "last_error_at": 1791153673.008012
     },
     "wallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1791207650,
+      "cursor": 1791208489,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791207676.7199242,
+      "last_complete_at": 1791208511.7813425,
       "last_error": "HTTP 400 for comments r/wallstreetbets: {'data': None, 'error': \"'permalink' is not a valid field\"}",
       "last_error_at": 1791153677.186102
     },
     "wallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1791207580,
+      "cursor": 1791208112,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791207668.6079834,
+      "last_complete_at": 1791208497.7030592,
       "last_error": "HTTP 400 for posts r/wallstreetbets: {'data': None, 'error': \"'domain' is not a valid field\"}",
       "last_error_at": 1791153673.678054
     }
