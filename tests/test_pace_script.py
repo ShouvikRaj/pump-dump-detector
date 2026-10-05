@@ -22,7 +22,7 @@ earlier = open(log).read().splitlines() if os.path.exists(log) else []
 with open(log, "a") as fh:
     fh.write(json.dumps(args) + "\\n")
 if args[:2] == ["run", "list"]:
-    out = os.environ["FAKE_NIGHTLY" if "nightly.yml" in args else "FAKE_RUNS"]
+    out = os.environ["FAKE_NIGHTLY" if "nightly.yml" in args else "FAKE_TRACK" if "track.yml" in args else "FAKE_RUNS"]
     if "--jq" in args:
         out = subprocess.run(["jq", "-r", args[args.index("--jq") + 1]], input=out, capture_output=True, text=True, check=True).stdout
     sys.stdout.write(out)
@@ -47,7 +47,7 @@ def run(tmp_path):
     gh.chmod(0o755)
     log = tmp_path / "gh.log"
 
-    def _run(runs, dispatch_failures=0, nightly_age=10 * 60, now=NOW, nightly=False, waited=13 * 60, pacers=False):
+    def _run(runs, dispatch_failures=0, nightly_age=10 * 60, now=NOW, nightly=False, waited=13 * 60, pacers=False, track_age=10 * 60, tracks=False):
         env = dict(
             os.environ,
             PATH=f"{bindir}{os.pathsep}{os.environ['PATH']}",
@@ -57,6 +57,7 @@ def run(tmp_path):
             FAKE_NIGHTLY=json.dumps([] if nightly_age is None else [{"createdAt": iso(now - nightly_age)}]),
             FAKE_DISPATCH_FAILURES=str(dispatch_failures),
             FAKE_SELF_CREATED=iso(now - waited),
+            FAKE_TRACK=json.dumps([] if track_age is None else [{"createdAt": iso(now - track_age)}]),
             GH_REPO="owner/repo",
             GITHUB_RUN_ID="1",
             PACE_NOW=str(now),
@@ -68,6 +69,8 @@ def run(tmp_path):
         dispatched = [c for c in calls if c[:2] == ["workflow", "run"]]
         if nightly:
             return res, [c for c in dispatched if c[2] == "nightly.yml"]
+        if tracks:
+            return res, [c for c in dispatched if c[2] == "track.yml"]
         if pacers:
             return res, [c for c in dispatched if c[2] == "pace.yml"]
         return res, [c for c in dispatched if c[2] == "collect.yml"]
@@ -169,3 +172,15 @@ def test_still_queues_a_pacer_when_collect_cannot_be_started(run):
     res, pacers = run([("completed", 16 * 60)], dispatch_failures=3, pacers=True)
     assert res.returncode != 0
     assert len(pacers) == 1
+
+
+def test_starts_the_track_run_after_its_slot(run):
+    # 22:50 UTC; the last track run was yesterday
+    late = NOW - (NOW % 86400) + 22 * 3600 + 50 * 60
+    res, tracks = run([("completed", 16 * 60)], now=late, track_age=24 * 3600, tracks=True)
+    assert res.returncode == 0, res.stderr
+    assert [c[:3] for c in tracks] == [["workflow", "run", "track.yml"]]
+    res, tracks = run([("completed", 16 * 60)], now=late, track_age=5 * 60, tracks=True)
+    assert tracks == []
+    res, tracks = run([("completed", 16 * 60)], tracks=True)  # 03:53 UTC, before the slot
+    assert tracks == []

@@ -4,11 +4,12 @@ Detecting US stock pump-and-dumps by combining social-media chatter with market 
 This repository is built in stages. **Stage 1 is the social scraper**: it collects Reddit chatter with collection
 timestamps and flags tickers whose mentions or hype language suddenly spike. **Stage 2 is the market check**: each
 flagged ticker's market data as of the moment it was flagged, next to two matched tickers nobody was talking about.
+**Stage 3 is tracking**: every flagged ticker and control is followed for 20 trading sessions afterwards.
 
 ```
 Stage 1  Reddit chatter -> ticker mentions -> spike flags -> candidate list      <- running
 Stage 2  market check of candidates (float, volume vs average, price, SEC dilution filings)   <- running
-Stage 3  ongoing tracking of chatter and price per candidate
+Stage 3  ongoing tracking of price, filings and chatter per candidate and control (20 sessions)   <- running
 Stage 4  outcome labels after N days (pump / not pump / real news), rule fixed in advance
 Stage 5  feedback loop: retrain, keep only patterns that hold across periods
 ```
@@ -24,6 +25,7 @@ Everything runs on GitHub Actions; no computer needs to stay on.
 | `collect` | about every 15 min | fetch new posts/comments from r/pennystocks, r/smallstreetbets, r/wallstreetbets; store them; extract tickers; flag spikes; update the candidate list; open an issue if collection is unhealthy |
 | `pace` | after each `collect` run | wait 13 minutes in the `pacer` environment, then start the next `collect` run (GitHub's cron fires rarely for this repo, so collection paces itself; the cron stays as a backup) |
 | `market` | after each `collect` run | snapshot each new candidate's market data as of its flag time, plus two matched controls (Stage 2) |
+| `track` | daily after the US close (started by `pace` after 22:41 UTC; cron backup) | record each candidate's and control's new trading sessions and SEC filings since its flag, for 20 sessions, and rebuild `track/outcomes.csv` (Stage 3) |
 | `nightly` | 03:41 UTC (started by `pace` when GitHub's cron misses it) | build a SQLite database of everything collected and attach it to the run as the `pumpdump-sqlite` artifact; once collection has finished, publish it as the `dataset-final` release and turn collection off |
 | `tests` | every push | `pytest` |
 
@@ -98,6 +100,15 @@ reverse splits.
 All sources are free and keyless (Yahoo Finance, SEC EDGAR, FINRA, Nasdaq's screener); SEC uses the same
 `SEC_USER_AGENT` secret as Stage 1. Every column, rule and known gap: [docs/stage2.md](docs/stage2.md).
 
+## Stage 3: tracking
+
+Once a day after the close, the `track` workflow appends each finished trading session of every candidate and control
+(open/high/low/close/volume, kept in flag-time prices across splits) and every SEC filing made since the flag, each
+stamped with when it was collected. From those it rebuilds `track/outcomes.csv`: the 5-session peak, the drop from that
+peak over the next 10 sessions, returns after 1/5/10/20 sessions, 8-Ks and dilution filings, and Reddit mentions in the
+days after. Each ticker is followed for 20 sessions and then left alone; the label rule is Stage 4's. Details:
+[docs/stage3.md](docs/stage3.md).
+
 ## Safeguards built in
 
 - **No lookahead**: every record stores `created_utc` and `collected_at`; counting functions take an `as_of` time
@@ -118,7 +129,8 @@ sqlite3 pumpdump.sqlite "select ticker, first_flagged_at_utc, mentions_24h, reas
 
 Tables: `docs` (posts + comments), `mentions` (one row per document x ticker, with hype score), `candidate_episodes`,
 `candidate_episode_ends`, `daily_mention_counts`, `stocktwits_trending`, `runs`, `symbols`, `market_snapshots`
-(Stage 2, candidates and controls; join on `episode_id`), `market_universe` (daily prices of all listed stocks).
+(Stage 2, candidates and controls; join on `episode_id`), `market_universe` (daily prices of all listed stocks),
+`track_daily`, `track_filings`, `track_outcomes` (Stage 3; join on `snapshot_id`).
 
 Try the extractor on any text: `python -m pumpdump scan '$ABCD to the moon 🚀 short squeeze'`. See what a market
 snapshot would record right now (needs internet; nothing is saved):
@@ -133,5 +145,5 @@ pytest
 
 Code: `src/pumpdump/`. Stage 1: `tickers.py`, `hype.py`, `spikes.py`, `sources/arctic_shift.py`, `pipeline.py`.
 Stage 2: `market.py` (the run), `features.py` (point-in-time features), `sources/` (Yahoo, EDGAR, FINRA, Nasdaq).
-Command line: `cli.py`. Design notes and the reasoning behind each threshold: [docs/stage1.md](docs/stage1.md),
-[docs/stage2.md](docs/stage2.md).
+Stage 3: `track.py`. Command line: `cli.py`. Design notes and the reasoning behind each threshold: [docs/stage1.md](docs/stage1.md),
+[docs/stage2.md](docs/stage2.md), [docs/stage3.md](docs/stage3.md).

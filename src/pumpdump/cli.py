@@ -2,6 +2,7 @@
 
   collect   one collection run against a datastore directory (the data branch)
   market    Stage 2: market snapshot of each new candidate as of its flag time, plus controls
+  track     Stage 3: follow candidates and controls for 20 sessions after the flag
   build-db  build a full SQLite database from a datastore
   scan      show the tickers and hype categories found in a piece of text
   status    say whether collection has finished (enough data for analysis)
@@ -18,7 +19,7 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
-from . import db, market
+from . import db, market, track
 from .hype import hype_categories
 from .market import default_sources, dry_run, run_market
 from .pipeline import Settings, collection_done, run_collect
@@ -131,6 +132,36 @@ def cmd_market(args: argparse.Namespace) -> int:
     return 0
 
 
+def render_track_summary(summary: dict, run_id: str) -> str:
+    lines = [f"## Track run {run_id}", ""]
+    lines.append(
+        f"Recorded {summary['new_sessions']} new sessions and {summary['new_filings']} new filings; "
+        f"{summary['active']} tickers still followed."
+    )
+    if summary["tracked"]:
+        lines.append("Checked: " + ", ".join(summary["tracked"]) + ".")
+    if summary["warnings"]:
+        lines += ["", "Warnings:"] + [f"- {w}" for w in summary["warnings"]]
+    return "\n".join(lines) + "\n"
+
+
+def cmd_track(args: argparse.Namespace) -> int:
+    ds = Datastore(args.datastore)
+    run_id = args.run_id or os.environ.get("GITHUB_RUN_ID") or time.strftime("%Y%m%dT%H%M%S", time.gmtime())
+    summary = track.run_track(ds, default_sources(), clock=time.time, max_seconds=args.max_minutes * 60)
+    text = render_track_summary(summary, str(run_id))
+    print(text)
+    if args.summary:
+        with open(args.summary, "a", encoding="utf-8") as fh:
+            fh.write(text)
+    if args.github_output:
+        # tracking is over once collection has finished and nothing is left to follow
+        finished = collection_done(ds, ds.load_state(), time.time(), Settings()) is not None and summary["active"] == 0
+        with open(args.github_output, "a", encoding="utf-8") as fh:
+            fh.write(f"finished={'true' if finished else 'false'}\n")
+    return 0
+
+
 def _convert(v: str):
     if v == "":
         return None
@@ -182,6 +213,9 @@ def cmd_build_db(args: argparse.Namespace) -> int:
     _load_csv_table(conn, "market_snapshots", ds.read_csv(market.SNAPSHOTS))
     universe = [{"date": p.name[:10], **r} for p in market.universe_files(ds) for r in market.read_universe(p)]
     _load_csv_table(conn, "market_universe", universe)
+    _load_csv_table(conn, "track_daily", ds.read_csv(track.DAILY))
+    _load_csv_table(conn, "track_filings", ds.read_csv(track.FILINGS))
+    _load_csv_table(conn, "track_outcomes", ds.read_csv(track.OUTCOMES))
     conn.commit()
     conn.close()
     print(f"wrote {out}: {n_docs} docs, {n_mentions} mentions")
@@ -227,6 +261,14 @@ def main(argv: list[str] | None = None) -> int:
     m.add_argument("--dry-run", nargs="+", metavar="TICKER", help="only print snapshots of these tickers; save nothing")
     m.add_argument("--as-of", help="with --dry-run: snapshot time, ISO 8601 (UTC if no offset); default now")
     m.set_defaults(func=cmd_market)
+
+    t = sub.add_parser("track", help="Stage 3: record new sessions and filings of tickers flagged in the last 20 sessions")
+    t.add_argument("--datastore", required=True)
+    t.add_argument("--run-id")
+    t.add_argument("--max-minutes", type=float, default=20.0)
+    t.add_argument("--summary", help="append a markdown summary here (e.g. $GITHUB_STEP_SUMMARY)")
+    t.add_argument("--github-output", help="write finished=true|false here ($GITHUB_OUTPUT)")
+    t.set_defaults(func=cmd_track)
 
     b = sub.add_parser("build-db", help="build a SQLite database from a datastore")
     b.add_argument("--datastore", required=True)

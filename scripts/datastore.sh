@@ -5,6 +5,8 @@
 #                                            current monthly logs and the last DAYS days of raw files
 #   scripts/datastore.sh checkout-market DIR shallow, sparse checkout of what the market job reads: candidates,
 #                                            symbols, recent mention counts, market tables, the latest universe files
+#   scripts/datastore.sh checkout-track DIR  shallow, sparse checkout of what the track job reads and writes: collection
+#                                            state, candidates, market snapshots, mention counts and track/
 #   scripts/datastore.sh checkout-all DIR    shallow checkout of everything (for build-db)
 #   scripts/datastore.sh push DIR MESSAGE    commit all changes and push, retrying if the branch moved
 #
@@ -34,6 +36,10 @@ market_patterns() {
     printf '/market/universe/%s.csv.gz\n' "$(date -u -d "$((-i)) day" +%Y/%m/%Y-%m-%d)"
     printf '/daily/mention_counts/%s.csv\n' "$(date -u -d "$((-i)) day" +%Y-%m)"
   done | sort -u
+}
+
+track_patterns() {
+  printf '%s\n' /state/ /candidates/ /market/snapshots.csv /track/ /daily/mention_counts/
 }
 
 configure() {
@@ -107,8 +113,9 @@ cmd_push() {
 case "${1:-}" in
   checkout) cmd_checkout "$2" patterns "$3" ;;
   checkout-market) cmd_checkout "$2" market_patterns ;;
+  checkout-track) cmd_checkout "$2" track_patterns ;;
   checkout-all) cmd_checkout_all "$2" ;;
   push) cmd_push "$2" "$3" ;;
   patterns) patterns "$2" ;;
-  *) echo "usage: $0 {checkout DIR DAYS|checkout-market DIR|checkout-all DIR|push DIR MESSAGE|patterns DAYS}" >&2; exit 64 ;;
+  *) echo "usage: $0 {checkout DIR DAYS|checkout-market DIR|checkout-track DIR|checkout-all DIR|push DIR MESSAGE|patterns DAYS}" >&2; exit 64 ;;
 esac

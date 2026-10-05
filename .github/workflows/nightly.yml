@@ -72,6 +72,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          for wf in collect.yml nightly.yml; do
+          for wf in collect.yml nightly.yml track.yml; do
             gh api -X PUT "repos/${{ github.repository }}/actions/workflows/$wf/enable" || echo "could not re-enable $wf"
           done

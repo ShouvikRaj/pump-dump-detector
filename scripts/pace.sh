@@ -15,7 +15,8 @@
 # skips that when this pacer itself waited under 10 minutes (no wait timer).
 #
 # The nightly build's cron is just as unreliable, so this also starts it once a
-# day, at the first pacer after 03:41 UTC, unless one already ran since then.
+# day, at the first pacer after 03:41 UTC, unless one already ran since then;
+# likewise Stage 3's track run after 22:41 UTC.
 #
 # Usage: scripts/pace.sh
 # Needs GH_TOKEN (actions: write), GH_REPO, the gh CLI and jq.
@@ -25,22 +26,24 @@ min_gap="${PACE_MIN_GAP_SECONDS:-600}"
 retry_delay="${PACE_RETRY_DELAY:-10}"
 now="${PACE_NOW:-$(date +%s)}"
 
-start_nightly_if_due() {
-  local slot last
-  slot=$(( now - now % 86400 + 3 * 3600 + 41 * 60 )) # today's 03:41 UTC
+start_daily_if_due() {
+  # WORKFLOW HOUR MINUTE: start the workflow once a day, at the first pacer after HH:MM UTC
+  local wf="$1" slot last
+  slot=$(( now - now % 86400 + $2 * 3600 + $3 * 60 ))
   [ "$now" -ge "$slot" ] || return 0
-  last="$(gh run list --workflow nightly.yml --limit 1 --json createdAt --jq '.[0].createdAt // empty')"
+  last="$(gh run list --workflow "$wf" --limit 1 --json createdAt --jq '.[0].createdAt // empty')"
   if [ -n "$last" ] && [ "$(jq -rn --arg t "$last" '$t | fromdateiso8601')" -ge "$slot" ]; then
     return 0
   fi
-  if gh workflow run nightly.yml --ref main; then
-    echo "started today's nightly build"
+  if gh workflow run "$wf" --ref main; then
+    echo "started today's $wf run"
   else
-    echo "::warning::could not start the nightly build"
+    echo "::warning::could not start $wf"
   fi
 }
 
-start_nightly_if_due || echo "::warning::nightly check failed"
+start_daily_if_due nightly.yml 3 41 || echo "::warning::nightly check failed"
+start_daily_if_due track.yml 22 41 || echo "::warning::track check failed"
 
 queue_next_pacer() {
   local created waited
