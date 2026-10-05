@@ -104,7 +104,9 @@ def sec_contact() -> str | None:
     out of the public code and logs, and it is sent to sec.gov only.
     """
     ua = os.environ.get("SEC_USER_AGENT", "").strip()
-    return ua if "@" in ua else None
+    if "@" not in ua:
+        return None
+    return ua if " " in ua else f"pump-dump-detector {ua}"  # SEC's format is "Name contact@domain"
 
 
 def http_fetch_text(url: str, timeout: float = 60) -> str:

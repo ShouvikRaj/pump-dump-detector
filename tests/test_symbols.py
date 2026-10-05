@@ -134,6 +134,14 @@ def test_sec_requests_carry_the_configured_contact(monkeypatch):
     assert seen["User-Agent"] == CONTACT
 
 
+def test_a_bare_email_gets_the_project_name_in_front(monkeypatch):
+    # SEC's documented format is "Name contact@domain"; the secret may hold just the address
+    monkeypatch.setenv("SEC_USER_AGENT", " someone@example.org ")
+    seen = _capture_headers(monkeypatch)
+    http_fetch_text(SEC_TICKERS_URL)
+    assert seen["User-Agent"] == "pump-dump-detector someone@example.org"
+
+
 def test_contact_email_is_sent_only_to_sec(monkeypatch):
     monkeypatch.setenv("SEC_USER_AGENT", CONTACT)
     seen = _capture_headers(monkeypatch)
