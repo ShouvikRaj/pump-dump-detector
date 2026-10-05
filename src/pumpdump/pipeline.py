@@ -18,7 +18,7 @@ from .sources.arctic_shift import ArcticShift, fetch_since, to_record
 from .sources.stocktwits import FIELDS as TRENDING_FIELDS
 from .spikes import DAY, DETECTOR_VERSION, SpikeParams, SpikeResult, evaluate
 from .store import Datastore, utc_dt
-from .symbols import load_symbols, refresh_symbols, save_symbols
+from .symbols import load_symbols, refresh_symbols, save_symbols, sec_contact
 from .tickers import EXTRACTOR_VERSION, default_extractor
 
 EPISODE_FIELDS = [
@@ -283,7 +283,12 @@ def run_collect(
     symbols = load_symbols(ds)
     clean = state.get("symbols_refresh_errors") == 0
     refresh_after = settings.symbol_refresh_seconds if clean else settings.symbol_retry_seconds
-    if not symbols or started - state.get("symbols_refreshed_at", 0) > refresh_after:
+    has_contact = sec_contact() is not None  # SEC's list needs the SEC_USER_AGENT secret
+    if (
+        not symbols
+        or started - state.get("symbols_refreshed_at", 0) > refresh_after
+        or state.get("symbols_sec_contact") != has_contact  # secret added or removed since
+    ):
         try:
             fresh_symbols, errors = fetch_symbols()
             summary["warnings"] += [f"symbols: {e}" for e in errors]
@@ -294,6 +299,7 @@ def run_collect(
                 symbols = load_symbols(ds)
                 state["symbols_refreshed_at"] = started
                 state["symbols_refresh_errors"] = len(errors)
+                state["symbols_sec_contact"] = has_contact
         except Exception as exc:
             summary["warnings"].append(f"symbols: {exc}")
     if not symbols:

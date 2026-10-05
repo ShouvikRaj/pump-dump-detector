@@ -244,6 +244,24 @@ def test_symbol_refresh_that_lost_a_source_is_retried_within_hours(setup):
     assert calls == [T, T + 3 * 3600]
 
 
+
+def test_symbols_are_refreshed_as_soon_as_an_sec_contact_is_added(setup, monkeypatch):
+    ds, server, clock = setup
+    calls = []
+
+    def fetch():
+        calls.append(clock.now)
+        return SYMBOLS, ["https://www.sec.gov/...: skipped, set the SEC_USER_AGENT secret"]
+
+    monkeypatch.delenv("SEC_USER_AGENT", raising=False)
+    run(ds, server, clock, "r1", fetch_symbols=fetch)
+    clock.now = T + 900
+    run(ds, server, clock, "r2", fetch_symbols=fetch)  # nothing changed and the retry wait isn't over
+    monkeypatch.setenv("SEC_USER_AGENT", "pump-dump-detector someone@example.org")
+    clock.now = T + 1800
+    run(ds, server, clock, "r3", fetch_symbols=fetch)  # the secret was just added: refresh now
+    assert calls == [T, T + 1800]
+
 STOP = Settings(stop_min_days=120, stop_min_episodes=2, stop_episode_age_days=10, stop_max_days=180)
 
 

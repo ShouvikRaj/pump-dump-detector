@@ -54,8 +54,8 @@ StockTwits' public trending list is recorded each run as a second, independent h
 from the Nasdaq Trader symbol directory and the SEC's `company_tickers_exchange.json` (refreshed daily, or after
 2 hours if a source failed). The SEC refuses requests whose User-Agent doesn't name a reachable contact, and GitHub
 no-reply addresses don't count, so its list is fetched only once the repository secret `SEC_USER_AGENT` holds one
-(e.g. `pump-dump-detector you@example.com`). A secret stays out of the public logs, and the address is sent to
-sec.gov only. OTC tickers missing from both lists still count when written as `$TICKER`.
+(e.g. `pump-dump-detector you@example.com`), starting with the next run after the secret is added. A secret stays
+out of the public logs, and the address is sent to sec.gov only. OTC tickers missing from both lists still count when written as `$TICKER`.
 
 ## How a candidate is flagged
 
