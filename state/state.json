@@ -4,8 +4,8 @@
     "APLD": {
       "episode_id": "APLD-20261005T142311Z",
       "first_flagged_at": 1791210191.9041831,
-      "last_flagged_at": 1791225953.323622,
-      "n_flags": 20,
+      "last_flagged_at": 1791226795.8655682,
+      "n_flags": 21,
       "peak_mentions": 31,
       "peak_z": 4.054,
       "reasons_seen": [
@@ -15,10 +15,10 @@
     "DELL": {
       "episode_id": "DELL-20261005T163855Z",
       "first_flagged_at": 1791218335.1262534,
-      "last_flagged_at": 1791225953.323622,
-      "n_flags": 10,
+      "last_flagged_at": 1791226795.8655682,
+      "n_flags": 11,
       "peak_mentions": 14,
-      "peak_z": 2.531,
+      "peak_z": 2.63,
       "reasons_seen": [
         "mention_spike"
       ]
@@ -26,8 +26,8 @@
     "DRTS": {
       "episode_id": "DRTS-20261004T232358Z",
       "first_flagged_at": 1791156238.4967465,
-      "last_flagged_at": 1791225953.323622,
-      "n_flags": 81,
+      "last_flagged_at": 1791226795.8655682,
+      "n_flags": 82,
       "peak_mentions": 24,
       "peak_z": 15.057,
       "reasons_seen": [
@@ -37,8 +37,8 @@
     "GME": {
       "episode_id": "GME-20261005T162454Z",
       "first_flagged_at": 1791217494.0140235,
-      "last_flagged_at": 1791225953.323622,
-      "n_flags": 11,
+      "last_flagged_at": 1791226795.8655682,
+      "n_flags": 12,
       "peak_mentions": 24,
       "peak_z": 3.451,
       "reasons_seen": [
@@ -59,8 +59,8 @@
     "PMI": {
       "episode_id": "PMI-20261005T135516Z",
       "first_flagged_at": 1791208516.734653,
-      "last_flagged_at": 1791225953.323622,
-      "n_flags": 22,
+      "last_flagged_at": 1791226795.8655682,
+      "n_flags": 23,
       "peak_mentions": 15,
       "peak_z": 6.736,
       "reasons_seen": [
@@ -70,8 +70,8 @@
     "SDEV": {
       "episode_id": "SDEV-20261005T140916Z",
       "first_flagged_at": 1791209356.1503081,
-      "last_flagged_at": 1791225953.323622,
-      "n_flags": 21,
+      "last_flagged_at": 1791226795.8655682,
+      "n_flags": 22,
       "peak_mentions": 19,
       "peak_z": 2.748,
       "reasons_seen": [
@@ -81,10 +81,10 @@
     "SPCX": {
       "episode_id": "SPCX-20261005T145105Z",
       "first_flagged_at": 1791211865.119155,
-      "last_flagged_at": 1791225953.323622,
-      "n_flags": 18,
-      "peak_mentions": 113,
-      "peak_z": 6.242,
+      "last_flagged_at": 1791226795.8655682,
+      "n_flags": 19,
+      "peak_mentions": 116,
+      "peak_z": 6.407,
       "reasons_seen": [
         "mention_spike"
       ]
@@ -92,10 +92,10 @@
     "TSM": {
       "episode_id": "TSM-20261005T151858Z",
       "first_flagged_at": 1791213538.770357,
-      "last_flagged_at": 1791225953.323622,
-      "n_flags": 16,
-      "peak_mentions": 11,
-      "peak_z": 2.496,
+      "last_flagged_at": 1791226795.8655682,
+      "n_flags": 17,
+      "peak_mentions": 13,
+      "peak_z": 2.976,
       "reasons_seen": [
         "mention_spike"
       ]
@@ -103,10 +103,10 @@
     "VEEA": {
       "episode_id": "VEEA-20261005T153302Z",
       "first_flagged_at": 1791214382.0464475,
-      "last_flagged_at": 1791225953.323622,
-      "n_flags": 14,
-      "peak_mentions": 20,
-      "peak_z": 3.71,
+      "last_flagged_at": 1791226795.8655682,
+      "n_flags": 15,
+      "peak_mentions": 21,
+      "peak_z": 4.001,
       "reasons_seen": [
         "mention_spike"
       ]
@@ -114,8 +114,8 @@
     "VST": {
       "episode_id": "VST-20261005T041528Z",
       "first_flagged_at": 1791173728.1260889,
-      "last_flagged_at": 1791225953.323622,
-      "n_flags": 64,
+      "last_flagged_at": 1791226795.8655682,
+      "n_flags": 65,
       "peak_mentions": 47,
       "peak_z": 6.112,
       "reasons_seen": [
@@ -124,19 +124,19 @@
     }
   },
   "last_run": {
-    "finished_at": 1791225953.3632188,
-    "new_docs": 345,
-    "run_id": "37358304020",
-    "started_at": 1791225917.0869284
+    "finished_at": 1791226795.896301,
+    "new_docs": 390,
+    "run_id": "37360078901",
+    "started_at": 1791226769.28143
   },
   "live_since": 1791153669.8332794,
   "streams": {
     "pennystocks/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1791225818,
+      "cursor": 1791226748,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791225933.34028,
+      "last_complete_at": 1791226776.5586417,
       "last_error": "HTTP 400 for comments r/pennystocks: {'data': None, 'error': \"'permalink' is not a valid field\"}",
       "last_error_at": 1791153675.398871
     },
@@ -145,16 +145,16 @@
       "consecutive_errors": 0,
       "cursor": 1791223133,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791225921.655627,
+      "last_complete_at": 1791226772.9467468,
       "last_error": "HTTP 400 for posts r/pennystocks: {'data': None, 'error': \"'domain' is not a valid field\"}",
       "last_error_at": 1791153671.9130921
     },
     "smallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1791225913,
+      "cursor": 1791226749,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791225938.734627,
+      "last_complete_at": 1791226779.021127,
       "last_error": "HTTP 400 for comments r/smallstreetbets: {'data': None, 'error': \"'permalink' is not a valid field\"}",
       "last_error_at": 1791153676.5713816
     },
@@ -163,25 +163,25 @@
       "consecutive_errors": 0,
       "cursor": 1791222302,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791225922.6569066,
+      "last_complete_at": 1791226774.0665843,
       "last_error": "HTTP 400 for posts r/smallstreetbets: {'data': None, 'error': \"'domain' is not a valid field\"}",
       "last_error_at": 1791153673.008012
     },
     "wallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1791225921,
+      "cursor": 1791226768,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791225948.1632438,
+      "last_complete_at": 1791226791.8385594,
       "last_error": "HTTP 400 for comments r/wallstreetbets: {'data': None, 'error': \"'permalink' is not a valid field\"}",
       "last_error_at": 1791153677.186102
     },
     "wallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1791224146,
+      "cursor": 1791226132,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791225924.3832326,
+      "last_complete_at": 1791226775.2485259,
       "last_error": "HTTP 400 for posts r/wallstreetbets: {'data': None, 'error': \"'domain' is not a valid field\"}",
       "last_error_at": 1791153673.678054
     }
