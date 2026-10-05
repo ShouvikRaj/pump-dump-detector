@@ -158,3 +158,12 @@ def test_default_extractor_skips_reddit_slang_that_collides_with_listed_symbols(
     text = " ".join(slang) + " but SPY calls, HOOD, APP and DRTS"
     assert [m.ticker for m in ext.extract(text)] == ["APP", "DRTS", "HOOD", "SPY"]
     assert ext.extract("$TACO") == [Mention("TACO", "cashtag", True)]
+
+
+def test_default_extractor_skips_finance_terms_that_became_listed_symbols_with_the_sec_list():
+    # tickers-v3: SEC's list (loading since 2026-10-05) added OTC/SPAC symbols that on Reddit are finance jargon
+    terms = "COLA EMI ACAT".split()
+    ext = default_extractor(universe=set(terms) | {"FNMA", "BLGO"})
+    text = "my COLA raise, the EMI on my loan, an ACAT transfer, then FNMA and BLGO"
+    assert [m.ticker for m in ext.extract(text)] == ["BLGO", "FNMA"]
+    assert ext.extract("$COLA") == [Mention("COLA", "cashtag", True)]

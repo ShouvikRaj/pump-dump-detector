@@ -29,7 +29,7 @@ from typing import Collection, Iterable
 
 # v2 (2026-10-04, after reviewing the first 165k live records): hyphen rule,
 # bare allowlist, ~45 more slang/acronym collisions (TACO, MAGA, DRAM, HBM...)
-EXTRACTOR_VERSION = "tickers-v2"
+EXTRACTOR_VERSION = "tickers-v3"
 
 _STRENGTH = {"exchange": 3, "cashtag": 2, "bare": 1}
 

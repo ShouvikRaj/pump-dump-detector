@@ -83,7 +83,7 @@ stream has completed a fetch after the day ended, so rows in `daily/mention_coun
 On the very first run every stream backfills 9 days (1 current + 7 baseline + 1 spare), which can take more
 than one run for r/wallstreetbets; cursors make it resume.
 
-## Ticker extraction (`tickers.py`, version `tickers-v2`)
+## Ticker extraction (`tickers.py`, version `tickers-v3`)
 
 Nam & Skillicorn (2025) used regex candidates checked against exchange symbol lists. Same idea, three forms:
 
@@ -104,6 +104,11 @@ v2 came from reading the bare matches in the first 165k live records: the most-m
 Gaming), `HYSA`, `DEI`, `GLP` (from GLP-1) and SPY was missing entirely. About 45 such collisions were added to
 `data/acronyms.txt`; they still count as `$TACO` etc. Real small caps found in the same review (SOAR, SDEV, GOW,
 TGE, GYGY, WCT) were kept.
+
+v3 (2026-10-05) followed once SEC's ticker list started loading, which added 3,266 symbols, 2,535 of them OTC. Of
+the 28 SEC-only symbols that matched as bare words in the first 167k records, most were real OTC names (FNMA, FMCC,
+BLGO, NLST, UURAF), but `COLA` (cost-of-living adjustment), `EMI` (loan instalment) and `ACAT` (brokerage transfer)
+were jargon, so they joined `data/acronyms.txt`.
 
 ## Hype score (`hype.py`, version `hype-v1`)
 
