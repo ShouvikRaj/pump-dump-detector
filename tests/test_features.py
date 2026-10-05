@@ -166,13 +166,27 @@ def test_filing_counts_use_acceptance_time_before_the_flag():
     assert out["last_dilution_form"] == "424B5" and out["last_dilution_at"] == "2026-09-30T20:15:00Z"
     assert out["offerings_424b_30d"] == 1
     assert out["current_reports_30d"] == 2
+    assert out["last_current_report_at"] == "2026-09-20T12:00:00Z" and out["last_current_report_items"] == ""
     assert out["unregistered_sales_90d"] == 1
     assert out["late_filing_notices_365d"] == 1
+
+
+def test_the_latest_8k_before_the_flag_is_named_with_its_items():
+    # an 8-K just before a mention spike points to real news rather than a pump
+    as_of = datetime(2026, 10, 5, 14, 0, tzinfo=ZoneInfo("UTC")).timestamp()
+    filings = [
+        {"form": "8-K", "filed": "2026-10-05", "accepted": "2026-10-05T12:01:00.000Z", "items": "2.02,9.01"},
+        {"form": "8-K", "filed": "2026-10-05", "accepted": "2026-10-05T14:05:00.000Z", "items": "1.01"},  # after
+    ]
+    out = f.filing_features(filings, as_of)
+    assert out["last_current_report_at"] == "2026-10-05T12:01:00Z"
+    assert out["last_current_report_items"] == "2.02,9.01"
 
 
 def test_no_filings_gives_zero_counts():
     out = f.filing_features([], et(2026, 10, 4))
     assert out["dilution_filings_90d"] == 0 and out["last_dilution_form"] == "" and out["last_dilution_at"] == ""
+    assert out["last_current_report_at"] == "" and out["last_current_report_items"] == ""
 
 
 def test_last_name_change_ignores_changes_after_the_flag():

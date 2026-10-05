@@ -40,7 +40,7 @@ def world():
         short=[("2026-09-15", 800_000, 700_000, 3.5)],
     )
     for s in LISTED + ["CHAT"]:
-        w.add_stock(s, session_bars(LAST, close=5.0), summary={"exchange": "NMS", "exchangeName": "NasdaqGS", "floatShares": 50_000_000})
+        w.add_stock(s, session_bars(LAST, close=5.0), summary={"exchange": "NMS", "exchangeName": "NasdaqGS", "floatShares": 5_000_000})
     w.add_stock("BIG", session_bars(LAST, close=150.0), summary={"exchange": "NYQ", "exchangeName": "NYSE"})
     for s in OTC + ["OPNK"]:
         w.add_stock(s, session_bars(LAST, close=0.05), summary={"exchange": "PNK", "exchangeName": "OTC Markets Pink"})
@@ -130,6 +130,18 @@ def test_a_second_run_does_not_snapshot_the_same_candidate_again(ds, world):
     assert len(rows(ds)) == 3 and summary["snapshots"] == []
 
 
+
+def test_rows_written_before_a_column_was_added_are_carried_over_under_the_new_header(ds, world):
+    old_fields = [f for f in market.SNAPSHOT_FIELDS if f != "last_current_report_at"]
+    ds.append_csv(market.SNAPSHOTS, old_fields, [{"snapshot_id": "OLD-1", "role": "candidate", "ticker": "OLD", "errors": "x"}])
+    add_episode(ds, "ABCD")
+    run(ds, world, FakeClock(AS_OF + 120))
+    with ds.path(market.SNAPSHOTS).open() as fh:
+        assert fh.readline().strip().split(",") == market.SNAPSHOT_FIELDS
+    old = [r for r in rows(ds) if r["snapshot_id"] == "OLD-1"][0]
+    assert old["ticker"] == "OLD" and old["errors"] == "x" and old["last_current_report_at"] == ""
+    assert [r["ticker"] for r in rows(ds) if r["role"] == "candidate"] == ["OLD", "ABCD"]
+
 def test_a_ticker_yahoo_does_not_know_is_written_at_once_without_controls(ds, world):
     add_episode(ds, "ZZZZ")
     clock = FakeClock(AS_OF + 120)
@@ -155,6 +167,35 @@ def test_a_yahoo_outage_keeps_the_candidate_pending_then_gives_up_after_12_hours
     assert len(out) == 1 and "gave up after 2 tries" in out[0]["errors"]
     assert json.loads(ds.path(market.STATE).read_text())["pending"] == {}
 
+
+
+class BrokenYahoo(Yahoo):
+    """Yahoo whose chart parsing blows up for one ticker, standing in for an unexpected bug or odd data."""
+
+    def chart(self, ticker, *args, **kwargs):
+        if ticker == "ABCD":
+            raise KeyError("timestamp")
+        return super().chart(ticker, *args, **kwargs)
+
+
+def test_a_candidate_that_crashes_does_not_block_the_others_and_is_written_after_12_hours(ds, world):
+    add_episode(ds, "ABCD")
+    add_episode(ds, "OPNK")
+    clock = FakeClock(AS_OF + 120)
+
+    def broken_run():
+        web = Web(request=world, sleep=clock.sleep, clock=clock.time)
+        src = market.MarketSources(yahoo=BrokenYahoo(web), web=web, sec_contact=UA)
+        return market.run_market(ds, src, run_id="r1", clock=clock.time)
+
+    summary = broken_run()
+    assert [r["ticker"] for r in rows(ds) if r["role"] == "candidate"] == ["OPNK"]
+    assert len(summary["pending"]) == 1 and "KeyError" in summary["pending"][0]
+
+    clock.now += 13 * 3600
+    broken_run()
+    abcd = [r for r in rows(ds) if r["ticker"] == "ABCD"]
+    assert len(abcd) == 1 and "crash: KeyError" in abcd[0]["errors"] and abcd[0]["as_of_utc"]
 
 def test_a_foreign_listing_is_recorded_without_any_lookup(ds, world):
     add_episode(ds, "TSXV:ABC")
@@ -184,6 +225,24 @@ def test_otc_candidates_get_otc_controls_that_nobody_mentioned(ds, world):
     assert cand["venue"] == "otc" and cand["archetype"] == "otc_penny"
     assert len(ctrl) == 2 and set(ctrl) <= set(OTC) - {"O1"}
 
+
+
+def test_controls_of_a_low_float_runner_are_low_float_runners_too(ds, world):
+    world.universe = [("ABCD", "4.00", 1000, 1)] + [(s, "4.00", 1000, 1) for s in LISTED[:10]]
+    for s in LISTED[:8]:
+        world.summaries[s]["floatShares"] = 50_000_000
+    add_episode(ds, "ABCD")
+    run(ds, world, FakeClock(AS_OF + 120))
+    assert sorted(r["ticker"] for r in rows(ds) if r["role"] == "control") == ["L10", "L9"]
+
+
+def test_controls_of_an_otc_penny_stock_are_otc_penny_stocks_too(ds, world):
+    for s in ("O2", "O3", "O4"):
+        world.daily[s] = session_bars(LAST, close=3.0)
+    add_episode(ds, "OPNK")
+    summary = run(ds, world, FakeClock(AS_OF + 120))
+    assert [r["ticker"] for r in rows(ds) if r["role"] == "control"] == ["O5"]
+    assert "only 1 of 2 controls found for OPNK" in summary["warnings"]
 
 def test_controls_yahoo_has_no_data_for_are_replaced(ds, world):
     world.universe = [("ABCD", "4.00", 1000, 1), ("L1", "4.00", 1000, 1), ("L2", "4.10", 1000, 1), ("L3", "3.90", 1000, 1)]
@@ -220,8 +279,14 @@ def test_controls_skip_excluded_tickers_and_etfs():
 def test_controls_are_price_matched_when_enough_qualify():
     universe = uni(("BIG", 150.0), *[(f"B{i}", 3.0 + 0.1 * i) for i in range(12)])
     picks = market.pick_controls("seed", "listed", 4.0, universe, SYMS, exclude=set())
-    assert len(picks) == 6 and "BIG" not in picks
+    assert len(picks) == market.CONTROL_TRIES and "BIG" not in picks
 
+
+
+def test_controls_are_also_size_matched_when_enough_qualify():
+    universe = [{"symbol": f"B{i}", "last_sale": 4.0, "market_cap": 50e6 if i < 10 else 5e9} for i in range(12)]
+    picks = market.pick_controls("seed", "listed", 4.0, universe, SYMS, exclude=set(), market_cap=40e6)
+    assert len(picks) == 10 and not {"B10", "B11"} & set(picks)
 
 def test_controls_widen_to_all_listed_stocks_when_few_are_price_matched():
     universe = uni(("BIG", 150.0), ("A1", 4.0), ("A2", 4.2))
@@ -241,7 +306,7 @@ def test_unknown_venues_get_no_controls():
 
 def test_without_a_universe_file_listed_controls_come_from_the_symbol_list():
     picks = market.pick_controls("seed", "listed", 4.0, [], SYMS, exclude={"CHAT", "BIG"})
-    assert len(picks) == 6 and set(picks) <= {"A1", "A2"} | {f"B{i}" for i in range(12)}
+    assert len(picks) == market.CONTROL_TRIES and set(picks) <= {"A1", "A2"} | {f"B{i}" for i in range(12)}
 
 
 # -- command line and database ------------------------------------------------------------

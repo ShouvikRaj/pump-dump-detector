@@ -3,7 +3,8 @@
 Runs after every collect run (the `market` workflow). Reads
 candidates/episodes.csv, snapshots each episode that has no snapshot yet, and
 appends one row per snapshot to market/snapshots.csv, with the raw source data
-next to it. Rows are never rewritten. Design and definitions: docs/stage2.md.
+next to it. Values are never changed once written (a new column is added with
+blanks for the old rows). Design and definitions: docs/stage2.md.
 """
 
 from __future__ import annotations
@@ -49,7 +50,7 @@ RAW_DIR = "market/raw"
 UNIVERSE_DIR = "market/universe"
 
 N_CONTROLS = 2
-CONTROL_TRIES = 6
+CONTROL_TRIES = 10
 CHATTER_DAYS = 7
 RETRY_HOURS = 12
 UNIVERSE_EVERY = 20 * 3600
@@ -64,7 +65,8 @@ SNAPSHOT_FIELDS = [
     "sec_shares_outstanding", "sec_shares_as_of", "sec_shares_filed", "market_cap", "turnover_last", "turnover_today",
     "si_settlement_date", "si_shares", "si_prev_shares", "si_days_to_cover", "si_pct_float",
     "dilution_filings_90d", "dilution_filings_365d", "last_dilution_form", "last_dilution_at", "offerings_424b_30d",
-    "current_reports_30d", "unregistered_sales_90d", "late_filing_notices_365d", "last_name_change",
+    "current_reports_30d", "last_current_report_at", "last_current_report_items", "unregistered_sales_90d",
+    "late_filing_notices_365d", "last_name_change",
     "cik", "sic", "sec_category", "state_of_incorporation", "sector", "industry", "country",
     "errors", "archetype_version", "market_version",
 ]
@@ -94,14 +96,23 @@ def _tidy(v):
     return float(f"{v:.6g}") if isinstance(v, float) else v
 
 
-def take_snapshot(src: MarketSources, ticker: str, as_of: float, sym: dict, now: float, final: bool = False) -> tuple[dict, dict]:
-    """(row, raw) for `ticker` as of `as_of`. Raises RetryLater on a transient price failure unless `final`."""
+def _base_row(ticker: str, as_of: float, sym: dict, now: float) -> dict:
     row: dict = dict.fromkeys(SNAPSHOT_FIELDS)
     row.update(
         ticker=ticker, as_of=round(as_of, 3), as_of_utc=iso(as_of), snapshot_at=round(now, 3), snapshot_at_utc=iso(now),
         lag_s=round(now - as_of), exchange=sym.get("exchange", ""), name=sym.get("name", ""), cik=sym.get("cik", ""),
-        archetype="unknown", archetype_version=ARCHETYPE_VERSION, market_version=MARKET_VERSION,
+        archetype="unknown", errors="", archetype_version=ARCHETYPE_VERSION, market_version=MARKET_VERSION,
     )
+    return row
+
+
+def _crash(exc: Exception) -> str:
+    return f"crash: {type(exc).__name__}: {exc}"[:300]
+
+
+def take_snapshot(src: MarketSources, ticker: str, as_of: float, sym: dict, now: float, final: bool = False) -> tuple[dict, dict]:
+    """(row, raw) for `ticker` as of `as_of`. Raises RetryLater on a transient price failure unless `final`."""
+    row = _base_row(ticker, as_of, sym, now)
     raw: dict = {"ticker": ticker, "as_of": as_of, "snapshot_at": now}
     errors: list[str] = []
     if ":" in ticker:  # Stage 1 writes foreign listings as "TSXV:XYZ"
@@ -185,17 +196,30 @@ def take_snapshot(src: MarketSources, ticker: str, as_of: float, sym: dict, now:
 
 
 def pick_controls(seed: str, venue: str, price: float | None, universe: list[dict], symbols: dict, exclude: set[str],
-                  tries: int = CONTROL_TRIES) -> list[str]:
-    """Up to `tries` control tickers in random order (seeded by `seed`), from the candidate's venue."""
+                  tries: int = CONTROL_TRIES, market_cap: float | None = None) -> list[str]:
+    """Up to `tries` control tickers in random order (seeded by `seed`), from the candidate's venue.
+
+    Listed: from the latest universe file, within 0.5-2x of the candidate's price and market cap; widened to
+    price only, then to all listed stocks, while fewer than 10 qualify. OTC: the SEC's OTC tickers.
+    """
     def eligible(s: str) -> bool:
         info = symbols.get(s)
         return info is not None and str(info.get("is_etf", "0")) not in ("1", "True") and s not in exclude
 
+    def near(x, y) -> bool:
+        return bool(x and y) and y / 2 <= x <= y * 2
+
     if venue == "listed":
         if universe:
             pool = [r for r in universe if eligible(r["symbol"]) and r.get("last_sale")]
-            banded = [r for r in pool if price and price / 2 <= r["last_sale"] <= price * 2]
-            names = [r["symbol"] for r in (banded if len(banded) >= 10 else pool)]
+            for keep in (
+                lambda r: near(r["last_sale"], price) and near(r.get("market_cap"), market_cap),
+                lambda r: near(r["last_sale"], price),
+                lambda r: True,
+            ):
+                names = [r["symbol"] for r in pool if keep(r)]
+                if len(names) >= 10:
+                    break
         else:
             names = [s for s, info in symbols.items() if info.get("exchange") not in ("OTC", "") and eligible(s)]
     elif venue == "otc":
@@ -253,11 +277,23 @@ def _latest_universe(ds: Datastore) -> list[dict]:
         return []
     rows = read_universe(files[-1])
     for r in rows:
-        try:
-            r["last_sale"] = float(r["last_sale"])
-        except (TypeError, ValueError):
-            r["last_sale"] = None
+        for key in ("last_sale", "market_cap"):
+            try:
+                r[key] = float(r[key])
+            except (KeyError, TypeError, ValueError):
+                r[key] = None
     return rows
+
+
+def _upgrade_snapshots(ds: Datastore) -> None:
+    """Rewrite snapshots.csv under the current columns if they changed (old rows keep their values)."""
+    path = ds.path(SNAPSHOTS)
+    if not path.exists():
+        return
+    with path.open(newline="", encoding="utf-8") as fh:
+        header = next(csv.reader(fh), [])
+    if header != SNAPSHOT_FIELDS:
+        ds.write_csv(SNAPSHOTS, SNAPSHOT_FIELDS, ds.read_csv(SNAPSHOTS))
 
 
 def _save_snapshot(ds: Datastore, row: dict, raw: dict, now: float) -> None:
@@ -293,6 +329,7 @@ def run_market(
         except Exception as exc:  # retried next run
             summary["warnings"].append(f"universe: {exc}")
 
+    _upgrade_snapshots(ds)
     episodes = ds.read_csv("candidates/episodes.csv")
     done = {r["snapshot_id"] for r in ds.read_csv(SNAPSHOTS) if r["role"] == "candidate"}
     pending = [e for e in episodes if e["episode_id"] not in done]
@@ -308,14 +345,20 @@ def run_market(
         sym = symbols.get(ticker, {})
         try:
             row, raw = take_snapshot(src, ticker, as_of, sym, clock())
-        except RetryLater as exc:
+        except Exception as exc:  # a transient failure, or odd data / a bug: retry later without blocking the rest
+            reason = str(exc) if isinstance(exc, RetryLater) else _crash(exc)
             p = state["pending"].setdefault(eid, {"first_attempt_at": clock(), "attempts": 0})
             p["attempts"] += 1
-            p["last_error"] = str(exc)[:300]
+            p["last_error"] = reason[:300]
             if clock() - p["first_attempt_at"] < RETRY_HOURS * 3600:
-                summary["pending"].append(f"{ticker}: {exc}")
+                summary["pending"].append(f"{ticker}: {reason}")
                 continue
-            row, raw = take_snapshot(src, ticker, as_of, sym, clock(), final=True)
+            try:
+                row, raw = take_snapshot(src, ticker, as_of, sym, clock(), final=True)
+            except Exception as exc2:
+                row = _base_row(ticker, as_of, sym, clock())
+                row["errors"] = _crash(exc2)
+                raw = {"ticker": ticker, "as_of": as_of, "snapshot_at": clock(), "errors": [row["errors"]]}
             if row["price_at_flag"] is None:
                 row["errors"] = f"{row['errors']} (gave up after {p['attempts']} tries)"
         state["pending"].pop(eid, None)
@@ -326,17 +369,19 @@ def run_market(
         if not n_controls or row["price_at_flag"] is None or row["venue"] not in ("listed", "otc"):
             continue
         exclude = candidate_tickers | _chatter(ds, as_of)
+        want = row["archetype"] if row["archetype"] in ("low_float_runner", "otc_penny") else None
         got = 0
-        for name in pick_controls(eid, row["venue"], row["price_at_flag"], universe, symbols, exclude):
+        for name in pick_controls(eid, row["venue"], row["price_at_flag"], universe, symbols, exclude,
+                                  market_cap=row["market_cap"]):
             if got >= n_controls:
                 break
             try:
                 crow, craw = take_snapshot(src, name, as_of, symbols.get(name, {}), clock())
-            except RetryLater as exc:
-                summary["warnings"].append(f"control {name} for {ticker}: {exc}")
+            except Exception as exc:
+                summary["warnings"].append(f"control {name} for {ticker}: {exc if isinstance(exc, RetryLater) else _crash(exc)}")
                 continue
-            if crow["price_at_flag"] is None:
-                continue  # Yahoo has nothing for it; draw the next one
+            if crow["price_at_flag"] is None or (want and crow["archetype"] != want):
+                continue  # no data, or not the candidate's archetype: draw the next one
             crow.update(snapshot_id=f"{eid}/{name}", role="control", episode_id=eid, run_id=run_id)
             _save_snapshot(ds, crow, craw, clock())
             summary["controls"].append(name)
@@ -404,7 +449,8 @@ def dry_run(src: MarketSources, tickers: list[str], symbols: dict, as_of: float,
         try:
             row, _ = take_snapshot(src, t, as_of, symbols.get(t, {}), now, final=True)
         except Exception as exc:  # report and carry on with the rest
-            row = {"ticker": t, "errors": f"crash: {type(exc).__name__}: {exc}"}
+            row = _base_row(t, as_of, symbols.get(t, {}), now)
+            row["errors"] = _crash(exc)
         out.append(row)
     return out
 

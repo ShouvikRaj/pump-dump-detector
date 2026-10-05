@@ -55,7 +55,7 @@ Prices are split-adjusted as Yahoo serves them; ratios are unaffected by splits.
 | derived | `market_cap`, `turnover_last`, `turnover_today` | price x shares; volume / float |
 | short interest | `si_settlement_date`, `si_shares`, `si_prev_shares`, `si_days_to_cover`, `si_pct_float` | latest FINRA settlement assumed published by `as_of` (settlement + 8 business days) |
 | dilution | `dilution_filings_90d`, `dilution_filings_365d`, `last_dilution_form`, `last_dilution_at`, `offerings_424b_30d` | S-1, S-3, F-1, F-3 (and amendments, MEF, ASR), 424B prospectuses, Reg A (1-A, 253G); accepted before `as_of` |
-| other filings | `current_reports_30d`, `unregistered_sales_90d`, `late_filing_notices_365d`, `last_name_change` | 8-K/6-K count (news); 8-Ks with item 3.02 (private share sales); NT 10-K/10-Q; most recent former-name end date |
+| other filings | `current_reports_30d`, `last_current_report_at`, `last_current_report_items`, `unregistered_sales_90d`, `late_filing_notices_365d`, `last_name_change` | 8-K/6-K count (news); the latest one's acceptance time and 8-K items (an 8-K just before the spike points to real news); 8-Ks with item 3.02 (private share sales); NT 10-K/10-Q; most recent former-name end date |
 | issuer | `cik`, `sic`, `sec_category`, `state_of_incorporation`, `name`, `sector`, `industry`, `country` | |
 | archetype | `archetype`, `archetype_version` | see below |
 | quality | `errors` | `source: message` for every source that failed; the row is still written |
@@ -87,18 +87,21 @@ controls snapshotted at the same `as_of`:
 - same venue: listed candidates draw from the latest Nasdaq screener file, OTC candidates from the SEC's OTC
   ticker list;
 - no chatter: not mentioned at all on Reddit in the 7 days before (`daily/mention_counts/`) and not a candidate;
-- listed controls are price-matched: last price within 0.5-2x the candidate's (widened to all listed stocks if fewer
-  than 10 qualify). OTC controls are not price-matched (no free OTC price list), so their archetype is read from
-  their own snapshot;
-- drawn with a random generator seeded by the episode id, so the draw is reproducible; a control Yahoo has no data
-  for is replaced (up to 6 tries).
+- similar size: listed controls are within 0.5-2x of the candidate's price and market cap (widened to price only,
+  then to all listed stocks, while fewer than 10 qualify);
+- same archetype: a low-float runner's controls are low-float runners, an OTC penny stock's are OTC penny stocks,
+  checked on each control's own snapshot (there is no free OTC price list to filter on beforehand);
+- drawn with a random generator seeded by the episode id, so the draw is reproducible; a draw with no Yahoo data or
+  the wrong archetype is replaced, up to 10 tries, so a candidate can end up with fewer than two.
 
-Matching on price follows Leuz et al. (controls matched on price level). Matching on float would need float data
-for the whole universe, which no free source serves in one request.
+Leuz et al. match on price level and pre-campaign run-up. Price and size are matched here; run-up can be matched in
+analysis from `market_universe` (daily prices of every listed stock) and the controls' own price history.
 
 ## Failures and retries
 
 - A source failing never stops a run. Its message goes into `errors` and the run summary.
+- A candidate whose snapshot crashes (odd data or a bug) is treated like an outage below, so it can't block the
+  candidates after it; if it still crashes after 12 hours it is written with the crash message.
 - A host that still fails after retries twice in a row is skipped for the rest of the run, so a hanging source
   can't push a run past its time limit (the run's work would be lost).
 - If Yahoo's daily chart (the core of the snapshot) fails with a network error, 429 or 5xx, the candidate stays

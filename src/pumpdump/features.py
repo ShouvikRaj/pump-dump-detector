@@ -133,6 +133,7 @@ def filing_features(filings: list[dict], as_of: float) -> dict:
         return sum(1 for t, f in past if t > as_of - days * DAY and keep(f))
 
     dilution = [(t, f) for t, f in past if f["form"] in DILUTION_FORMS]
+    current = [(t, f) for t, f in past if f["form"] in CURRENT_REPORT_FORMS]
     return {
         "dilution_filings_90d": count(90, lambda f: f["form"] in DILUTION_FORMS),
         "dilution_filings_365d": count(365, lambda f: f["form"] in DILUTION_FORMS),
@@ -140,6 +141,8 @@ def filing_features(filings: list[dict], as_of: float) -> dict:
         "last_dilution_at": iso(dilution[-1][0]) if dilution else "",
         "offerings_424b_30d": count(30, lambda f: f["form"].startswith("424B")),
         "current_reports_30d": count(30, lambda f: f["form"] in CURRENT_REPORT_FORMS),
+        "last_current_report_at": iso(current[-1][0]) if current else "",
+        "last_current_report_items": str(current[-1][1].get("items") or "") if current else "",
         "unregistered_sales_90d": count(
             90, lambda f: f["form"].startswith("8-K") and "3.02" in str(f.get("items") or "").split(",")
         ),

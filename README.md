@@ -90,9 +90,10 @@ flag time**: price (including pre/post-market), returns, volume against the 20-d
 splits, float and shares outstanding (Yahoo, and SEC cover pages as filed), FINRA short interest, and SEC filings
 (S-1/S-3/F-1/F-3 registrations, 424B prospectuses, 8-K item 3.02 share sales, late-filing notices, name changes).
 Only data that existed before the flag counts. Each candidate gets an archetype, decided before any results:
-`low_float_runner` (listed, $1-10, float <= 20M) or `otc_penny` (OTC, under $1), else `other`. Two controls with
-no Reddit mentions in the previous 7 days are snapshotted at the same moment: same venue, and for listed stocks a
-similar price. The raw source data is kept too, so price history survives delistings and reverse splits.
+`low_float_runner` (listed, $1-10, float <= 20M) or `otc_penny` (OTC, under $1), else `other`. Two controls with no
+Reddit mentions in the previous 7 days are snapshotted at the same moment: same venue and archetype, and for listed
+stocks a similar price and market cap. The raw source data is kept too, so price history survives delistings and
+reverse splits.
 
 All sources are free and keyless (Yahoo Finance, SEC EDGAR, FINRA, Nasdaq's screener); SEC uses the same
 `SEC_USER_AGENT` secret as Stage 1. Every column, rule and known gap: [docs/stage2.md](docs/stage2.md).
