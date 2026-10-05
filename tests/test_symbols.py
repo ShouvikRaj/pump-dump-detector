@@ -1,5 +1,6 @@
 import re
 
+import pytest
 import requests
 
 from pumpdump.store import Datastore
@@ -105,6 +106,7 @@ def test_load_missing_symbols_is_empty(tmp_path):
 
 
 class _Ok:
+    status_code = 200
     text = "ok"
 
     def raise_for_status(self):
@@ -135,3 +137,14 @@ def test_sec_user_agent_variable_overrides_the_default(monkeypatch):
     seen = _capture_headers(monkeypatch)
     http_fetch_text(SEC_TICKERS_URL)
     assert seen["User-Agent"] == "someone else@example.org"
+
+
+def test_refused_request_reports_the_page_title(monkeypatch):
+    # tells an "undeclared automated tool" refusal apart from a CDN/IP block
+    class Denied:
+        status_code = 403
+        text = "<html><head><title>Access Denied</title></head><body>Reference #18.9f</body></html>"
+
+    monkeypatch.setattr(requests, "get", lambda url, headers, timeout: Denied())
+    with pytest.raises(RuntimeError, match="HTTP 403.*Access Denied"):
+        http_fetch_text(SEC_TICKERS_URL)

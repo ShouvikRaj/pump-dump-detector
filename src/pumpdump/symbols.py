@@ -102,8 +102,16 @@ def http_fetch_text(url: str, timeout: float = 60) -> str:
 
     ua = os.environ.get("SEC_USER_AGENT") or DEFAULT_USER_AGENT
     resp = requests.get(url, headers={"User-Agent": ua, "Accept-Encoding": "gzip, deflate"}, timeout=timeout)
-    resp.raise_for_status()
+    if resp.status_code >= 400:
+        raise RuntimeError(f"HTTP {resp.status_code} for {url}: {_page_summary(resp.text)}")
     return resp.text
+
+
+def _page_summary(text: str, limit: int = 160) -> str:
+    """The <title> of an error page (or its first words), which says why a server refused."""
+    m = re.search(r"<title[^>]*>(.*?)</title>", text, re.I | re.S)
+    plain = m.group(1) if m else re.sub(r"<[^>]+>", " ", text)
+    return " ".join(plain.split())[:limit]
 
 
 def refresh_symbols(fetch: Callable[[str], str] = http_fetch_text) -> tuple[dict[str, dict], list[str]]:
