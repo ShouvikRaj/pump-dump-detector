@@ -62,6 +62,7 @@ jobs:
               --notes "Collection finished ($REASON). SQLite database of everything on the data branch; gunzip it and open with sqlite3."
           fi
           gh workflow disable collect.yml
+          gh workflow disable pace.yml
           gh workflow disable nightly.yml
 
       - name: Keep scheduled workflows enabled

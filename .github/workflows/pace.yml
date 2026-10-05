@@ -1,0 +1,33 @@
+name: pace
+
+# GitHub's 15-minute cron fires rarely for this repo, so collection paces
+# itself: every collect run ends by starting this workflow, whose job waits out
+# the `pacer` environment's 13-minute wait timer (set in the repo settings; no
+# runner is held while it waits) and then starts the next collect run. The cron
+# stays as a restart path if the chain ever breaks.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read # check out scripts/
+  actions: write # start the next collect run
+
+concurrency:
+  group: pace # one waiting pacer at a time; a newer one replaces it
+  cancel-in-progress: true
+
+jobs:
+  next:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment: pacer
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: scripts
+
+      - name: Start the next collect run
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: scripts/pace.sh

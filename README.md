@@ -20,11 +20,16 @@ Everything runs on GitHub Actions; no computer needs to stay on.
 
 | Workflow | When | What |
 |---|---|---|
-| `collect` | every 15 min | fetch new posts/comments from r/pennystocks, r/smallstreetbets, r/wallstreetbets; store them; extract tickers; flag spikes; update the candidate list; open an issue if collection is unhealthy |
+| `collect` | about every 15 min | fetch new posts/comments from r/pennystocks, r/smallstreetbets, r/wallstreetbets; store them; extract tickers; flag spikes; update the candidate list; open an issue if collection is unhealthy |
+| `pace` | after each `collect` run | wait 13 minutes in the `pacer` environment, then start the next `collect` run (GitHub's cron fires rarely for this repo, so collection paces itself; the cron stays as a backup) |
 | `nightly` | 03:41 UTC | build a SQLite database of everything collected and attach it to the run as the `pumpdump-sqlite` artifact; once collection has finished, publish it as the `dataset-final` release and turn both schedules off |
 | `tests` | every push | `pytest` |
 
 Collected data lives on the **`data` branch** (see its README). Start with `candidates/README.md` there.
+
+The `pacer` environment's wait timer (13 minutes, set under Settings > Environments) is what spaces the runs; it holds
+no runner while waiting. Each wait shows up as a deployment to `pacer`. If the timer is removed, `pace` stops the
+chain instead of looping, and collection falls back to the cron.
 
 ## How long it runs
 

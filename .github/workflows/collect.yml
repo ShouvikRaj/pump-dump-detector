@@ -17,7 +17,7 @@ on:
 permissions:
   contents: write # push to the data branch
   issues: write # open/close the health issue
-  actions: read # count recent failed runs for the health issue
+  actions: write # count recent failed runs for the health issue; queue the next run
 
 concurrency:
   group: datastore # one writer to the data branch at a time
@@ -68,3 +68,11 @@ jobs:
           GH_REPO: ${{ github.repository }}
           RUN_STATUS: ${{ job.status }}
         run: scripts/health_issue.sh datastore/reports/health.json
+
+      - name: Queue the next run
+        # the pace workflow waits 13 minutes, then starts collect again (GitHub's cron fires rarely here)
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh workflow run pace.yml --ref main || echo "::warning::could not queue the next run; the cron will restart it"

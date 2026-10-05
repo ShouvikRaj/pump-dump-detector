@@ -147,6 +147,16 @@ when to alert. Only a crash, or a failed checkout or push, fails a run; three fa
 skipped) also open the issue. The `nightly` workflow re-enables the schedules so GitHub's 60-day inactivity rule
 can't switch them off.
 
+## Scheduling
+
+GitHub's cron fired once in this repo's first hours (2026-10-05 01:18 UTC) and then skipped every slot, which is
+common for new repositories. So collection paces itself: the last step of every `collect` run, whatever its outcome,
+starts the `pace` workflow. Its job runs in the `pacer` environment, whose 13-minute wait timer (a repository
+setting) delays the job without holding a runner; the job then starts the next `collect` run unless one is already
+queued or running. Runs end up about 15 minutes apart. If the last `collect` run started less than 10 minutes earlier,
+the timer must be missing, so `scripts/pace.sh` stops the chain rather than looping. The cron stays on as a restart
+path, and the `pace` concurrency group keeps one waiting pacer when cron runs and the chain overlap.
+
 ## When collection stops
 
 Each run checks `collection_done` first. Collection ends once there are 120 days of live data and 300
