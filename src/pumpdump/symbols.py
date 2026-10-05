@@ -91,10 +91,16 @@ def merge_symbols(listed: list[dict], sec: list[dict]) -> dict[str, dict]:
     return merged
 
 
+# sec.gov refuses requests whose User-Agent doesn't name a contact ("Name admin@example.com").
+# The repo owner's GitHub no-reply address keeps a personal email out of public run logs;
+# set the SEC_USER_AGENT repository variable to use another contact.
+DEFAULT_USER_AGENT = "pump-dump-detector 108294380+ShouvikRaj@users.noreply.github.com"
+
+
 def http_fetch_text(url: str, timeout: float = 60) -> str:
     import requests
 
-    ua = os.environ.get("SEC_USER_AGENT") or "pump-dump-detector/0.1 (research; +https://github.com/ShouvikRaj/pump-dump-detector)"
+    ua = os.environ.get("SEC_USER_AGENT") or DEFAULT_USER_AGENT
     resp = requests.get(url, headers={"User-Agent": ua, "Accept-Encoding": "gzip, deflate"}, timeout=timeout)
     resp.raise_for_status()
     return resp.text

@@ -37,7 +37,7 @@ def run(ds, server, clock, run_id, **kw):
         client,
         run_id=run_id,
         settings=kw.pop("settings", SETTINGS),
-        fetch_symbols=lambda: (SYMBOLS, []),
+        fetch_symbols=kw.pop("fetch_symbols", lambda: (SYMBOLS, [])),
         fetch_trending=kw.pop("fetch_trending", lambda: []),
         clock=clock.time,
     )
@@ -226,6 +226,22 @@ def test_daily_reconcile_that_runs_out_of_time_resumes_where_it_stopped(setup):
     assert {(url.rsplit("/", 2)[-2], params["subreddit"]) for url, params in resumed} == {("comments", "wallstreetbets")}
     counts = {r["ticker"]: r for r in daily_rows(ds) if r["date"] == "2026-10-04"}
     assert counts["QWRT"]["mentions"] == "450"
+
+
+def test_symbol_refresh_that_lost_a_source_is_retried_within_hours(setup):
+    ds, server, clock = setup
+    calls = []
+
+    def fetch():
+        calls.append(clock.now)
+        return SYMBOLS, (["https://www.sec.gov/...: 403 Forbidden"] if len(calls) == 1 else [])
+
+    run(ds, server, clock, "r1", fetch_symbols=fetch)
+    clock.now = T + 3 * 3600
+    run(ds, server, clock, "r2", fetch_symbols=fetch)  # SEC failed last time: try again
+    clock.now = T + 6 * 3600
+    run(ds, server, clock, "r3", fetch_symbols=fetch)  # clean refresh 3 h ago: keep it
+    assert calls == [T, T + 3 * 3600]
 
 
 def test_health_reports_stale_and_erroring_streams():

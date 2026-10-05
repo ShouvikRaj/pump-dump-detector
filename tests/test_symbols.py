@@ -1,5 +1,11 @@
+import re
+
+import requests
+
 from pumpdump.store import Datastore
 from pumpdump.symbols import (
+    SEC_TICKERS_URL,
+    http_fetch_text,
     load_symbols,
     merge_symbols,
     parse_nasdaq_listed,
@@ -96,3 +102,36 @@ def test_save_and_load_roundtrip(tmp_path):
 
 def test_load_missing_symbols_is_empty(tmp_path):
     assert load_symbols(Datastore(tmp_path)) == {}
+
+
+class _Ok:
+    text = "ok"
+
+    def raise_for_status(self):
+        pass
+
+
+def _capture_headers(monkeypatch):
+    seen = {}
+
+    def fake_get(url, headers, timeout):
+        seen.update(headers)
+        return _Ok()
+
+    monkeypatch.setattr(requests, "get", fake_get)
+    return seen
+
+
+def test_default_user_agent_declares_a_contact_email(monkeypatch):
+    # sec.gov answers 403 unless the User-Agent names a contact ("Name admin@example.com")
+    monkeypatch.delenv("SEC_USER_AGENT", raising=False)
+    seen = _capture_headers(monkeypatch)
+    http_fetch_text(SEC_TICKERS_URL)
+    assert re.search(r"\S+@\S+\.\w+", seen["User-Agent"])
+
+
+def test_sec_user_agent_variable_overrides_the_default(monkeypatch):
+    monkeypatch.setenv("SEC_USER_AGENT", "someone else@example.org")
+    seen = _capture_headers(monkeypatch)
+    http_fetch_text(SEC_TICKERS_URL)
+    assert seen["User-Agent"] == "someone else@example.org"

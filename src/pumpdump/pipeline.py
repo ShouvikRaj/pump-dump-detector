@@ -138,6 +138,7 @@ class Settings:
     max_consecutive_errors: int = 4
     episode_gap: int = 24 * 3600
     symbol_refresh_seconds: int = 20 * 3600
+    symbol_retry_seconds: int = 2 * 3600  # sooner when a source failed last time
     daily_after_seconds: int = 30 * 60  # reconcile yesterday once it's 00:30 UTC
     excluded_authors: frozenset = frozenset({"AutoModerator", "VisualMod", "WSBVoteBot"})
     params: SpikeParams = field(default_factory=SpikeParams)
@@ -232,7 +233,9 @@ def run_collect(
 
     # -- ticker universe ------------------------------------------------------
     symbols = load_symbols(ds)
-    if not symbols or started - state.get("symbols_refreshed_at", 0) > settings.symbol_refresh_seconds:
+    clean = state.get("symbols_refresh_errors") == 0
+    refresh_after = settings.symbol_refresh_seconds if clean else settings.symbol_retry_seconds
+    if not symbols or started - state.get("symbols_refreshed_at", 0) > refresh_after:
         try:
             fresh_symbols, errors = fetch_symbols()
             summary["warnings"] += [f"symbols: {e}" for e in errors]
@@ -242,6 +245,7 @@ def run_collect(
                 save_symbols(ds, merged)
                 symbols = load_symbols(ds)
                 state["symbols_refreshed_at"] = started
+                state["symbols_refresh_errors"] = len(errors)
         except Exception as exc:
             summary["warnings"].append(f"symbols: {exc}")
     if not symbols:
