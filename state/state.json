@@ -4,8 +4,8 @@
     "DRTS": {
       "episode_id": "DRTS-20261004T232358Z",
       "first_flagged_at": 1791156238.4967465,
-      "last_flagged_at": 1791172059.4162173,
-      "n_flags": 16,
+      "last_flagged_at": 1791172897.9618063,
+      "n_flags": 17,
       "peak_mentions": 13,
       "peak_z": 5.367,
       "reasons_seen": [
@@ -14,37 +14,37 @@
     }
   },
   "last_run": {
-    "finished_at": 1791172059.4493158,
-    "new_docs": 121,
-    "run_id": "37260802757",
-    "started_at": 1791172032.9825928
+    "finished_at": 1791172897.985838,
+    "new_docs": 142,
+    "run_id": "37261702582",
+    "started_at": 1791172863.8734903
   },
   "live_since": 1791153669.8332794,
   "streams": {
     "pennystocks/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1791171914,
+      "cursor": 1791172838,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791172048.0647206,
+      "last_complete_at": 1791172875.265105,
       "last_error": "HTTP 400 for comments r/pennystocks: {'data': None, 'error': \"'permalink' is not a valid field\"}",
       "last_error_at": 1791153675.398871
     },
     "pennystocks/posts": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1791167444,
+      "cursor": 1791172843,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791172037.8961375,
+      "last_complete_at": 1791172868.1461675,
       "last_error": "HTTP 400 for posts r/pennystocks: {'data': None, 'error': \"'domain' is not a valid field\"}",
       "last_error_at": 1791153671.9130921
     },
     "smallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1791171731,
+      "cursor": 1791172818,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791172049.5721262,
+      "last_complete_at": 1791172877.2703109,
       "last_error": "HTTP 400 for comments r/smallstreetbets: {'data': None, 'error': \"'permalink' is not a valid field\"}",
       "last_error_at": 1791153676.5713816
     },
@@ -53,16 +53,16 @@
       "consecutive_errors": 0,
       "cursor": 1791168807,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791172040.3637261,
+      "last_complete_at": 1791172870.1568217,
       "last_error": "HTTP 400 for posts r/smallstreetbets: {'data': None, 'error': \"'domain' is not a valid field\"}",
       "last_error_at": 1791153673.008012
     },
     "wallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1791172024,
+      "cursor": 1791172852,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791172054.5805683,
+      "last_complete_at": 1791172894.3148723,
       "last_error": "HTTP 400 for comments r/wallstreetbets: {'data': None, 'error': \"'permalink' is not a valid field\"}",
       "last_error_at": 1791153677.186102
     },
@@ -71,7 +71,7 @@
       "consecutive_errors": 0,
       "cursor": 1791170796,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791172042.7871673,
+      "last_complete_at": 1791172871.4169593,
       "last_error": "HTTP 400 for posts r/wallstreetbets: {'data': None, 'error': \"'domain' is not a valid field\"}",
       "last_error_at": 1791153673.678054
     }
