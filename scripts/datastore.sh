@@ -3,6 +3,8 @@
 #
 #   scripts/datastore.sh checkout DIR DAYS   shallow, sparse checkout: state, candidates, reports,
 #                                            current monthly logs and the last DAYS days of raw files
+#   scripts/datastore.sh checkout-market DIR shallow, sparse checkout of what the market job reads: candidates,
+#                                            symbols, recent mention counts, market tables, the latest universe files
 #   scripts/datastore.sh checkout-all DIR    shallow checkout of everything (for build-db)
 #   scripts/datastore.sh push DIR MESSAGE    commit all changes and push, retrying if the branch moved
 #
@@ -24,6 +26,16 @@ patterns() {
   done | sort -u
 }
 
+market_patterns() {
+  # market/raw is write-only for the job, so it stays out; 9 days covers the universe file's price-date lag
+  local i
+  printf '%s\n' /ref/ /candidates/ /market/README.md /market/snapshots.csv /market/state.json
+  for i in $(seq -1 9); do
+    printf '/market/universe/%s.csv.gz\n' "$(date -u -d "$((-i)) day" +%Y/%m/%Y-%m-%d)"
+    printf '/daily/mention_counts/%s.csv\n' "$(date -u -d "$((-i)) day" +%Y-%m)"
+  done | sort -u
+}
+
 configure() {
   git -C "$1" config user.name "github-actions[bot]"
   git -C "$1" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -40,10 +52,12 @@ init_empty() {
 }
 
 cmd_checkout() {
-  local dir="$1" days="$2"
+  # DIR, then the command that prints the sparse-checkout patterns
+  local dir="$1"
+  shift
   if branch_exists; then
     git clone --quiet --depth 1 --filter=blob:none --no-checkout --branch "$BRANCH" "$REMOTE" "$dir"
-    patterns "$days" | git -C "$dir" sparse-checkout set --no-cone --stdin
+    "$@" | git -C "$dir" sparse-checkout set --no-cone --stdin
     git -C "$dir" checkout --quiet "$BRANCH"
   else
     echo "data branch '$BRANCH' does not exist yet; starting an empty datastore"
@@ -91,9 +105,10 @@ cmd_push() {
 }
 
 case "${1:-}" in
-  checkout) cmd_checkout "$2" "$3" ;;
+  checkout) cmd_checkout "$2" patterns "$3" ;;
+  checkout-market) cmd_checkout "$2" market_patterns ;;
   checkout-all) cmd_checkout_all "$2" ;;
   push) cmd_push "$2" "$3" ;;
   patterns) patterns "$2" ;;
-  *) echo "usage: $0 {checkout DIR DAYS|checkout-all DIR|push DIR MESSAGE|patterns DAYS}" >&2; exit 64 ;;
+  *) echo "usage: $0 {checkout DIR DAYS|checkout-market DIR|checkout-all DIR|push DIR MESSAGE|patterns DAYS}" >&2; exit 64 ;;
 esac

@@ -122,3 +122,40 @@ def test_push_with_no_changes_is_a_noop(env, tmp_path):
     sh("bash", str(SCRIPT), "checkout", str(a), "1", env=env)
     res = sh("bash", str(SCRIPT), "push", str(a), "empty", env=env)
     assert "nothing to commit" in res.stdout
+
+
+def test_market_checkout_has_what_the_market_job_needs_and_its_push_survives_a_collect_push(env, tmp_path):
+    now = datetime.now(timezone.utc)
+    universe_now = f"market/universe/{now:%Y/%m/%Y-%m-%d}.csv.gz"
+    universe_old = f"market/universe/{now - timedelta(days=40):%Y/%m/%Y-%m-%d}.csv.gz"
+    needed = ["candidates/episodes.csv", "ref/symbols.csv", f"daily/mention_counts/{month()}.csv",
+              "market/snapshots.csv", "market/state.json", "market/README.md", universe_now]
+    not_needed = ["state/state.json", f"raw/reddit/{day_dir(0)}/r.jsonl.gz", f"market/raw/{day_dir(0)}/old.json.gz",
+                  universe_old]
+    a = tmp_path / "a"
+    sh("bash", str(SCRIPT), "checkout", str(a), "2", env=env)
+    for rel in needed + not_needed:
+        write(a, rel, rel + "\n")
+    sh("bash", str(SCRIPT), "push", str(a), "seed", env=env)
+
+    m = tmp_path / "m"
+    sh("bash", str(SCRIPT), "checkout-market", str(m), env=env)
+    assert [rel for rel in needed if not (m / rel).exists()] == []
+    assert [rel for rel in not_needed if (m / rel).exists()] == []
+
+    with open(m / "market/snapshots.csv", "a") as fh:
+        fh.write("row\n")
+    write(m, f"market/raw/{day_dir(0)}/new.json.gz", "new")
+
+    x = tmp_path / "x"  # a collect run that pushes while the market run is working
+    sh("bash", str(SCRIPT), "checkout", str(x), "2", env=env)
+    write(x, f"raw/reddit/{day_dir(0)}/x.jsonl.gz", "x")
+    sh("bash", str(SCRIPT), "push", str(x), "collect", env=env)
+
+    res = sh("bash", str(SCRIPT), "push", str(m), "market", env=env)
+    assert "replaying" in res.stdout
+    assert remote_file(env, tmp_path, "market/snapshots.csv") == "market/snapshots.csv\nrow\n"
+    assert remote_file(env, tmp_path, f"market/raw/{day_dir(0)}/new.json.gz") == "new"
+    assert remote_file(env, tmp_path, f"market/raw/{day_dir(0)}/old.json.gz") == f"market/raw/{day_dir(0)}/old.json.gz\n"
+    assert remote_file(env, tmp_path, f"raw/reddit/{day_dir(0)}/x.jsonl.gz") == "x"
+    assert remote_file(env, tmp_path, universe_old) == universe_old + "\n"

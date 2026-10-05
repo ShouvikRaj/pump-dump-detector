@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "pumpdump"
 version = "0.1.0"
-description = "Stage 1 of a pump-and-dump detector: collect Reddit chatter with collection timestamps and flag tickers with sudden mention or hype spikes."
+description = "Pump-and-dump detector: collect Reddit chatter with collection timestamps, flag tickers with sudden mention or hype spikes, and snapshot their market data at flag time."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = ["requests>=2.31"]

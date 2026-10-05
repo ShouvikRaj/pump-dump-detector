@@ -1,6 +1,7 @@
 """Command line: `python -m pumpdump <command>`.
 
   collect   one collection run against a datastore directory (the data branch)
+  market    Stage 2: market snapshot of each new candidate as of its flag time, plus controls
   build-db  build a full SQLite database from a datastore
   scan      show the tickers and hype categories found in a piece of text
   status    say whether collection has finished (enough data for analysis)
@@ -14,10 +15,12 @@ import os
 import sqlite3
 import sys
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 
-from . import db
+from . import db, market
 from .hype import hype_categories
+from .market import default_sources, dry_run, run_market
 from .pipeline import Settings, collection_done, run_collect
 from .sources.arctic_shift import BASE_URL, ArcticShift
 from .sources.stocktwits import fetch_trending
@@ -85,6 +88,49 @@ def cmd_collect(args: argparse.Namespace) -> int:
     return 0
 
 
+def render_market_summary(summary: dict) -> str:
+    lines = [f"## Market run {summary['run_id']}", ""]
+    if summary["snapshots"]:
+        lines.append(
+            f"Snapshots of {len(summary['snapshots'])} new candidates ({', '.join(summary['snapshots'])}) "
+            f"and {len(summary['controls'])} controls ({', '.join(summary['controls']) or 'none'})."
+        )
+    else:
+        lines.append("No new candidates to snapshot.")
+    if summary["universe"]:
+        lines.append(f"Saved the listed-stock universe: {summary['universe']}.")
+    if summary["pending"]:
+        lines += ["", "Retrying on the next runs:"] + [f"- {p}" for p in summary["pending"]]
+    if summary["warnings"]:
+        lines += ["", "Warnings:"] + [f"- {w}" for w in summary["warnings"]]
+    return "\n".join(lines) + "\n"
+
+
+def _utc_timestamp(text: str) -> float:
+    dt = datetime.fromisoformat(text)
+    return (dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)).timestamp()
+
+
+def cmd_market(args: argparse.Namespace) -> int:
+    ds = Datastore(args.datastore)
+    src = default_sources()
+    if args.dry_run:
+        now = time.time()
+        as_of = _utc_timestamp(args.as_of) if args.as_of else now
+        for row in dry_run(src, args.dry_run, load_symbols(ds), as_of, now):
+            print(json.dumps(row, default=str))
+        return 0
+    run_id = args.run_id or os.environ.get("GITHUB_RUN_ID") or time.strftime("%Y%m%dT%H%M%S", time.gmtime())
+    summary = run_market(ds, src, run_id=str(run_id), clock=lambda: time.time(), max_seconds=args.max_minutes * 60)
+    text = render_market_summary(summary)
+    print(text)
+    if args.summary:
+        with open(args.summary, "a", encoding="utf-8") as fh:
+            fh.write(text)
+    # like collect: source failures are recorded in the rows and the summary; only crashes fail the run
+    return 0
+
+
 def _convert(v: str):
     if v == "":
         return None
@@ -133,6 +179,9 @@ def cmd_build_db(args: argparse.Namespace) -> int:
     _load_csv_table(conn, "daily_mention_counts", _read_monthly(ds, "daily/mention_counts"))
     _load_csv_table(conn, "stocktwits_trending", _read_monthly(ds, "stocktwits/trending"))
     _load_csv_table(conn, "runs", _read_monthly(ds, "logs/runs"))
+    _load_csv_table(conn, "market_snapshots", ds.read_csv(market.SNAPSHOTS))
+    universe = [{"date": p.name[:10], **r} for p in market.universe_files(ds) for r in market.read_universe(p)]
+    _load_csv_table(conn, "market_universe", universe)
     conn.commit()
     conn.close()
     print(f"wrote {out}: {n_docs} docs, {n_mentions} mentions")
@@ -169,6 +218,15 @@ def main(argv: list[str] | None = None) -> int:
     c.add_argument("--summary", help="append a markdown summary here (e.g. $GITHUB_STEP_SUMMARY)")
     c.add_argument("--no-stocktwits", action="store_true")
     c.set_defaults(func=cmd_collect)
+
+    m = sub.add_parser("market", help="Stage 2: snapshot new candidates' market data")
+    m.add_argument("--datastore", required=True)
+    m.add_argument("--run-id")
+    m.add_argument("--max-minutes", type=float, default=8.0)
+    m.add_argument("--summary", help="append a markdown summary here (e.g. $GITHUB_STEP_SUMMARY)")
+    m.add_argument("--dry-run", nargs="+", metavar="TICKER", help="only print snapshots of these tickers; save nothing")
+    m.add_argument("--as-of", help="with --dry-run: snapshot time, ISO 8601 (UTC if no offset); default now")
+    m.set_defaults(func=cmd_market)
 
     b = sub.add_parser("build-db", help="build a SQLite database from a datastore")
     b.add_argument("--datastore", required=True)

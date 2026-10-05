@@ -1,12 +1,13 @@
 # pump-dump-detector
 
 Detecting US stock pump-and-dumps by combining social-media chatter with market data, validated with paper trading only.
-This repository is built in stages; **Stage 1 (this code) is the social scraper**: it collects Reddit chatter with
-collection timestamps and flags tickers whose mentions or hype language suddenly spike.
+This repository is built in stages. **Stage 1 is the social scraper**: it collects Reddit chatter with collection
+timestamps and flags tickers whose mentions or hype language suddenly spike. **Stage 2 is the market check**: each
+flagged ticker's market data as of the moment it was flagged, next to two matched tickers nobody was talking about.
 
 ```
-Stage 1  Reddit chatter -> ticker mentions -> spike flags -> candidate list      <- this repo, running
-Stage 2  market check of candidates (float, volume vs average, price, SEC dilution filings)
+Stage 1  Reddit chatter -> ticker mentions -> spike flags -> candidate list      <- running
+Stage 2  market check of candidates (float, volume vs average, price, SEC dilution filings)   <- running
 Stage 3  ongoing tracking of chatter and price per candidate
 Stage 4  outcome labels after N days (pump / not pump / real news), rule fixed in advance
 Stage 5  feedback loop: retrain, keep only patterns that hold across periods
@@ -22,10 +23,12 @@ Everything runs on GitHub Actions; no computer needs to stay on.
 |---|---|---|
 | `collect` | about every 15 min | fetch new posts/comments from r/pennystocks, r/smallstreetbets, r/wallstreetbets; store them; extract tickers; flag spikes; update the candidate list; open an issue if collection is unhealthy |
 | `pace` | after each `collect` run | wait 13 minutes in the `pacer` environment, then start the next `collect` run (GitHub's cron fires rarely for this repo, so collection paces itself; the cron stays as a backup) |
+| `market` | after each `collect` run | snapshot each new candidate's market data as of its flag time, plus two matched controls (Stage 2) |
 | `nightly` | 03:41 UTC (started by `pace` when GitHub's cron misses it) | build a SQLite database of everything collected and attach it to the run as the `pumpdump-sqlite` artifact; once collection has finished, publish it as the `dataset-final` release and turn collection off |
 | `tests` | every push | `pytest` |
 
-Collected data lives on the **`data` branch** (see its README). Start with `candidates/README.md` there.
+Collected data lives on the **`data` branch** (see its README). Start with `candidates/README.md` there, and
+`market/README.md` for the market snapshots.
 
 The `pacer` environment's wait timer (13 minutes, set under Settings > Environments) is what spaces the runs; it holds
 no runner while waiting. Each wait shows up as a deployment to `pacer`. If the timer is removed, `pace` stops the
@@ -41,7 +44,8 @@ chatter has been collected). It stops after **180 days** regardless.
 that promotion campaigns run (Leuz et al.); 300 settled candidates leave a usable number of pumps even under the
 strict label rule, which few candidates will meet. The 180-day cap keeps the data branch around 550 MB. When it
 stops, the collector fetches nothing more and marks `candidates/README.md`, and the next nightly run publishes the
-final database as the [`dataset-final` release](https://github.com/ShouvikRaj/pump-dump-detector/releases/tag/dataset-final) and turns collection off (all three workflows).
+final database as the [`dataset-final` release](https://github.com/ShouvikRaj/pump-dump-detector/releases/tag/dataset-final) and turns collection off (all three workflows; `market`
+stops with them, since it runs after `collect`).
 
 The data can be analysed at any time before that. To collect for longer, raise the `stop_*` values in `Settings`
 (`src/pumpdump/pipeline.py`) and re-enable both workflows in the Actions tab; `python -m pumpdump status
@@ -79,6 +83,20 @@ out of the public logs, and the address is sent to sec.gov only. OTC tickers mis
 Detection only runs when every stream has 8 full days of history and caught up within the last 3 hours. The
 first week's flags are marked `warmup=1` because part of their baseline was backfilled rather than collected live.
 
+## Stage 2: market snapshots
+
+A minute or two after a candidate is flagged, the `market` workflow records what the market looked like **at the
+flag time**: price (including pre/post-market), returns, volume against the 20-day average, 52-week range, reverse
+splits, float and shares outstanding (Yahoo, and SEC cover pages as filed), FINRA short interest, and SEC filings
+(S-1/S-3/F-1/F-3 registrations, 424B prospectuses, 8-K item 3.02 share sales, late-filing notices, name changes).
+Only data that existed before the flag counts. Each candidate gets an archetype, decided before any results:
+`low_float_runner` (listed, $1-10, float <= 20M) or `otc_penny` (OTC, under $1), else `other`. Two controls with
+no Reddit mentions in the previous 7 days are snapshotted at the same moment: same venue, and for listed stocks a
+similar price. The raw source data is kept too, so price history survives delistings and reverse splits.
+
+All sources are free and keyless (Yahoo Finance, SEC EDGAR, FINRA, Nasdaq's screener); SEC uses the same
+`SEC_USER_AGENT` secret as Stage 1. Every column, rule and known gap: [docs/stage2.md](docs/stage2.md).
+
 ## Safeguards built in
 
 - **No lookahead**: every record stores `created_utc` and `collected_at`; counting functions take an `as_of` time
@@ -98,9 +116,12 @@ sqlite3 pumpdump.sqlite "select ticker, first_flagged_at_utc, mentions_24h, reas
 ```
 
 Tables: `docs` (posts + comments), `mentions` (one row per document x ticker, with hype score), `candidate_episodes`,
-`candidate_episode_ends`, `daily_mention_counts`, `stocktwits_trending`, `runs`, `symbols`.
+`candidate_episode_ends`, `daily_mention_counts`, `stocktwits_trending`, `runs`, `symbols`, `market_snapshots`
+(Stage 2, candidates and controls; join on `episode_id`), `market_universe` (daily prices of all listed stocks).
 
-Try the extractor on any text: `python -m pumpdump scan '$ABCD to the moon 🚀 short squeeze'`.
+Try the extractor on any text: `python -m pumpdump scan '$ABCD to the moon 🚀 short squeeze'`. See what a market
+snapshot would record right now (needs internet; nothing is saved):
+`python -m pumpdump market --datastore datastore --dry-run ABCD`.
 
 ## Development
 
@@ -109,5 +130,7 @@ pip install -e ".[dev]"
 pytest
 ```
 
-Code: `src/pumpdump/` (`tickers.py`, `hype.py`, `spikes.py`, `sources/arctic_shift.py`, `pipeline.py`, `cli.py`).
-Design notes and the reasoning behind each threshold: [docs/stage1.md](docs/stage1.md).
+Code: `src/pumpdump/`. Stage 1: `tickers.py`, `hype.py`, `spikes.py`, `sources/arctic_shift.py`, `pipeline.py`.
+Stage 2: `market.py` (the run), `features.py` (point-in-time features), `sources/` (Yahoo, EDGAR, FINRA, Nasdaq).
+Command line: `cli.py`. Design notes and the reasoning behind each threshold: [docs/stage1.md](docs/stage1.md),
+[docs/stage2.md](docs/stage2.md).
