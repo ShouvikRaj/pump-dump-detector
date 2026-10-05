@@ -16,6 +16,7 @@ from zoneinfo import ZoneInfo
 ARCHETYPE_VERSION = "archetype-v1"
 ET = ZoneInfo("America/New_York")
 DAY = 86_400
+SESSION_OPEN = time(9, 30)
 SESSION_CLOSE = time(16, 0)  # half days are not modelled (docs/stage2.md, known gaps)
 LOW_FLOAT_MAX = 20_000_000
 SI_PUBLICATION_LAG_BDAYS = 8
@@ -97,7 +98,11 @@ def price_features(daily: list[list], intraday: list[list], as_of: float, bar_se
         out.update(price_at_flag=finished[-1][4], price_time_utc=iso(finished[-1][0] + bar_seconds), price_source="5m")
     if out["price_at_flag"] is not None and out["last_close"]:
         out["move_since_close"] = out["price_at_flag"] / out["last_close"] - 1
-    today = [b for b in finished if et_date(b[0]) == et_date(as_of)]
+    # regular session only: Yahoo's pre/post-market bars carry no volume
+    today = [
+        b for b in finished
+        if et_date(b[0]) == et_date(as_of) and SESSION_OPEN <= datetime.fromtimestamp(b[0], ET).time() < SESSION_CLOSE
+    ]
     if today:
         out["vol_today"] = sum(b[5] or 0 for b in today)
         if out["avg_vol_20d"]:

@@ -113,6 +113,14 @@ def test_new_candidate_gets_a_snapshot_two_matched_controls_and_raw_files(ds, wo
     assert summary["snapshots"] == ["ABCD"]
 
 
+
+def test_timing_columns_keep_full_precision(ds, world):
+    add_episode(ds, "ABCD", as_of=AS_OF + 1.5)
+    run(ds, world, FakeClock(AS_OF + 120.25))
+    c = [r for r in rows(ds) if r["role"] == "candidate"][0]
+    assert float(c["as_of"]) == AS_OF + 1.5
+    assert AS_OF + 120.25 <= float(c["snapshot_at"]) < AS_OF + 180
+
 def test_a_second_run_does_not_snapshot_the_same_candidate_again(ds, world):
     add_episode(ds, "ABCD")
     clock = FakeClock(AS_OF + 120)
@@ -152,7 +160,7 @@ def test_a_foreign_listing_is_recorded_without_any_lookup(ds, world):
     add_episode(ds, "TSXV:ABC")
     run(ds, world, FakeClock(AS_OF + 120))
     out = rows(ds)
-    assert len(out) == 1 and "non-US listing" in out[0]["errors"]
+    assert len(out) == 1 and "non-US listing" in out[0]["errors"] and out[0]["venue"] == "unknown"
     assert not any("ABC" in c["url"] or "ABC" in json.dumps(c["json"] or {}) for c in world.calls)
 
 

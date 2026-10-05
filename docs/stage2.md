@@ -46,7 +46,7 @@ Prices are split-adjusted as Yahoo serves them; ratios are unaffected by splits.
 | last session | `last_session`, `last_close`, `move_since_close` | the last regular session that closed (16:00 ET) before `as_of`; `price_at_flag / last_close - 1` |
 | returns | `ret_1d`, `ret_5d`, `ret_20d` | last close vs the close 1/5/20 sessions earlier |
 | volume | `vol_last`, `avg_vol_20d`, `rel_vol_last` | last session's volume vs the mean of the 20 sessions before it |
-| volume today | `vol_today`, `rel_vol_today` | volume of the 5-minute bars on the flag's ET date up to `as_of` (blank when none); vs `avg_vol_20d` |
+| volume today | `vol_today`, `rel_vol_today` | volume of the regular-session 5-minute bars on the flag's ET date up to `as_of`, vs `avg_vol_20d`; blank before the open (Yahoo serves no pre/post-market volume) |
 | liquidity | `dollar_vol_20d`, `volatility_20d` | mean close x volume and sd of daily log returns over the last 20 sessions |
 | range | `high_52w`, `low_52w`, `pct_from_52w_high`, `n_sessions`, `first_trade_date` | over up to 252 sessions; `first_trade_date` flags recent listings |
 | splits | `reverse_splits_1y`, `last_split_date`, `last_split_ratio` | reverse splits often precede pumps |

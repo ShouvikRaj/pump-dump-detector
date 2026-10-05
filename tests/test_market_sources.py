@@ -95,6 +95,15 @@ def test_chart_returns_bars_without_empty_entries_and_reverse_splits():
     assert call["params"]["interval"] == "1d" and call["params"]["period1"] == T0 - 86400
 
 
+
+def test_chart_prices_lose_yahoos_float32_noise():
+    # Yahoo serves 0.08 as 0.0800000017881393; unrounded, an unchanged price shows a tiny move
+    bars = [(T0, 0.0800000017881393, 0.0800000017881393, 0.0799999982118607, 0.0800000017881393, 1000),
+            (T0 + 86400, 14.514100074768066, 14.6, 14.4, 502.6499938964844, 2000)]
+    http = FakeHTTP([("GET", "https://query1.finance.yahoo.com/", [(200, chart_json(bars))])])
+    chart = Yahoo(make_web(http)).chart("ABCD", T0, T0 + 2 * 86400)
+    assert chart["bars"] == [[T0, 0.08, 0.08, 0.08, 0.08, 1000], [T0 + 86400, 14.5141, 14.6, 14.4, 502.65, 2000]]
+
 def test_chart_of_a_quiet_window_has_no_bars():
     http = FakeHTTP([("GET", "https://query1.finance.yahoo.com/", [(200, chart_json([]))])])
     assert Yahoo(make_web(http)).chart("ABCD", T0, T0 + 3600, interval="5m", prepost=True)["bars"] == []

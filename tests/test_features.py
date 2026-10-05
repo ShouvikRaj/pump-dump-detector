@@ -76,10 +76,17 @@ def test_flag_during_a_session_ignores_its_unfinished_bars():
     assert p["price_at_flag"] == done[-1][4]  # the 09:55 bar; the 10:00 bar ends after the flag
     assert p["price_time_utc"] == "2026-10-05T14:00:00Z"
     assert p["price_source"] == "5m"
-    assert p["vol_today"] == 100 * len(done)
-    assert p["rel_vol_today"] == pytest.approx(100 * len(done) / 1000)
+    assert p["vol_today"] == 600  # the six regular-session bars, 09:30 to 09:55
+    assert p["rel_vol_today"] == pytest.approx(0.6)
     assert p["move_since_close"] == pytest.approx(done[-1][4] / bars[-2][4] - 1)
 
+
+
+def test_before_the_open_volume_today_is_blank_not_zero():
+    # Yahoo's pre/post-market bars carry no volume, so counting them would read as "no trading"
+    intraday = five_min(date(2026, 10, 5), end=(6, 0), volume=0)
+    p = f.price_features(daily(), intraday, et(2026, 10, 5, 6, 0))
+    assert p["price_source"] == "5m" and p["vol_today"] is None and p["rel_vol_today"] is None
 
 def test_after_the_close_the_day_counts_and_post_market_sets_the_price():
     bars = daily(last=date(2026, 10, 2))

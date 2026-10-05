@@ -105,6 +105,7 @@ def take_snapshot(src: MarketSources, ticker: str, as_of: float, sym: dict, now:
     raw: dict = {"ticker": ticker, "as_of": as_of, "snapshot_at": now}
     errors: list[str] = []
     if ":" in ticker:  # Stage 1 writes foreign listings as "TSXV:XYZ"
+        row["venue"] = "unknown"
         row["errors"] = raw["errors"] = "ticker: non-US listing, not looked up"
         return row, raw
 
@@ -180,7 +181,7 @@ def take_snapshot(src: MarketSources, ticker: str, as_of: float, sym: dict, now:
     row["archetype"] = archetype(row["venue"], price, flt, shares)
     row["errors"] = "; ".join(errors)
     raw.update(daily=daily, intraday=intraday, summary=summary, sec=sub, sec_shares=facts, short_interest=si_rows, errors=errors)
-    return {k: _tidy(v) for k, v in row.items()}, raw
+    return {k: v if k in ("as_of", "snapshot_at") else _tidy(v) for k, v in row.items()}, raw
 
 
 def pick_controls(seed: str, venue: str, price: float | None, universe: list[dict], symbols: dict, exclude: set[str],

@@ -57,6 +57,11 @@ def _not_found(status: int, body, key: str) -> str | None:
     return None
 
 
+def _price(v):
+    # Yahoo stores prices as float32 (0.08 arrives as 0.0800000017881393); 6 significant digits drop the noise
+    return None if v is None else float(f"{v:.6g}")
+
+
 def parse_chart(result: dict) -> dict:
     q = (result.get("indicators", {}).get("quote") or [{}])[0]
     bars = []
@@ -64,7 +69,7 @@ def parse_chart(result: dict) -> dict:
         row = [q.get(k, [None] * (i + 1))[i] for k in ("open", "high", "low", "close", "volume")]
         if row[3] is None:
             continue  # Yahoo leaves gaps as nulls
-        bars.append([t] + row)
+        bars.append([t] + [_price(v) for v in row[:4]] + [row[4]])
     splits = sorted(
         ({"t": s["date"], "numerator": float(s["numerator"]), "denominator": float(s["denominator"])}
          for s in ((result.get("events") or {}).get("splits") or {}).values()),
