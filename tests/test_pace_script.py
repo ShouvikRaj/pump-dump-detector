@@ -22,7 +22,8 @@ earlier = open(log).read().splitlines() if os.path.exists(log) else []
 with open(log, "a") as fh:
     fh.write(json.dumps(args) + "\\n")
 if args[:2] == ["run", "list"]:
-    out = os.environ["FAKE_NIGHTLY" if "nightly.yml" in args else "FAKE_TRACK" if "track.yml" in args else "FAKE_RUNS"]
+    out = os.environ["FAKE_NIGHTLY" if "nightly.yml" in args else "FAKE_TRACK" if "track.yml" in args
+                     else "FAKE_LABEL" if "label.yml" in args else "FAKE_RUNS"]
     if "--jq" in args:
         out = subprocess.run(["jq", "-r", args[args.index("--jq") + 1]], input=out, capture_output=True, text=True, check=True).stdout
     sys.stdout.write(out)
@@ -47,7 +48,8 @@ def run(tmp_path):
     gh.chmod(0o755)
     log = tmp_path / "gh.log"
 
-    def _run(runs, dispatch_failures=0, nightly_age=10 * 60, now=NOW, nightly=False, waited=13 * 60, pacers=False, track_age=10 * 60, tracks=False):
+    def _run(runs, dispatch_failures=0, nightly_age=10 * 60, now=NOW, nightly=False, waited=13 * 60, pacers=False, track_age=10 * 60, tracks=False,
+             label_age=10 * 60, labels=False):
         env = dict(
             os.environ,
             PATH=f"{bindir}{os.pathsep}{os.environ['PATH']}",
@@ -58,6 +60,7 @@ def run(tmp_path):
             FAKE_DISPATCH_FAILURES=str(dispatch_failures),
             FAKE_SELF_CREATED=iso(now - waited),
             FAKE_TRACK=json.dumps([] if track_age is None else [{"createdAt": iso(now - track_age)}]),
+            FAKE_LABEL=json.dumps([] if label_age is None else [{"createdAt": iso(now - label_age)}]),
             GH_REPO="owner/repo",
             GITHUB_RUN_ID="1",
             PACE_NOW=str(now),
@@ -71,6 +74,8 @@ def run(tmp_path):
             return res, [c for c in dispatched if c[2] == "nightly.yml"]
         if tracks:
             return res, [c for c in dispatched if c[2] == "track.yml"]
+        if labels:
+            return res, [c for c in dispatched if c[2] == "label.yml"]
         if pacers:
             return res, [c for c in dispatched if c[2] == "pace.yml"]
         return res, [c for c in dispatched if c[2] == "collect.yml"]
@@ -184,3 +189,15 @@ def test_starts_the_track_run_after_its_slot(run):
     assert tracks == []
     res, tracks = run([("completed", 16 * 60)], tracks=True)  # 03:53 UTC, before the slot
     assert tracks == []
+
+
+def test_starts_the_label_run_after_its_slot(run):
+    # 23:30 UTC, after the track run's slot; the last label run was yesterday
+    late = NOW - (NOW % 86400) + 23 * 3600 + 30 * 60
+    res, labels = run([("completed", 16 * 60)], now=late, label_age=24 * 3600, labels=True)
+    assert res.returncode == 0, res.stderr
+    assert [c[:3] for c in labels] == [["workflow", "run", "label.yml"]]
+    res, labels = run([("completed", 16 * 60)], now=late, label_age=5 * 60, labels=True)
+    assert labels == []
+    res, labels = run([("completed", 16 * 60)], now=late - 20 * 60, label_age=24 * 3600, labels=True)  # 23:10, before it
+    assert labels == []

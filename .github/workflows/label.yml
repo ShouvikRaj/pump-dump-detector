@@ -1,0 +1,60 @@
+name: label
+
+# Stage 4: once a day, after Stage 3's track run, label every candidate
+# and control whose windows have closed (pump / real news / not pump, and
+# crash) and rebuild labels/ on the `data` branch. The rule was fixed before
+# any results were looked at: docs/stage4.md. scripts/pace.sh starts it at the
+# first pacer after 23:21 UTC (GitHub's cron here is unreliable); the cron is
+# the backup. Once collection has finished and no label is pending, it turns
+# itself off.
+on:
+  schedule:
+    - cron: "21 23 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write # push to the data branch
+  actions: write # turn this workflow off when labeling is over
+
+concurrency:
+  # writes only labels/, so its push replays cleanly on top of the other jobs' pushes
+  group: label
+  cancel-in-progress: false
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install
+        run: pip install .
+
+      - name: Check out the data branch (state, candidates, snapshots, track and label tables)
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: scripts/datastore.sh checkout-label datastore
+
+      - name: Label
+        id: label
+        run: python -m pumpdump label --datastore datastore --summary "$GITHUB_STEP_SUMMARY" --github-output "$GITHUB_OUTPUT"
+
+      - name: Push the data branch
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          scripts/datastore.sh push datastore "label: run ${{ github.run_id }}"
+
+      - name: Turn labeling off once it is over
+        if: steps.label.outputs.finished == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh workflow disable label.yml

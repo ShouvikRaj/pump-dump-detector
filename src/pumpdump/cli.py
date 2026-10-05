@@ -3,6 +3,7 @@
   collect   one collection run against a datastore directory (the data branch)
   market    Stage 2: market snapshot of each new candidate as of its flag time, plus controls
   track     Stage 3: follow candidates and controls for 20 sessions after the flag
+  label     Stage 4: label candidates and controls (pump / real news / not pump, and crash)
   build-db  build a full SQLite database from a datastore
   scan      show the tickers and hype categories found in a piece of text
   status    say whether collection has finished (enough data for analysis)
@@ -19,7 +20,7 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
-from . import db, market, track
+from . import db, label, market, track
 from .hype import hype_categories
 from .market import default_sources, dry_run, run_market
 from .pipeline import Settings, collection_done, run_collect
@@ -162,6 +163,37 @@ def cmd_track(args: argparse.Namespace) -> int:
     return 0
 
 
+def render_label_summary(summary: dict, run_id: str) -> str:
+    c = summary["counts"]
+    lines = [f"## Label run {run_id}", ""]
+    lines.append(
+        f"{sum(c.get(k, 0) for k in label.SETTLED)} labeled: {c.get('pump', 0)} pump, {c.get('real_news', 0)} real news, "
+        f"{c.get('not_pump', 0)} not pump; {c.get('pending', 0)} pending, {c.get('unknown', 0)} unknown; "
+        f"{summary['crashes']} crashed within 10 sessions."
+    )
+    if summary["new"]:
+        lines.append("New labels: " + ", ".join(summary["new"]) + ".")
+    return "\n".join(lines) + "\n"
+
+
+def cmd_label(args: argparse.Namespace) -> int:
+    ds = Datastore(args.datastore)
+    run_id = args.run_id or os.environ.get("GITHUB_RUN_ID") or time.strftime("%Y%m%dT%H%M%S", time.gmtime())
+    summary = label.run_label(ds, clock=time.time)
+    text = render_label_summary(summary, str(run_id))
+    print(text)
+    if args.summary:
+        with open(args.summary, "a", encoding="utf-8") as fh:
+            fh.write(text)
+    if args.github_output:
+        # labeling is over once collection has finished, every snapshot has been tracked and no label is pending
+        finished = (collection_done(ds, ds.load_state(), time.time(), Settings()) is not None
+                    and summary["untracked"] == 0 and summary["counts"].get("pending", 0) == 0)
+        with open(args.github_output, "a", encoding="utf-8") as fh:
+            fh.write(f"finished={'true' if finished else 'false'}\n")
+    return 0
+
+
 def _convert(v: str):
     if v == "":
         return None
@@ -216,6 +248,7 @@ def cmd_build_db(args: argparse.Namespace) -> int:
     _load_csv_table(conn, "track_daily", ds.read_csv(track.DAILY))
     _load_csv_table(conn, "track_filings", ds.read_csv(track.FILINGS))
     _load_csv_table(conn, "track_outcomes", ds.read_csv(track.OUTCOMES))
+    _load_csv_table(conn, "labels", ds.read_csv(label.LABELS))
     conn.commit()
     conn.close()
     print(f"wrote {out}: {n_docs} docs, {n_mentions} mentions")
@@ -269,6 +302,13 @@ def main(argv: list[str] | None = None) -> int:
     t.add_argument("--summary", help="append a markdown summary here (e.g. $GITHUB_STEP_SUMMARY)")
     t.add_argument("--github-output", help="write finished=true|false here ($GITHUB_OUTPUT)")
     t.set_defaults(func=cmd_track)
+
+    lb = sub.add_parser("label", help="Stage 4: label candidates and controls whose windows have closed")
+    lb.add_argument("--datastore", required=True)
+    lb.add_argument("--run-id")
+    lb.add_argument("--summary", help="append a markdown summary here (e.g. $GITHUB_STEP_SUMMARY)")
+    lb.add_argument("--github-output", help="write finished=true|false here ($GITHUB_OUTPUT)")
+    lb.set_defaults(func=cmd_label)
 
     b = sub.add_parser("build-db", help="build a SQLite database from a datastore")
     b.add_argument("--datastore", required=True)

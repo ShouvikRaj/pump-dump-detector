@@ -4,13 +4,15 @@ Detecting US stock pump-and-dumps by combining social-media chatter with market 
 This repository is built in stages. **Stage 1 is the social scraper**: it collects Reddit chatter with collection
 timestamps and flags tickers whose mentions or hype language suddenly spike. **Stage 2 is the market check**: each
 flagged ticker's market data as of the moment it was flagged, next to two matched tickers nobody was talking about.
-**Stage 3 is tracking**: every flagged ticker and control is followed for 20 trading sessions afterwards.
+**Stage 3 is tracking**: every flagged ticker and control is followed for 20 trading sessions afterwards. **Stage 4 is
+labeling**: once its windows have closed, each one is labeled pump, real news or not pump (plus a separate crash label),
+by a rule written down before any results were looked at.
 
 ```
 Stage 1  Reddit chatter -> ticker mentions -> spike flags -> candidate list      <- running
 Stage 2  market check of candidates (float, volume vs average, price, SEC dilution filings)   <- running
 Stage 3  ongoing tracking of price, filings and chatter per candidate and control (20 sessions)   <- running
-Stage 4  outcome labels after N days (pump / not pump / real news), rule fixed in advance
+Stage 4  outcome labels after 10-15 sessions (pump / real news / not pump, and crash), rule fixed in advance   <- running
 Stage 5  feedback loop: retrain, keep only patterns that hold across periods
 ```
 
@@ -26,11 +28,13 @@ Everything runs on GitHub Actions; no computer needs to stay on.
 | `pace` | after each `collect` run | wait 13 minutes in the `pacer` environment, then start the next `collect` run (GitHub's cron fires rarely for this repo, so collection paces itself; the cron stays as a backup) |
 | `market` | after each `collect` run | snapshot each new candidate's market data as of its flag time, plus two matched controls (Stage 2) |
 | `track` | daily after the US close (started by `pace` after 22:41 UTC; cron backup) | record each candidate's and control's new trading sessions and SEC filings since its flag, for 20 sessions, and rebuild `track/outcomes.csv` (Stage 3) |
+| `label` | daily after `track` (started by `pace` after 23:21 UTC; cron backup) | label every candidate and control whose windows have closed and rebuild `labels/labels.csv` (Stage 4) |
 | `nightly` | 03:41 UTC (started by `pace` when GitHub's cron misses it) | build a SQLite database of everything collected and attach it to the run as the `pumpdump-sqlite` artifact; once collection has finished, publish it as the `dataset-final` release and turn collection off |
 | `tests` | every push | `pytest` |
 
-Collected data lives on the **`data` branch** (see its README). Start with `candidates/README.md` there, and
-`market/README.md` for the market snapshots.
+Collected data lives on the **`data` branch** (see its README). Start with `candidates/README.md` there,
+`market/README.md` for the market snapshots, `track/README.md` for what happened next and `labels/README.md` for the
+labels.
 
 The `pacer` environment's wait timer (13 minutes, set under Settings > Environments) is what spaces the runs; it holds
 no runner while waiting. Each wait shows up as a deployment to `pacer`. If the timer is removed, `pace` stops the
@@ -109,6 +113,21 @@ peak over the next 10 sessions, returns after 1/5/10/20 sessions, 8-Ks and dilut
 days after. Each ticker is followed for 20 sessions and then left alone; the label rule is Stage 4's. Details:
 [docs/stage3.md](docs/stage3.md).
 
+## Stage 4: labels
+
+Once a day after tracking, the `label` workflow labels every candidate and control with the same rule, written down
+and committed before any outcome was looked at (version `label-v1`, chosen by shouvik):
+
+- **pump**: up 50% or more within 5 sessions after the flag, then down 40% or more from that peak within the next 10
+- **real news**: earnings, a completed acquisition, a change of control, bankruptcy, or a material agreement that isn't
+  a share sale, filed with the SEC (8-K) between 72 hours before the flag and session 5; it takes precedence over pump
+- **not pump**: neither, once the windows have closed
+- **crash**, a separate label for the "avoid" signal: a close 40% or more below the flag price within 10 sessions
+
+A label is final 10 sessions after the flag (15 after a 50% rise) and never changes after that. `labels/README.md` on
+the data branch counts them per archetype for candidates and controls side by side; the crash rate of candidates
+against their controls is the first test of the avoid signal. Rule, reasons and gaps: [docs/stage4.md](docs/stage4.md).
+
 ## Safeguards built in
 
 - **No lookahead**: every record stores `created_utc` and `collected_at`; counting functions take an `as_of` time
@@ -130,7 +149,7 @@ sqlite3 pumpdump.sqlite "select ticker, first_flagged_at_utc, mentions_24h, reas
 Tables: `docs` (posts + comments), `mentions` (one row per document x ticker, with hype score), `candidate_episodes`,
 `candidate_episode_ends`, `daily_mention_counts`, `stocktwits_trending`, `runs`, `symbols`, `market_snapshots`
 (Stage 2, candidates and controls; join on `episode_id`), `market_universe` (daily prices of all listed stocks),
-`track_daily`, `track_filings`, `track_outcomes` (Stage 3; join on `snapshot_id`).
+`track_daily`, `track_filings`, `track_outcomes` (Stage 3; join on `snapshot_id`), `labels` (Stage 4; join on `snapshot_id`).
 
 Try the extractor on any text: `python -m pumpdump scan '$ABCD to the moon 🚀 short squeeze'`. See what a market
 snapshot would record right now (needs internet; nothing is saved):
@@ -145,5 +164,5 @@ pytest
 
 Code: `src/pumpdump/`. Stage 1: `tickers.py`, `hype.py`, `spikes.py`, `sources/arctic_shift.py`, `pipeline.py`.
 Stage 2: `market.py` (the run), `features.py` (point-in-time features), `sources/` (Yahoo, EDGAR, FINRA, Nasdaq).
-Stage 3: `track.py`. Command line: `cli.py`. Design notes and the reasoning behind each threshold: [docs/stage1.md](docs/stage1.md),
-[docs/stage2.md](docs/stage2.md), [docs/stage3.md](docs/stage3.md).
+Stage 3: `track.py`. Stage 4: `label.py`. Command line: `cli.py`. Design notes and the reasoning behind each threshold:
+[docs/stage1.md](docs/stage1.md), [docs/stage2.md](docs/stage2.md), [docs/stage3.md](docs/stage3.md), [docs/stage4.md](docs/stage4.md).

@@ -53,9 +53,11 @@ bar or the SEC re-dates a filing):
 - `pump_dump`: after 5 sessions if the 5-session rise is under 50%; otherwise once the 10 sessions after the peak
   are in (15 sessions at most).
 - `crash_10`: as soon as a close crosses the line; otherwise after 10 sessions.
-- `real_news`: as soon as a qualifying 8-K appears; otherwise after 10 sessions. The window closes at session 5;
-  the extra sessions give Stage 3's daily re-read of EDGAR time to catch filings a failed fetch missed. A company
-  with no CIK (not an SEC filer, as most OTC Pink companies) has `real_news = 0` straight away.
+- `real_news`: as soon as a qualifying 8-K appears (once the session it falls in has been recorded, so the result
+  doesn't depend on when a run happened); otherwise after 10 sessions. The window closes at session 5, or at the last
+  session's close if the stock stopped trading before that; the extra sessions give Stage 3's daily re-read of EDGAR
+  time to catch filings a failed fetch missed. A company with no CIK (not an SEC filer, as most OTC Pink companies)
+  has `real_news = 0` straight away.
 
 So N, the wait before a label is final, is 10 trading sessions (two weeks) for most snapshots and 15 at most. Until
 then `label` is `pending`. When tracking ends before the rule can be evaluated (Stage 2 had no price, Yahoo has no
@@ -77,10 +79,10 @@ chatter). `python -m pumpdump build-db` loads the labels as the `labels` table.
 
 ## When it runs
 
-The `label` workflow runs once a day, an hour after Stage 3's `track` run: `scripts/pace.sh` starts it at the first
-pacer after 23:41 UTC, with a `41 23 * * *` cron as backup. It reads only the files above and writes only
-`labels/`. Once collection has finished, every snapshot has been tracked and no label is pending, it turns itself
-off.
+The `label` workflow runs once a day after Stage 3's `track` run: `scripts/pace.sh` starts it at the first pacer
+after 23:21 UTC (40 minutes after track's slot), with a `21 23 * * *` cron as backup. It reads only the files above
+and writes only `labels/`, rebuilding them from scratch, so a missed day costs nothing. Once collection has finished,
+every snapshot has been tracked and no label is pending, it turns itself off.
 
 ## Changing the rule
 

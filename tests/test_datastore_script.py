@@ -159,3 +159,19 @@ def test_market_checkout_has_what_the_market_job_needs_and_its_push_survives_a_c
     assert remote_file(env, tmp_path, f"market/raw/{day_dir(0)}/old.json.gz") == f"market/raw/{day_dir(0)}/old.json.gz\n"
     assert remote_file(env, tmp_path, f"raw/reddit/{day_dir(0)}/x.jsonl.gz") == "x"
     assert remote_file(env, tmp_path, universe_old) == universe_old + "\n"
+
+
+def test_label_checkout_has_what_the_label_job_needs(env, tmp_path):
+    needed = ["state/state.json", "candidates/episodes.csv", "market/snapshots.csv", "track/outcomes.csv",
+              "track/daily.csv", "track/filings.csv", "labels/labels.csv"]
+    not_needed = [f"raw/reddit/{day_dir(0)}/r.jsonl.gz", f"market/raw/{day_dir(0)}/x.json.gz", f"daily/mention_counts/{month()}.csv"]
+    a = tmp_path / "a"
+    sh("bash", str(SCRIPT), "checkout", str(a), "2", env=env)
+    for rel in needed + not_needed:
+        write(a, rel, rel + "\n")
+    sh("bash", str(SCRIPT), "push", str(a), "seed", env=env)
+
+    lb = tmp_path / "lb"
+    sh("bash", str(SCRIPT), "checkout-label", str(lb), env=env)
+    assert [rel for rel in needed if not (lb / rel).exists()] == []
+    assert [rel for rel in not_needed if (lb / rel).exists()] == []

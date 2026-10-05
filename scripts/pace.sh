@@ -16,7 +16,8 @@
 #
 # The nightly build's cron is just as unreliable, so this also starts it once a
 # day, at the first pacer after 03:41 UTC, unless one already ran since then;
-# likewise Stage 3's track run after 22:41 UTC.
+# likewise Stage 3's track run after 22:41 UTC and Stage 4's label run after
+# 23:21 UTC (40 minutes later, so it labels from that day's tracking).
 #
 # Usage: scripts/pace.sh
 # Needs GH_TOKEN (actions: write), GH_REPO, the gh CLI and jq.
@@ -44,6 +45,7 @@ start_daily_if_due() {
 
 start_daily_if_due nightly.yml 3 41 || echo "::warning::nightly check failed"
 start_daily_if_due track.yml 22 41 || echo "::warning::track check failed"
+start_daily_if_due label.yml 23 21 || echo "::warning::label check failed"
 
 queue_next_pacer() {
   local created waited
