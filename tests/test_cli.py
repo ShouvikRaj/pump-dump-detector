@@ -70,3 +70,9 @@ def test_summary_lists_days_whose_mention_counts_were_filled_in():
     summary = {"run_id": "1", "new_docs": 0, "started_at": "x", "streams": [], "detection": "ran", "daily": None,
                "daily_filled": ["2026-09-26", "2026-09-27"], "new_candidates": [], "active": [], "warnings": []}
     assert "Mention counts filled in for 2026-09-26, 2026-09-27." in cli.render_summary(summary)
+
+
+def test_status_reports_whether_collection_is_finished(tmp_path):
+    out = tmp_path / "github_output"
+    assert cli.main(["status", "--datastore", str(tmp_path / "ds"), "--github-output", str(out)]) == 0
+    assert "finished=false" in out.read_text()

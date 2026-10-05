@@ -4,7 +4,7 @@ import json
 import pytest
 
 from fakes import FakeArcticShift, FakeClock, comment, post
-from pumpdump.pipeline import Settings, health, run_collect
+from pumpdump.pipeline import Settings, collection_done, health, run_collect
 from pumpdump.sources.arctic_shift import ArcticShift
 from pumpdump.store import Datastore
 
@@ -242,6 +242,44 @@ def test_symbol_refresh_that_lost_a_source_is_retried_within_hours(setup):
     clock.now = T + 6 * 3600
     run(ds, server, clock, "r3", fetch_symbols=fetch)  # clean refresh 3 h ago: keep it
     assert calls == [T, T + 3 * 3600]
+
+
+STOP = Settings(stop_min_days=120, stop_min_episodes=2, stop_episode_age_days=10, stop_max_days=180)
+
+
+def add_episodes(ds, flagged, warmup):
+    rows = [{"episode_id": f"E{i}", "first_flagged_at": t, "warmup": w} for i, (t, w) in enumerate(zip(flagged, warmup))]
+    ds.append_csv("candidates/episodes.csv", ["episode_id", "first_flagged_at", "warmup"], rows)
+
+
+def test_collection_goes_on_until_enough_settled_candidates_or_the_day_limit(tmp_path):
+    ds = Datastore(tmp_path)
+    state = {"live_since": T}
+    now = T + 130 * DAY
+    # a warm-up flag and one too recent for its 10-day follow-up don't count
+    add_episodes(ds, [T + 2 * DAY, T + 50 * DAY, T + 125 * DAY], ["1", "0", "0"])
+    assert collection_done(ds, state, now, STOP) is None
+    add_episodes(ds, [T + 100 * DAY], ["0"])
+    assert collection_done(ds, state, now, STOP) == "2 candidates after 130 days"
+    assert collection_done(ds, state, T + 119 * DAY, STOP) is None  # enough candidates, too few days
+    assert collection_done(Datastore(tmp_path / "empty"), state, T + 180 * DAY, STOP) == "reached the 180-day limit"
+
+
+def test_finished_collection_fetches_nothing_and_says_so(setup):
+    ds, server, clock = setup
+    run(ds, server, clock, "r1")
+    calls = len(server.calls)
+
+    clock.now = T + 181 * DAY
+    summary = run(ds, server, clock, "r2")
+    assert summary["finished"] == "reached the 180-day limit"
+    assert len(server.calls) == calls
+    assert "Collection finished" in ds.path("candidates/README.md").read_text()
+    assert json.loads(ds.path("reports/health.json").read_text())["healthy"]  # no stale-data alert
+
+    clock.now += 900
+    run(ds, server, clock, "r3")
+    assert ds.path("candidates/README.md").read_text().count("Collection finished") == 1
 
 
 def test_health_reports_stale_and_erroring_streams():

@@ -21,10 +21,26 @@ Everything runs on GitHub Actions; no computer needs to stay on.
 | Workflow | When | What |
 |---|---|---|
 | `collect` | every 15 min | fetch new posts/comments from r/pennystocks, r/smallstreetbets, r/wallstreetbets; store them; extract tickers; flag spikes; update the candidate list; open an issue if collection is unhealthy |
-| `nightly` | 03:41 UTC | build a SQLite database of everything collected and attach it to the run as the `pumpdump-sqlite` artifact |
+| `nightly` | 03:41 UTC | build a SQLite database of everything collected and attach it to the run as the `pumpdump-sqlite` artifact; once collection has finished, publish it as the `dataset-final` release and turn both schedules off |
 | `tests` | every push | `pytest` |
 
 Collected data lives on the **`data` branch** (see its README). Start with `candidates/README.md` there.
+
+## How long it runs
+
+Collection stops by itself once there is enough data for the planned analysis: **120 days** of live collection
+**and** **300 candidates** flagged after the warm-up week that are at least 10 days old (so each one's follow-up
+chatter has been collected). It stops after **180 days** regardless.
+
+120 days gives a few months for walk-forward validation plus a locked hold-out month, and covers the 60-120 days
+that promotion campaigns run (Leuz et al.); 300 settled candidates leave a usable number of pumps even under the
+strict label rule, which few candidates will meet. The 180-day cap keeps the data branch around 550 MB. When it
+stops, the collector fetches nothing more and marks `candidates/README.md`, and the next nightly run publishes the
+final database as the [`dataset-final` release](https://github.com/ShouvikRaj/pump-dump-detector/releases/tag/dataset-final) and turns both schedules off.
+
+The data can be analysed at any time before that. To collect for longer, raise the `stop_*` values in `Settings`
+(`src/pumpdump/pipeline.py`) and re-enable both workflows in the Actions tab; `python -m pumpdump status
+--datastore <data branch checkout>` says whether collection has finished.
 
 ## Data source
 

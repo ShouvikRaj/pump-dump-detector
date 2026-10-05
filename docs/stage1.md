@@ -142,6 +142,14 @@ when to alert. Only a crash, or a failed checkout or push, fails a run; three fa
 skipped) also open the issue. The `nightly` workflow re-enables the schedules so GitHub's 60-day inactivity rule
 can't switch them off.
 
+## When collection stops
+
+Each run checks `collection_done` first. Collection ends once there are 120 days of live data and 300
+post-warm-up candidates at least 10 days old, or after 180 days regardless (`Settings.stop_*`). A finished run
+fetches nothing, so it can't raise stale-data health alerts; the nightly job publishes the final SQLite as the
+`dataset-final` release and disables both workflows. The check is stateless, so raising the limits and re-enabling
+the workflows resumes collection where it stopped.
+
 ## For Stage 2
 
 `candidates/episodes.csv` is the hand-off: ticker, first flag time, mentions/authors/hype vs baseline,

@@ -3,14 +3,16 @@ name: nightly
 # Once a day: build a SQLite database of everything collected so far and
 # attach it to the run as a downloadable artifact; keep the schedules alive
 # (GitHub disables scheduled workflows after 60 days without activity).
+# Once collection has finished (enough data, see README), publish the final
+# database as the `dataset-final` release and turn both schedules off.
 on:
   schedule:
     - cron: "41 3 * * *"
   workflow_dispatch:
 
 permissions:
-  contents: read
-  actions: write
+  contents: write # publish the final dataset release
+  actions: write # keep the schedules on, or turn them off when collection finishes
 
 jobs:
   sqlite:
@@ -43,7 +45,27 @@ jobs:
           retention-days: 7
           if-no-files-found: ignore
 
+      - name: Check whether collection has finished
+        id: status
+        run: python -m pumpdump status --datastore datastore --github-output "$GITHUB_OUTPUT"
+
+      - name: Publish the final dataset and turn the schedules off
+        if: steps.status.outputs.finished == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          REASON: ${{ steps.status.outputs.reason }}
+        run: |
+          gzip -kf pumpdump.sqlite
+          if ! gh release view dataset-final >/dev/null 2>&1; then
+            gh release create dataset-final pumpdump.sqlite.gz --target main --title "Stage 1 final dataset" \
+              --notes "Collection finished ($REASON). SQLite database of everything on the data branch; gunzip it and open with sqlite3."
+          fi
+          gh workflow disable collect.yml
+          gh workflow disable nightly.yml
+
       - name: Keep scheduled workflows enabled
+        if: steps.status.outputs.finished != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

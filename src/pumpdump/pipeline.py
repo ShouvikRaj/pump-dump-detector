@@ -140,6 +140,13 @@ class Settings:
     symbol_refresh_seconds: int = 20 * 3600
     symbol_retry_seconds: int = 2 * 3600  # sooner when a source failed last time
     daily_after_seconds: int = 30 * 60  # reconcile yesterday once it's 00:30 UTC
+    # Collection stops once there is enough for the planned analysis (README, "How long it runs"):
+    # stop_min_days of live data and stop_min_episodes post-warm-up candidates old enough to have
+    # their follow-up chatter, or stop_max_days regardless.
+    stop_min_days: int = 120
+    stop_min_episodes: int = 300
+    stop_episode_age_days: int = 10
+    stop_max_days: int = 180
     excluded_authors: frozenset = frozenset({"AutoModerator", "VisualMod", "WSBVoteBot"})
     params: SpikeParams = field(default_factory=SpikeParams)
 
@@ -173,6 +180,35 @@ def coverage_problem(state: dict, as_of: float, s: Settings) -> str | None:
         if as_of - st["last_complete_at"] > s.stale_seconds:
             return f"{sub}/{kind} last complete fetch {iso(st['last_complete_at'])}"
     return None
+
+
+def collection_done(ds: Datastore, state: dict, now: float, s: Settings) -> str | None:
+    """Why collection should stop now (None while it should go on)."""
+    live_since = state.get("live_since")
+    if live_since is None:
+        return None
+    days = (now - live_since) / DAY
+    if days >= s.stop_max_days:
+        return f"reached the {s.stop_max_days}-day limit"
+    if days < s.stop_min_days:
+        return None
+    settled_before = now - s.stop_episode_age_days * DAY
+    settled = sum(
+        1
+        for r in ds.read_csv("candidates/episodes.csv")
+        if r.get("warmup") == "0" and float(r["first_flagged_at"]) <= settled_before
+    )
+    if settled >= s.stop_min_episodes:
+        return f"{settled} candidates after {int(days)} days"
+    return None
+
+
+def _mark_finished(ds: Datastore, at: float, reason: str) -> None:
+    rel = "candidates/README.md"
+    text = ds.path(rel).read_text() if ds.path(rel).exists() else "# Stage 1 candidates\n"
+    title, _, rest = text.partition("\n")
+    banner = f"**Collection finished {iso(at)} ({reason}).** Nothing new is collected; the data on this branch is final."
+    ds.write_text(rel, f"{title}\n\n{banner}\n{rest}")
 
 
 def health(state: dict, now: float, s: Settings) -> dict:
@@ -229,7 +265,19 @@ def run_collect(
         "daily": None,
         "new_candidates": [],
         "active": [],
+        "finished": None,
     }
+
+    # -- enough data: stop collecting (the nightly job then turns the schedules off)
+    finished = collection_done(ds, state, started, settings)
+    if finished:
+        if "finished" not in state:
+            state["finished"] = {"at": started, "reason": finished}
+            _mark_finished(ds, started, finished)
+            ds.save_state(state)
+        summary["finished"] = finished
+        return summary
+    state.pop("finished", None)  # limits were raised after a stop: collect again
 
     # -- ticker universe ------------------------------------------------------
     symbols = load_symbols(ds)

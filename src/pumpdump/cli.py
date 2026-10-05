@@ -3,6 +3,7 @@
   collect   one collection run against a datastore directory (the data branch)
   build-db  build a full SQLite database from a datastore
   scan      show the tickers and hype categories found in a piece of text
+  status    say whether collection has finished (enough data for analysis)
 """
 
 from __future__ import annotations
@@ -17,7 +18,7 @@ from pathlib import Path
 
 from . import db
 from .hype import hype_categories
-from .pipeline import Settings, run_collect
+from .pipeline import Settings, collection_done, run_collect
 from .sources.arctic_shift import BASE_URL, ArcticShift
 from .sources.stocktwits import fetch_trending
 from .store import Datastore
@@ -35,6 +36,8 @@ def make_client(max_retries: int = 5) -> ArcticShift:
 
 
 def render_summary(summary: dict) -> str:
+    if summary.get("finished"):
+        return f"## Collection run {summary['run_id']}\n\nCollection finished ({summary['finished']}); nothing fetched.\n"
     lines = [f"## Collection run {summary['run_id']}", "", f"{summary['new_docs']} new items stored. Started {summary['started_at']}.", ""]
     lines += ["| Stream | Mode | Fetched | New | Pages | Caught up | Cursor | Archive lag (s) | Error |", "|---|---|---|---|---|---|---|---|---|"]
     for s in summary["streams"]:
@@ -144,6 +147,16 @@ def cmd_scan(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_status(args: argparse.Namespace) -> int:
+    ds = Datastore(args.datastore)
+    reason = collection_done(ds, ds.load_state(), time.time(), Settings())
+    print(f"finished: {reason}" if reason else "collecting")
+    if args.github_output:
+        with open(args.github_output, "a", encoding="utf-8") as fh:
+            fh.write(f"finished={'true' if reason else 'false'}\nreason={reason or ''}\n")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="pumpdump", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -167,6 +180,11 @@ def main(argv: list[str] | None = None) -> int:
     s.add_argument("text")
     s.add_argument("--datastore", help="use this datastore's symbol list")
     s.set_defaults(func=cmd_scan)
+
+    st = sub.add_parser("status", help="say whether collection has finished")
+    st.add_argument("--datastore", required=True)
+    st.add_argument("--github-output", help="also write finished=true|false and reason= here ($GITHUB_OUTPUT)")
+    st.set_defaults(func=cmd_status)
 
     args = p.parse_args(argv)
     return args.func(args)
