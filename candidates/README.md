@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-05T09:04:02Z by run `37287508705`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-05T09:17:58Z by run `37289034220`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -11,6 +11,6 @@ collected live, so flags in this period are marked `warmup=1` in episodes.csv.
 | Ticker | Flagged since (UTC) | Why | Mentions 24h | Baseline/day | Authors | Hype posts | Subreddits | Exchange | StockTwits | Example |
 |---|---|---|---|---|---|---|---|---|---|---|
 | DRTS | 2026-10-04 23:23 | mention spike | 16 | 1.0 | 14 | 1 | wallstreetbets 16 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wxl6cr/) |
-| VST | 2026-10-05 04:15 | mention spike | 38 | 6.0 | 21 | 0 | wallstreetbets 38 | NYSE | #10 | [link](https://www.reddit.com/r/wallstreetbets/comments/1wxp1pm/comment/pdz892d/) |
+| VST | 2026-10-05 04:15 | mention spike | 38 | 6.0 | 21 | 0 | wallstreetbets 38 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wxp1pm/comment/pdz892d/) |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
