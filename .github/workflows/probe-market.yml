@@ -1,0 +1,24 @@
+name: probe-market
+
+# Temporary (Stage 2 design): check which free market-data endpoints answer from
+# GitHub's runners. Removed once Stage 2's sources are chosen.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests yfinance
+      - name: Probe
+        env:
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+        run: python probe/market_probe.py
