@@ -1,10 +1,12 @@
 name: nightly
 
-# Once a day: build a SQLite database of everything collected so far and
+# Once a day (03:41 UTC; scripts/pace.sh starts it when GitHub's cron misses
+# the slot): build a SQLite database of everything collected so far and
 # attach it to the run as a downloadable artifact; keep the schedules alive
 # (GitHub disables scheduled workflows after 60 days without activity).
 # Once collection has finished (enough data, see README), publish the final
-# database as the `dataset-final` release and turn both schedules off.
+# database as the `dataset-final` release and turn collection off (collect,
+# pace and nightly).
 on:
   schedule:
     - cron: "41 3 * * *"

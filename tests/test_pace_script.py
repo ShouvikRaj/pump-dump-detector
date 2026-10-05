@@ -12,17 +12,20 @@ import pytest
 SCRIPT = Path(__file__).resolve().parents[1] / "scripts" / "pace.sh"
 pytestmark = pytest.mark.skipif(shutil.which("jq") is None, reason="jq not installed")
 
-NOW = 1_791_170_000  # 2026-10-05 03:53:20 UTC
+NOW = 1_791_172_400  # 2026-10-05 03:53:20 UTC
 
 FAKE_GH = """#!PYTHON
-import json, os, sys
+import json, os, subprocess, sys
 args = sys.argv[1:]
 log = os.environ["FAKE_GH_LOG"]
 earlier = open(log).read().splitlines() if os.path.exists(log) else []
 with open(log, "a") as fh:
     fh.write(json.dumps(args) + "\\n")
 if args[:2] == ["run", "list"]:
-    sys.stdout.write(os.environ["FAKE_RUNS"])
+    out = os.environ["FAKE_NIGHTLY" if "nightly.yml" in args else "FAKE_RUNS"]
+    if "--jq" in args:
+        out = subprocess.run(["jq", "-r", args[args.index("--jq") + 1]], input=out, capture_output=True, text=True, check=True).stdout
+    sys.stdout.write(out)
 elif args[:2] == ["workflow", "run"]:
     tries = sum(1 for line in earlier if json.loads(line)[:2] == ["workflow", "run"])
     sys.exit(1 if tries < int(os.environ.get("FAKE_DISPATCH_FAILURES", "0")) else 0)
@@ -42,21 +45,25 @@ def run(tmp_path):
     gh.chmod(0o755)
     log = tmp_path / "gh.log"
 
-    def _run(runs, dispatch_failures=0):
+    def _run(runs, dispatch_failures=0, nightly_age=10 * 60, now=NOW, nightly=False):
         env = dict(
             os.environ,
             PATH=f"{bindir}{os.pathsep}{os.environ['PATH']}",
             FAKE_GH_LOG=str(log),
             # newest first, like `gh run list`
-            FAKE_RUNS=json.dumps([{"status": s, "createdAt": iso(NOW - age)} for s, age in runs]),
+            FAKE_RUNS=json.dumps([{"status": s, "createdAt": iso(now - age)} for s, age in runs]),
+            FAKE_NIGHTLY=json.dumps([] if nightly_age is None else [{"createdAt": iso(now - nightly_age)}]),
             FAKE_DISPATCH_FAILURES=str(dispatch_failures),
-            PACE_NOW=str(NOW),
+            PACE_NOW=str(now),
             PACE_RETRY_DELAY="0",
         )
         res = subprocess.run(["bash", str(SCRIPT)], env=env, capture_output=True, text=True)
         calls = [json.loads(line) for line in log.read_text().splitlines()] if log.exists() else []
         log.unlink(missing_ok=True)
-        return res, [c for c in calls if c[:2] == ["workflow", "run"]]
+        dispatched = [c for c in calls if c[:2] == ["workflow", "run"]]
+        if nightly:
+            return res, [c for c in dispatched if c[2] == "nightly.yml"]
+        return res, [c for c in dispatched if c[2] == "collect.yml"]
 
     return _run
 
@@ -98,3 +105,33 @@ def test_fails_when_every_dispatch_fails(run):
     res, dispatched = run([("completed", 16 * 60)], dispatch_failures=5)
     assert res.returncode != 0
     assert len(dispatched) == 3
+
+
+# NOW is 03:53:20 UTC, after the nightly build's 03:41 slot
+def test_starts_the_nightly_build_when_todays_never_ran(run):
+    # GitHub's cron missed it: the last nightly is from 01:32 UTC, before today's slot
+    res, nightly = run([("completed", 16 * 60)], nightly_age=2 * 3600 + 20 * 60, nightly=True)
+    assert res.returncode == 0, res.stderr
+    assert [c[:3] for c in nightly] == [["workflow", "run", "nightly.yml"]]
+
+
+def test_starts_the_nightly_build_when_there_is_no_history(run):
+    res, nightly = run([("completed", 16 * 60)], nightly_age=None, nightly=True)
+    assert len(nightly) == 1
+
+
+def test_leaves_the_nightly_alone_once_it_ran_today(run):
+    res, nightly = run([("completed", 16 * 60)], nightly_age=10 * 60, nightly=True)
+    assert nightly == []
+
+
+def test_leaves_the_nightly_alone_before_its_slot(run):
+    # 02:00 UTC; yesterday's nightly ran at 03:45
+    two_am = NOW - (NOW % 86400) + 2 * 3600
+    res, nightly = run([("completed", 16 * 60)], nightly_age=22 * 3600 + 15 * 60, now=two_am, nightly=True)
+    assert nightly == []
+
+
+def test_checks_the_nightly_even_while_a_collect_run_is_active(run):
+    res, nightly = run([("in_progress", 60)], nightly_age=None, nightly=True)
+    assert len(nightly) == 1

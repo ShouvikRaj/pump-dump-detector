@@ -155,7 +155,9 @@ starts the `pace` workflow. Its job runs in the `pacer` environment, whose 13-mi
 setting) delays the job without holding a runner; the job then starts the next `collect` run unless one is already
 queued or running. Runs end up about 15 minutes apart. If the last `collect` run started less than 10 minutes earlier,
 the timer must be missing, so `scripts/pace.sh` stops the chain rather than looping. The cron stays on as a restart
-path, and the `pace` concurrency group keeps one waiting pacer when cron runs and the chain overlap.
+path, and the `pace` concurrency group keeps one waiting pacer when cron runs and the chain overlap. The nightly
+build's cron is just as unreliable (it skipped its first slot), so the first pacer after 03:41 UTC starts it unless
+it already ran that day.
 
 ## When collection stops
 

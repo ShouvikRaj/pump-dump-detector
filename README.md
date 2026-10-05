@@ -22,7 +22,7 @@ Everything runs on GitHub Actions; no computer needs to stay on.
 |---|---|---|
 | `collect` | about every 15 min | fetch new posts/comments from r/pennystocks, r/smallstreetbets, r/wallstreetbets; store them; extract tickers; flag spikes; update the candidate list; open an issue if collection is unhealthy |
 | `pace` | after each `collect` run | wait 13 minutes in the `pacer` environment, then start the next `collect` run (GitHub's cron fires rarely for this repo, so collection paces itself; the cron stays as a backup) |
-| `nightly` | 03:41 UTC | build a SQLite database of everything collected and attach it to the run as the `pumpdump-sqlite` artifact; once collection has finished, publish it as the `dataset-final` release and turn both schedules off |
+| `nightly` | 03:41 UTC (started by `pace` when GitHub's cron misses it) | build a SQLite database of everything collected and attach it to the run as the `pumpdump-sqlite` artifact; once collection has finished, publish it as the `dataset-final` release and turn collection off |
 | `tests` | every push | `pytest` |
 
 Collected data lives on the **`data` branch** (see its README). Start with `candidates/README.md` there.
@@ -41,7 +41,7 @@ chatter has been collected). It stops after **180 days** regardless.
 that promotion campaigns run (Leuz et al.); 300 settled candidates leave a usable number of pumps even under the
 strict label rule, which few candidates will meet. The 180-day cap keeps the data branch around 550 MB. When it
 stops, the collector fetches nothing more and marks `candidates/README.md`, and the next nightly run publishes the
-final database as the [`dataset-final` release](https://github.com/ShouvikRaj/pump-dump-detector/releases/tag/dataset-final) and turns both schedules off.
+final database as the [`dataset-final` release](https://github.com/ShouvikRaj/pump-dump-detector/releases/tag/dataset-final) and turns collection off (all three workflows).
 
 The data can be analysed at any time before that. To collect for longer, raise the `stop_*` values in `Settings`
 (`src/pumpdump/pipeline.py`) and re-enable both workflows in the Actions tab; `python -m pumpdump status

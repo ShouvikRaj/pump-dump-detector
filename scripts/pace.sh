@@ -8,6 +8,9 @@
 # less than 10 minutes ago: that means the wait timer is missing, and without it
 # the chain would restart collect every couple of minutes.
 #
+# The nightly build's cron is just as unreliable, so this also starts it once a
+# day, at the first pacer after 03:41 UTC, unless one already ran since then.
+#
 # Usage: scripts/pace.sh
 # Needs GH_TOKEN (actions: write), GH_REPO, the gh CLI and jq.
 set -euo pipefail
@@ -15,6 +18,23 @@ set -euo pipefail
 min_gap="${PACE_MIN_GAP_SECONDS:-600}"
 retry_delay="${PACE_RETRY_DELAY:-10}"
 now="${PACE_NOW:-$(date +%s)}"
+
+start_nightly_if_due() {
+  local slot last
+  slot=$(( now - now % 86400 + 3 * 3600 + 41 * 60 )) # today's 03:41 UTC
+  [ "$now" -ge "$slot" ] || return 0
+  last="$(gh run list --workflow nightly.yml --limit 1 --json createdAt --jq '.[0].createdAt // empty')"
+  if [ -n "$last" ] && [ "$(jq -rn --arg t "$last" '$t | fromdateiso8601')" -ge "$slot" ]; then
+    return 0
+  fi
+  if gh workflow run nightly.yml --ref main; then
+    echo "started today's nightly build"
+  else
+    echo "::warning::could not start the nightly build"
+  fi
+}
+
+start_nightly_if_due || echo "::warning::nightly check failed"
 
 runs="$(gh run list --workflow collect.yml --limit 10 --json status,createdAt)"
 if [ "$(jq '[.[] | select(.status != "completed")] | length' <<<"$runs")" -gt 0 ]; then
