@@ -26,6 +26,8 @@ if args[:2] == ["run", "list"]:
     if "--jq" in args:
         out = subprocess.run(["jq", "-r", args[args.index("--jq") + 1]], input=out, capture_output=True, text=True, check=True).stdout
     sys.stdout.write(out)
+elif args[0] == "api":
+    sys.stdout.write(os.environ["FAKE_SELF_CREATED"] + "\\n")
 elif args[:2] == ["workflow", "run"]:
     tries = sum(1 for line in earlier if json.loads(line)[:2] == ["workflow", "run"])
     sys.exit(1 if tries < int(os.environ.get("FAKE_DISPATCH_FAILURES", "0")) else 0)
@@ -45,7 +47,7 @@ def run(tmp_path):
     gh.chmod(0o755)
     log = tmp_path / "gh.log"
 
-    def _run(runs, dispatch_failures=0, nightly_age=10 * 60, now=NOW, nightly=False):
+    def _run(runs, dispatch_failures=0, nightly_age=10 * 60, now=NOW, nightly=False, waited=13 * 60, pacers=False):
         env = dict(
             os.environ,
             PATH=f"{bindir}{os.pathsep}{os.environ['PATH']}",
@@ -54,6 +56,9 @@ def run(tmp_path):
             FAKE_RUNS=json.dumps([{"status": s, "createdAt": iso(now - age)} for s, age in runs]),
             FAKE_NIGHTLY=json.dumps([] if nightly_age is None else [{"createdAt": iso(now - nightly_age)}]),
             FAKE_DISPATCH_FAILURES=str(dispatch_failures),
+            FAKE_SELF_CREATED=iso(now - waited),
+            GH_REPO="owner/repo",
+            GITHUB_RUN_ID="1",
             PACE_NOW=str(now),
             PACE_RETRY_DELAY="0",
         )
@@ -63,6 +68,8 @@ def run(tmp_path):
         dispatched = [c for c in calls if c[:2] == ["workflow", "run"]]
         if nightly:
             return res, [c for c in dispatched if c[2] == "nightly.yml"]
+        if pacers:
+            return res, [c for c in dispatched if c[2] == "pace.yml"]
         return res, [c for c in dispatched if c[2] == "collect.yml"]
 
     return _run
@@ -135,3 +142,30 @@ def test_leaves_the_nightly_alone_before_its_slot(run):
 def test_checks_the_nightly_even_while_a_collect_run_is_active(run):
     res, nightly = run([("in_progress", 60)], nightly_age=None, nightly=True)
     assert len(nightly) == 1
+
+
+def test_queues_the_next_pacer_too(run):
+    # a collect run GitHub never gives a runner can't queue a pacer, so each pacer queues the next one as well
+    res, pacers = run([("completed", 16 * 60)], pacers=True)
+    assert res.returncode == 0, res.stderr
+    assert [c[:3] for c in pacers] == [["workflow", "run", "pace.yml"]]
+
+
+def test_queues_the_next_pacer_while_a_collect_run_is_active(run):
+    res, pacers = run([("in_progress", 60)], pacers=True)
+    assert res.returncode == 0, res.stderr
+    assert len(pacers) == 1
+
+
+def test_does_not_queue_a_pacer_when_the_wait_timer_is_missing(run):
+    # this pacer ran 5 s after it was queued: pacer -> pacer would loop every few seconds
+    res, pacers = run([("completed", 16 * 60)], waited=5, pacers=True)
+    assert res.returncode == 0, res.stderr
+    assert pacers == []
+    assert "wait timer" in res.stdout
+
+
+def test_still_queues_a_pacer_when_collect_cannot_be_started(run):
+    res, pacers = run([("completed", 16 * 60)], dispatch_failures=3, pacers=True)
+    assert res.returncode != 0
+    assert len(pacers) == 1

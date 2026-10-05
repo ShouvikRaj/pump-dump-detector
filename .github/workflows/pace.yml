@@ -3,8 +3,9 @@ name: pace
 # GitHub's 15-minute cron fires rarely for this repo, so collection paces
 # itself: every collect run ends by starting this workflow, whose job waits out
 # the `pacer` environment's 13-minute wait timer (set in the repo settings; no
-# runner is held while it waits) and then starts the next collect run. The cron
-# stays as a restart path if the chain ever breaks.
+# runner is held while it waits) and then starts the next collect run and
+# queues the next pacer, so one lost run can't stop the chain. The cron stays
+# as a restart path if the chain ever breaks.
 on:
   workflow_dispatch:
 
@@ -13,8 +14,10 @@ permissions:
   actions: write # start the next collect run
 
 concurrency:
-  group: pace # one waiting pacer at a time; a newer one replaces it
-  cancel-in-progress: true
+  # one pacer at a time plus at most one queued behind it (a newer queued one replaces the older);
+  # not cancel-in-progress, because each pacer queues its successor while it is still running
+  group: pace
+  cancel-in-progress: false
 
 jobs:
   next:
@@ -26,7 +29,7 @@ jobs:
         with:
           sparse-checkout: scripts
 
-      - name: Start the next collect run
+      - name: Start the next collect run and queue the next pacer
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}

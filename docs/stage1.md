@@ -154,8 +154,11 @@ common for new repositories. So collection paces itself: the last step of every 
 starts the `pace` workflow. Its job runs in the `pacer` environment, whose 13-minute wait timer (a repository
 setting) delays the job without holding a runner; the job then starts the next `collect` run unless one is already
 queued or running. Runs end up about 15 minutes apart. If the last `collect` run started less than 10 minutes earlier,
-the timer must be missing, so `scripts/pace.sh` stops the chain rather than looping. The cron stays on as a restart
-path, and the `pace` concurrency group keeps one waiting pacer when cron runs and the chain overlap. The nightly
+the timer must be missing, so `scripts/pace.sh` stops the chain rather than looping. Each pacer also queues the next
+pacer, because on 2026-10-05 GitHub never gave a runner to one `collect` run (19:43 UTC), which therefore queued no
+pacer and collection stopped for an hour; with collect -> pacer and pacer -> pacer, one lost run of either can't break
+the chain. The `pace` concurrency group runs one pacer at a time with at most one queued behind it (a newer queued
+one replaces it), and a pacer that waited under 10 minutes doesn't queue another. The cron stays on as a restart path. The nightly
 build's cron is just as unreliable (it skipped its first slot), so the first pacer after 03:41 UTC starts it unless
 it already ran that day.
 
