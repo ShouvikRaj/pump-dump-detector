@@ -17,7 +17,7 @@ on:
 permissions:
   contents: write # push to the data branch
   issues: write # open/close the health issue
-  actions: write # count recent failed runs for the health issue; queue the next run
+  actions: write # count recent failed runs for the health issue; queue the next run and the market run
 
 concurrency:
   group: datastore # one writer to the data branch at a time
@@ -60,6 +60,14 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           scripts/datastore.sh push datastore "collect: run ${{ github.run_id }}"
+
+      - name: Start the market snapshot (Stage 2)
+        # started here because GitHub's workflow_run event doesn't fire for runs the pacer starts
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh workflow run market.yml --ref main || echo "::warning::could not start the market run"
 
       - name: Open or close the health issue
         if: always()

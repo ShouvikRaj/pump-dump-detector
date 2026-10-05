@@ -261,6 +261,15 @@ def test_without_an_sec_contact_filings_are_left_blank_and_the_reason_noted(ds, 
     assert not any("sec.gov" in call["url"] for call in world.calls)
 
 
+
+def test_the_readme_table_survives_errors_with_pipes_and_line_breaks():
+    row = dict.fromkeys(market.SNAPSHOT_FIELDS, "")
+    row.update(role="candidate", ticker="ABCD", as_of_utc="2026-10-04T23:24:00Z", archetype="unknown", venue="unknown",
+               errors="yahoo: chart HTTP 503: <td>a|b|c</td>\nmore")
+    table = [line for line in market.render_readme([row], AS_OF).splitlines() if "|" in line]
+    assert len(table) == 3  # header, rule, one row
+    assert table[2].startswith("| ABCD") and table[2].endswith(" |") and table[2].count("|") == 13
+
 # -- control selection ------------------------------------------------------------------
 
 

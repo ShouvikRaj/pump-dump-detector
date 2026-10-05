@@ -7,8 +7,9 @@ stages have a control group. Like Stage 1, the priorities are no lookahead and k
 
 ## When it runs
 
-The `market` workflow starts after every `collect` run (GitHub's `workflow_run` event, which, unlike cron, fires
-reliably). It reads `candidates/episodes.csv`, snapshots each candidate that has no snapshot yet, and pushes to the
+Every `collect` run ends by starting the `market` workflow, the same way it starts `pace` (GitHub's `workflow_run`
+event would be neater, but it doesn't fire for runs started with `GITHUB_TOKEN`, and the pacer starts most of
+them). It reads `candidates/episodes.csv`, snapshots each candidate that has no snapshot yet, and pushes to the
 `data` branch. A candidate is therefore snapshotted a minute or two after its flag. Snapshots never change once
 written.
 

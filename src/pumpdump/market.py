@@ -410,6 +410,10 @@ def _shares(v) -> str:
     return f"{x / 1e9:.2f}B" if x >= 1e9 else f"{x / 1e6:.1f}M"
 
 
+def _cell(text: str) -> str:
+    return " ".join(str(text).split()).replace("|", "/")  # keep a table row on one line
+
+
 def render_readme(rows: list[dict], now: float, limit: int = 30) -> str:
     cands = [r for r in rows if r["role"] == "candidate"]
     n_ctrl = sum(1 for r in rows if r["role"] == "control")
@@ -437,7 +441,7 @@ def render_readme(rows: list[dict], now: float, limit: int = 30) -> str:
                 f"| {r['ticker']} | {r['as_of_utc'][:16].replace('T', ' ')} | {r['archetype'].replace('_', ' ')} | {r['venue']} "
                 f"| {_num(r['price_at_flag'], '{:,.4g}')} | {_num(r['move_since_close'], '{:+.1f}%', 100)} "
                 f"| {_num(r['ret_5d'], '{:+.1f}%', 100)} | {_num(r['rel_vol_last'], '{:.1f}x')} | {_shares(r['float_shares'])} "
-                f"| {_num(r['si_pct_float'], '{:.1f}%', 100)} | {r['dilution_filings_90d']} | {r['errors'][:60]} |"
+                f"| {_num(r['si_pct_float'], '{:.1f}%', 100)} | {r['dilution_filings_90d']} | {_cell(r['errors'])[:60]} |"
             )
     return "\n".join(lines) + "\n"
 
