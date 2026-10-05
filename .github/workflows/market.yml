@@ -6,6 +6,9 @@ name: market
 # controls nobody was talking about, and push it to market/ on the `data`
 # branch. Details: docs/stage2.md.
 on:
+  workflow_run:
+    workflows: [collect]
+    types: [completed]
   workflow_dispatch:
     inputs:
       dry_run_tickers:
