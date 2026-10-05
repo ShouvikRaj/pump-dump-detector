@@ -46,8 +46,9 @@ jobs:
 
       - name: Collect, extract tickers, flag spikes
         env:
-          # optional repo variable, e.g. "pump-dump-detector you@example.com"; SEC refuses requests without a contact
-          SEC_USER_AGENT: ${{ vars.SEC_USER_AGENT }}
+          # repository secret, e.g. "pump-dump-detector you@example.com": SEC refuses requests without a
+          # reachable contact (GitHub no-reply addresses included); secrets are masked in the public logs
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
         run: >-
           python -m pumpdump collect
           --datastore datastore

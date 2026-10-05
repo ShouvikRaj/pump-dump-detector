@@ -1,10 +1,9 @@
-import re
-
 import pytest
 import requests
 
 from pumpdump.store import Datastore
 from pumpdump.symbols import (
+    NASDAQ_LISTED_URL,
     SEC_TICKERS_URL,
     http_fetch_text,
     load_symbols,
@@ -31,6 +30,8 @@ SPY|SPDR S&P 500 ETF Trust|P|SPY|Y|100|N|SPY
 ZTST|Test Issue|A|ZTST|N|100|Y|ZTST
 File Creation Time: 1004202616:00|||||||
 """
+
+CONTACT = "pump-dump-detector someone@example.org"
 
 SEC = {
     "fields": ["cik", "name", "ticker", "exchange"],
@@ -80,7 +81,9 @@ def test_merge_prefers_exchange_lists_and_keeps_sec_cik():
     assert len(merged) == 7
 
 
-def test_refresh_survives_one_failed_source(tmp_path):
+def test_refresh_survives_one_failed_source(monkeypatch):
+    monkeypatch.setenv("SEC_USER_AGENT", CONTACT)
+
     def fetch(url):
         if "sec.gov" in url:
             raise RuntimeError("403 Forbidden")
@@ -124,19 +127,34 @@ def _capture_headers(monkeypatch):
     return seen
 
 
-def test_default_user_agent_declares_a_contact_email(monkeypatch):
-    # sec.gov answers 403 unless the User-Agent names a contact ("Name admin@example.com")
+def test_sec_requests_carry_the_configured_contact(monkeypatch):
+    monkeypatch.setenv("SEC_USER_AGENT", CONTACT)
+    seen = _capture_headers(monkeypatch)
+    http_fetch_text(SEC_TICKERS_URL)
+    assert seen["User-Agent"] == CONTACT
+
+
+def test_contact_email_is_sent_only_to_sec(monkeypatch):
+    monkeypatch.setenv("SEC_USER_AGENT", CONTACT)
+    seen = _capture_headers(monkeypatch)
+    http_fetch_text(NASDAQ_LISTED_URL)
+    assert "@" not in seen["User-Agent"]
+
+
+def test_refresh_skips_sec_without_a_contact(monkeypatch):
+    # sec.gov refuses a User-Agent without a reachable contact (GitHub no-reply addresses included),
+    # so asking it would only collect a 403
     monkeypatch.delenv("SEC_USER_AGENT", raising=False)
-    seen = _capture_headers(monkeypatch)
-    http_fetch_text(SEC_TICKERS_URL)
-    assert re.search(r"\S+@\S+\.\w+", seen["User-Agent"])
+    requested = []
 
+    def fetch(url):
+        requested.append(url)
+        return NASDAQ_LISTED if "nasdaqlisted" in url else OTHER_LISTED
 
-def test_sec_user_agent_variable_overrides_the_default(monkeypatch):
-    monkeypatch.setenv("SEC_USER_AGENT", "someone else@example.org")
-    seen = _capture_headers(monkeypatch)
-    http_fetch_text(SEC_TICKERS_URL)
-    assert seen["User-Agent"] == "someone else@example.org"
+    symbols, errors = refresh_symbols(fetch)
+    assert SEC_TICKERS_URL not in requested
+    assert set(symbols) == {"AAAP", "AACG", "A", "BRK.B", "SPY"}
+    assert len(errors) == 1 and "SEC_USER_AGENT" in errors[0]
 
 
 def test_refused_request_reports_the_page_title(monkeypatch):

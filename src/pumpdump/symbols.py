@@ -4,7 +4,8 @@ Sources (both free, no key):
   * Nasdaq Trader symbol directory: every Nasdaq / NYSE / NYSE American /
     NYSE Arca / Cboe / IEX listing, with an ETF flag.
   * SEC company_tickers_exchange.json: adds OTC issuers that file with the SEC
-    and their CIK (needed for EDGAR filing checks in Stage 2).
+    and their CIK (needed for EDGAR filing checks in Stage 2). Fetched only when
+    the SEC_USER_AGENT secret names a contact (see sec_contact).
 Non-reporting OTC pinks are in neither list; the extractor still counts them
 when written as $CASHTAG or "OTC: XXXX".
 
@@ -18,6 +19,7 @@ import json
 import os
 import re
 from typing import Callable
+from urllib.parse import urlparse
 
 from .store import Datastore
 
@@ -91,16 +93,27 @@ def merge_symbols(listed: list[dict], sec: list[dict]) -> dict[str, dict]:
     return merged
 
 
-# sec.gov refuses requests whose User-Agent doesn't name a contact ("Name admin@example.com").
-# The repo owner's GitHub no-reply address keeps a personal email out of public run logs;
-# set the SEC_USER_AGENT repository variable to use another contact.
-DEFAULT_USER_AGENT = "pump-dump-detector 108294380+ShouvikRaj@users.noreply.github.com"
+USER_AGENT = "pump-dump-detector/0.1 (research; +https://github.com/ShouvikRaj/pump-dump-detector)"
+
+
+def sec_contact() -> str | None:
+    """User-Agent for sec.gov from the SEC_USER_AGENT secret ("pump-dump-detector you@example.com").
+
+    sec.gov refuses requests whose User-Agent doesn't name a reachable contact, and GitHub no-reply
+    addresses don't count (checked from GitHub Actions, 2026-10-05). The secret keeps the address
+    out of the public code and logs, and it is sent to sec.gov only.
+    """
+    ua = os.environ.get("SEC_USER_AGENT", "").strip()
+    return ua if "@" in ua else None
 
 
 def http_fetch_text(url: str, timeout: float = 60) -> str:
     import requests
 
-    ua = os.environ.get("SEC_USER_AGENT") or DEFAULT_USER_AGENT
+    ua = USER_AGENT
+    host = urlparse(url).hostname or ""
+    if host == "sec.gov" or host.endswith(".sec.gov"):
+        ua = sec_contact() or USER_AGENT
     resp = requests.get(url, headers={"User-Agent": ua, "Accept-Encoding": "gzip, deflate"}, timeout=timeout)
     if resp.status_code >= 400:
         raise RuntimeError(f"HTTP {resp.status_code} for {url}: {_page_summary(resp.text)}")
@@ -123,10 +136,16 @@ def refresh_symbols(fetch: Callable[[str], str] = http_fetch_text) -> tuple[dict
             listed += parse(fetch(url))
         except Exception as exc:  # one bad source must not stop collection
             errors.append(f"{url}: {exc}")
-    try:
-        sec = parse_sec_tickers(json.loads(fetch(SEC_TICKERS_URL)))
-    except Exception as exc:
-        errors.append(f"{SEC_TICKERS_URL}: {exc}")
+    if sec_contact() is None:
+        errors.append(
+            f"{SEC_TICKERS_URL}: skipped, SEC refuses requests without a contact email; "
+            "set the SEC_USER_AGENT secret (e.g. 'pump-dump-detector you@example.com')"
+        )
+    else:
+        try:
+            sec = parse_sec_tickers(json.loads(fetch(SEC_TICKERS_URL)))
+        except Exception as exc:
+            errors.append(f"{SEC_TICKERS_URL}: {exc}")
     return merge_symbols(listed, sec), errors
 
 
