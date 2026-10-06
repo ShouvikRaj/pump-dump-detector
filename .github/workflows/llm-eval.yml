@@ -9,13 +9,13 @@ on:
     inputs:
       llm_repo:
         description: "Hugging Face repository of the GGUF file"
-        default: unsloth/Qwen3-4B-Instruct-2507-GGUF
+        default: unsloth/Qwen3.5-9B-GGUF
       llm_revision:
         description: "Its revision (full commit hash)"
-        default: a06e946bb6b655725eafa393f4a9745d460374c9
+        default: 3885219b6810b007914f3a7950a8d1b469d598a5
       llm_file:
         description: "The GGUF file"
-        default: Qwen3-4B-Instruct-2507-Q4_K_M.gguf
+        default: Qwen3.5-9B-Q4_K_M.gguf
       raw_days:
         description: "Days of raw Reddit files to check out (candidates flagged earlier are skipped)"
         default: "4"

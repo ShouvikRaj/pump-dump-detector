@@ -70,7 +70,7 @@ DOC_CHARS = 400
 MAX_CHARS = 12_000
 QUOTE_MATCH = 0.8  # an event quote counts when this much of it appears, in one piece, in a document
 LLM_URL = "http://127.0.0.1:8080/v1/chat/completions"  # llama.cpp's OpenAI-compatible server (scripts/llm_server.sh)
-LLM_MODEL = "unsloth/Qwen3-4B-Instruct-2507-GGUF@a06e946/Qwen3-4B-Instruct-2507-Q4_K_M.gguf"  # the workflow passes its own
+LLM_MODEL = "unsloth/Qwen3.5-9B-GGUF@3885219/Qwen3.5-9B-Q4_K_M.gguf"  # the workflow passes its own
 CATALYSTS = ("none", "earnings", "regulatory", "deal", "financing", "other")
 SYSTEM_PROMPT = ("You label Reddit posts and comments about one stock for a research project that detects "
                  "pump-and-dump schemes. Use only the documents shown, not what you know or guess about the company. "
@@ -344,7 +344,7 @@ class ChatClient:
                  sleep: Callable[[float], None] = time.sleep, clock: Callable[[], float] = time.monotonic,
                  min_interval: float = 0.0, timeout: float = 900):
         self.url, self.model, self.post, self.sleep, self.clock = url, model, post, sleep, clock
-        self.min_interval, self.timeout = min_interval, timeout  # a long prompt takes a CPU a minute or two
+        self.min_interval, self.timeout = min_interval, timeout  # a full-size prompt takes a CPU minutes
         self._last: float | None = None
 
     def complete(self, system: str, user: str, schema: dict | None = None) -> str:

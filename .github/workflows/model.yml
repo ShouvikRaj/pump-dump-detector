@@ -35,14 +35,14 @@ concurrency:
 jobs:
   model:
     runs-on: ubuntu-latest
-    timeout-minutes: 75
+    timeout-minutes: 150
     env:
       RAW_DAYS: ${{ inputs.raw_days || '3' }}
-      # llm-v1 (docs/stage5.md): this llama.cpp build and this model file, both pinned
+      # llm-v2 (docs/stage5.md, chosen by its LLM test): this llama.cpp build and this model file, both pinned
       LLAMA_CPP: b10456
-      LLM_REPO: unsloth/Qwen3-4B-Instruct-2507-GGUF
-      LLM_REVISION: a06e946bb6b655725eafa393f4a9745d460374c9
-      LLM_FILE: Qwen3-4B-Instruct-2507-Q4_K_M.gguf
+      LLM_REPO: unsloth/Qwen3.5-9B-GGUF
+      LLM_REVISION: 3885219b6810b007914f3a7950a8d1b469d598a5
+      LLM_FILE: Qwen3.5-9B-Q4_K_M.gguf
     steps:
       - uses: actions/checkout@v4
 

@@ -137,10 +137,10 @@ Coordination is no longer asked of the LLM: the text features measure it directl
   `llm-v2`, the model id and a hash of the prompt, and never recomputed. If the server is down, the rating is retried
   on later runs for 3 days after the flag, then recorded as failed (features blank); an answer that doesn't parse is
   recorded as failed at once (at temperature 0 the same prompt gets the same answer), and a candidate whose flag
-  documents can't be found in the raw files is recorded as `no_documents`. A run starts no new rating after 35
-  minutes; the rest wait for the next run. A candidate is scored only once its rating exists or has been given up
-  on, so its one score includes the rating whenever there is one. If ratings keep failing, the `llm` group is simply
-  blank and the pruning rule below drops it.
+  documents can't be found in the raw files is recorded as `no_documents`. A run starts no new rating after 90
+  minutes (about 30 candidates with the chosen model); the rest wait for the next run. A candidate is scored only
+  once its rating exists or has been given up on, so its one score includes the rating whenever there is one. If
+  ratings keep failing, the `llm` group is simply blank and the pruning rule below drops it.
 - Only ratings of the current version are features. A candidate rated by an older version is rated again by the next
   run that has its raw files checked out (the old row stays in the file); one whose raw files are no longer checked
   out keeps a blank `llm` group. A redo never holds up the candidate's one score.
@@ -303,10 +303,11 @@ pruning rule and the hold-out did not change.
 - When collection ends, the nightly run turns the pacer off, so the last `track`, `label` and `model` runs rely on
   their crons, which fire unreliably for this repository. If `model/holdout.md` hasn't appeared a few weeks after
   collection ended, start the workflows by hand (Actions, then Run workflow).
-- The LLM is small (4 to 9 billion parameters, 4-bit) so that it runs on a free runner's CPU, at one to a few minutes
-  per candidate; a larger hosted model would read the chatter better but needs an account or a key. `llm-v2` asks it
-  only for checkable labels, so a weak reader shows up as missed or wrong labels rather than invented scores, and the
-  model works without the ratings.
+- The LLM is small (9 billion parameters, 4-bit) so that it runs on a free runner's CPU, at about 3 minutes per
+  candidate; a larger hosted model would read the chatter better but needs an account or a key. `llm-v2` asks it only
+  for checkable labels, so a weak reader shows up as missed or wrong labels rather than invented scores, and the
+  model works without the ratings. In the test set the chosen model missed 14 of 33 pitches and 10 of 12 events
+  (results at the end of this file), so `llm_pitch_share` and `llm_event_share` understate both.
 - The hand-labelled test set is small (265 documents) and 13 of its 15 candidates are large caps, so it says little
   about penny-stock chatter. Before the next `llm` version, label the documents of some penny-stock candidates the
   same way (before seeing any answer) and test on those too.
@@ -341,3 +342,37 @@ candidates. In addition to the above, what had been seen then: those ratings and
 `model/text.csv`), and the documents shown to the LLM for the 15 candidates, which were read and labelled by hand for
 the test set before any `llm-v2` answer existed. Still no `track/` outcome or `labels/` row had been opened, and no
 model had been trained (no label was usable yet).
+
+## LLM test results (2026-10-06)
+
+`llm-eval` runs of 2026-10-06 on the test set's 15 candidates, of whose 265 labelled documents 256 were still shown
+(tickers-v4 had dropped PMI's nine r/wallstreetbets ones), with llama.cpp `b10456` on a free GitHub runner (runs
+37426096778, 37426100087 and 37426102760 for lists; 37429223329, 37429226799 and 37429230141 for one label per
+document). R/W/M are the documents right, wrong and missed, as defined in "Testing the LLM step"; the score is right
+minus wrong over `not_about`, `pitch` and `event`. All 90 answers parsed. The test reads only the flag documents,
+the episodes and the snapshots; still no `track/` outcome or `labels/` row had been opened, and no model trained.
+
+| Answer | Model | Seconds per candidate, mean (longest) | `not_about` R/W/M | `pitch` R/W/M | `warning` R/W/M | `event` R/W/M | Event quotes found / not found | Score |
+|---|---|---|---|---|---|---|---|---|
+| lists | Qwen3-4B-Instruct-2507 | 76 (152) | 0/54/1 | 28/98/5 | 1/25/0 | 4/0/8 | 2/0 | -120 |
+| lists | Qwen3.5-4B | 98 (181) | 0/0/1 | 32/99/1 | 1/37/0 | 8/1/4 | 4/0 | -60 |
+| lists | Qwen3.5-9B | 163 (294) | 0/0/1 | 31/54/2 | 1/37/0 | 9/2/3 | 8/0 | -16 |
+| one label per document | Qwen3-4B-Instruct-2507 | 64 (130) | 0/4/1 | 24/27/9 | 1/17/0 | 1/1/11 | 1/1 | -7 |
+| one label per document | Qwen3.5-4B | 84 (153) | 0/0/1 | 18/6/15 | 1/3/0 | 3/4/9 | 5/0 | 11 |
+| one label per document | Qwen3.5-9B | 178 (326) | 0/0/1 | 19/2/14 | 1/1/0 | 2/1/10 | 3/0 | 18 |
+
+The first answer format asked for the four lists of document numbers. With it every model put far more documents in
+`pitch` than belong there (54 to 99 wrong, against 28 to 32 right), and Qwen3-4B-Instruct-2507 also called 54
+documents not about the company. Before any `llm-v2` rating was stored, the answer was changed to one label per
+document, with `other` listed first and described as the usual case (the format described above), and the three
+models were run again. The rule was applied to those three runs.
+
+**Chosen: Qwen3.5-9B**, the 4-bit GGUF `Qwen3.5-9B-Q4_K_M.gguf` from `unsloth/Qwen3.5-9B-GGUF` at revision `3885219`:
+the best score (18; Qwen3.5-4B's 11 is more than 5 below it), at 178 seconds per candidate on average, within the
+3-minute limit. To fit a day's candidates at that speed, a run now starts no new rating after 90 minutes instead of
+35, and the `model` workflow's time limit went from 75 to 150 minutes.
+
+What its labels are worth: in this set 19 of its 21 `pitch` labels and 2 of its 3 `event` labels were right, and all
+3 of its event quotes were found in the documents; but it found only 19 of the 33 clear pitches and 2 of the 12 clear
+events. `warning` can't be judged from one clear example. The test set also guided the change of format, so these
+scores flatter the prompt: the next `llm` version is to be tested on documents labelled after this (Known gaps).

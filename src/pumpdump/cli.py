@@ -376,7 +376,7 @@ def main(argv: list[str] | None = None) -> int:
     md.add_argument("--datastore", required=True)
     md.add_argument("--run-id")
     md.add_argument("--raw-days", type=int, help="only the last N days of raw files are present (default: all)")
-    md.add_argument("--llm-minutes", type=float, default=35.0, help="start no new LLM rating after this long")
+    md.add_argument("--llm-minutes", type=float, default=90.0, help="start no new LLM rating after this long")
     md.add_argument("--llm-url", default=LLM_URL, help="OpenAI-compatible chat endpoint (default: llama.cpp's server)")
     md.add_argument("--llm-model", default=LLM_MODEL, help="the model the server runs, recorded with each rating")
     md.add_argument("--no-llm", action="store_true", help="skip the LLM ratings (score without them)")
