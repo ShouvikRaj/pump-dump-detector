@@ -88,6 +88,27 @@ def test_before_the_open_volume_today_is_blank_not_zero():
     p = f.price_features(daily(), intraday, et(2026, 10, 5, 6, 0))
     assert p["price_source"] == "5m" and p["vol_today"] is None and p["rel_vol_today"] is None
 
+
+def test_after_the_open_a_stock_with_no_trades_yet_has_zero_volume_today():
+    # Yahoo skips 5-minute bars without trades, so no bar since the open means nothing traded yet
+    friday = five_min(date(2026, 10, 2), start=(9, 30), end=(16, 0))
+    p = f.price_features(daily(), friday, et(2026, 10, 5, 9, 55))  # Monday morning
+    assert p["vol_today"] == 0 and p["rel_vol_today"] == 0
+
+
+def test_volume_today_stays_blank_on_market_holidays():
+    wednesday = five_min(date(2026, 11, 25), start=(9, 30), end=(16, 0))
+    p = f.price_features(daily(last=date(2026, 11, 25)), wednesday, et(2026, 11, 26, 11, 0))  # Thanksgiving
+    assert p["vol_today"] is None and p["rel_vol_today"] is None
+
+
+def test_volume_today_stays_blank_without_a_finished_bar_or_without_5m_data():
+    friday = five_min(date(2026, 10, 2), start=(9, 30), end=(16, 0))
+    assert f.price_features(daily(), friday, et(2026, 10, 4, 19, 24))["vol_today"] is None  # Sunday
+    assert f.price_features(daily(), friday, et(2026, 10, 5, 9, 33))["vol_today"] is None  # first bar ends 09:35
+    assert f.price_features(daily(), [], et(2026, 10, 5, 11, 0))["vol_today"] is None  # the 5m fetch failed
+
+
 def test_after_the_close_the_day_counts_and_post_market_sets_the_price():
     bars = daily(last=date(2026, 10, 2))
     intraday = five_min(date(2026, 10, 2), start=(4, 0), end=(16, 25), price=11.0)

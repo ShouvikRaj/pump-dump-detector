@@ -18,6 +18,14 @@ ET = ZoneInfo("America/New_York")
 DAY = 86_400
 SESSION_OPEN = time(9, 30)
 SESSION_CLOSE = time(16, 0)  # half days are not modelled (docs/stage2.md, known gaps)
+# NYSE full-day closures; collection ends by April 2027 (README "How long it runs"), extend if that changes
+MARKET_HOLIDAYS = frozenset(
+    date.fromisoformat(d) for d in (
+        "2026-01-01", "2026-01-19", "2026-02-16", "2026-04-03", "2026-05-25", "2026-06-19", "2026-07-03", "2026-09-07",
+        "2026-11-26", "2026-12-25", "2027-01-01", "2027-01-18", "2027-02-15", "2027-03-26", "2027-05-31", "2027-06-18",
+        "2027-07-05", "2027-09-06", "2027-11-25", "2027-12-24",
+    )
+)
 LOW_FLOAT_MAX = 20_000_000
 SI_PUBLICATION_LAG_BDAYS = 8
 
@@ -53,6 +61,14 @@ def utc_date(ts: float) -> str:
 
 def _close_ts(bar_ts: float) -> float:
     return datetime.combine(et_date(bar_ts), SESSION_CLOSE, ET).timestamp()
+
+
+def _session_bar_finished(as_of: float, bar_seconds: int) -> bool:
+    """Whether the first regular-session bar of the flag's ET date had ended by as_of."""
+    d = et_date(as_of)
+    if d.weekday() >= 5 or d in MARKET_HOLIDAYS:
+        return False
+    return datetime.combine(d, SESSION_OPEN, ET).timestamp() + bar_seconds <= as_of
 
 
 def price_features(daily: list[list], intraday: list[list], as_of: float, bar_seconds: int = 300) -> dict:
@@ -103,7 +119,8 @@ def price_features(daily: list[list], intraday: list[list], as_of: float, bar_se
         b for b in finished
         if et_date(b[0]) == et_date(as_of) and SESSION_OPEN <= datetime.fromtimestamp(b[0], ET).time() < SESSION_CLOSE
     ]
-    if today:
+    if today or (intraday and _session_bar_finished(as_of, bar_seconds)):
+        # Yahoo skips 5-minute bars without trades, so no bar since the open means nothing traded yet
         out["vol_today"] = sum(b[5] or 0 for b in today)
         if out["avg_vol_20d"]:
             out["rel_vol_today"] = out["vol_today"] / out["avg_vol_20d"]
