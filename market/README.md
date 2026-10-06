@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-06T01:00:55Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-06T08:18:14Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-15 candidates and 30 controls so far. Archetypes: other 13, low_float_runner 2.
+16 candidates and 32 controls so far. Archetypes: other 14, low_float_runner 2.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| MSTR | 2026-10-06 08:17 | other | listed | 164.6 | +0.1% | +4.6% | 0.8x | 363.6M | 8.5% | 0 |  |
 | IWM | 2026-10-06 00:59 | other | listed | 283.1 | +0.6% | -0.2% | 1.3x |  |  |  |  |
 | ALEC | 2026-10-05 23:41 | other | listed | 1.96 | -1.5% | +3.6% | 64.9x | 84.9M | 7.2% | 0 |  |
 | QCOM | 2026-10-05 21:14 | other | listed | 181.4 | +0.4% | -3.6% | 0.8x | 1.05B | 3.7% | 2 |  |
