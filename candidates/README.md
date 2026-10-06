@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-06T02:59:35Z by run `37406787974`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-06T03:12:58Z by run `37407866834`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -11,10 +11,10 @@ collected live, so flags in this period are marked `warmup=1` in episodes.csv.
 | Ticker | Flagged since (UTC) | Why | Mentions 24h | Baseline/day | Authors | Hype posts | Subreddits | Exchange | StockTwits | Example |
 |---|---|---|---|---|---|---|---|---|---|---|
 | ALEC | 2026-10-05 23:41 | mention spike | 10 | 0.0 | 7 | 0 | pennystocks 10 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1wxyz2p/comment/pe48x59/) |
-| APLD | 2026-10-05 14:23 | mention spike | 33 | 12.43 | 21 | 0 | wallstreetbets 33 | Nasdaq | #10 | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyj9yn/) |
+| APLD | 2026-10-05 14:23 | mention spike | 34 | 12.43 | 21 | 0 | wallstreetbets 34 | Nasdaq | #13 | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyj9yn/) |
 | DRTS | 2026-10-04 23:23 | mention spike | 15 | 2.86 | 12 | 0 | wallstreetbets 15 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyin5e/comment/pe334cu/) |
 | GME | 2026-10-05 16:24 | mention spike | 25 | 5.14 | 22 | 0 | wallstreetbets 25 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyrlbr/) |
-| MSFT | 2026-10-05 21:14 | mention spike | 49 | 18.71 | 34 | 0 | wallstreetbets 49 | Nasdaq | #6 | [link](https://www.reddit.com/r/wallstreetbets/comments/1wy8qku/) |
+| MSFT | 2026-10-05 21:14 | mention spike | 49 | 18.71 | 34 | 0 | wallstreetbets 49 | Nasdaq | #5 | [link](https://www.reddit.com/r/wallstreetbets/comments/1wy8qku/) |
 | PMI | 2026-10-05 13:55 | mention spike | 15 | 1.43 | 10 | 0 | wallstreetbets 13, pennystocks 2 | NYSE American |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wy4mk1/comment/pe1hx05/) |
 | QCOM | 2026-10-05 21:14 | mention spike | 11 | 1.86 | 10 | 0 | wallstreetbets 11 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wy4jnf/) |
 | SPCX | 2026-10-05 14:51 | mention spike | 203 | 29.0 | 124 | 1 | wallstreetbets 203 | Nasdaq | #1 | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyqxxo/) |
