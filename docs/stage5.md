@@ -95,7 +95,10 @@ features; catalyst and summary go in the report only.
   long before these flags, so it cannot know what happened next; it sees nothing written after the flag.
 - Each rating is stored once in `model/llm.csv` with the model id, `llm-v1` and a hash of the prompt, and never
   recomputed. A failed call is retried on later runs for 3 days after the flag, then recorded as failed (features
-  blank). If the service is unavailable, the `llm` group is simply blank and the pruning rule below drops it.
+  blank); a prompt the provider's content filter refuses is recorded as failed at once, and a candidate whose flag
+  documents can't be found in the raw files is recorded as `no_documents`. A candidate is scored only once its rating exists or
+  has been given up on, so its one score includes the rating whenever there is one. If the service is unavailable,
+  the `llm` group is simply blank and the pruning rule below drops it.
 - Changing the model or the prompt is a new `llm` version; old ratings keep theirs.
 
 ## The model
@@ -118,7 +121,8 @@ The score is the model's probability. A candidate is **flagged** (high risk) whe
 the base rate**: the recency-weighted share of positives among the training set's candidates (at least 1%). Lift 2
 is a "much likelier than a typical candidate" line that doesn't depend on how rare the target is.
 
-**Prospective log.** Each candidate is scored once, by the first daily run after its flag, with its week's model,
+**Prospective log.** Each candidate is scored once, by the first daily run after its flag that has its LLM rating
+(above), with its week's model,
 and the score, the threshold, whether it was flagged and the model's training size are appended to
 `model/predictions.csv` with the time. That file is never rewritten: it is Phase 1 of the paper-trading plan
 (signal-only logging), and it is what the hold-out is judged on.
@@ -178,7 +182,8 @@ if collection runs longer.
 - Hold-out candidates are scored like any other, once, into the prospective log (scores are not outcomes).
 - Their scores are not compared with their labels, and no metric on them is computed, printed or written, until
   collection has finished, every hold-out snapshot has been tracked and none of their targets is pending. No one
-  should compare them by hand either.
+  should compare them by hand either. (A hold-out snapshot that Stage 4 never labels at all stops holding this up
+  45 days after the last flag, and is left out.)
 - Pruning decisions use development weeks only, and nothing in this file may change on or after 2027-01-04. A rule
   change made after that date anyway makes the hold-out result invalid, and the report must say so.
 - Their labels do train the models of later weeks once available, as a live system would; each hold-out score is
@@ -218,6 +223,9 @@ hold-out start (2027-01-04).
 - Labels are scarce: most candidates are large caps that neither pump nor crash, and `label-v1` is strict, so the
   pump model may not train before the hold-out. The crash model is the realistic first result, as the brief expects.
 - Float and insider holdings are Stage 2's current-at-snapshot values, not point in time (minutes of lag).
+- When collection ends, the nightly run turns the pacer off, so the last `track`, `label` and `model` runs rely on
+  their crons, which fire unreliably for this repository. If `model/holdout.md` hasn't appeared a few weeks after
+  collection ended, start the workflows by hand (Actions, then Run workflow).
 - The LLM ratings depend on GitHub Models staying available and free at this volume (a few dozen calls a day, well
   under its free limit); the model works without them.
 - One model covers both pump types; results are reported per archetype, but there are too few labels for separate
@@ -231,3 +239,9 @@ The flag-time inputs only: `candidates/episodes.csv` and `market/snapshots.csv` 
 45 snapshots on 2026-10-06, 13 of the candidates large caps), to choose the features. From project notes: Stage 4's
 first label (SDEV, real news, crashed within 10 sessions). No `track/` outcome or `labels/` row was opened, and no
 model had been trained.
+
+After this file was committed, the code was run once on a copy of the live data branch as a functional test
+(2026-10-06 02:16 UTC, no LLM): it rebuilt each candidate's flag documents (the counts matched Stage 1's
+`mentions_24h` for all 15), found no label available for training, so trained nothing, and printed no outcome.
+The clarifications added after that run (refusals and waiting for the LLM rating; a never-labeled hold-out snapshot
+not blocking the evaluation forever) change no validation or hold-out rule.

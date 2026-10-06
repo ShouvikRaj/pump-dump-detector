@@ -1,0 +1,86 @@
+name: model
+
+# Stage 5: once a day, after Stage 4's label run, compute the text features
+# and LLM ratings of new candidates, retrain the weekly LightGBM models on the
+# labels available so far, score every new candidate once into the
+# prospective log and rewrite model/ on the `data` branch. The rule was fixed
+# before any model was trained: docs/stage5.md. scripts/pace.sh starts it at
+# the first pacer after 00:11 UTC (GitHub's cron here is unreliable); the cron
+# is the backup. LLM ratings come from GitHub Models with this workflow's own
+# token, so no key or account is needed. Once collection has finished and the
+# hold-out has been evaluated, it turns itself off.
+on:
+  schedule:
+    - cron: "11 0 * * *"
+  workflow_dispatch:
+    inputs:
+      raw_days:
+        description: "Days of raw Reddit files to check out (older flags get no new text features)"
+        default: "3"
+      llm_probe:
+        description: "Only check that GitHub Models answers this workflow's token; save nothing"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write # push to the data branch
+  actions: write # turn this workflow off once the hold-out has been evaluated
+  models: read # LLM ratings from GitHub Models
+
+concurrency:
+  # writes only model/, so its push replays cleanly on top of the other jobs' pushes
+  group: model
+  cancel-in-progress: false
+
+jobs:
+  model:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      RAW_DAYS: ${{ inputs.raw_days || '3' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install
+        run: pip install ".[model]"
+
+      - name: Probe GitHub Models
+        if: ${{ inputs.llm_probe }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python -m pumpdump model --datastore datastore --llm-probe
+
+      - name: Check out the data branch (candidates, snapshots, track and label tables, model/, recent raw files)
+        if: ${{ !inputs.llm_probe }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: scripts/datastore.sh checkout-model datastore "$RAW_DAYS"
+
+      - name: Rate, retrain and score
+        id: model
+        if: ${{ !inputs.llm_probe }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          python -m pumpdump model --datastore datastore --raw-days "$RAW_DAYS"
+          --summary "$GITHUB_STEP_SUMMARY" --github-output "$GITHUB_OUTPUT"
+
+      - name: Push the data branch
+        if: ${{ !inputs.llm_probe }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          scripts/datastore.sh push datastore "model: run ${{ github.run_id }}"
+
+      - name: Turn the model run off once the hold-out has been evaluated
+        if: steps.model.outputs.finished == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh workflow disable model.yml

@@ -6,14 +6,16 @@ timestamps and flags tickers whose mentions or hype language suddenly spike. **S
 flagged ticker's market data as of the moment it was flagged, next to two matched tickers nobody was talking about.
 **Stage 3 is tracking**: every flagged ticker and control is followed for 20 trading sessions afterwards. **Stage 4 is
 labeling**: once its windows have closed, each one is labeled pump, real news or not pump (plus a separate crash label),
-by a rule written down before any results were looked at.
+by a rule written down before any results were looked at. **Stage 5 is the model**: every new candidate is scored
+for crash and pump risk by a LightGBM model retrained each week on the labels so far, validated walk-forward and,
+once, on a locked hold-out period.
 
 ```
 Stage 1  Reddit chatter -> ticker mentions -> spike flags -> candidate list      <- running
 Stage 2  market check of candidates (float, volume vs average, price, SEC dilution filings)   <- running
 Stage 3  ongoing tracking of price, filings and chatter per candidate and control (20 sessions)   <- running
 Stage 4  outcome labels after 10-15 sessions (pump / real news / not pump, and crash), rule fixed in advance   <- running
-Stage 5  feedback loop: retrain, keep only patterns that hold across periods
+Stage 5  model + feedback loop: weekly retraining, walk-forward checks, weak feature groups pruned   <- running
 ```
 
 Detect and avoid only: nothing here trades, and flags are statistical, not accusations or advice.
@@ -29,12 +31,13 @@ Everything runs on GitHub Actions; no computer needs to stay on.
 | `market` | after each `collect` run | snapshot each new candidate's market data as of its flag time, plus two matched controls (Stage 2) |
 | `track` | daily after the US close (started by `pace` after 22:41 UTC; cron backup) | record each candidate's and control's new trading sessions and SEC filings since its flag, for 20 sessions, and rebuild `track/outcomes.csv` (Stage 3) |
 | `label` | daily after `track` (started by `pace` after 23:21 UTC; cron backup) | label every candidate and control whose windows have closed and rebuild `labels/labels.csv` (Stage 4) |
+| `model` | daily after `label` (started by `pace` after 00:11 UTC; cron backup) | rate new candidates' chatter (text features and an LLM rating), retrain the weekly models, score each new candidate once into `model/predictions.csv` and rewrite `model/README.md` (Stage 5) |
 | `nightly` | 03:41 UTC (started by `pace` when GitHub's cron misses it) | build a SQLite database of everything collected and attach it to the run as the `pumpdump-sqlite` artifact; once collection has finished, publish it as the `dataset-final` release and turn collection off |
 | `tests` | every push | `pytest` |
 
 Collected data lives on the **`data` branch** (see its README). Start with `candidates/README.md` there,
-`market/README.md` for the market snapshots, `track/README.md` for what happened next and `labels/README.md` for the
-labels.
+`market/README.md` for the market snapshots, `track/README.md` for what happened next, `labels/README.md` for the
+labels and `model/README.md` for the model's scores and results.
 
 The `pacer` environment's wait timer (13 minutes, set under Settings > Environments) is what spaces the runs; it holds
 no runner while waiting. Each wait shows up as a deployment to `pacer`. If the timer is removed, `pace` stops the
@@ -128,6 +131,25 @@ A label is final 10 sessions after the flag (15 after a 50% rise) and never chan
 the data branch counts them per archetype for candidates and controls side by side; the crash rate of candidates
 against their controls is the first test of the avoid signal. Rule, reasons and gaps: [docs/stage4.md](docs/stage4.md).
 
+## Stage 5: the model
+
+Once a day after labeling, the `model` workflow (rule `model-v1`, written down and committed before any model was
+trained: [docs/stage5.md](docs/stage5.md)):
+
+- reads the Reddit posts and comments behind each new flag and turns them into text features (one author dominating,
+  copy-paste across authors, promotional and squeeze language, news and dilution talk, outside links) plus an LLM
+  rating of promotion, coordination and real news, from GitHub Models with the workflow's own token (no key needed);
+- trains one LightGBM model per week and target (**crash** first, the avoid signal; then **pump**) on every candidate
+  and control whose label was settled before the week began, recent ones weighted more, once 50 rows and 5 positives
+  exist;
+- scores each new candidate once with its week's model and appends the score to `model/predictions.csv`, the
+  prospective log (signal-only paper trading, phase 1); a candidate is flagged at twice the base rate;
+- replays every development week (flags before 2027-01-04) the same way and reports precision, recall, F1, lift,
+  average precision and five robustness checks (separate periods, per pump type, against the controls, after 1-3%
+  slippage), and drops feature groups that don't help once there are 20 positive candidates;
+- leaves the hold-out (flags from 2027-01-04) locked until collection has ended and its labels have settled, then
+  evaluates it once into `model/holdout.md` and turns itself off.
+
 ## Safeguards built in
 
 - **No lookahead**: every record stores `created_utc` and `collected_at`; counting functions take an `as_of` time
@@ -149,7 +171,9 @@ sqlite3 pumpdump.sqlite "select ticker, first_flagged_at_utc, mentions_24h, reas
 Tables: `docs` (posts + comments), `mentions` (one row per document x ticker, with hype score), `candidate_episodes`,
 `candidate_episode_ends`, `daily_mention_counts`, `stocktwits_trending`, `runs`, `symbols`, `market_snapshots`
 (Stage 2, candidates and controls; join on `episode_id`), `market_universe` (daily prices of all listed stocks),
-`track_daily`, `track_filings`, `track_outcomes` (Stage 3; join on `snapshot_id`), `labels` (Stage 4; join on `snapshot_id`).
+`track_daily`, `track_filings`, `track_outcomes` (Stage 3; join on `snapshot_id`), `labels` (Stage 4; join on `snapshot_id`),
+`model_text`, `model_llm` (Stage 5; join on `episode_id`), `model_predictions`, `model_walkforward` (Stage 5; join on
+`snapshot_id`).
 
 Try the extractor on any text: `python -m pumpdump scan '$ABCD to the moon 🚀 short squeeze'`. See what a market
 snapshot would record right now (needs internet; nothing is saved):
@@ -164,5 +188,7 @@ pytest
 
 Code: `src/pumpdump/`. Stage 1: `tickers.py`, `hype.py`, `spikes.py`, `sources/arctic_shift.py`, `pipeline.py`.
 Stage 2: `market.py` (the run), `features.py` (point-in-time features), `sources/` (Yahoo, EDGAR, FINRA, Nasdaq).
-Stage 3: `track.py`. Stage 4: `label.py`. Command line: `cli.py`. Design notes and the reasoning behind each threshold:
-[docs/stage1.md](docs/stage1.md), [docs/stage2.md](docs/stage2.md), [docs/stage3.md](docs/stage3.md), [docs/stage4.md](docs/stage4.md).
+Stage 3: `track.py`. Stage 4: `label.py`. Stage 5: `text.py` (text features, LLM ratings), `model.py`. Command line:
+`cli.py`. Design notes and the reasoning behind each threshold: [docs/stage1.md](docs/stage1.md),
+[docs/stage2.md](docs/stage2.md), [docs/stage3.md](docs/stage3.md), [docs/stage4.md](docs/stage4.md),
+[docs/stage5.md](docs/stage5.md).

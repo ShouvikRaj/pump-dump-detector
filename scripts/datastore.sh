@@ -9,6 +9,9 @@
 #                                            state, candidates, market snapshots, mention counts and track/
 #   scripts/datastore.sh checkout-label DIR  shallow, sparse checkout of what the label job reads and writes: collection
 #                                            state, candidates, market snapshots, track/ and labels/
+#   scripts/datastore.sh checkout-model DIR DAYS  shallow, sparse checkout of what the model job reads and writes:
+#                                            state, symbols, candidates, snapshots, track days and outcomes, labels,
+#                                            model/ and the last DAYS days of raw files (for the flag-time chatter)
 #   scripts/datastore.sh checkout-all DIR    shallow checkout of everything (for build-db)
 #   scripts/datastore.sh push DIR MESSAGE    commit all changes and push, retrying if the branch moved
 #
@@ -46,6 +49,14 @@ track_patterns() {
 
 label_patterns() {
   printf '%s\n' /state/ /candidates/ /market/snapshots.csv /track/ /labels/
+}
+
+model_patterns() {
+  local days="$1" i
+  printf '%s\n' /state/ /ref/ /candidates/ /market/snapshots.csv /track/daily.csv /track/outcomes.csv /labels/ /model/
+  for i in $(seq -1 "$days"); do
+    printf '/raw/reddit/%s/\n' "$(date -u -d "$((-i)) day" +%Y/%m/%d)"
+  done
 }
 
 configure() {
@@ -121,8 +132,9 @@ case "${1:-}" in
   checkout-market) cmd_checkout "$2" market_patterns ;;
   checkout-track) cmd_checkout "$2" track_patterns ;;
   checkout-label) cmd_checkout "$2" label_patterns ;;
+  checkout-model) cmd_checkout "$2" model_patterns "$3" ;;
   checkout-all) cmd_checkout_all "$2" ;;
   push) cmd_push "$2" "$3" ;;
   patterns) patterns "$2" ;;
-  *) echo "usage: $0 {checkout DIR DAYS|checkout-market DIR|checkout-track DIR|checkout-label DIR|checkout-all DIR|push DIR MESSAGE|patterns DAYS}" >&2; exit 64 ;;
+  *) echo "usage: $0 {checkout DIR DAYS|checkout-market DIR|checkout-track DIR|checkout-label DIR|checkout-model DIR DAYS|checkout-all DIR|push DIR MESSAGE|patterns DAYS}" >&2; exit 64 ;;
 esac

@@ -175,3 +175,21 @@ def test_label_checkout_has_what_the_label_job_needs(env, tmp_path):
     sh("bash", str(SCRIPT), "checkout-label", str(lb), env=env)
     assert [rel for rel in needed if not (lb / rel).exists()] == []
     assert [rel for rel in not_needed if (lb / rel).exists()] == []
+
+
+def test_model_checkout_has_what_the_model_job_needs(env, tmp_path):
+    needed = ["state/state.json", "ref/symbols.csv", "candidates/episodes.csv", "market/snapshots.csv",
+              "track/daily.csv", "track/outcomes.csv", "labels/labels.csv", "model/predictions.csv",
+              f"raw/reddit/{day_dir(0)}/r.jsonl.gz", f"raw/reddit/{day_dir(3)}/r.jsonl.gz"]
+    not_needed = [f"raw/reddit/{day_dir(5)}/r.jsonl.gz", "track/filings.csv", f"market/raw/{day_dir(0)}/x.json.gz",
+                  f"daily/mention_counts/{month()}.csv"]
+    a = tmp_path / "a"
+    sh("bash", str(SCRIPT), "checkout", str(a), "2", env=env)
+    for rel in needed + not_needed:
+        write(a, rel, rel + "\n")
+    sh("bash", str(SCRIPT), "push", str(a), "seed", env=env)
+
+    md = tmp_path / "md"
+    sh("bash", str(SCRIPT), "checkout-model", str(md), "3", env=env)
+    assert [rel for rel in needed if not (md / rel).exists()] == []
+    assert [rel for rel in not_needed if (md / rel).exists()] == []

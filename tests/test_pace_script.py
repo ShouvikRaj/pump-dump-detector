@@ -23,7 +23,7 @@ with open(log, "a") as fh:
     fh.write(json.dumps(args) + "\\n")
 if args[:2] == ["run", "list"]:
     out = os.environ["FAKE_NIGHTLY" if "nightly.yml" in args else "FAKE_TRACK" if "track.yml" in args
-                     else "FAKE_LABEL" if "label.yml" in args else "FAKE_RUNS"]
+                     else "FAKE_LABEL" if "label.yml" in args else "FAKE_MODEL" if "model.yml" in args else "FAKE_RUNS"]
     if "--jq" in args:
         out = subprocess.run(["jq", "-r", args[args.index("--jq") + 1]], input=out, capture_output=True, text=True, check=True).stdout
     sys.stdout.write(out)
@@ -49,7 +49,7 @@ def run(tmp_path):
     log = tmp_path / "gh.log"
 
     def _run(runs, dispatch_failures=0, nightly_age=10 * 60, now=NOW, nightly=False, waited=13 * 60, pacers=False, track_age=10 * 60, tracks=False,
-             label_age=10 * 60, labels=False):
+             label_age=10 * 60, labels=False, model_age=10 * 60, models=False):
         env = dict(
             os.environ,
             PATH=f"{bindir}{os.pathsep}{os.environ['PATH']}",
@@ -61,6 +61,7 @@ def run(tmp_path):
             FAKE_SELF_CREATED=iso(now - waited),
             FAKE_TRACK=json.dumps([] if track_age is None else [{"createdAt": iso(now - track_age)}]),
             FAKE_LABEL=json.dumps([] if label_age is None else [{"createdAt": iso(now - label_age)}]),
+            FAKE_MODEL=json.dumps([] if model_age is None else [{"createdAt": iso(now - model_age)}]),
             GH_REPO="owner/repo",
             GITHUB_RUN_ID="1",
             PACE_NOW=str(now),
@@ -76,6 +77,8 @@ def run(tmp_path):
             return res, [c for c in dispatched if c[2] == "track.yml"]
         if labels:
             return res, [c for c in dispatched if c[2] == "label.yml"]
+        if models:
+            return res, [c for c in dispatched if c[2] == "model.yml"]
         if pacers:
             return res, [c for c in dispatched if c[2] == "pace.yml"]
         return res, [c for c in dispatched if c[2] == "collect.yml"]
@@ -201,3 +204,15 @@ def test_starts_the_label_run_after_its_slot(run):
     assert labels == []
     res, labels = run([("completed", 16 * 60)], now=late - 20 * 60, label_age=24 * 3600, labels=True)  # 23:10, before it
     assert labels == []
+
+
+def test_starts_the_model_run_after_its_slot(run):
+    # 00:20 UTC, after the label run of the evening before; the last model run was yesterday
+    early = NOW - (NOW % 86400) + 20 * 60
+    res, models = run([("completed", 16 * 60)], now=early, model_age=24 * 3600, models=True)
+    assert res.returncode == 0, res.stderr
+    assert [c[:3] for c in models] == [["workflow", "run", "model.yml"]]
+    res, models = run([("completed", 16 * 60)], now=early, model_age=5 * 60, models=True)
+    assert models == []
+    res, models = run([("completed", 16 * 60)], now=early - 10 * 60, model_age=24 * 3600, models=True)  # 00:10
+    assert models == []

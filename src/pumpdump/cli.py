@@ -4,6 +4,7 @@
   market    Stage 2: market snapshot of each new candidate as of its flag time, plus controls
   track     Stage 3: follow candidates and controls for 20 sessions after the flag
   label     Stage 4: label candidates and controls (pump / real news / not pump, and crash)
+  model     Stage 5: text features, LLM ratings, weekly LightGBM models and the prospective log
   build-db  build a full SQLite database from a datastore
   scan      show the tickers and hype categories found in a piece of text
   status    say whether collection has finished (enough data for analysis)
@@ -17,10 +18,10 @@ import os
 import sqlite3
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from . import db, label, market, track
+from . import db, label, market, model, track
 from .hype import hype_categories
 from .market import default_sources, dry_run, run_market
 from .pipeline import Settings, collection_done, run_collect
@@ -28,6 +29,7 @@ from .sources.arctic_shift import BASE_URL, ArcticShift
 from .sources.stocktwits import fetch_trending
 from .store import Datastore
 from .symbols import load_symbols, refresh_symbols
+from .text import LLM as MODEL_LLM, TEXT as MODEL_TEXT, GitHubModels
 from .tickers import default_extractor
 
 
@@ -194,6 +196,53 @@ def cmd_label(args: argparse.Namespace) -> int:
     return 0
 
 
+def render_model_summary(summary: dict, run_id: str) -> str:
+    llm = summary["llm"]
+    lines = [f"## Model run {run_id}", ""]
+    lines.append(
+        f"Text features for {summary['text']} new candidates; LLM ratings: {llm['ok']} rated, {llm['failed']} failed, "
+        f"{llm['waiting']} waiting for a retry. {summary['scored']} new candidates scored."
+    )
+    lines += [""] + [f"- {t} model this week: {note}" for t, note in summary["models"].items()]
+    for t, m in summary["dev"].items():
+        if m["n"]:
+            lines.append(f"- {t} walk-forward so far: {m['n']} candidates, {m['positives']} positives, "
+                         f"{m['flagged']} flagged, average precision {model._num2(m['ap'])}")
+    lines += ["", f"Hold-out: {summary['holdout']}."]
+    if summary["warnings"]:
+        lines += ["", "Warnings:"] + [f"- {w}" for w in summary["warnings"]]
+    return "\n".join(lines) + "\n"
+
+
+def cmd_model(args: argparse.Namespace) -> int:
+    token = os.environ.get("GITHUB_TOKEN", "")
+    if args.llm_probe:  # check that GitHub Models answers this workflow's token; saves nothing
+        if not token:
+            print("no GITHUB_TOKEN: nothing to probe with")
+            return 1
+        client = GitHubModels(token)
+        answer = client.complete("Reply with JSON only.", 'Return {"ok": true}.')
+        print(f"{client.model} answered: {answer[:300]}")
+        return 0
+    ds = Datastore(args.datastore)
+    run_id = args.run_id or os.environ.get("GITHUB_RUN_ID") or time.strftime("%Y%m%dT%H%M%S", time.gmtime())
+    llm = GitHubModels(token) if token and not args.no_llm else None
+    now = time.time()
+    raw_since = None
+    if args.raw_days is not None:  # only the last N days of raw files were checked out
+        raw_since = datetime.fromtimestamp(now, timezone.utc).date() - timedelta(days=args.raw_days)
+    summary = model.run_model(ds, llm, clock=lambda: now, raw_since=raw_since, max_llm_calls=args.max_llm_calls)
+    report = render_model_summary(summary, str(run_id))
+    print(report)
+    if args.summary:
+        with open(args.summary, "a", encoding="utf-8") as fh:
+            fh.write(report)
+    if args.github_output:  # finished once the hold-out has been evaluated (after collection ends)
+        with open(args.github_output, "a", encoding="utf-8") as fh:
+            fh.write(f"finished={'true' if summary['finished'] else 'false'}\n")
+    return 0
+
+
 def _convert(v: str):
     if v == "":
         return None
@@ -249,6 +298,10 @@ def cmd_build_db(args: argparse.Namespace) -> int:
     _load_csv_table(conn, "track_filings", ds.read_csv(track.FILINGS))
     _load_csv_table(conn, "track_outcomes", ds.read_csv(track.OUTCOMES))
     _load_csv_table(conn, "labels", ds.read_csv(label.LABELS))
+    _load_csv_table(conn, "model_text", ds.read_csv(MODEL_TEXT))
+    _load_csv_table(conn, "model_llm", ds.read_csv(MODEL_LLM))
+    _load_csv_table(conn, "model_predictions", ds.read_csv(model.PREDICTIONS))
+    _load_csv_table(conn, "model_walkforward", ds.read_csv(model.WALKFORWARD))
     conn.commit()
     conn.close()
     print(f"wrote {out}: {n_docs} docs, {n_mentions} mentions")
@@ -309,6 +362,17 @@ def main(argv: list[str] | None = None) -> int:
     lb.add_argument("--summary", help="append a markdown summary here (e.g. $GITHUB_STEP_SUMMARY)")
     lb.add_argument("--github-output", help="write finished=true|false here ($GITHUB_OUTPUT)")
     lb.set_defaults(func=cmd_label)
+
+    md = sub.add_parser("model", help="Stage 5: rate new candidates, retrain the weekly models, score, report")
+    md.add_argument("--datastore", required=True)
+    md.add_argument("--run-id")
+    md.add_argument("--raw-days", type=int, help="only the last N days of raw files are present (default: all)")
+    md.add_argument("--max-llm-calls", type=int, default=100)
+    md.add_argument("--no-llm", action="store_true", help="skip the LLM ratings (score without them)")
+    md.add_argument("--llm-probe", action="store_true", help="only check that GitHub Models answers; save nothing")
+    md.add_argument("--summary", help="append a markdown summary here (e.g. $GITHUB_STEP_SUMMARY)")
+    md.add_argument("--github-output", help="write finished=true|false here ($GITHUB_OUTPUT)")
+    md.set_defaults(func=cmd_model)
 
     b = sub.add_parser("build-db", help="build a SQLite database from a datastore")
     b.add_argument("--datastore", required=True)
