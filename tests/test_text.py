@@ -144,57 +144,58 @@ class FakeResponse:
         return self._body
 
 
-def test_github_models_client_sends_the_prompt_with_the_built_in_token():
+def test_chat_client_asks_the_local_server_for_json():
     post = FakePost((200, {"choices": [{"message": {"content": '{"promotion": 1}'}}]}))
-    client = text.GitHubModels("tok", post=post, sleep=lambda s: None)
+    client = text.ChatClient(post=post)
     assert client.complete("sys", "user") == '{"promotion": 1}'
     call = post.calls[0]
-    assert call["url"] == text.GITHUB_MODELS_URL and call["headers"]["Authorization"] == "Bearer tok"
-    assert call["json"]["model"] == text.LLM_MODEL and call["json"]["temperature"] == 0
+    assert call["url"] == text.LLM_URL and "Authorization" not in call["headers"]
+    assert call["json"]["model"] == text.LLM_MODEL and call["json"]["temperature"] == 0 and call["json"]["seed"] == 0
+    assert call["json"]["response_format"] == {"type": "json_object"}
     assert [m["role"] for m in call["json"]["messages"]] == ["system", "user"]
 
 
-def test_github_models_client_tells_a_refusal_from_a_retryable_error():
-    client = text.GitHubModels("tok", post=FakePost((400, {"error": {"code": "content_filter"}})), sleep=lambda s: None)
+def test_chat_client_tells_a_refusal_from_a_retryable_error():
+    client = text.ChatClient(post=FakePost((400, {"error": {"code": "content_filter"}})))
     with pytest.raises(text.LLMRefused):
         client.complete("sys", "user")
-    for status, body in ((429, "busy"), (500, "busy"), (403, "no access"),
-                         (400, {"error": {"code": "unknown_model", "message": "Unknown model: x"}})):
-        client = text.GitHubModels("tok", post=FakePost((status, body)), sleep=lambda s: None)
+    for status, body in ((429, "busy"), (500, "busy"), (503, "loading model"),
+                         (400, {"error": {"code": 400, "message": "the request exceeds the context size"}})):
+        client = text.ChatClient(post=FakePost((status, body)))
         with pytest.raises(text.LLMError) as exc:
             client.complete("sys", "user")
         assert not isinstance(exc.value, text.LLMRefused)
 
 
-def test_github_models_client_spaces_its_calls():
+def test_chat_client_spaces_its_calls():
     sleeps, now = [], [100.0]
     ok = (200, {"choices": [{"message": {"content": "{}"}}]})
-    client = text.GitHubModels("tok", post=FakePost(ok, ok), sleep=sleeps.append, clock=lambda: now[0], min_interval=4.5)
+    client = text.ChatClient(post=FakePost(ok, ok), sleep=sleeps.append, clock=lambda: now[0], min_interval=4.5)
     client.complete("s", "u")
     now[0] += 1.0
     client.complete("s", "u")
     assert sleeps == [3.5]
 
 
-def test_probe_reports_what_github_models_answers():
-    class Resp(FakeResponse):
-        def __init__(self, status, body, url="", history=(), headers=None):
-            super().__init__(status, body)
-            self.url, self.history, self.headers = url, list(history), headers or {}
+class TimedLLM:
+    model = "fake/model"
 
-    posts = []
+    def __init__(self, reply, now):
+        self.reply, self.now, self.prompts = reply, now, []
 
-    def post(url, headers=None, json=None, timeout=None, allow_redirects=True):
-        posts.append(allow_redirects)
-        if not allow_redirects:
-            return Resp(301, "", url=url, headers={"location": "https://elsewhere.example/x"})
-        return Resp(200, "OK", url="https://elsewhere.example/x", history=[object()], headers={"content-type": "text/plain"})
+    def complete(self, system, user):
+        self.prompts.append(user)
+        self.now[0] += 42.0
+        return self.reply
 
-    def get(url, headers=None, timeout=None):
-        return Resp(200, [{"id": text.LLM_MODEL}, {"id": "openai/gpt-4.1"}, {"id": "meta/llama"}])
 
-    lines = text.probe_github_models("tok", post=post, get=get)
-    assert posts == [False, True]
-    assert "HTTP 301" in lines[0] and "https://elsewhere.example/x" in lines[0]
-    assert "HTTP 200" in lines[1] and "'OK'" in lines[1] and "1 redirect" in lines[1]
-    assert "3 models" in lines[2] and f"{text.LLM_MODEL} listed: yes" in lines[2]
+def test_probe_times_a_full_size_prompt():
+    now = [0.0]
+    llm = TimedLLM('{"promotion": 2, "coordination": 1, "news": 0, "sentiment": 1, "catalyst": "none", '
+                   '"summary": "Hype."}', now)
+    ok, lines = text.probe_llm(llm, clock=lambda: now[0])
+    assert ok and len(llm.prompts) == 1
+    assert len(llm.prompts[0]) > text.MAX_CHARS * 0.9  # as long as a real prompt gets
+    assert "42 s" in lines[0] and "llm_promotion" in lines[1]
+    ok, lines = text.probe_llm(TimedLLM("Sorry, I can't.", now), clock=lambda: now[0])
+    assert not ok and "could not parse" in lines[1]

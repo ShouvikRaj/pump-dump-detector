@@ -6,9 +6,10 @@ name: model
 # prospective log and rewrite model/ on the `data` branch. The rule was fixed
 # before any model was trained: docs/stage5.md. scripts/pace.sh starts it at
 # the first pacer after 00:11 UTC (GitHub's cron here is unreliable); the cron
-# is the backup. LLM ratings come from GitHub Models with this workflow's own
-# token, so no key or account is needed. Once collection has finished and the
-# hold-out has been evaluated, it turns itself off.
+# is the backup. LLM ratings come from a small open-weights model that
+# llama.cpp runs on this runner, so no account, key or paid service is needed.
+# Once collection has finished and the hold-out has been evaluated, it turns
+# itself off.
 on:
   schedule:
     - cron: "11 0 * * *"
@@ -18,14 +19,13 @@ on:
         description: "Days of raw Reddit files to check out (older flags get no new text features)"
         default: "3"
       llm_probe:
-        description: "Only check that GitHub Models answers this workflow's token; save nothing"
+        description: "Only time one full-size LLM rating; save nothing"
         type: boolean
         default: false
 
 permissions:
   contents: write # push to the data branch
   actions: write # turn this workflow off once the hold-out has been evaluated
-  models: read # LLM ratings from GitHub Models
 
 concurrency:
   # writes only model/, so its push replays cleanly on top of the other jobs' pushes
@@ -35,9 +35,14 @@ concurrency:
 jobs:
   model:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 75
     env:
       RAW_DAYS: ${{ inputs.raw_days || '3' }}
+      # llm-v1 (docs/stage5.md): this llama.cpp build and this model file, both pinned
+      LLAMA_CPP: b10456
+      LLM_REPO: unsloth/Qwen3-4B-Instruct-2507-GGUF
+      LLM_REVISION: a06e946bb6b655725eafa393f4a9745d460374c9
+      LLM_FILE: Qwen3-4B-Instruct-2507-Q4_K_M.gguf
     steps:
       - uses: actions/checkout@v4
 
@@ -50,11 +55,23 @@ jobs:
       - name: Install
         run: pip install ".[model]"
 
-      - name: Probe GitHub Models
+      - name: Cache the LLM (llama.cpp and the model file)
+        uses: actions/cache@v4
+        with:
+          path: ~/llm
+          key: llm-${{ env.LLAMA_CPP }}-${{ env.LLM_REVISION }}-${{ env.LLM_FILE }}
+
+      - name: Start the LLM server
+        id: llm
+        # without it, ratings wait (and are given up 3 days after the flag); the rest of the run goes on
+        continue-on-error: true
+        run: scripts/llm_server.sh
+
+      - name: Time one full-size rating
         if: ${{ inputs.llm_probe }}
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: python -m pumpdump model --datastore datastore --llm-probe
+        run: >-
+          python -m pumpdump model --datastore datastore --llm-probe
+          --llm-model "$LLM_REPO@${LLM_REVISION:0:7}/$LLM_FILE"
 
       - name: Check out the data branch (candidates, snapshots, track and label tables, model/, recent raw files)
         if: ${{ !inputs.llm_probe }}
@@ -65,11 +82,14 @@ jobs:
       - name: Rate, retrain and score
         id: model
         if: ${{ !inputs.llm_probe }}
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
         run: >-
           python -m pumpdump model --datastore datastore --raw-days "$RAW_DAYS"
+          --llm-model "$LLM_REPO@${LLM_REVISION:0:7}/$LLM_FILE"
           --summary "$GITHUB_STEP_SUMMARY" --github-output "$GITHUB_OUTPUT"
+
+      - name: Show the LLM server's timings
+        if: ${{ always() && steps.llm.outcome != 'skipped' }}
+        run: grep -E "eval time|error|warn" ~/llm/server.log | tail -n 30 || true
 
       - name: Push the data branch
         if: ${{ !inputs.llm_probe }}

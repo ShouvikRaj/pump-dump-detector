@@ -5,8 +5,8 @@ created in the 24 hours up to the flag and collected by then (bots excluded, as 
 
   text-v1  lexicon features: author concentration, copy-paste across authors, sales-pitch, squeeze, news and
            dilution vocabulary, outside links, watch lists, length
-  llm-v1   a language model's ratings of the same documents (promotion, coordination, news, sentiment), through
-           GitHub Models with the workflow's built-in GITHUB_TOKEN: no account or key
+  llm-v1   a language model's ratings of the same documents (promotion, coordination, news, sentiment) from a small
+           open-weights model that llama.cpp's server runs on the workflow's own runner: no account, key or service
 
 Both are computed once per candidate, soon after the flag, and stored (model/text.csv, model/llm.csv). Design:
 docs/stage5.md.
@@ -54,9 +54,8 @@ MIN_DUP_LETTERS = 20
 MAX_DOCS = 40
 DOC_CHARS = 400
 MAX_CHARS = 12_000
-GITHUB_MODELS_URL = "https://models.github.ai/inference/chat/completions"
-GITHUB_MODELS_CATALOG = "https://models.github.ai/catalog/models"
-LLM_MODEL = "openai/gpt-4.1-mini"
+LLM_URL = "http://127.0.0.1:8080/v1/chat/completions"  # llama.cpp's OpenAI-compatible server (scripts/llm_server.sh)
+LLM_MODEL = "unsloth/Qwen3-4B-Instruct-2507-GGUF@a06e946/Qwen3-4B-Instruct-2507-Q4_K_M.gguf"  # the workflow passes its own
 CATALYSTS = ("none", "earnings", "regulatory", "deal", "financing", "other")
 SYSTEM_PROMPT = ("You rate Reddit chatter about one stock for a research project that detects pump-and-dump schemes. "
                  "Judge only what the posts below show. Reply with one JSON object and nothing else.")
@@ -224,14 +223,14 @@ class LLMRefused(LLMError):
     """The service rejected this prompt (e.g. its content filter): retrying the same prompt won't help."""
 
 
-class GitHubModels:
-    """Minimal GitHub Models chat client. In Actions the workflow's GITHUB_TOKEN works with `models: read`."""
+class ChatClient:
+    """Minimal client for an OpenAI-compatible chat endpoint; by default llama.cpp's server on this machine."""
 
-    def __init__(self, token: str, model: str = LLM_MODEL, post: Callable = requests.post,
+    def __init__(self, url: str = LLM_URL, model: str = LLM_MODEL, post: Callable = requests.post,
                  sleep: Callable[[float], None] = time.sleep, clock: Callable[[], float] = time.monotonic,
-                 min_interval: float = 4.5, timeout: float = 90):
-        self.token, self.model, self.post, self.sleep, self.clock = token, model, post, sleep, clock
-        self.min_interval, self.timeout = min_interval, timeout  # 4.5 s keeps under the free tier's 15 calls a minute
+                 min_interval: float = 0.0, timeout: float = 900):
+        self.url, self.model, self.post, self.sleep, self.clock = url, model, post, sleep, clock
+        self.min_interval, self.timeout = min_interval, timeout  # a long prompt takes a CPU a minute or two
         self._last: float | None = None
 
     def complete(self, system: str, user: str) -> str:
@@ -240,14 +239,15 @@ class GitHubModels:
             if wait > 0:
                 self.sleep(wait)
         try:
-            r = self.post(GITHUB_MODELS_URL, timeout=self.timeout, headers=_headers(self.token),
-                          json={"model": self.model, "temperature": 0, "max_tokens": 400,
+            r = self.post(self.url, timeout=self.timeout, headers={"Content-Type": "application/json"},
+                          json={"model": self.model, "temperature": 0, "seed": 0, "max_tokens": 400,
+                                "response_format": {"type": "json_object"},
                                 "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]})
         except requests.RequestException as exc:
             raise LLMError(f"network: {exc}") from exc
         finally:
             self._last = self.clock()
-        if r.status_code == 400 and "content_filter" in r.text:  # the provider's filter refused this prompt
+        if r.status_code == 400 and "content_filter" in r.text:  # a hosted model's filter refused this prompt
             raise LLMRefused(f"HTTP 400: {r.text[:200]}")
         if r.status_code != 200:
             raise LLMError(f"HTTP {r.status_code}: {r.text[:200]}")
@@ -257,34 +257,22 @@ class GitHubModels:
             raise LLMError(f"unexpected reply: {r.text[:200]}") from exc
 
 
-def _headers(token: str) -> dict:
-    return {"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json",
-            "X-GitHub-Api-Version": "2022-11-28", "Content-Type": "application/json"}
-
-
-def probe_github_models(token: str, model: str = LLM_MODEL, post: Callable = requests.post,
-                        get: Callable = requests.get) -> list[str]:
-    """What GitHub Models answers this token, for checking the setup from a workflow run; nothing is saved."""
-    body = {"model": model, "temperature": 0, "max_tokens": 20,
-            "messages": [{"role": "user", "content": 'Reply with {"ok": true} and nothing else.'}]}
-    lines = []
-    for follow in (False, True):
-        try:
-            r = post(GITHUB_MODELS_URL, headers=_headers(token), json=body, timeout=60, allow_redirects=follow)
-        except requests.RequestException as exc:
-            lines.append(f"POST failed: {exc}")
-            continue
-        hops = len(getattr(r, "history", []))
-        lines.append(f"POST, redirects {'followed' if follow else 'not followed'}: HTTP {r.status_code}, "
-                     f"type {r.headers.get('content-type')}, location {r.headers.get('location')}, "
-                     f"{hops} redirect{'s' if hops != 1 else ''}, final url {getattr(r, 'url', '')}: {r.text[:300]!r}")
+def probe_llm(llm, clock: Callable[[], float] = time.monotonic) -> tuple[bool, list[str]]:
+    """Time one full-size rating (as long as a real prompt gets) and check that it parses; nothing is saved."""
+    as_of = time.time()
+    docs = [{"id": f"t1_{i}", "kind": "comment", "subreddit": "pennystocks", "author": f"user{i % 9}",
+             "created_utc": as_of - 3600 + i, "title": None,
+             "body": f"$ABCD comment {i}: short squeeze incoming, low float, get in before the news " + "x" * 400}
+            for i in range(MAX_DOCS)]
+    snap = {"ticker": "ABCD", "name": "Abcd Inc.", "venue": "listed", "price_at_flag": "3.21", "cik": ""}
+    system, user = build_prompt(snap, docs, as_of)
+    t0 = clock()
+    answer = llm.complete(system, user)
+    lines = [f"{getattr(llm, 'model', '')}: a {len(system) + len(user)}-character prompt answered in "
+             f"{clock() - t0:.0f} s: {answer[:300]!r}"]
     try:
-        r = get(GITHUB_MODELS_CATALOG, headers=_headers(token), timeout=60)
-        ids = [m.get("id") for m in r.json() if isinstance(m, dict)] if r.status_code == 200 else []
-        similar = [i for i in ids if i and model.split("/")[-1].split("-")[0] in i]
-        lines.append(f"catalog: HTTP {r.status_code}, {len(ids)} models, {model} listed: {'yes' if model in ids else 'no'}"
-                     f"; similar: {', '.join(similar[:15])}")
-    except (requests.RequestException, ValueError) as exc:
-        lines.append(f"catalog failed: {exc}")
-    return lines
-
+        lines.append(f"parsed: {parse_rating(answer)}")
+        return True, lines
+    except ValueError as exc:
+        lines.append(f"could not parse: {exc}")
+        return False, lines

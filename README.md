@@ -138,7 +138,8 @@ trained: [docs/stage5.md](docs/stage5.md)):
 
 - reads the Reddit posts and comments behind each new flag and turns them into text features (one author dominating,
   copy-paste across authors, promotional and squeeze language, news and dilution talk, outside links) plus an LLM
-  rating of promotion, coordination and real news, from GitHub Models with the workflow's own token (no key needed);
+  rating of promotion, coordination and real news from a small open-weights model (Qwen3 4B) that llama.cpp runs on
+  the workflow's own runner (no account or key);
 - trains one LightGBM model per week and target (**crash** first, the avoid signal; then **pump**) on every candidate
   and control whose label was settled before the week began, recent ones weighted more, once 50 rows and 5 positives
   exist;

@@ -287,8 +287,8 @@ def raw_doc(id_, created, collected, body, author="alice", kind="comment"):
 
 
 def chatter(ds, as_of, ticker):
-    ds.write_raw([raw_doc("t1_a", as_of - 3000, as_of - 2900, f"${ticker} to the moon, get in now", "a"),
-                  raw_doc("t1_b", as_of - 2000, as_of - 1900, f"${ticker} earnings were announced", "b")],
+    ds.write_raw([raw_doc(f"t1_{ticker}a", as_of - 3000, as_of - 2900, f"${ticker} to the moon, get in now", "a"),
+                  raw_doc(f"t1_{ticker}b", as_of - 2000, as_of - 1900, f"${ticker} earnings were announced", "b")],
                  run_started=as_of - 1900, run_id="1")
 
 
@@ -356,6 +356,36 @@ def test_a_refused_prompt_is_recorded_at_once(tmp_path):
     assert row["status"] == "failed" and "content_filter" in row["error"]
 
 
+def test_an_unparseable_rating_is_recorded_at_once(tmp_path):
+    now = START + DAY
+    ds = make_datastore(tmp_path, weeks=1, per_day=1, now=now)
+    chatter(ds, float(ds.read_csv("candidates/episodes.csv")[0]["first_flagged_at"]), "AAAA")
+    model.run_model(ds, llm=FakeLLM("I can't rate this."), clock=lambda: now)
+    (row,) = ds.read_csv(text.LLM)
+    assert row["status"] == "failed" and "unparseable" in row["error"]
+    assert len(ds.read_csv(model.PREDICTIONS)) == 2  # scored without the rating
+
+
+def test_llm_calls_stop_when_the_time_budget_is_spent(tmp_path):
+    now = START + DAY
+    ds = make_datastore(tmp_path, weeks=1, per_day=3, now=now)  # three Monday candidates
+    for e in ds.read_csv("candidates/episodes.csv"):
+        chatter(ds, float(e["first_flagged_at"]), e["ticker"])
+    t = [0.0]
+
+    class SlowLLM(FakeLLM):
+        def complete(self, system, user):
+            t[0] += 30 * 60  # half an hour per rating
+            return super().complete(system, user)
+
+    llm = SlowLLM(RATING, RATING, RATING)
+    summary = model.run_model(ds, llm=llm, clock=lambda: now, llm_budget_s=35 * 60, timer=lambda: t[0])
+    assert len(llm.prompts) == 2 and summary["llm"]["ok"] == 2 and summary["llm"]["waiting"] == 1
+    assert len(ds.read_csv(model.PREDICTIONS)) == 4  # the third waits for its rating
+    model.run_model(ds, llm=FakeLLM(RATING), clock=lambda: now + 3600)
+    assert len(ds.read_csv(text.LLM)) == 3 and len(ds.read_csv(model.PREDICTIONS)) == 6
+
+
 def test_cli_model_command_and_build_db(tmp_path, monkeypatch):
     now_ds = tmp_path / "ds"
     ds = make_datastore(now_ds, weeks=1, per_day=1, now=START + 2 * DAY)
@@ -374,26 +404,29 @@ def test_cli_model_command_and_build_db(tmp_path, monkeypatch):
 
 
 def test_cli_llm_probe_saves_nothing(tmp_path, monkeypatch, capsys):
-    calls = []
+    made = []
 
-    class Probe:
-        model = "openai/gpt-4.1-mini"
-
-        def __init__(self, token):
-            calls.append(token)
+    class Client:
+        def __init__(self, url, model):
+            made.append((url, model))
+            self.model = model
 
         def complete(self, system, user):
-            return '{"ok": true}'
+            return RATING
 
-    monkeypatch.setattr(cli, "GitHubModels", Probe)
-    monkeypatch.setattr(cli, "probe_github_models", lambda token: [f"catalog checked with {token}"])
-    monkeypatch.delenv("GITHUB_TOKEN", raising=False)
-    assert cli.main(["model", "--datastore", str(tmp_path), "--llm-probe"]) == 1  # no token, no probe
-    monkeypatch.setenv("GITHUB_TOKEN", "tok")
-    assert cli.main(["model", "--datastore", str(tmp_path), "--llm-probe"]) == 0
-    out = capsys.readouterr().out
-    assert calls == ["tok"] and '{"ok": true}' in out and "catalog checked with tok" in out
+    monkeypatch.setattr(cli, "ChatClient", Client)
+    assert cli.main(["model", "--datastore", str(tmp_path), "--llm-probe", "--llm-url", "http://127.0.0.1:9/x",
+                     "--llm-model", "some/model"]) == 0
+    assert made == [("http://127.0.0.1:9/x", "some/model")] and "llm_promotion" in capsys.readouterr().out
     assert not any(tmp_path.iterdir())
+
+    class Broken(Client):
+        def complete(self, system, user):
+            raise text.LLMError("network: connection refused")
+
+    monkeypatch.setattr(cli, "ChatClient", Broken)
+    assert cli.main(["model", "--datastore", str(tmp_path), "--llm-probe"]) == 1
+    assert "connection refused" in capsys.readouterr().out
 
 
 def test_letters_are_valid_cashtags():

@@ -90,15 +90,18 @@ about a concrete, checkable company event rather than price action), `sentiment`
 `catalyst` (none, earnings, regulatory, deal, financing, other) and a one-sentence `summary`. The four numbers are
 features; catalyst and summary go in the report only.
 
-- Model: GitHub Models (`openai/gpt-4.1-mini`), called from the workflow with the repository's built-in
-  `GITHUB_TOKEN` (`models: read` permission): no account, key or paid plan. Temperature 0. Its training data ends
-  long before these flags, so it cannot know what happened next; it sees nothing written after the flag.
+- Model: Qwen3-4B-Instruct-2507 (Apache 2.0), 4-bit GGUF `Qwen3-4B-Instruct-2507-Q4_K_M.gguf` from
+  `unsloth/Qwen3-4B-Instruct-2507-GGUF` at revision `a06e946`, run by llama.cpp's server (release `b10456`) on the
+  workflow's own runner (`scripts/llm_server.sh`; both downloads pinned and cached). No account, key, paid plan or
+  outside service. Temperature 0, seed 0, JSON output enforced by the server. Its training data ends long before
+  these flags, so it cannot know what happened next; it sees nothing written after the flag.
 - Each rating is stored once in `model/llm.csv` with the model id, `llm-v1` and a hash of the prompt, and never
-  recomputed. A failed call is retried on later runs for 3 days after the flag, then recorded as failed (features
-  blank); a prompt the provider's content filter refuses is recorded as failed at once, and a candidate whose flag
-  documents can't be found in the raw files is recorded as `no_documents`. A candidate is scored only once its rating exists or
-  has been given up on, so its one score includes the rating whenever there is one. If the service is unavailable,
-  the `llm` group is simply blank and the pruning rule below drops it.
+  recomputed. If the server is down, the rating is retried on later runs for 3 days after the flag, then recorded
+  as failed (features blank); an answer that doesn't parse is recorded as failed at once (at temperature 0 the same
+  prompt gets the same answer), and a candidate whose flag documents can't be found in the raw files is recorded as
+  `no_documents`. A run starts no new rating after 35 minutes; the rest wait for the next run. A candidate is scored
+  only once its rating exists or has been given up on, so its one score includes the rating whenever there is one.
+  If ratings keep failing, the `llm` group is simply blank and the pruning rule below drops it.
 - Changing the model or the prompt is a new `llm` version; old ratings keep theirs.
 
 ## The model
@@ -226,8 +229,9 @@ hold-out start (2027-01-04).
 - When collection ends, the nightly run turns the pacer off, so the last `track`, `label` and `model` runs rely on
   their crons, which fire unreliably for this repository. If `model/holdout.md` hasn't appeared a few weeks after
   collection ended, start the workflows by hand (Actions, then Run workflow).
-- The LLM ratings depend on GitHub Models staying available and free at this volume (a few dozen calls a day, well
-  under its free limit); the model works without them.
+- The LLM is small (4B parameters, 4-bit) so that it runs on a free runner's CPU in about a minute per candidate; a
+  larger hosted model would read the chatter better but needs an account or a key. The model works without the
+  ratings.
 - One model covers both pump types; results are reported per archetype, but there are too few labels for separate
   models.
 - Stage 4's real-news rule ignores press releases (8-K items 7.01/8.01, 6-Ks). Classifying their text would change the
@@ -245,3 +249,7 @@ After this file was committed, the code was run once on a copy of the live data 
 `mentions_24h` for all 15), found no label available for training, so trained nothing, and printed no outcome.
 The clarifications added after that run (refusals and waiting for the LLM rating; a never-labeled hold-out snapshot
 not blocking the evaluation forever) change no validation or hold-out rule.
+
+`llm-v1` first named GitHub Models (`openai/gpt-4.1-mini`). The first probe run on 2026-10-06 got a plain "OK" instead
+of an answer: GitHub retired GitHub Models on 2026-07-30. Before any rating was stored, `llm-v1` was changed to the
+open-weights model above, which needs no account or key; the prompt and everything else stayed the same.

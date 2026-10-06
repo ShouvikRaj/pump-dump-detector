@@ -520,7 +520,8 @@ def _documents(ds: Datastore, episodes: list[dict]) -> dict[str, list[dict]]:
     return {e["episode_id"]: text.flag_documents(conn, e["ticker"], float(e["first_flagged_at"])) for e in episodes}
 
 
-def update_text(ds: Datastore, llm, now: float, raw_since: date | None, max_llm_calls: int, summary: dict) -> None:
+def update_text(ds: Datastore, llm, now: float, raw_since: date | None, summary: dict, llm_budget_s: float | None = None,
+                timer: Callable[[], float] = time.monotonic) -> None:
     """Append text features (text-v1) and LLM ratings (llm-v1) of candidates that don't have them yet."""
     episodes = ds.read_csv("candidates/episodes.csv")
     snaps = {s["episode_id"]: s for s in ds.read_csv(SNAPSHOTS)
@@ -549,7 +550,7 @@ def update_text(ds: Datastore, llm, now: float, raw_since: date | None, max_llm_
             if (e["episode_id"] not in have_text or (e in want_llm and e["episode_id"] not in gave_up))
             and _computable(float(e["first_flagged_at"]), raw_since, first_day)]
     docs_of = _documents(ds, todo) if todo else {}
-    calls, blocked = 0, False
+    started, blocked = timer(), False
     for e in todo:
         eid, docs, as_of = e["episode_id"], docs_of[e["episode_id"]], float(e["first_flagged_at"])
         if eid not in have_text:
@@ -561,29 +562,35 @@ def update_text(ds: Datastore, llm, now: float, raw_since: date | None, max_llm_
         if not docs:
             new_llm.append(rating_row(e, "no_documents"))
             continue
-        if blocked or calls >= max_llm_calls:
-            continue
+        if blocked or (llm_budget_s is not None and timer() - started >= llm_budget_s):
+            continue  # left for the next run
         system, user = text.build_prompt(snaps[eid], docs, as_of)
         sha = text.prompt_sha(system, user)
-        calls += 1
         try:
-            new_llm.append(rating_row(e, "ok", docs, text.parse_rating(llm.complete(system, user)), sha))
-            attempts.pop(eid, None)
+            answer = llm.complete(system, user)
         except text.LLMRefused as exc:
             new_llm.append(rating_row(e, "failed", docs, sha=sha, error=str(exc)))
             attempts.pop(eid, None)
-        except (text.LLMError, ValueError) as exc:  # try again on a later run
+            continue
+        except text.LLMError as exc:  # server down or busy: try again on a later run, and leave the rest for it
             a = attempts.setdefault(eid, {"n": 0})
             a.update(n=a["n"] + 1, error=str(exc)[:300], at=iso(now))
-            if isinstance(exc, text.LLMError):
-                blocked = True  # rate limit or outage: leave the rest for the next run
-                summary["warnings"].append(f"llm: {exc}"[:200])
+            blocked = True
+            summary["warnings"].append(f"llm: {exc}"[:200])
+            continue
+        attempts.pop(eid, None)
+        try:
+            new_llm.append(rating_row(e, "ok", docs, text.parse_rating(answer), sha))
+        except ValueError as exc:  # the same prompt gets the same answer at temperature 0: no point retrying
+            new_llm.append(rating_row(e, "failed", docs, sha=sha, error=f"unparseable: {exc}: {answer[:200]}"))
     ds.append_csv(text.TEXT, text.TEXT_FIELDS, new_text)
     ds.append_csv(text.LLM, text.LLM_FIELDS, new_llm)
     ds.write_text(STATE, json.dumps(state, indent=2, sort_keys=True) + "\n")
     summary["text"] = len(new_text)
+    rated = have_llm | {r["episode_id"] for r in new_llm}
     summary["llm"] = {"ok": sum(r["status"] == "ok" for r in new_llm),
-                      "failed": sum(r["status"] == "failed" for r in new_llm), "waiting": len(attempts)}
+                      "failed": sum(r["status"] == "failed" for r in new_llm),
+                      "waiting": sum(1 for e in want_llm if e["episode_id"] not in rated)}
 
 
 # -- the run ------------------------------------------------------------------------------------------------------
@@ -721,11 +728,11 @@ def evaluate_holdout(ds: Datastore, rows: list[Row], now: float) -> None:
 
 
 def run_model(ds: Datastore, llm=None, clock: Callable[[], float] = time.time, raw_since: date | None = None,
-              max_llm_calls: int = 100) -> dict:
+              llm_budget_s: float | None = None, timer: Callable[[], float] = time.monotonic) -> dict:
     now = clock()
     summary: dict = {"text": 0, "llm": {"ok": 0, "failed": 0, "waiting": 0}, "scored": 0, "models": {}, "dev": {},
                      "holdout": "locked", "finished": False, "warnings": []}
-    update_text(ds, llm, now, raw_since, max_llm_calls, summary)
+    update_text(ds, llm, now, raw_since, summary, llm_budget_s, timer)
     rows = load_rows(ds)
     trainer = Trainer(rows)
     dev = development(trainer, rows)

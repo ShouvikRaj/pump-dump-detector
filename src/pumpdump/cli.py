@@ -29,7 +29,7 @@ from .sources.arctic_shift import BASE_URL, ArcticShift
 from .sources.stocktwits import fetch_trending
 from .store import Datastore
 from .symbols import load_symbols, refresh_symbols
-from .text import LLM as MODEL_LLM, TEXT as MODEL_TEXT, GitHubModels, probe_github_models
+from .text import LLM as MODEL_LLM, LLM_MODEL, LLM_URL, TEXT as MODEL_TEXT, ChatClient, LLMError, probe_llm
 from .tickers import default_extractor
 
 
@@ -215,25 +215,21 @@ def render_model_summary(summary: dict, run_id: str) -> str:
 
 
 def cmd_model(args: argparse.Namespace) -> int:
-    token = os.environ.get("GITHUB_TOKEN", "")
-    if args.llm_probe:  # check that GitHub Models answers this workflow's token; saves nothing
-        if not token:
-            print("no GITHUB_TOKEN: nothing to probe with")
-            return 1
-        for line in probe_github_models(token):
-            print(line)
-        client = GitHubModels(token)
-        answer = client.complete("Reply with JSON only.", 'Return {"ok": true}.')
-        print(f"{client.model} answered: {answer[:300]}")
-        return 0
+    if args.llm_probe:  # time one full-size rating against the LLM server; saves nothing
+        try:
+            ok, lines = probe_llm(ChatClient(url=args.llm_url, model=args.llm_model))
+        except LLMError as exc:
+            ok, lines = False, [f"the LLM server did not answer: {exc}"]
+        print("\n".join(lines))
+        return 0 if ok else 1
     ds = Datastore(args.datastore)
     run_id = args.run_id or os.environ.get("GITHUB_RUN_ID") or time.strftime("%Y%m%dT%H%M%S", time.gmtime())
-    llm = GitHubModels(token) if token and not args.no_llm else None
+    llm = None if args.no_llm else ChatClient(url=args.llm_url, model=args.llm_model)
     now = time.time()
     raw_since = None
     if args.raw_days is not None:  # only the last N days of raw files were checked out
         raw_since = datetime.fromtimestamp(now, timezone.utc).date() - timedelta(days=args.raw_days)
-    summary = model.run_model(ds, llm, clock=lambda: now, raw_since=raw_since, max_llm_calls=args.max_llm_calls)
+    summary = model.run_model(ds, llm, clock=lambda: now, raw_since=raw_since, llm_budget_s=args.llm_minutes * 60)
     report = render_model_summary(summary, str(run_id))
     print(report)
     if args.summary:
@@ -369,9 +365,11 @@ def main(argv: list[str] | None = None) -> int:
     md.add_argument("--datastore", required=True)
     md.add_argument("--run-id")
     md.add_argument("--raw-days", type=int, help="only the last N days of raw files are present (default: all)")
-    md.add_argument("--max-llm-calls", type=int, default=100)
+    md.add_argument("--llm-minutes", type=float, default=35.0, help="start no new LLM rating after this long")
+    md.add_argument("--llm-url", default=LLM_URL, help="OpenAI-compatible chat endpoint (default: llama.cpp's server)")
+    md.add_argument("--llm-model", default=LLM_MODEL, help="the model the server runs, recorded with each rating")
     md.add_argument("--no-llm", action="store_true", help="skip the LLM ratings (score without them)")
-    md.add_argument("--llm-probe", action="store_true", help="only check that GitHub Models answers; save nothing")
+    md.add_argument("--llm-probe", action="store_true", help="only time one full-size rating; save nothing")
     md.add_argument("--summary", help="append a markdown summary here (e.g. $GITHUB_STEP_SUMMARY)")
     md.add_argument("--github-output", help="write finished=true|false here ($GITHUB_OUTPUT)")
     md.set_defaults(func=cmd_model)
