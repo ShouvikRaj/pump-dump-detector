@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-06T07:38:40Z by run `37430842002`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-06T07:51:32Z by run `37432228834`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -12,13 +12,13 @@ collected live, so flags in this period are marked `warmup=1` in episodes.csv.
 |---|---|---|---|---|---|---|---|---|---|---|
 | ALEC | 2026-10-05 23:41 | mention spike | 10 | 0.0 | 7 | 0 | pennystocks 10 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1wxyz2p/comment/pe48x59/) |
 | APLD | 2026-10-05 14:23 | mention spike | 40 | 13.14 | 21 | 0 | wallstreetbets 40 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyj9yn/) |
-| DRTS | 2026-10-04 23:23 | mention spike | 14 | 3.0 | 11 | 0 | wallstreetbets 14 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyin5e/comment/pe334cu/) |
 | GME | 2026-10-05 16:24 | mention spike | 25 | 5.29 | 22 | 0 | wallstreetbets 24, pennystocks 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyrlbr/) |
-| MSFT | 2026-10-05 21:14 | mention spike | 47 | 19.43 | 33 | 0 | wallstreetbets 47 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wy8qku/) |
+| MSFT | 2026-10-05 21:14 | mention spike | 48 | 19.43 | 34 | 0 | wallstreetbets 48 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wy8qku/) |
 | QCOM | 2026-10-05 21:14 | mention spike | 10 | 2.0 | 9 | 0 | wallstreetbets 10 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wy4jnf/) |
 | SPCX | 2026-10-05 14:51 | mention spike | 213 | 29.71 | 131 | 0 | wallstreetbets 213 | Nasdaq | #1 | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyuw3k/) |
 | TSM | 2026-10-05 15:18 | mention spike | 16 | 4.29 | 13 | 0 | wallstreetbets 16 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyin5e/comment/pe4sehv/) |
 | VEEA | 2026-10-05 15:33 | mention spike | 22 | 3.86 | 13 | 0 | pennystocks 21, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1wy88kg/) |
+| DRTS | 2026-10-04 23:23 | mention spike | 13 | 3.14 | 10 | 0 | wallstreetbets 13 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyin5e/comment/pe334cu/) |
 | IREN | 2026-10-05 17:49 | mention spike | 9 | 5.0 | 9 | 0 | wallstreetbets 9 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyin5e/comment/pe31di3/) |
 | PMI | 2026-10-05 13:55 | mention spike | 2 | 0.29 | 1 | 0 | pennystocks 2 | NYSE American |  | [link](https://www.reddit.com/r/pennystocks/comments/1wxyz2p/comment/pe0qett/) |
 | VST | 2026-10-05 04:15 | mention spike | 14 | 11.14 | 11 | 0 | wallstreetbets 14 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyin5e/comment/pe5pwnh/) |
