@@ -1,37 +1,38 @@
 # Stage 5 model
 
-Updated 2026-10-06T02:40:13Z. Rule `model-v1` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-10-06T08:20:48Z. Rule `model-v2` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-10-05)
 
 | Target | Status | Trained on | Positives | Base rate | Flag at | Feature groups |
 |---|---|---|---|---|---|---|
-| crash | no model yet | 0 rows | 0 | - | - | chatter, text, llm, price_volume, size, short_interest, filings |
-| pump | no model yet | 0 rows | 0 | - | - | chatter, text, llm, price_volume, size, short_interest, filings |
+| crash | no model yet | 0 rows | 0 | - | - | chatter, text, llm, price_volume, size, short_interest, filings, history |
+| pump | no model yet | 0 rows | 0 | - | - | chatter, text, llm, price_volume, size, short_interest, filings, history |
 
 A week's model needs 50 rows and 5 positives whose labels were settled before the week began; a label settles 10 sessions (two weeks) after the flag, 15 after a 50% rise.
 
 ## Latest candidates (last 7 days)
 
-Scores as logged when each candidate was first seen; flagged ones in bold. LLM ratings are 0-3.
+Scores as logged when each candidate was first seen; flagged ones in bold. The LLM column gives the shares of the posts shown that are about the company, pitch it, warn about it and state a company event (counted only when its quote checks out).
 
-| Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM promotion / coordination / news | What the chatter was about |
+| Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
-| 2026-10-06 00:59 | IWM | other | no model | no model | 0 / 1 / 0 | Strong negative sentiment and criticism of IWM's price movement amid interest rate concerns. |
-| 2026-10-05 23:41 | ALEC | other | no model | no model | 1 / 0 / 3 | Positive sentiment driven by a major Genentech license agreement announcement |
-| 2026-10-05 21:14 | MSFT | other | no model | no model | 3 / 2 / 0 | Widespread bullish hype with price targets and viral memes driving MSFT enthusiasm |
-| 2026-10-05 21:14 | QCOM | other | no model | no model | 1 / 0 / 1 | Discussion centers on QCOM's earnings and valuation, with mixed sentiment and mild promotional elements. |
-| 2026-10-05 17:49 | IREN | other | no model | no model | 0 / 0 / 0 | Discussion is speculative, lacking concrete events or clear sentiment. |
-| 2026-10-05 16:38 | DELL | other | no model | no model | 1 / 1 / 0 | Positive sentiment with speculative price targets and hype around DELL's potential surge |
-| 2026-10-05 16:24 | GME | other | no model | no model | 1 / 1 / 0 | Reddit chatter promotes GME with insider buying and trend-based bullishness, despite skepticism and criticism. |
-| 2026-10-05 15:33 | VEEA | low float runner | no model | no model | 1 / 1 / 1 | Retail bullishness around merger news with short squeeze expectations |
-| 2026-10-05 15:18 | TSM | other | no model | no model | 1 / 1 / 0 | TSM is being heavily discussed with bullish sentiment and price-driven hype. |
-| 2026-10-05 14:51 | SPCX | other | no model | no model | 3 / 3 / 0 | Extensive hype and price targets with no real company updates or events. |
-| 2026-10-05 14:23 | APLD | other | no model | no model | 2 / 3 / 0 | Multiple users promote APLD with hype around earnings, using repetitive phrases and coordinated messaging. |
-| 2026-10-05 14:09 | SDEV | other | no model | no model | 1 / 1 / 0 | SDEV price drop sparks panic and confusion among traders |
-| 2026-10-05 13:55 | PMI | low float runner | no model | no model | 0 / 1 / 3 | Reddit chatter focuses on upcoming ISM PMI data and market reaction, with some coordination in timing and phrasing. |
-| 2026-10-05 04:15 | VST | other | no model | no model | 3 / 3 / 0 | Intense bullish hype and coordinated promotion of VST with no concrete company events. |
-| 2026-10-04 23:23 | DRTS | other | no model | no model | 3 / 0 / 0 | Excited hype and speculative enthusiasm about DRTS's cancer treatment potential with no concrete news. |
+| 2026-10-06 08:17 | MSTR | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss holding MSTR, express bullish optimism, and question debt levels without specific corporate events. |
+| 2026-10-06 00:59 | IWM | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss IWM price movements, interest rate sensitivity, and express frustration or confusion about its performance. |
+| 2026-10-05 23:41 | ALEC | other | no model | no model | 100% / 10% / 0% / 20% | Chatter discusses a new Genentech license agreement and buying activity for ALEC. |
+| 2026-10-05 21:14 | MSFT | other | no model | no model | 100% / 0% / 0% / 0% | Chatter discusses MSFT price action, calls, and a price target raise, with mixed sentiment and no specific corporate events. |
+| 2026-10-05 21:14 | QCOM | other | no model | no model | 100% / 9.1% / 0% / 9.1% | Users discuss QCOM price movements, joke about it, and mention upcoming earnings without specific buy pitches or scam warnings. |
+| 2026-10-05 17:49 | IREN | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss IREN stock, express confusion, joke about the name, and mention holding positions. |
+| 2026-10-05 16:38 | DELL | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss DELL options strategies, price levels, and potential entry points without specific company events. |
+| 2026-10-05 16:24 | GME | other | no model | no model | 100% / 10% / 15% / 0% | Chatter discusses GameStop's potential acquisition of eBay, insider buying, and dilution concerns. |
+| 2026-10-05 15:33 | VEEA | low float runner | no model | no model | 100% / 27% / 0% / 6.7% | Users discuss a potential short squeeze and merger news for VEEA, with mixed sentiment and no specific corporate event details. |
+| 2026-10-05 15:18 | TSM | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss TSMC's geopolitical risks, recent price gains, and express bullish sentiment. |
+| 2026-10-05 14:51 | SPCX | other | no model | no model | 100% / 0% / 0% / 0% | Chatter discusses SPCX price movements, with some users joking about a Neptune mission and others noting general market pumping. |
+| 2026-10-05 14:23 | APLD | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss APLD earnings, power grid capacity, and potential price moves in anticipation of a Wednesday event. |
+| 2026-10-05 14:09 | SDEV | other | no model | no model | 100% / 0% / 12% / 0% | Users discuss SDEV price volatility, express regret over losses, and question if a rug pull occurred. |
+| 2026-10-05 13:55 | PMI | low float runner | no model | no model | 100% / 0% / 0% / 0% | User asks if others are holding the stock. |
+| 2026-10-05 04:15 | VST | other | no model | no model | 100% / 64% / 0% / 0% | Users express extreme bullishness, claim government funding, and urge others to buy VST. |
+| 2026-10-04 23:23 | DRTS | other | no model | no model | 100% / 18% / 0% / 0% | Users discuss DRTS medical technology, portfolio holdings, and express bullish enthusiasm for the stock. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
