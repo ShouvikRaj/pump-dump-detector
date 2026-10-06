@@ -55,6 +55,7 @@ MAX_DOCS = 40
 DOC_CHARS = 400
 MAX_CHARS = 12_000
 GITHUB_MODELS_URL = "https://models.github.ai/inference/chat/completions"
+GITHUB_MODELS_CATALOG = "https://models.github.ai/catalog/models"
 LLM_MODEL = "openai/gpt-4.1-mini"
 CATALYSTS = ("none", "earnings", "regulatory", "deal", "financing", "other")
 SYSTEM_PROMPT = ("You rate Reddit chatter about one stock for a research project that detects pump-and-dump schemes. "
@@ -239,11 +240,9 @@ class GitHubModels:
             if wait > 0:
                 self.sleep(wait)
         try:
-            r = self.post(GITHUB_MODELS_URL, timeout=self.timeout, headers={
-                "Authorization": f"Bearer {self.token}", "Accept": "application/vnd.github+json",
-                "X-GitHub-Api-Version": "2022-11-28", "Content-Type": "application/json",
-            }, json={"model": self.model, "temperature": 0, "max_tokens": 400,
-                     "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]})
+            r = self.post(GITHUB_MODELS_URL, timeout=self.timeout, headers=_headers(self.token),
+                          json={"model": self.model, "temperature": 0, "max_tokens": 400,
+                                "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]})
         except requests.RequestException as exc:
             raise LLMError(f"network: {exc}") from exc
         finally:
@@ -256,3 +255,36 @@ class GitHubModels:
             return r.json()["choices"][0]["message"]["content"]
         except (ValueError, KeyError, IndexError, TypeError) as exc:
             raise LLMError(f"unexpected reply: {r.text[:200]}") from exc
+
+
+def _headers(token: str) -> dict:
+    return {"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json",
+            "X-GitHub-Api-Version": "2022-11-28", "Content-Type": "application/json"}
+
+
+def probe_github_models(token: str, model: str = LLM_MODEL, post: Callable = requests.post,
+                        get: Callable = requests.get) -> list[str]:
+    """What GitHub Models answers this token, for checking the setup from a workflow run; nothing is saved."""
+    body = {"model": model, "temperature": 0, "max_tokens": 20,
+            "messages": [{"role": "user", "content": 'Reply with {"ok": true} and nothing else.'}]}
+    lines = []
+    for follow in (False, True):
+        try:
+            r = post(GITHUB_MODELS_URL, headers=_headers(token), json=body, timeout=60, allow_redirects=follow)
+        except requests.RequestException as exc:
+            lines.append(f"POST failed: {exc}")
+            continue
+        hops = len(getattr(r, "history", []))
+        lines.append(f"POST, redirects {'followed' if follow else 'not followed'}: HTTP {r.status_code}, "
+                     f"type {r.headers.get('content-type')}, location {r.headers.get('location')}, "
+                     f"{hops} redirect{'s' if hops != 1 else ''}, final url {getattr(r, 'url', '')}: {r.text[:300]!r}")
+    try:
+        r = get(GITHUB_MODELS_CATALOG, headers=_headers(token), timeout=60)
+        ids = [m.get("id") for m in r.json() if isinstance(m, dict)] if r.status_code == 200 else []
+        similar = [i for i in ids if i and model.split("/")[-1].split("-")[0] in i]
+        lines.append(f"catalog: HTTP {r.status_code}, {len(ids)} models, {model} listed: {'yes' if model in ids else 'no'}"
+                     f"; similar: {', '.join(similar[:15])}")
+    except (requests.RequestException, ValueError) as exc:
+        lines.append(f"catalog failed: {exc}")
+    return lines
+

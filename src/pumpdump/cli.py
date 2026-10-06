@@ -29,7 +29,7 @@ from .sources.arctic_shift import BASE_URL, ArcticShift
 from .sources.stocktwits import fetch_trending
 from .store import Datastore
 from .symbols import load_symbols, refresh_symbols
-from .text import LLM as MODEL_LLM, TEXT as MODEL_TEXT, GitHubModels
+from .text import LLM as MODEL_LLM, TEXT as MODEL_TEXT, GitHubModels, probe_github_models
 from .tickers import default_extractor
 
 
@@ -220,6 +220,8 @@ def cmd_model(args: argparse.Namespace) -> int:
         if not token:
             print("no GITHUB_TOKEN: nothing to probe with")
             return 1
+        for line in probe_github_models(token):
+            print(line)
         client = GitHubModels(token)
         answer = client.complete("Reply with JSON only.", 'Return {"ok": true}.')
         print(f"{client.model} answered: {answer[:300]}")

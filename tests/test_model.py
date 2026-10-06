@@ -386,11 +386,13 @@ def test_cli_llm_probe_saves_nothing(tmp_path, monkeypatch, capsys):
             return '{"ok": true}'
 
     monkeypatch.setattr(cli, "GitHubModels", Probe)
+    monkeypatch.setattr(cli, "probe_github_models", lambda token: [f"catalog checked with {token}"])
     monkeypatch.delenv("GITHUB_TOKEN", raising=False)
     assert cli.main(["model", "--datastore", str(tmp_path), "--llm-probe"]) == 1  # no token, no probe
     monkeypatch.setenv("GITHUB_TOKEN", "tok")
     assert cli.main(["model", "--datastore", str(tmp_path), "--llm-probe"]) == 0
-    assert calls == ["tok"] and '{"ok": true}' in capsys.readouterr().out
+    out = capsys.readouterr().out
+    assert calls == ["tok"] and '{"ok": true}' in out and "catalog checked with tok" in out
     assert not any(tmp_path.iterdir())
 
 

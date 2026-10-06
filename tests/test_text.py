@@ -174,3 +174,27 @@ def test_github_models_client_spaces_its_calls():
     now[0] += 1.0
     client.complete("s", "u")
     assert sleeps == [3.5]
+
+
+def test_probe_reports_what_github_models_answers():
+    class Resp(FakeResponse):
+        def __init__(self, status, body, url="", history=(), headers=None):
+            super().__init__(status, body)
+            self.url, self.history, self.headers = url, list(history), headers or {}
+
+    posts = []
+
+    def post(url, headers=None, json=None, timeout=None, allow_redirects=True):
+        posts.append(allow_redirects)
+        if not allow_redirects:
+            return Resp(301, "", url=url, headers={"location": "https://elsewhere.example/x"})
+        return Resp(200, "OK", url="https://elsewhere.example/x", history=[object()], headers={"content-type": "text/plain"})
+
+    def get(url, headers=None, timeout=None):
+        return Resp(200, [{"id": text.LLM_MODEL}, {"id": "openai/gpt-4.1"}, {"id": "meta/llama"}])
+
+    lines = text.probe_github_models("tok", post=post, get=get)
+    assert posts == [False, True]
+    assert "HTTP 301" in lines[0] and "https://elsewhere.example/x" in lines[0]
+    assert "HTTP 200" in lines[1] and "'OK'" in lines[1] and "1 redirect" in lines[1]
+    assert "3 models" in lines[2] and f"{text.LLM_MODEL} listed: yes" in lines[2]
