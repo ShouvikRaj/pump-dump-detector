@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-06T02:20:00Z by run `37403563675`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-06T02:32:32Z by run `37404595143`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -17,7 +17,7 @@ collected live, so flags in this period are marked `warmup=1` in episodes.csv.
 | MSFT | 2026-10-05 21:14 | mention spike | 49 | 18.71 | 34 | 0 | wallstreetbets 49 | Nasdaq | #5 | [link](https://www.reddit.com/r/wallstreetbets/comments/1wy8qku/) |
 | PMI | 2026-10-05 13:55 | mention spike | 15 | 1.43 | 10 | 0 | wallstreetbets 13, pennystocks 2 | NYSE American |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wy4mk1/comment/pe1hx05/) |
 | QCOM | 2026-10-05 21:14 | mention spike | 11 | 1.86 | 10 | 0 | wallstreetbets 11 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wy4jnf/) |
-| SPCX | 2026-10-05 14:51 | mention spike | 199 | 29.0 | 121 | 1 | wallstreetbets 199 | Nasdaq | #1 | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyqxxo/) |
+| SPCX | 2026-10-05 14:51 | mention spike | 201 | 29.0 | 122 | 1 | wallstreetbets 201 | Nasdaq | #1 | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyqxxo/) |
 | TSM | 2026-10-05 15:18 | mention spike | 17 | 4.14 | 13 | 0 | wallstreetbets 17 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyin5e/comment/pe4sehv/) |
 | VEEA | 2026-10-05 15:33 | mention spike | 23 | 3.57 | 14 | 0 | pennystocks 22, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1wy88kg/) |
 | VST | 2026-10-05 04:15 | mention spike | 30 | 8.57 | 16 | 0 | wallstreetbets 30 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wy4mk1/comment/pe2r92f/) |
