@@ -87,7 +87,7 @@ news and filings, to separate pumps from real news. Once per candidate, a langua
 It answers in JSON: `promotion` (0-3, how much the chatter is a sales pitch), `coordination` (0-3, the same phrases
 from different authors, near-identical posts, one author posting repeatedly), `news` (0-3, how much the discussion is
 about a concrete, checkable company event rather than price action), `sentiment` (-2 bearish to 2 bullish),
-`catalyst` (none, earnings, regulatory, deal, financing, other) and a one-sentence `summary`. The four numbers are
+`catalyst` (none, earnings, regulatory, deal, financing, other) and a `summary` of at most 20 words. The four numbers are
 features; catalyst and summary go in the report only.
 
 - Model: Qwen3-4B-Instruct-2507 (Apache 2.0), 4-bit GGUF `Qwen3-4B-Instruct-2507-Q4_K_M.gguf` from
@@ -229,7 +229,7 @@ hold-out start (2027-01-04).
 - When collection ends, the nightly run turns the pacer off, so the last `track`, `label` and `model` runs rely on
   their crons, which fire unreliably for this repository. If `model/holdout.md` hasn't appeared a few weeks after
   collection ended, start the workflows by hand (Actions, then Run workflow).
-- The LLM is small (4B parameters, 4-bit) so that it runs on a free runner's CPU in about a minute per candidate; a
+- The LLM is small (4B parameters, 4-bit) so that it runs on a free runner's CPU, at one to two minutes per candidate; a
   larger hosted model would read the chatter better but needs an account or a key. The model works without the
   ratings.
 - One model covers both pump types; results are reported per archetype, but there are too few labels for separate
@@ -252,4 +252,6 @@ not blocking the evaluation forever) change no validation or hold-out rule.
 
 `llm-v1` first named GitHub Models (`openai/gpt-4.1-mini`). The first probe run on 2026-10-06 got a plain "OK" instead
 of an answer: GitHub retired GitHub Models on 2026-07-30. Before any rating was stored, `llm-v1` was changed to the
-open-weights model above, which needs no account or key; the prompt and everything else stayed the same.
+open-weights model above, which needs no account or key. A probe on the runner took 133 s for a full-size prompt
+(2,747 tokens read at 24 per second, 88 written at 4.5 per second), so the summary was cut to at most 20 words;
+everything else stayed the same.

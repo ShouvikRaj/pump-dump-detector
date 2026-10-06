@@ -65,7 +65,7 @@ RATING_PROMPT = """Rate the chatter:
 - news: 0-3, how much the discussion is about a concrete, checkable company event (earnings, an FDA or regulatory decision, a contract, a merger, an offering) rather than price action. 0 none, 3 mainly.
 - sentiment: -2 to 2, bearish to bullish.
 - catalyst: the main company event discussed: none, earnings, regulatory, deal, financing or other.
-- summary: one sentence on what the chatter is about.
+- summary: one short sentence (at most 20 words) on what the chatter is about.
 Reply as {"promotion": 0, "coordination": 0, "news": 0, "sentiment": 0, "catalyst": "none", "summary": "..."}"""
 
 
@@ -240,7 +240,7 @@ class ChatClient:
                 self.sleep(wait)
         try:
             r = self.post(self.url, timeout=self.timeout, headers={"Content-Type": "application/json"},
-                          json={"model": self.model, "temperature": 0, "seed": 0, "max_tokens": 400,
+                          json={"model": self.model, "temperature": 0, "seed": 0, "max_tokens": 200,
                                 "response_format": {"type": "json_object"},
                                 "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]})
         except requests.RequestException as exc:
