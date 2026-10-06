@@ -376,3 +376,11 @@ What its labels are worth: in this set 19 of its 21 `pitch` labels and 2 of its 
 3 of its event quotes were found in the documents; but it found only 19 of the 33 clear pitches and 2 of the 12 clear
 events. `warning` can't be judged from one clear example. The test set also guided the change of format, so these
 scores flatter the prompt: the next `llm` version is to be tested on documents labelled after this (Known gaps).
+
+The first `model` run with it (run 37435090061, 2026-10-06 08:17 UTC) rated all 16 candidates flagged by then, with
+no failure and no dropped label, in about 90 seconds each. Its answers differ a little from the test run's although
+the model, prompt and settings are the same, presumably because that runner's CPU was different (it read prompts
+four times faster), which changes the arithmetic slightly: scored against the hand labels (14 of the 15 test
+candidates; PMI, down to one document, left out), `pitch` 14 right, 2 wrong, 19 missed and `event` 3 right, 0 wrong,
+9 missed. Ratings are therefore reproducible only on the same kind of runner, which matters little because each one
+is computed once and stored.
