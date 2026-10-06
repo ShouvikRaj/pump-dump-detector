@@ -167,3 +167,21 @@ def test_default_extractor_skips_finance_terms_that_became_listed_symbols_with_t
     text = "my COLA raise, the EMI on my loan, an ACAT transfer, then FNMA and BLGO"
     assert [m.ticker for m in ext.extract(text)] == ["BLGO", "FNMA"]
     assert ext.extract("$COLA") == [Mention("COLA", "cashtag", True)]
+
+
+def test_report_names_count_bare_outside_wallstreetbets_only():
+    # tickers-v4: on r/wallstreetbets a bare "PMI" is the ISM/S&P index; on r/pennystocks it is Picard Medical
+    ext = TickerExtractor(
+        universe={"PMI", "AMC"}, common_words=(), acronyms=(), cashtag_block=(), wsb_acronyms={"PMI"}
+    )
+    assert tickers(ext.extract("Services PMI came in hot, AMC", subreddit="wallstreetbets")) == [("AMC", "bare", True)]
+    assert tickers(ext.extract("PMI in 2 min", subreddit="WallStreetBets")) == []
+    assert tickers(ext.extract("$PMI", subreddit="wallstreetbets")) == [("PMI", "cashtag", True)]
+    assert tickers(ext.extract("PMI just got halted", subreddit="pennystocks")) == [("PMI", "bare", True)]
+    assert tickers(ext.extract("PMI just got halted")) == [("PMI", "bare", True)]
+
+
+def test_default_extractor_reads_pmi_on_wallstreetbets_as_the_economic_index():
+    ext = default_extractor(universe={"PMI"})
+    assert ext.extract("ISM PMI in 2 min", subreddit="wallstreetbets") == []
+    assert ext.extract("Who is with me on PMI", subreddit="pennystocks") == [Mention("PMI", "bare", True)]

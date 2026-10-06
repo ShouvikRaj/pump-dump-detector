@@ -13,7 +13,9 @@ symbol lists. Three ways a ticker can be mentioned, strongest first:
             English word or finance acronym/slang (so "PUMP", "MOON", "CEO",
             "TACO" don't count unless written as cashtags). A short allowlist
             (SPY, HOOD, ...) counts despite being English words, and
-            hyphenated compounds ("GLP-1", "GPT-5") never count.
+            hyphenated compounds ("GLP-1", "GPT-5") never count. On
+            r/wallstreetbets a few economic-report names (PMI) don't count
+            bare either, since there they mean the report, not the stock.
 
 Each document yields at most one Mention per ticker (strongest method wins).
 """
@@ -29,7 +31,8 @@ from typing import Collection, Iterable
 
 # v2 (2026-10-04, after reviewing the first 165k live records): hyphen rule,
 # bare allowlist, ~45 more slang/acronym collisions (TACO, MAGA, DRAM, HBM...)
-EXTRACTOR_VERSION = "tickers-v3"
+# v4 (2026-10-06): bare PMI no longer counts on r/wallstreetbets (the ISM index)
+EXTRACTOR_VERSION = "tickers-v4"
 
 _STRENGTH = {"exchange": 3, "cashtag": 2, "bare": 1}
 
@@ -75,12 +78,14 @@ class TickerExtractor:
         acronyms: Collection[str],
         cashtag_block: Collection[str],
         bare_allow: Collection[str] = (),
+        wsb_acronyms: Collection[str] = (),
     ) -> None:
         self.universe = frozenset(s.upper() for s in universe)
         self.common_words = frozenset(w.lower() for w in common_words)
         self.acronyms = frozenset(a.upper() for a in acronyms)
         self.cashtag_block = frozenset(c.upper() for c in cashtag_block)
         self.bare_allow = frozenset(b.upper() for b in bare_allow)
+        self.acronyms_on_wsb = self.acronyms | frozenset(a.upper() for a in wsb_acronyms)
 
     def _with_class(self, base: str, cls: str | None) -> str:
         if cls:
@@ -89,8 +94,9 @@ class TickerExtractor:
                 return candidate
         return base
 
-    def extract(self, *texts: str | None) -> list[Mention]:
+    def extract(self, *texts: str | None, subreddit: str | None = None) -> list[Mention]:
         text = clean_text("\n".join(t for t in texts if t))
+        acronyms = self.acronyms_on_wsb if (subreddit or "").lower() == "wallstreetbets" else self.acronyms
         found: dict[str, Mention] = {}
 
         def add(m: Mention) -> None:
@@ -117,7 +123,7 @@ class TickerExtractor:
                 add(Mention(ticker, "cashtag", False))
 
         for sym in _BARE_RE.findall(text):
-            if sym not in self.universe or sym in self.acronyms:
+            if sym not in self.universe or sym in acronyms:
                 continue
             if sym in self.bare_allow or sym.lower() not in self.common_words:
                 add(Mention(sym, "bare", True))
@@ -134,12 +140,17 @@ def _read_wordlist(name: str) -> list[str]:
 def packaged_wordlists() -> tuple[tuple[str, ...], ...]:
     return tuple(
         tuple(_read_wordlist(name))
-        for name in ("common_words.txt", "acronyms.txt", "cashtag_block.txt", "bare_allow.txt")
+        for name in ("common_words.txt", "acronyms.txt", "cashtag_block.txt", "bare_allow.txt", "wsb_acronyms.txt")
     )
 
 
 def default_extractor(universe: Iterable[str]) -> TickerExtractor:
-    common, acronyms, block, allow = packaged_wordlists()
+    common, acronyms, block, allow, wsb = packaged_wordlists()
     return TickerExtractor(
-        universe=set(universe), common_words=common, acronyms=acronyms, cashtag_block=block, bare_allow=allow
+        universe=set(universe),
+        common_words=common,
+        acronyms=acronyms,
+        cashtag_block=block,
+        bare_allow=allow,
+        wsb_acronyms=wsb,
     )

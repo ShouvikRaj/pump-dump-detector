@@ -83,7 +83,7 @@ stream has completed a fetch after the day ended, so rows in `daily/mention_coun
 On the very first run every stream backfills 9 days (1 current + 7 baseline + 1 spare), which can take more
 than one run for r/wallstreetbets; cursors make it resume.
 
-## Ticker extraction (`tickers.py`, version `tickers-v3`)
+## Ticker extraction (`tickers.py`, version `tickers-v4`)
 
 Nam & Skillicorn (2025) used regex candidates checked against exchange symbol lists. Same idea, three forms:
 
@@ -109,6 +109,15 @@ v3 (2026-10-05) followed once SEC's ticker list started loading, which added 3,2
 the 28 SEC-only symbols that matched as bare words in the first 167k records, most were real OTC names (FNMA, FMCC,
 BLGO, NLST, UURAF), but `COLA` (cost-of-living adjustment), `EMI` (loan instalment) and `ACAT` (brokerage transfer)
 were jargon, so they joined `data/acronyms.txt`.
+
+v4 (2026-10-06): bare `PMI` no longer counts on r/wallstreetbets. Candidate PMI (flagged 2026-10-05 13:55Z) came
+from chatter about the ISM services PMI release: all 21 bare "PMI" on r/wallstreetbets from Sep 30 to Oct 5 meant
+the purchasing managers' index, but all 4 on r/pennystocks meant Picard Medical (NYSE American: PMI), a low-float
+runner (1.3M-share float, $6.16 at the flag in Stage 2's snapshot; "PMI just got halted"). Blocking it everywhere
+would have hidden that, so `data/wsb_acronyms.txt` lists
+symbols that don't count bare on r/wallstreetbets only; `$PMI` still counts everywhere. On the 189k records
+collected Oct 4-6 the change drops exactly those 21 mentions and nothing else. The PMI episode stays in
+`episodes.csv` with `extractor_version` `tickers-v3`. (ADP, the payroll report, was already excluded in v2.)
 
 ## Hype score (`hype.py`, version `hype-v1`)
 

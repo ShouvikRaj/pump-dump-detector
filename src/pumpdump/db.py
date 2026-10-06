@@ -125,7 +125,7 @@ def extract_mentions(conn: sqlite3.Connection, extractor: TickerExtractor, exclu
         done.append((doc_id,))
         if author in excluded:
             continue
-        mentions = extractor.extract(title, body)
+        mentions = extractor.extract(title, body, subreddit=sub)
         if not mentions:
             continue
         cats = sorted(hype_categories(title, body))

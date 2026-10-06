@@ -70,6 +70,16 @@ def test_extract_mentions_records_tickers_hype_and_skips_bots(conn, ext):
     assert db.extract_mentions(conn, ext, excluded_authors={"AutoModerator"}) == 0
 
 
+def test_extract_mentions_applies_the_subreddit_rules(conn):
+    ext = TickerExtractor(universe={"PMI"}, common_words=(), acronyms=(), cashtag_block=(), wsb_acronyms={"PMI"})
+    db.insert_docs(
+        conn,
+        [doc("t1_w", T, sub="wallstreetbets", body="PMI in 2 min"), doc("t1_p", T, sub="pennystocks", body="PMI just got halted")],
+    )
+    db.extract_mentions(conn, ext, excluded_authors=set())
+    assert conn.execute("select doc_id, ticker from mentions").fetchall() == [("t1_p", "PMI")]
+
+
 def _seed(conn, ext, docs):
     db.insert_docs(conn, docs)
     db.extract_mentions(conn, ext, excluded_authors=set())
