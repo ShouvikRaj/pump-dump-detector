@@ -1,0 +1,123 @@
+{
+  "_note": "Hand labels for the Stage 5 LLM step (docs/stage5.md, 'Testing the LLM step'): the documents each live candidate's prompt showed on 2026-10-06, labelled by the Stage 5 thread before any llm-v2 answer was seen. docs = the documents shown then, all labelled; only those of them a prompt still shows are scored (tickers-v4 later dropped PMI's r/wallstreetbets ones). yes = clearly in the list, maybe = arguable (counted neither way). Lists: not_about, pitch, warning, event, as defined in text.LABEL_PROMPT.",
+  "DRTS-20261004T232358Z": {
+    "ticker": "DRTS",
+    "docs": ["t3_1wxl6cr", "t1_pdujb67", "t1_pdukkli", "t1_pduqdep", "t1_pduvm4i", "t1_pduxesz", "t1_pdvafh1", "t1_pdvd8hx", "t1_pdvfka1", "t1_pdvuwzi", "t1_pdwdxhe"],
+    "not_about": {"yes": [], "maybe": []},
+    "pitch": {"yes": ["t3_1wxl6cr", "t1_pdwdxhe"], "maybe": ["t1_pdvafh1"]},
+    "warning": {"yes": [], "maybe": []},
+    "event": {"yes": ["t1_pdvuwzi"], "maybe": ["t1_pduvm4i"]}
+  },
+  "VST-20261005T041528Z": {
+    "ticker": "VST",
+    "docs": ["t1_pdv884b", "t1_pdvlq6g", "t1_pdwutjs", "t1_pdwzyom", "t1_pdx31c0", "t1_pdx4uda", "t1_pdx5wpn", "t1_pdx628b", "t1_pdx6cnk", "t1_pdx7rrk", "t1_pdx7t7r", "t1_pdx8nm1", "t1_pdxaokx", "t1_pdxbw4f", "t1_pdxfqab", "t1_pdxh1ie", "t1_pdxlax6", "t1_pdxo166", "t1_pdxrima", "t1_pdxv8re", "t1_pdxvmzq", "t1_pdy0iox"],
+    "not_about": {"yes": [], "maybe": []},
+    "pitch": {"yes": ["t1_pdv884b", "t1_pdx4uda", "t1_pdx628b", "t1_pdxbw4f", "t1_pdxlax6", "t1_pdxo166", "t1_pdy0iox"], "maybe": ["t1_pdvlq6g", "t1_pdwutjs", "t1_pdx5wpn", "t1_pdxaokx", "t1_pdxfqab", "t1_pdxh1ie", "t1_pdxv8re"]},
+    "warning": {"yes": [], "maybe": []},
+    "event": {"yes": [], "maybe": ["t1_pdx7t7r"]}
+  },
+  "PMI-20261005T135516Z": {
+    "ticker": "PMI",
+    "docs": ["t1_pdy7730", "t1_pdzorsv", "t1_pe02v96", "t1_pe0gkxn", "t1_pe0h5jo", "t1_pe0homu", "t1_pe0i816", "t1_pe0ijus", "t1_pe0ipl0", "t1_pe0j1do"],
+    "not_about": {"yes": ["t1_pdy7730", "t1_pdzorsv", "t1_pe02v96", "t1_pe0gkxn", "t1_pe0h5jo", "t1_pe0homu", "t1_pe0i816", "t1_pe0ijus", "t1_pe0ipl0", "t1_pe0j1do"], "maybe": []},
+    "pitch": {"yes": [], "maybe": ["t1_pdy7730", "t1_pe0gkxn"]},
+    "warning": {"yes": [], "maybe": []},
+    "event": {"yes": [], "maybe": []}
+  },
+  "SDEV-20261005T140916Z": {
+    "ticker": "SDEV",
+    "docs": ["t1_pdx52z6", "t1_pdx5i0s", "t1_pdx9us7", "t1_pdy6fb1", "t1_pdzb9jr", "t1_pdzjhqx", "t1_pdzk0qm", "t1_pdzp0wi", "t1_pdzuauu", "t1_pe0fikp", "t1_pe0h0yz", "t1_pe0hj1w", "t1_pe0hza6", "t1_pe0jxbk", "t1_pe0mbp3", "t1_pe0mk4i"],
+    "not_about": {"yes": [], "maybe": []},
+    "pitch": {"yes": [], "maybe": ["t1_pdx52z6", "t1_pdzk0qm", "t1_pdzp0wi"]},
+    "warning": {"yes": ["t1_pe0hj1w"], "maybe": []},
+    "event": {"yes": [], "maybe": []}
+  },
+  "APLD-20261005T142311Z": {
+    "ticker": "APLD",
+    "docs": ["t3_1wxvwq7", "t3_1wxycup", "t1_pdv1i47", "t1_pdwcab0", "t1_pdwjxfe", "t1_pdwk055", "t1_pdwlbme", "t1_pdwp5pc", "t1_pdwpx49", "t1_pdx5mi7", "t1_pdx61sl", "t1_pdx6cnk", "t1_pdy0p9q", "t1_pdy0sca", "t1_pdy8tlr", "t1_pdyem2m", "t1_pdyi5mj", "t1_pdz5rws", "t1_pdz63py", "t1_pe06l44", "t1_pe0fvco", "t1_pe0g7qr", "t1_pe0prxi"],
+    "not_about": {"yes": [], "maybe": []},
+    "pitch": {"yes": ["t1_pdwcab0", "t1_pdwpx49", "t1_pdz5rws"], "maybe": ["t3_1wxvwq7", "t1_pdwlbme", "t1_pdx61sl", "t1_pdyi5mj", "t1_pdz63py"]},
+    "warning": {"yes": [], "maybe": []},
+    "event": {"yes": ["t3_1wxycup", "t1_pdwcab0", "t1_pdwlbme", "t1_pdz5rws", "t1_pdz63py"], "maybe": ["t1_pe06l44"]}
+  },
+  "SPCX-20261005T145105Z": {
+    "ticker": "SPCX",
+    "docs": ["t3_1wxl6cr", "t1_pe0axtk", "t1_pe0fmnl", "t1_pe0g1y1", "t1_pe0gxqp", "t1_pe0gzll", "t1_pe0h3i5", "t1_pe0hrb0", "t1_pe0i127", "t1_pe0iw8h", "t1_pe0iz50", "t1_pe0jx0o", "t1_pe0kypa", "t1_pe0md3h", "t1_pe0moau", "t1_pe0myo3", "t1_pe0myw1", "t1_pe0n04h", "t1_pe0n26n", "t1_pe0n7om", "t1_pe0nb5q", "t1_pe0nn2z", "t1_pe0ooxq", "t1_pe0piog", "t1_pe0py94", "t1_pe0pyha", "t1_pe0q56a", "t1_pe0qb4x", "t1_pe0qdna", "t1_pe0qfwm", "t1_pe0r0ak", "t1_pe0rof0", "t1_pe0ru0t", "t1_pe0s61g", "t1_pe0tawt", "t1_pe0tg57", "t1_pe0tmz1", "t1_pe0u9tb", "t1_pe0ulfr", "t1_pe0vzm0"],
+    "not_about": {"yes": [], "maybe": ["t3_1wxl6cr"]},
+    "pitch": {"yes": ["t1_pe0i127"], "maybe": ["t1_pe0gzll", "t1_pe0jx0o", "t1_pe0n26n", "t1_pe0piog", "t1_pe0py94", "t1_pe0tmz1"]},
+    "warning": {"yes": [], "maybe": ["t1_pe0kypa", "t1_pe0rof0"]},
+    "event": {"yes": ["t1_pe0myo3"], "maybe": ["t1_pe0hrb0", "t1_pe0rof0"]}
+  },
+  "TSM-20261005T151858Z": {
+    "ticker": "TSM",
+    "docs": ["t1_pdu8twi", "t1_pdyyvju", "t1_pdzcg05", "t1_pdzr0mu", "t1_pdzrd3t", "t1_pdzwhae", "t1_pe04dww", "t1_pe0fz27", "t1_pe0qvo4", "t1_pe12awq"],
+    "not_about": {"yes": [], "maybe": []},
+    "pitch": {"yes": [], "maybe": ["t1_pdyyvju", "t1_pdzwhae", "t1_pe0fz27"]},
+    "warning": {"yes": [], "maybe": []},
+    "event": {"yes": [], "maybe": ["t1_pdzwhae"]}
+  },
+  "VEEA-20261005T153302Z": {
+    "ticker": "VEEA",
+    "docs": ["t3_1wy88kg", "t1_pdu5a5u", "t1_pdvoen5", "t1_pdyli7t", "t1_pdynb9w", "t1_pdzf3pc", "t1_pdzrotb", "t1_pdzsxbs", "t1_pe01xul", "t1_pe0d6nx", "t1_pe0l3n5", "t1_pe0mbp3", "t1_pe0n9ng", "t1_pe11l89", "t1_pe12feo"],
+    "not_about": {"yes": [], "maybe": []},
+    "pitch": {"yes": ["t3_1wy88kg", "t1_pdu5a5u", "t1_pdzf3pc", "t1_pdzrotb", "t1_pdzsxbs", "t1_pe11l89"], "maybe": ["t1_pe0d6nx", "t1_pe0l3n5"]},
+    "warning": {"yes": [], "maybe": ["t1_pe12feo"]},
+    "event": {"yes": ["t1_pdu5a5u"], "maybe": ["t1_pdvoen5"]}
+  },
+  "GME-20261005T162454Z": {
+    "ticker": "GME",
+    "docs": ["t3_1wxz7ro", "t3_1wyb83x", "t1_pdw961d", "t1_pdw97bh", "t1_pdxaeqe", "t1_pdzhf39", "t1_pe0fzcj", "t1_pe0gtkm", "t1_pe0mp6x", "t1_pe0p3gf", "t1_pe0t7c9", "t1_pe16kqi", "t1_pe17tqb", "t1_pe1ccyp", "t1_pe1crp8", "t1_pe1elzs", "t1_pe1fnq5", "t1_pe1g73c", "t1_pe1gfxt", "t1_pe1hn5h"],
+    "not_about": {"yes": [], "maybe": []},
+    "pitch": {"yes": ["t3_1wxz7ro", "t1_pe0gtkm"], "maybe": ["t3_1wyb83x", "t1_pdw97bh", "t1_pe17tqb", "t1_pe1elzs"]},
+    "warning": {"yes": [], "maybe": ["t1_pe1ccyp", "t1_pe1fnq5", "t1_pe1g73c"]},
+    "event": {"yes": ["t3_1wxz7ro", "t1_pe1fnq5"], "maybe": ["t3_1wyb83x", "t1_pe1g73c", "t1_pe1gfxt", "t1_pe1hn5h"]}
+  },
+  "DELL-20261005T163855Z": {
+    "ticker": "DELL",
+    "docs": ["t1_pdx8tgm", "t1_pdx99f1", "t1_pdxa529", "t1_pdxackq", "t1_pdxaf4q", "t1_pdxautb", "t1_pdyjfcd", "t1_pdzr4x0", "t1_pe0imny", "t1_pe0ircb", "t1_pe0odd9", "t1_pe11yau", "t1_pe133ei"],
+    "not_about": {"yes": [], "maybe": ["t1_pdx8tgm"]},
+    "pitch": {"yes": [], "maybe": ["t1_pdxackq", "t1_pe0odd9"]},
+    "warning": {"yes": [], "maybe": []},
+    "event": {"yes": [], "maybe": []}
+  },
+  "IREN-20261005T174934Z": {
+    "ticker": "IREN",
+    "docs": ["t1_pdvnx5z", "t1_pdwcc0f", "t1_pdy8o32", "t1_pdybmns", "t1_pdzv3zc", "t1_pe0q1q0", "t1_pe0vsny", "t1_pe0zdv5", "t1_pe213wp", "t1_pe21hda"],
+    "not_about": {"yes": [], "maybe": ["t1_pe213wp"]},
+    "pitch": {"yes": [], "maybe": []},
+    "warning": {"yes": [], "maybe": []},
+    "event": {"yes": [], "maybe": []}
+  },
+  "MSFT-20261005T211417Z": {
+    "ticker": "MSFT",
+    "docs": ["t3_1wy8qku", "t1_pdzrkk9", "t1_pe0ch2b", "t1_pe0dh8o", "t1_pe0e2dz", "t1_pe0eba1", "t1_pe0efcg", "t1_pe0f4ss", "t1_pe0fl94", "t1_pe0gbq6", "t1_pe0gcge", "t1_pe0gigx", "t1_pe0gubg", "t1_pe0hshv", "t1_pe0i1to", "t1_pe0i23x", "t1_pe0ia5q", "t1_pe0l678", "t1_pe0mcl6", "t1_pe0mdok", "t1_pe0mj54", "t1_pe0mmun", "t1_pe0nh8z", "t1_pe0omzg", "t1_pe0op21", "t1_pe0ot2l", "t1_pe0r0kw", "t1_pe0uqr1", "t1_pe14jz5", "t1_pe1duxs", "t1_pe249x4", "t1_pe27r9y", "t1_pe27ufn", "t1_pe2ptu7", "t1_pe2tr57", "t1_pe2wb0b", "t1_pe2x0ej", "t1_pe30pnb", "t1_pe3awva", "t1_pe3fgec"],
+    "not_about": {"yes": [], "maybe": []},
+    "pitch": {"yes": ["t3_1wy8qku", "t1_pe0dh8o", "t1_pe0eba1", "t1_pe0gubg", "t1_pe0mmun", "t1_pe2ptu7", "t1_pe2wb0b", "t1_pe2x0ej"], "maybe": ["t1_pe0ch2b", "t1_pe0f4ss", "t1_pe30pnb", "t1_pe3fgec"]},
+    "warning": {"yes": [], "maybe": ["t1_pe0gcge", "t1_pe27ufn"]},
+    "event": {"yes": [], "maybe": ["t1_pe0gubg", "t1_pe1duxs", "t1_pe2x0ej"]}
+  },
+  "QCOM-20261005T211417Z": {
+    "ticker": "QCOM",
+    "docs": ["t3_1wy4jnf", "t1_pdyh04i", "t1_pe0lvi1", "t1_pe1w24a", "t1_pe24bap", "t1_pe2srpb", "t1_pe2u1lf", "t1_pe34t10", "t1_pe3540n", "t1_pe3awva", "t1_pe3eo6g"],
+    "not_about": {"yes": [], "maybe": []},
+    "pitch": {"yes": ["t3_1wy4jnf", "t1_pdyh04i", "t1_pe2u1lf"], "maybe": ["t1_pe24bap"]},
+    "warning": {"yes": [], "maybe": []},
+    "event": {"yes": ["t1_pe2u1lf"], "maybe": []}
+  },
+  "ALEC-20261005T234112Z": {
+    "ticker": "ALEC",
+    "docs": ["t1_pdzy1rh", "t1_pe0fpdg", "t1_pe1jnqi", "t1_pe1nz95", "t1_pe214my", "t1_pe2nzmx", "t1_pe2xtke", "t1_pe3gr67", "t1_pe3t2u9", "t1_pe48x59"],
+    "not_about": {"yes": [], "maybe": []},
+    "pitch": {"yes": ["t1_pe1nz95"], "maybe": ["t1_pe0fpdg", "t1_pe1jnqi", "t1_pe48x59"]},
+    "warning": {"yes": [], "maybe": []},
+    "event": {"yes": ["t1_pe1jnqi"], "maybe": ["t1_pe214my", "t1_pe48x59"]}
+  },
+  "IWM-20261006T005958Z": {
+    "ticker": "IWM",
+    "docs": ["t1_pe0kiha", "t1_pe0lqo2", "t1_pe0tojt", "t1_pe0tzxr", "t1_pe1933b", "t1_pe1bo9v", "t1_pe1go5h", "t1_pe1htof", "t1_pe29oer", "t1_pe2ar4t", "t1_pe2mcmr", "t1_pe2x2oy", "t1_pe4fwi3", "t1_pe4l50h"],
+    "not_about": {"yes": [], "maybe": []},
+    "pitch": {"yes": [], "maybe": []},
+    "warning": {"yes": [], "maybe": []},
+    "event": {"yes": [], "maybe": []}
+  }
+}

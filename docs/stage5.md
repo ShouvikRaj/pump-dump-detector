@@ -4,9 +4,11 @@ Stage 5 turns the labeled history into a model that scores every new candidate a
 every week as Stage 4's labels arrive, and evaluates it the way the project brief asks: walk-forward over a
 development period, then once on a locked hold-out period at the end.
 
-Everything in this file (version `model-v1`, with `text-v1` and `llm-v1`) was written down and committed on
-2026-10-06, before any model was trained and before any Stage 3 outcome or Stage 4 label row was opened (see "What
-had been seen" at the end). Change it only as a new version written here first (see "Changing the rule").
+The rule was first written down and committed on 2026-10-06 as `model-v1` (with `text-v1` and `llm-v1`), before any
+model was trained and before any Stage 3 outcome or Stage 4 label row was opened. The same day, still before any model
+was trained or any outcome or label row opened, it was replaced by `model-v2` (with `text-v2` and `llm-v2`), which
+this file describes: "Changing the rule" lists what changed and why, and "What had been seen" at the end lists what
+was known each time. Change it only as a new version written here first.
 
 ## What is predicted
 
@@ -35,35 +37,40 @@ used to train a model only from `available_at` on:
 4 hours covers Stage 3's hour-old-close rule and the daily `track` and `label` runs after it. The same rule is used for
 the live model and for the walk-forward replay, so the replay reproduces what the live loop could have known.
 
-## Features (`model-v1`)
+## Features (`model-v2`)
 
-Only what was known at the flag time: Stage 1's episode row, Stage 2's snapshot row, and the text of the Reddit
-documents counted in the episode. Seven groups; controls have no chatter, so their chatter counts are 0 and every
-other chatter, text and LLM feature is blank (LightGBM treats blank as missing).
+Only what was known at the flag time: Stage 1's episode rows, Stage 2's snapshot row, the text of the Reddit
+documents counted in the episode, and Stage 4 labels already usable then (by the rule above). Eight groups; controls
+have no chatter, so their chatter counts are 0 and every other chatter, text and LLM feature is blank (LightGBM treats
+blank as missing).
 
 | Group | Features |
 |---|---|
 | `chatter` (Stage 1) | `mentions_log` ln(1 + mentions_24h), `baseline_log` ln(1 + baseline_mean), `spike_z` z, `authors_ratio` authors / mentions, `post_share` posts / mentions, `hype_share` hype documents / mentions, `hype_spike` (the flag's reasons include the hype spike), `wsb_share` and `pennystocks_share` (by_subreddit / mentions), `cashtag_share` (cashtag mentions / mentions), `stocktwits_trending` (on StockTwits' trending list at the flag) |
-| `text` (`text-v1`, below) | `top_author_share`, `dup_share`, `promo_share`, `squeeze_share`, `news_share`, `dilution_share`, `link_share`, `multi_ticker_share`, `length_log` |
-| `llm` (`llm-v1`, below) | `llm_promotion` (0-3), `llm_coordination` (0-3), `llm_news` (0-3), `llm_sentiment` (-2 to 2) |
+| `text` (`text-v2`, below) | `top_author_share`, `dup_share`, `near_dup_share`, `promo_share`, `squeeze_share`, `news_share`, `dilution_share`, `link_share`, `multi_ticker_share`, `length_log` |
+| `llm` (`llm-v2`, below) | `llm_about_share`, `llm_pitch_share`, `llm_warning_share`, `llm_event_share` (shares of the documents shown), `llm_sentiment` (-2 to 2) |
 | `price_volume` (Stage 2) | `price_log` ln(price_at_flag), `move_since_close`, `ret_1d`, `ret_5d`, `ret_20d`, `rel_vol_last_log` ln(1 + rel_vol_last), `rel_vol_today_log` ln(1 + rel_vol_today), `volatility_20d`, `pct_from_52w_high`, `dollar_vol_log` ln(1 + dollar_vol_20d) |
 | `size` (Stage 2) | `market_cap_log` ln(1 + market_cap), `float_log` ln(1 + float_shares, else shares_outstanding), `turnover_last`, `listing_age_log` ln(1 + days since first_trade_date), `reverse_splits_1y`, `otc` (venue is OTC), `institution_pct` |
 | `short_interest` (Stage 2) | `si_pct_float`, `si_days_to_cover`, `si_change` si_shares / si_prev_shares - 1 |
 | `filings` (Stage 2) | `sec_filer` (has a CIK), `dilution_90d`, `offerings_424b_30d`, `days_since_dilution`, `current_reports_30d`, `days_since_report`, `report_hard_news` (the last 8-K before the flag has item 2.02, 2.01, 5.01, 1.03 or 1.01), `unregistered_sales_90d`, `late_notices_365d`, `name_change_1y` |
+| `history` (Stages 1 and 4) | `prior_flags_90d` (earlier flags of the same stock in the 90 days before this one), `days_since_prior_flag` (blank if none), `prior_crashes` (earlier flags of the same stock that crashed, `crash_10 = 1`, counted once that label was usable as in "When a label counts") |
 
 The archetype is not a feature (it is a function of price, float and venue, which are); it is used to report results
 per pump type.
 
-### Text features (`text-v1`)
+### Text features (`text-v2`)
 
-The documents are exactly the ones behind the episode's `mentions_24h`: posts and comments in the three subreddits
-that mention the ticker (Stage 1's extractor, `tickers-v3`), created in the 24 hours up to the flag and **collected
-by** the flag time, bots excluded. Shares are over those documents.
+The documents are the ones behind the episode's `mentions_24h`: posts and comments in the three subreddits that
+mention the ticker, created in the 24 hours up to the flag and **collected by** the flag time, bots excluded. Shares
+are over those documents. They are found with Stage 1's current extractor (`tickers-v4` since 2026-10-06), whichever
+version flagged the episode, so an episode flagged on mentions a later extractor ignores is described by the
+documents still counted (PMI's r/wallstreetbets documents, about the ISM index, dropped out under `tickers-v4`).
 
 | Feature | Definition |
 |---|---|
 | `top_author_share` | documents by the most active author |
 | `dup_share` | documents whose normalised text (lower case, links, digits and the ticker removed, at least 20 letters, first 200 characters) also appears under a different author: copy-paste, coordinated phrasing |
+| `near_dup_share` | documents that share at least half of their three-word sequences (Jaccard similarity of word triples of the same normalised text, at least 8 words) with a document by a different author: reworded copies of one pitch, which `dup_share` misses |
 | `promo_share` | documents using any of Stage 1's sales-pitch hype categories: urgency, price_target, low_float, gem, next_big, multibagger |
 | `squeeze_share` | documents using the squeeze category |
 | `news_share` | documents naming a company event: earnings, revenue, guidance, FDA, approval, clinical trial, contract, partnership, merger, acquisition, buyout, press release, "announced", 8-K |
@@ -72,37 +79,85 @@ by** the flag time, bots excluded. Shares are over those documents.
 | `multi_ticker_share` | documents that mention other tickers too (watch lists rather than one pitch) |
 | `length_log` | ln(1 + mean characters per document) |
 
-They are computed once per candidate, soon after the flag, and stored (`model/text.csv`).
+They are computed once per candidate, soon after the flag, and stored (`model/text.csv`). A candidate with only
+`text-v1` features is redone as `text-v2` by the next run that has its raw files checked out; the old row stays.
 
-### LLM ratings (`llm-v1`)
+### LLM labels (`llm-v2`)
 
 The brief gives the LLM two jobs: read the post text (hype, coordinated phrasing, bot-like accounts) and check
-news and filings, to separate pumps from real news. Once per candidate, a language model reads:
+news and filings, to separate pumps from real news. `llm-v2` gives it only work whose answer can be checked against
+the documents, and leaves judging and counting to code (why: "Changing the rule", `model-v2`). Once per candidate, a
+language model reads:
 
-- the same documents: posts first, then the most recent comments, each cut to 400 characters, at most 40 documents
-  and 12,000 characters; authors replaced by A1, A2, ... so repeated posting stays visible;
+- the same documents as the text features: posts first, then the most recent comments, each cut to 400 characters,
+  at most 40 documents and 12,000 characters, **numbered** [1], [2], ...; authors replaced by A1, A2, ... so repeated
+  posting stays visible;
 - the company name, venue and price at the flag, and the SEC filings Stage 2 found before the flag (date and items of
   the last 8-K/6-K, date and form of the last registration or prospectus).
 
-It answers in JSON: `promotion` (0-3, how much the chatter is a sales pitch), `coordination` (0-3, the same phrases
-from different authors, near-identical posts, one author posting repeatedly), `news` (0-3, how much the discussion is
-about a concrete, checkable company event rather than price action), `sentiment` (-2 bearish to 2 bullish),
-`catalyst` (none, earnings, regulatory, deal, financing, other) and a `summary` of at most 20 words. The four numbers are
-features; catalyst and summary go in the report only.
+It answers in JSON, listing document numbers (a document can be in several lists or in none):
 
-- Model: Qwen3-4B-Instruct-2507 (Apache 2.0), 4-bit GGUF `Qwen3-4B-Instruct-2507-Q4_K_M.gguf` from
-  `unsloth/Qwen3-4B-Instruct-2507-GGUF` at revision `a06e946`, run by llama.cpp's server (release `b10456`) on the
-  workflow's own runner (`scripts/llm_server.sh`; both downloads pinned and cached). No account, key, paid plan or
-  outside service. Temperature 0, seed 0, JSON output enforced by the server. Its training data ends long before
-  these flags, so it cannot know what happened next; it sees nothing written after the flag.
-- Each rating is stored once in `model/llm.csv` with the model id, `llm-v1` and a hash of the prompt, and never
-  recomputed. If the server is down, the rating is retried on later runs for 3 days after the flag, then recorded
-  as failed (features blank); an answer that doesn't parse is recorded as failed at once (at temperature 0 the same
-  prompt gets the same answer), and a candidate whose flag documents can't be found in the raw files is recorded as
-  `no_documents`. A run starts no new rating after 35 minutes; the rest wait for the next run. A candidate is scored
-  only once its rating exists or has been given up on, so its one score includes the rating whenever there is one.
-  If ratings keep failing, the `llm` group is simply blank and the pruning rule below drops it.
+| Field | What |
+|---|---|
+| `summary` | first: what the chatter is about, at most 20 words (report only) |
+| `not_about` | documents where the ticker means something else: another company or fund, an index or economic report, an abbreviation or an ordinary word |
+| `pitch` | documents hyping the stock to get others to buy: price targets, rockets, "about to pop", "squeeze incoming", urgency, telling people to buy |
+| `warning` | documents calling it a pump-and-dump, scam or rug pull, or warning of dilution, an offering or a coming dump |
+| `event` | documents stating a specific company event, announced or scheduled: earnings, an FDA or other regulatory decision, a contract or government award, a partnership, a merger or acquisition, an offering or financing (rumours, jokes, price moves and opinions are not events) |
+| `event_type` | none, earnings, regulatory, deal, financing or other (report only) |
+| `event_quote` | up to 15 words copied exactly from an event document |
+| `sentiment` | -2 bearish to 2 bullish, about the company |
+
+The code checks the answer before anything is counted:
+
+- the format (these fields, document numbers between 1 and the number shown, sentiment -2 to 2) is enforced by the
+  server as a JSON-schema grammar and checked again by the parser, because llama.cpp can silently drop a grammar it
+  fails to parse; an answer that doesn't parse is a failed rating;
+- numbers outside the documents shown are dropped;
+- a document that names the stock as a cashtag or with its exchange (Stage 1's extraction method) is about the stock,
+  whatever `not_about` says;
+- the event documents count only if the event quote is found in one of the documents (at least 80% of it in one
+  piece, ignoring case and punctuation); otherwise the event share is 0.
+
+Features, as shares of the documents shown: `llm_about_share` (not in `not_about`), `llm_pitch_share`,
+`llm_warning_share` and `llm_event_share` (documents in that list that are about the stock), and `llm_sentiment`.
+Coordination is no longer asked of the LLM: the text features measure it directly (`dup_share`, `near_dup_share`,
+`top_author_share`).
+
+- Model: chosen by the test below and run by llama.cpp's server (release `b10456`, with `--jinja`, so the model's own
+  chat template applies and thinking mode is off) on the workflow's own runner (`scripts/llm_server.sh`; both
+  downloads pinned and cached). No account, key, paid plan or outside service. Temperature 0, seed 0. The model's
+  training data ends before these flags, and it sees nothing written after the flag.
+- Each rating is stored once in `model/llm.csv` with the lists, the quote, the result of the checks (`llm_checks`),
+  `llm-v2`, the model id and a hash of the prompt, and never recomputed. If the server is down, the rating is retried
+  on later runs for 3 days after the flag, then recorded as failed (features blank); an answer that doesn't parse is
+  recorded as failed at once (at temperature 0 the same prompt gets the same answer), and a candidate whose flag
+  documents can't be found in the raw files is recorded as `no_documents`. A run starts no new rating after 35
+  minutes; the rest wait for the next run. A candidate is scored only once its rating exists or has been given up
+  on, so its one score includes the rating whenever there is one. If ratings keep failing, the `llm` group is simply
+  blank and the pruning rule below drops it.
+- Only ratings of the current version are features. A candidate rated by an older version is rated again by the next
+  run that has its raw files checked out (the old row stays in the file); one whose raw files are no longer checked
+  out keeps a blank `llm` group. A redo never holds up the candidate's one score.
 - Changing the model or the prompt is a new `llm` version; old ratings keep theirs.
+
+### Testing the LLM step
+
+A prompt or model is tested before its ratings are stored. `docs/stage5-llm-gold.json` holds hand labels for the
+documents shown for the first 15 candidates (265 documents, flagged 2026-10-04 to 06): for each of the four lists,
+the documents clearly in it (`yes`) and the arguable ones (`maybe`, counted neither way), labelled from the documents
+alone before any `llm-v2` answer existed. The `llm-eval` workflow rates the candidates whose raw files it checks out
+with a given model and the current prompt, and reports per list the documents right (in the model's list, labelled
+yes), wrong (in its list, labelled neither yes nor maybe) and missed (labelled yes, not in its list), counting only
+labelled documents the prompt still shows, plus quotes found and seconds per candidate. It writes nothing to the
+data branch.
+
+The `llm-v2` model was chosen this way, by a rule fixed before the runs. Three open-weights models small enough for a
+free runner's CPU, all 4-bit (`Q4_K_M`) GGUF files from unsloth pinned by revision, with the same prompt, llama.cpp
+build and settings: Qwen3-4B-Instruct-2507 (the `llm-v1` model), Qwen3.5-4B and Qwen3.5-9B (all Apache 2.0). The model
+with the most right minus wrong over `not_about`, `pitch` and `event` together wins, among those with no unparseable
+answer and at most 3 minutes per candidate on average; of the models within 5 of the best, the fastest. (`warning`
+has one clear document in the set, too few to compare.) The results are at the end of this file.
 
 ## The model
 
@@ -164,14 +219,15 @@ trip (the top of the brief's 1-3% range). Nothing here trades or shorts.
 
 ## Pruning weak feature groups (the feedback loop)
 
-"Keep only robust patterns, prune weak ones" applies to the seven feature groups. Once a target's development replay
+"Keep only robust patterns, prune weak ones" applies to the eight feature groups. Once a target's development replay
 holds **20 positive candidates**, every run also replays the development weeks with each group left out. A group
 is **weak** when leaving it out does not lower AP: AP without it >= AP with all groups, both pooled and in at least
 two of the three blocks. The model that scores new candidates (the deployed model) uses every group except the
 weak ones (if every group came out weak, none is dropped). Before 20 positives, all groups are used.
 
 The replay also reports two reference models: market only (`price_volume`, `size`, `short_interest`, `filings`) and
-social only (`chatter`, `text`, `llm`), which answer whether combining the two beats either alone.
+social only (`chatter`, `text`, `llm`), which answer whether combining the two beats either alone. `history` is in
+neither.
 
 Pruning is chosen on the development weeks, so the deployed model's replay score is optimistic and is labeled that
 way; the robustness checks above use the all-groups replay, and the hold-out judges the deployed model.
@@ -198,8 +254,8 @@ if collection runs longer.
 
 | Path | What |
 |---|---|
-| `model/text.csv` | append-only: text features of each candidate (`text-v1`), with the document count and when they were computed |
-| `model/llm.csv` | append-only: LLM ratings of each candidate (`llm-v1`), with model id, prompt hash, status and time |
+| `model/text.csv` | append-only: text features of each candidate (`text-v2`; older `text-v1` rows kept), with the document count and when they were computed |
+| `model/llm.csv` | append-only: LLM labels of each candidate (`llm-v2`; older `llm-v1` ratings kept), with the document lists, event quote, checks, model id, prompt hash, status and time |
 | `model/predictions.csv` | append-only: the prospective log, one row per candidate and target |
 | `model/walkforward.csv` | rebuilt every run: the development replay, one row per development candidate (scores of the all-groups and deployed models per target, and the targets) |
 | `model/README.md` | the report: model status, latest scores, development results, robustness checks, feature groups kept or pruned, hold-out status |
@@ -221,6 +277,19 @@ Write the new version here first, with the reason, before running it, and keep t
 Never tune features, parameters, thresholds or the hold-out date on results. Nothing may change on or after the
 hold-out start (2027-01-04).
 
+### `model-v2` (2026-10-06, before any model was trained)
+
+Prompted by the first `llm-v1` ratings, a reading of the eight research papers in the brief and a search for newer
+work. The targets, label timing, the model and its parameters, the signal, the validation, the robustness checks, the
+pruning rule and the hold-out did not change.
+
+| Change | Why |
+|---|---|
+| `llm-v1` (four 0-3 scores of the whole chatter) replaced by `llm-v2` (documents listed by number, an event quote, checks in code) | The first `llm-v1` ratings (15 candidates) made claims the documents don't support: coordination 2 or 3 for four large companies (Vistra, Applied Digital, SpaceX, Microsoft) whose chatter had no copied text (`dup_share` was 0 for all 15), and news 3 for PMI, whose documents were about the ISM purchasing managers' index, an economic report. A score for a whole conversation can't be checked; a list of documents and a copied quote can. This follows the usual advice for keeping a small model honest: extract rather than judge, ask for verbatim evidence and verify it (as Chain-of-Verification does, here in code rather than by the model), constrain the output to a schema and validate what comes back. PumpSense (2026) checks every ticker its LLM extracts against a list, and found LLMs too erratic to be the detector themselves, which is why LightGBM, not the LLM, makes the call here. |
+| Coordination measured by the text features only; `near_dup_share` added (`text-v2`) | Promotion campaigns post the same message from many accounts: Renault (2017) found promoter rings and scheduled bot posting, Mirtaheri et al. (2021) found 84% of very active pump accounts were bots or suspended, and AIMM (2025) measures coordination as the share of post pairs above a similarity threshold. Exact copies were already in `dup_share`; reworded ones were not. |
+| New `history` group | The same stocks get pumped again: in Xu & Livshits (2019) 35% of pumps targeted a coin already pumped on the same exchange, and both they and Nghiem et al. (2021) use the number of earlier pumps as a feature. |
+| llama.cpp started with `--jinja`, thinking off | Newer Qwen models think out loud by default; only the model's own chat template, which `--jinja` turns on, applies `enable_thinking: false`. |
+
 ## Known gaps
 
 - Labels are scarce: most candidates are large caps that neither pump nor crash, and `label-v1` is strict, so the
@@ -229,9 +298,14 @@ hold-out start (2027-01-04).
 - When collection ends, the nightly run turns the pacer off, so the last `track`, `label` and `model` runs rely on
   their crons, which fire unreliably for this repository. If `model/holdout.md` hasn't appeared a few weeks after
   collection ended, start the workflows by hand (Actions, then Run workflow).
-- The LLM is small (4B parameters, 4-bit) so that it runs on a free runner's CPU, at one to two minutes per candidate; a
-  larger hosted model would read the chatter better but needs an account or a key. The model works without the
-  ratings.
+- The LLM is small (4 to 9 billion parameters, 4-bit) so that it runs on a free runner's CPU, at one to a few minutes
+  per candidate; a larger hosted model would read the chatter better but needs an account or a key. `llm-v2` asks it
+  only for checkable labels, so a weak reader shows up as missed or wrong labels rather than invented scores, and the
+  model works without the ratings.
+- The hand-labelled test set is small (265 documents) and 13 of its 15 candidates are large caps, so it says little
+  about penny-stock chatter. Before the next `llm` version, label the documents of some penny-stock candidates the
+  same way (before seeing any answer) and test on those too.
+- `history` counts flags since collection began (2026-10-04), so early candidates have little history.
 - One model covers both pump types; results are reported per archetype, but there are too few labels for separate
   models.
 - Stage 4's real-news rule ignores press releases (8-K items 7.01/8.01, 6-Ks). Classifying their text would change the
@@ -251,7 +325,14 @@ The clarifications added after that run (refusals and waiting for the LLM rating
 not blocking the evaluation forever) change no validation or hold-out rule.
 
 `llm-v1` first named GitHub Models (`openai/gpt-4.1-mini`). The first probe run on 2026-10-06 got a plain "OK" instead
-of an answer: GitHub retired GitHub Models on 2026-07-30. Before any rating was stored, `llm-v1` was changed to the
-open-weights model above, which needs no account or key. A probe on the runner took 133 s for a full-size prompt
-(2,747 tokens read at 24 per second, 88 written at 4.5 per second), so the summary was cut to at most 20 words;
-everything else stayed the same.
+of an answer: GitHub retired GitHub Models on 2026-07-30. Before any rating was stored, `llm-v1` was changed to an
+open-weights model run by llama.cpp on the runner, which needs no account or key: Qwen3-4B-Instruct-2507, 4-bit GGUF
+`Qwen3-4B-Instruct-2507-Q4_K_M.gguf` from `unsloth/Qwen3-4B-Instruct-2507-GGUF` at revision `a06e946`. A probe on the
+runner took 133 s for a full-size prompt (2,747 tokens read at 24 per second, 88 written at 4.5 per second), so the
+summary was cut to at most 20 words; everything else stayed the same.
+
+`model-v2` was written after the first live run had stored `llm-v1` ratings and `text-v1` features for the first 15
+candidates. In addition to the above, what had been seen then: those ratings and features (`model/llm.csv`,
+`model/text.csv`), and the documents shown to the LLM for the 15 candidates, which were read and labelled by hand for
+the test set before any `llm-v2` answer existed. Still no `track/` outcome or `labels/` row had been opened, and no
+model had been trained (no label was usable yet).
