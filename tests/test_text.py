@@ -118,17 +118,18 @@ def test_prompt_shows_posts_first_anonymises_authors_and_caps_its_size():
     assert p.docs[0]["id"] == "t3_p"
 
 
-def test_prompt_asks_for_document_lists_in_a_fixed_format():
+def test_prompt_asks_for_one_label_per_document_in_a_fixed_format():
     p = text.build_prompt(snapshot(), documents(doc("t1_a", AS_OF - 60, body="$ABCD"),
                                                 doc("t1_b", AS_OF - 50, body="ABCD and the CEO")), AS_OF)
-    for key in ("not_about", "pitch", "warning", "event", "event_quote", "sentiment", "summary"):
+    for key in (*text.LABELS, "event_type", "event_quote", "sentiment", "summary"):
         assert f"- {key}:" in p.user
-    assert '"ABCD" means something other than Abcd Therapeutics' in p.user
+    assert '"ABCD" here means something other than Abcd Therapeutics' in p.user
     s = p.schema
-    assert list(s["properties"]) == ["summary", "not_about", "pitch", "warning", "event", "event_type", "event_quote",
-                                     "sentiment"]
+    assert list(s["properties"]) == ["summary", "labels", "event_type", "event_quote", "sentiment"]
     assert s["required"] == list(s["properties"]) and s["additionalProperties"] is False
-    assert s["properties"]["pitch"]["items"] == {"type": "integer", "minimum": 1, "maximum": 2}
+    assert s["properties"]["labels"] == {"type": "object", "properties": {"1": {"enum": list(text.LABELS)},
+                                                                          "2": {"enum": list(text.LABELS)}},
+                                         "required": ["1", "2"], "additionalProperties": False}
     assert s["properties"]["event_type"]["enum"] == list(text.CATALYSTS)
     assert s["properties"]["sentiment"] == {"type": "integer", "minimum": -2, "maximum": 2}
 
@@ -148,10 +149,10 @@ def labelled_prompt():
     ), AS_OF)
 
 
-def test_parse_rating_turns_the_lists_into_checked_shares():
+def test_parse_rating_turns_the_labels_into_checked_shares():
     p = labelled_prompt()
-    r = text.parse_rating('{"summary": "Contract news and pump talk.", "not_about": [4], "pitch": [1, 1], '
-                          '"warning": [3], "event": [2], "event_type": "deal", '
+    r = text.parse_rating('{"summary": "Contract news and pump talk.", "labels": {"1": "pitch", "2": "event", '
+                          '"3": "warning", "4": "not_this_company"}, "event_type": "deal", '
                           '"event_quote": "signed a $40M supply contract with the Army", "sentiment": 1}', p)
     assert r["n_shown"] == 4
     assert r["llm_about_share"] == 0.75 and r["llm_pitch_share"] == 0.25
@@ -163,22 +164,23 @@ def test_parse_rating_turns_the_lists_into_checked_shares():
 
 def test_parse_rating_drops_what_the_documents_do_not_support():
     p = labelled_prompt()
-    # an event quote that is in no document: the event share is not trusted
-    r = text.parse_rating('{"summary": "x", "not_about": [], "pitch": [1, 9], "warning": [], "event": [2], '
+    # an event quote that is in no document: the event share is not trusted; labels for documents not shown, unknown
+    # labels and missing ones are unusable (counted as other)
+    r = text.parse_rating('{"summary": "x", "labels": {"1": "pitch", "2": "event", "3": "hype", "9": "pitch"}, '
                           '"event_type": "regulatory", "event_quote": "received FDA approval for its lead drug", '
                           '"sentiment": 5}', p)
     assert r["llm_event_share"] == 0.0 and r["llm_pitch_share"] == 0.25 and r["llm_sentiment"] == 2
-    assert r["llm_checks"] == "quote=failed dropped=1 overruled=0"
+    assert r["llm_checks"] == "quote=failed dropped=3 overruled=0"
     # a document that names the stock with a cashtag is about the stock, whatever the model says
-    r = text.parse_rating('{"summary": "x", "not_about": [1, 4], "pitch": [1], "warning": [], "event": [], '
-                          '"event_type": "none", "event_quote": "", "sentiment": 0}', p)
-    assert r["llm_about_share"] == 0.75 and r["llm_pitch_share"] == 0.25
+    r = text.parse_rating('{"summary": "x", "labels": {"1": "not_this_company", "2": "other", "3": "other", '
+                          '"4": "not_this_company"}, "event_type": "none", "event_quote": "", "sentiment": 0}', p)
+    assert r["llm_about_share"] == 0.75 and r["llm_pitch_share"] == 0.0
     assert r["llm_checks"] == "quote=none dropped=0 overruled=1" and r["llm_catalyst"] == "none"
-    # a lightly reworded quote still counts
-    r = text.parse_rating('{"summary": "x", "not_about": [], "pitch": [], "warning": [], "event": [2], '
-                          '"event_type": "Deal", "event_quote": "signed a 40M supply contract with the army", '
-                          '"sentiment": 0}', p)
-    assert r["llm_event_share"] == 0.25 and r["llm_checks"].startswith("quote=ok")
+    # a lightly reworded quote still counts, and pitch_and_event counts as both
+    r = text.parse_rating('{"summary": "x", "labels": {"1": "other", "2": "pitch_and_event", "3": "other", '
+                          '"4": "other"}, "event_type": "Deal", "event_quote": "signed a 40M supply contract with '
+                          'the army", "sentiment": 0}', p)
+    assert r["llm_event_share"] == 0.25 and r["llm_pitch_share"] == 0.25 and r["llm_checks"].startswith("quote=ok")
 
 
 def test_parse_rating_rejects_answers_that_are_not_the_json_asked_for():
@@ -186,9 +188,9 @@ def test_parse_rating_rejects_answers_that_are_not_the_json_asked_for():
     with pytest.raises(ValueError):
         text.parse_rating("I can't help with that.", p)
     with pytest.raises(ValueError):
-        text.parse_rating('{"summary": "x", "pitch": "most of them"}', p)
+        text.parse_rating('{"summary": "x", "labels": "most of them"}', p)
     with pytest.raises(ValueError):
-        text.parse_rating('{"summary": "x", "not_about": [], "pitch": [], "warning": [], "event": [], '
+        text.parse_rating('{"summary": "x", "labels": {"1": "other", "2": "other", "3": "other", "4": "other"}, '
                           '"event_type": "none", "event_quote": "", "sentiment": "very"}', p)
 
 
@@ -268,11 +270,11 @@ class TimedLLM:
 
 def test_probe_times_a_full_size_prompt():
     now = [0.0]
-    llm = TimedLLM('{"summary": "Hype.", "not_about": [], "pitch": [1, 2], "warning": [], "event": [], '
-                   '"event_type": "none", "event_quote": "", "sentiment": 1}', now)
+    llm = TimedLLM('{"summary": "Hype.", "labels": {"1": "pitch", "2": "pitch"}, "event_type": "none", '
+                   '"event_quote": "", "sentiment": 1}', now)
     ok, lines = text.probe_llm(llm, clock=lambda: now[0])
     shown = [ln for ln in llm.prompts[0].splitlines() if ln.startswith("[")]
-    assert ok and len(llm.prompts) == 1 and llm.schemas[0]["properties"]["pitch"]["items"]["maximum"] == len(shown)
+    assert ok and len(llm.prompts) == 1 and len(llm.schemas[0]["properties"]["labels"]["required"]) == len(shown)
     assert len(llm.prompts[0]) > text.MAX_CHARS * 0.9  # as long as a real prompt gets
     assert "42 s" in lines[0] and "llm_pitch_share" in lines[1]
     ok, lines = text.probe_llm(TimedLLM("Sorry, I can't.", now), clock=lambda: now[0])

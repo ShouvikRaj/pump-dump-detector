@@ -645,7 +645,7 @@ def evaluate_llm(ds: Datastore, llm, raw_since: date | None, gold: dict | None =
     todo = [e for e in ds.read_csv("candidates/episodes.csv")
             if e["episode_id"] in snaps and _computable(float(e["first_flagged_at"]), raw_since, first_day)]
     docs_of = _documents(ds, todo) if todo else {}
-    rows, counts, quotes, seconds, scored = [], {k: [0, 0, 0] for k in text.LLM_LISTS}, Counter(), [], 0
+    rows, counts, quotes, seconds, scored, details = [], {k: [0, 0, 0] for k in text.LLM_LISTS}, Counter(), [], 0, []
     for e in todo:
         eid, docs = e["episode_id"], docs_of[e["episode_id"]]
         if not docs:
@@ -671,18 +671,24 @@ def evaluate_llm(ds: Datastore, llm, raw_since: date | None, gold: dict | None =
         lists = json.loads(row["llm_lists"])
         judged = set(ids) & set(labels.get("docs", ids))
         scored += len(judged)
+        errors = []
         for k in text.LLM_LISTS:
             said = {ids[i - 1] for i in lists[k]} & judged
             yes, maybe = (set(labels.get(k, {}).get(w, [])) & judged for w in ("yes", "maybe"))
             counts[k][0] += len(said & yes)
             counts[k][1] += len(said - yes - maybe)
             counts[k][2] += len(yes - said)
+            for what, wrong in (("wrong", said - yes - maybe), ("missed", yes - said)):
+                if wrong:
+                    errors.append(f"{k} {what} {sorted(ids.index(d) + 1 for d in wrong)}")
+        details.append(f"{e['ticker']}: " + ("; ".join(errors) or "all right"))
     lines = [f"{len([r for r in rows if r['status'] == 'ok'])} of {len(rows)} candidates rated"
              + (f", {statistics.mean(seconds):.0f} s each on average (longest {max(seconds):.0f} s)" if seconds else ""),
              f"quotes: {quotes['quote=ok']} found, {quotes['quote=failed']} not found, {quotes['quote=none']} without events"]
     if gold:
         lines += [f"{scored} hand-labelled documents shown"]
         lines += [f"{k}: {r} right, {w} wrong, {m} missed" for k, (r, w, m) in counts.items()]
+        lines += ["", "By candidate (document numbers as in the prompt):", *details]
     return rows, lines
 
 
@@ -938,8 +944,10 @@ def render_readme(ds: Datastore, rows: list[Row], dev: dict, current: dict, now:
     if not recent:
         lines.append("No candidates scored in the last 7 days.")
     else:
-        lines += ["Scores as logged when each candidate was first seen; flagged ones in bold. LLM ratings are 0-3.", "",
-                  "| Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM promotion / coordination / news | "
+        lines += ["Scores as logged when each candidate was first seen; flagged ones in bold. The LLM column gives the "
+                  "shares of the posts shown that are about the company, pitch it, warn about it and state a company "
+                  "event (counted only when its quote checks out).", "",
+                  "| Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | "
                   "What the chatter was about |", "|---|---|---|---|---|---|---|"]
 
         def risk(p):
@@ -950,8 +958,12 @@ def render_readme(ds: Datastore, rows: list[Row], dev: dict, current: dict, now:
 
         for v in sorted(recent.values(), key=lambda v: v["p"]["as_of_utc"], reverse=True)[:40]:
             p, rt = v["p"], ratings.get(v["p"]["episode_id"], {})
-            llm = (f"{rt['llm_promotion']} / {rt['llm_coordination']} / {rt['llm_news']}" if rt.get("status") == "ok"
-                   else rt.get("status", "").replace("_", " ") or "-")
+            if rt.get("status") == "ok" and rt.get("llm_version") == text.LLM_VERSION:
+                llm = " / ".join(_pct(_f(rt.get(f"llm_{k}_share"))) for k in ("about", "pitch", "warning", "event"))
+            elif rt.get("status") == "ok":
+                llm = f"older version ({rt.get('llm_version') or 'llm-v1'})"
+            else:
+                llm = rt.get("status", "").replace("_", " ") or "-"
             about = (rt.get("llm_summary") or "").replace("|", "/")
             lines.append(f"| {p['as_of_utc'][:16].replace('T', ' ')} | {p['ticker']} | {p['archetype'].replace('_', ' ')} | "
                          f"{risk(v.get('crash'))} | {risk(v.get('pump'))} | {llm} | {about} |")

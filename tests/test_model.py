@@ -313,7 +313,7 @@ class FakeLLM:
         return reply
 
 
-RATING = ('{"summary": "Hype and earnings.", "not_about": [], "pitch": [1], "warning": [], "event": [2], '
+RATING = ('{"summary": "Hype and earnings.", "labels": {"1": "pitch", "2": "event"}, '
           '"event_type": "earnings", "event_quote": "earnings were announced", "sentiment": 1}')
 
 
@@ -347,6 +347,8 @@ def test_text_features_and_llm_ratings_come_from_the_flag_documents(tmp_path):
     assert ratings["AAAA"]["model"] == "fake/model" and ratings["AAAA"]["llm_version"] == "llm-v2"
     assert ratings["AAAB"]["status"] == "no_documents"
     assert summary["text"] == 2 and summary["llm"]["ok"] == 1
+    report = ds.path(model.README).read_text()
+    assert "| 100% / 50% / 0% / 50% | Hype and earnings. |" in report and "| no documents |" in report
 
     model.run_model(ds, llm=FakeLLM(), clock=lambda: now + 3600)  # computed once: no new rows, no calls
     assert len(ds.read_csv(text.TEXT)) == 2 and len(ds.read_csv(text.LLM)) == 2
@@ -519,6 +521,7 @@ def test_cli_llm_eval_scores_the_labels_and_saves_nothing(tmp_path, monkeypatch,
     out = capsys.readouterr().out
     assert "pitch: 1 right, 0 wrong, 0 missed" in out and "event: 0 right, 1 wrong, 0 missed" in out
     assert "warning: 0 right, 0 wrong, 1 missed" in out and "quotes: 1 found, 0 not found" in out
+    assert "AAAA: warning missed [2]; event wrong [2]" in out  # by document number, for reading the log
     (row,) = list(csv.DictReader(open(tmp_path / "eval.csv")))
     assert row["ticker"] == "AAAA" and row["llm_pitch_share"] == "0.5" and json.loads(row["doc_ids"]) == [
         "t1_AAAAa", "t1_AAAAb"] and row["model"] == "some/model"

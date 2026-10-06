@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Start llama.cpp's server with the llm-v1 model (docs/stage5.md) on 127.0.0.1, for the model workflow's LLM
-# ratings: an open-weights model on the runner itself, so no account, key or paid service is involved.
+# Start llama.cpp's server with the LLM step's model (llm-v2, docs/stage5.md) on 127.0.0.1, for the model and
+# llm-eval workflows: an open-weights model on the runner itself, so no account, key or paid service is involved.
 #
 # Downloads the pinned llama.cpp build and model file into LLM_DIR (default ~/llm, which the workflow caches)
 # unless they are already there, starts the server in the background and waits until it answers.

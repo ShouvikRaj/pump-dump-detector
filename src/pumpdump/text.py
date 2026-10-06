@@ -5,9 +5,10 @@ created in the 24 hours up to the flag and collected by then (bots excluded, as 
 
   text-v2  lexicon features: author concentration, copy-paste and near-copies across authors, sales-pitch, squeeze,
            news and dilution vocabulary, outside links, watch lists, length
-  llm-v2   a language model's labels of the same documents, by number (not about the company, pitch, warning,
-           company event, with a quote of the event), checked against the documents and turned into shares, from a
-           small open-weights model that llama.cpp's server runs on the workflow's own runner: no account, key or service
+  llm-v2   a language model's label for each of the same documents, by number (other, not this company, pitch,
+           warning, company event, with a quote of the event), checked against the documents and turned into shares,
+           from a small open-weights model that llama.cpp's server runs on the workflow's own runner: no account, key
+           or service
 
 Both are computed once per candidate, soon after the flag, and stored (model/text.csv, model/llm.csv). Design:
 docs/stage5.md.
@@ -40,6 +41,9 @@ TEXT_FEATURES = ["top_author_share", "dup_share", "promo_share", "squeeze_share"
                  "link_share", "multi_ticker_share", "length_log", "near_dup_share"]
 LLM_FEATURES = ["llm_about_share", "llm_pitch_share", "llm_warning_share", "llm_event_share", "llm_sentiment"]
 LLM_LISTS = ("not_about", "pitch", "warning", "event")
+LABELS = ("other", "not_this_company", "pitch", "warning", "event", "pitch_and_event")  # one per document
+_IN_LIST = {"not_about": ("not_this_company",), "pitch": ("pitch", "pitch_and_event"), "warning": ("warning",),
+            "event": ("event", "pitch_and_event")}
 # columns are only ever added at the end, so older rows keep theirs (llm-v1 rated promotion, coordination and news 0-3)
 TEXT_FIELDS = ["episode_id", "ticker", "as_of_utc", "n_docs", *TEXT_FEATURES[:-1], "computed_at_utc", "text_version",
                "near_dup_share"]
@@ -71,14 +75,17 @@ CATALYSTS = ("none", "earnings", "regulatory", "deal", "financing", "other")
 SYSTEM_PROMPT = ("You label Reddit posts and comments about one stock for a research project that detects "
                  "pump-and-dump schemes. Use only the documents shown, not what you know or guess about the company. "
                  "Reply with one JSON object and nothing else.")
-LABEL_PROMPT = """Label the documents by their numbers. A document can be in several lists or in none; use [] when none fits.
+LABEL_PROMPT = """Give every document one label, by its number:
+- other: about {name} but none of the labels below. Most documents are "other": questions, price talk, opinions, jokes, saying one owns {ticker}, likes it or expects it to rise.
+- not_this_company: "{ticker}" here means something other than {name}: another company or fund, an index or economic report, an abbreviation or an ordinary word.
+- pitch: tries to get others to buy {ticker}: price targets, rockets or "to the moon", "about to pop", "squeeze incoming", urgency ("don't miss", "get in before"), or telling people to buy.
+- warning: calls {ticker} a pump-and-dump, scam or rug pull, or warns others of dilution, an offering or a coming dump. Plain bearish opinions are "other".
+- event: states a specific company event, announced or scheduled: earnings, an FDA or other regulatory decision, a contract or government award, a partnership, a merger or acquisition, an offering or financing. Rumours, jokes, price moves and opinions are not events.
+- pitch_and_event: both a pitch and an event.
+Also give:
 - summary: first, one short sentence (at most 20 words) on what the chatter is about.
-- not_about: documents where "{ticker}" means something other than {name}: another company or fund, an index or economic report, an abbreviation or an ordinary word.
-- pitch: documents that hype {ticker} to get others to buy: price targets, rockets or "to the moon", "about to pop", "squeeze incoming", urgency ("don't miss", "get in before"), or telling people to buy.
-- warning: documents that call it a pump-and-dump, scam or rug pull, or warn of dilution, an offering or a coming dump.
-- event: documents that state a specific company event, announced or scheduled: earnings, an FDA or other regulatory decision, a contract or government award, a partnership, a merger or acquisition, an offering or financing. Rumours, jokes, price moves and opinions are not events.
 - event_type: the main event in the event documents: none, earnings, regulatory, deal, financing or other.
-- event_quote: up to 15 words copied exactly from one event document that state the event; "" when there are no event documents.
+- event_quote: up to 15 words copied exactly from one event document that state the event; "" when no document is an event.
 - sentiment: -2 to 2, how bearish or bullish the documents about {name} are overall."""
 
 
@@ -208,9 +215,12 @@ class Prompt:
 
 
 def rating_schema(n: int) -> dict:
-    """The JSON the model must answer with; llama.cpp turns it into a grammar, so other output can't be produced."""
-    refs = {"type": "array", "items": {"type": "integer", "minimum": 1, "maximum": max(n, 1)}, "maxItems": max(n, 1)}
-    props = {"summary": {"type": "string", "maxLength": 200}, **{k: refs for k in LLM_LISTS},
+    """The JSON the model must answer with: one label for each document shown, in order. llama.cpp turns it into a
+    grammar, so (unless the server drops the grammar) other output can't be produced."""
+    nums = [str(i) for i in range(1, n + 1)]
+    labels = {"type": "object", "properties": {k: {"enum": list(LABELS)} for k in nums}, "required": nums,
+              "additionalProperties": False}
+    props = {"summary": {"type": "string", "maxLength": 200}, "labels": labels,
              "event_type": {"enum": list(CATALYSTS)}, "event_quote": {"type": "string", "maxLength": 150},
              "sentiment": {"type": "integer", "minimum": -2, "maximum": 2}}
     return {"type": "object", "properties": props, "required": list(props), "additionalProperties": False}
@@ -272,22 +282,21 @@ def quote_found(quote: str, texts: list[str]) -> bool:
 
 def parse_rating(content: str, prompt: Prompt) -> dict:
     """The llm-v2 fields from the model's reply, checked against the documents shown; ValueError if it isn't the
-    JSON asked for. Numbers outside the documents are dropped, a document naming the stock as a cashtag (or with
-    its exchange) is about the stock whatever the model says, and the event share counts only when the event quote
-    is found in the documents."""
+    JSON asked for. Labels for documents not shown, unknown labels and missing ones are unusable (the document counts
+    as other), a document naming the stock as a cashtag (or with its exchange) is about the stock whatever the model
+    says, and the event share counts only when the event quote is found in the documents."""
     m = re.search(r"\{.*\}", content or "", re.S)
     if not m:
         raise ValueError("no JSON object in the reply")
     obj = json.loads(m.group(0))
     n = len(prompt.docs)
-    lists, dropped = {}, 0
-    for k in LLM_LISTS:
-        refs = obj.get(k)
-        if not isinstance(refs, list):
-            raise ValueError(f"{k} is not a list: {refs!r}")
-        ok = {r for r in refs if isinstance(r, int) and not isinstance(r, bool) and 1 <= r <= n}
-        dropped += len(set(map(str, refs))) - len(ok)
-        lists[k] = sorted(ok)
+    given = obj.get("labels")
+    if not isinstance(given, dict):
+        raise ValueError(f"labels is not an object: {given!r}")
+    of = {i: given.get(str(i)) for i in range(1, n + 1)}
+    dropped = sum(1 for k, v in given.items() if not (str(k).isdigit() and 1 <= int(k) <= n and v in LABELS))
+    dropped += sum(1 for v in of.values() if v is None)
+    lists = {k: [i for i, v in of.items() if v in _IN_LIST[k]] for k in LLM_LISTS}
     named = {i for i, d in enumerate(prompt.docs, 1) if d.get("method") in ("cashtag", "exchange")}
     overruled = len(set(lists["not_about"]) & named)
     lists["not_about"] = [i for i in lists["not_about"] if i not in named]
@@ -347,7 +356,7 @@ class ChatClient:
                else {"type": "json_object"})
         try:
             r = self.post(self.url, timeout=self.timeout, headers={"Content-Type": "application/json"},
-                          json={"model": self.model, "temperature": 0, "seed": 0, "max_tokens": 700,
+                          json={"model": self.model, "temperature": 0, "seed": 0, "max_tokens": 900,
                                 "response_format": fmt, "chat_template_kwargs": {"enable_thinking": False},
                                 "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]})
         except requests.RequestException as exc:
