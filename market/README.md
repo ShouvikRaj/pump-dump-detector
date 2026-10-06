@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-06T16:43:34Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-06T17:08:58Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-28 candidates and 56 controls so far. Archetypes: other 26, low_float_runner 2.
+29 candidates and 58 controls so far. Archetypes: other 27, low_float_runner 2.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SPY | 2026-10-06 17:08 | other | listed | 779.9 | +0.7% | +1.2% | 1.0x |  |  | 0 |  |
 | INFQ | 2026-10-06 16:43 | other | listed | 12.74 | +0.6% | -10.4% | 1.0x | 195.6M | 10.7% | 3 |  |
 | HTZ | 2026-10-06 16:43 | other | listed | 2.02 | +12.8% | +5.9% | 1.3x | 170.6M | 67.9% | 0 |  |
 | VOO | 2026-10-06 16:15 | other | listed | 717.9 | +0.8% | +1.2% | 0.6x |  |  |  |  |
