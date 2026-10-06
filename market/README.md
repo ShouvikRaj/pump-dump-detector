@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-06T18:28:47Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-06T18:55:21Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-33 candidates and 66 controls so far. Archetypes: other 31, low_float_runner 2.
+34 candidates and 68 controls so far. Archetypes: other 32, low_float_runner 2.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SKHY | 2026-10-06 18:54 | other | listed | 184.1 | -5.6% | +7.2% | 0.6x | 5.67B | 0.5% | 1 |  |
 | INTC | 2026-10-06 18:28 | other | listed | 114.7 | -1.3% | +0.1% | 0.7x | 4.62B | 3.4% | 3 |  |
 | OKLO | 2026-10-06 18:14 | other | listed | 39.07 | +8.6% | -3.1% | 0.8x | 149.6M | 22.5% | 1 |  |
 | PENG | 2026-10-06 18:01 | other | listed | 57.2 | -5.8% | +10.4% | 1.8x | 49.7M | 14.3% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | TSM | 2026-10-05 15:18 | other | listed | 483.2 | +2.2% | +4.9% | 1.0x | 37.84B | 0.1% | 0 |  |
 | SPCX | 2026-10-05 14:51 | other | listed | 166.9 | +5.0% | +6.9% | 1.3x | 4.34B | 3.7% | 0 |  |
 | APLD | 2026-10-05 14:23 | other | listed | 24.68 | -2.8% | -3.3% | 1.7x | 250.7M | 23.1% | 0 |  |
-| SDEV | 2026-10-05 14:09 | other | listed | 6.85 | -8.4% | +402.0% | 8.0x | 22.6M | 5.4% | 2 |  |
