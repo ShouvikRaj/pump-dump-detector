@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-06T17:22:04Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-06T18:02:15Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-30 candidates and 60 controls so far. Archetypes: other 28, low_float_runner 2.
+31 candidates and 62 controls so far. Archetypes: other 29, low_float_runner 2.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| PENG | 2026-10-06 18:01 | other | listed | 57.2 | -5.8% | +10.4% | 1.8x | 49.7M | 14.3% | 0 |  |
 | CIRC | 2026-10-06 17:21 | other | listed | 0.4392 | -18.4% | +36.2% | 1.6x | 55.8M | 1.6% | 1 |  |
 | SPY | 2026-10-06 17:08 | other | listed | 779.9 | +0.7% | +1.2% | 1.0x |  |  | 0 |  |
 | INFQ | 2026-10-06 16:43 | other | listed | 12.74 | +0.6% | -10.4% | 1.0x | 195.6M | 10.7% | 3 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | SDEV | 2026-10-05 14:09 | other | listed | 6.85 | -8.4% | +402.0% | 8.0x | 22.6M | 5.4% | 2 |  |
 | PMI | 2026-10-05 13:55 | low float runner | listed | 6.16 | +6.6% | +25.1% | 4.2x | 1.3M | 18.1% | 0 |  |
 | VST | 2026-10-05 04:15 | other | listed | 144 | +2.8% | +1.1% | 2.6x | 312.9M | 3.1% | 3 |  |
-| DRTS | 2026-10-04 23:23 | other | listed | 14.51 | -1.7% | +1.6% | 0.6x | 64.1M | 5.4% | 0 |  |
