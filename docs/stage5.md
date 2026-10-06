@@ -95,32 +95,37 @@ language model reads:
 - the company name, venue and price at the flag, and the SEC filings Stage 2 found before the flag (date and items of
   the last 8-K/6-K, date and form of the last registration or prospectus).
 
-It answers in JSON, listing document numbers (a document can be in several lists or in none):
+It answers in JSON, with one label for every document, by its number:
 
-| Field | What |
+| Label | The document |
 |---|---|
-| `summary` | first: what the chatter is about, at most 20 words (report only) |
-| `not_about` | documents where the ticker means something else: another company or fund, an index or economic report, an abbreviation or an ordinary word |
-| `pitch` | documents hyping the stock to get others to buy: price targets, rockets, "about to pop", "squeeze incoming", urgency, telling people to buy |
-| `warning` | documents calling it a pump-and-dump, scam or rug pull, or warning of dilution, an offering or a coming dump |
-| `event` | documents stating a specific company event, announced or scheduled: earnings, an FDA or other regulatory decision, a contract or government award, a partnership, a merger or acquisition, an offering or financing (rumours, jokes, price moves and opinions are not events) |
-| `event_type` | none, earnings, regulatory, deal, financing or other (report only) |
-| `event_quote` | up to 15 words copied exactly from an event document |
-| `sentiment` | -2 bearish to 2 bullish, about the company |
+| `other` | is about the company but fits none of the labels below; most documents: questions, price talk, opinions, jokes, saying one owns it, likes it or expects it to rise |
+| `not_this_company` | uses the ticker for something else: another company or fund, an index or economic report, an abbreviation or an ordinary word |
+| `pitch` | tries to get others to buy: price targets, rockets or "to the moon", "about to pop", "squeeze incoming", urgency ("don't miss", "get in before"), telling people to buy |
+| `warning` | calls it a pump-and-dump, scam or rug pull, or warns others of dilution, an offering or a coming dump (plain bearish opinions are `other`) |
+| `event` | states a specific company event, announced or scheduled: earnings, an FDA or other regulatory decision, a contract or government award, a partnership, a merger or acquisition, an offering or financing (rumours, jokes, price moves and opinions are not events) |
+| `pitch_and_event` | both |
+
+and four more fields: `summary` first (what the chatter is about, at most 20 words; report only), `event_type`
+(none, earnings, regulatory, deal, financing or other; report only), `event_quote` (up to 15 words copied exactly
+from an event document) and `sentiment` (-2 bearish to 2 bullish, about the company).
 
 The code checks the answer before anything is counted:
 
-- the format (these fields, document numbers between 1 and the number shown, sentiment -2 to 2) is enforced by the
+- the format (these fields, one of the six labels for every document shown, sentiment -2 to 2) is enforced by the
   server as a JSON-schema grammar and checked again by the parser, because llama.cpp can silently drop a grammar it
   fails to parse; an answer that doesn't parse is a failed rating;
-- numbers outside the documents shown are dropped;
+- labels for documents not shown, unknown labels and missing ones are unusable: that document counts as `other`, and
+  the number is recorded;
 - a document that names the stock as a cashtag or with its exchange (Stage 1's extraction method) is about the stock,
-  whatever `not_about` says;
+  whatever its label says;
 - the event documents count only if the event quote is found in one of the documents (at least 80% of it in one
   piece, ignoring case and punctuation); otherwise the event share is 0.
 
-Features, as shares of the documents shown: `llm_about_share` (not in `not_about`), `llm_pitch_share`,
-`llm_warning_share` and `llm_event_share` (documents in that list that are about the stock), and `llm_sentiment`.
+Features, as shares of the documents shown: `llm_about_share` (not `not_this_company`), `llm_pitch_share` (`pitch`
+or `pitch_and_event`), `llm_warning_share`, `llm_event_share` (`event` or `pitch_and_event`; 0 unless the quote checks
+out), each counting only documents about the stock, and `llm_sentiment`. The labels are stored as four lists of
+document numbers (`not_about`, `pitch`, `warning`, `event`).
 Coordination is no longer asked of the LLM: the text features measure it directly (`dup_share`, `near_dup_share`,
 `top_author_share`).
 
@@ -285,7 +290,7 @@ pruning rule and the hold-out did not change.
 
 | Change | Why |
 |---|---|
-| `llm-v1` (four 0-3 scores of the whole chatter) replaced by `llm-v2` (documents listed by number, an event quote, checks in code) | The first `llm-v1` ratings (15 candidates) made claims the documents don't support: coordination 2 or 3 for four large companies (Vistra, Applied Digital, SpaceX, Microsoft) whose chatter had no copied text (`dup_share` was 0 for all 15), and news 3 for PMI, whose documents were about the ISM purchasing managers' index, an economic report. A score for a whole conversation can't be checked; a list of documents and a copied quote can. This follows the usual advice for keeping a small model honest: extract rather than judge, ask for verbatim evidence and verify it (as Chain-of-Verification does, here in code rather than by the model), constrain the output to a schema and validate what comes back. PumpSense (2026) checks every ticker its LLM extracts against a list, and found LLMs too erratic to be the detector themselves, which is why LightGBM, not the LLM, makes the call here. |
+| `llm-v1` (four 0-3 scores of the whole chatter) replaced by `llm-v2` (a label for each document, an event quote, checks in code) | The first `llm-v1` ratings (15 candidates) made claims the documents don't support: coordination 2 or 3 for four large companies (Vistra, Applied Digital, SpaceX, Microsoft) whose chatter had no copied text (`dup_share` was 0 for all 15), and news 3 for PMI, whose documents were about the ISM purchasing managers' index, an economic report. A score for a whole conversation can't be checked; a list of documents and a copied quote can. This follows the usual advice for keeping a small model honest: extract rather than judge, ask for verbatim evidence and verify it (as Chain-of-Verification does, here in code rather than by the model), constrain the output to a schema and validate what comes back. PumpSense (2026) checks every ticker its LLM extracts against a list, and found LLMs too erratic to be the detector themselves, which is why LightGBM, not the LLM, makes the call here. |
 | Coordination measured by the text features only; `near_dup_share` added (`text-v2`) | Promotion campaigns post the same message from many accounts: Renault (2017) found promoter rings and scheduled bot posting, Mirtaheri et al. (2021) found 84% of very active pump accounts were bots or suspended, and AIMM (2025) measures coordination as the share of post pairs above a similarity threshold. Exact copies were already in `dup_share`; reworded ones were not. |
 | New `history` group | The same stocks get pumped again: in Xu & Livshits (2019) 35% of pumps targeted a coin already pumped on the same exchange, and both they and Nghiem et al. (2021) use the number of earlier pumps as a feature. |
 | llama.cpp started with `--jinja`, thinking off | Newer Qwen models think out loud by default; only the model's own chat template, which `--jinja` turns on, applies `enable_thinking: false`. |
