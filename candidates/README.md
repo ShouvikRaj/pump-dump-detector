@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-06T09:50:35Z by run `37445670105`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-06T10:04:02Z by run `37447186098`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -14,16 +14,16 @@ collected live, so flags in this period are marked `warmup=1` in episodes.csv.
 | APLD | 2026-10-05 14:23 | mention spike | 38 | 13.43 | 20 | 0 | wallstreetbets 38 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyj9yn/) |
 | GME | 2026-10-05 16:24 | mention spike | 27 | 5.29 | 23 | 0 | wallstreetbets 26, pennystocks 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyy6hz/) |
 | IWM | 2026-10-06 00:59 | mention spike | 15 | 6.71 | 9 | 0 | wallstreetbets 14, smallstreetbets 1 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyin5e/comment/pe6g51p/) |
-| MSFT | 2026-10-05 21:14 | mention spike | 50 | 19.29 | 36 | 0 | wallstreetbets 50 | Nasdaq | #13 | [link](https://www.reddit.com/r/wallstreetbets/comments/1wy8qku/) |
+| MSFT | 2026-10-05 21:14 | mention spike | 50 | 19.29 | 36 | 0 | wallstreetbets 50 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wy8qku/) |
 | MSTR | 2026-10-06 08:17 | mention spike | 16 | 5.71 | 16 | 0 | wallstreetbets 16 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyqxxo/) |
-| QCOM | 2026-10-05 21:14 | mention spike | 10 | 2.0 | 9 | 0 | wallstreetbets 10 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wy4jnf/) |
 | SPCX | 2026-10-05 14:51 | mention spike | 213 | 29.86 | 131 | 0 | wallstreetbets 213 | Nasdaq | #1 | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyuw3k/) |
 | TSM | 2026-10-05 15:18 | mention spike | 15 | 4.43 | 12 | 0 | wallstreetbets 15 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyin5e/comment/pe4sehv/) |
-| VEEA | 2026-10-05 15:33 | mention spike | 23 | 3.86 | 13 | 0 | pennystocks 22, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1wy88kg/) |
-| DRTS | 2026-10-04 23:23 | mention spike | 10 | 3.57 | 8 | 0 | wallstreetbets 10 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyin5e/comment/pe334cu/) |
+| VEEA | 2026-10-05 15:33 | mention spike | 22 | 4.0 | 13 | 0 | pennystocks 21, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1wy88kg/) |
+| QCOM | 2026-10-05 21:14 | mention spike | 9 | 2.14 | 8 | 0 | wallstreetbets 9 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyj28g/comment/pe3eo6g/) |
+| DRTS | 2026-10-04 23:23 | mention spike | 9 | 3.71 | 7 | 0 | wallstreetbets 9 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyin5e/comment/pe334cu/) |
 | IREN | 2026-10-05 17:49 | mention spike | 9 | 4.86 | 9 | 0 | wallstreetbets 9 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyin5e/comment/pe31di3/) |
 | PMI | 2026-10-05 13:55 | mention spike | 2 | 0.29 | 1 | 0 | pennystocks 2 | NYSE American |  | [link](https://www.reddit.com/r/pennystocks/comments/1wxyz2p/comment/pe0qett/) |
-| VST | 2026-10-05 04:15 | mention spike | 13 | 11.43 | 10 | 0 | wallstreetbets 13 | NYSE | #15 | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyin5e/comment/pe6suz4/) |
+| VST | 2026-10-05 04:15 | mention spike | 13 | 11.43 | 10 | 0 | wallstreetbets 13 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyin5e/comment/pe6suz4/) |
 | DELL | 2026-10-05 16:38 | mention spike | 7 | 6.43 | 5 | 0 | wallstreetbets 7 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wy4mk1/comment/pe2foyr/) |
 | SDEV | 2026-10-05 14:09 | mention spike | 15 | 6.0 | 9 | 0 | wallstreetbets 11, pennystocks 4 | NYSE American |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wy4mk1/comment/pe2r5x8/) |
 
