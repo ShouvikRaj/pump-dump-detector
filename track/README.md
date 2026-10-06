@@ -1,9 +1,15 @@
 # Stage 3 tracking
 
-Updated 2026-10-05T22:46:00Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-10-06T02:31:05Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-10-06 00:59 | RJF | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-06 00:59 | ITIC | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-06 00:59 | IWM | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-05 23:41 | WDH | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-05 23:41 | INO | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-05 23:41 | ALEC | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-10-05 21:14 | MDGL | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-05 21:14 | WAT | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-05 21:14 | RY | control | other | active | 0 |  |  |  |  |  |
