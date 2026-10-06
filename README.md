@@ -31,7 +31,8 @@ Everything runs on GitHub Actions; no computer needs to stay on.
 | `market` | after each `collect` run | snapshot each new candidate's market data as of its flag time, plus two matched controls (Stage 2) |
 | `track` | daily after the US close (started by `pace` after 22:41 UTC; cron backup) | record each candidate's and control's new trading sessions and SEC filings since its flag, for 20 sessions, and rebuild `track/outcomes.csv` (Stage 3) |
 | `label` | daily after `track` (started by `pace` after 23:21 UTC; cron backup) | label every candidate and control whose windows have closed and rebuild `labels/labels.csv` (Stage 4) |
-| `model` | daily after `label` (started by `pace` after 00:11 UTC; cron backup) | rate new candidates' chatter (text features and an LLM rating), retrain the weekly models, score each new candidate once into `model/predictions.csv` and rewrite `model/README.md` (Stage 5) |
+| `model` | daily after `label` (started by `pace` after 00:11 UTC; cron backup) | rate new candidates' chatter (text features and LLM labels), retrain the weekly models, score each new candidate once into `model/predictions.csv` and rewrite `model/README.md` (Stage 5) |
+| `llm-eval` | by hand (Actions, then Run workflow) | test the LLM step's prompt, or another open-weights model, against the hand-labelled documents in `docs/stage5-llm-gold.json`; writes nothing (Stage 5) |
 | `nightly` | 03:41 UTC (started by `pace` when GitHub's cron misses it) | build a SQLite database of everything collected and attach it to the run as the `pumpdump-sqlite` artifact; once collection has finished, publish it as the `dataset-final` release and turn collection off |
 | `tests` | every push | `pytest` |
 
@@ -133,13 +134,15 @@ against their controls is the first test of the avoid signal. Rule, reasons and 
 
 ## Stage 5: the model
 
-Once a day after labeling, the `model` workflow (rule `model-v1`, written down and committed before any model was
+Once a day after labeling, the `model` workflow (rule `model-v2`, written down and committed before any model was
 trained: [docs/stage5.md](docs/stage5.md)):
 
 - reads the Reddit posts and comments behind each new flag and turns them into text features (one author dominating,
-  copy-paste across authors, promotional and squeeze language, news and dilution talk, outside links) plus an LLM
-  rating of promotion, coordination and real news from a small open-weights model (Qwen3 4B) that llama.cpp runs on
-  the workflow's own runner (no account or key);
+  copy-paste and reworded copies across authors, promotional and squeeze language, news and dilution talk, outside
+  links) and LLM labels from a small open-weights model that llama.cpp runs on the workflow's own runner (no account
+  or key): which posts are not about the company at all, which pitch it, which warn about it and which state a
+  company event, with a copied quote the code checks, so every label can be checked against the posts;
+- adds how often the same stock was flagged, and crashed, before;
 - trains one LightGBM model per week and target (**crash** first, the avoid signal; then **pump**) on every candidate
   and control whose label was settled before the week began, recent ones weighted more, once 50 rows and 5 positives
   exist;

@@ -3,10 +3,11 @@
 The documents are exactly the ones behind an episode's `mentions_24h`: posts and comments that mention the ticker,
 created in the 24 hours up to the flag and collected by then (bots excluded, as in Stage 1).
 
-  text-v1  lexicon features: author concentration, copy-paste across authors, sales-pitch, squeeze, news and
-           dilution vocabulary, outside links, watch lists, length
-  llm-v1   a language model's ratings of the same documents (promotion, coordination, news, sentiment) from a small
-           open-weights model that llama.cpp's server runs on the workflow's own runner: no account, key or service
+  text-v2  lexicon features: author concentration, copy-paste and near-copies across authors, sales-pitch, squeeze,
+           news and dilution vocabulary, outside links, watch lists, length
+  llm-v2   a language model's labels of the same documents, by number (not about the company, pitch, warning,
+           company event, with a quote of the event), checked against the documents and turned into shares, from a
+           small open-weights model that llama.cpp's server runs on the workflow's own runner: no account, key or service
 
 Both are computed once per candidate, soon after the flag, and stored (model/text.csv, model/llm.csv). Design:
 docs/stage5.md.
@@ -20,7 +21,9 @@ import math
 import re
 import time
 from collections import Counter
+from dataclasses import dataclass
 from datetime import datetime, timezone
+from difflib import SequenceMatcher
 from typing import Callable
 
 import requests
@@ -28,17 +31,22 @@ import requests
 from .db import DELETED
 from .spikes import DAY
 
-TEXT_VERSION = "text-v1"
-LLM_VERSION = "llm-v1"
+TEXT_VERSION = "text-v2"
+LLM_VERSION = "llm-v2"
 TEXT = "model/text.csv"
 LLM = "model/llm.csv"
 
 TEXT_FEATURES = ["top_author_share", "dup_share", "promo_share", "squeeze_share", "news_share", "dilution_share",
-                 "link_share", "multi_ticker_share", "length_log"]
-LLM_FEATURES = ["llm_promotion", "llm_coordination", "llm_news", "llm_sentiment"]
-TEXT_FIELDS = ["episode_id", "ticker", "as_of_utc", "n_docs", *TEXT_FEATURES, "computed_at_utc", "text_version"]
-LLM_FIELDS = ["episode_id", "ticker", "as_of_utc", "status", *LLM_FEATURES, "llm_catalyst", "llm_summary", "n_docs",
-              "prompt_sha", "model", "rated_at_utc", "error", "llm_version"]
+                 "link_share", "multi_ticker_share", "length_log", "near_dup_share"]
+LLM_FEATURES = ["llm_about_share", "llm_pitch_share", "llm_warning_share", "llm_event_share", "llm_sentiment"]
+LLM_LISTS = ("not_about", "pitch", "warning", "event")
+# columns are only ever added at the end, so older rows keep theirs (llm-v1 rated promotion, coordination and news 0-3)
+TEXT_FIELDS = ["episode_id", "ticker", "as_of_utc", "n_docs", *TEXT_FEATURES[:-1], "computed_at_utc", "text_version",
+               "near_dup_share"]
+LLM_FIELDS = ["episode_id", "ticker", "as_of_utc", "status", "llm_promotion", "llm_coordination", "llm_news",
+              "llm_sentiment", "llm_catalyst", "llm_summary", "n_docs", "prompt_sha", "model", "rated_at_utc", "error",
+              "llm_version", "llm_about_share", "llm_pitch_share", "llm_warning_share", "llm_event_share",
+              "llm_event_quote", "llm_checks", "llm_lists", "n_shown"]
 
 PROMO_CATEGORIES = frozenset({"urgency", "price_target", "low_float", "gem", "next_big", "multibagger"})
 _I = re.IGNORECASE
@@ -49,24 +57,29 @@ DILUTION_RE = re.compile(r"\b(?:offerings?|dilut(?:ion|ive|ing)|warrants?|revers
 LINK_RE = re.compile(r"https?://(?!(?:[\w-]+\.)*(?:reddit\.com|redd\.it|imgur\.com|redditmedia\.com)\b)", _I)
 _URL_RE = re.compile(r"https?://\S+", _I)
 MIN_DUP_LETTERS = 20
+NEAR_DUP_JACCARD = 0.5  # share of 3-word shingles two documents have in common
+MIN_NEAR_DUP_WORDS = 8
 
-# llm-v1: what the model reads
+# llm-v2: what the model reads and how it answers
 MAX_DOCS = 40
 DOC_CHARS = 400
 MAX_CHARS = 12_000
+QUOTE_MATCH = 0.8  # an event quote counts when this much of it appears, in one piece, in a document
 LLM_URL = "http://127.0.0.1:8080/v1/chat/completions"  # llama.cpp's OpenAI-compatible server (scripts/llm_server.sh)
 LLM_MODEL = "unsloth/Qwen3-4B-Instruct-2507-GGUF@a06e946/Qwen3-4B-Instruct-2507-Q4_K_M.gguf"  # the workflow passes its own
 CATALYSTS = ("none", "earnings", "regulatory", "deal", "financing", "other")
-SYSTEM_PROMPT = ("You rate Reddit chatter about one stock for a research project that detects pump-and-dump schemes. "
-                 "Judge only what the posts below show. Reply with one JSON object and nothing else.")
-RATING_PROMPT = """Rate the chatter:
-- promotion: 0-3, how much of it is a sales pitch to get others to buy (price targets, urgency, "get in before", rockets, low-float pitches). 0 none, 3 mostly.
-- coordination: 0-3, signs of coordinated or bot-like posting (the same phrases from different authors, near-identical posts, one author posting again and again). 0 none, 3 strong.
-- news: 0-3, how much the discussion is about a concrete, checkable company event (earnings, an FDA or regulatory decision, a contract, a merger, an offering) rather than price action. 0 none, 3 mainly.
-- sentiment: -2 to 2, bearish to bullish.
-- catalyst: the main company event discussed: none, earnings, regulatory, deal, financing or other.
-- summary: one short sentence (at most 20 words) on what the chatter is about.
-Reply as {"promotion": 0, "coordination": 0, "news": 0, "sentiment": 0, "catalyst": "none", "summary": "..."}"""
+SYSTEM_PROMPT = ("You label Reddit posts and comments about one stock for a research project that detects "
+                 "pump-and-dump schemes. Use only the documents shown, not what you know or guess about the company. "
+                 "Reply with one JSON object and nothing else.")
+LABEL_PROMPT = """Label the documents by their numbers. A document can be in several lists or in none; use [] when none fits.
+- summary: first, one short sentence (at most 20 words) on what the chatter is about.
+- not_about: documents where "{ticker}" means something other than {name}: another company or fund, an index or economic report, an abbreviation or an ordinary word.
+- pitch: documents that hype {ticker} to get others to buy: price targets, rockets or "to the moon", "about to pop", "squeeze incoming", urgency ("don't miss", "get in before"), or telling people to buy.
+- warning: documents that call it a pump-and-dump, scam or rug pull, or warn of dilution, an offering or a coming dump.
+- event: documents that state a specific company event, announced or scheduled: earnings, an FDA or other regulatory decision, a contract or government award, a partnership, a merger or acquisition, an offering or financing. Rumours, jokes, price moves and opinions are not events.
+- event_type: the main event in the event documents: none, earnings, regulatory, deal, financing or other.
+- event_quote: up to 15 words copied exactly from one event document that state the event; "" when there are no event documents.
+- sentiment: -2 to 2, how bearish or bullish the documents about {name} are overall."""
 
 
 def _hhmm(ts: float, fmt: str = "%m-%d %H:%M") -> str:
@@ -75,11 +88,13 @@ def _hhmm(ts: float, fmt: str = "%m-%d %H:%M") -> str:
 
 def flag_documents(conn, ticker: str, as_of: float) -> list[dict]:
     """The documents behind the episode's mentions_24h, oldest first (needs Stage 1's `mentions` table filled)."""
-    q = """SELECT d.id, d.kind, d.subreddit, d.author, d.created_utc, d.title, d.body, d.url, m.hype_categories, m.n_tickers
+    q = """SELECT d.id, d.kind, d.subreddit, d.author, d.created_utc, d.title, d.body, d.url, m.hype_categories, m.n_tickers,
+                  m.method
            FROM mentions m JOIN docs d ON d.id = m.doc_id
            WHERE m.ticker = ? AND m.created_utc > ? AND m.created_utc <= ? AND m.collected_at <= ?
            ORDER BY m.created_utc, d.id"""
-    cols = ["id", "kind", "subreddit", "author", "created_utc", "title", "body", "url", "hype_categories", "n_tickers"]
+    cols = ["id", "kind", "subreddit", "author", "created_utc", "title", "body", "url", "hype_categories", "n_tickers",
+            "method"]
     return [dict(zip(cols, row)) for row in conn.execute(q, (ticker, as_of - DAY, as_of, as_of))]
 
 
@@ -89,15 +104,37 @@ def _author_key(d: dict) -> str:
     return a if a and a != DELETED else f"?{d['id']}"
 
 
-def _dup_key(d: dict, ticker: str) -> str | None:
+def _letters_only(d: dict, ticker: str) -> str:
+    """Lower case, without links, the ticker, digits and punctuation: what stays the same in a copied pitch."""
     t = _URL_RE.sub(" ", f"{d.get('title') or ''} {d.get('body') or ''}".lower())
     t = re.sub(r"\$?\b" + re.escape(ticker.lower()) + r"\b", " ", t)
-    t = re.sub(r"[^a-z]+", " ", t).strip()
+    return re.sub(r"[^a-z]+", " ", t).strip()
+
+
+def _dup_key(d: dict, ticker: str) -> str | None:
+    t = _letters_only(d, ticker)
     return t[:200] if sum(c.isalpha() for c in t) >= MIN_DUP_LETTERS else None
 
 
+def _shingles(d: dict, ticker: str) -> set | None:
+    words = _letters_only(d, ticker).split()
+    return {tuple(words[i:i + 3]) for i in range(len(words) - 2)} if len(words) >= MIN_NEAR_DUP_WORDS else None
+
+
+def _near_copies(docs: list[dict], ticker: str) -> list[bool]:
+    """Whether each document shares at least NEAR_DUP_JACCARD of its 3-word shingles with one by another author."""
+    sh = [_shingles(d, ticker) for d in docs]
+    out = [False] * len(docs)
+    for i in range(len(docs)):
+        for j in range(i + 1, len(docs)):
+            if sh[i] and sh[j] and _author_key(docs[i]) != _author_key(docs[j]) \
+                    and len(sh[i] & sh[j]) >= NEAR_DUP_JACCARD * len(sh[i] | sh[j]):
+                out[i] = out[j] = True
+    return out
+
+
 def text_features(docs: list[dict], ticker: str) -> dict:
-    """text-v1 features of the flag documents (docs/stage5.md); all blank when there are none."""
+    """text-v2 features of the flag documents (docs/stage5.md); all blank when there are none."""
     n = len(docs)
     out: dict = {"n_docs": n, **dict.fromkeys(TEXT_FEATURES)}
     if not n:
@@ -124,6 +161,7 @@ def text_features(docs: list[dict], ticker: str) -> dict:
         link_share=share(LINK_RE.search(f"{t}\n{d.get('url') or ''}") for t, d in zip(texts, docs)),
         multi_ticker_share=share((d.get("n_tickers") or 1) > 1 for d in docs),
         length_log=round(math.log1p(sum(len(d.get("title") or "") + len(d.get("body") or "") for d in docs) / n), 6),
+        near_dup_share=share(_near_copies(docs, ticker)),
     )
     return out
 
@@ -160,8 +198,30 @@ def select_documents(docs: list[dict]) -> list[dict]:
                                                        key=lambda d: d["created_utc"])
 
 
-def build_prompt(snap: dict, docs: list[dict], as_of: float) -> tuple[str, str]:
-    """(system, user) messages of llm-v1 for one candidate."""
+@dataclass
+class Prompt:
+    """One candidate's llm-v2 request: the messages, the documents shown (numbered from 1) and the answer's format."""
+    system: str
+    user: str
+    docs: list
+    schema: dict
+
+
+def rating_schema(n: int) -> dict:
+    """The JSON the model must answer with; llama.cpp turns it into a grammar, so other output can't be produced."""
+    refs = {"type": "array", "items": {"type": "integer", "minimum": 1, "maximum": max(n, 1)}, "maxItems": max(n, 1)}
+    props = {"summary": {"type": "string", "maxLength": 200}, **{k: refs for k in LLM_LISTS},
+             "event_type": {"enum": list(CATALYSTS)}, "event_quote": {"type": "string", "maxLength": 150},
+             "sentiment": {"type": "integer", "minimum": -2, "maximum": 2}}
+    return {"type": "object", "properties": props, "required": list(props), "additionalProperties": False}
+
+
+def _doc_text(d: dict) -> str:
+    return _flat(" | ".join(filter(None, [d.get("title"), d.get("body")])))[:DOC_CHARS]
+
+
+def build_prompt(snap: dict, docs: list[dict], as_of: float) -> Prompt:
+    """The llm-v2 request for one candidate."""
     chosen = select_documents(docs)
     alias: dict[str, str] = {}
     lines = []
@@ -171,10 +231,10 @@ def build_prompt(snap: dict, docs: list[dict], as_of: float) -> tuple[str, str]:
             who = "deleted"
         else:
             who = alias.setdefault(key, f"A{len(alias) + 1}")
-        body = _flat(" | ".join(filter(None, [d.get("title"), d.get("body")])))[:DOC_CHARS]
-        lines.append(f"[{i}] {d['kind']}, r/{d['subreddit']}, {who}, {_hhmm(d['created_utc'])}: {body}")
+        lines.append(f"[{i}] {d['kind']}, r/{d['subreddit']}, {who}, {_hhmm(d['created_utc'])}: {_doc_text(d)}")
     venue = {"listed": "listed on a US exchange", "otc": "traded over the counter"}.get(snap.get("venue") or "", "venue unknown")
     price = f"${float(snap['price_at_flag']):g}" if snap.get("price_at_flag") else "unknown"
+    name = snap.get("name") or "the company"
     user = "\n".join([
         f"Stock: {snap['ticker']} ({snap.get('name') or 'name unknown'}), {venue}, price {price} at the cut-off.",
         _filings_line(snap),
@@ -183,9 +243,9 @@ def build_prompt(snap: dict, docs: list[dict], as_of: float) -> tuple[str, str]:
         "",
         *lines,
         "",
-        RATING_PROMPT,
+        LABEL_PROMPT.format(ticker=snap["ticker"], name=name),
     ])
-    return SYSTEM_PROMPT, user
+    return Prompt(SYSTEM_PROMPT, user, chosen, rating_schema(len(chosen)))
 
 
 def _clamp(v, lo: int, hi: int) -> int:
@@ -194,20 +254,65 @@ def _clamp(v, lo: int, hi: int) -> int:
     return max(lo, min(hi, round(v)))
 
 
-def parse_rating(content: str) -> dict:
-    """The llm-v1 fields from the model's reply; ValueError if it isn't the JSON asked for."""
+def _norm(t: str) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", t.lower()).strip()
+
+
+def quote_found(quote: str, texts: list[str]) -> bool:
+    """Whether the quote (at least 8 characters) appears in one of the texts, allowing for small slips."""
+    q = _norm(quote)
+    if len(q) < 8:
+        return False
+    for t in map(_norm, texts):
+        m = SequenceMatcher(None, q, t, autojunk=False).find_longest_match(0, len(q), 0, len(t))
+        if m.size >= QUOTE_MATCH * len(q):
+            return True
+    return False
+
+
+def parse_rating(content: str, prompt: Prompt) -> dict:
+    """The llm-v2 fields from the model's reply, checked against the documents shown; ValueError if it isn't the
+    JSON asked for. Numbers outside the documents are dropped, a document naming the stock as a cashtag (or with
+    its exchange) is about the stock whatever the model says, and the event share counts only when the event quote
+    is found in the documents."""
     m = re.search(r"\{.*\}", content or "", re.S)
     if not m:
         raise ValueError("no JSON object in the reply")
     obj = json.loads(m.group(0))
-    catalyst = str(obj.get("catalyst") or "none").strip().lower()
+    n = len(prompt.docs)
+    lists, dropped = {}, 0
+    for k in LLM_LISTS:
+        refs = obj.get(k)
+        if not isinstance(refs, list):
+            raise ValueError(f"{k} is not a list: {refs!r}")
+        ok = {r for r in refs if isinstance(r, int) and not isinstance(r, bool) and 1 <= r <= n}
+        dropped += len(set(map(str, refs))) - len(ok)
+        lists[k] = sorted(ok)
+    named = {i for i, d in enumerate(prompt.docs, 1) if d.get("method") in ("cashtag", "exchange")}
+    overruled = len(set(lists["not_about"]) & named)
+    lists["not_about"] = [i for i in lists["not_about"] if i not in named]
+    about = [i for i in range(1, n + 1) if i not in lists["not_about"]]
+    quote = _flat(str(obj.get("event_quote") or ""))[:200]
+    texts = [_doc_text(d) for d in prompt.docs]
+    events = [i for i in lists["event"] if i in about]
+    verdict = "none" if not events else "ok" if quote_found(quote, texts) else "failed"
+
+    def share(refs) -> float:
+        return round(len([i for i in refs if i in about]) / n, 6) if n else 0.0
+
+    catalyst = str(obj.get("event_type") or "none").strip().lower()
     return {
-        "llm_promotion": _clamp(obj.get("promotion"), 0, 3),
-        "llm_coordination": _clamp(obj.get("coordination"), 0, 3),
-        "llm_news": _clamp(obj.get("news"), 0, 3),
+        "llm_about_share": round(len(about) / n, 6) if n else 0.0,
+        "llm_pitch_share": share(lists["pitch"]),
+        "llm_warning_share": share(lists["warning"]),
+        "llm_event_share": share(events) if verdict == "ok" else 0.0,
         "llm_sentiment": _clamp(obj.get("sentiment"), -2, 2),
         "llm_catalyst": catalyst if catalyst in CATALYSTS else "other",
+        "llm_event_quote": quote,
         "llm_summary": _flat(str(obj.get("summary") or ""))[:300],
+        "llm_checks": f"quote={verdict} dropped={dropped} overruled={overruled}",
+        "llm_lists": json.dumps(lists, separators=(", ", ": ")),
+        "n_shown": n,
     }
 
 
@@ -233,15 +338,17 @@ class ChatClient:
         self.min_interval, self.timeout = min_interval, timeout  # a long prompt takes a CPU a minute or two
         self._last: float | None = None
 
-    def complete(self, system: str, user: str) -> str:
+    def complete(self, system: str, user: str, schema: dict | None = None) -> str:
         if self._last is not None:
             wait = self._last + self.min_interval - self.clock()
             if wait > 0:
                 self.sleep(wait)
+        fmt = ({"type": "json_schema", "json_schema": {"name": "labels", "strict": True, "schema": schema}} if schema
+               else {"type": "json_object"})
         try:
             r = self.post(self.url, timeout=self.timeout, headers={"Content-Type": "application/json"},
-                          json={"model": self.model, "temperature": 0, "seed": 0, "max_tokens": 200,
-                                "response_format": {"type": "json_object"},
+                          json={"model": self.model, "temperature": 0, "seed": 0, "max_tokens": 700,
+                                "response_format": fmt, "chat_template_kwargs": {"enable_thinking": False},
                                 "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]})
         except requests.RequestException as exc:
             raise LLMError(f"network: {exc}") from exc
@@ -261,17 +368,17 @@ def probe_llm(llm, clock: Callable[[], float] = time.monotonic) -> tuple[bool, l
     """Time one full-size rating (as long as a real prompt gets) and check that it parses; nothing is saved."""
     as_of = time.time()
     docs = [{"id": f"t1_{i}", "kind": "comment", "subreddit": "pennystocks", "author": f"user{i % 9}",
-             "created_utc": as_of - 3600 + i, "title": None,
-             "body": f"$ABCD comment {i}: short squeeze incoming, low float, get in before the news " + "x" * 400}
+             "created_utc": as_of - 3600 + i, "title": None, "method": "bare",
+             "body": f"ABCD comment {i}: short squeeze incoming, low float, get in before the news " + "x" * 400}
             for i in range(MAX_DOCS)]
     snap = {"ticker": "ABCD", "name": "Abcd Inc.", "venue": "listed", "price_at_flag": "3.21", "cik": ""}
-    system, user = build_prompt(snap, docs, as_of)
+    p = build_prompt(snap, docs, as_of)
     t0 = clock()
-    answer = llm.complete(system, user)
-    lines = [f"{getattr(llm, 'model', '')}: a {len(system) + len(user)}-character prompt answered in "
-             f"{clock() - t0:.0f} s: {answer[:300]!r}"]
+    answer = llm.complete(p.system, p.user, p.schema)
+    lines = [f"{getattr(llm, 'model', '')}: a {len(p.system) + len(p.user)}-character prompt answered in "
+             f"{clock() - t0:.0f} s: {answer[:600]!r}"]
     try:
-        lines.append(f"parsed: {parse_rating(answer)}")
+        lines.append(f"parsed: {parse_rating(answer, p)}")
         return True, lines
     except ValueError as exc:
         lines.append(f"could not parse: {exc}")

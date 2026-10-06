@@ -30,9 +30,10 @@ if [ -z "$server" ]; then
   echo "::error::no llama-server in llama.cpp $LLAMA_CPP"
   exit 1
 fi
-# one request at a time, with room for the longest prompt (about 4,000 tokens) and the answer
+# one request at a time, with room for the longest prompt (about 4,000 tokens) and the answer; --jinja runs the
+# model's own chat template, which is what reads the request's chat_template_kwargs (thinking off)
 LD_LIBRARY_PATH="$(dirname "$server")${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" nohup "$server" -m "$dir/$LLM_FILE" \
-  --host 127.0.0.1 --port "$port" -c 8192 -np 1 -t "$(nproc)" > "$dir/server.log" 2>&1 &
+  --host 127.0.0.1 --port "$port" -c 8192 -np 1 -t "$(nproc)" --jinja > "$dir/server.log" 2>&1 &
 pid=$!
 
 for _ in $(seq 1 150); do

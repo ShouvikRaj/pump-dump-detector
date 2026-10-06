@@ -1,3 +1,5 @@
+import csv
+import json
 import math
 from datetime import datetime, timezone
 
@@ -59,13 +61,15 @@ SNAP = {"role": "candidate", "as_of": str(AS_OF), "price_at_flag": "2.5", "move_
 
 def test_candidate_features_come_from_its_episode_snapshot_and_text():
     text_row = dict.fromkeys(text.TEXT_FEATURES, "0.25")
-    llm_row = {"status": "ok", "llm_promotion": "3", "llm_coordination": "1", "llm_news": "0", "llm_sentiment": "2"}
+    llm_row = {"status": "ok", "llm_version": text.LLM_VERSION, "llm_about_share": "1", "llm_pitch_share": "0.5",
+               "llm_warning_share": "0", "llm_event_share": "0.1", "llm_sentiment": "2"}
     f = model.features(SNAP, EPISODE, text_row, llm_row)
     assert set(f) == set(model.FEATURES)
     assert f["mentions_log"] == pytest.approx(math.log1p(20)) and f["baseline_log"] == pytest.approx(math.log1p(1.5))
     assert (f["spike_z"], f["authors_ratio"], f["post_share"], f["hype_share"], f["hype_spike"]) == (4.2, 0.5, 0.25, 0.4, 1)
     assert (f["wsb_share"], f["pennystocks_share"], f["cashtag_share"], f["stocktwits_trending"]) == (0.75, 0.25, 0.2, 0)
-    assert f["top_author_share"] == 0.25 and f["llm_promotion"] == 3 and f["llm_sentiment"] == 2
+    assert f["top_author_share"] == 0.25 and f["near_dup_share"] == 0.25
+    assert f["llm_pitch_share"] == 0.5 and f["llm_sentiment"] == 2
     assert f["price_log"] == pytest.approx(math.log(2.5)) and f["rel_vol_last_log"] == pytest.approx(math.log1p(3))
     assert f["rel_vol_today_log"] is None
     assert f["float_log"] == pytest.approx(math.log1p(4e6))  # no float: shares outstanding
@@ -81,8 +85,40 @@ def test_controls_have_no_chatter_and_failed_ratings_count_as_missing():
     assert f["mentions_log"] == 0 and f["baseline_log"] == 0
     assert all(f[k] is None for k in model.GROUPS["chatter"][2:] + model.GROUPS["text"] + model.GROUPS["llm"])
     assert f["price_log"] == pytest.approx(math.log(2.5))
-    f = model.features(SNAP, EPISODE, None, {"status": "failed", "llm_promotion": ""})
-    assert f["llm_promotion"] is None and f["mentions_log"] > 0
+    f = model.features(SNAP, EPISODE, None, {"status": "failed", "llm_pitch_share": "", "llm_version": text.LLM_VERSION})
+    assert f["llm_pitch_share"] is None and f["mentions_log"] > 0
+    old = {"status": "ok", "llm_version": "llm-v1", "llm_promotion": "3", "llm_sentiment": "2"}
+    assert all(model.features(SNAP, EPISODE, None, old)[k] is None for k in model.GROUPS["llm"])  # another version
+
+
+def test_ticker_history_counts_only_what_was_known_at_the_flag(tmp_path):
+    ds = make_datastore(tmp_path, weeks=6, per_day=1, now=START + 50 * DAY)
+    eps = ds.read_csv("candidates/episodes.csv")
+    snaps = ds.read_csv(SNAPSHOTS)
+    labels = ds.read_csv(model.LABELS)
+    # day 20's candidate is the same stock as day 0's and day 18's; day 0's crashed, day 18's did not
+    first, second, third = eps[0], eps[18], eps[20]
+    for e in (second, third):
+        old = e["ticker"]
+        e["ticker"] = first["ticker"]
+        for r in snaps + labels:
+            if r["episode_id"] == e["episode_id"] and r["ticker"] == old:
+                r["ticker"] = first["ticker"]
+    for r in labels:
+        if r["ticker"] == first["ticker"]:
+            r["crash_10"] = "1" if r["episode_id"] == first["episode_id"] else "0"
+    ds.write_csv("candidates/episodes.csv", list(eps[0]), eps)
+    ds.write_csv(SNAPSHOTS, list(snaps[0]), snaps)
+    ds.write_csv(model.LABELS, list(labels[0]), labels)
+    rows = {r.episode_id: r for r in model.load_rows(ds) if r.role == "candidate"}
+    a, b, c = rows[first["episode_id"]], rows[second["episode_id"]], rows[third["episode_id"]]
+    assert (a.x["prior_flags_90d"], a.x["days_since_prior_flag"], a.x["prior_crashes"]) == (0, None, 0)
+    assert b.x["prior_flags_90d"] == 1 and b.x["days_since_prior_flag"] == pytest.approx((b.as_of - a.as_of) / DAY)
+    assert a.avail["crash"] < b.as_of and b.x["prior_crashes"] == 1  # day 0's crash had settled by day 18
+    assert c.x["prior_flags_90d"] == 2 and c.x["days_since_prior_flag"] == pytest.approx((c.as_of - b.as_of) / DAY)
+    assert c.x["prior_crashes"] == 1  # day 18's label was not available yet, and it did not crash anyway
+    control = next(r for r in model.load_rows(ds) if r.role == "control")
+    assert control.x["prior_flags_90d"] == 0 and control.x["days_since_prior_flag"] is None
 
 
 def test_recency_weight_halves_every_eight_weeks():
@@ -202,7 +238,7 @@ def test_run_scores_every_candidate_once_and_keeps_the_holdout_locked(tmp_path):
     assert hold and all(p["score"] != "" for p in hold if p["target"] == "crash")  # scored prospectively
     early = [p for p in preds if p["week_utc"] < "2026-10-19"]
     assert early and all(p["score"] == "" and "no model" in p["note"] for p in early)
-    assert all(p["model_version"] == "model-v1" for p in preds)
+    assert all(p["model_version"] == "model-v2" for p in preds)
 
     wf = ds.read_csv(model.WALKFORWARD)
     assert wf and all(r["as_of_utc"] < "2027-01-04" for r in wf)  # the replay never touches hold-out flags
@@ -269,7 +305,7 @@ class FakeLLM:
         self.replies = list(replies)
         self.prompts = []
 
-    def complete(self, system, user):
+    def complete(self, system, user, schema=None):
         self.prompts.append(user)
         reply = self.replies.pop(0)
         if isinstance(reply, Exception):
@@ -277,7 +313,8 @@ class FakeLLM:
         return reply
 
 
-RATING = '{"promotion": 2, "coordination": 1, "news": 0, "sentiment": 1, "catalyst": "none", "summary": "Hype."}'
+RATING = ('{"summary": "Hype and earnings.", "not_about": [], "pitch": [1], "warning": [], "event": [2], '
+          '"event_type": "earnings", "event_quote": "earnings were announced", "sentiment": 1}')
 
 
 def raw_doc(id_, created, collected, body, author="alice", kind="comment"):
@@ -305,13 +342,42 @@ def test_text_features_and_llm_ratings_come_from_the_flag_documents(tmp_path):
     assert rows["AAAB"]["n_docs"] == "0" and rows["AAAB"]["promo_share"] == ""
     assert len(llm.prompts) == 1 and "$AAAA to the moon" in llm.prompts[0]  # nothing to rate for AAAB
     ratings = {r["ticker"]: r for r in ds.read_csv(text.LLM)}
-    assert ratings["AAAA"]["status"] == "ok" and ratings["AAAA"]["llm_promotion"] == "2"
-    assert ratings["AAAA"]["model"] == "fake/model" and ratings["AAAA"]["llm_version"] == "llm-v1"
+    assert ratings["AAAA"]["status"] == "ok" and ratings["AAAA"]["llm_pitch_share"] == "0.5"
+    assert ratings["AAAA"]["llm_event_share"] == "0.5" and ratings["AAAA"]["llm_checks"].startswith("quote=ok")
+    assert ratings["AAAA"]["model"] == "fake/model" and ratings["AAAA"]["llm_version"] == "llm-v2"
     assert ratings["AAAB"]["status"] == "no_documents"
     assert summary["text"] == 2 and summary["llm"]["ok"] == 1
 
     model.run_model(ds, llm=FakeLLM(), clock=lambda: now + 3600)  # computed once: no new rows, no calls
     assert len(ds.read_csv(text.TEXT)) == 2 and len(ds.read_csv(text.LLM)) == 2
+
+
+def test_older_versions_are_redone_while_their_documents_are_checked_out(tmp_path):
+    now = START + 6 * DAY
+    ds = make_datastore(tmp_path, weeks=1, per_day=1, now=now)  # AAAA flagged on Monday, rated by llm-v1 then
+    e = ds.read_csv("candidates/episodes.csv")[0]
+    chatter(ds, float(e["first_flagged_at"]), "AAAA")
+    v1_text = ["episode_id", "ticker", "as_of_utc", "n_docs", *text.TEXT_FEATURES[:-1], "computed_at_utc", "text_version"]
+    v1_llm = text.LLM_FIELDS[:text.LLM_FIELDS.index("llm_version") + 1]
+    key = {"episode_id": e["episode_id"], "ticker": "AAAA", "as_of_utc": e["first_flagged_at_utc"]}
+    ds.write_csv(text.TEXT, v1_text, [{**key, "n_docs": 2, "dup_share": 0, "text_version": "text-v1"}])
+    ds.write_csv(text.LLM, v1_llm, [{**key, "status": "ok", "llm_promotion": 3, "llm_version": "llm-v1"}])
+    # its raw files are no longer checked out: the old rows stay, nothing is given up
+    def of_aaaa(rel):
+        return [r for r in ds.read_csv(rel) if r["ticker"] == "AAAA"]
+
+    model.run_model(ds, llm=FakeLLM(), clock=lambda: now, raw_since=datetime.fromtimestamp(now, timezone.utc).date())
+    assert [r["llm_version"] for r in of_aaaa(text.LLM)] == ["llm-v1"]
+    # checked out again: redone with the current versions, the old rows kept
+    llm = FakeLLM(RATING)
+    model.run_model(ds, llm=llm, clock=lambda: now, raw_since=datetime.fromtimestamp(START - DAY, timezone.utc).date())
+    old, new = of_aaaa(text.LLM)
+    assert old["llm_promotion"] == "3" and old["llm_pitch_share"] == ""
+    assert new["llm_version"] == "llm-v2" and new["llm_pitch_share"] == "0.5" and len(llm.prompts) == 1
+    texts = of_aaaa(text.TEXT)
+    assert [t["text_version"] for t in texts] == ["text-v1", "text-v2"] and texts[1]["near_dup_share"] == "0.0"
+    row = next(r for r in model.load_rows(ds) if r.ticker == "AAAA")
+    assert row.x["llm_pitch_share"] == 0.5 and row.x["near_dup_share"] == 0.0
 
 
 def test_text_waits_until_the_raw_files_it_needs_are_checked_out(tmp_path):
@@ -343,7 +409,7 @@ def test_a_rating_that_keeps_failing_is_given_up_after_three_days(tmp_path):
     model.run_model(ds, llm=FakeLLM(text.LLMError("HTTP 500")), clock=lambda: now)
     model.run_model(ds, llm=FakeLLM(text.LLMError("HTTP 500")), clock=lambda: as_of + 3 * DAY + 60)
     (row,) = ds.read_csv(text.LLM)
-    assert row["status"] == "failed" and "HTTP 500" in row["error"] and row["llm_promotion"] == ""
+    assert row["status"] == "failed" and "HTTP 500" in row["error"] and row["llm_pitch_share"] == ""
     assert len(ds.read_csv(model.PREDICTIONS)) == 2
 
 
@@ -374,9 +440,9 @@ def test_llm_calls_stop_when_the_time_budget_is_spent(tmp_path):
     t = [0.0]
 
     class SlowLLM(FakeLLM):
-        def complete(self, system, user):
+        def complete(self, system, user, schema=None):
             t[0] += 30 * 60  # half an hour per rating
-            return super().complete(system, user)
+            return super().complete(system, user, schema)
 
     llm = SlowLLM(RATING, RATING, RATING)
     summary = model.run_model(ds, llm=llm, clock=lambda: now, llm_budget_s=35 * 60, timer=lambda: t[0])
@@ -411,22 +477,68 @@ def test_cli_llm_probe_saves_nothing(tmp_path, monkeypatch, capsys):
             made.append((url, model))
             self.model = model
 
-        def complete(self, system, user):
+        def complete(self, system, user, schema=None):
             return RATING
 
     monkeypatch.setattr(cli, "ChatClient", Client)
     assert cli.main(["model", "--datastore", str(tmp_path), "--llm-probe", "--llm-url", "http://127.0.0.1:9/x",
                      "--llm-model", "some/model"]) == 0
-    assert made == [("http://127.0.0.1:9/x", "some/model")] and "llm_promotion" in capsys.readouterr().out
+    assert made == [("http://127.0.0.1:9/x", "some/model")] and "llm_pitch_share" in capsys.readouterr().out
     assert not any(tmp_path.iterdir())
 
     class Broken(Client):
-        def complete(self, system, user):
+        def complete(self, system, user, schema=None):
             raise text.LLMError("network: connection refused")
 
     monkeypatch.setattr(cli, "ChatClient", Broken)
     assert cli.main(["model", "--datastore", str(tmp_path), "--llm-probe"]) == 1
     assert "connection refused" in capsys.readouterr().out
+
+
+def test_cli_llm_eval_scores_the_labels_and_saves_nothing(tmp_path, monkeypatch, capsys):
+    now = START + 2 * DAY
+    ds = make_datastore(tmp_path / "ds", weeks=1, per_day=1, now=now)
+    eps = {e["ticker"]: e for e in ds.read_csv("candidates/episodes.csv")}
+    chatter(ds, float(eps["AAAA"]["first_flagged_at"]), "AAAA")
+    before = sorted(p.relative_to(tmp_path) for p in (tmp_path / "ds").rglob("*"))
+    gold = {eps["AAAA"]["episode_id"]: {"pitch": {"yes": ["t1_AAAAa"], "maybe": []},
+                                        "event": {"yes": [], "maybe": []},
+                                        "not_about": {"yes": [], "maybe": ["t1_AAAAb"]},
+                                        "warning": {"yes": ["t1_AAAAb"], "maybe": []}}}
+    (tmp_path / "gold.json").write_text(json.dumps(gold))
+
+    class Client(FakeLLM):
+        def __init__(self, url, model):
+            super().__init__(RATING)
+            self.model = model
+
+    monkeypatch.setattr(cli, "ChatClient", Client)
+    monkeypatch.setattr(cli.time, "time", lambda: now)
+    assert cli.main(["model", "--datastore", str(tmp_path / "ds"), "--llm-eval", str(tmp_path / "eval.csv"),
+                     "--gold", str(tmp_path / "gold.json"), "--llm-model", "some/model"]) == 0
+    out = capsys.readouterr().out
+    assert "pitch: 1 right, 0 wrong, 0 missed" in out and "event: 0 right, 1 wrong, 0 missed" in out
+    assert "warning: 0 right, 0 wrong, 1 missed" in out and "quotes: 1 found, 0 not found" in out
+    (row,) = list(csv.DictReader(open(tmp_path / "eval.csv")))
+    assert row["ticker"] == "AAAA" and row["llm_pitch_share"] == "0.5" and json.loads(row["doc_ids"]) == [
+        "t1_AAAAa", "t1_AAAAb"] and row["model"] == "some/model"
+    assert sorted(p.relative_to(tmp_path) for p in (tmp_path / "ds").rglob("*")) == before
+
+
+def test_llm_eval_scores_only_labelled_documents_still_shown(tmp_path):
+    now = START + 2 * DAY
+    ds = make_datastore(tmp_path / "ds", weeks=1, per_day=1, now=now)
+    eps = {e["ticker"]: e for e in ds.read_csv("candidates/episodes.csv")}
+    chatter(ds, float(eps["AAAA"]["first_flagged_at"]), "AAAA")
+    # labelled when only t1_AAAAa and t1_gone were shown: t1_AAAAb (the model's event) wasn't labelled, and t1_gone
+    # (a pitch the model can't see any more) is not a miss
+    gold = {eps["AAAA"]["episode_id"]: {"docs": ["t1_AAAAa", "t1_gone"],
+                                        "pitch": {"yes": ["t1_AAAAa", "t1_gone"], "maybe": []},
+                                        "event": {"yes": [], "maybe": []},
+                                        "not_about": {"yes": [], "maybe": []}, "warning": {"yes": [], "maybe": []}}}
+    _, lines = model.evaluate_llm(ds, FakeLLM(RATING), None, gold)
+    assert "pitch: 1 right, 0 wrong, 0 missed" in lines and "event: 0 right, 0 wrong, 0 missed" in lines
+    assert "1 hand-labelled documents shown" in lines
 
 
 def test_letters_are_valid_cashtags():

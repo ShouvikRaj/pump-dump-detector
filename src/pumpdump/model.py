@@ -12,12 +12,13 @@ Once a day (the `model` workflow, after Stage 4's labels) this
   5. keeps the hold-out (flags from 2027-01-04 on) sealed until collection is over and its labels have settled, then
      evaluates it once.
 
-The rule, `model-v1`, was written down before any model was trained: docs/stage5.md. LightGBM and numpy are only
-imported to fit and score, so the other commands run without them.
+The rule (`model-v1`, then `model-v2` before any model was trained) is written down in docs/stage5.md. LightGBM and
+numpy are only imported to fit and score, so the other commands run without them.
 """
 
 from __future__ import annotations
 
+import csv
 import gzip
 import json
 import math
@@ -38,8 +39,8 @@ from .symbols import load_symbols
 from .tickers import default_extractor
 from .track import DAILY, OUTCOMES, _close_ts
 
-MODEL_VERSION = "model-v1"
-HOLDOUT_START = datetime(2027, 1, 4, tzinfo=timezone.utc).timestamp()  # a Monday; nothing in model-v1 changes after it
+MODEL_VERSION = "model-v2"
+HOLDOUT_START = datetime(2027, 1, 4, tzinfo=timezone.utc).timestamp()  # a Monday; nothing in the rule changes after it
 WEEK = 7 * DAY
 HALF_LIFE = 56 * DAY  # recency weight halves every 8 weeks
 MIN_ROWS, MIN_POS = 50, 5  # a week's model trains only with this many available rows and positives
@@ -48,6 +49,7 @@ LABEL_DELAY = 4 * 3600  # a label is usable 4 hours after the close of the sessi
 PRUNE_MIN_POS = 20  # feature groups are pruned only once the replay has this many positive candidates
 LLM_RETRY = 3 * DAY  # a failed rating is retried for this long after the flag
 HOLDOUT_GRACE = 45 * DAY  # after the last flag, a snapshot Stage 4 never labeled stops holding up the hold-out
+HISTORY_WINDOW = 90 * DAY  # earlier flags of the same stock counted by prior_flags_90d
 TARGETS = ("crash", "pump")
 ARCHETYPES = ("low_float_runner", "otc_penny", "other")
 PUMP_TYPES = ("low_float_runner", "otc_penny")
@@ -66,6 +68,7 @@ GROUPS = {
     "filings": ["sec_filer", "dilution_90d", "offerings_424b_30d", "days_since_dilution", "current_reports_30d",
                 "days_since_report", "report_hard_news", "unregistered_sales_90d", "late_notices_365d",
                 "name_change_1y"],
+    "history": ["prior_flags_90d", "days_since_prior_flag", "prior_crashes"],
 }
 FEATURES = [f for fs in GROUPS.values() for f in fs]
 MARKET_GROUPS = ("price_volume", "size", "short_interest", "filings")
@@ -163,7 +166,8 @@ def available_at(lab: dict, sessions: dict[int, str], target: str) -> float | No
 
 
 def features(snap: dict, ep: dict | None, text_row: dict | None, llm_row: dict | None) -> dict:
-    """model-v1 features of one snapshot, from what was known at its flag time (docs/stage5.md)."""
+    """model-v2 features of one snapshot, from what was known at its flag time (docs/stage5.md); the history group
+    is filled in by add_history(), which needs every row."""
     x: dict = dict.fromkeys(FEATURES)
     as_of = float(snap["as_of"])
     if snap.get("role") == "candidate" and ep:
@@ -181,7 +185,7 @@ def features(snap: dict, ep: dict | None, text_row: dict | None, llm_row: dict |
         )
         if text_row:
             x.update({k: _f(text_row.get(k)) for k in text.TEXT_FEATURES})
-        if llm_row and llm_row.get("status") == "ok":
+        if llm_row and llm_row.get("status") == "ok" and llm_row.get("llm_version") == text.LLM_VERSION:
             x.update({k: _f(llm_row.get(k)) for k in text.LLM_FEATURES})
     else:  # a control: nobody was talking about it, by construction
         x.update(mentions_log=0.0, baseline_log=0.0)
@@ -238,15 +242,33 @@ class Row:
         return self.as_of >= HOLDOUT_START
 
 
+def add_history(rows: list[Row], episodes: list[dict]) -> None:
+    """The history group: how often the same stock was flagged before, and how often it then crashed, counting only
+    flags before the row's own and crash labels usable before it (no lookahead)."""
+    flags: dict[str, list[tuple[float, str]]] = defaultdict(list)
+    for e in episodes:
+        flags[e["ticker"]].append((float(e["first_flagged_at"]), e["episode_id"]))
+    crashes: dict[str, list[tuple[float, str]]] = defaultdict(list)
+    for r in rows:
+        if r.role == "candidate" and r.y["crash"] == 1 and r.avail["crash"] is not None:
+            crashes[r.ticker].append((r.avail["crash"], r.episode_id))
+    for r in rows:
+        prior = [t for t, eid in flags[r.ticker] if t < r.as_of and eid != r.episode_id]
+        r.x.update(prior_flags_90d=sum(1 for t in prior if t >= r.as_of - HISTORY_WINDOW),
+                   days_since_prior_flag=(r.as_of - max(prior)) / DAY if prior else None,
+                   prior_crashes=sum(1 for t, eid in crashes[r.ticker] if t < r.as_of and eid != r.episode_id))
+
+
 def load_rows(ds: Datastore) -> list[Row]:
     """One row per priced Stage 2 snapshot, with its features, targets and label availability."""
-    episodes = {e["episode_id"]: e for e in ds.read_csv("candidates/episodes.csv")}
+    episode_list = ds.read_csv("candidates/episodes.csv")
+    episodes = {e["episode_id"]: e for e in episode_list}
     labels = {r["snapshot_id"]: r for r in ds.read_csv(LABELS)}
     sessions: dict[str, dict[int, str]] = defaultdict(dict)
     for r in ds.read_csv(DAILY):
         sessions[r["snapshot_id"]][int(r["k"])] = r["session"]
     ret10 = {r["snapshot_id"]: _f(r.get("ret_close_10")) for r in ds.read_csv(OUTCOMES)}
-    text_rows = {r["episode_id"]: r for r in ds.read_csv(text.TEXT)}
+    text_rows = {r["episode_id"]: r for r in ds.read_csv(text.TEXT)}  # the latest row of each episode wins
     llm_rows = {r["episode_id"]: r for r in ds.read_csv(text.LLM)}
     rows = []
     for s in ds.read_csv(SNAPSHOTS):
@@ -257,6 +279,7 @@ def load_rows(ds: Datastore) -> list[Row]:
         rows.append(Row(sid, eid, s["role"], s["ticker"], s["archetype"], float(s["as_of"]),
                         features(s, episodes.get(eid), text_rows.get(eid), llm_rows.get(eid)), targets(lab),
                         {t: available_at(lab, sessions[sid], t) for t in TARGETS}, ret10.get(sid), lab.get("label", "")))
+    add_history(rows, episode_list)
     return rows
 
 
@@ -520,14 +543,30 @@ def _documents(ds: Datastore, episodes: list[dict]) -> dict[str, list[dict]]:
     return {e["episode_id"]: text.flag_documents(conn, e["ticker"], float(e["first_flagged_at"])) for e in episodes}
 
 
+def _upgrade_header(ds: Datastore, rel: str, fields: list[str]) -> None:
+    """Rewrite an append-only table under a newer header (columns are only ever added), keeping every row."""
+    p = ds.path(rel)
+    if not p.exists() or not p.stat().st_size:
+        return
+    with p.open(newline="", encoding="utf-8") as fh:
+        header = next(csv.reader(fh), [])
+    if header != fields:
+        ds.write_csv(rel, fields, ds.read_csv(rel))
+
+
 def update_text(ds: Datastore, llm, now: float, raw_since: date | None, summary: dict, llm_budget_s: float | None = None,
                 timer: Callable[[], float] = time.monotonic) -> None:
-    """Append text features (text-v1) and LLM ratings (llm-v1) of candidates that don't have them yet."""
+    """Append text features and LLM ratings (the current versions) of candidates that don't have them yet. A
+    candidate done by an older version is redone while its raw files are checked out; its old rows stay."""
     episodes = ds.read_csv("candidates/episodes.csv")
     snaps = {s["episode_id"]: s for s in ds.read_csv(SNAPSHOTS)
              if s["role"] == "candidate" and s.get("archetype") not in ("", "unknown")}
-    have_text = {r["episode_id"] for r in ds.read_csv(text.TEXT)}
-    have_llm = {r["episode_id"] for r in ds.read_csv(text.LLM)}
+    _upgrade_header(ds, text.TEXT, text.TEXT_FIELDS)
+    _upgrade_header(ds, text.LLM, text.LLM_FIELDS)
+    have_text = {r["episode_id"] for r in ds.read_csv(text.TEXT) if r.get("text_version") == text.TEXT_VERSION}
+    llm_rows = ds.read_csv(text.LLM)
+    have_llm = {r["episode_id"] for r in llm_rows if r.get("llm_version") == text.LLM_VERSION}
+    rated_before = {r["episode_id"] for r in llm_rows}  # by any version: already scored, nothing waits for a redo
     state = json.loads(ds.path(STATE).read_text()) if ds.path(STATE).exists() else {}
     attempts = state.setdefault("llm_attempts", {})
     live_since = ds.load_state().get("live_since")
@@ -541,8 +580,8 @@ def update_text(ds: Datastore, llm, now: float, raw_since: date | None, summary:
 
     new_text, new_llm = [], []
     want_llm = [e for e in episodes if llm is not None and e["episode_id"] in snaps and e["episode_id"] not in have_llm]
-    for e in want_llm:  # out of retries: give up on it
-        if now - float(e["first_flagged_at"]) >= LLM_RETRY:
+    for e in want_llm:  # out of retries: give up on it (a redo is never given up: the candidate has a rating)
+        if e["episode_id"] not in rated_before and now - float(e["first_flagged_at"]) >= LLM_RETRY:
             last = attempts.pop(e["episode_id"], {}).get("error", "")
             new_llm.append(rating_row(e, "failed", error=last or "no rating within 3 days of the flag"))
     gave_up = {r["episode_id"] for r in new_llm}
@@ -564,10 +603,10 @@ def update_text(ds: Datastore, llm, now: float, raw_since: date | None, summary:
             continue
         if blocked or (llm_budget_s is not None and timer() - started >= llm_budget_s):
             continue  # left for the next run
-        system, user = text.build_prompt(snaps[eid], docs, as_of)
-        sha = text.prompt_sha(system, user)
+        p = text.build_prompt(snaps[eid], docs, as_of)
+        sha = text.prompt_sha(p.system, p.user)
         try:
-            answer = llm.complete(system, user)
+            answer = llm.complete(p.system, p.user, p.schema)
         except text.LLMRefused as exc:
             new_llm.append(rating_row(e, "failed", docs, sha=sha, error=str(exc)))
             attempts.pop(eid, None)
@@ -580,17 +619,71 @@ def update_text(ds: Datastore, llm, now: float, raw_since: date | None, summary:
             continue
         attempts.pop(eid, None)
         try:
-            new_llm.append(rating_row(e, "ok", docs, text.parse_rating(answer), sha))
+            new_llm.append(rating_row(e, "ok", docs, text.parse_rating(answer, p), sha))
         except ValueError as exc:  # the same prompt gets the same answer at temperature 0: no point retrying
             new_llm.append(rating_row(e, "failed", docs, sha=sha, error=f"unparseable: {exc}: {answer[:200]}"))
     ds.append_csv(text.TEXT, text.TEXT_FIELDS, new_text)
     ds.append_csv(text.LLM, text.LLM_FIELDS, new_llm)
     ds.write_text(STATE, json.dumps(state, indent=2, sort_keys=True) + "\n")
     summary["text"] = len(new_text)
-    rated = have_llm | {r["episode_id"] for r in new_llm}
+    rated = rated_before | {r["episode_id"] for r in new_llm}
     summary["llm"] = {"ok": sum(r["status"] == "ok" for r in new_llm),
                       "failed": sum(r["status"] == "failed" for r in new_llm),
                       "waiting": sum(1 for e in want_llm if e["episode_id"] not in rated)}
+
+
+def evaluate_llm(ds: Datastore, llm, raw_since: date | None, gold: dict | None = None,
+                 timer: Callable[[], float] = time.monotonic) -> tuple[list[dict], list[str]]:
+    """Rate every candidate whose flag documents are checked out with the current prompt, and, given hand labels
+    ({episode_id: {"docs": [doc ids labelled], list: {"yes": [doc ids], "maybe": [doc ids]}}}), count the right,
+    wrong and missed documents of each list ("maybe" documents count neither way). Only labelled documents that the
+    prompt still shows are scored. For testing a prompt or model: writes nothing."""
+    snaps = {s["episode_id"]: s for s in ds.read_csv(SNAPSHOTS)
+             if s["role"] == "candidate" and s.get("archetype") not in ("", "unknown")}
+    live_since = ds.load_state().get("live_since")
+    first_day = datetime.fromtimestamp(live_since, timezone.utc).date() if live_since else None
+    todo = [e for e in ds.read_csv("candidates/episodes.csv")
+            if e["episode_id"] in snaps and _computable(float(e["first_flagged_at"]), raw_since, first_day)]
+    docs_of = _documents(ds, todo) if todo else {}
+    rows, counts, quotes, seconds, scored = [], {k: [0, 0, 0] for k in text.LLM_LISTS}, Counter(), [], 0
+    for e in todo:
+        eid, docs = e["episode_id"], docs_of[e["episode_id"]]
+        if not docs:
+            continue
+        p = text.build_prompt(snaps[eid], docs, float(e["first_flagged_at"]))
+        ids = [d["id"] for d in p.docs]
+        row = {"episode_id": eid, "ticker": e["ticker"], "n_docs": len(docs), "model": getattr(llm, "model", ""),
+               "doc_ids": json.dumps(ids)}
+        t0 = timer()
+        try:
+            answer = llm.complete(p.system, p.user, p.schema)
+            row.update(seconds=round(timer() - t0, 1), answer=answer[:3000])
+            row.update(text.parse_rating(answer, p), status="ok")
+            seconds.append(row["seconds"])
+        except (text.LLMError, ValueError) as exc:
+            rows.append({**row, "status": "failed", "error": str(exc)[:300]})
+            continue
+        rows.append(row)
+        quotes[row["llm_checks"].split()[0]] += 1
+        labels = (gold or {}).get(eid)
+        if not labels:
+            continue
+        lists = json.loads(row["llm_lists"])
+        judged = set(ids) & set(labels.get("docs", ids))
+        scored += len(judged)
+        for k in text.LLM_LISTS:
+            said = {ids[i - 1] for i in lists[k]} & judged
+            yes, maybe = (set(labels.get(k, {}).get(w, [])) & judged for w in ("yes", "maybe"))
+            counts[k][0] += len(said & yes)
+            counts[k][1] += len(said - yes - maybe)
+            counts[k][2] += len(yes - said)
+    lines = [f"{len([r for r in rows if r['status'] == 'ok'])} of {len(rows)} candidates rated"
+             + (f", {statistics.mean(seconds):.0f} s each on average (longest {max(seconds):.0f} s)" if seconds else ""),
+             f"quotes: {quotes['quote=ok']} found, {quotes['quote=failed']} not found, {quotes['quote=none']} without events"]
+    if gold:
+        lines += [f"{scored} hand-labelled documents shown"]
+        lines += [f"{k}: {r} right, {w} wrong, {m} missed" for k, (r, w, m) in counts.items()]
+    return rows, lines
 
 
 # -- the run ------------------------------------------------------------------------------------------------------
@@ -714,7 +807,7 @@ def evaluate_holdout(ds: Datastore, rows: list[Row], now: float) -> None:
         unscored = sum(1 for p in preds if p["target"] == t and p["score"] == "")
         results[t] = {**_evaluate(items), "unscored": unscored}
     ds.write_csv(HOLDOUT_CSV, HOLDOUT_FIELDS, out_rows)
-    lines = [f"# Stage 5 hold-out evaluation", "",
+    lines = ["# Stage 5 hold-out evaluation", "",
              f"Computed once, {iso(now)}, from the prospective log (`model/predictions.csv`): every hold-out candidate "
              f"(flagged on or after {_day(HOLDOUT_START)}) was scored before its outcome existed, by the model of its "
              f"week. Rule `{MODEL_VERSION}` (docs/stage5.md on the code branch). This file is never recomputed.", ""]

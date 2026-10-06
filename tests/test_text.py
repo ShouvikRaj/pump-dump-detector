@@ -73,6 +73,21 @@ def test_copy_paste_counts_only_across_authors():
     assert text.text_features(docs, "ABCD")["dup_share"] == pytest.approx(2 / 6)
 
 
+def test_near_copies_count_only_across_authors():
+    pitch = "This one is going to run hard this week, huge news coming soon, load up on {} before the close {}"
+    docs = documents(
+        doc("t1_1", AS_OF - 500, author="a", body=pitch.format("$ABCD", "today")),
+        doc("t1_2", AS_OF - 400, author="b", body=pitch.format("ABCD", "tomorrow, trust me")),  # edited copy
+        doc("t1_3", AS_OF - 300, author="c", body="ABCD meh, I sold my whole position this morning and moved on"),
+        doc("t1_4", AS_OF - 200, author="c", body="ABCD meh, I sold my whole position this morning and moved on!!"),
+        doc("t1_5", AS_OF - 100, author="d", body="ABCD to the moon"),
+        doc("t1_6", AS_OF - 50, author="e", body="$ABCD to the moon"),  # same, but too short to judge
+    )
+    f = text.text_features(docs, "ABCD")
+    assert f["dup_share"] == 0.0  # the copies were edited
+    assert f["near_dup_share"] == pytest.approx(2 / 6)
+
+
 def test_no_documents_means_no_text_features():
     f = text.text_features([], "ABCD")
     assert f["n_docs"] == 0 and all(f[k] is None for k in text.TEXT_FEATURES)
@@ -90,36 +105,91 @@ def test_prompt_shows_posts_first_anonymises_authors_and_caps_its_size():
     records = [doc("t3_p", AS_OF - 9000, kind="post", author="promoter", title="$ABCD to the moon", body="DD inside")]
     records += [doc(f"t1_{i:03d}", AS_OF - 8000 + i, author=f"user{i % 7}", body=f"$ABCD comment {i} " + "x" * 600)
                 for i in range(60)]
-    system, user = text.build_prompt(snapshot(), documents(*records), AS_OF)
-    assert "JSON" in system
-    assert "Abcd Therapeutics" in user and "$3.21" in user and "2026-10-05 14:09 UTC" in user
-    assert "8-K" in user and "2.02" in user and "S-3 on 2026-09-15" in user
-    assert "promoter" not in user and "user3" not in user
-    lines = [ln for ln in user.splitlines() if ln.startswith("[")]
+    p = text.build_prompt(snapshot(), documents(*records), AS_OF)
+    assert "JSON" in p.system
+    assert "Abcd Therapeutics" in p.user and "$3.21" in p.user and "2026-10-05 14:09 UTC" in p.user
+    assert "8-K" in p.user and "2.02" in p.user and "S-3 on 2026-09-15" in p.user
+    assert "promoter" not in p.user and "user3" not in p.user
+    lines = [ln for ln in p.user.splitlines() if ln.startswith("[")]
     assert lines[0].startswith("[1] post, r/pennystocks, A1")
-    assert "comment 59" in user and "comment 0 " not in user  # the most recent comments are kept
-    assert len(lines) <= text.MAX_DOCS and sum(len(ln) for ln in lines) <= text.MAX_CHARS
+    assert "comment 59" in p.user and "comment 0 " not in p.user  # the most recent comments are kept
+    assert len(lines) == len(p.docs) <= text.MAX_DOCS and sum(len(ln) for ln in lines) <= text.MAX_CHARS
     assert all(len(ln) <= text.DOC_CHARS + 60 for ln in lines)
+    assert p.docs[0]["id"] == "t3_p"
+
+
+def test_prompt_asks_for_document_lists_in_a_fixed_format():
+    p = text.build_prompt(snapshot(), documents(doc("t1_a", AS_OF - 60, body="$ABCD"),
+                                                doc("t1_b", AS_OF - 50, body="ABCD and the CEO")), AS_OF)
+    for key in ("not_about", "pitch", "warning", "event", "event_quote", "sentiment", "summary"):
+        assert f"- {key}:" in p.user
+    assert '"ABCD" means something other than Abcd Therapeutics' in p.user
+    s = p.schema
+    assert list(s["properties"]) == ["summary", "not_about", "pitch", "warning", "event", "event_type", "event_quote",
+                                     "sentiment"]
+    assert s["required"] == list(s["properties"]) and s["additionalProperties"] is False
+    assert s["properties"]["pitch"]["items"] == {"type": "integer", "minimum": 1, "maximum": 2}
+    assert s["properties"]["event_type"]["enum"] == list(text.CATALYSTS)
+    assert s["properties"]["sentiment"] == {"type": "integer", "minimum": -2, "maximum": 2}
 
 
 def test_prompt_for_a_company_without_sec_filings():
-    _, user = text.build_prompt(snapshot(cik="", last_current_report_at="", last_dilution_at="", last_dilution_form=""),
-                                documents(doc("t1_a", AS_OF - 60, body="$ABCD")), AS_OF)
-    assert "not an SEC filer" in user
+    p = text.build_prompt(snapshot(cik="", last_current_report_at="", last_dilution_at="", last_dilution_form=""),
+                          documents(doc("t1_a", AS_OF - 60, body="$ABCD")), AS_OF)
+    assert "not an SEC filer" in p.user
 
 
-def test_parse_rating_reads_the_json_and_keeps_values_in_range():
-    content = '```json\n{"promotion": 3, "coordination": 5, "news": 0, "sentiment": -1.6, "catalyst": "Earnings", ' \
-              '"summary": "Pump talk."}\n```'
-    r = text.parse_rating(content)
-    assert r == {"llm_promotion": 3, "llm_coordination": 3, "llm_news": 0, "llm_sentiment": -2,
-                 "llm_catalyst": "earnings", "llm_summary": "Pump talk."}
-    assert text.parse_rating('{"promotion": 1, "coordination": 0, "news": 2, "sentiment": 0, "catalyst": "merger"}')[
-        "llm_catalyst"] == "other"
+def labelled_prompt():
+    return text.build_prompt(snapshot(), documents(
+        doc("t1_1", AS_OF - 600, author="a", body="$ABCD to the moon, get in before it rips"),
+        doc("t1_2", AS_OF - 500, author="b", body="ABCD signed a $40M supply contract with the Army, PR is out"),
+        doc("t1_3", AS_OF - 400, author="c", body="ABCD this is a pump and dump, they will dilute"),
+        doc("t1_4", AS_OF - 300, author="d", body="ABCD report at 10am, the index moves markets"),
+    ), AS_OF)
+
+
+def test_parse_rating_turns_the_lists_into_checked_shares():
+    p = labelled_prompt()
+    r = text.parse_rating('{"summary": "Contract news and pump talk.", "not_about": [4], "pitch": [1, 1], '
+                          '"warning": [3], "event": [2], "event_type": "deal", '
+                          '"event_quote": "signed a $40M supply contract with the Army", "sentiment": 1}', p)
+    assert r["n_shown"] == 4
+    assert r["llm_about_share"] == 0.75 and r["llm_pitch_share"] == 0.25
+    assert r["llm_warning_share"] == 0.25 and r["llm_event_share"] == 0.25
+    assert r["llm_sentiment"] == 1 and r["llm_catalyst"] == "deal" and r["llm_summary"] == "Contract news and pump talk."
+    assert r["llm_checks"] == "quote=ok dropped=0 overruled=0"
+    assert json.loads(r["llm_lists"]) == {"not_about": [4], "pitch": [1], "warning": [3], "event": [2]}
+
+
+def test_parse_rating_drops_what_the_documents_do_not_support():
+    p = labelled_prompt()
+    # an event quote that is in no document: the event share is not trusted
+    r = text.parse_rating('{"summary": "x", "not_about": [], "pitch": [1, 9], "warning": [], "event": [2], '
+                          '"event_type": "regulatory", "event_quote": "received FDA approval for its lead drug", '
+                          '"sentiment": 5}', p)
+    assert r["llm_event_share"] == 0.0 and r["llm_pitch_share"] == 0.25 and r["llm_sentiment"] == 2
+    assert r["llm_checks"] == "quote=failed dropped=1 overruled=0"
+    # a document that names the stock with a cashtag is about the stock, whatever the model says
+    r = text.parse_rating('{"summary": "x", "not_about": [1, 4], "pitch": [1], "warning": [], "event": [], '
+                          '"event_type": "none", "event_quote": "", "sentiment": 0}', p)
+    assert r["llm_about_share"] == 0.75 and r["llm_pitch_share"] == 0.25
+    assert r["llm_checks"] == "quote=none dropped=0 overruled=1" and r["llm_catalyst"] == "none"
+    # a lightly reworded quote still counts
+    r = text.parse_rating('{"summary": "x", "not_about": [], "pitch": [], "warning": [], "event": [2], '
+                          '"event_type": "Deal", "event_quote": "signed a 40M supply contract with the army", '
+                          '"sentiment": 0}', p)
+    assert r["llm_event_share"] == 0.25 and r["llm_checks"].startswith("quote=ok")
+
+
+def test_parse_rating_rejects_answers_that_are_not_the_json_asked_for():
+    p = labelled_prompt()
     with pytest.raises(ValueError):
-        text.parse_rating("I can't help with that.")
+        text.parse_rating("I can't help with that.", p)
     with pytest.raises(ValueError):
-        text.parse_rating('{"promotion": "high"}')
+        text.parse_rating('{"summary": "x", "pitch": "most of them"}', p)
+    with pytest.raises(ValueError):
+        text.parse_rating('{"summary": "x", "not_about": [], "pitch": [], "warning": [], "event": [], '
+                          '"event_type": "none", "event_quote": "", "sentiment": "very"}', p)
 
 
 class FakePost:
@@ -144,15 +214,21 @@ class FakeResponse:
         return self._body
 
 
-def test_chat_client_asks_the_local_server_for_json():
-    post = FakePost((200, {"choices": [{"message": {"content": '{"promotion": 1}'}}]}))
+def test_chat_client_asks_the_local_server_for_json_in_the_given_format():
+    ok = (200, {"choices": [{"message": {"content": '{"pitch": [1]}'}}]})
+    post = FakePost(ok, ok)
     client = text.ChatClient(post=post)
-    assert client.complete("sys", "user") == '{"promotion": 1}'
+    schema = {"type": "object", "properties": {"pitch": {"type": "array"}}}
+    assert client.complete("sys", "user", schema) == '{"pitch": [1]}'
     call = post.calls[0]
     assert call["url"] == text.LLM_URL and "Authorization" not in call["headers"]
     assert call["json"]["model"] == text.LLM_MODEL and call["json"]["temperature"] == 0 and call["json"]["seed"] == 0
-    assert call["json"]["response_format"] == {"type": "json_object"}
+    assert call["json"]["response_format"] == {"type": "json_schema",
+                                               "json_schema": {"name": "labels", "strict": True, "schema": schema}}
+    assert call["json"]["chat_template_kwargs"] == {"enable_thinking": False}
     assert [m["role"] for m in call["json"]["messages"]] == ["system", "user"]
+    client.complete("sys", "user")
+    assert post.calls[1]["json"]["response_format"] == {"type": "json_object"}
 
 
 def test_chat_client_tells_a_refusal_from_a_retryable_error():
@@ -181,21 +257,23 @@ class TimedLLM:
     model = "fake/model"
 
     def __init__(self, reply, now):
-        self.reply, self.now, self.prompts = reply, now, []
+        self.reply, self.now, self.prompts, self.schemas = reply, now, [], []
 
-    def complete(self, system, user):
+    def complete(self, system, user, schema=None):
         self.prompts.append(user)
+        self.schemas.append(schema)
         self.now[0] += 42.0
         return self.reply
 
 
 def test_probe_times_a_full_size_prompt():
     now = [0.0]
-    llm = TimedLLM('{"promotion": 2, "coordination": 1, "news": 0, "sentiment": 1, "catalyst": "none", '
-                   '"summary": "Hype."}', now)
+    llm = TimedLLM('{"summary": "Hype.", "not_about": [], "pitch": [1, 2], "warning": [], "event": [], '
+                   '"event_type": "none", "event_quote": "", "sentiment": 1}', now)
     ok, lines = text.probe_llm(llm, clock=lambda: now[0])
-    assert ok and len(llm.prompts) == 1
+    shown = [ln for ln in llm.prompts[0].splitlines() if ln.startswith("[")]
+    assert ok and len(llm.prompts) == 1 and llm.schemas[0]["properties"]["pitch"]["items"]["maximum"] == len(shown)
     assert len(llm.prompts[0]) > text.MAX_CHARS * 0.9  # as long as a real prompt gets
-    assert "42 s" in lines[0] and "llm_promotion" in lines[1]
+    assert "42 s" in lines[0] and "llm_pitch_share" in lines[1]
     ok, lines = text.probe_llm(TimedLLM("Sorry, I can't.", now), clock=lambda: now[0])
     assert not ok and "could not parse" in lines[1]

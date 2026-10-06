@@ -1,0 +1,77 @@
+name: llm-eval
+
+# Testing Stage 5's LLM step (docs/stage5.md, "Testing the LLM step"): rate every candidate whose raw files are
+# checked out with the current prompt and the chosen open-weights model, score the answers against the hand-labelled
+# set (docs/stage5-llm-gold.json) and upload them as an artifact. Writes nothing to the data branch. The defaults are
+# the model the `model` workflow runs.
+on:
+  workflow_dispatch:
+    inputs:
+      llm_repo:
+        description: "Hugging Face repository of the GGUF file"
+        default: unsloth/Qwen3-4B-Instruct-2507-GGUF
+      llm_revision:
+        description: "Its revision (full commit hash)"
+        default: a06e946bb6b655725eafa393f4a9745d460374c9
+      llm_file:
+        description: "The GGUF file"
+        default: Qwen3-4B-Instruct-2507-Q4_K_M.gguf
+      raw_days:
+        description: "Days of raw Reddit files to check out (candidates flagged earlier are skipped)"
+        default: "4"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: llm-eval-${{ github.run_id }}
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    env:
+      LLAMA_CPP: b10456
+      LLM_REPO: ${{ inputs.llm_repo }}
+      LLM_REVISION: ${{ inputs.llm_revision }}
+      LLM_FILE: ${{ inputs.llm_file }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install
+        run: pip install ".[model]"
+
+      - name: Cache the LLM (llama.cpp and the model file)
+        uses: actions/cache@v4
+        with:
+          path: ~/llm
+          key: llm-${{ env.LLAMA_CPP }}-${{ env.LLM_REVISION }}-${{ env.LLM_FILE }}
+
+      - name: Start the LLM server
+        run: scripts/llm_server.sh
+
+      - name: Check out the data branch (candidates, snapshots, recent raw files)
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: scripts/datastore.sh checkout-model datastore "${{ inputs.raw_days }}"
+
+      - name: Rate and score
+        run: >-
+          python -m pumpdump model --datastore datastore --raw-days "${{ inputs.raw_days }}"
+          --llm-model "$LLM_REPO@${LLM_REVISION:0:7}/$LLM_FILE"
+          --llm-eval llm-eval.csv --gold docs/stage5-llm-gold.json | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Show the LLM server's timings
+        if: always()
+        run: grep -E "eval time|error|warn" ~/llm/server.log | tail -n 40 || true
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: llm-eval
+          path: llm-eval.csv

@@ -13,6 +13,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import os
 import sqlite3
@@ -229,6 +230,16 @@ def cmd_model(args: argparse.Namespace) -> int:
     raw_since = None
     if args.raw_days is not None:  # only the last N days of raw files were checked out
         raw_since = datetime.fromtimestamp(now, timezone.utc).date() - timedelta(days=args.raw_days)
+    if args.llm_eval:  # rate the checked-out candidates with the current prompt, score against hand labels; saves nothing
+        gold = json.loads(Path(args.gold).read_text()) if args.gold else None
+        rows, lines = model.evaluate_llm(ds, llm, raw_since, gold)
+        fields = list(dict.fromkeys(k for r in rows for k in r))
+        with open(args.llm_eval, "w", newline="", encoding="utf-8") as fh:
+            w = csv.DictWriter(fh, fieldnames=fields, lineterminator="\n")
+            w.writeheader()
+            w.writerows(rows)
+        print("\n".join(lines))
+        return 0
     summary = model.run_model(ds, llm, clock=lambda: now, raw_since=raw_since, llm_budget_s=args.llm_minutes * 60)
     report = render_model_summary(summary, str(run_id))
     print(report)
@@ -370,6 +381,8 @@ def main(argv: list[str] | None = None) -> int:
     md.add_argument("--llm-model", default=LLM_MODEL, help="the model the server runs, recorded with each rating")
     md.add_argument("--no-llm", action="store_true", help="skip the LLM ratings (score without them)")
     md.add_argument("--llm-probe", action="store_true", help="only time one full-size rating; save nothing")
+    md.add_argument("--llm-eval", metavar="CSV", help="only rate the checked-out candidates into this file; save nothing")
+    md.add_argument("--gold", help="with --llm-eval: hand labels to score the answers against (JSON)")
     md.add_argument("--summary", help="append a markdown summary here (e.g. $GITHUB_STEP_SUMMARY)")
     md.add_argument("--github-output", help="write finished=true|false here ($GITHUB_OUTPUT)")
     md.set_defaults(func=cmd_model)
