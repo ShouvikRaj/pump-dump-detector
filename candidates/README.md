@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-06T09:37:21Z by run `37444158288`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-06T09:50:35Z by run `37445670105`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -23,7 +23,7 @@ collected live, so flags in this period are marked `warmup=1` in episodes.csv.
 | DRTS | 2026-10-04 23:23 | mention spike | 10 | 3.57 | 8 | 0 | wallstreetbets 10 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyin5e/comment/pe334cu/) |
 | IREN | 2026-10-05 17:49 | mention spike | 9 | 4.86 | 9 | 0 | wallstreetbets 9 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyin5e/comment/pe31di3/) |
 | PMI | 2026-10-05 13:55 | mention spike | 2 | 0.29 | 1 | 0 | pennystocks 2 | NYSE American |  | [link](https://www.reddit.com/r/pennystocks/comments/1wxyz2p/comment/pe0qett/) |
-| VST | 2026-10-05 04:15 | mention spike | 12 | 11.43 | 10 | 0 | wallstreetbets 12 | NYSE | #15 | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyin5e/comment/pe5pwnh/) |
+| VST | 2026-10-05 04:15 | mention spike | 13 | 11.43 | 10 | 0 | wallstreetbets 13 | NYSE | #15 | [link](https://www.reddit.com/r/wallstreetbets/comments/1wyin5e/comment/pe6suz4/) |
 | DELL | 2026-10-05 16:38 | mention spike | 7 | 6.43 | 5 | 0 | wallstreetbets 7 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wy4mk1/comment/pe2foyr/) |
 | SDEV | 2026-10-05 14:09 | mention spike | 15 | 6.0 | 9 | 0 | wallstreetbets 11, pennystocks 4 | NYSE American |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wy4mk1/comment/pe2r5x8/) |
 
