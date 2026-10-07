@@ -322,7 +322,9 @@ class Run:
                     b["minute"] = ex.klines(sym, "1m", start, t0 - t0 % MIN + MINUTE_AFTER)
                     b["minute_fetched_at"] = iso(self.clock())
                     if e["kind"] != "spike":
-                        b["hourly"] = ex.klines(sym, "1h", t0 - t0 % HOUR - HOURLY_BEFORE, now_ms - now_ms % HOUR)
+                        # never past the 7-day window: backfilled posts can be years old
+                        end = min(now_ms - now_ms % HOUR, t0 - t0 % HOUR + HOURLY_AFTER + HOUR)
+                        b["hourly"] = ex.klines(sym, "1h", t0 - t0 % HOUR - HOURLY_BEFORE, end)
                         b["hourly_fetched_at"] = iso(self.clock())
                     stats["minute"] += 1
                     changed = True
