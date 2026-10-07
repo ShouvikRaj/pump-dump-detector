@@ -8,7 +8,7 @@ import pytest
 pytest.importorskip("lightgbm")
 
 from model_fakes import HOLDOUT, START, close_ts, letters, make_datastore, sessions_after  # noqa: E402
-from pumpdump import cli, model, text  # noqa: E402
+from pumpdump import cli, model, technical, text  # noqa: E402
 from pumpdump.market import SNAPSHOTS  # noqa: E402
 
 DAY = 86_400
@@ -89,6 +89,14 @@ def test_controls_have_no_chatter_and_failed_ratings_count_as_missing():
     assert f["llm_pitch_share"] is None and f["mentions_log"] > 0
     old = {"status": "ok", "llm_version": "llm-v1", "llm_promotion": "3", "llm_sentiment": "2"}
     assert all(model.features(SNAP, EPISODE, None, old)[k] is None for k in model.GROUPS["llm"])  # another version
+
+
+def test_technical_features_join_by_snapshot_and_version():
+    row = {"technical_version": technical.TECHNICAL_VERSION, "vwap_ext": "0.3", "ssr_today": "1", "ret_60m": ""}
+    f = model.features(SNAP, EPISODE, None, None, row)
+    assert f["vwap_ext"] == 0.3 and f["ssr_today"] == 1 and f["ret_60m"] is None
+    assert model.features(SNAP, EPISODE, None, None, {**row, "technical_version": "technical-v0"})["vwap_ext"] is None
+    assert "technical" in model.MARKET_GROUPS and set(model.GROUPS["technical"]) == set(technical.FEATURES)
 
 
 def test_ticker_history_counts_only_what_was_known_at_the_flag(tmp_path):
@@ -238,7 +246,7 @@ def test_run_scores_every_candidate_once_and_keeps_the_holdout_locked(tmp_path):
     assert hold and all(p["score"] != "" for p in hold if p["target"] == "crash")  # scored prospectively
     early = [p for p in preds if p["week_utc"] < "2026-10-19"]
     assert early and all(p["score"] == "" and "no model" in p["note"] for p in early)
-    assert all(p["model_version"] == "model-v2" for p in preds)
+    assert all(p["model_version"] == model.MODEL_VERSION for p in preds)
 
     wf = ds.read_csv(model.WALKFORWARD)
     assert wf and all(r["as_of_utc"] < "2027-01-04" for r in wf)  # the replay never touches hold-out flags

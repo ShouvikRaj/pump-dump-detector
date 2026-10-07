@@ -203,7 +203,7 @@ def render_model_summary(summary: dict, run_id: str) -> str:
     lines = [f"## Model run {run_id}", ""]
     lines.append(
         f"Text features for {summary['text']} new candidates; LLM ratings: {llm['ok']} rated, {llm['failed']} failed, "
-        f"{llm['waiting']} waiting for a retry. {summary['scored']} new candidates scored."
+        f"{llm['waiting']} waiting for a retry. {summary['scored']} new candidates scored. Technical features for {summary.get('technical', 0)} new snapshots."
     )
     lines += [""] + [f"- {t} model this week: {note}" for t, note in summary["models"].items()]
     for t, m in summary["dev"].items():

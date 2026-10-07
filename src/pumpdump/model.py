@@ -4,7 +4,7 @@ Once a day (the `model` workflow, after Stage 4's labels) this
 
   1. computes the text features and LLM ratings of new candidates' flag-time Reddit documents (text.py);
   2. builds one row per Stage 2 snapshot: features known at the flag (Stage 1 chatter, text, LLM, Stage 2 market
-     data), Stage 4's targets (crash, pump), and when each label became usable (no lookahead);
+     data and technical features), Stage 4's targets (crash, pump), and when each label became usable (no lookahead);
   3. scores each new candidate once with its week's LightGBM model, trained on the labels available before that week
      began with recent rows weighted more, and appends the score to the prospective log (model/predictions.csv);
   4. replays every development week the same way (walk-forward) and reports precision / recall / F1 / AP per
@@ -12,7 +12,8 @@ Once a day (the `model` workflow, after Stage 4's labels) this
   5. keeps the hold-out (flags from 2027-01-04 on) sealed until collection is over and its labels have settled, then
      evaluates it once.
 
-The rule (`model-v1`, then `model-v2` before any model was trained) is written down in docs/stage5.md. LightGBM and
+The rule (`model-v1`, then `model-v2` and `model-v3` before any model was trained) is written down in
+docs/stage5.md. LightGBM and
 numpy are only imported to fit and score, so the other commands run without them.
 """
 
@@ -29,7 +30,7 @@ from dataclasses import dataclass
 from datetime import date, datetime, timedelta, timezone
 from typing import Callable
 
-from . import db, text
+from . import db, technical, text
 from .features import DAY, iso
 from .label import LABELS
 from .market import SNAPSHOTS
@@ -39,7 +40,7 @@ from .symbols import load_symbols
 from .tickers import default_extractor
 from .track import DAILY, OUTCOMES, _close_ts
 
-MODEL_VERSION = "model-v2"
+MODEL_VERSION = "model-v3"
 HOLDOUT_START = datetime(2027, 1, 4, tzinfo=timezone.utc).timestamp()  # a Monday; nothing in the rule changes after it
 WEEK = 7 * DAY
 HALF_LIFE = 56 * DAY  # recency weight halves every 8 weeks
@@ -69,9 +70,10 @@ GROUPS = {
                 "days_since_report", "report_hard_news", "unregistered_sales_90d", "late_notices_365d",
                 "name_change_1y"],
     "history": ["prior_flags_90d", "days_since_prior_flag", "prior_crashes"],
+    "technical": list(technical.FEATURES),
 }
 FEATURES = [f for fs in GROUPS.values() for f in fs]
-MARKET_GROUPS = ("price_volume", "size", "short_interest", "filings")
+MARKET_GROUPS = ("price_volume", "size", "short_interest", "filings", "technical")
 SOCIAL_GROUPS = ("chatter", "text", "llm")
 PARAMS = {"objective": "binary", "learning_rate": 0.05, "num_leaves": 7, "max_depth": 3, "min_data_in_leaf": 10,
           "feature_fraction": 0.8, "bagging_fraction": 0.8, "bagging_freq": 1, "lambda_l2": 1.0, "seed": 0,
@@ -165,8 +167,9 @@ def available_at(lab: dict, sessions: dict[int, str], target: str) -> float | No
     return _close_ts(date.fromisoformat(day)) + LABEL_DELAY
 
 
-def features(snap: dict, ep: dict | None, text_row: dict | None, llm_row: dict | None) -> dict:
-    """model-v2 features of one snapshot, from what was known at its flag time (docs/stage5.md); the history group
+def features(snap: dict, ep: dict | None, text_row: dict | None, llm_row: dict | None,
+             tech_row: dict | None = None) -> dict:
+    """model-v3 features of one snapshot, from what was known at its flag time (docs/stage5.md); the history group
     is filled in by add_history(), which needs every row."""
     x: dict = dict.fromkeys(FEATURES)
     as_of = float(snap["as_of"])
@@ -216,6 +219,8 @@ def features(snap: dict, ep: dict | None, text_row: dict | None, llm_row: dict |
         unregistered_sales_90d=g("unregistered_sales_90d"), late_notices_365d=g("late_filing_notices_365d"),
         name_change_1y=int(renamed is not None and 0 <= renamed <= 365) if sec else None,
     )
+    if tech_row and tech_row.get("technical_version") == technical.TECHNICAL_VERSION:
+        x.update({k: _f(tech_row.get(k)) for k in technical.FEATURES})
     return x
 
 
@@ -270,6 +275,7 @@ def load_rows(ds: Datastore) -> list[Row]:
     ret10 = {r["snapshot_id"]: _f(r.get("ret_close_10")) for r in ds.read_csv(OUTCOMES)}
     text_rows = {r["episode_id"]: r for r in ds.read_csv(text.TEXT)}  # the latest row of each episode wins
     llm_rows = {r["episode_id"]: r for r in ds.read_csv(text.LLM)}
+    tech_rows = {r["snapshot_id"]: r for r in ds.read_csv(technical.TECHNICAL)}
     rows = []
     for s in ds.read_csv(SNAPSHOTS):
         if s.get("archetype") in ("", "unknown") or not _f(s.get("price_at_flag")):
@@ -277,7 +283,8 @@ def load_rows(ds: Datastore) -> list[Row]:
         lab = labels.get(s["snapshot_id"], {})
         sid, eid = s["snapshot_id"], s["episode_id"]
         rows.append(Row(sid, eid, s["role"], s["ticker"], s["archetype"], float(s["as_of"]),
-                        features(s, episodes.get(eid), text_rows.get(eid), llm_rows.get(eid)), targets(lab),
+                        features(s, episodes.get(eid), text_rows.get(eid), llm_rows.get(eid), tech_rows.get(sid)),
+                        targets(lab),
                         {t: available_at(lab, sessions[sid], t) for t in TARGETS}, ret10.get(sid), lab.get("label", "")))
     add_history(rows, episode_list)
     return rows
@@ -832,6 +839,7 @@ def run_model(ds: Datastore, llm=None, clock: Callable[[], float] = time.time, r
     summary: dict = {"text": 0, "llm": {"ok": 0, "failed": 0, "waiting": 0}, "scored": 0, "models": {}, "dev": {},
                      "holdout": "locked", "finished": False, "warnings": []}
     update_text(ds, llm, now, raw_since, summary, llm_budget_s, timer)
+    summary["technical"] = technical.update(ds, now)
     rows = load_rows(ds)
     trainer = Trainer(rows)
     dev = development(trainer, rows)
