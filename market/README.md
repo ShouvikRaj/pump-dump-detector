@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-07T16:38:45Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-07T17:44:54Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-42 candidates and 84 controls so far. Archetypes: other 39, low_float_runner 3.
+43 candidates and 86 controls so far. Archetypes: other 40, low_float_runner 3.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| LLY | 2026-10-07 17:44 | other | listed | 1,196 | +3.4% | -2.3% | 0.9x | 889.0M | 0.8% | 0 |  |
 | BIYA | 2026-10-07 16:38 | low float runner | listed | 2.11 | +54.6% | -33.4% | 12.7x | 3.0M | 2.1% | 2 |  |
 | GLD | 2026-10-07 13:01 | other | listed | 374.7 | -2.0% | -0.2% | 0.9x |  |  | 0 |  |
 | SOXL | 2026-10-07 12:34 | other | listed | 153.9 | -6.3% | +11.7% | 0.7x |  |  |  |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | MSTR | 2026-10-06 08:17 | other | listed | 164.6 | +0.1% | +4.6% | 0.8x | 363.6M | 8.5% | 0 |  |
 | IWM | 2026-10-06 00:59 | other | listed | 283.1 | +0.6% | -0.2% | 1.3x |  |  |  |  |
 | ALEC | 2026-10-05 23:41 | other | listed | 1.96 | -1.5% | +3.6% | 64.9x | 84.9M | 7.2% | 0 |  |
-| QCOM | 2026-10-05 21:14 | other | listed | 181.4 | +0.4% | -3.6% | 0.8x | 1.05B | 3.7% | 2 |  |
