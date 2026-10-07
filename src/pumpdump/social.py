@@ -42,7 +42,7 @@ NEW_ACCOUNT_S = 90 * DAY
 STOCKTWITS_PAGES = 10  # 300 messages per ticker and row
 BLUESKY_PAGES = 3
 STOCKTWITS_REQUESTS_PER_RUN = 80
-RETRY_S = (FOLLOW_DAYS + 1) * DAY  # a failed StockTwits fetch is retried next run until then, then kept with its error
+RETRY_S = (FOLLOW_DAYS + 1) * DAY  # a failed StockTwits or Bluesky fetch is retried next run until then, then kept with its error
 
 SOURCES = {"st": "stocktwits", "bsky": "bluesky", "x": "x"}
 STATS = ["n", "authors", "top_author_share", "new_acct_share", "median_followers", "bull_share", "dup_share"]
@@ -196,8 +196,8 @@ def run_social(ds: Datastore, web: Web, clock: Callable[[], float], max_seconds:
         now = clock()
         row, raw = snapshot(web, t, now, x_token, x_left)
         summary["st_requests"] += raw["info"]["stocktwits"]["requests"]
-        st_error = raw["info"]["stocktwits"]["error"]
-        if st_error and st_error != "not on StockTwits" and now - t["flag_at"] < RETRY_S:
+        free_failed = any(raw["info"][name]["error"] not in ("", "not on StockTwits") for name in ("stocktwits", "bluesky"))
+        if free_failed and now - t["flag_at"] < RETRY_S:
             summary["warnings"].append(f"{row['snap_key']}: {row['errors']} (retried next run)")
             continue
         x_left -= int(row.get("x_fetched") or 0)
