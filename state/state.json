@@ -15,10 +15,10 @@
     "APLD": {
       "episode_id": "APLD-20261005T142311Z",
       "first_flagged_at": 1791210191.9041831,
-      "last_flagged_at": 1791404625.2767723,
-      "n_flags": 184,
-      "peak_mentions": 88,
-      "peak_z": 5.475,
+      "last_flagged_at": 1791405441.2440002,
+      "n_flags": 185,
+      "peak_mentions": 127,
+      "peak_z": 7.695,
       "reasons_seen": [
         "mention_spike"
       ]
@@ -37,8 +37,8 @@
     "BIYA": {
       "episode_id": "BIYA-20261007T163823Z",
       "first_flagged_at": 1791391103.5390058,
-      "last_flagged_at": 1791404625.2767723,
-      "n_flags": 18,
+      "last_flagged_at": 1791405441.2440002,
+      "n_flags": 19,
       "peak_mentions": 10,
       "peak_z": 10.0,
       "reasons_seen": [
@@ -48,8 +48,8 @@
     "BULL": {
       "episode_id": "BULL-20261007T120818Z",
       "first_flagged_at": 1791374898.445716,
-      "last_flagged_at": 1791404625.2767723,
-      "n_flags": 37,
+      "last_flagged_at": 1791405441.2440002,
+      "n_flags": 38,
       "peak_mentions": 68,
       "peak_z": 62.539,
       "reasons_seen": [
@@ -81,8 +81,8 @@
     "CRWD": {
       "episode_id": "CRWD-20261006T235945Z",
       "first_flagged_at": 1791331185.931738,
-      "last_flagged_at": 1791404625.2767723,
-      "n_flags": 81,
+      "last_flagged_at": 1791405441.2440002,
+      "n_flags": 82,
       "peak_mentions": 15,
       "peak_z": 6.047,
       "reasons_seen": [
@@ -103,8 +103,8 @@
     "GLD": {
       "episode_id": "GLD-20261007T130139Z",
       "first_flagged_at": 1791378099.265964,
-      "last_flagged_at": 1791404625.2767723,
-      "n_flags": 33,
+      "last_flagged_at": 1791405441.2440002,
+      "n_flags": 34,
       "peak_mentions": 17,
       "peak_z": 7.329,
       "reasons_seen": [
@@ -114,8 +114,8 @@
     "HTZ": {
       "episode_id": "HTZ-20261006T164306Z",
       "first_flagged_at": 1791304986.5487156,
-      "last_flagged_at": 1791404625.2767723,
-      "n_flags": 127,
+      "last_flagged_at": 1791405441.2440002,
+      "n_flags": 128,
       "peak_mentions": 153,
       "peak_z": 40.53,
       "reasons_seen": [
@@ -155,11 +155,22 @@
         "mention_spike"
       ]
     },
+    "LEVI": {
+      "episode_id": "LEVI-20261007T203721Z",
+      "first_flagged_at": 1791405441.2440002,
+      "last_flagged_at": 1791405441.2440002,
+      "n_flags": 1,
+      "peak_mentions": 13,
+      "peak_z": 11.041,
+      "reasons_seen": [
+        "mention_spike"
+      ]
+    },
     "LLY": {
       "episode_id": "LLY-20261007T174433Z",
       "first_flagged_at": 1791395073.697261,
-      "last_flagged_at": 1791404625.2767723,
-      "n_flags": 13,
+      "last_flagged_at": 1791405441.2440002,
+      "n_flags": 14,
       "peak_mentions": 11,
       "peak_z": 7.071,
       "reasons_seen": [
@@ -257,8 +268,8 @@
     "SOXL": {
       "episode_id": "SOXL-20261007T123454Z",
       "first_flagged_at": 1791376494.4890442,
-      "last_flagged_at": 1791404625.2767723,
-      "n_flags": 35,
+      "last_flagged_at": 1791405441.2440002,
+      "n_flags": 36,
       "peak_mentions": 41,
       "peak_z": 4.134,
       "reasons_seen": [
@@ -300,19 +311,19 @@
     }
   },
   "last_run": {
-    "finished_at": 1791404625.3039734,
-    "new_docs": 222,
-    "run_id": "37681583052",
-    "started_at": 1791404599.9731705
+    "finished_at": 1791405441.2922018,
+    "new_docs": 263,
+    "run_id": "37683278842",
+    "started_at": 1791405400.1078794
   },
   "live_since": 1791153669.8332794,
   "streams": {
     "pennystocks/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1791403907,
+      "cursor": 1791405166,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791404610.663097,
+      "last_complete_at": 1791405420.6792915,
       "last_error": "HTTP 400 for comments r/pennystocks: {'data': None, 'error': \"'permalink' is not a valid field\"}",
       "last_error_at": 1791153675.398871
     },
@@ -321,16 +332,16 @@
       "consecutive_errors": 0,
       "cursor": 1791396912,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791404604.1541233,
+      "last_complete_at": 1791405406.7737494,
       "last_error": "HTTP 400 for posts r/pennystocks: {'data': None, 'error': \"'domain' is not a valid field\"}",
       "last_error_at": 1791153671.9130921
     },
     "smallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1791404551,
+      "cursor": 1791405131,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791404613.4858491,
+      "last_complete_at": 1791405423.6403928,
       "last_error": "HTTP 400 for comments r/smallstreetbets: {'data': None, 'error': \"'permalink' is not a valid field\"}",
       "last_error_at": 1791153676.5713816
     },
@@ -339,25 +350,25 @@
       "consecutive_errors": 0,
       "cursor": 1791404550,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791404606.6184654,
+      "last_complete_at": 1791405411.9908652,
       "last_error": "HTTP 400 for posts r/smallstreetbets: {'data': None, 'error': \"'domain' is not a valid field\"}",
       "last_error_at": 1791153673.008012
     },
     "wallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1791404592,
+      "cursor": 1791405401,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791404621.2698872,
+      "last_complete_at": 1791405434.7094688,
       "last_error": "HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}",
       "last_error_at": 1791320088.888627
     },
     "wallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1791404493,
+      "cursor": 1791405041,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791404608.9100835,
+      "last_complete_at": 1791405417.8476667,
       "last_error": "HTTP 400 for posts r/wallstreetbets: {'data': None, 'error': \"'domain' is not a valid field\"}",
       "last_error_at": 1791153673.678054
     }
