@@ -11,7 +11,8 @@
 #                                            state, candidates, market snapshots, track/ and labels/
 #   scripts/datastore.sh checkout-model DIR DAYS  shallow, sparse checkout of what the model job reads and writes:
 #                                            state, symbols, candidates, snapshots, track days and outcomes, labels,
-#                                            model/ and the last DAYS days of raw files (for the flag-time chatter)
+#                                            model/, the last DAYS days of raw files (for the flag-time chatter) and of
+#                                            market raw files and universe files (for the technical features)
 #   scripts/datastore.sh checkout-social DIR shallow, sparse checkout of what the social job reads and writes:
 #                                            collection state, candidates, market snapshots and social/ (not its raw files)
 #   scripts/datastore.sh checkout-all DIR    shallow checkout of everything (for build-db)
@@ -58,10 +59,16 @@ social_patterns() {
 }
 
 model_patterns() {
+  # market/raw and market/universe for the technical features of new snapshots (9 more days of universe files for
+  # the price-date lag, as in market_patterns)
   local days="$1" i
   printf '%s\n' /state/ /ref/ /candidates/ /market/snapshots.csv /track/daily.csv /track/outcomes.csv /labels/ /model/
   for i in $(seq -1 "$days"); do
     printf '/raw/reddit/%s/\n' "$(date -u -d "$((-i)) day" +%Y/%m/%d)"
+    printf '/market/raw/%s/\n' "$(date -u -d "$((-i)) day" +%Y/%m/%d)"
+  done
+  for i in $(seq -1 "$((days + 9))"); do
+    printf '/market/universe/%s.csv.gz\n' "$(date -u -d "$((-i)) day" +%Y/%m/%Y-%m-%d)"
   done
 }
 

@@ -180,8 +180,9 @@ def test_label_checkout_has_what_the_label_job_needs(env, tmp_path):
 def test_model_checkout_has_what_the_model_job_needs(env, tmp_path):
     needed = ["state/state.json", "ref/symbols.csv", "candidates/episodes.csv", "market/snapshots.csv",
               "track/daily.csv", "track/outcomes.csv", "labels/labels.csv", "model/predictions.csv",
-              f"raw/reddit/{day_dir(0)}/r.jsonl.gz", f"raw/reddit/{day_dir(3)}/r.jsonl.gz"]
-    not_needed = [f"raw/reddit/{day_dir(5)}/r.jsonl.gz", "track/filings.csv", f"market/raw/{day_dir(0)}/x.json.gz",
+              f"raw/reddit/{day_dir(0)}/r.jsonl.gz", f"raw/reddit/{day_dir(3)}/r.jsonl.gz",
+              f"market/raw/{day_dir(0)}/x.json.gz", f"market/raw/{day_dir(3)}/x.json.gz"]
+    not_needed = [f"raw/reddit/{day_dir(5)}/r.jsonl.gz", "track/filings.csv", f"market/raw/{day_dir(5)}/x.json.gz",
                   f"daily/mention_counts/{month()}.csv"]
     a = tmp_path / "a"
     sh("bash", str(SCRIPT), "checkout", str(a), "2", env=env)
