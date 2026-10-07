@@ -1,0 +1,27 @@
+name: crypto-probe
+
+# Manual reachability check for the crypto track: which exchange APIs, Binance
+# history files and public Telegram channel previews answer from GitHub's
+# runners. Prints to the log only; writes nothing.
+on:
+  workflow_dispatch:
+    inputs:
+      channels:
+        description: "Comma-separated Telegram channel usernames to check"
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: scripts
+      - run: pip install requests
+      - run: python scripts/crypto_probe.py "$CHANNELS"
+        env:
+          CHANNELS: ${{ inputs.channels }}
