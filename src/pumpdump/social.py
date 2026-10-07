@@ -152,7 +152,8 @@ def snapshot(web: Web, t: dict, now: float, x_token: str, x_budget: int) -> tupl
         start, end = flag - FEATURE_S, flag
     else:
         start, end = t["start"], now
-    row = {"snap_key": key, "episode_id": t["episode_id"], "ticker": t["ticker"], "role": t["role"],
+    row = dict.fromkeys(SNAPSHOT_FIELDS, "")
+    row |= {"snap_key": key, "episode_id": t["episode_id"], "ticker": t["ticker"], "role": t["role"],
            "phase": t["phase"], "flag_at": flag, "flag_at_utc": iso(flag), "window_start_utc": iso(start),
            "window_end_utc": iso(end), "collected_at": round(now, 3), "collected_at_utc": iso(now),
            "lag_s": round(now - flag), "social_version": SOCIAL_VERSION}

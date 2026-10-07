@@ -76,7 +76,8 @@ def test_failed_source_leaves_counts_blank(tmp_path):
     ds = setup(tmp_path)
     clock = FakeClock(FLAG + 900)
     http = FakeHTTP([*routes()[:2], ("GET", src.BLUESKY_URL, [(403, "no")])])
-    social.run_social(ds, make_web(http, clock), clock.time, 600)
+    summary = social.run_social(ds, make_web(http, clock), clock.time, 600)
+    assert "| ABCD-1_ABCD_flag | 0h | 1 |  |" in social.render_summary(summary, "r1")
     row = ds.read_csv(social.SNAPSHOTS)[0]
     assert row["st_n"] == "1" and row["bsky_n"] == "" and row["errors"].startswith("bluesky: HTTP 403")
 
