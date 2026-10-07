@@ -65,6 +65,22 @@ def test_bluesky_keeps_only_posts_with_the_cashtag():
     assert [p["text"] for p in src.parse_bluesky(obj, "ABCD")] == ["$ABCD squeeze", "buy $abcd now"]
 
 
+def test_bluesky_retries_its_load_shedding_403s():
+    http = FakeHTTP([("GET", src.BLUESKY_URL, [(403, "forbidden by administrative rules"), bsky_page([bsky_post(FLAG)])])])
+    clock = FakeClock(FLAG + HOUR)
+    posts, info = src.fetch_bluesky(make_web(http, clock), "ABCD", FLAG - HOUR, max_pages=3)
+    assert len(posts) == 1 and info == {"requests": 2, "truncated": False, "error": ""}
+
+
+def test_failed_source_leaves_counts_blank(tmp_path):
+    ds = setup(tmp_path)
+    clock = FakeClock(FLAG + 900)
+    http = FakeHTTP([*routes()[:2], ("GET", src.BLUESKY_URL, [(403, "no")])])
+    social.run_social(ds, make_web(http, clock), clock.time, 600)
+    row = ds.read_csv(social.SNAPSHOTS)[0]
+    assert row["st_n"] == "1" and row["bsky_n"] == "" and row["errors"].startswith("bluesky: HTTP 403")
+
+
 def test_x_parse_joins_users():
     obj = {"data": [{"id": "9", "author_id": "7", "created_at": iso(FLAG), "text": "$ABCD",
                      "entities": {"cashtags": [{"tag": "abcd"}]}, "public_metrics": {"like_count": 3}}],

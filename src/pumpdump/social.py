@@ -158,8 +158,10 @@ def snapshot(web: Web, t: dict, now: float, x_token: str, x_budget: int) -> tupl
            "lag_s": round(now - flag), "social_version": SOCIAL_VERSION}
     errors = []
     for p, (posts, info) in fetched.items():
-        row.update({f"{p}_{k}": v for k, v in stats(posts, start, end).items()})
-        if t["phase"] == "flag":
+        failed = info["error"] and info["error"] != "not on StockTwits"
+        if not failed:  # a failed fetch leaves the counts blank (unknown), not 0
+            row.update({f"{p}_{k}": v for k, v in stats(posts, start, end).items()})
+        if t["phase"] == "flag" and not failed:
             row[f"{p}_n_72h"] = sum(1 for q in posts if flag - PRE_FLAG_S <= q["created_at"] < flag)
             row[f"{p}_n_after_flag"] = sum(1 for q in posts if q["created_at"] >= flag)
         row[f"{p}_fetched"] = len(posts)

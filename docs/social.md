@@ -39,7 +39,10 @@ Features per source (`st_`, `bsky_`, `x_`), over the 24 hours before the flag fo
 plus `n_72h`, `n_after_flag`, `fetched` and `truncated` (page limit hit: counts are lower bounds).
 
 Limits: 10 StockTwits pages (300 messages) per row, 3 Bluesky pages, 80 StockTwits requests per run, 8 minutes.
-A StockTwits failure is retried at the next run. Episodes flagged before 2026-10-07 got their `flag` rows late
+A StockTwits failure is retried at the next run. Bluesky turns away about one unauthenticated search in three
+with a 403 ("forbidden by administrative rules"), so each request is tried up to 4 times; a source that still fails
+leaves its columns blank (unknown, not zero) and the reason in `errors`. (The first run, on 2026-10-07 12:14 UTC,
+kept partial Bluesky counts in 7 rows whose `errors` show the 403.) Episodes flagged before 2026-10-07 got their `flag` rows late
 (`lag_s` says how late); posts deleted in between are missing.
 
 **X, if shouvik pays for it:** add a repository secret `X_BEARER_TOKEN` (X developer console, pay-per-use credits)

@@ -27,6 +27,7 @@ POST_FIELDS = ["source", "id", "created_at", "author_id", "author", "author_foll
 STOCKTWITS_URL = "https://api.stocktwits.com/api/2/streams/symbol/{symbol}.json"
 BLUESKY_URL = "https://api.bsky.app/xrpc/app.bsky.feed.searchPosts"
 X_URL = "https://api.x.com/2/tweets/search/recent"
+BLUESKY_TRIES = 4
 UA = {"User-Agent": "Mozilla/5.0 (compatible; pump-dump-detector/0.1; research)", "Accept": "application/json"}
 
 
@@ -133,16 +134,25 @@ def parse_bluesky(obj: dict, ticker: str) -> list[dict]:
 def fetch_bluesky(web: Web, ticker: str, since: float, max_pages: int) -> tuple[list[dict], dict]:
     posts: list[dict] = []
     params = {"q": f"${ticker}", "sort": "latest", "limit": 100, "since": _iso(since)}
+    requests = 0
     for page in range(1, max_pages + 1):
+        for attempt in range(BLUESKY_TRIES):
+            # Bluesky sheds unauthenticated search load with random 403s ("forbidden by administrative rules",
+            # about 1 request in 3 on 2026-10-07); trying again a moment later usually works
+            requests += 1
+            status, text = web.fetch(BLUESKY_URL, params=params, headers=UA)
+            if status != 403:
+                break
+            web.sleep(2.0 * (attempt + 1))
         try:
-            obj = _json(*web.fetch(BLUESKY_URL, params=params, headers=UA))
+            obj = _json(status, text)
         except ValueError as exc:
-            return posts, _info(page, error=f"bluesky: {exc}")
+            return posts, _info(requests, error=f"bluesky: {exc}")
         posts += [p for p in parse_bluesky(obj, ticker) if p["created_at"] is not None and p["created_at"] >= since]
         if not obj.get("cursor") or not obj.get("posts"):
-            return posts, _info(page)
+            return posts, _info(requests)
         params = {**params, "cursor": obj["cursor"]}
-    return posts, _info(max_pages, truncated=True)
+    return posts, _info(requests, truncated=True)
 
 
 # X (paid) --------------------------------------------------------------------------------------------------
