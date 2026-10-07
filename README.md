@@ -135,7 +135,7 @@ against their controls is the first test of the avoid signal. Rule, reasons and 
 
 ## Stage 5: the model
 
-Once a day after labeling, the `model` workflow (rule `model-v2`, written down and committed before any model was
+Once a day after labeling, the `model` workflow (rule `model-v3`, written down and committed before any model was
 trained: [docs/stage5.md](docs/stage5.md)):
 
 - reads the Reddit posts and comments behind each new flag and turns them into text features (one author dominating,

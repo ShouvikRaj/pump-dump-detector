@@ -6,8 +6,9 @@ development period, then once on a locked hold-out period at the end.
 
 The rule was first written down and committed on 2026-10-06 as `model-v1` (with `text-v1` and `llm-v1`), before any
 model was trained and before any Stage 3 outcome or Stage 4 label row was opened. The same day, still before any model
-was trained or any outcome or label row opened, it was replaced by `model-v2` (with `text-v2` and `llm-v2`), which
-this file describes: "Changing the rule" lists what changed and why, and "What had been seen" at the end lists what
+was trained or any outcome or label row opened, it was replaced by `model-v2` (with `text-v2` and `llm-v2`), and on
+2026-10-07, again before any model was trained or any outcome or label row opened, by `model-v3` (adds the
+`technical` group, `technical-v1`), which this file describes: "Changing the rule" lists what changed and why, and "What had been seen" at the end lists what
 was known each time. Change it only as a new version written here first.
 
 ## What is predicted
@@ -37,10 +38,11 @@ used to train a model only from `available_at` on:
 4 hours covers Stage 3's hour-old-close rule and the daily `track` and `label` runs after it. The same rule is used for
 the live model and for the walk-forward replay, so the replay reproduces what the live loop could have known.
 
-## Features (`model-v2`)
+## Features (`model-v3`)
 
 Only what was known at the flag time: Stage 1's episode rows, Stage 2's snapshot row, the text of the Reddit
-documents counted in the episode, and Stage 4 labels already usable then (by the rule above). Eight groups; controls
+documents counted in the episode, Stage 4 labels already usable then (by the rule above), and the raw Stage 2 price
+bars and daily Nasdaq cross-section for the `technical` group. Nine groups; controls
 have no chatter, so their chatter counts are 0 and every other chatter, text and LLM feature is blank (LightGBM treats
 blank as missing).
 
@@ -53,10 +55,38 @@ blank as missing).
 | `size` (Stage 2) | `market_cap_log` ln(1 + market_cap), `float_log` ln(1 + float_shares, else shares_outstanding), `turnover_last`, `listing_age_log` ln(1 + days since first_trade_date), `reverse_splits_1y`, `otc` (venue is OTC), `institution_pct` |
 | `short_interest` (Stage 2) | `si_pct_float`, `si_days_to_cover`, `si_change` si_shares / si_prev_shares - 1 |
 | `filings` (Stage 2) | `sec_filer` (has a CIK), `dilution_90d`, `offerings_424b_30d`, `days_since_dilution`, `current_reports_30d`, `days_since_report`, `report_hard_news` (the last 8-K before the flag has item 2.02, 2.01, 5.01, 1.03 or 1.01), `unregistered_sales_90d`, `late_notices_365d`, `name_change_1y` |
+| `technical` (`technical-v1`, from Stage 2's raw bars, below) | `vwap_ext`, `off_high`, `mins_since_high`, `gap_open`, `ret_60m`, `vol_60m_rel`, `max_ret_20d`, `up_streak`, `run_up`, `atr_stretch`, `ssr_today`, `runners_breadth` |
 | `history` (Stages 1 and 4) | `prior_flags_90d` (earlier flags of the same stock in the 90 days before this one), `days_since_prior_flag` (blank if none), `prior_crashes` (earlier flags of the same stock that crashed, `crash_10 = 1`, counted once that label was usable as in "When a label counts") |
 
 The archetype is not a feature (it is a function of price, float and venue, which are); it is used to report results
 per pump type.
+
+### Technical features (`technical-v1`)
+
+How stretched a spike was at the flag, computed by `technical.py` from the raw data Stage 2 saved for each snapshot
+(`market/raw/`: about 2 years of daily bars and about 5 days of 5-minute bars, pre- and post-market included) and from
+the daily Nasdaq cross-section (`market/universe/`). Only bars finished by `as_of` count; "the flag's day" is its ET
+date. Each snapshot gets one row in `model/technical.csv`, written once and never changed. Sources and reasons:
+`research/trading-risk-findings.md` in the project files.
+
+| Feature | Definition |
+|---|---|
+| `vwap_ext` | price at flag (as Stage 2 defines it) / VWAP of the flag day's regular-session 5-minute bars - 1; VWAP uses each bar's (high + low + close) / 3 |
+| `off_high` | price at flag / highest high of the flag day's bars, pre- and post-market included - 1 |
+| `mins_since_high` | minutes from the end of that highest bar to the flag |
+| `gap_open` | first regular-session bar's open on the flag day / the last close before that day - 1 |
+| `ret_60m` | price at flag / close of the last bar that ended at least 60 minutes before the flag - 1; blank if that bar ended more than 2 hours before |
+| `vol_60m_rel` | regular-session volume in the hour before the flag / (mean daily volume of the last 20 closed sessions x the session minutes in that hour / 390); blank with fewer than 5 session minutes |
+| `max_ret_20d` | largest close-to-close return among the last 20 closed sessions (the MAX effect) |
+| `up_streak` | closed sessions in a row, up to the last, that closed above the session before |
+| `run_up` | last close / lowest close of the last 10 closed sessions - 1 |
+| `atr_stretch` | (last close - mean of the last 20 closes) / mean true range of the last 14 sessions |
+| `ssr_today` | 1 if the last closed session's low, or the flag day's regular-session low so far, was 10% or more below the close before it (SEC Rule 201 restricts shorting that day and the next), else 0 |
+| `runners_breadth` | listed stocks under $10 up 40% or more in the latest cross-section whose session had closed by the flag (a mania gauge) |
+
+Blank (missing to LightGBM) where the bars don't allow a value: weekends and overnight flags have no flag-day bars,
+OTC stocks have no pre- or post-market bars. The `model` job computes rows for snapshots whose raw file is in its
+checkout (the last `RAW_DAYS` days); older ones were backfilled once by a run with a longer window.
 
 ### Text features (`text-v2`)
 
@@ -224,7 +254,7 @@ trip (the top of the brief's 1-3% range). Nothing here trades or shorts.
 
 ## Pruning weak feature groups (the feedback loop)
 
-"Keep only robust patterns, prune weak ones" applies to the eight feature groups. Once a target's development replay
+"Keep only robust patterns, prune weak ones" applies to the nine feature groups. Once a target's development replay
 holds **20 positive candidates**, every run also replays the development weeks with each group left out. A group
 is **weak** when leaving it out does not lower AP: AP without it >= AP with all groups, both pooled and in at least
 two of the three blocks. The model that scores new candidates (the deployed model) uses every group except the
@@ -282,6 +312,24 @@ Write the new version here first, with the reason, before running it, and keep t
 Never tune features, parameters, thresholds or the hold-out date on results. Nothing may change on or after the
 hold-out start (2027-01-04).
 
+### `model-v3` (2026-10-07, before any model was trained)
+
+Prompted by shouvik's request (2026-10-06) to use trading and risk-management research to find market patterns; the
+research is in `research/trading-risk-findings.md` in the project files. Only the features changed: a ninth group,
+`technical` (above), which is also part of the "market only" reference model. The targets, label timing, the model and
+its parameters, the signal, the validation, the robustness checks, the pruning rule and the hold-out did not change.
+Pruning treats the group like any other, so it is dropped automatically if it doesn't help.
+
+| Change | Why |
+|---|---|
+| `vwap_ext`, `off_high`, `mins_since_high`, `gap_open` | Spikes on retail attention fade within days (Barber, Huang, Odean & Schwarz 2022: Robinhood herding events +14% on the day, then -3.5% over 5 days; Renault 2018: -3.1% over 5 days after OTC tweet spikes). In a vendor's data on 3,000+ small-cap gap-ups (SmallCapLab, 2022-26), 75% closed below VWAP, 67% below their open, and 63% had made their high of the day before 10:00. These say how far the spike had already run or rolled over. |
+| `ret_60m`, `vol_60m_rel` | The last hour's return and volume before a pump were the strongest predictors in Xu & Livshits (2019) and Nghiem et al. (2021); listed in stage5-findings as the biggest missing feature. 5-minute bars, which Stage 2 already saves, are enough. |
+| `max_ret_20d` | Stocks with the largest one-day return in the past month underperform (Bali, Cakici & Whitelaw 2011, about 1% a month). |
+| `up_streak`, `run_up`, `atr_stretch` | Multi-day runs and how far above trend a stock is; the fade traders' setup ("first red day") needs 2-3 up days and a large extension first. |
+| `ssr_today` | Rule 201 restricts shorting after a 10% fall, which matters for the paper-trading rule (docs/paper-trading.md) and marks a stock already breaking down. |
+| `runners_breadth` | Fades fail in manias (January 2021 in the Digital Finance 2026 r/pennystocks study); the count of big movers in our own daily cross-section is a free gauge. |
+| No RSI, MACD, Bollinger or candlestick flags | A 2026 test of these on US stocks 2000-2026 after costs and multiple-testing correction refuted them (arXiv 2607.20093); with about 50 labels at first, fewer features is better. |
+
 ### `model-v2` (2026-10-06, before any model was trained)
 
 Prompted by the first `llm-v1` ratings, a reading of the eight research papers in the brief and a search for newer
@@ -300,6 +348,9 @@ pruning rule and the hold-out did not change.
 - Labels are scarce: most candidates are large caps that neither pump nor crash, and `label-v1` is strict, so the
   pump model may not train before the hold-out. The crash model is the realistic first result, as the brief expects.
 - Float and insider holdings are Stage 2's current-at-snapshot values, not point in time (minutes of lag).
+- `runners_breadth` uses the newest cross-section file in the checkout whose session had closed by the flag. The
+  Nasdaq file lags a session or two, so for some flags it counts an older session than the one just closed (stale,
+  never ahead of the flag).
 - When collection ends, the nightly run turns the pacer off, so the last `track`, `label` and `model` runs rely on
   their crons, which fire unreliably for this repository. If `model/holdout.md` hasn't appeared a few weeks after
   collection ended, start the workflows by hand (Actions, then Run workflow).
@@ -342,6 +393,11 @@ candidates. In addition to the above, what had been seen then: those ratings and
 `model/text.csv`), and the documents shown to the LLM for the 15 candidates, which were read and labelled by hand for
 the test set before any `llm-v2` answer existed. Still no `track/` outcome or `labels/` row had been opened, and no
 model had been trained (no label was usable yet).
+
+`model-v3` was written on 2026-10-07. In addition to the above, what had been seen then: the raw Stage 2 files of
+the 111 snapshots taken so far (37 candidates), the Nasdaq cross-sections, and the `technical-v1` values the new code
+computed from them, printed once as a functional test. Still no `track/` outcome or `labels/` row had been opened,
+and no model had been trained (`model/README.md`: "no model yet" for both targets).
 
 ## LLM test results (2026-10-06)
 
