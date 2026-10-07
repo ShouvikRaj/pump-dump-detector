@@ -16,6 +16,7 @@ import gzip
 import io
 import json
 import time
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Callable
@@ -265,12 +266,14 @@ class Run:
                 k = (e["exchange"], e["base"])
                 last_flag[k] = max(last_flag.get(k, 0), int(e["t0"]))
         stats = dict(prefiltered=0, flagged=0)
-        for name, tickers in self.tickers.items():
-            ex = self.exchanges[name]
-            for base, t in sorted(tickers.items()):
+
+        def one_exchange(name: str) -> list[tuple[str, list[dict], list]]:
+            # fetches only; events are added afterwards in this thread
+            ex, found = self.exchanges[name], []
+            for base, t in sorted(self.tickers[name].items()):
                 if self.time_left() < 4 * 60:
-                    self.errors.append("scan stopped early: time budget")
-                    return stats
+                    self.errors.append(f"{name} scan stopped early: time budget")
+                    break
                 if excluded(base) or t["low"] <= 0 or t["high"] < PREFILTER_RANGE * t["low"]:
                     continue
                 stats["prefiltered"] += 1
@@ -279,9 +282,17 @@ class Run:
                 except (ExchangeError, ValueError, KeyError, IndexError) as exc:
                     self.errors.append(f"{name} {base} klines: {exc}")
                     continue
-                for f in scan_flags(bars, None, last_flag.get((name, base))):
-                    if f["t0"] < live_since - DAY:
-                        continue
+                flags = [f for f in scan_flags(bars, None, last_flag.get((name, base))) if f["t0"] >= live_since - DAY]
+                if flags:
+                    found.append((base, flags, bars))
+            return found
+
+        # one thread per exchange: each exchange's requests stay spaced out, the exchanges run side by side
+        with ThreadPoolExecutor(max_workers=len(self.tickers) or 1) as pool:
+            results = dict(zip(self.tickers, pool.map(one_exchange, list(self.tickers))))
+        for name, found in results.items():
+            for base, flags, bars in found:
+                for f in flags:
                     eid = f"scan-{name}-{base}-{datetime.fromtimestamp(f['t0'] / 1000, timezone.utc):%Y%m%d%H}"
                     if self.add_event(dict(event_id=eid, source="scan", kind="spike", exchange=name, base=base,
                                            quote="USDT", t0=f["t0"], rule=SCAN_VERSION, spike=f["spike"],
@@ -289,7 +300,6 @@ class Run:
                                            median_quote_volume=f["median_quote_volume"])):
                         stats["flagged"] += 1
                         save_bars(self.ds, "scan", eid, dict(hourly=bars, hourly_fetched_at=iso(self.clock())))
-                    last_flag[(name, base)] = f["t0"]
         return stats
 
     # ---- bars ---------------------------------------------------------------------------------------------------
