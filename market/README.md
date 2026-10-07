@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-07T12:08:49Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-07T12:35:18Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-39 candidates and 78 controls so far. Archetypes: other 37, low_float_runner 2.
+40 candidates and 80 controls so far. Archetypes: other 38, low_float_runner 2.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SOXL | 2026-10-07 12:34 | other | listed | 153.9 | -6.3% | +11.7% | 0.7x |  |  |  |  |
 | SOXS | 2026-10-07 12:08 | other | listed | 31.12 | +5.0% | -10.9% | 0.8x |  |  |  |  |
 | BULL | 2026-10-07 12:08 | other | listed | 5.45 | -25.1% | +1.5% | 0.5x | 322.2M | 11.2% | 1 |  |
 | SNDK | 2026-10-07 10:09 | other | listed | 1,625 | -2.1% | -4.0% | 0.7x | 144.5M | 3.9% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | QCOM | 2026-10-05 21:14 | other | listed | 181.4 | +0.4% | -3.6% | 0.8x | 1.05B | 3.7% | 2 |  |
 | MSFT | 2026-10-05 21:14 | other | listed | 525 | -0.0% | +3.1% | 1.2x | 7.41B | 0.9% | 0 |  |
 | IREN | 2026-10-05 17:49 | other | listed | 40.24 | -3.6% | -5.4% | 1.2x | 346.2M | 24.0% | 1 |  |
-| DELL | 2026-10-05 16:38 | other | listed | 554.8 | -1.4% | -0.1% | 0.6x | 292.2M | 4.7% | 2 |  |
