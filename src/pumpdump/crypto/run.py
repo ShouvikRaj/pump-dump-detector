@@ -43,6 +43,7 @@ EVENT_FIELDS = [
     "time_source", "text",
 ]
 STOP_MAX_DAYS = 180
+HISTORY_EXCHANGES = ("binance", "kucoin")  # the only ones with free bars that far back
 FALLBACK_ORDER = ("mexc", "kucoin", "gate", "binance")
 MINUTE_BEFORE, MINUTE_AFTER = 60 * MIN, 4 * HOUR
 HOURLY_BEFORE, HOURLY_AFTER = 48 * HOUR, 7 * DAY
@@ -335,7 +336,7 @@ class Run:
         rows, counts = [], {}
         for e in self.events:
             b = load_bars(self.ds, e["source"], e["event_id"])
-            if e["exchange"] not in LIVE:
+            if e["exchange"] not in LIVE or (e["source"] == "history" and e["exchange"] not in HISTORY_EXCHANGES):
                 o = dict.fromkeys(OUTCOME_FIELDS, "") | dict(status="not_covered", label_version=LABEL_VERSION)
             elif e["source"] != "history" and e["kind"] != "spike" and not b.get("minute_fetched_at"):
                 o = dict.fromkeys(OUTCOME_FIELDS, "") | dict(status="pending", label_version=LABEL_VERSION)
@@ -348,6 +349,14 @@ class Run:
             rows.append({"event_id": e["event_id"], "source": e["source"], "kind": e["kind"]} | o)
         self.ds.write_csv(OUTCOMES, ["event_id", "source", "kind", *OUTCOME_FIELDS], rows)
         return counts
+
+
+def count_events(events: list[dict]) -> dict[str, int]:
+    n: dict[str, int] = {}
+    for e in events:
+        k = f"{e['source']} / {e['kind']}"
+        n[k] = n.get(k, 0) + 1
+    return n
 
 
 def write_readme(ds: Datastore, state: dict, counts: dict, n_events: dict) -> None:
@@ -398,10 +407,7 @@ def run_crypto(ds: Datastore, run_id: str, max_seconds: float = 20 * 60, http: H
     if r.new_events:
         ds.append_csv(EVENTS, EVENT_FIELDS, r.new_events)
     summary["outcomes"] = r.rebuild_outcomes()
-    n_events: dict[str, int] = {}
-    for e in r.events:
-        k = f"{e['source']} / {e['kind']}"
-        n_events[k] = n_events.get(k, 0) + 1
+    n_events = count_events(r.events)
     summary["events"] = n_events
     summary["new_events"] = len(r.new_events)
     summary["errors"] = r.errors[:50]

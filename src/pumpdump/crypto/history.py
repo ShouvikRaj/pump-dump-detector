@@ -19,7 +19,7 @@ import os
 from datetime import datetime, timedelta, timezone
 
 from .exchanges import HOUR, MIN, BinanceBulk, ExchangeError, Http, Kucoin
-from .run import EVENT_FIELDS, EVENTS, Run, iso, load_bars, save_bars
+from .run import EVENT_FIELDS, EVENTS, HISTORY_EXCHANGES, Run, count_events, iso, load_bars, save_bars, write_readme
 from .rules import DAY
 
 LAMORGIA = "https://raw.githubusercontent.com/SystemsLab-Sapienza/pump-and-dump-dataset/d71250d4cb055dde2d415c8cba38a0dcd6eb6e16/pump_telegram.csv"
@@ -112,7 +112,7 @@ def run_history(ds, run_id: str, pumpsense_dir: str | None, max_seconds: float =
     bulk, kucoin = BinanceBulk(http), Kucoin(http)
     fetched = failed = skipped = 0
     for e in sorted(r.events, key=lambda e: int(e["t0"])):
-        if e["source"] != "history" or e["exchange"] not in ("binance", "kucoin"):
+        if e["source"] != "history" or e["exchange"] not in HISTORY_EXCHANGES:
             continue
         if load_bars(ds, "history", e["event_id"]):
             skipped += 1
@@ -134,7 +134,9 @@ def run_history(ds, run_id: str, pumpsense_dir: str | None, max_seconds: float =
                                                      hourly_fetched_at=now, final_at=now, symbol=sym))
         fetched += 1
     counts = r.rebuild_outcomes()
-    remaining = sum(1 for e in r.events if e["source"] == "history" and e["exchange"] in ("binance", "kucoin")
+    if r.state.get("live_since"):
+        write_readme(ds, r.state, counts, count_events(r.events))
+    remaining = sum(1 for e in r.events if e["source"] == "history" and e["exchange"] in HISTORY_EXCHANGES
                     and not load_bars(ds, "history", e["event_id"]))
     return dict(added=added, fetched=fetched, failed=failed, skipped=skipped, remaining=remaining, outcomes=counts,
                 errors=r.errors[:30])
