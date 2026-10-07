@@ -33,8 +33,10 @@ def submissions(web: Web, cik: int, contact: str, since: str) -> dict:
     rec = j.get("filings", {}).get("recent", {})
     forms = rec.get("form", [])
     items = rec.get("items") or [""] * len(forms)
+    accession = rec.get("accessionNumber") or [""] * len(forms)
     filings = [
-        {"form": forms[i], "filed": rec["filingDate"][i], "accepted": rec["acceptanceDateTime"][i], "items": items[i] or ""}
+        {"form": forms[i], "filed": rec["filingDate"][i], "accepted": rec["acceptanceDateTime"][i], "items": items[i] or "",
+         "accession": accession[i] or ""}
         for i in range(len(forms))
         if rec["filingDate"][i] >= since
     ]

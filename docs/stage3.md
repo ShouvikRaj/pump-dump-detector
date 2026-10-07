@@ -61,5 +61,11 @@ why the drop is measured only over sessions after the peak's.
 
 - Daily bars only: intraday pumps that fully reverse within a session show up only as a long upper wick.
 - OTC tickers that stop trading have no bars; they expire after 45 days with fewer than 20 sessions.
-- EDGAR's `acceptanceDateTime` is read as UTC, as in Stage 2 (not checked against EDGAR's index pages).
+- data.sec.gov serves a filing's `acceptanceDateTime` 4 hours later (5 in winter) once the filing is no longer new:
+  16 filings read on 2026-10-05 came back +4 h on 2026-10-06, some of them later than the moment we had first read
+  them, so the first value is the right one. `track/filings.csv` therefore keys filings on their `accession` number and
+  keeps the time first seen; a filing that is skipped because Stage 2 already saw it before the flag (its
+  `last_current_report_at` / `last_dilution_at`, 4-5 h earlier) is not recorded. A filing first read only after the
+  shift still carries the extra hours. Rows from before 2026-10-07 had no accession number: their shifted copies were
+  dropped and the rest matched to accession numbers on the next read.
 - Session closes are taken as 16:00 ET, so half days are recorded one session late at worst.

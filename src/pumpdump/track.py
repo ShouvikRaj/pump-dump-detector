@@ -37,7 +37,12 @@ README = "track/README.md"
 KEY_FIELDS = ["snapshot_id", "episode_id", "role", "ticker"]
 DAILY_FIELDS = [*KEY_FIELDS, "session", "k", "open", "high", "low", "close", "volume", "adj_factor",
                 "collected_at", "collected_at_utc", "track_version"]
-FILING_FIELDS = [*KEY_FIELDS, "form", "accepted_at_utc", "items", "k", "collected_at", "collected_at_utc", "track_version"]
+FILING_FIELDS = [*KEY_FIELDS, "form", "accepted_at_utc", "items", "k", "collected_at", "collected_at_utc", "track_version",
+                 "accession"]
+# data.sec.gov serves a filing's acceptanceDateTime 4 hours later (5 in winter) once it is no longer new: 16 filings
+# read on 2026-10-05 came back +4 h on 2026-10-06, some of them after the time we had first seen them. The first
+# value is the right one, so filings are keyed on their accession number and keep the time first seen.
+SEC_SHIFTS = (4 * 3600, 5 * 3600)
 OUTCOME_FIELDS = [*KEY_FIELDS, "archetype", "as_of_utc", "base_price", "status", "sessions", "flag_in_session_1",
                   "max_high_5", "ret_max_5", "peak_k_5", "min_low_10_after_peak", "drop_from_peak_10",
                   "ret_close_1", "ret_close_5", "ret_close_10", "ret_close_20",
@@ -162,6 +167,30 @@ def _status(snap: dict, n_sessions: int, state: dict, now: float) -> str:
     return "active"
 
 
+def _shifted(later: float, earlier: float) -> bool:
+    return round(later - earlier) in SEC_SHIFTS
+
+
+def _known_before_flag(snap: dict) -> list[float]:
+    """Acceptance times of filings Stage 2 already saw before the flag (its latest 8-K and dilution filing)."""
+    return [_accepted_ts(snap[c]) for c in ("last_current_report_at", "last_dilution_at") if snap.get(c)]
+
+
+def clean_filings(rows: list[dict], snaps: dict[str, dict]) -> list[dict]:
+    """Drop copies of a filing re-read with the shifted SEC time, and pre-flag filings that only look post-flag
+    because of it (rows from before filings were keyed on their accession number)."""
+    out = []
+    for r in rows:
+        t = _accepted_ts(r["accepted_at_utc"])
+        twin = any(o is not r and o["snapshot_id"] == r["snapshot_id"] and o["form"] == r["form"]
+                   and o["items"] == r["items"] and _shifted(t, _accepted_ts(o["accepted_at_utc"])) for o in rows)
+        snap = snaps.get(r["snapshot_id"], {})
+        pre_flag = any(_shifted(t, k) for k in _known_before_flag(snap))
+        if not twin and not pre_flag:
+            out.append(r)
+    return out
+
+
 def run_track(ds: Datastore, src: MarketSources, clock: Callable[[], float] = time.time, max_seconds: float = 20 * 60) -> dict:
     start = clock()
     snaps = ds.read_csv(SNAPSHOTS)
@@ -170,7 +199,10 @@ def run_track(ds: Datastore, src: MarketSources, clock: Callable[[], float] = ti
     have: dict[str, set] = defaultdict(set)
     for r in daily:
         have[r["snapshot_id"]].add(r["session"])
-    seen = {(r["snapshot_id"], r["form"], r["accepted_at_utc"]) for r in filings}
+    cleaned = clean_filings(filings, {s["snapshot_id"]: s for s in snaps})
+    upgrade = bool(filings) and (len(cleaned) != len(filings) or "accession" not in filings[0])
+    filings = cleaned
+    seen = {(r["snapshot_id"], r["accession"]) for r in filings if r.get("accession")}
     new_daily: list[dict] = []
     new_filings: list[dict] = []
     summary = {"tracked": [], "new_sessions": 0, "new_filings": 0, "warnings": [], "active": 0}
@@ -210,20 +242,32 @@ def run_track(ds: Datastore, src: MarketSources, clock: Callable[[], float] = ti
                 if cik not in edgar_cache:
                     edgar_cache[cik] = edgar.submissions(src.web, int(cik), src.sec_contact, since=utc_date(as_of))["filings"]
                 closes = [_close_ts(date.fromisoformat(s["session"])) for s in sessions]
+                legacy = [r for r in filings if r["snapshot_id"] == sid and not r.get("accession")]
                 for f in edgar_cache[cik]:
                     t = _accepted_ts(f["accepted"]) if f.get("accepted") else None
                     if t is None or t <= as_of or t > now:
                         continue
-                    acc = iso(t)
-                    if (sid, f["form"], acc) in seen:
+                    acc_no = f.get("accession") or f"{f['form']} {iso(t)}"
+                    if (sid, acc_no) in seen:
+                        continue  # the time first seen stands
+                    seen.add((sid, acc_no))
+                    old = next((r for r in legacy if r["form"] == f["form"] and r["items"] == f.get("items", "")
+                                and (_accepted_ts(r["accepted_at_utc"]) == t or _shifted(t, _accepted_ts(r["accepted_at_utc"])))), None)
+                    if old is not None:  # recorded before accession numbers were kept
+                        old["accession"] = acc_no
+                        upgrade = True
                         continue
-                    seen.add((sid, f["form"], acc))
-                    new_filings.append({**key, "form": f["form"], "accepted_at_utc": acc, "items": f.get("items", ""),
-                                        "k": 1 + sum(1 for c in closes if c < t), **stamp})  # first session that could react
+                    if any(_shifted(t, k) for k in _known_before_flag(snap)):
+                        continue  # Stage 2 saw this one before the flag; only the shifted time makes it look later
+                    new_filings.append({**key, "form": f["form"], "accepted_at_utc": iso(t), "items": f.get("items", ""),
+                                        "k": 1 + sum(1 for c in closes if c < t), **stamp,  # first session that could react
+                                        "accession": acc_no})
             except (edgar.EdgarError, ValueError) as exc:
                 summary["warnings"].append(f"{snap['ticker']}: SEC {exc}"[:200])
 
     ds.append_csv(DAILY, DAILY_FIELDS, new_daily)
+    if upgrade:
+        ds.write_csv(FILINGS, FILING_FIELDS, filings)
     ds.append_csv(FILINGS, FILING_FIELDS, new_filings)
     summary["new_filings"] = len(new_filings)
 

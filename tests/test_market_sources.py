@@ -173,7 +173,8 @@ def test_submissions_keep_filings_since_a_date_with_acceptance_times():
     assert http.calls[0]["url"] == "https://data.sec.gov/submissions/CIK0001871321.json"
     assert http.calls[0]["headers"]["User-Agent"] == UA
     assert [f["form"] for f in sub["filings"]] == ["424B5", "8-K"]
-    assert sub["filings"][1] == {"form": "8-K", "filed": "2026-09-11", "accepted": "2026-09-11T14:38:02.000Z", "items": "3.02,9.01"}
+    assert sub["filings"][1] == {"form": "8-K", "filed": "2026-09-11", "accepted": "2026-09-11T14:38:02.000Z", "items": "3.02,9.01",
+                                "accession": "0000000001-26-000001"}
     assert sub["category"] == "Non-accelerated filer; Smaller reporting company"
     assert sub["former_names"] == [{"name": "OLD NAME INC", "from": "2019-01-01", "to": "2025-06-01"}]
 

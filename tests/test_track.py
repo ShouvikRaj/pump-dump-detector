@@ -157,3 +157,44 @@ def test_counts_reddit_mentions_after_the_flag_once_the_days_are_over(tmp_path):
     track.run_track(ds, src, clock=clock.time)
     out = ds.read_csv(track.OUTCOMES)[0]
     assert out["mentions_next_5d"] == "12" and out["mentions_next_20d"] == ""
+
+
+def _sec_routes(bars, filings):
+    return [("GET", "https://query1.finance.yahoo.com", [(200, chart_json(bars))]),
+            ("GET", "https://data.sec.gov/submissions/", [(200, submissions_json(filings))])]
+
+
+def test_a_filing_reread_with_the_shifted_sec_time_is_not_recorded_twice(tmp_path):
+    # data.sec.gov serves acceptance times 4 h later once a filing is no longer new; the first time seen stands
+    bars = path_bars([4.0, 4.0, 4.0])
+    first = [("8-K", "2026-10-05", "2026-10-05T20:42:40.000Z", "8.01")]
+    ds, src, clock, http = setup(tmp_path, [snap(cik="1")], _sec_routes(bars, first), et(2026, 10, 5, 18))
+    track.run_track(ds, src, clock=clock.time)
+    http.add("GET", "https://data.sec.gov/submissions/", (200, submissions_json([("8-K", "2026-10-05", "2026-10-06T00:42:40.000Z", "8.01")])))
+    clock.now = et(2026, 10, 6, 19)
+    track.run_track(ds, src, clock=clock.time)
+    rows = ds.read_csv(track.FILINGS)
+    assert [(r["accepted_at_utc"], r["accession"]) for r in rows] == [("2026-10-05T20:42:40Z", "0000000001-26-000000")]
+
+
+def test_cleans_up_shifted_copies_recorded_before_accession_numbers(tmp_path):
+    bars = path_bars([4.0, 4.0, 4.0])
+    s = snap(cik="1")
+    s["last_current_report_at"] = "2026-10-05T12:05:32Z"  # Stage 2 saw this 8-K before the 14:09 ET flag
+    ds, src, clock, _ = setup(tmp_path, [s], _sec_routes(bars, [
+        ("4", "2026-10-05", "2026-10-06T00:08:33.000Z", ""),
+        ("8-K", "2026-10-05", "2026-10-05T16:05:32.000Z", "2.02"),
+    ]), et(2026, 10, 7, 19))
+    old_fields = [f for f in track.FILING_FIELDS if f != "accession"]
+    base = {"snapshot_id": "S1", "episode_id": "ABCD-1", "role": "candidate", "ticker": "ABCD", "k": "1", "items": "",
+            "collected_at": "1", "track_version": "track-v1"}
+    ds.write_csv(track.FILINGS, old_fields, [
+        {**base, "form": "4", "accepted_at_utc": "2026-10-05T20:08:33Z", "collected_at_utc": "2026-10-05T21:19:07Z"},
+        {**base, "form": "4", "accepted_at_utc": "2026-10-06T00:08:33Z", "collected_at_utc": "2026-10-06T22:53:15Z"},
+        {**base, "form": "8-K", "items": "2.02", "accepted_at_utc": "2026-10-05T16:05:32Z", "collected_at_utc": "2026-10-06T22:53:15Z"},
+    ])
+    summary = track.run_track(ds, src, clock=clock.time)
+    rows = ds.read_csv(track.FILINGS)
+    assert [(r["form"], r["accepted_at_utc"], r["accession"]) for r in rows] == [("4", "2026-10-05T20:08:33Z", "0000000001-26-000000")]
+    assert summary["new_filings"] == 0
+    assert ds.read_csv(track.OUTCOMES)[0]["sessions"] == "3"
