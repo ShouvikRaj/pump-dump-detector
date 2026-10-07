@@ -52,13 +52,14 @@ This project takes the one route that needs no account and joins nothing: a publ
      "long") and a target ("target", "TP", "sell"): an ordinary signal, kept as its own kind because it is the same
      playbook at a slower pace.
   3. `other`: everything else (results, countdowns, ads, news), stored but not an event.
-  The named exchange is the first exchange name or link in the post. The coin must be listed against USDT on the
-  named exchange (if it is one of the four read here), else on the first of MEXC, KuCoin, Gate, Binance that lists
-  it; otherwise the event is kept with exchange `unmatched` (or the named exchange, e.g. `yobit`, `solana`) and gets
+  A post that is itself a countdown ("24 hours left until our pump ... watch for the coin name") is never an
+  announcement. The named exchange is the first exchange name or link in the post. If the post names one, the coin
+  must be listed against USDT there (and that exchange must be one of the four read here); if it names none, the
+  first of MEXC, KuCoin, Gate, Binance that lists it is used; otherwise the event is kept with exchange `unmatched` (or the named exchange, e.g. `yobit`, `solana`) and gets
   no bars.
 - **tg-v1 check** against PumpSense's hand labels (2026-10-07; the rule was adjusted on 2017-2019 posts and then
   scored once on 2020-2023 posts it was not adjusted on): on 2020-2023 posts with text, 72% of the labelled
-  announcements are found (617 of 860) and 99% of those get the right coin; 70% of the posts tg-v1 calls
+  announcements are found (617 of 860) and 99% of those get the right coin; 72% of the posts tg-v1 calls
   announcements are labelled ones. That precision is understated: PumpSense labels one post per pump, and many of
   the "false" hits are the same pump's second post or a real announcement it left unlabelled. 299 labelled
   announcements were images with no text, which no text rule can read.

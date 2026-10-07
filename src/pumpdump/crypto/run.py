@@ -242,8 +242,10 @@ class Run:
 
     def _telegram_event(self, p: tg.Post, c: tg.Classified) -> None:
         base = c.ticker.upper()
-        exch = c.exchange if c.exchange in LIVE and self.listed(c.exchange, base) else ""
-        if not exch and (not c.exchange or c.exchange in LIVE):
+        # a named exchange is the pump's venue: if it no longer lists the coin, no other exchange stands in for it
+        if c.exchange:
+            exch = c.exchange if c.exchange in LIVE and self.listed(c.exchange, base) else ""
+        else:
             exch = next((e for e in FALLBACK_ORDER if self.listed(e, base)), "")
         t0 = int(tg.iso_to_ts(p.date) * 1000)
         self.add_event(dict(

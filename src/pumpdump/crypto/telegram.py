@@ -209,7 +209,8 @@ def classify(text: str, links: list[str] | None = None, after_countdown: bool = 
     countdown = bool(_COUNTDOWN.search(text))
     link_tk, link_q = _link_ticker(text, links)
 
-    for m in _ANNOUNCE.finditer(text) if not _NOT_ANNOUNCEMENT.search(text) and not _CALL_SHAPE.search(text) else ():
+    teaser = countdown or _NOT_ANNOUNCEMENT.search(text) or _CALL_SHAPE.search(text)
+    for m in _ANNOUNCE.finditer(text) if not teaser else ():
         tail = text[m.end() : m.end() + 40]
         tok = ""
         if sp := re.match(r"[^A-Za-z0-9\n]{0,20}((?:[(\[\s'\"]*\b[A-Z0-9]\b[)\]\s'\"]*){2,10})", tail):
