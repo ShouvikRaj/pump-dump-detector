@@ -40,17 +40,28 @@ This project takes the one route that needs no account and joins nothing: a publ
   from `t.me/NAME` links in collected posts (the papers' snowball), at most 10 new ones per run, added only if their
   preview is public and their title or recent posts match the pump keywords below. A channel whose preview is gone
   (or that hasn't posted for 180 days) is marked and checked again only weekly.
-- **Classification `tg-v1`** (a rule, no model): each post's text is checked in this order:
-  1. `announcement`: the post names a coin as the pump target: a phrase such as "the coin (we are pumping / for
-     today / to pump) is", "pump coin:", "coin name:", "we are pumping", "today's coin" followed within 40 characters
-     by a ticker (`$XYZ`, `#XYZ`, `XYZ/USDT`, or a 2-10 letter all-caps word), or a post that is only a ticker or an
-     exchange trade link (`.../trade/XYZ_USDT`) within 15 minutes after a countdown post ("x minutes left",
-     "next post will be the coin") in the same channel.
-  2. `call`: a ticker together with buy words ("buy", "entry", "buying zone", "long") and a target ("target",
-     "sell", "TP"): an ordinary signal, kept as its own kind because it is the same playbook at a slower pace.
-  3. `other`: everything else (results posts, countdowns, ads), stored but not an event.
-  The ticker must be listed on the named or fallback exchange, else the post is kept as `unmatched`. tg-v1 was
-  checked against PumpSense's hand labels before going live; its precision and recall are in "tg-v1 check" below.
+- **Classification `tg-v1`** (a rule, no model; `src/pumpdump/crypto/telegram.py`): each post's text is checked in
+  this order:
+  1. `announcement`: the post names a coin as the pump target. Either a phrase such as "the coin (we are pumping /
+     we have picked ... / for today / to pump) is", "coin is", "coin:", "coin name", "pump coin", "pump alert",
+     "today's coin" followed within 20 symbols by a ticker (also spelled out, "A P P C"), in a post that is not a
+     results post, a teaser, a reminder or a cancellation and has no entry range or stop loss; or a post that is only
+     a ticker (`#XYZ`, `$XYZ`, `XYZ`, `XYZ/BTC`) or only an exchange trade link (`.../trade/XYZ_USDT`) within 15
+     minutes after a countdown post ("10 minutes left", "next post will be the coin") in the same channel.
+  2. `call`: a ticker (`XYZ/USDT`, a trade link, `#XYZ` or `$XYZ`) together with buy words ("buy", "entry",
+     "long") and a target ("target", "TP", "sell"): an ordinary signal, kept as its own kind because it is the same
+     playbook at a slower pace.
+  3. `other`: everything else (results, countdowns, ads, news), stored but not an event.
+  The named exchange is the first exchange name or link in the post. The coin must be listed against USDT on the
+  named exchange (if it is one of the four read here), else on the first of MEXC, KuCoin, Gate, Binance that lists
+  it; otherwise the event is kept with exchange `unmatched` (or the named exchange, e.g. `yobit`, `solana`) and gets
+  no bars.
+- **tg-v1 check** against PumpSense's hand labels (2026-10-07; the rule was adjusted on 2017-2019 posts and then
+  scored once on 2020-2023 posts it was not adjusted on): on 2020-2023 posts with text, 72% of the labelled
+  announcements are found (617 of 860) and 99% of those get the right coin; 70% of the posts tg-v1 calls
+  announcements are labelled ones. That precision is understated: PumpSense labels one post per pump, and many of
+  the "false" hits are the same pump's second post or a real announcement it left unlabelled. 299 labelled
+  announcements were images with no text, which no text rule can read.
 - An event's `t0` is the post's own timestamp (Telegram's, to the second).
 
 ### `scan-v1`: market-wide spike flags
@@ -88,7 +99,7 @@ follower could realistically get.
 | Field | Definition |
 |---|---|
 | `p0` | announcement/call: close of the last 1-minute bar that ends at or before `t0`. spike: close of hour `h-1`. |
-| `p_entry` | announcement/call: close of the 1-minute bar ending 2 minutes after `t0`. spike: close of hour `h` (the flag hour). |
+| `p_entry` | announcement/call: the price 2 minutes after `t0` (the last 1-minute close at or before the first minute boundary 2 minutes after `t0`; minutes without trades have no bar, so prices carry forward, as `p0` does). spike: close of hour `h` (the flag hour). |
 | `peak_ret_1h` | highest 1-minute high from `t0` to `t0 + 60 min`, over `p0`, minus 1. Spikes use the flag hour's high. |
 | `pump` | `peak_ret_1h >= 0.10` (the price moved at least 10% within the hour: the pump happened). |
 | `pump_dump` | `peak_ret_1h >= 0.20` **and** within 24 hours after the peak the price trades at or below `p0 + 0.5 x (peak - p0)` (it gave back at least half the rise). The low after the peak is taken from 1-minute bars to `t0 + 4 h`, then hourly bars from the next full hour to the peak + 24 h. |
@@ -121,7 +132,7 @@ its first live run, whichever is first; it keeps fetching bars until every event
 ## What had been seen before these rules were written
 
 - The three history lists themselves (coins, channels, exchanges, announcement times, counts by year) and a time
-  check of PumpSense against the other two lists. No price data of any event.
+  check of PumpSense against the other two lists. No price data of any event. (Later the same day, before any outcome was computed: `p_entry`'s wording was made exact for minutes without trades, and tg-v1's wording below was updated to the rule as built and checked.)
 - A reachability probe (2026-10-07, run 37619315867): which exchange APIs answer from GitHub's runners, and the last
   ~20 posts of 40 seed channels' previews (some channels still post pumps and calls in 2026: `mexcpumpcoins`,
   `kucoin_pump_group`, `mega_pump_group`, `cryptoprofitcoach`). One results post claimed "$LIGHT went up 10% after our

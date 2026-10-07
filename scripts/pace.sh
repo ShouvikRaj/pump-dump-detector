@@ -19,7 +19,8 @@
 # likewise Stage 3's track run after 22:41 UTC, Stage 4's label run after
 # 23:21 UTC (40 minutes later, so it labels from that day's tracking) and
 # Stage 5's model run after 00:11 UTC (50 minutes after that, so it trains on
-# the new labels).
+# the new labels). The crypto track's hourly run (docs/crypto.md) starts at the
+# first pacer 55 minutes or more after its last run.
 #
 # Usage: scripts/pace.sh
 # Needs GH_TOKEN (actions: write), GH_REPO, the gh CLI and jq.
@@ -45,10 +46,25 @@ start_daily_if_due() {
   fi
 }
 
+start_hourly_if_due() {
+  # WORKFLOW: start the workflow when its last run was created 55 minutes ago or more (the crypto track)
+  local wf="$1" last
+  last="$(gh run list --workflow "$wf" --limit 1 --json createdAt --jq '.[0].createdAt // empty')"
+  if [ -n "$last" ] && [ $(( now - $(jq -rn --arg t "$last" '$t | fromdateiso8601') )) -lt 3300 ]; then
+    return 0
+  fi
+  if gh workflow run "$wf" --ref main; then
+    echo "started this hour's $wf run"
+  else
+    echo "::warning::could not start $wf"
+  fi
+}
+
 start_daily_if_due nightly.yml 3 41 || echo "::warning::nightly check failed"
 start_daily_if_due track.yml 22 41 || echo "::warning::track check failed"
 start_daily_if_due label.yml 23 21 || echo "::warning::label check failed"
 start_daily_if_due model.yml 0 11 || echo "::warning::model check failed"
+start_hourly_if_due crypto.yml || echo "::warning::crypto check failed"
 
 queue_next_pacer() {
   local created waited

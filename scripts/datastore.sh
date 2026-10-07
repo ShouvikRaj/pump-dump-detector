@@ -14,6 +14,8 @@
 #                                            model/ and the last DAYS days of raw files (for the flag-time chatter)
 #   scripts/datastore.sh checkout-social DIR shallow, sparse checkout of what the social job reads and writes:
 #                                            collection state, candidates, market snapshots and social/ (not its raw files)
+#   scripts/datastore.sh checkout-crypto DIR shallow, sparse checkout of what the crypto job reads and writes: collection
+#                                            state and crypto/ without its write-only Telegram post files
 #   scripts/datastore.sh checkout-all DIR    shallow checkout of everything (for build-db)
 #   scripts/datastore.sh push DIR MESSAGE    commit all changes and push, retrying if the branch moved
 #
@@ -63,6 +65,10 @@ model_patterns() {
   for i in $(seq -1 "$days"); do
     printf '/raw/reddit/%s/\n' "$(date -u -d "$((-i)) day" +%Y/%m/%d)"
   done
+}
+
+crypto_patterns() {
+  printf '%s\n' /state/ /crypto/ '!/crypto/telegram/posts/'
 }
 
 configure() {
@@ -140,6 +146,7 @@ case "${1:-}" in
   checkout-label) cmd_checkout "$2" label_patterns ;;
   checkout-model) cmd_checkout "$2" model_patterns "$3" ;;
   checkout-social) cmd_checkout "$2" social_patterns ;;
+  checkout-crypto) cmd_checkout "$2" crypto_patterns ;;
   checkout-all) cmd_checkout_all "$2" ;;
   push) cmd_push "$2" "$3" ;;
   patterns) patterns "$2" ;;

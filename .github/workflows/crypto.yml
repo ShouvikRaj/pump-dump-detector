@@ -1,0 +1,86 @@
+name: crypto
+
+# Crypto track (docs/crypto.md), kept apart from the stock pipeline: every hour,
+# read public Telegram channels' web previews (no account, nothing joined), scan
+# every USDT pair on MEXC, Gate, KuCoin and Binance for price spikes on unusual
+# volume, fetch the bars of events whose time has come, and rebuild
+# crypto/outcomes.csv on the `data` branch. scripts/pace.sh starts it at the
+# first pacer 55 minutes or more after the last run (GitHub's cron here is
+# unreliable); the cron is the backup. Mode `history` (manual) adds the public
+# pump lists and their Binance/KuCoin bars; it resumes where it stopped.
+# Collection stops when the stock collection stops (or after 180 days); once
+# every event is settled, the workflow turns itself off.
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "run (hourly) or history (public pump lists and their bars)"
+        default: run
+        type: choice
+        options: [run, history]
+      max_minutes:
+        description: "Time budget in minutes"
+        default: "20"
+
+permissions:
+  contents: write # push to the data branch
+  actions: write # turn this workflow off once the track is over
+
+concurrency:
+  # writes only crypto/, so its push replays cleanly on top of the other jobs' pushes
+  group: crypto
+  cancel-in-progress: false
+
+jobs:
+  crypto:
+    runs-on: ubuntu-latest
+    timeout-minutes: ${{ inputs.mode == 'history' && 150 || 35 }}
+    env:
+      MODE: ${{ inputs.mode || 'run' }}
+      MAX_MINUTES: ${{ inputs.max_minutes || '20' }}
+      PUMPSENSE_COMMIT: 2fdffd8e5ece48aec317ee5981ee4d4d723ee709
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install
+        run: pip install .
+
+      - name: Check out the data branch (collection state and crypto/)
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: scripts/datastore.sh checkout-crypto datastore
+
+      - name: Fetch PumpSense's labelled chat exports (history mode)
+        if: env.MODE == 'history'
+        run: |
+          git clone --quiet --filter=blob:none --no-checkout https://github.com/AhmedMahrous00/icbc_2026_reproducibility pumpsense
+          git -C pumpsense sparse-checkout set --no-cone '/chat_data/*/result11.csv'
+          git -C pumpsense checkout --quiet "$PUMPSENSE_COMMIT"
+
+      - name: Crypto ${{ env.MODE }}
+        id: crypto
+        run: |
+          extra=()
+          if [ "$MODE" = history ]; then extra=(--pumpsense-dir pumpsense); fi
+          python -m pumpdump.crypto "$MODE" --datastore datastore --max-minutes "$MAX_MINUTES" \
+            --summary "$GITHUB_STEP_SUMMARY" --github-output "$GITHUB_OUTPUT" "${extra[@]}"
+
+      - name: Push the data branch
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: scripts/datastore.sh push datastore "crypto: $MODE run ${{ github.run_id }}"
+
+      - name: Turn the crypto track off once it is over
+        if: steps.crypto.outputs.finished == 'true' && env.MODE == 'run'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh workflow disable crypto.yml
