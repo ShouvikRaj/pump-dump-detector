@@ -76,7 +76,8 @@ jobs:
       - name: Push the data branch
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: scripts/datastore.sh push datastore "crypto: $MODE run ${{ github.run_id }}"
+        run: |
+          scripts/datastore.sh push datastore "crypto: $MODE run ${{ github.run_id }}"
 
       - name: Turn the crypto track off once it is over
         if: steps.crypto.outputs.finished == 'true' && env.MODE == 'run'
