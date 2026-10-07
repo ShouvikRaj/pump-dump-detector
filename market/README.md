@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-07T00:00:12Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-07T10:09:44Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-36 candidates and 72 controls so far. Archetypes: other 34, low_float_runner 2.
+37 candidates and 74 controls so far. Archetypes: other 35, low_float_runner 2.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SNDK | 2026-10-07 10:09 | other | listed | 1,625 | -2.1% | -4.0% | 0.7x | 144.5M | 3.9% | 0 |  |
 | CRWD | 2026-10-06 23:59 | other | listed | 278.6 | +2.2% | +5.2% | 0.5x | 1.01B | 2.8% | 1 |  |
 | AVGO | 2026-10-06 19:34 | other | listed | 378.1 | +4.3% | +3.7% | 0.9x | 4.72B | 1.1% | 1 |  |
 | SKHY | 2026-10-06 18:54 | other | listed | 184.1 | -5.6% | +7.2% | 0.6x | 5.67B | 0.5% | 1 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | DELL | 2026-10-05 16:38 | other | listed | 554.8 | -1.4% | -0.1% | 0.6x | 292.2M | 4.7% | 2 |  |
 | GME | 2026-10-05 16:24 | other | listed | 25.55 | +3.4% | +5.6% | 1.3x | 461.2M | 8.5% | 0 |  |
 | VEEA | 2026-10-05 15:33 | low float runner | listed | 5.06 | +52.0% | +8.1% | 0.1x | 1.5M | 80.0% | 1 |  |
-| TSM | 2026-10-05 15:18 | other | listed | 483.2 | +2.2% | +4.9% | 1.0x | 37.84B | 0.1% | 0 |  |
