@@ -1,9 +1,27 @@
 # Stage 3 tracking
 
-Updated 2026-10-07T01:49:20Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-10-07T16:47:12Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-10-07 16:38 | DUKRW | control | low_float_runner | active | 0 |  |  |  |  |  |
+| 2026-10-07 16:38 | MKZR | control | low_float_runner | active | 0 |  |  |  |  |  |
+| 2026-10-07 16:38 | BIYA | candidate | low_float_runner | active | 0 |  |  |  |  |  |
+| 2026-10-07 13:01 | LIN | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-07 13:01 | ADP | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-07 13:01 | GLD | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-07 12:34 | SE | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-07 12:34 | AGCO | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-07 12:34 | SOXL | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-07 12:08 | LUXE | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-07 12:08 | MLCO | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-07 12:08 | NSLRL | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-07 12:08 | UFCS | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-07 12:08 | BULL | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-07 12:08 | SOXS | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-07 10:09 | PH | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-07 10:09 | NEU | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-07 10:09 | SNDK | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-10-06 23:59 | MS | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-06 23:59 | ADI | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-06 23:59 | CRWD | candidate | other | active | 0 |  |  |  |  |  |
