@@ -14,11 +14,11 @@ Live since 2026-10-07T12:32:05Z.
 
 | Outcome status | Count |
 |---|---|
-| no_data | 166 |
+| no_data | 475 |
 | not_covered | 1556 |
 | partial | 5 |
-| pending | 1426 |
-| settled | 1487 |
+| pending | 72 |
+| settled | 2532 |
 
 - `events.csv`: one row per event; `outcomes.csv`: crypto-label-v1 per event, rebuilt every run.
 - `bars/<source>/<event_id>.json.gz`: the event's 1-minute and hourly bars [open time ms, open, high, low,
