@@ -1,0 +1,82 @@
+name: x-probe
+
+# Temporary: checks which free, no-account X/Twitter-like sources answer from a GitHub runner.
+on:
+  push:
+    branches: [main]
+    paths: [".github/workflows/x-probe.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests websockets
+      - name: Probe
+        shell: python
+        run: |
+          import json, time, asyncio, requests
+          UA = {"User-Agent": "Mozilla/5.0 (compatible; pump-dump-detector/0.1; research)"}
+          def get(name, url, **kw):
+              try:
+                  r = requests.get(url, headers={**UA, **kw.pop("headers", {})}, timeout=20, **kw)
+                  print(f"== {name}: {r.status_code} {r.headers.get('content-type','')} len={len(r.content)}")
+                  print("   ", r.text[:400].replace("\n", " "))
+                  return r
+              except Exception as e:
+                  print(f"== {name}: ERROR {e}")
+          r = get("stocktwits stream", "https://api.stocktwits.com/api/2/streams/symbol/SNDK.json")
+          try:
+              j = r.json(); m = j["messages"]
+              print("   n", len(m), "cursor", j.get("cursor"), "first", m[0]["created_at"], "last", m[-1]["created_at"])
+              print("   keys", sorted(m[0].keys())); print("   user keys", sorted(m[0]["user"].keys()))
+              r2 = get("stocktwits stream page2", f"https://api.stocktwits.com/api/2/streams/symbol/SNDK.json?max={j['cursor']['max']}")
+              m2 = r2.json()["messages"]; print("   page2 n", len(m2), m2[0]["created_at"], m2[-1]["created_at"])
+          except Exception as e: print("   parse", e)
+          get("stocktwits OTC", "https://api.stocktwits.com/api/2/streams/symbol/INFQ.json")
+          for host in ["public.api.bsky.app", "api.bsky.app"]:
+              for ep in ["searchPosts", "searchposts"]:
+                  get(f"bsky {host} {ep}", f"https://{host}/xrpc/app.bsky.feed.{ep}?q=%24NVDA&limit=25&sort=latest")
+          get("bsky cashtag tag search", "https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts?q=%23NVDA&limit=5")
+          get("xcancel", "https://xcancel.com/search?f=tweets&q=%24NVDA")
+          get("xcancel rss", "https://xcancel.com/search/rss?f=tweets&q=%24NVDA")
+          get("nitter.net", "https://nitter.net/search?f=tweets&q=%24NVDA")
+          get("nitter.poast", "https://nitter.poast.org/search?f=tweets&q=%24NVDA")
+          get("x api no token", "https://api.x.com/2/tweets/search/recent?query=%24NVDA")
+          get("x syndication profile", "https://syndication.twitter.com/srv/timeline-profile/screen-name/StockMKTNewz")
+          get("x cdn tweet", "https://cdn.syndication.twimg.com/tweet-result?id=20&token=a")
+          get("x.com search", "https://x.com/search?q=%24NVDA&f=live")
+          get("mastodon tag", "https://mastodon.social/api/v1/timelines/tag/NVDA?limit=5")
+          import websockets
+          async def jet():
+              url = "wss://jetstream2.us-east.bsky.network/subscribe?wantedCollections=app.bsky.feed.post"
+              n = cash = 0; samples = []; t0 = time.time()
+              async with websockets.connect(url, max_size=2**22) as ws:
+                  while time.time() - t0 < 30:
+                      ev = json.loads(await ws.recv()); n += 1
+                      rec = (ev.get("commit") or {}).get("record") or {}
+                      txt = rec.get("text", "")
+                      import re
+                      if re.search(r"\$[A-Za-z]{1,5}\b", txt):
+                          cash += 1
+                          if len(samples) < 8: samples.append(txt[:120].replace("\n"," "))
+              print(f"== jetstream 30s: events {n} cashtag-posts {cash} rate/day ~{n/30*86400:.0f} cash/day ~{cash/30*86400:.0f}")
+              for s in samples: print("   ", s)
+          try: asyncio.run(jet())
+          except Exception as e: print("== jetstream ERROR", e)
+          # Jetstream replay: cursor 23h ago
+          async def replay():
+              cur = int((time.time() - 23*3600) * 1e6)
+              url = f"wss://jetstream2.us-east.bsky.network/subscribe?wantedCollections=app.bsky.feed.post&cursor={cur}"
+              async with websockets.connect(url, max_size=2**22) as ws:
+                  ev = json.loads(await ws.recv())
+                  print("== jetstream replay first event age h", (time.time() - ev["time_us"]/1e6)/3600)
+          try: asyncio.run(replay())
+          except Exception as e: print("== jetstream replay ERROR", e)
