@@ -12,6 +12,8 @@
 #   scripts/datastore.sh checkout-model DIR DAYS  shallow, sparse checkout of what the model job reads and writes:
 #                                            state, symbols, candidates, snapshots, track days and outcomes, labels,
 #                                            model/ and the last DAYS days of raw files (for the flag-time chatter)
+#   scripts/datastore.sh checkout-social DIR shallow, sparse checkout of what the social job reads and writes:
+#                                            collection state, candidates, market snapshots and social/ (not its raw files)
 #   scripts/datastore.sh checkout-all DIR    shallow checkout of everything (for build-db)
 #   scripts/datastore.sh push DIR MESSAGE    commit all changes and push, retrying if the branch moved
 #
@@ -49,6 +51,10 @@ track_patterns() {
 
 label_patterns() {
   printf '%s\n' /state/ /candidates/ /market/snapshots.csv /track/ /labels/
+}
+
+social_patterns() {
+  printf '%s\n' /state/ /candidates/ /market/snapshots.csv /social/snapshots.csv /social/README.md
 }
 
 model_patterns() {
@@ -133,8 +139,9 @@ case "${1:-}" in
   checkout-track) cmd_checkout "$2" track_patterns ;;
   checkout-label) cmd_checkout "$2" label_patterns ;;
   checkout-model) cmd_checkout "$2" model_patterns "$3" ;;
+  checkout-social) cmd_checkout "$2" social_patterns ;;
   checkout-all) cmd_checkout_all "$2" ;;
   push) cmd_push "$2" "$3" ;;
   patterns) patterns "$2" ;;
-  *) echo "usage: $0 {checkout DIR DAYS|checkout-market DIR|checkout-track DIR|checkout-label DIR|checkout-model DIR DAYS|checkout-all DIR|push DIR MESSAGE|patterns DAYS}" >&2; exit 64 ;;
+  *) echo "usage: $0 {checkout DIR DAYS|checkout-market DIR|checkout-track DIR|checkout-label DIR|checkout-model DIR DAYS|checkout-social DIR|checkout-all DIR|push DIR MESSAGE|patterns DAYS}" >&2; exit 64 ;;
 esac

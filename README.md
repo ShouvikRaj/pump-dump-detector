@@ -32,12 +32,13 @@ Everything runs on GitHub Actions; no computer needs to stay on.
 | `track` | daily after the US close (started by `pace` after 22:41 UTC; cron backup) | record each candidate's and control's new trading sessions and SEC filings since its flag, for 20 sessions, and rebuild `track/outcomes.csv` (Stage 3) |
 | `label` | daily after `track` (started by `pace` after 23:21 UTC; cron backup) | label every candidate and control whose windows have closed and rebuild `labels/labels.csv` (Stage 4) |
 | `model` | daily after `label` (started by `pace` after 00:11 UTC; cron backup) | rate new candidates' chatter (text features and LLM labels), retrain the weekly models, score each new candidate once into `model/predictions.csv` and rewrite `model/README.md` (Stage 5) |
+| `social` | after each `collect` run (cron backup every 6 h) | fetch StockTwits and Bluesky posts (and X posts, if an `X_BEARER_TOKEN` secret is set) about each new candidate and control from 72 h before its flag, then daily for 10 days ([docs/social.md](docs/social.md)) |
 | `llm-eval` | by hand (Actions, then Run workflow) | test the LLM step's prompt, or another open-weights model, against the hand-labelled documents in `docs/stage5-llm-gold.json`; writes nothing (Stage 5) |
 | `nightly` | 03:41 UTC (started by `pace` when GitHub's cron misses it) | build a SQLite database of everything collected and attach it to the run as the `pumpdump-sqlite` artifact; once collection has finished, publish it as the `dataset-final` release and turn collection off |
 | `tests` | every push | `pytest` |
 
 Collected data lives on the **`data` branch** (see its README). Start with `candidates/README.md` there,
-`market/README.md` for the market snapshots, `track/README.md` for what happened next, `labels/README.md` for the
+`market/README.md` for the market snapshots, `social/README.md` for StockTwits/Bluesky/X chatter, `track/README.md` for what happened next, `labels/README.md` for the
 labels and `model/README.md` for the model's scores and results.
 
 The `pacer` environment's wait timer (13 minutes, set under Settings > Environments) is what spaces the runs; it holds
@@ -196,4 +197,4 @@ Stage 2: `market.py` (the run), `features.py` (point-in-time features), `sources
 Stage 3: `track.py`. Stage 4: `label.py`. Stage 5: `text.py` (text features, LLM ratings), `model.py`. Command line:
 `cli.py`. Design notes and the reasoning behind each threshold: [docs/stage1.md](docs/stage1.md),
 [docs/stage2.md](docs/stage2.md), [docs/stage3.md](docs/stage3.md), [docs/stage4.md](docs/stage4.md),
-[docs/stage5.md](docs/stage5.md).
+[docs/stage5.md](docs/stage5.md), [docs/social.md](docs/social.md).

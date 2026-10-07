@@ -69,6 +69,13 @@ jobs:
           GH_REPO: ${{ github.repository }}
         run: gh workflow run market.yml --ref main || echo "::warning::could not start the market run"
 
+      - name: Start the social snapshot (StockTwits, Bluesky, X)
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh workflow run social.yml --ref main || echo "::warning::could not start the social run"
+
       - name: Open or close the health issue
         if: always()
         env:

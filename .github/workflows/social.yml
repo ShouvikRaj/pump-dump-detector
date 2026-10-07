@@ -1,0 +1,64 @@
+name: social
+
+# Started by every collect run (its last steps), like the market run: fetch the
+# StockTwits and Bluesky posts (and X posts, if an X_BEARER_TOKEN secret is set)
+# about each new candidate and control from 72 hours before its flag, then a
+# daily follow-up of each candidate for 10 days, into social/ on the `data`
+# branch. Adds data only; it never changes which tickers get flagged. Details:
+# docs/social.md. The cron is a backup that also finishes the follow-ups after
+# collection has stopped; once nothing is left, the workflow turns itself off.
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write # push to the data branch
+  actions: write # turn this workflow off when it is over
+
+concurrency:
+  # writes only social/, so its push replays cleanly on top of the other stages' pushes
+  group: social
+  cancel-in-progress: false
+
+jobs:
+  social:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install
+        run: pip install .
+
+      - name: Check out the data branch (state, candidates, market snapshots, social table)
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: scripts/datastore.sh checkout-social datastore
+
+      - name: Fetch posts
+        id: social
+        env:
+          # optional and paid (X bills each post read): without the secret X is skipped
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          X_DAILY_POSTS: ${{ vars.X_DAILY_POSTS }}
+        run: python -m pumpdump social --datastore datastore --summary "$GITHUB_STEP_SUMMARY" --github-output "$GITHUB_OUTPUT"
+
+      - name: Push the data branch
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          scripts/datastore.sh push datastore "social: run ${{ github.run_id }}"
+
+      - name: Turn off once it is over
+        if: steps.social.outputs.finished == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh workflow disable social.yml

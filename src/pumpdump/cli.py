@@ -5,6 +5,7 @@
   track     Stage 3: follow candidates and controls for 20 sessions after the flag
   label     Stage 4: label candidates and controls (pump / real news / not pump, and crash)
   model     Stage 5: text features, LLM ratings, weekly LightGBM models and the prospective log
+  social    StockTwits, Bluesky (and X, if paid for) posts about each candidate and control
   build-db  build a full SQLite database from a datastore
   scan      show the tickers and hype categories found in a piece of text
   status    say whether collection has finished (enough data for analysis)
@@ -22,7 +23,7 @@ import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from . import db, label, market, model, track
+from . import db, label, market, model, social, track
 from .hype import hype_categories
 from .market import default_sources, dry_run, run_market
 from .pipeline import Settings, collection_done, run_collect
@@ -282,6 +283,23 @@ def _read_monthly(ds: Datastore, folder: str) -> list[dict]:
     return rows
 
 
+def cmd_social(args: argparse.Namespace) -> int:
+    ds = Datastore(args.datastore)
+    run_id = args.run_id or os.environ.get("GITHUB_RUN_ID") or time.strftime("%Y%m%dT%H%M%S", time.gmtime())
+    x_token, x_daily = social.x_settings()
+    summary = social.run_social(ds, social.Web(), clock=time.time, max_seconds=args.max_minutes * 60,
+                                x_token=x_token, x_daily_posts=x_daily)
+    text = social.render_summary(summary, str(run_id))
+    print(text)
+    if args.summary:
+        with open(args.summary, "a", encoding="utf-8") as fh:
+            fh.write(text)
+    if args.github_output:
+        with open(args.github_output, "a", encoding="utf-8") as fh:
+            fh.write(f"finished={'true' if social.finished(ds, time.time()) else 'false'}\n")
+    return 0
+
+
 def cmd_build_db(args: argparse.Namespace) -> int:
     ds = Datastore(args.datastore)
     out = Path(args.out)
@@ -311,6 +329,7 @@ def cmd_build_db(args: argparse.Namespace) -> int:
     _load_csv_table(conn, "model_llm", ds.read_csv(MODEL_LLM))
     _load_csv_table(conn, "model_predictions", ds.read_csv(model.PREDICTIONS))
     _load_csv_table(conn, "model_walkforward", ds.read_csv(model.WALKFORWARD))
+    _load_csv_table(conn, "social_snapshots", ds.read_csv(social.SNAPSHOTS))
     conn.commit()
     conn.close()
     print(f"wrote {out}: {n_docs} docs, {n_mentions} mentions")
@@ -386,6 +405,14 @@ def main(argv: list[str] | None = None) -> int:
     md.add_argument("--summary", help="append a markdown summary here (e.g. $GITHUB_STEP_SUMMARY)")
     md.add_argument("--github-output", help="write finished=true|false here ($GITHUB_OUTPUT)")
     md.set_defaults(func=cmd_model)
+
+    so = sub.add_parser("social", help="fetch StockTwits/Bluesky/X posts about new candidates and controls")
+    so.add_argument("--datastore", required=True)
+    so.add_argument("--run-id")
+    so.add_argument("--max-minutes", type=float, default=8.0)
+    so.add_argument("--summary", help="append a markdown summary here (e.g. $GITHUB_STEP_SUMMARY)")
+    so.add_argument("--github-output", help="write finished=true|false here ($GITHUB_OUTPUT)")
+    so.set_defaults(func=cmd_social)
 
     b = sub.add_parser("build-db", help="build a SQLite database from a datastore")
     b.add_argument("--datastore", required=True)
