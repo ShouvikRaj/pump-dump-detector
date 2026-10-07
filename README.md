@@ -144,7 +144,9 @@ trained: [docs/stage5.md](docs/stage5.md)):
   that llama.cpp runs on the workflow's own runner (no account or key): one label per post, saying whether it is
   about the company at all, pitches it, warns about it or states a company event, plus a copied quote of the event
   that the code checks, so every label can be checked against the posts;
-- adds how often the same stock was flagged, and crashed, before;
+- adds how often the same stock was flagged, and crashed, before, and technical features of the spike from the price
+  bars Stage 2 saved (how far it was above the day's VWAP and below its high, the last hour's return and volume, the
+  run-up of the last days, whether short selling was restricted, and how many small stocks were running that day);
 - trains one LightGBM model per week and target (**crash** first, the avoid signal; then **pump**) on every candidate
   and control whose label was settled before the week began, recent ones weighted more, once 50 rows and 5 positives
   exist;

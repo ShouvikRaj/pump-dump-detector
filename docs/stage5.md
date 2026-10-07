@@ -260,9 +260,9 @@ is **weak** when leaving it out does not lower AP: AP without it >= AP with all 
 two of the three blocks. The model that scores new candidates (the deployed model) uses every group except the
 weak ones (if every group came out weak, none is dropped). Before 20 positives, all groups are used.
 
-The replay also reports two reference models: market only (`price_volume`, `size`, `short_interest`, `filings`) and
-social only (`chatter`, `text`, `llm`), which answer whether combining the two beats either alone. `history` is in
-neither.
+The replay also reports two reference models: market only (`price_volume`, `size`, `short_interest`, `filings`,
+`technical`) and social only (`chatter`, `text`, `llm`), which answer whether combining the two beats either alone.
+`history` is in neither.
 
 Pruning is chosen on the development weeks, so the deployed model's replay score is optimistic and is labeled that
 way; the robustness checks above use the all-groups replay, and the hold-out judges the deployed model.
