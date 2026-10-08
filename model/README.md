@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-10-08T00:23:05Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-10-08T05:54:02Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-10-05)
 
@@ -17,6 +17,8 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-10-08 04:07 | ADBE | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss bearish theses regarding AI clones and open-source alternatives threatening Adobe's subscription model. |
+| 2026-10-08 03:01 | KEEL | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss KEEL stock performance, express skepticism about its progress, and mention buying calls for a potential drop. |
 | 2026-10-07 20:50 | SMCI | other | no model | no model | 100% / 23% / 0% / 7.7% | Mixed chatter on SMCI ranging from bullish price targets to bearish warnings and a rumor of a buyout. |
 | 2026-10-07 20:50 | UUUU | other | no model | no model | 100% / 0% / 0% / 0% | Users express extreme frustration and disappointment over UUUU's recent price decline and poor performance. |
 | 2026-10-07 20:37 | LEVI | other | no model | no model | 100% / 0% / 0% / 7.7% | Users discuss LEVI stock performance, noting a stock drop despite positive earnings results. |
@@ -55,8 +57,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-05 21:14 | QCOM | other | no model | no model | 100% / 9.1% / 0% / 9.1% | Users discuss QCOM price movements, joke about it, and mention upcoming earnings without specific buy pitches or scam warnings. |
 | 2026-10-05 17:49 | IREN | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss IREN stock, express confusion, joke about the name, and mention holding positions. |
 | 2026-10-05 16:38 | DELL | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss DELL options strategies, price levels, and potential entry points without specific company events. |
-| 2026-10-05 16:24 | GME | other | no model | no model | 100% / 10% / 15% / 0% | Chatter discusses GameStop's potential acquisition of eBay, insider buying, and dilution concerns. |
-| 2026-10-05 15:33 | VEEA | low float runner | no model | no model | 100% / 27% / 0% / 6.7% | Users discuss a potential short squeeze and merger news for VEEA, with mixed sentiment and no specific corporate event details. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
