@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-08T21:11:44Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-08T21:38:02Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-62 candidates and 124 controls so far. Archetypes: other 59, low_float_runner 3.
+63 candidates and 126 controls so far. Archetypes: other 60, low_float_runner 3.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| CIFR | 2026-10-08 21:37 | other | listed | 13.55 | +0.4% | -12.7% | 1.7x | 344.1M | 21.2% | 0 |  |
 | ASTS | 2026-10-08 21:11 | other | listed | 55.4 | -2.7% | -0.2% | 1.7x | 266.5M | 24.5% | 0 |  |
 | AAOI | 2026-10-08 20:17 | other | listed | 106.8 | +0.8% | -1.3% | 2.4x | 80.6M | 15.3% | 1 |  |
 | CMG | 2026-10-08 19:38 | other | listed | 32.94 | +7.0% | -3.7% | 0.8x | 1.26B | 3.2% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | CRWD | 2026-10-06 23:59 | other | listed | 278.6 | +2.2% | +5.2% | 0.5x | 1.01B | 2.8% | 1 |  |
 | AVGO | 2026-10-06 19:34 | other | listed | 378.1 | +4.3% | +3.7% | 0.9x | 4.72B | 1.1% | 1 |  |
 | SKHY | 2026-10-06 18:54 | other | listed | 184.1 | -5.6% | +7.2% | 0.6x | 5.67B | 0.5% | 1 |  |
-| INTC | 2026-10-06 18:28 | other | listed | 114.7 | -1.3% | +0.1% | 0.7x | 4.62B | 3.4% | 3 |  |
