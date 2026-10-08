@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-08T09:39:38Z by run `37758126344`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-08T09:52:56Z by run `37759638392`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -31,7 +31,7 @@ collected live, so flags in this period are marked `warmup=1` in episodes.csv.
 | SKHY | 2026-10-06 18:54 | mention spike | 10 | 5.86 | 10 | 0 | wallstreetbets 10 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x06jh0/comment/pels36u/) |
 | OKLO | 2026-10-06 18:14 | mention spike | 7 | 5.86 | 4 | 0 | wallstreetbets 7 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wzyokb/) |
 | NOK | 2026-10-06 15:49 | mention spike | 3 | 3.14 | 3 | 0 | wallstreetbets 3 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1wzskww/comment/pehcvj2/) |
-| VOO | 2026-10-06 16:15 | mention spike | 13 | 11.43 | 13 | 0 | wallstreetbets 12, smallstreetbets 1 | NYSE Arca | #12 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x0de7b/comment/pelkm2s/) |
+| VOO | 2026-10-06 16:15 | mention spike | 13 | 11.43 | 13 | 0 | wallstreetbets 12, smallstreetbets 1 | NYSE Arca | #21 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x0de7b/comment/pelkm2s/) |
 | SOXS | 2026-10-07 12:08 | mention spike | 14 | 4.71 | 6 | 0 | wallstreetbets 14 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x06jh0/comment/pelqqzn/) |
 | AVGO | 2026-10-06 19:34 | mention spike | 23 | 21.71 | 16 | 0 | wallstreetbets 23 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x06jh0/comment/pektqos/) |
 | CEG | 2026-10-06 13:36 | mention spike | 6 | 5.86 | 4 | 0 | wallstreetbets 6 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x06jh0/comment/peirllx/) |
