@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-08T16:18:13Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-08T17:12:21Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-54 candidates and 108 controls so far. Archetypes: other 51, low_float_runner 3.
+55 candidates and 110 controls so far. Archetypes: other 52, low_float_runner 3.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| ORCL | 2026-10-08 17:11 | other | listed | 136.4 | -5.0% | +4.6% | 0.4x | 1.86B | 2.7% | 0 |  |
 | GME | 2026-10-08 16:17 | other | listed | 25.47 | +3.6% | -0.3% | 0.7x | 461.2M | 8.5% | 0 |  |
 | BWET | 2026-10-08 15:51 | other | listed | 1,027 | +7.0% | +19.6% | 0.4x |  |  | 0 |  |
 | META | 2026-10-08 13:39 | other | listed | 722.6 | +0.2% | -0.5% | 0.6x | 2.20B | 1.4% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | INFQ | 2026-10-06 16:43 | other | listed | 12.74 | +0.6% | -10.4% | 1.0x | 195.6M | 10.7% | 3 |  |
 | HTZ | 2026-10-06 16:43 | other | listed | 2.02 | +12.8% | +5.9% | 1.3x | 170.6M | 67.9% | 0 |  |
 | VOO | 2026-10-06 16:15 | other | listed | 717.9 | +0.8% | +1.2% | 0.6x |  |  |  |  |
-| NOK | 2026-10-06 15:49 | other | listed | 10.78 | +5.6% | +0.8% | 0.5x | 4.45B | 1.2% | 0 |  |
