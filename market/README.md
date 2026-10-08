@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-08T13:40:07Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-08T15:51:55Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-52 candidates and 104 controls so far. Archetypes: other 49, low_float_runner 3.
+53 candidates and 106 controls so far. Archetypes: other 50, low_float_runner 3.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| BWET | 2026-10-08 15:51 | other | listed | 1,027 | +7.0% | +19.6% | 0.4x |  |  | 0 |  |
 | META | 2026-10-08 13:39 | other | listed | 722.6 | +0.2% | -0.5% | 0.6x | 2.20B | 1.4% | 0 |  |
 | TTWO | 2026-10-08 13:27 | other | listed | 204.2 | +0.1% | -1.7% | 0.9x | 186.1M | 4.4% | 0 |  |
 | PLTR | 2026-10-08 13:12 | other | listed | 199.2 | +2.6% | +3.8% | 0.7x | 2.11B | 2.9% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | VOO | 2026-10-06 16:15 | other | listed | 717.9 | +0.8% | +1.2% | 0.6x |  |  |  |  |
 | NOK | 2026-10-06 15:49 | other | listed | 10.78 | +5.6% | +0.8% | 0.5x | 4.45B | 1.2% | 0 |  |
 | AMD | 2026-10-06 14:55 | other | listed | 651.8 | +3.2% | +3.9% | 0.6x | 1.62B | 2.5% | 3 |  |
-| NVDA | 2026-10-06 14:02 | other | listed | 242.3 | +1.4% | +4.4% | 1.2x | 23.13B | 1.3% | 0 |  |
