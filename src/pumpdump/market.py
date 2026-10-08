@@ -15,6 +15,7 @@ import hashlib
 import io
 import json
 import random
+import re
 import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -195,12 +196,25 @@ def take_snapshot(src: MarketSources, ticker: str, as_of: float, sym: dict, now:
     return {k: v if k in ("as_of", "snapshot_at") else _tidy(v) for k, v in row.items()}, raw
 
 
+# warrants, rights, units, notes and preferred shares share the Nasdaq list with stocks but are other instruments
+_OTHER_SECURITY = re.compile(r"\b(warrants?|notes?|debentures?)\b|\brights?\b(?! to receive)|%", re.I)
+_MAYBE_OTHER = re.compile(r"\b(units?|preferred|preference)\b", re.I)
+_COMMON = re.compile(r"common (stock|shares|units)|ordinary shares", re.I)
+
+
+def common_stock(name: str) -> bool:
+    """Whether a Nasdaq screener name is a common share or an ADS of one, judged from its wording."""
+    if _OTHER_SECURITY.search(name):
+        return False
+    return not _MAYBE_OTHER.search(name) or bool(_COMMON.search(name))
+
+
 def pick_controls(seed: str, venue: str, price: float | None, universe: list[dict], symbols: dict, exclude: set[str],
                   tries: int = CONTROL_TRIES, market_cap: float | None = None) -> list[str]:
     """Up to `tries` control tickers in random order (seeded by `seed`), from the candidate's venue.
 
-    Listed: from the latest universe file, within 0.5-2x of the candidate's price and market cap; widened to
-    price only, then to all listed stocks, while fewer than 10 qualify. OTC: the SEC's OTC tickers.
+    Listed: common stock from the latest universe file, within 0.5-2x of the candidate's price and market cap;
+    widened to price only, then to all listed stocks, while fewer than 10 qualify. OTC: the SEC's OTC tickers.
     """
     def eligible(s: str) -> bool:
         info = symbols.get(s)
@@ -211,7 +225,7 @@ def pick_controls(seed: str, venue: str, price: float | None, universe: list[dic
 
     if venue == "listed":
         if universe:
-            pool = [r for r in universe if eligible(r["symbol"]) and r.get("last_sale")]
+            pool = [r for r in universe if eligible(r["symbol"]) and r.get("last_sale") and common_stock(r.get("name", ""))]
             for keep in (
                 lambda r: near(r["last_sale"], price) and near(r.get("market_cap"), market_cap),
                 lambda r: near(r["last_sale"], price),

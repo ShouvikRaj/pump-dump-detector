@@ -285,6 +285,23 @@ def test_controls_skip_excluded_tickers_and_etfs():
     assert picks == ["A1"]
 
 
+def test_controls_are_common_stock_not_warrants_units_rights_notes_or_preferreds():
+    names = {
+        "A1": "Alpha Corp. Common Stock",
+        "A2": "Beta plc American Depositary Shares, each representing the right to receive one ordinary share",
+        "B0": "DUKE Robotics Corp. - Warrant",
+        "B1": "Gamma Acquisition Corp. Units, each consisting of one Class A ordinary share and one right",
+        "B2": "Gamma Acquisition Corp. Rights",
+        "B3": "Delta Co. 6.250% Senior Notes due 2069",
+        "B4": "Delta Co. Depositary Shares each representing 1/1000th interest in a share of Series A Preferred Stock",
+        "B5": "Preferred Bank Common Stock",
+        "B6": "Epsilon Inc. Series A Common Stock Purchase Warrants",
+        "B7": "Zeta Royalty Partners Common Units Representing Limited Partner Interests",
+    }
+    universe = [{"symbol": s, "last_sale": 4.0, "name": n} for s, n in names.items()]
+    assert sorted(market.pick_controls("seed", "listed", 4.0, universe, SYMS, exclude=set())) == ["A1", "A2", "B5", "B7"]
+
+
 def test_controls_are_price_matched_when_enough_qualify():
     universe = uni(("BIG", 150.0), *[(f"B{i}", 3.0 + 0.1 * i) for i in range(12)])
     picks = market.pick_controls("seed", "listed", 4.0, universe, SYMS, exclude=set())

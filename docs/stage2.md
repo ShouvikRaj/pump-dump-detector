@@ -87,6 +87,10 @@ controls snapshotted at the same `as_of`:
 
 - same venue: listed candidates draw from the latest Nasdaq screener file, OTC candidates from the SEC's OTC
   ticker list;
+- common stock only: warrants, rights, units, notes and preferred shares on the Nasdaq list are skipped, judged
+  from the security's name (ADSs of ordinary shares and partnership common units count). This started on
+  2026-10-08; seven earlier controls are such securities (STRF, RILYL, RWTO, NSLRL, ABXL, IMPPP, DUKRW), so drop
+  them in analysis. OTC controls can't be screened this way, because the SEC list only has company names;
 - no chatter: not mentioned at all on Reddit in the 7 days before (`daily/mention_counts/`) and not a candidate;
 - similar size: listed controls are within 0.5-2x of the candidate's price and market cap (widened to price only,
   then to all listed stocks, while fewer than 10 qualify);
