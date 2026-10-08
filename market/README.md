@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-08T19:38:20Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-08T20:18:19Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-60 candidates and 120 controls so far. Archetypes: other 57, low_float_runner 3.
+61 candidates and 122 controls so far. Archetypes: other 58, low_float_runner 3.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| AAOI | 2026-10-08 20:17 | other | listed | 106.8 | +0.8% | -1.3% | 2.4x | 80.6M | 15.3% | 1 |  |
 | CMG | 2026-10-08 19:38 | other | listed | 32.94 | +7.0% | -3.7% | 0.8x | 1.26B | 3.2% | 0 |  |
 | SBUX | 2026-10-08 18:59 | other | listed | 91.15 | -2.6% | -0.4% | 1.3x | 1.14B | 3.5% | 0 |  |
 | USO | 2026-10-08 18:20 | other | listed | 149.1 | +3.6% | -1.2% | 0.5x |  |  | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | SKHY | 2026-10-06 18:54 | other | listed | 184.1 | -5.6% | +7.2% | 0.6x | 5.67B | 0.5% | 1 |  |
 | INTC | 2026-10-06 18:28 | other | listed | 114.7 | -1.3% | +0.1% | 0.7x | 4.62B | 3.4% | 3 |  |
 | OKLO | 2026-10-06 18:14 | other | listed | 39.07 | +8.6% | -3.1% | 0.8x | 149.6M | 22.5% | 1 |  |
-| PENG | 2026-10-06 18:01 | other | listed | 57.2 | -5.8% | +10.4% | 1.8x | 49.7M | 14.3% | 0 |  |
