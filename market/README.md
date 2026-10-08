@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-08T04:08:06Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-08T13:12:19Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-49 candidates and 98 controls so far. Archetypes: other 46, low_float_runner 3.
+50 candidates and 100 controls so far. Archetypes: other 47, low_float_runner 3.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| PLTR | 2026-10-08 13:12 | other | listed | 199.2 | +2.6% | +3.8% | 0.7x | 2.11B | 2.9% | 0 |  |
 | ADBE | 2026-10-08 04:07 | other | listed | 232.5 | -0.1% | -3.0% | 1.2x | 388.1M | 4.8% | 0 |  |
 | KEEL | 2026-10-08 03:01 | other | listed | 3.34 | +0.3% | -5.7% | 1.0x | 589.8M | 18.6% | 0 |  |
 | UUUU | 2026-10-07 20:50 | other | listed | 10.26 | +0.0% | -7.0% | 1.8x | 248.2M | 22.4% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | NVDA | 2026-10-06 14:02 | other | listed | 242.3 | +1.4% | +4.4% | 1.2x | 23.13B | 1.3% | 0 |  |
 | MRNA | 2026-10-06 14:02 | other | listed | 198 | -2.6% | +3.0% | 1.3x | 372.2M | 8.8% | 0 |  |
 | NVAX | 2026-10-06 13:49 | other | listed | 13.19 | +5.0% | +16.3% | 5.5x | 142.6M | 35.0% | 0 |  |
-| CRWV | 2026-10-06 13:49 | other | listed | 89.86 | +2.8% | +2.7% | 0.6x | 328.3M | 16.7% | 1 |  |
