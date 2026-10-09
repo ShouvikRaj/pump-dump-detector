@@ -355,48 +355,48 @@
     }
   },
   "last_run": {
-    "finished_at": 1791574929.7056336,
+    "finished_at": 1791575861.377229,
     "new_docs": 0,
-    "run_id": "37980569469",
-    "started_at": 1791574182.1663175
+    "run_id": "37982080021",
+    "started_at": 1791574976.1899915
   },
   "live_since": 1791153669.8332794,
   "streams": {
     "pennystocks/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 14,
+      "consecutive_errors": 15,
       "cursor": 1791560462,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1791560698.7746193,
       "last_error": "HTTP 522 for comments r/pennystocks after 6 tries: {'error': '<!DOCTYPE html>\\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 8]>    <h",
-      "last_error_at": 1791574743.1784914
+      "last_error_at": 1791575676.9767554
     },
     "pennystocks/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 7,
+      "consecutive_errors": 8,
       "cursor": 1791559166,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1791567051.240274,
       "last_error": "HTTP 522 for posts r/pennystocks after 6 tries: {'error': '<!DOCTYPE html>\\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 8]>    <h",
-      "last_error_at": 1791574365.3674383
+      "last_error_at": 1791575158.2746677
     },
     "smallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 11,
+      "consecutive_errors": 12,
       "cursor": 1791560659,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1791560701.738974,
       "last_error": "HTTP 522 for comments r/smallstreetbets after 6 tries: {'error': '<!DOCTYPE html>\\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 8]>    <h",
-      "last_error_at": 1791574923.0197043
+      "last_error_at": 1791575856.8923845
     },
     "smallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 0,
+      "consecutive_errors": 1,
       "cursor": 1791546656,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1791574384.6766727,
       "last_error": "HTTP 522 for posts r/smallstreetbets after 6 tries: {'error': '<!DOCTYPE html>\\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 8]>    <h",
-      "last_error_at": 1791572930.2742
+      "last_error_at": 1791575337.3709874
     },
     "wallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
@@ -409,12 +409,12 @@
     },
     "wallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 14,
+      "consecutive_errors": 15,
       "cursor": 1791560399,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1791560696.4579027,
       "last_error": "HTTP 522 for posts r/wallstreetbets after 6 tries: {'error': '<!DOCTYPE html>\\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 8]>    <h",
-      "last_error_at": 1791574563.8574402
+      "last_error_at": 1791575516.7444854
     }
   },
   "symbols_refresh_errors": 0,
