@@ -4,8 +4,8 @@
     "AAOI": {
       "episode_id": "AAOI-20261008T201758Z",
       "first_flagged_at": 1791490678.4438086,
-      "last_flagged_at": 1791567793.4699614,
-      "n_flags": 98,
+      "last_flagged_at": 1791569357.5454822,
+      "n_flags": 99,
       "peak_mentions": 16,
       "peak_z": 5.106,
       "reasons_seen": [
@@ -15,8 +15,8 @@
     "ADBE": {
       "episode_id": "ADBE-20261008T040744Z",
       "first_flagged_at": 1791432464.9914382,
-      "last_flagged_at": 1791567793.4699614,
-      "n_flags": 123,
+      "last_flagged_at": 1791569357.5454822,
+      "n_flags": 124,
       "peak_mentions": 19,
       "peak_z": 7.795,
       "reasons_seen": [
@@ -37,8 +37,8 @@
     "ASTS": {
       "episode_id": "ASTS-20261008T211122Z",
       "first_flagged_at": 1791493882.6230562,
-      "last_flagged_at": 1791567793.4699614,
-      "n_flags": 94,
+      "last_flagged_at": 1791569357.5454822,
+      "n_flags": 95,
       "peak_mentions": 254,
       "peak_z": 29.953,
       "reasons_seen": [
@@ -70,8 +70,8 @@
     "CMG": {
       "episode_id": "CMG-20261008T193800Z",
       "first_flagged_at": 1791488280.4308147,
-      "last_flagged_at": 1791567793.4699614,
-      "n_flags": 101,
+      "last_flagged_at": 1791569357.5454822,
+      "n_flags": 102,
       "peak_mentions": 15,
       "peak_z": 9.88,
       "reasons_seen": [
@@ -125,8 +125,8 @@
     "HUM": {
       "episode_id": "HUM-20261009T123919Z",
       "first_flagged_at": 1791549559.038456,
-      "last_flagged_at": 1791567793.4699614,
-      "n_flags": 22,
+      "last_flagged_at": 1791569357.5454822,
+      "n_flags": 23,
       "peak_mentions": 12,
       "peak_z": 10.205,
       "reasons_seen": [
@@ -136,8 +136,8 @@
     "IBM": {
       "episode_id": "IBM-20261009T010944Z",
       "first_flagged_at": 1791508184.128939,
-      "last_flagged_at": 1791567793.4699614,
-      "n_flags": 66,
+      "last_flagged_at": 1791569357.5454822,
+      "n_flags": 67,
       "peak_mentions": 11,
       "peak_z": 3.5,
       "reasons_seen": [
@@ -279,8 +279,8 @@
     "SLS": {
       "episode_id": "SLS-20261009T131911Z",
       "first_flagged_at": 1791551951.7291837,
-      "last_flagged_at": 1791567793.4699614,
-      "n_flags": 19,
+      "last_flagged_at": 1791569357.5454822,
+      "n_flags": 20,
       "peak_mentions": 14,
       "peak_z": 4.46,
       "reasons_seen": [
@@ -323,8 +323,8 @@
     "UNH": {
       "episode_id": "UNH-20261009T135905Z",
       "first_flagged_at": 1791554345.6087801,
-      "last_flagged_at": 1791567793.4699614,
-      "n_flags": 16,
+      "last_flagged_at": 1791569357.5454822,
+      "n_flags": 17,
       "peak_mentions": 11,
       "peak_z": 8.008,
       "reasons_seen": [
@@ -355,46 +355,46 @@
     }
   },
   "last_run": {
-    "finished_at": 1791567793.4976218,
+    "finished_at": 1791569357.578662,
     "new_docs": 0,
-    "run_id": "37966730644",
-    "started_at": 1791567029.0871701
+    "run_id": "37969822138",
+    "started_at": 1791568611.9696944
   },
   "live_since": 1791153669.8332794,
   "streams": {
     "pennystocks/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 7,
+      "consecutive_errors": 8,
       "cursor": 1791560462,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1791560698.7746193,
       "last_error": "HTTP 522 for comments r/pennystocks after 6 tries: {'error': '<!DOCTYPE html>\\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 8]>    <h",
-      "last_error_at": 1791567429.3319557
+      "last_error_at": 1791569172.5373135
     },
     "pennystocks/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 0,
+      "consecutive_errors": 1,
       "cursor": 1791559166,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1791567051.240274,
       "last_error": "HTTP 522 for posts r/pennystocks after 6 tries: {'error': '<!DOCTYPE html>\\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 8]>    <h",
-      "last_error_at": 1791566419.1113403
+      "last_error_at": 1791568795.1866796
     },
     "smallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 5,
+      "consecutive_errors": 6,
       "cursor": 1791560659,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1791560701.738974,
       "last_error": "HTTP 522 for comments r/smallstreetbets after 6 tries: {'error': '<!DOCTYPE html>\\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 8]>    <h",
-      "last_error_at": 1791567608.805725
+      "last_error_at": 1791569351.6369638
     },
     "smallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
       "cursor": 1791546656,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791567070.7802465,
+      "last_complete_at": 1791568814.7442138,
       "last_error": "HTTP 522 for posts r/smallstreetbets after 6 tries: {'error': '<!DOCTYPE html>\\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 8]>    <h",
       "last_error_at": 1791566598.3987646
     },
@@ -409,12 +409,12 @@
     },
     "wallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 7,
+      "consecutive_errors": 8,
       "cursor": 1791560399,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1791560696.4579027,
       "last_error": "HTTP 522 for posts r/wallstreetbets after 6 tries: {'error': '<!DOCTYPE html>\\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 8]>    <h",
-      "last_error_at": 1791567249.956944
+      "last_error_at": 1791568993.5415647
     }
   },
   "symbols_refresh_errors": 0,
