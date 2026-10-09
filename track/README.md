@@ -1,9 +1,21 @@
 # Stage 3 tracking
 
-Updated 2026-10-08T22:44:49Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-10-09T02:35:15Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-10-09 01:49 | GBDC | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-09 01:49 | KD | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-09 01:49 | ONDS | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-09 01:09 | UNP | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-09 01:09 | ETN | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-09 01:09 | IBM | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-09 00:30 | LB | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-09 00:30 | AGL | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-09 00:30 | SOXL | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-09 00:16 | COF | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-09 00:16 | ICE | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-09 00:16 | MCD | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-10-08 21:37 | AVTR | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-08 21:37 | STNE | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-08 21:37 | CIFR | candidate | other | active | 0 |  |  |  |  |  |
