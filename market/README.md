@@ -1,13 +1,15 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-09T01:49:52Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-09T12:39:49Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-67 candidates and 134 controls so far. Archetypes: other 64, low_float_runner 3.
+69 candidates and 138 controls so far. Archetypes: other 66, low_float_runner 3.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| TSM | 2026-10-09 12:39 | other | listed | 465.4 | +1.6% | -0.3% | 1.4x | 37.84B | 0.1% | 0 |  |
+| HUM | 2026-10-09 12:39 | other | listed | 449 | +16.0% | +2.0% | 2.2x | 119.8M | 2.4% | 0 |  |
 | ONDS | 2026-10-09 01:49 | other | listed | 6.874 | +0.4% | -3.8% | 1.0x | 533.4M | 44.5% | 5 |  |
 | IBM | 2026-10-09 01:09 | other | listed | 225.5 | +2.3% | +0.3% | 0.6x | 940.2M | 2.4% | 2 |  |
 | SOXL | 2026-10-09 00:30 | other | listed | 142.2 | -10.5% | +7.5% | 0.9x |  |  |  |  |
@@ -36,5 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | BIYA | 2026-10-07 16:38 | low float runner | listed | 2.11 | +54.6% | -33.4% | 12.7x | 3.0M | 2.1% | 2 |  |
 | GLD | 2026-10-07 13:01 | other | listed | 374.7 | -2.0% | -0.2% | 0.9x |  |  | 0 |  |
 | SOXL | 2026-10-07 12:34 | other | listed | 153.9 | -6.3% | +11.7% | 0.7x |  |  |  |  |
-| SOXS | 2026-10-07 12:08 | other | listed | 31.12 | +5.0% | -10.9% | 0.8x |  |  |  |  |
-| BULL | 2026-10-07 12:08 | other | listed | 5.45 | -25.1% | +1.5% | 0.5x | 322.2M | 11.2% | 1 |  |
