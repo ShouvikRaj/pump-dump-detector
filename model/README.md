@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-10-08T05:54:02Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-10-09T00:17:10Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-10-05)
 
@@ -17,6 +17,20 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-10-08 21:37 | CIFR | other | no model | no model | 100% / 0% / 0% / 0% | Users express extreme bearishness, calling the stock a scam and noting recent price drops. |
+| 2026-10-08 21:11 | ASTS | other | no model | no model | 100% / 0% / 2.5% / 0% | Users discuss a sharp price drop, potential lawsuits, and competitor threats against ASTS. |
+| 2026-10-08 20:17 | AAOI | other | no model | no model | 100% / 9.1% / 0% / 0% | Users discuss AAOI's recent price dip, capex status, and potential for a significant price increase. |
+| 2026-10-08 19:38 | CMG | other | no model | no model | 91% / 27% / 0% / 27% | Users discuss a potential Starbucks buyout of Chipotle, citing management connections and undervaluation. |
+| 2026-10-08 18:59 | SBUX | other | no model | no model | 100% / 10% / 0% / 10% | Users discuss rumors of a Starbucks takeover of Chipotle and trade options based on the speculation. |
+| 2026-10-08 18:20 | USO | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss USO price movements, express bullish/bearish views, and mention specific trades. |
+| 2026-10-08 18:05 | NBIS | other | no model | no model | 100% / 0% / 0% / 2.6% | Chatter discusses NBIS price action, mentions a specific NVIDIA executive spotlight, and includes mixed sentiment with some buying and selling. |
+| 2026-10-08 17:52 | DELL | other | no model | no model | 100% / 0% / 0% / 0% | Chatter focuses on Michael Dell's wife's appearance as a meme and joke, with no mention of company events. |
+| 2026-10-08 17:11 | ORCL | other | no model | no model | 100% / 0% / 0% / 6.7% | Mixed chatter includes panic over price drops, profit taking, and news about trucking gas for data centers. |
+| 2026-10-08 16:17 | GME | other | no model | no model | 100% / 4.0% / 8.0% / 4.0% | Mixed chatter includes a pitch about insider buying, warnings about dilution and scams, and general meme stock hype. |
+| 2026-10-08 15:51 | BWET | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss BWET's massive price surge, joke about the name, and debate the impact of a lawsuit on shipping benchmarks. |
+| 2026-10-08 13:39 | META | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss META stock price, AI strategy, and express frustration or hope regarding recent performance. |
+| 2026-10-08 13:27 | TTWO | other | no model | no model | 100% / 9.1% / 0% / 0% | Users discuss TTWO price targets, GTA VI anticipation, and trading strategies without specific corporate events. |
+| 2026-10-08 13:12 | PLTR | other | no model | no model | 100% / 0% / 7.7% / 0% | Chatter includes mixed reactions to PLTR price movements, with some users warning of a pump-and-dump while others express bullish optimism. |
 | 2026-10-08 04:07 | ADBE | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss bearish theses regarding AI clones and open-source alternatives threatening Adobe's subscription model. |
 | 2026-10-08 03:01 | KEEL | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss KEEL stock performance, express skepticism about its progress, and mention buying calls for a potential drop. |
 | 2026-10-07 20:50 | SMCI | other | no model | no model | 100% / 23% / 0% / 7.7% | Mixed chatter on SMCI ranging from bullish price targets to bearish warnings and a rumor of a buyout. |
@@ -43,20 +57,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-06 16:15 | VOO | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss holding VOO for long-term gains, contrasting it with options trading and expressing mixed views on market performance. |
 | 2026-10-06 15:49 | NOK | other | no model | no model | 100% / 10% / 0% / 20% | Users discuss NOK price movements and express bullish sentiment ahead of earnings. |
 | 2026-10-06 14:55 | AMD | other | no model | no model | 100% / 5.0% / 0% / 2.5% | Mixed chatter on AMD including supply news, price volatility, and conflicting opinions on valuation and future performance. |
-| 2026-10-06 14:02 | MRNA | other | no model | no model | 96% / 0% / 4.2% / 4.2% | Mixed chatter includes bullish hype, conspiracy theories, and one specific claim about a nuclear power contract. |
-| 2026-10-06 14:02 | NVDA | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss NVDA's price surge, AI bubble concerns, and trading strategies without mentioning specific corporate events. |
-| 2026-10-06 13:49 | CRWV | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss CRWV price movements, express regret over selling, and hype a potential pump. |
-| 2026-10-06 13:49 | NVAX | other | no model | no model | 100% / 60% / 0% / 0% | Users discuss a potential short squeeze and urge buying NVAX, referencing past pandemic gains. |
-| 2026-10-06 13:36 | CEG | other | no model | no model | 100% / 70% / 0% / 40% | Users discuss CEG's recent PPAs and express bullish sentiment with moon rhetoric. |
-| 2026-10-06 13:36 | MRVL | other | no model | no model | 100% / 18% / 12% / 24% | Chatter focuses on an upcoming Investor Day event, with mixed sentiment ranging from bullish price targets to warnings of a potential stop-loss hunt. |
-| 2026-10-06 11:49 | QQQ | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss QQQ price movements, express bullish optimism, and mention specific price targets. |
-| 2026-10-06 08:17 | MSTR | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss holding MSTR, express bullish optimism, and question debt levels without specific corporate events. |
-| 2026-10-06 00:59 | IWM | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss IWM price movements, interest rate sensitivity, and express frustration or confusion about its performance. |
-| 2026-10-05 23:41 | ALEC | other | no model | no model | 100% / 10% / 0% / 20% | Chatter discusses a new Genentech license agreement and buying activity for ALEC. |
-| 2026-10-05 21:14 | MSFT | other | no model | no model | 100% / 0% / 0% / 0% | Chatter discusses MSFT price action, calls, and a price target raise, with mixed sentiment and no specific corporate events. |
-| 2026-10-05 21:14 | QCOM | other | no model | no model | 100% / 9.1% / 0% / 9.1% | Users discuss QCOM price movements, joke about it, and mention upcoming earnings without specific buy pitches or scam warnings. |
-| 2026-10-05 17:49 | IREN | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss IREN stock, express confusion, joke about the name, and mention holding positions. |
-| 2026-10-05 16:38 | DELL | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss DELL options strategies, price levels, and potential entry points without specific company events. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
