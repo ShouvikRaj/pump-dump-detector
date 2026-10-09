@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-10-09T00:17:10Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-10-09T05:59:31Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-10-05)
 
@@ -17,6 +17,10 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-10-09 01:49 | ONDS | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss owning ONDS, speculate on price targets, and mention speculative growth stocks. |
+| 2026-10-09 01:09 | IBM | other | no model | no model | 91% / 0% / 0% / 0% | Users discuss IBM's decline, joke about the name, and speculate on a potential acquisition or price surge. |
+| 2026-10-09 00:30 | SOXL | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss SOXL price movements, express bullish/bearish opinions, and mention unrelated events like OpenAI funding. |
+| 2026-10-09 00:16 | MCD | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss MCD's low price, dividends, and promotions, with some urging others to buy. |
 | 2026-10-08 21:37 | CIFR | other | no model | no model | 100% / 0% / 0% / 0% | Users express extreme bearishness, calling the stock a scam and noting recent price drops. |
 | 2026-10-08 21:11 | ASTS | other | no model | no model | 100% / 0% / 2.5% / 0% | Users discuss a sharp price drop, potential lawsuits, and competitor threats against ASTS. |
 | 2026-10-08 20:17 | AAOI | other | no model | no model | 100% / 9.1% / 0% / 0% | Users discuss AAOI's recent price dip, capex status, and potential for a significant price increase. |
@@ -53,10 +57,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-06 17:21 | CIRC | other | no model | no model | 100% / 20% / 0% / 0% | Users discuss a potential hedge fund squeeze and express bullish excitement about CIRC stock. |
 | 2026-10-06 17:08 | SPY | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss SPY price movements, compare it to QQQ, and make bearish or bullish predictions without specific corporate events. |
 | 2026-10-06 16:43 | HTZ | other | no model | no model | 100% / 15% / 0% / 0% | Users discuss a sudden price surge in HTZ, comparing it to previous rallies and short squeezes. |
-| 2026-10-06 16:43 | INFQ | other | no model | no model | 100% / 0% / 0% / 0% | Users express extreme frustration over consecutive red days and significant losses on INFQ options. |
-| 2026-10-06 16:15 | VOO | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss holding VOO for long-term gains, contrasting it with options trading and expressing mixed views on market performance. |
-| 2026-10-06 15:49 | NOK | other | no model | no model | 100% / 10% / 0% / 20% | Users discuss NOK price movements and express bullish sentiment ahead of earnings. |
-| 2026-10-06 14:55 | AMD | other | no model | no model | 100% / 5.0% / 0% / 2.5% | Mixed chatter on AMD including supply news, price volatility, and conflicting opinions on valuation and future performance. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
