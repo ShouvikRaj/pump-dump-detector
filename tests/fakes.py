@@ -161,17 +161,22 @@ def atom_feed(kind: str, rows: list[dict]) -> bytes:
 
 class FakeRedditRSS:
     """Serves www.reddit.com/r/SUB/{new,comments}/.rss: newest first, `limit` per page, ?after=<fullname>
-    pages back, and like Reddit's listings the feed stops after `cap` items."""
+    pages back, and like Reddit's listings the feed stops after `cap` items. `failures` is a list of
+    (status, headers) returned before normal answers; `status` other than 200 fails every request."""
 
-    def __init__(self, posts=(), comments=(), cap=1000, headers=None, status=200):
+    def __init__(self, posts=(), comments=(), cap=1000, headers=None, status=200, failures=()):
         self.items = {"posts": list(posts), "comments": list(comments)}
         self.cap = cap
         self.headers = headers if headers is not None else {"x-ratelimit-remaining": "99.0", "x-ratelimit-reset": "500"}
         self.status = status
+        self.failures = list(failures)
         self.calls: list[tuple[str, dict]] = []
 
     def get(self, url: str, params: dict, timeout: float = 30):
         self.calls.append((url, dict(params)))
+        if self.failures:
+            status, headers = self.failures.pop(0)
+            return status, headers, b"Too Many Requests"
         if self.status != 200:
             return self.status, {}, b""
         sub, path = urlparse(url).path.split("/")[2:4]

@@ -386,8 +386,8 @@ def run_collect(
         if res.error and fallback is not None and st["last_complete_at"] is not None:
             seen_to = st["cursor"] if st["cursor"] is not None else st["complete_since"]
             since = max(seen_to, st.get("fallback_cursor") or 0)
-            try:
-                fb = fallback(kind, sub, since=since, deadline=regular_deadline)
+            try:  # with Arctic Shift down the daily re-fetch can't use the rest of the run either
+                fb = fallback(kind, sub, since=since, deadline=deadline if client.down else regular_deadline)
             except Exception as exc:  # e.g. the feed changed shape: log it, never lose the run over it
                 fb = FeedResult(error=f"Reddit RSS failed: {type(exc).__name__}: {exc}"[:300])
             recs = [

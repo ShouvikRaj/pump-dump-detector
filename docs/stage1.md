@@ -42,6 +42,10 @@ each run spent its whole budget retrying. Since then:
   already stored. Items are stored with `source=reddit_rss` and `fetch_mode=fallback`. Feeds lack `score`,
   `num_comments`, `author_fullname` and `parent_id`, leave out removed items, and give the body as rendered HTML,
   which is turned back into text.
+- Reddit's budget belongs to the runner's IP address, which other GitHub users share: on 2026-10-10 one runner
+  got a `429` after its first request while another had all 100 left. Once Reddit says the budget is spent, the
+  reader waits for its reset (at most 10 minutes) if the run has time, else stops asking until the next run.
+  While Arctic Shift is down the feeds may use the whole run, since the daily re-fetch can't.
 - The Arctic Shift cursor doesn't move, so once Arctic Shift answers again it re-reads the whole stretch and
   anything the feed missed arrives then (`fetch_mode=live`), as far as Arctic Shift's own archive has it. The
   first copy of an item wins, as always.

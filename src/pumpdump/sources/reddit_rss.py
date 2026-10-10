@@ -6,6 +6,10 @@ minutes, announced in x-ratelimit-* headers; old.reddit.com answers with a login
 blocked). A page holds the newest 100 items and ?after=<fullname> pages back until Reddit's listing stops
 at about 1000 items: days of r/pennystocks, but only about two hours of r/wallstreetbets comments.
 
+The budget belongs to the runner's IP address, which other GitHub users share, so it can be spent before
+our first request. Once Reddit says so (a 429, or x-ratelimit-remaining under 1), no request goes out
+until its reset, and reading stops for the run if that is past the deadline.
+
 Feeds have no score, num_comments, author_fullname or parent_id, don't list removed items, and give the
 body as rendered HTML, which is turned back into text here.
 """
@@ -118,6 +122,7 @@ class RedditRSS:
         self.clock = clock or (lambda: time.time())
         self.min_interval = min_interval
         self._last_request: float | None = None
+        self.resume_at: float | None = None  # Reddit said this address's budget is spent until then
 
     def fetch_back_to(
         self, kind: str, subreddit: str, since: int, deadline: float | None = None, max_pages: int = MAX_PAGES
@@ -131,15 +136,26 @@ class RedditRSS:
         res = FeedResult()
         seen: set[str] = set()
         after = None
+        retried = False
         while res.pages < max_pages:
-            wait = 0.0 if self._last_request is None else self._last_request + self.min_interval - self.clock()
-            if deadline is not None and self.clock() + max(wait, 0.0) >= deadline:
+            now = self.clock()
+            start = now if self._last_request is None else max(now, self._last_request + self.min_interval)
+            limited = self.resume_at is not None and self.resume_at > start
+            if limited:
+                start = self.resume_at
+            if deadline is not None and start >= deadline:
+                if limited:
+                    res.error = f"Reddit RSS rate limit used up for {start - now:.0f} s more, past this run's time"
                 break
-            if wait > 0:
-                self.sleep(wait)
+            if start > now:
+                self.sleep(start - now)
             self._last_request = self.clock()
             params = {"limit": PAGE, **({"after": after} if after else {})}
             status, headers, body = self.get(FEED_URL.format(sub=subreddit, path=PATHS[kind]), params, timeout=30)
+            self._note_rate_limit(status, headers)
+            if status == 429 and not retried:
+                retried = True  # wait for the reset, then one more try
+                continue
             if status != 200:
                 res.error = f"HTTP {status} for Reddit RSS {kind} r/{subreddit}"
                 return res
@@ -161,12 +177,14 @@ class RedditRSS:
             if min(it["created_utc"] for it in page) <= since:
                 res.complete = True
                 return res
-            try:
-                remaining = float(headers.get("x-ratelimit-remaining", 1))
-            except (TypeError, ValueError):
-                remaining = 1.0
-            if remaining < 1:
-                res.error = f"Reddit RSS rate limit used up (resets in {headers.get('x-ratelimit-reset', '?')} s)"
-                return res
             after = PREFIX[kind] + page[-1]["id"]
         return res
+
+    def _note_rate_limit(self, status: int, headers: dict) -> None:
+        try:
+            remaining = float(headers.get("x-ratelimit-remaining", 1))
+            reset = float(headers.get("x-ratelimit-reset", 60))
+        except (TypeError, ValueError):
+            remaining, reset = 1.0, 60.0
+        if status == 429 or remaining < 1:
+            self.resume_at = self.clock() + reset + 1

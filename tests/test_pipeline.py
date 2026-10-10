@@ -6,7 +6,7 @@ import pytest
 from fakes import FakeArcticShift, FakeClock, FakeRedditRSS, comment, post
 from pumpdump.pipeline import Settings, collection_done, health, run_collect
 from pumpdump.sources.arctic_shift import ArcticShift
-from pumpdump.sources.reddit_rss import RedditRSS
+from pumpdump.sources.reddit_rss import FeedResult, RedditRSS
 from pumpdump.store import Datastore
 
 T = 1_791_150_720  # 2026-10-04 21:52:00 UTC
@@ -489,3 +489,22 @@ def test_a_broken_fallback_never_breaks_the_run(setup):
     rows = [r for r in summary["streams"] if r["mode"] == "fallback"]
     assert len(rows) == 4 and all("feed changed shape" in r["error"] for r in rows)
     assert ds.load_state()["last_run"]["run_id"] == "r2"
+
+
+def test_while_arctic_shift_is_down_the_fallback_may_use_the_whole_run(setup):
+    ds, server, clock = setup
+    run(ds, server, clock, "r1")
+    server.get = Outage().get
+    deadlines = []
+
+    def fallback(kind, sub, since, deadline=None):
+        deadlines.append(deadline)
+        return FeedResult()
+
+    clock.now = T + 3 * 3600  # past 00:30 UTC: the daily re-fetch is due, but Arctic Shift can't serve it
+    started = clock.now
+    run_collect(ds, ArcticShift(get=server.get, sleep=clock.sleep, clock=clock.time, min_interval=0),
+                run_id="r2", settings=SETTINGS, fetch_symbols=lambda: (SYMBOLS, []), fallback=fallback,
+                clock=clock.time)
+
+    assert len(deadlines) == 4 and set(deadlines) == {started + SETTINGS.max_seconds}

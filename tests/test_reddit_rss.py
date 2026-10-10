@@ -69,21 +69,49 @@ def test_a_listing_that_ends_before_reaching_back_leaves_a_hole():
     assert len(server.calls) <= 11
 
 
-def test_stops_when_reddit_says_the_rate_limit_is_used_up():
-    comments = [comment(f"c{i}", T0 + i) for i in range(300)]
-    server = FakeRedditRSS(comments=comments, headers={"x-ratelimit-remaining": "0.0", "x-ratelimit-reset": "40"})
-    rss, _ = make(server)
+USED_UP = {"x-ratelimit-remaining": "0.0", "x-ratelimit-reset": "40"}
 
-    res = rss.fetch_back_to("comments", "pennystocks", since=T0)
+
+def test_waits_for_reddits_reset_when_the_rate_limit_is_used_up():
+    comments = [comment(f"c{i}", T0 + i) for i in range(300)]
+    server = FakeRedditRSS(comments=comments, headers=USED_UP)
+    rss, clock = make(server)
+
+    res = rss.fetch_back_to("comments", "pennystocks", since=T0, deadline=clock.now + 600)
+
+    assert res.complete is True and res.error is None
+    assert len(server.calls) == 3 and clock.sleeps == [41.0, 41.0]
+
+
+def test_a_reset_after_the_deadline_ends_the_run_s_reading_without_asking_again():
+    # runners share IP addresses, so another user may have spent this window's budget already
+    comments = [comment(f"c{i}", T0 + i) for i in range(300)]
+    server = FakeRedditRSS(comments=comments, headers=USED_UP)
+    rss, clock = make(server)
+
+    res = rss.fetch_back_to("comments", "pennystocks", since=T0, deadline=clock.now + 30)
+    later = rss.fetch_back_to("posts", "pennystocks", since=T0, deadline=clock.now + 30)
 
     assert len(server.calls) == 1 and len(res.items) == 100
     assert res.complete is False and "rate limit" in res.error
+    assert later.items == [] and "rate limit" in later.error
+
+
+def test_a_429_waits_for_the_reset_and_tries_again_once():
+    server = FakeRedditRSS(comments=[comment("c1", T0 + 5)], failures=[(429, {**USED_UP, "x-ratelimit-reset": "20"})])
+    rss, clock = make(server)
+
+    res = rss.fetch_back_to("comments", "pennystocks", since=T0 + 5, deadline=clock.now + 600)
+
+    assert res.complete is True and len(server.calls) == 2 and clock.sleeps == [21.0]
 
 
 def test_http_errors_are_reported_without_items():
-    rss, _ = make(FakeRedditRSS(status=429))
+    server = FakeRedditRSS(status=429)
+    rss, _ = make(server)
     res = rss.fetch_back_to("posts", "pennystocks", since=T0)
     assert res.items == [] and res.complete is False and "429" in res.error
+    assert len(server.calls) == 2  # one more try after waiting
 
 
 def test_requests_are_spaced_and_respect_the_deadline():
