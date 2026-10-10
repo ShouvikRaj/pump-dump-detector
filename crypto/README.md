@@ -10,12 +10,12 @@ Live since 2026-10-07T12:32:05Z.
 | history / announcement | 2471 |
 | scan / spike | 194 |
 | telegram / announcement | 151 |
-| telegram / call | 1964 |
+| telegram / call | 1966 |
 
 | Outcome status | Count |
 |---|---|
 | no_data | 475 |
-| not_covered | 1564 |
+| not_covered | 1566 |
 | partial | 5 |
 | pending | 200 |
 | settled | 2536 |
