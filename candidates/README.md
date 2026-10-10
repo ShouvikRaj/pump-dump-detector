@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-10T15:51:10Z by run `38064956187`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-10T16:05:10Z by run `38065828958`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -17,13 +17,13 @@ collected live, so flags in this period are marked `warmup=1` in episodes.csv.
 | SLS | 2026-10-09 13:19 | mention spike | 2 | 5.14 | 2 | 0 | pennystocks 2 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1x1kb5x/comment/pf2d4kr/) |
 | UNH | 2026-10-09 13:59 | mention spike | 0 |  | 0 | 0 |  | NYSE |  |  |
 | CMG | 2026-10-08 19:38 | mention spike | 0 |  | 0 | 0 |  | NYSE |  |  |
-| HUM | 2026-10-09 12:39 | mention spike | 0 |  | 0 | 0 |  | NYSE |  |  |
+| HUM | 2026-10-09 12:39 | mention spike | 0 |  | 0 | 0 |  | NYSE | #30 |  |
 | UUUU | 2026-10-07 20:50 | mention spike | 0 |  | 0 | 0 |  | NYSE American |  |  |
 | CIFR | 2026-10-08 21:37 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
 | MCD | 2026-10-09 00:16 | mention spike | 0 |  | 0 | 0 |  | NYSE |  |  |
 | NBIS | 2026-10-08 18:05 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
 | ORCL | 2026-10-08 17:11 | mention spike | 1 | 8.14 | 1 | 0 | wallstreetbets 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x241e4/comment/pf22c59/) |
 | GME | 2026-10-08 16:17 | mention spike | 1 | 16.29 | 1 | 0 | wallstreetbets 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x1vheo/) |
-| IREN | 2026-10-07 19:18 | mention spike | 1 | 9.0 | 1 | 0 | wallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x1p2wf/) |
+| IREN | 2026-10-07 19:18 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
