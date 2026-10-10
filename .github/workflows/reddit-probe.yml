@@ -1,0 +1,21 @@
+name: reddit-probe
+
+# Manual reachability check for Reddit data sources, for when Arctic Shift is
+# down: Arctic Shift, PullPush and Reddit's public RSS feeds as seen from
+# GitHub's runners. Prints to the log only; writes nothing.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: scripts
+      - run: pip install requests
+      - run: python scripts/reddit_probe.py
