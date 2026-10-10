@@ -355,10 +355,10 @@
     }
   },
   "last_run": {
-    "finished_at": 1791613826.7419794,
+    "finished_at": 1791614601.1102457,
     "new_docs": 0,
-    "run_id": "38030433526",
-    "started_at": 1791613077.087444
+    "run_id": "38031204461",
+    "started_at": 1791613870.7022645
   },
   "live_since": 1791153669.8332794,
   "reconcile": {
@@ -378,12 +378,12 @@
     },
     "pennystocks/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 28,
+      "consecutive_errors": 29,
       "cursor": 1791559166,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1791583731.1717703,
       "last_error": "HTTP 522 for posts r/pennystocks after 6 tries: {'error': '<!DOCTYPE html>\\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 8]>    <h",
-      "last_error_at": 1791613261.362256
+      "last_error_at": 1791614054.8677285
     },
     "smallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
@@ -396,12 +396,12 @@
     },
     "smallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 0,
+      "consecutive_errors": 1,
       "cursor": 1791546656,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1791613280.9658544,
       "last_error": "HTTP 522 for posts r/smallstreetbets after 6 tries: {'error': '<!DOCTYPE html>\\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 8]>    <h",
-      "last_error_at": 1791611846.9180243
+      "last_error_at": 1791614234.3747203
     },
     "wallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
@@ -414,12 +414,12 @@
     },
     "wallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 52,
+      "consecutive_errors": 53,
       "cursor": 1791560399,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1791560696.4579027,
       "last_error": "HTTP 522 for posts r/wallstreetbets after 6 tries: {'error': '<!DOCTYPE html>\\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\\n<!--[if IE 8]>    <h",
-      "last_error_at": 1791613460.5108836
+      "last_error_at": 1791614413.5199392
     }
   },
   "symbols_refresh_errors": 0,
