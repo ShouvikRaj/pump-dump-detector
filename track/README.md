@@ -1,6 +1,6 @@
 # Stage 3 tracking
 
-Updated 2026-10-09T22:50:00Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-10-10T01:56:28Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -86,7 +86,7 @@ Updated 2026-10-09T22:50:00Z. Each candidate and control is followed for 20 trad
 | 2026-10-07 20:50 | SMCI | candidate | other | active | 2 |  |  |  |  |  |
 | 2026-10-07 20:50 | UUUU | candidate | other | active | 2 |  |  |  |  |  |
 | 2026-10-07 20:37 | ABXL | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-07 20:37 | IMPPP | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-07 20:37 | IMPPP | control | other | active | 2 |  |  |  |  |  |
 | 2026-10-07 20:37 | LEVI | candidate | other | active | 2 |  |  |  |  |  |
 | 2026-10-07 19:18 | TTEK | control | other | active | 3 |  |  |  |  |  |
 | 2026-10-07 19:18 | RAL | control | other | active | 3 |  |  |  |  |  |
