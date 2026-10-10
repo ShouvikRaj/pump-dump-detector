@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-10T17:25:09Z by run `38071226377`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-10T17:37:10Z by run `38072139590`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -12,7 +12,7 @@ collected live, so flags in this period are marked `warmup=1` in episodes.csv.
 |---|---|---|---|---|---|---|---|---|---|---|
 | AAOI | 2026-10-08 20:17 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
 | ADBE | 2026-10-08 04:07 | mention spike | 1 | 6.29 | 1 | 0 | wallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x21cyd/) |
-| ASTS | 2026-10-08 21:11 | mention spike | 5 | 47.86 | 5 | 0 | wallstreetbets 4, pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x1ve6y/comment/pf2bpek/) |
+| ASTS | 2026-10-08 21:11 | mention spike | 6 | 47.86 | 6 | 0 | wallstreetbets 5, pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x1ve6y/comment/pf2zy2d/) |
 | IBM | 2026-10-09 01:09 | mention spike | 0 |  | 0 | 0 |  | NYSE |  |  |
 | SLS | 2026-10-09 13:19 | mention spike | 1 | 5.29 | 1 | 0 | pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1x1kb5x/comment/pf2d4kr/) |
 | UNH | 2026-10-09 13:59 | mention spike | 0 |  | 0 | 0 |  | NYSE |  |  |
