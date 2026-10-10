@@ -64,7 +64,7 @@ def test_a_listing_that_ends_before_reaching_back_leaves_a_hole():
 
     res = rss.fetch_back_to("comments", "pennystocks", since=T0 + 10)
 
-    assert res.complete is False and res.error is None
+    assert res.complete is False and res.error is None and res.exhausted is True
     assert min(it["created_utc"] for it in res.items) == T0 + 500
     assert len(server.calls) <= 11
 
@@ -120,7 +120,7 @@ def test_requests_are_spaced_and_respect_the_deadline():
 
     res = rss.fetch_back_to("comments", "pennystocks", since=T0, deadline=clock.now + 3)
 
-    assert res.pages == 2 and res.complete is False
+    assert res.pages == 2 and res.complete is False and res.exhausted is False  # cut short, not at the feed's end
     assert clock.sleeps == [2.0]
 
 

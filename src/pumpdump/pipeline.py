@@ -405,11 +405,11 @@ def run_collect(
             r["fetch_mode"] = "fallback"
         db.insert_docs(conn, fresh)
         new_records += fresh
-        if fb.newest_created is not None:
+        if fb.newest_created is not None and (fb.complete or fb.exhausted):  # else read it all again next run
             st["fallback_cursor"] = max(st.get("fallback_cursor") or 0, fb.newest_created)
         if fb.complete:
             st["fallback_complete_at"] = clock()
-        elif fb.items:  # the feed's cap, the rate limit or the deadline stopped it short
+        elif fb.exhausted and fb.items:
             summary["warnings"].append(
                 f"{key}: Reddit RSS only reaches back to {iso(fb.oldest_created)}; "
                 f"{iso(since)} to then waits for Arctic Shift"

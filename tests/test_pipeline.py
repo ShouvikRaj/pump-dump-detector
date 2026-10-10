@@ -530,3 +530,22 @@ def test_feeds_are_read_after_arctic_shift_busiest_stream_first(setup):
 
     assert order == ["wallstreetbets/comments", "pennystocks/comments", "wallstreetbets/posts", "pennystocks/posts"]
     assert {k: st["consecutive_errors"] for k, st in ds.load_state()["streams"].items()} == {k: 1 for k in order}
+
+
+def test_a_feed_read_cut_short_by_the_rate_limit_is_read_again_next_run(setup):
+    ds, server, clock = setup
+    server.items["comments"].append(comment("before", T - 3600, sub="wallstreetbets", body="hi"))
+    run(ds, server, clock, "r1")
+    busy = chatter("w", T + 60, 250, sub="wallstreetbets", body="hi")  # three pages of feed
+    spent = {"x-ratelimit-remaining": "0.0", "x-ratelimit-reset": "100000"}  # longer than the run
+    reddit = FakeRedditRSS(posts=server.items["posts"], comments=server.items["comments"] + busy, headers=spent)
+    server.get = Outage().get
+    clock.now = T + 5 * 3600
+    run(ds, server, clock, "r2", rss=reddit)  # one page, then Reddit's budget is gone
+
+    reddit.headers = {"x-ratelimit-remaining": "99.0", "x-ratelimit-reset": "500"}
+    clock.now += 900
+    summary = run(ds, server, clock, "r3", rss=reddit)
+
+    assert {f"t1_w{j}" for j in range(250)} <= {r["id"] for r in raw_records(ds)}
+    assert summary["detection"] == "ran" and not [w for w in summary["warnings"] if "Reddit RSS only reaches" in w]

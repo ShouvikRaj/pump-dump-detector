@@ -98,6 +98,7 @@ class FeedResult:
     items: list[dict] = field(default_factory=list)  # newest first, each stamped with `_collected_at`
     pages: int = 0
     complete: bool = False  # nothing created after `since` can be missing
+    exhausted: bool = False  # the feed has nothing older to give (Reddit's ~1000-item cap), so a gap stays one
     error: str | None = None
 
     @property
@@ -130,8 +131,9 @@ class RedditRSS:
         """Read the feed newest first until it reaches an item created at or before `since`.
 
         `complete` means nothing created after `since` was missed: the pages reached back that far.
-        Otherwise the stretch between `since` and the oldest item read is a hole only Arctic Shift can
-        fill. An empty page proves nothing, since Reddit's listing cap ends a feed the same way.
+        `exhausted` means the feed ended first, so the stretch between `since` and the oldest item read is
+        a hole only Arctic Shift can fill. An empty page proves nothing, since Reddit's listing cap ends a
+        feed the same way. Neither means the deadline or the rate limit cut the read short.
         """
         res = FeedResult()
         seen: set[str] = set()
@@ -167,6 +169,7 @@ class RedditRSS:
             received = self.clock()
             res.pages += 1
             if not page:
+                res.exhausted = True
                 return res
             for it in page:
                 if it["id"] not in seen:
@@ -178,6 +181,7 @@ class RedditRSS:
                 res.complete = True
                 return res
             after = PREFIX[kind] + page[-1]["id"]
+        res.exhausted = res.pages >= max_pages
         return res
 
     def _note_rate_limit(self, status: int, headers: dict) -> None:

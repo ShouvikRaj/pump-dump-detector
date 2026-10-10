@@ -45,8 +45,9 @@ each run spent its whole budget retrying. Since then:
   which is turned back into text.
 - Reddit's budget belongs to the runner's IP address, which other GitHub users share: on 2026-10-10 one runner
   got a `429` after its first request while another had all 100 left. Once Reddit says the budget is spent, the
-  reader waits for its reset (at most 10 minutes) if the run has time, else stops asking until the next run.
-  While Arctic Shift is down the feeds may use the whole run, since the daily re-fetch can't.
+  reader waits for its reset (at most 10 minutes) if the run has time, else stops asking until the next run,
+  which reads that feed again from the top. While Arctic Shift is down the feeds may use the whole run, since the
+  daily re-fetch can't.
 - The Arctic Shift cursor doesn't move, so once Arctic Shift answers again it re-reads the whole stretch and
   anything the feed missed arrives then (`fetch_mode=live`), as far as Arctic Shift's own archive has it. The
   first copy of an item wins, as always.
