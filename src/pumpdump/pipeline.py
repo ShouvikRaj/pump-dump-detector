@@ -333,6 +333,7 @@ def run_collect(
         client.probing = True
     new_records: list[dict] = []
     log_rows = []
+    fallback_due = []
     for sub, kind in settings.streams():
         key = f"{sub}/{kind}"
         st = state["streams"].setdefault(
@@ -379,52 +380,55 @@ def run_collect(
         }
         log_rows.append(row)
         summary["streams"].append(row)
-
-        # -- Arctic Shift failed: read Reddit's RSS feed instead. Its items are stored like any other, but the
-        # cursor above stays put, so once Arctic Shift is back it re-reads the stretch and fills in whatever
-        # the feed missed (removed items, and anything older than the feed's ~1000 items reach back).
         if res.error and fallback is not None and st["last_complete_at"] is not None:
-            seen_to = st["cursor"] if st["cursor"] is not None else st["complete_since"]
-            since = max(seen_to, st.get("fallback_cursor") or 0)
-            try:  # with Arctic Shift down the daily re-fetch can't use the rest of the run either
-                fb = fallback(kind, sub, since=since, deadline=deadline if client.down else regular_deadline)
-            except Exception as exc:  # e.g. the feed changed shape: log it, never lose the run over it
-                fb = FeedResult(error=f"Reddit RSS failed: {type(exc).__name__}: {exc}"[:300])
-            recs = [
-                to_record(kind, it, run_id, source="reddit_rss")
-                for it in fb.items
-                if it["created_utc"] > seen_to - settings.overlap(kind)
-            ]
-            known = db.existing_ids(conn, [r["id"] for r in recs])
-            fresh = [r for r in recs if r["id"] not in known]
-            for r in fresh:
-                r["fetch_mode"] = "fallback"
-            db.insert_docs(conn, fresh)
-            new_records += fresh
-            if fb.newest_created is not None:
-                st["fallback_cursor"] = max(st.get("fallback_cursor") or 0, fb.newest_created)
-            if fb.complete:
-                st["fallback_complete_at"] = clock()
-            elif fb.error is None and fb.items:
-                summary["warnings"].append(
-                    f"{key}: Reddit RSS only reaches back to {iso(fb.oldest_created)}; "
-                    f"{iso(since)} to then waits for Arctic Shift"
-                )
-            row = {
-                **row,
-                "mode": "fallback",
-                "after_utc": iso(since),
-                "fetched": len(fb.items),
-                "new": len(fresh),
-                "pages": fb.pages,
-                "complete": int(fb.complete),
-                "cursor_utc": iso(st.get("fallback_cursor")),
-                "median_archive_lag_s": "",
-                "median_collect_lag_s": _median([r["collected_at"] - r["created_utc"] for r in fresh]),
-                "error": fb.error or "",
-            }
-            log_rows.append(row)
-            summary["streams"].append(row)
+            fallback_due.append((sub, kind, key, st, row))
+
+    # -- Arctic Shift failed: read Reddit's RSS feeds instead, busiest stream first since its feed reaches back
+    # least. Their items are stored like any other, but the cursors above stay put, so once Arctic Shift is back
+    # it re-reads the stretch and fills in whatever the feeds missed (removed items, and anything older than a
+    # feed's ~1000 items reach back).
+    for sub, kind, key, st, row in reversed(fallback_due):
+        seen_to = st["cursor"] if st["cursor"] is not None else st["complete_since"]
+        since = max(seen_to, st.get("fallback_cursor") or 0)
+        try:  # with Arctic Shift down the daily re-fetch can't use the rest of the run either
+            fb = fallback(kind, sub, since=since, deadline=deadline if client.down else regular_deadline)
+        except Exception as exc:  # e.g. the feed changed shape: log it, never lose the run over it
+            fb = FeedResult(error=f"Reddit RSS failed: {type(exc).__name__}: {exc}"[:300])
+        recs = [
+            to_record(kind, it, run_id, source="reddit_rss")
+            for it in fb.items
+            if it["created_utc"] > seen_to - settings.overlap(kind)
+        ]
+        known = db.existing_ids(conn, [r["id"] for r in recs])
+        fresh = [r for r in recs if r["id"] not in known]
+        for r in fresh:
+            r["fetch_mode"] = "fallback"
+        db.insert_docs(conn, fresh)
+        new_records += fresh
+        if fb.newest_created is not None:
+            st["fallback_cursor"] = max(st.get("fallback_cursor") or 0, fb.newest_created)
+        if fb.complete:
+            st["fallback_complete_at"] = clock()
+        elif fb.items:  # the feed's cap, the rate limit or the deadline stopped it short
+            summary["warnings"].append(
+                f"{key}: Reddit RSS only reaches back to {iso(fb.oldest_created)}; "
+                f"{iso(since)} to then waits for Arctic Shift"
+            )
+        row = {
+            **row,
+            "mode": "fallback",
+            "after_utc": iso(since),
+            "fetched": len(fb.items),
+            "new": len(fresh),
+            "pages": fb.pages,
+            "complete": int(fb.complete),
+            "cursor_utc": iso(st.get("fallback_cursor")),
+            "median_archive_lag_s": "",
+            "median_collect_lag_s": _median([r["collected_at"] - r["created_utc"] for r in fresh]),
+            "error": fb.error or "",
+        }
+        log_rows.append(row)
+        summary["streams"].append(row)
 
     # -- reconcile yesterday: pick up anything archived after we passed it -----
     # A busy day may not fit in one run, so progress is kept per stream and the

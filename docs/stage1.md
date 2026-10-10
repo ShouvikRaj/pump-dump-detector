@@ -39,7 +39,8 @@ each run spent its whole budget retrying. Since then:
 - Each stream Arctic Shift failed reads Reddit's public Atom feed instead (`/r/SUB/new/.rss` for posts,
   `/r/SUB/comments/.rss` for comments: no key, about 100 requests per 10 minutes from a runner, checked
   2026-10-10 with the `reddit-probe` workflow), newest first, paging back with `?after=` until it reaches what is
-  already stored. Items are stored with `source=reddit_rss` and `fetch_mode=fallback`. Feeds lack `score`,
+  already stored. Feeds are read once every stream has tried Arctic Shift, r/wallstreetbets comments first since
+  their feed reaches back least. Items are stored with `source=reddit_rss` and `fetch_mode=fallback`. Feeds lack `score`,
   `num_comments`, `author_fullname` and `parent_id`, leave out removed items, and give the body as rendered HTML,
   which is turned back into text.
 - Reddit's budget belongs to the runner's IP address, which other GitHub users share: on 2026-10-10 one runner

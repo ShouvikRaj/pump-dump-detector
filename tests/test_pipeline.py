@@ -508,3 +508,25 @@ def test_while_arctic_shift_is_down_the_fallback_may_use_the_whole_run(setup):
                 clock=clock.time)
 
     assert len(deadlines) == 4 and set(deadlines) == {started + SETTINGS.max_seconds}
+
+
+def test_feeds_are_read_after_arctic_shift_busiest_stream_first(setup):
+    # the busiest stream's feed reaches back least; and waiting out Reddit's rate limit for one feed must not
+    # keep later streams from noticing Arctic Shift is down
+    ds, server, clock = setup
+    run(ds, server, clock, "r1")
+    server.get = Outage().get
+    order = []
+
+    def slow_fallback(kind, sub, since, deadline=None):
+        order.append(f"{sub}/{kind}")
+        clock.now = deadline  # waiting on Reddit's reset used up the run
+        return FeedResult()
+
+    clock.now += 900
+    run_collect(ds, ArcticShift(get=server.get, sleep=clock.sleep, clock=clock.time, min_interval=0),
+                run_id="r2", settings=SETTINGS, fetch_symbols=lambda: (SYMBOLS, []), fallback=slow_fallback,
+                clock=clock.time)
+
+    assert order == ["wallstreetbets/comments", "pennystocks/comments", "wallstreetbets/posts", "pennystocks/posts"]
+    assert {k: st["consecutive_errors"] for k, st in ds.load_state()["streams"].items()} == {k: 1 for k in order}
