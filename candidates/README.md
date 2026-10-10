@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-10T15:38:09Z by run `38064070406`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-10T15:51:10Z by run `38064956187`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -12,9 +12,9 @@ collected live, so flags in this period are marked `warmup=1` in episodes.csv.
 |---|---|---|---|---|---|---|---|---|---|---|
 | AAOI | 2026-10-08 20:17 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
 | ADBE | 2026-10-08 04:07 | mention spike | 1 | 6.29 | 1 | 0 | wallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x21cyd/) |
-| ASTS | 2026-10-08 21:11 | mention spike | 22 | 45.43 | 19 | 0 | wallstreetbets 21, pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x1ve6y/comment/pf24y4s/) |
+| ASTS | 2026-10-08 21:11 | mention spike | 5 | 48.0 | 5 | 0 | wallstreetbets 4, pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x1ve6y/comment/pf2bpek/) |
 | IBM | 2026-10-09 01:09 | mention spike | 0 |  | 0 | 0 |  | NYSE |  |  |
-| SLS | 2026-10-09 13:19 | mention spike | 1 | 5.14 | 1 | 0 | pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1x00v08/comment/pevva79/) |
+| SLS | 2026-10-09 13:19 | mention spike | 2 | 5.14 | 2 | 0 | pennystocks 2 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1x1kb5x/comment/pf2d4kr/) |
 | UNH | 2026-10-09 13:59 | mention spike | 0 |  | 0 | 0 |  | NYSE |  |  |
 | CMG | 2026-10-08 19:38 | mention spike | 0 |  | 0 | 0 |  | NYSE |  |  |
 | HUM | 2026-10-09 12:39 | mention spike | 0 |  | 0 | 0 |  | NYSE |  |  |
@@ -23,9 +23,7 @@ collected live, so flags in this period are marked `warmup=1` in episodes.csv.
 | MCD | 2026-10-09 00:16 | mention spike | 0 |  | 0 | 0 |  | NYSE |  |  |
 | NBIS | 2026-10-08 18:05 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
 | ORCL | 2026-10-08 17:11 | mention spike | 1 | 8.14 | 1 | 0 | wallstreetbets 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x241e4/comment/pf22c59/) |
-| GME | 2026-10-08 16:17 | mention spike | 4 | 15.86 | 4 | 0 | wallstreetbets 4 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x1vheo/) |
+| GME | 2026-10-08 16:17 | mention spike | 1 | 16.29 | 1 | 0 | wallstreetbets 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x1vheo/) |
 | IREN | 2026-10-07 19:18 | mention spike | 1 | 9.0 | 1 | 0 | wallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x1p2wf/) |
-| SKHY | 2026-10-06 18:54 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
-| TSM | 2026-10-09 12:39 | mention spike | 1 | 6.14 | 1 | 0 | wallstreetbets 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x1ve6y/comment/pf24ewk/) |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
