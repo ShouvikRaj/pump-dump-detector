@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-10T18:04:07Z by run `38073906078`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-10T18:17:10Z by run `38074808892`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -16,7 +16,5 @@ collected live, so flags in this period are marked `warmup=1` in episodes.csv.
 | IBM | 2026-10-09 01:09 | mention spike | 0 |  | 0 | 0 |  | NYSE |  |  |
 | SLS | 2026-10-09 13:19 | mention spike | 1 | 5.29 | 1 | 0 | pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1x1kb5x/comment/pf2d4kr/) |
 | UNH | 2026-10-09 13:59 | mention spike | 0 |  | 0 | 0 |  | NYSE |  |  |
-| CMG | 2026-10-08 19:38 | mention spike | 0 |  | 0 | 0 |  | NYSE |  |  |
-| HUM | 2026-10-09 12:39 | mention spike | 0 |  | 0 | 0 |  | NYSE |  |  |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).

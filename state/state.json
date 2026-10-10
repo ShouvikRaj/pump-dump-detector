@@ -34,28 +34,6 @@
         "mention_spike"
       ]
     },
-    "CMG": {
-      "episode_id": "CMG-20261008T193800Z",
-      "first_flagged_at": 1791488280.4308147,
-      "last_flagged_at": 1791569357.5454822,
-      "n_flags": 102,
-      "peak_mentions": 15,
-      "peak_z": 9.88,
-      "reasons_seen": [
-        "mention_spike"
-      ]
-    },
-    "HUM": {
-      "episode_id": "HUM-20261009T123919Z",
-      "first_flagged_at": 1791549559.038456,
-      "last_flagged_at": 1791569357.5454822,
-      "n_flags": 23,
-      "peak_mentions": 12,
-      "peak_z": 10.205,
-      "reasons_seen": [
-        "mention_spike"
-      ]
-    },
     "IBM": {
       "episode_id": "IBM-20261009T010944Z",
       "first_flagged_at": 1791508184.128939,
@@ -91,10 +69,10 @@
     }
   },
   "last_run": {
-    "finished_at": 1791655447.9085608,
-    "new_docs": 84,
-    "run_id": "38073906078",
-    "started_at": 1791655127.670717
+    "finished_at": 1791656230.4259648,
+    "new_docs": 71,
+    "run_id": "38074808892",
+    "started_at": 1791655931.3738544
   },
   "live_since": 1791153669.8332794,
   "reconcile": {
@@ -105,69 +83,69 @@
   "streams": {
     "pennystocks/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 69,
+      "consecutive_errors": 70,
       "cursor": 1791560462,
-      "fallback_complete_at": 1791655261.939426,
-      "fallback_cursor": 1791654048,
+      "fallback_complete_at": 1791656041.803426,
+      "fallback_cursor": 1791655372,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1791560698.7746193,
       "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 522 for posts r/pennystocks after 1 tries: {'error': 'photon-reddit.com | 522: Connection timed out'})",
-      "last_error_at": 1791655149.5155332
+      "last_error_at": 1791655955.5091515
     },
     "pennystocks/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 41,
+      "consecutive_errors": 42,
       "cursor": 1791559166,
-      "fallback_complete_at": 1791655443.310868,
+      "fallback_complete_at": 1791656222.5208726,
       "fallback_cursor": 1791644557,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1791618661.865926,
       "last_error": "HTTP 522 for posts r/pennystocks after 1 tries: {'error': 'photon-reddit.com | 522: Connection timed out'}",
-      "last_error_at": 1791655149.5154376
+      "last_error_at": 1791655955.5090168
     },
     "smallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 42,
+      "consecutive_errors": 43,
       "cursor": 1791560659,
-      "fallback_complete_at": 1791655202.3132665,
-      "fallback_cursor": 1791655098,
+      "fallback_complete_at": 1791655981.3647635,
+      "fallback_cursor": 1791655569,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1791560701.738974,
       "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 522 for posts r/pennystocks after 1 tries: {'error': 'photon-reddit.com | 522: Connection timed out'})",
-      "last_error_at": 1791655149.515547
+      "last_error_at": 1791655955.5091789
     },
     "smallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 17,
+      "consecutive_errors": 18,
       "cursor": 1791546656,
-      "fallback_complete_at": 1791655383.036515,
+      "fallback_complete_at": 1791656162.4157684,
       "fallback_cursor": 1791642109,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1791641053.3618007,
       "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 522 for posts r/pennystocks after 1 tries: {'error': 'photon-reddit.com | 522: Connection timed out'})",
-      "last_error_at": 1791655149.5155
+      "last_error_at": 1791655955.5090883
     },
     "wallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 17,
+      "consecutive_errors": 18,
       "cursor": 1791560685,
-      "fallback_complete_at": 1791655150.1266613,
-      "fallback_cursor": 1791655138,
+      "fallback_complete_at": 1791655955.9393141,
+      "fallback_cursor": 1791655945,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1791560726.1533706,
       "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 522 for posts r/pennystocks after 1 tries: {'error': 'photon-reddit.com | 522: Connection timed out'})",
-      "last_error_at": 1791655149.5155606
+      "last_error_at": 1791655955.509204
     },
     "wallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 99,
+      "consecutive_errors": 100,
       "cursor": 1791560399,
-      "fallback_complete_at": 1791655321.9462526,
+      "fallback_complete_at": 1791656101.5642886,
       "fallback_cursor": 1791653458,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1791560696.4579027,
       "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 522 for posts r/pennystocks after 1 tries: {'error': 'photon-reddit.com | 522: Connection timed out'})",
-      "last_error_at": 1791655149.5155187
+      "last_error_at": 1791655955.5091228
     }
   },
   "symbols_refresh_errors": 0,
