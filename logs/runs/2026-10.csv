@@ -4194,3 +4194,16 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 38082728884,2026-10-10T20:11:10Z,wallstreetbets/comments,live,2026-10-09T15:22:33Z,4996,4186,5,0,2026-10-09T19:22:46Z,37.0,96161.8,
 38082728884,2026-10-10T20:11:10Z,smallstreetbets/comments,reconcile,2026-10-09T18:30:13Z,1086,0,2,1,,,,
 38082728884,2026-10-10T20:11:10Z,wallstreetbets/comments,reconcile,2026-10-08T23:59:59Z,5995,0,6,0,,,,
+38084468324,2026-10-10T20:37:41Z,pennystocks/posts,live,2026-10-10T16:21:34Z,0,0,0,0,2026-10-10T19:21:34Z,,,HTTP 521 for posts r/pennystocks after 6 tries: {'error': 'photon-reddit.com | 521: Web server is down'}
+38084468324,2026-10-10T20:37:41Z,smallstreetbets/posts,live,2026-10-10T17:03:13Z,0,0,0,0,2026-10-10T20:03:13Z,,,skipped: Arctic Shift unreachable earlier in this run (HTTP 521 for posts r/pennystocks after 6 tries: {'error': 'photon-reddit.com | 521: Web server is down'})
+38084468324,2026-10-10T20:37:41Z,wallstreetbets/posts,live,2026-10-10T16:55:43Z,0,0,0,0,2026-10-10T19:55:43Z,,,skipped: Arctic Shift unreachable earlier in this run (HTTP 521 for posts r/pennystocks after 6 tries: {'error': 'photon-reddit.com | 521: Web server is down'})
+38084468324,2026-10-10T20:37:41Z,pennystocks/comments,live,2026-10-10T19:24:02Z,0,0,0,0,2026-10-10T19:54:02Z,,,skipped: Arctic Shift unreachable earlier in this run (HTTP 521 for posts r/pennystocks after 6 tries: {'error': 'photon-reddit.com | 521: Web server is down'})
+38084468324,2026-10-10T20:37:41Z,smallstreetbets/comments,live,2026-10-10T19:41:10Z,0,0,0,0,2026-10-10T20:11:10Z,,,skipped: Arctic Shift unreachable earlier in this run (HTTP 521 for posts r/pennystocks after 6 tries: {'error': 'photon-reddit.com | 521: Web server is down'})
+38084468324,2026-10-10T20:37:41Z,wallstreetbets/comments,live,2026-10-09T18:52:46Z,0,0,0,0,2026-10-09T19:22:46Z,,,skipped: Arctic Shift unreachable earlier in this run (HTTP 521 for posts r/pennystocks after 6 tries: {'error': 'photon-reddit.com | 521: Web server is down'})
+38084468324,2026-10-10T20:37:41Z,wallstreetbets/comments,fallback,2026-10-10T18:12:25Z,905,905,10,0,2026-10-10T20:38:25Z,,3248.8,
+38084468324,2026-10-10T20:37:41Z,smallstreetbets/comments,fallback,2026-10-10T20:11:10Z,100,67,1,1,2026-10-10T20:47:49Z,,1160.8,
+38084468324,2026-10-10T20:37:41Z,pennystocks/comments,fallback,2026-10-10T19:54:02Z,100,0,1,1,2026-10-10T19:54:02Z,,,
+38084468324,2026-10-10T20:37:41Z,wallstreetbets/posts,fallback,2026-10-10T19:55:43Z,0,0,0,0,2026-10-10T17:30:58Z,,,"Reddit RSS rate limit used up for 60 s more, past this run's time"
+38084468324,2026-10-10T20:37:41Z,smallstreetbets/posts,fallback,2026-10-10T20:03:13Z,0,0,0,0,2026-10-10T14:21:49Z,,,"Reddit RSS rate limit used up for 60 s more, past this run's time"
+38084468324,2026-10-10T20:37:41Z,pennystocks/posts,fallback,2026-10-10T19:21:34Z,0,0,0,0,2026-10-10T15:02:37Z,,,"Reddit RSS rate limit used up for 60 s more, past this run's time"
+38084468324,2026-10-10T20:37:41Z,wallstreetbets/comments,reconcile,2026-10-09T06:36:55Z,0,0,0,0,,,,skipped: Arctic Shift unreachable earlier in this run (HTTP 521 for posts r/pennystocks after 6 tries: {'error': 'photon-reddit.com | 521: Web server is down'})
