@@ -1,8 +1,8 @@
 """Reachability probe for Reddit data sources (run on a GitHub runner; prints only, writes nothing).
 
-For when Arctic Shift is down: does Arctic Shift answer, is PullPush's archive
-current, and do Reddit's public RSS feeds answer from GitHub's runners, how far
-back one feed page reaches and whether ?after= paging works.
+For when Arctic Shift is down: does Arctic Shift answer, is PullPush reachable,
+and do Reddit's public RSS feeds answer from GitHub's runners, how far back a
+feed reaches with ?after= paging, and what rate limit Reddit announces.
 """
 
 import json
@@ -18,15 +18,24 @@ AS = "https://arctic-shift.photon-reddit.com"
 PP = "https://api.pullpush.io/reddit/search"
 s = requests.Session()
 s.headers["User-Agent"] = UA
+wait_until = {}  # host -> time its rate-limit window resets
 
 
 def get(url):
+    host = url.split("/")[2]
+    if time.time() < wait_until.get(host, 0):
+        time.sleep(wait_until[host] - time.time())
     t = time.time()
     try:
         r = s.get(url, timeout=60)
-        return r.status_code, r.headers, r.content, time.time() - t
     except requests.RequestException as e:
         return 0, {}, str(e).encode(), time.time() - t
+    try:
+        if float(r.headers.get("x-ratelimit-remaining", 1)) < 1:
+            wait_until[host] = time.time() + float(r.headers.get("x-ratelimit-reset", 60)) + 1
+    except ValueError:
+        pass
+    return r.status_code, r.headers, r.content, time.time() - t
 
 
 def ago(ts):
@@ -49,42 +58,51 @@ def feed_times(body):
     return out
 
 
-def probe(name, url, kind):
+def probe(name, url, kind, show=0):
     code, headers, body, dt = get(url)
     limits = {k: v for k, v in headers.items() if k.lower().startswith(("x-ratelimit", "retry-after"))}
-    line = f"{name:34s} {code} {len(body):>8d}B {dt:5.1f}s"
+    line = f"{name:34s} {code} {len(body):>8d}B {dt:5.1f}s {headers.get('content-type', '')[:30]}"
     items = []
     if code == 200 and kind != "raw":
         try:
             items = json_times(body) if kind == "json" else feed_times(body)
         except Exception as e:  # noqa: BLE001 - report whatever the body was
-            line += f" unparsable ({e})"
+            line += f" unparsable ({e}): {body[:300]!r}"
     if items:
         times = [t for _, t in items]
         line += f" {len(items)} items, newest {ago(max(times))}, oldest {ago(min(times))}"
     elif code != 200 or kind == "raw":
         line += f" {body[:120]!r}"
     print(line + (f" {limits}" if limits else ""), flush=True)
+    if show and code == 200:
+        print("   sample:", body[body.find(b"<entry"):][:show].decode(errors="replace"), flush=True)
     return items
+
+
+def pages(name, base, n):
+    """Page back through a feed with ?after=, reporting each page's span and whether pages overlap."""
+    after, seen = None, set()
+    for i in range(n):
+        items = probe(f"{name} p{i + 1}", base + (f"&after={after}" if after else ""), "feed")
+        if not items:
+            return
+        ids = [x for x, _ in items]
+        if seen & set(ids):
+            print(f"   page {i + 1} repeats {len(seen & set(ids))} ids from earlier pages")
+        seen |= set(ids)
+        after = ids[-1]
 
 
 print("== Arctic Shift")
 probe("front page", f"{AS}/", "raw")
-probe("posts r/pennystocks newest", f"{AS}/api/posts/search?subreddit=pennystocks&limit=5&sort=desc", "json")
 probe("comments r/wsb newest", f"{AS}/api/comments/search?subreddit=wallstreetbets&limit=5&sort=desc", "json")
 
 print("== PullPush")
-probe("submissions r/pennystocks newest", f"{PP}/submission/?subreddit=pennystocks&size=5&sort=desc", "json")
 probe("comments r/wsb newest", f"{PP}/comment/?subreddit=wallstreetbets&size=5&sort=desc", "json")
 
-print("== Reddit")
-probe("json r/pennystocks/new", "https://www.reddit.com/r/pennystocks/new.json?limit=5", "json")
-for sub in ("pennystocks", "smallstreetbets", "wallstreetbets"):
-    for path, label in (("new", "posts"), ("comments", "comments")):
-        time.sleep(3)
-        items = probe(f"rss r/{sub} {label}", f"https://www.reddit.com/r/{sub}/{path}/.rss?limit=100", "feed")
-        if sub == "wallstreetbets" and label == "comments" and items:
-            time.sleep(3)
-            probe("rss r/wsb comments page 2", f"https://www.reddit.com/r/{sub}/comments/.rss?limit=100&after={items[-1][0]}", "feed")
-time.sleep(3)
-probe("rss old.reddit r/pennystocks", "https://old.reddit.com/r/pennystocks/new/.rss?limit=100", "feed")
+print("== Reddit RSS")
+probe("old.reddit r/pennystocks posts", "https://old.reddit.com/r/pennystocks/new/.rss?limit=100", "feed", show=300)
+probe("www r/pennystocks posts", "https://www.reddit.com/r/pennystocks/new/.rss?limit=100", "feed", show=1500)
+pages("www r/pennystocks comments", "https://www.reddit.com/r/pennystocks/comments/.rss?limit=100", 3)
+probe("www r/smallstreetbets comments", "https://www.reddit.com/r/smallstreetbets/comments/.rss?limit=100", "feed", show=1500)
+pages("www r/wsb comments", "https://www.reddit.com/r/wallstreetbets/comments/.rss?limit=100", 4)
