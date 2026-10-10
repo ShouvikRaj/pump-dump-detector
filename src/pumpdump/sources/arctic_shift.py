@@ -12,6 +12,7 @@ usable from a snapshot collected before the decision point.
 
 from __future__ import annotations
 
+import html
 import re
 import time
 from dataclasses import dataclass, field
@@ -35,6 +36,7 @@ COMMENT_FIELDS = (
 )
 FIELDS = {"posts": POST_FIELDS, "comments": COMMENT_FIELDS}
 _INVALID_FIELD_RE = re.compile(r"'([A-Za-z0-9_]+)' is not a valid field")
+_TITLE_RE = re.compile(r"<title>(.*?)</title>", re.I | re.S)
 
 Getter = Callable[..., tuple[int, dict, Any]]
 
@@ -54,8 +56,9 @@ def requests_getter(user_agent: str = USER_AGENT) -> Getter:
             return 0, {}, {"error": f"{type(exc).__name__}: {exc}"}
         try:
             body = resp.json()
-        except ValueError:
-            body = {"error": resp.text[:500]}
+        except ValueError:  # an HTML error page (Cloudflare's 522 etc.): its title says what went wrong
+            title = _TITLE_RE.search(resp.text)
+            body = {"error": html.unescape(title.group(1)).strip() if title else resp.text[:500]}
         return resp.status_code, dict(resp.headers), body
 
     return get
@@ -79,6 +82,8 @@ class ArcticShift:
         self.base_url = base_url
         self.fields = {kind: names.split(",") for kind, names in FIELDS.items()}
         self.dropped_fields: list[str] = []  # "kind.name" the API refused this run
+        self.down: str | None = None  # set when the server itself failed for good; later requests this run fail fast
+        self.probing = False  # during a long outage: one try per request until the server answers again
         self._last_request: float | None = None
         self.requests_made = 0
 
@@ -97,6 +102,8 @@ class ArcticShift:
         limit: int | str = 100,
         sort: str = "asc",
     ) -> list[dict]:
+        if self.down:
+            raise ArcticShiftError(self.down)
         url = f"{self.base_url}/api/{kind}/search"
         fields = self.fields[kind]
         attempt = 0
@@ -111,6 +118,7 @@ class ArcticShift:
             self.requests_made += 1
             status, headers, body = self.get(url, params, timeout=60)
             if status == 200:
+                self.probing = False
                 data = body.get("data") if isinstance(body, dict) else None
                 if not isinstance(data, list):
                     raise ArcticShiftError(f"unexpected response shape: {str(body)[:200]}")
@@ -124,11 +132,14 @@ class ArcticShift:
                 limit = FULL_PAGE  # heavy query timed out; ask for a smaller page
             elif status not in (0, 422, 429) and status < 500:
                 raise ArcticShiftError(f"HTTP {status} for {kind} r/{subreddit}: {str(body)[:200]}")
-            if attempt >= self.max_retries:
+            if attempt >= (0 if self.probing else self.max_retries):
                 break
             self.sleep(_retry_wait(status, headers, attempt))
             attempt += 1
-        raise ArcticShiftError(f"HTTP {status} for {kind} r/{subreddit} after {attempt + 1} tries: {str(body)[:200]}")
+        error = f"HTTP {status} for {kind} r/{subreddit} after {attempt + 1} tries: {str(body)[:200]}"
+        if status == 0 or status >= 500:  # not this query (a 422 timeout is) but the whole server
+            self.down = f"skipped: Arctic Shift unreachable earlier in this run ({error[:150]})"
+        raise ArcticShiftError(error)
 
 
 def _rejected_field(status: int, body: Any) -> str | None:
@@ -214,7 +225,7 @@ def _permalink(is_post: bool, item: dict) -> str | None:
     return f"/r/{sub}/comments/{link[3:]}/comment/{item['id']}/" if link.startswith("t3_") else None
 
 
-def to_record(kind: str, item: dict, run_id: str) -> dict:
+def to_record(kind: str, item: dict, run_id: str, source: str = "arctic_shift") -> dict:
     is_post = kind == "posts"
     return {
         "id": ("t3_" if is_post else "t1_") + item["id"],
@@ -224,7 +235,7 @@ def to_record(kind: str, item: dict, run_id: str) -> dict:
         "author_fullname": item.get("author_fullname"),
         "created_utc": int(item["created_utc"]),
         "collected_at": item["_collected_at"],
-        "source": "arctic_shift",
+        "source": source,
         "source_retrieved_at": item.get("retrieved_on"),
         "title": item.get("title") if is_post else None,
         "body": item.get("selftext") if is_post else item.get("body"),

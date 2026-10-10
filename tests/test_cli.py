@@ -20,6 +20,7 @@ def offline(monkeypatch):
     monkeypatch.setattr(
         cli, "make_client", lambda max_retries=5: cli.ArcticShift(get=server.get, min_interval=0, max_retries=max_retries)
     )
+    monkeypatch.setattr(cli, "make_fallback", lambda: None)
     monkeypatch.setattr(cli, "refresh_symbols", lambda: ({}, ["offline"]))
     monkeypatch.setattr(cli, "fetch_trending", lambda clock: [])
     monkeypatch.setattr(cli.time, "time", lambda: T)

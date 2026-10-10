@@ -27,6 +27,33 @@ Caveats handled in code:
   drops it, carries on and the run summary warns.
 - Reddit is moving away from monotonic comment IDs, so cursors use `created_utc`, never IDs.
 
+### Fallback while Arctic Shift is down: Reddit's RSS feeds
+
+Arctic Shift is one person's project with no uptime promise. On 2026-10-09 at 15:45 UTC its server went down
+(Cloudflare answered `522` from GitHub's runners and from elsewhere) and stayed down for more than a day, while
+each run spent its whole budget retrying. Since then:
+
+- When a request fails for good with a server or network error (a `422` query timeout doesn't count), the client
+  stops asking Arctic Shift for the rest of the run. Once every stream has failed 4 runs in a row, a run tries
+  Arctic Shift once without retrying, and retries again as soon as it answers.
+- Each stream Arctic Shift failed reads Reddit's public Atom feed instead (`/r/SUB/new/.rss` for posts,
+  `/r/SUB/comments/.rss` for comments: no key, about 100 requests per 10 minutes from a runner, checked
+  2026-10-10 with the `reddit-probe` workflow), newest first, paging back with `?after=` until it reaches what is
+  already stored. Items are stored with `source=reddit_rss` and `fetch_mode=fallback`. Feeds lack `score`,
+  `num_comments`, `author_fullname` and `parent_id`, leave out removed items, and give the body as rendered HTML,
+  which is turned back into text.
+- The Arctic Shift cursor doesn't move, so once Arctic Shift answers again it re-reads the whole stretch and
+  anything the feed missed arrives then (`fetch_mode=live`), as far as Arctic Shift's own archive has it. The
+  first copy of an item wins, as always.
+- Spike detection counts a stream as current when Arctic Shift or the feed has caught up within 3 h. Reddit's
+  listings stop at about 1000 items, which is days of r/pennystocks but only about 2 h of r/wallstreetbets
+  comments, so after a long outage the first feed read can't reach back and leaves a hole (a run warning; the
+  run log's `fallback` row shows `complete=0`). The feed is trusted from its next read, which reaches back to the
+  first. Until Arctic Shift fills the hole, r/wallstreetbets comment counts for that stretch are short: fewer
+  flags while it is in the trailing 24 h, and for the week it sits in the baseline, a ticker that was busy there
+  then faces a lower bar.
+- Daily mention counts and the daily re-fetch still wait for Arctic Shift.
+
 If Reddit ever grants API access, a PRAW source can be added next to `sources/arctic_shift.py`; nothing else
 depends on where records come from (each record carries `source`).
 
@@ -64,8 +91,9 @@ Every record keeps three times:
 the detector over history reproduces what it could have known at each moment. The first copy of a document
 wins; later re-fetches never overwrite it.
 
-`fetch_mode` records how a document arrived: `backfill` (first 9 days at start-up), `live`, or `reconcile`
-(picked up by the daily re-fetch after being archived late).
+`fetch_mode` records how a document arrived: `backfill` (first 9 days at start-up), `live`, `reconcile`
+(picked up by the daily re-fetch after being archived late), or `fallback` (read from Reddit's RSS feed while
+Arctic Shift was down; see above).
 
 ## Collection loop
 

@@ -28,6 +28,7 @@ from .hype import hype_categories
 from .market import default_sources, dry_run, run_market
 from .pipeline import Settings, collection_done, run_collect
 from .sources.arctic_shift import BASE_URL, ArcticShift
+from .sources.reddit_rss import RedditRSS
 from .sources.stocktwits import fetch_trending
 from .store import Datastore
 from .symbols import load_symbols, refresh_symbols
@@ -42,6 +43,11 @@ def make_client(max_retries: int = 5) -> ArcticShift:
         min_interval=float(os.environ.get("ARCTIC_SHIFT_MIN_INTERVAL", "1.0")),
         base_url=os.environ.get("ARCTIC_SHIFT_BASE_URL", BASE_URL),
     )
+
+
+def make_fallback():
+    # Reddit's RSS feeds, read only for streams Arctic Shift failed this run
+    return RedditRSS().fetch_back_to
 
 
 def render_summary(summary: dict) -> str:
@@ -82,6 +88,7 @@ def cmd_collect(args: argparse.Namespace) -> int:
         settings=settings,
         fetch_symbols=lambda: refresh_symbols(),
         fetch_trending=None if args.no_stocktwits else (lambda: fetch_trending(time.time)),
+        fallback=None if args.no_rss else make_fallback(),
         clock=lambda: time.time(),
     )
     text = render_summary(summary)
@@ -365,6 +372,7 @@ def main(argv: list[str] | None = None) -> int:
     c.add_argument("--max-retries", type=int, default=5)
     c.add_argument("--summary", help="append a markdown summary here (e.g. $GITHUB_STEP_SUMMARY)")
     c.add_argument("--no-stocktwits", action="store_true")
+    c.add_argument("--no-rss", action="store_true", help="don't fall back to Reddit's RSS feeds when Arctic Shift fails")
     c.set_defaults(func=cmd_collect)
 
     m = sub.add_parser("market", help="Stage 2: snapshot new candidates' market data")

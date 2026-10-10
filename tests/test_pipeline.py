@@ -3,9 +3,10 @@ import json
 
 import pytest
 
-from fakes import FakeArcticShift, FakeClock, comment, post
+from fakes import FakeArcticShift, FakeClock, FakeRedditRSS, comment, post
 from pumpdump.pipeline import Settings, collection_done, health, run_collect
 from pumpdump.sources.arctic_shift import ArcticShift
+from pumpdump.sources.reddit_rss import RedditRSS
 from pumpdump.store import Datastore
 
 T = 1_791_150_720  # 2026-10-04 21:52:00 UTC
@@ -32,6 +33,7 @@ def world():
 def run(ds, server, clock, run_id, **kw):
     # min_interval > 0 makes every request cost fake time, so run budgets can run out
     client = ArcticShift(get=server.get, sleep=clock.sleep, clock=clock.time, min_interval=kw.pop("min_interval", 0))
+    rss = kw.pop("rss", None)
     return run_collect(
         ds,
         client,
@@ -39,6 +41,7 @@ def run(ds, server, clock, run_id, **kw):
         settings=kw.pop("settings", SETTINGS),
         fetch_symbols=kw.pop("fetch_symbols", lambda: (SYMBOLS, [])),
         fetch_trending=kw.pop("fetch_trending", lambda: []),
+        fallback=rss and RedditRSS(get=rss.get, sleep=clock.sleep, clock=clock.time, min_interval=0).fetch_back_to,
         clock=clock.time,
     )
 
@@ -364,3 +367,125 @@ def test_field_the_api_stopped_accepting_is_reported_once_and_collection_continu
     assert [w for w in summary["warnings"] if "author_flair_text" in w] == [
         "arctic shift: API rejected field comments.author_flair_text; collecting without it"
     ]
+
+
+class Outage:
+    """Arctic Shift behind Cloudflare with its server gone (2026-10-09): every request is a 522."""
+
+    def __init__(self):
+        self.calls = 0
+
+    def get(self, url, params, timeout=30):
+        self.calls += 1
+        return 522, {}, {"error": "arctic-shift.photon-reddit.com | 522: Connection timed out"}
+
+
+def raw_records(ds):
+    out = []
+    for path in ds.raw_files():
+        with gzip.open(path, "rt") as fh:
+            out += [json.loads(line) for line in fh]
+    return out
+
+
+def chatter(prefix, start, n, sub="pennystocks", body="$YYYY ripping"):
+    return [comment(f"{prefix}{j}", start + j * 60, sub=sub, author=f"{prefix}{j % 6}", body=body) for j in range(n)]
+
+
+def test_reddit_rss_keeps_collection_and_flagging_going_while_arctic_shift_is_down(setup):
+    ds, server, clock = setup
+    server.items["comments"].append(comment("w0", T - 3600, sub="wallstreetbets", body="hi"))
+    run(ds, server, clock, "r1")
+    cursors = {k: st["cursor"] for k, st in ds.load_state()["streams"].items()}
+    new = chatter("y", T + 600, 12)  # a new ticker takes off after Arctic Shift went down
+    reddit = FakeRedditRSS(posts=server.items["posts"], comments=server.items["comments"] + new)
+    outage = Outage()
+    server.get = outage.get
+
+    clock.now = T + 3600
+    summary = run(ds, server, clock, "r2", rss=reddit)
+
+    assert outage.calls == 6  # one stream's retries, then the run stops asking
+    assert summary["detection"] == "ran" and summary["new_candidates"] == ["YYYY"]
+    stored = {r["id"]: r for r in raw_records(ds)}
+    assert all(stored[f"t1_y{j}"]["source"] == "reddit_rss" and stored[f"t1_y{j}"]["fetch_mode"] == "fallback" for j in range(12))
+    state = ds.load_state()
+    assert {k: st["cursor"] for k, st in state["streams"].items()} == cursors  # Arctic Shift re-reads it all later
+    log = [r for r in ds.read_csv("logs/runs/2026-10.csv") if r["run_id"] == "r2"]
+    assert {(r["stream"], r["mode"], r["complete"]) for r in log if r["mode"] == "fallback"} == {
+        (k, "fallback", "1") for k in cursors
+    }
+    assert all("unreachable" in r["error"] for r in log if r["mode"] == "live" and r["stream"] != "pennystocks/posts")
+
+
+def test_fallback_that_cannot_reach_back_vouches_only_from_its_own_first_read(setup):
+    ds, server, clock = setup
+    run(ds, server, clock, "r1")
+    busy = chatter("w", T + 60, 300, sub="wallstreetbets", body="hi")  # more than the feed lists
+    reddit = FakeRedditRSS(posts=server.items["posts"], comments=server.items["comments"] + busy, cap=100)
+    server.get = Outage().get
+
+    clock.now = T + 5 * 3600  # Arctic Shift's last complete fetch is now 5 h old
+    summary = run(ds, server, clock, "r2", rss=reddit)
+    assert summary["detection"].startswith("skipped: wallstreetbets/comments")
+    assert any("wallstreetbets/comments: Reddit RSS" in w and "waits for Arctic Shift" in w for w in summary["warnings"])
+
+    clock.now += 900  # nothing new: this read reaches back to the last one
+    assert run(ds, server, clock, "r3", rss=reddit)["detection"] == "ran"
+
+
+def test_arctic_shift_back_fills_in_what_the_feed_missed(setup):
+    ds, server, clock = setup
+    run(ds, server, clock, "r1")
+    busy = chatter("w", T + 60, 300, sub="wallstreetbets", body="hi")
+    server.items["comments"] += busy
+    reddit = FakeRedditRSS(posts=server.items["posts"], comments=server.items["comments"], cap=100)
+    real_get = server.get
+    server.get = Outage().get
+    clock.now = T + 5 * 3600
+    run(ds, server, clock, "r2", rss=reddit)
+
+    server.get = real_get
+    clock.now += 900
+    run(ds, server, clock, "r3", rss=reddit)
+
+    ids = [r["id"] for r in raw_records(ds)]
+    assert len(ids) == len(set(ids))  # nothing stored twice
+    modes = {r["id"]: r["fetch_mode"] for r in raw_records(ds) if r["id"].startswith("t1_w")}
+    assert len(modes) == 300
+    assert sorted(set(modes.values())) == ["fallback", "live"]  # the feed's newest 100, then Arctic Shift's rest
+    assert ds.load_state()["streams"]["wallstreetbets/comments"]["cursor"] == T + 60 + 299 * 60
+
+
+def test_a_long_outage_is_probed_once_per_run(setup):
+    ds, server, clock = setup
+    run(ds, server, clock, "r1")
+    outage = Outage()
+    server.get = outage.get
+    for i in range(4):
+        clock.now += 900
+        run(ds, server, clock, f"down{i}")
+    outage.calls = 0
+
+    clock.now += 900
+    run(ds, server, clock, "r6")
+
+    assert outage.calls == 1  # every stream has failed 4 runs in a row: one try notices when it's back
+
+
+def test_a_broken_fallback_never_breaks_the_run(setup):
+    ds, server, clock = setup
+    run(ds, server, clock, "r1")
+    server.get = Outage().get
+
+    def broken(kind, sub, since, deadline=None):
+        raise ValueError("feed changed shape")
+
+    clock.now += 900
+    summary = run_collect(ds, ArcticShift(get=server.get, sleep=clock.sleep, clock=clock.time, min_interval=0),
+                          run_id="r2", settings=SETTINGS, fetch_symbols=lambda: (SYMBOLS, []), fallback=broken,
+                          clock=clock.time)
+
+    rows = [r for r in summary["streams"] if r["mode"] == "fallback"]
+    assert len(rows) == 4 and all("feed changed shape" in r["error"] for r in rows)
+    assert ds.load_state()["last_run"]["run_id"] == "r2"

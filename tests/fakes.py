@@ -1,7 +1,8 @@
-"""Test doubles: an in-memory Arctic Shift server and a manual clock."""
+"""Test doubles: in-memory Arctic Shift and Reddit RSS servers and a manual clock."""
 
 from __future__ import annotations
 
+from datetime import datetime, timezone
 from urllib.parse import urlparse
 
 
@@ -127,3 +128,57 @@ class FakeArcticShift:
             keep = params["fields"].split(",")
             rows = [{k: it[k] for k in keep if k in it} for it in rows]
         return 200, {"X-RateLimit-Remaining": "100"}, {"data": rows}
+
+
+def atom_feed(kind: str, rows: list[dict]) -> bytes:
+    """Reddit's Atom feed for `rows` (fakes.post/comment dicts), shaped like the live one (2026-10-10)."""
+    from html import escape
+
+    entries = []
+    for it in rows:
+        sub, author = it["subreddit"], it["author"]
+        stamp = datetime.fromtimestamp(it["created_utc"], timezone.utc).isoformat()
+        if kind == "posts":
+            link = f"https://www.reddit.com/r/{sub}/comments/{it['id']}/x/"
+            md = f'<!-- SC_OFF --><div class="md"><p>{escape(it["selftext"])}</p></div><!-- SC_ON -->' if it["selftext"] else ""
+            html_ = (f'{md} &#32; submitted by &#32; <a href="https://www.reddit.com/user/{author}"> /u/{author} </a> <br/>'
+                     f' <span><a href="{escape(it["url"])}">[link]</a></span> &#32; <span><a href="{link}">[comments]</a></span>')
+            extra = f"<published>{stamp}</published><title>{escape(it['title'])}</title>"
+            fullname = f"t3_{it['id']}"
+        else:
+            link = f"https://www.reddit.com/r/{sub}/comments/{it['link_id'][3:]}/x/{it['id']}/"
+            html_ = f'<!-- SC_OFF --><div class="md"><p>{escape(it["body"])}</p></div><!-- SC_ON -->'
+            extra = f"<title>/u/{author} on x</title>"
+            fullname = f"t1_{it['id']}"
+        entries.append(
+            f'<entry><author><name>/u/{author}</name><uri>https://www.reddit.com/user/{author}</uri></author>'
+            f'<category term="{sub}" label="r/{sub}"/><content type="html">{escape(html_)}</content>'
+            f'<id>{fullname}</id><link href="{link}"/><updated>{stamp}</updated>{extra}</entry>'
+        )
+    return ('<?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">'
+            '<category term="x" label="r/x"/><title>feed</title>' + "".join(entries) + "</feed>").encode()
+
+
+class FakeRedditRSS:
+    """Serves www.reddit.com/r/SUB/{new,comments}/.rss: newest first, `limit` per page, ?after=<fullname>
+    pages back, and like Reddit's listings the feed stops after `cap` items."""
+
+    def __init__(self, posts=(), comments=(), cap=1000, headers=None, status=200):
+        self.items = {"posts": list(posts), "comments": list(comments)}
+        self.cap = cap
+        self.headers = headers if headers is not None else {"x-ratelimit-remaining": "99.0", "x-ratelimit-reset": "500"}
+        self.status = status
+        self.calls: list[tuple[str, dict]] = []
+
+    def get(self, url: str, params: dict, timeout: float = 30):
+        self.calls.append((url, dict(params)))
+        if self.status != 200:
+            return self.status, {}, b""
+        sub, path = urlparse(url).path.split("/")[2:4]
+        kind = "posts" if path == "new" else "comments"
+        rows = [it for it in self.items[kind] if it["subreddit"].lower() == sub.lower()]
+        rows = sorted(rows, key=lambda it: it["created_utc"], reverse=True)[: self.cap]
+        if params.get("after"):
+            names = [("t3_" if kind == "posts" else "t1_") + it["id"] for it in rows]
+            rows = rows[names.index(params["after"]) + 1 :] if params["after"] in names else []
+        return 200, dict(self.headers), atom_feed(kind, rows[: int(params.get("limit", 25))])

@@ -1,7 +1,7 @@
 import pytest
 
 from fakes import DOC_FIELDS, FakeArcticShift, FakeClock, comment, post
-from pumpdump.sources.arctic_shift import ArcticShift, ArcticShiftError, fetch_since, to_record
+from pumpdump.sources.arctic_shift import ArcticShift, ArcticShiftError, fetch_since, requests_getter, to_record
 
 T0 = 1_791_000_000
 
@@ -128,6 +128,59 @@ def test_persistent_failure_keeps_partial_results_and_reports_error():
     assert len(res.items) == 100
     assert res.complete is False
     assert "500" in res.error
+
+
+def test_an_outage_makes_later_requests_in_the_run_fail_fast():
+    # 2026-10-09: Cloudflare answered 522 for a day; six streams x six tries used up every run's budget
+    server = FakeArcticShift(posts=[post("p1", T0)], failures=[(522, {})] * 20)
+    client, _ = make_client(server, max_retries=2)
+
+    first = fetch_since(client, "posts", "pennystocks", after=T0 - 1)
+    calls = len(server.calls)
+    second = fetch_since(client, "comments", "wallstreetbets", after=T0 - 1)
+
+    assert "522" in first.error and calls == 3
+    assert len(server.calls) == calls  # not asked again this run
+    assert "unreachable" in second.error
+
+
+def test_a_probing_client_tries_once_until_the_server_answers():
+    down = FakeArcticShift(posts=[post("p1", T0)], failures=[(522, {})] * 5)
+    client, _ = make_client(down, max_retries=2)
+    client.probing = True  # a long outage: one try is enough to notice it's back
+
+    assert "522" in fetch_since(client, "posts", "pennystocks", after=T0 - 1).error
+    assert len(down.calls) == 1
+
+    back = FakeArcticShift(posts=[post("p1", T0)], comments=[comment("c1", T0)])
+    client, _ = make_client(back, max_retries=2)
+    client.probing = True
+    assert fetch_since(client, "posts", "pennystocks", after=T0 - 1).complete
+    back.failures = [(522, {})]  # once it has answered, a hiccup is retried as usual
+    assert fetch_since(client, "comments", "pennystocks", after=T0 - 1).complete
+
+
+def test_query_timeouts_do_not_count_as_an_outage():
+    server = FakeArcticShift(posts=[post("p1", T0)], failures=[(422, {})] * 3)
+    client, _ = make_client(server, max_retries=2)
+
+    assert "422" in fetch_since(client, "posts", "wallstreetbets", after=T0 - 1).error
+    assert [it["id"] for it in fetch_since(client, "posts", "pennystocks", after=T0 - 1).items] == ["p1"]
+
+
+def test_html_error_pages_are_reduced_to_their_title(monkeypatch):
+    page = '<!DOCTYPE html>\n<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en-US"> <![endif]-->' + " " * 600
+    page += "<title>arctic-shift.photon-reddit.com | 522: Connection timed out</title>"
+
+    class Resp:
+        status_code, headers, text = 522, {}, page
+
+        def json(self):
+            raise ValueError("not json")
+
+    monkeypatch.setattr("requests.Session.get", lambda self, url, params=None, timeout=None: Resp())
+    status, _, body = requests_getter()("https://example.org", {})
+    assert (status, body) == (522, {"error": "arctic-shift.photon-reddit.com | 522: Connection timed out"})
 
 
 def test_default_field_lists_are_accepted_by_the_api():
