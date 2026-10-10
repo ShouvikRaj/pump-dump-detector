@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-10-09T05:59:31Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-10-10T00:21:52Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-10-05)
 
@@ -17,6 +17,11 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-10-09 13:59 | UNH | other | no model | no model | 100% / 20% / 0% / 0% | Discussions focus on UNH earnings, options activity, and mixed sentiment regarding potential pumps or delusions. |
+| 2026-10-09 13:19 | SLS | other | no model | no model | 100% / 0% / 0% / 8.3% | Users discuss SLS clinical data, express bullish sentiment, and mention specific upcoming events like the 80th patient milestone. |
+| 2026-10-09 12:52 | DAL | other | no model | no model | 100% / 0% / 0% / 20% | Users discuss Delta Air Lines stock, mentioning missed guidance, late conference calls, and trading puts. |
+| 2026-10-09 12:39 | HUM | other | no model | no model | 100% / 0% / 0% / 9.1% | Chatter focuses on Humana stock price, options premiums, and a scheduled CMS rating event. |
+| 2026-10-09 12:39 | TSM | other | no model | no model | 92% / 0% / 0% / 0% | Users discuss TSM earnings expectations, meme stock behavior, and clarify its relationship to semiconductor ETFs. |
 | 2026-10-09 01:49 | ONDS | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss owning ONDS, speculate on price targets, and mention speculative growth stocks. |
 | 2026-10-09 01:09 | IBM | other | no model | no model | 91% / 0% / 0% / 0% | Users discuss IBM's decline, joke about the name, and speculate on a potential acquisition or price surge. |
 | 2026-10-09 00:30 | SOXL | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss SOXL price movements, express bullish/bearish opinions, and mention unrelated events like OpenAI funding. |
@@ -52,11 +57,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-06 19:34 | AVGO | other | no model | no model | 100% / 0% / 0% / 0% | Chatter focuses on AVGO price action, bagholder frustration, and expectations for a significant price increase. |
 | 2026-10-06 18:54 | SKHY | other | no model | no model | 91% / 18% / 9.1% / 0% | Mixed chatter includes bullish call options, bearish warnings, and unrelated comments. |
 | 2026-10-06 18:28 | INTC | other | no model | no model | 100% / 0% / 0% / 0% | Mixed chatter on INTC ranging from profit-taking and bearish sentiment to confusion over a specific executive's options. |
-| 2026-10-06 18:14 | OKLO | other | no model | no model | 100% / 0% / 17% / 0% | Users discuss OKLO price movements, sector rotation, and skepticism regarding the company's lack of product delivery. |
-| 2026-10-06 18:01 | PENG | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss PENG stock volatility and potential earnings impact with mixed sentiment. |
-| 2026-10-06 17:21 | CIRC | other | no model | no model | 100% / 20% / 0% / 0% | Users discuss a potential hedge fund squeeze and express bullish excitement about CIRC stock. |
-| 2026-10-06 17:08 | SPY | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss SPY price movements, compare it to QQQ, and make bearish or bullish predictions without specific corporate events. |
-| 2026-10-06 16:43 | HTZ | other | no model | no model | 100% / 15% / 0% / 0% | Users discuss a sudden price surge in HTZ, comparing it to previous rallies and short squeezes. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
