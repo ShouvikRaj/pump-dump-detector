@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-12T17:40:26Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-12T18:20:16Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-81 candidates and 162 controls so far. Archetypes: other 78, low_float_runner 3.
+82 candidates and 164 controls so far. Archetypes: other 79, low_float_runner 3.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| WFF | 2026-10-12 18:19 | other | listed | 27.94 | +127.3% | +411.0% | 372.0x | 38.5M | 0.2% | 1 |  |
 | ASML | 2026-10-12 17:40 | other | listed | 1,761 | -1.1% | -4.7% | 0.8x | 21.33B | 0.0% | 0 |  |
 | SMCI | 2026-10-12 17:00 | other | listed | 39.24 | -6.3% | -4.2% | 0.7x | 557.7M | 15.7% | 0 |  |
 | TSM | 2026-10-12 15:13 | other | listed | 447.5 | -1.3% | -4.1% | 0.9x | 37.84B | 0.1% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | ORCL | 2026-10-08 17:11 | other | listed | 136.4 | -5.0% | +4.6% | 0.4x | 1.86B | 2.7% | 0 |  |
 | GME | 2026-10-08 16:17 | other | listed | 25.47 | +3.6% | -0.3% | 0.7x | 461.2M | 8.5% | 0 |  |
 | BWET | 2026-10-08 15:51 | other | listed | 1,027 | +7.0% | +19.6% | 0.4x |  |  | 0 |  |
-| META | 2026-10-08 13:39 | other | listed | 722.6 | +0.2% | -0.5% | 0.6x | 2.20B | 1.4% | 0 |  |
