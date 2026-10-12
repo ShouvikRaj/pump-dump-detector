@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-12T15:27:13Z by run `38270231468`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-12T15:40:32Z by run `38271853254`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -11,10 +11,10 @@ collected live, so flags in this period are marked `warmup=1` in episodes.csv.
 | Ticker | Flagged since (UTC) | Why | Mentions 24h | Baseline/day | Authors | Hype posts | Subreddits | Exchange | StockTwits | Example |
 |---|---|---|---|---|---|---|---|---|---|---|
 | CBRS | 2026-10-12 14:20 | mention spike | 24 | 5.14 | 8 | 0 | wallstreetbets 24 | Nasdaq | #3 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x3xuss/comment/pfgora8/) |
-| IREN | 2026-10-12 03:44 | mention spike | 45 | 10.43 | 39 | 0 | wallstreetbets 45 | Nasdaq | #13 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x3x2u7/) |
-| MU | 2026-10-12 14:20 | mention spike | 18 | 8.0 | 8 | 0 | wallstreetbets 18 | Nasdaq | #9 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x3xuss/comment/pfgm6ta/) |
+| IREN | 2026-10-12 03:44 | mention spike | 46 | 10.43 | 39 | 0 | wallstreetbets 46 | Nasdaq | #10 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x3x2u7/) |
 | ONDS | 2026-10-12 14:47 | mention spike | 12 | 5.0 | 10 | 0 | wallstreetbets 12 | Nasdaq | #2 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x3xuss/comment/pfgorxu/) |
-| SOXX | 2026-10-12 14:20 | mention spike | 12 | 4.0 | 9 | 0 | wallstreetbets 12 | Nasdaq | #26 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x3xuss/comment/pfgc6ou/) |
+| SOXX | 2026-10-12 14:20 | mention spike | 11 | 4.14 | 8 | 0 | wallstreetbets 11 | Nasdaq | #28 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x3xuss/comment/pfgc6ou/) |
+| MU | 2026-10-12 14:20 | mention spike | 18 | 8.0 | 8 | 0 | wallstreetbets 18 | Nasdaq | #12 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x3xuss/comment/pfgm6ta/) |
 | TSM | 2026-10-12 15:13 | mention spike | 14 | 6.71 | 11 | 0 | wallstreetbets 14 | NYSE | #30 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x4486f/) |
 | MGM | 2026-10-12 06:49 | mention spike | 8 | 1.29 | 4 | 0 | wallstreetbets 7, pennystocks 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x3trws/) |
 
