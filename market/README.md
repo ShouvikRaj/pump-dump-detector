@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-12T03:44:42Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-12T06:50:03Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-73 candidates and 146 controls so far. Archetypes: other 70, low_float_runner 3.
+74 candidates and 148 controls so far. Archetypes: other 71, low_float_runner 3.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| MGM | 2026-10-12 06:49 | other | listed | 29.36 | +0.3% | -4.0% | 1.0x | 181.0M | 10.5% | 0 |  |
 | IREN | 2026-10-12 03:44 | other | listed | 35.21 | +0.0% | -15.7% | 1.0x | 346.2M | 23.6% | 1 |  |
 | UNH | 2026-10-09 13:59 | other | listed | 381.6 | +2.9% | +1.6% | 1.5x | 895.0M | 1.5% | 0 |  |
 | SLS | 2026-10-09 13:19 | other | listed | 11.4 | +1.2% | -0.6% | 0.7x | 201.1M | 29.4% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | UUUU | 2026-10-07 20:50 | other | listed | 10.26 | +0.0% | -7.0% | 1.8x | 248.2M | 22.4% | 0 |  |
 | SMCI | 2026-10-07 20:50 | other | listed | 45 | +0.1% | +9.4% | 1.1x | 557.6M | 17.1% | 0 |  |
 | LEVI | 2026-10-07 20:37 | other | listed | 19.16 | -1.8% | -1.0% | 5.8x | 93.0M | 8.7% | 0 |  |
-| IREN | 2026-10-07 19:18 | other | listed | 38.77 | -6.1% | -0.2% | 1.0x | 346.2M | 24.0% | 1 |  |
