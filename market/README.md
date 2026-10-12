@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-12T20:19:24Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-12T20:32:20Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-83 candidates and 166 controls so far. Archetypes: other 80, low_float_runner 3.
+84 candidates and 168 controls so far. Archetypes: other 81, low_float_runner 3.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| UNH | 2026-10-12 20:32 | other | listed | 379.5 | +0.3% | -0.0% | 1.2x | 895.0M | 1.8% | 0 |  |
 | RDDT | 2026-10-12 20:18 | other | listed | 156 | -2.5% | +6.3% | 1.0x | 140.7M | 15.7% | 0 |  |
 | WFF | 2026-10-12 18:19 | other | listed | 27.94 | +127.3% | +411.0% | 372.0x | 38.5M | 0.2% | 1 |  |
 | ASML | 2026-10-12 17:40 | other | listed | 1,761 | -1.1% | -4.7% | 0.8x | 21.33B | 0.0% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | NBIS | 2026-10-08 18:05 | other | listed | 220.5 | -7.0% | +0.5% | 1.2x | 228.7M | 20.5% | 0 |  |
 | DELL | 2026-10-08 17:52 | other | listed | 570.8 | -1.4% | +7.6% | 0.5x | 292.2M | 4.7% | 2 |  |
 | ORCL | 2026-10-08 17:11 | other | listed | 136.4 | -5.0% | +4.6% | 0.4x | 1.86B | 2.7% | 0 |  |
-| GME | 2026-10-08 16:17 | other | listed | 25.47 | +3.6% | -0.3% | 0.7x | 461.2M | 8.5% | 0 |  |
