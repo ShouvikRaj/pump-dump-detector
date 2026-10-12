@@ -4,10 +4,10 @@
     "CBRS": {
       "episode_id": "CBRS-20261012T142059Z",
       "first_flagged_at": 1791814859.0768907,
-      "last_flagged_at": 1791823603.2622957,
-      "n_flags": 12,
-      "peak_mentions": 36,
-      "peak_z": 6.195,
+      "last_flagged_at": 1791824406.0891154,
+      "n_flags": 13,
+      "peak_mentions": 37,
+      "peak_z": 6.396,
       "reasons_seen": [
         "mention_spike"
       ]
@@ -15,8 +15,8 @@
     "IREN": {
       "episode_id": "IREN-20261012T034423Z",
       "first_flagged_at": 1791776663.153677,
-      "last_flagged_at": 1791823603.2622957,
-      "n_flags": 61,
+      "last_flagged_at": 1791824406.0891154,
+      "n_flags": 62,
       "peak_mentions": 48,
       "peak_z": 5.415,
       "reasons_seen": [
@@ -37,8 +37,8 @@
     "MU": {
       "episode_id": "MU-20261012T142059Z",
       "first_flagged_at": 1791814859.0768907,
-      "last_flagged_at": 1791823603.2622957,
-      "n_flags": 10,
+      "last_flagged_at": 1791824406.0891154,
+      "n_flags": 11,
       "peak_mentions": 26,
       "peak_z": 3.362,
       "reasons_seen": [
@@ -48,10 +48,21 @@
     "ONDS": {
       "episode_id": "ONDS-20261012T144723Z",
       "first_flagged_at": 1791816443.3284152,
-      "last_flagged_at": 1791823603.2622957,
-      "n_flags": 10,
+      "last_flagged_at": 1791824406.0891154,
+      "n_flags": 11,
       "peak_mentions": 13,
       "peak_z": 3.098,
+      "reasons_seen": [
+        "mention_spike"
+      ]
+    },
+    "SMCI": {
+      "episode_id": "SMCI-20261012T170006Z",
+      "first_flagged_at": 1791824406.0891154,
+      "last_flagged_at": 1791824406.0891154,
+      "n_flags": 1,
+      "peak_mentions": 11,
+      "peak_z": 2.241,
       "reasons_seen": [
         "mention_spike"
       ]
@@ -59,8 +70,8 @@
     "SOXX": {
       "episode_id": "SOXX-20261012T142059Z",
       "first_flagged_at": 1791814859.0768907,
-      "last_flagged_at": 1791823603.2622957,
-      "n_flags": 12,
+      "last_flagged_at": 1791824406.0891154,
+      "n_flags": 13,
       "peak_mentions": 12,
       "peak_z": 2.552,
       "reasons_seen": [
@@ -70,31 +81,31 @@
     "TSM": {
       "episode_id": "TSM-20261012T151358Z",
       "first_flagged_at": 1791818038.7521284,
-      "last_flagged_at": 1791818833.986278,
-      "n_flags": 2,
+      "last_flagged_at": 1791824406.0891154,
+      "n_flags": 3,
       "peak_mentions": 14,
-      "peak_z": 2.083,
+      "peak_z": 2.179,
       "reasons_seen": [
         "mention_spike"
       ]
     }
   },
   "last_run": {
-    "finished_at": 1791823603.2912498,
-    "new_docs": 313,
-    "run_id": "38279685370",
-    "started_at": 1791823573.274339
+    "finished_at": 1791824406.1134393,
+    "new_docs": 287,
+    "run_id": "38281184143",
+    "started_at": 1791824368.5808275
   },
   "live_since": 1791153669.8332794,
   "streams": {
     "pennystocks/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1791823208,
+      "cursor": 1791823998,
       "fallback_complete_at": 1791666481.6956782,
       "fallback_cursor": 1791662042,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791823580.6481698,
+      "last_complete_at": 1791824376.808602,
       "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 0 for posts r/pennystocks after 6 tries: {'error': 'ConnectionError: HTTPSConnectionPool(host=\\'arctic-shift.photon-reddit.com\\', port=443): Max )",
       "last_error_at": 1791666317.7248335
     },
@@ -105,18 +116,18 @@
       "fallback_complete_at": 1791666662.2346013,
       "fallback_cursor": 1791660094,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791823578.26795,
+      "last_complete_at": 1791824373.0743372,
       "last_error": "HTTP 0 for posts r/pennystocks after 6 tries: {'error': 'ConnectionError: HTTPSConnectionPool(host=\\'arctic-shift.photon-reddit.com\\', port=443): Max retries exceeded with url: /api/posts/search?subreddit=pennystocks&after=1791649294&sort=asc&lim",
       "last_error_at": 1791666317.7246861
     },
     "smallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1791823538,
+      "cursor": 1791824027,
       "fallback_complete_at": 1791666421.3472252,
       "fallback_cursor": 1791666323,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791823584.4317,
+      "last_complete_at": 1791824378.17573,
       "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 0 for posts r/pennystocks after 6 tries: {'error': 'ConnectionError: HTTPSConnectionPool(host=\\'arctic-shift.photon-reddit.com\\', port=443): Max )",
       "last_error_at": 1791666317.7248619
     },
@@ -127,29 +138,29 @@
       "fallback_complete_at": 1791666602.2453523,
       "fallback_cursor": 1791662593,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791823578.7508273,
+      "last_complete_at": 1791824374.1422813,
       "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 0 for posts r/pennystocks after 6 tries: {'error': 'ConnectionError: HTTPSConnectionPool(host=\\'arctic-shift.photon-reddit.com\\', port=443): Max )",
       "last_error_at": 1791666317.7247684
     },
     "wallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1791823572,
+      "cursor": 1791824367,
       "fallback_complete_at": 1791666361.5769832,
       "fallback_cursor": 1791666298,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791823596.1403062,
+      "last_complete_at": 1791824400.34008,
       "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 0 for posts r/pennystocks after 6 tries: {'error': 'ConnectionError: HTTPSConnectionPool(host=\\'arctic-shift.photon-reddit.com\\', port=443): Max )",
       "last_error_at": 1791666317.7248888
     },
     "wallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1791822703,
+      "cursor": 1791824114,
       "fallback_complete_at": 1791666541.395318,
       "fallback_cursor": 1791664867,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1791823579.7323012,
+      "last_complete_at": 1791824375.4580042,
       "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 0 for posts r/pennystocks after 6 tries: {'error': 'ConnectionError: HTTPSConnectionPool(host=\\'arctic-shift.photon-reddit.com\\', port=443): Max )",
       "last_error_at": 1791666317.7248046
     }
