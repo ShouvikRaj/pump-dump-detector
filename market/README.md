@@ -1,13 +1,16 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-12T06:50:03Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-12T14:21:33Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-74 candidates and 148 controls so far. Archetypes: other 71, low_float_runner 3.
+77 candidates and 154 controls so far. Archetypes: other 74, low_float_runner 3.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SOXX | 2026-10-12 14:20 | other | listed | 546.6 | -2.3% | -5.0% | 0.8x |  |  |  |  |
+| MU | 2026-10-12 14:20 | other | listed | 984.9 | -4.3% | -4.3% | 0.8x | 1.13B | 2.3% | 0 |  |
+| CBRS | 2026-10-12 14:20 | other | listed | 150.7 | -8.2% | -1.4% | 0.9x | 109.9M | 12.8% | 0 |  |
 | MGM | 2026-10-12 06:49 | other | listed | 29.36 | +0.3% | -4.0% | 1.0x | 181.0M | 10.5% | 0 |  |
 | IREN | 2026-10-12 03:44 | other | listed | 35.21 | +0.0% | -15.7% | 1.0x | 346.2M | 23.6% | 1 |  |
 | UNH | 2026-10-09 13:59 | other | listed | 381.6 | +2.9% | +1.6% | 1.5x | 895.0M | 1.5% | 0 |  |
@@ -35,6 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | PLTR | 2026-10-08 13:12 | other | listed | 199.2 | +2.6% | +3.8% | 0.7x | 2.11B | 2.9% | 0 |  |
 | ADBE | 2026-10-08 04:07 | other | listed | 232.5 | -0.1% | -3.0% | 1.2x | 388.1M | 4.8% | 0 |  |
 | KEEL | 2026-10-08 03:01 | other | listed | 3.34 | +0.3% | -5.7% | 1.0x | 589.8M | 18.6% | 0 |  |
-| UUUU | 2026-10-07 20:50 | other | listed | 10.26 | +0.0% | -7.0% | 1.8x | 248.2M | 22.4% | 0 |  |
-| SMCI | 2026-10-07 20:50 | other | listed | 45 | +0.1% | +9.4% | 1.1x | 557.6M | 17.1% | 0 |  |
-| LEVI | 2026-10-07 20:37 | other | listed | 19.16 | -1.8% | -1.0% | 5.8x | 93.0M | 8.7% | 0 |  |
