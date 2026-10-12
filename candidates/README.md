@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-12T04:10:34Z by run `38202672050`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-12T04:23:47Z by run `38203568885`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
