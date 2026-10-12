@@ -1,13 +1,15 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-12T20:32:20Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-12T20:59:07Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-84 candidates and 168 controls so far. Archetypes: other 81, low_float_runner 3.
+86 candidates and 172 controls so far. Archetypes: other 83, low_float_runner 3.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| META | 2026-10-12 20:58 | other | listed | 742.4 | -0.1% | +0.1% | 1.1x | 2.20B | 1.5% | 0 |  |
+| BMBL | 2026-10-12 20:58 | other | listed | 3.82 | +0.5% | +49.0% | 18.5x | 109.3M | 13.4% | 0 |  |
 | UNH | 2026-10-12 20:32 | other | listed | 379.5 | +0.3% | -0.0% | 1.2x | 895.0M | 1.8% | 0 |  |
 | RDDT | 2026-10-12 20:18 | other | listed | 156 | -2.5% | +6.3% | 1.0x | 140.7M | 15.7% | 0 |  |
 | WFF | 2026-10-12 18:19 | other | listed | 27.94 | +127.3% | +411.0% | 372.0x | 38.5M | 0.2% | 1 |  |
@@ -36,5 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | SBUX | 2026-10-08 18:59 | other | listed | 91.15 | -2.6% | -0.4% | 1.3x | 1.14B | 3.5% | 0 |  |
 | USO | 2026-10-08 18:20 | other | listed | 149.1 | +3.6% | -1.2% | 0.5x |  |  | 0 |  |
 | NBIS | 2026-10-08 18:05 | other | listed | 220.5 | -7.0% | +0.5% | 1.2x | 228.7M | 20.5% | 0 |  |
-| DELL | 2026-10-08 17:52 | other | listed | 570.8 | -1.4% | +7.6% | 0.5x | 292.2M | 4.7% | 2 |  |
-| ORCL | 2026-10-08 17:11 | other | listed | 136.4 | -5.0% | +4.6% | 0.4x | 1.86B | 2.7% | 0 |  |
