@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-13T03:36:10Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-13T03:58:56Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-91 candidates and 182 controls so far. Archetypes: other 88, low_float_runner 3.
+92 candidates and 184 controls so far. Archetypes: other 89, low_float_runner 3.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| CRWV | 2026-10-13 03:58 | other | listed | 79.19 | -1.3% | -8.2% | 0.6x | 328.3M | 18.3% | 1 |  |
 | NBIS | 2026-10-13 03:35 | other | listed | 207.3 | -1.3% | -9.7% | 0.9x | 228.7M | 19.5% | 0 |  |
 | SKHY | 2026-10-13 02:56 | other | listed | 160.3 | -1.2% | -16.8% | 0.8x | 5.67B | 0.7% | 0 |  |
 | SNDK | 2026-10-13 01:10 | other | listed | 1,454 | -8.1% | -8.0% | 0.6x | 144.5M | 3.3% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | SOXL | 2026-10-09 00:30 | other | listed | 142.2 | -10.5% | +7.5% | 0.9x |  |  |  |  |
 | MCD | 2026-10-09 00:16 | other | listed | 236.9 | +2.6% | -0.0% | 0.7x | 706.6M | 1.7% | 0 |  |
 | CIFR | 2026-10-08 21:37 | other | listed | 13.55 | +0.4% | -12.7% | 1.7x | 344.1M | 21.2% | 0 |  |
-| ASTS | 2026-10-08 21:11 | other | listed | 55.4 | -2.7% | -0.2% | 1.7x | 266.5M | 24.5% | 0 |  |
