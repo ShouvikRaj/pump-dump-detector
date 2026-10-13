@@ -1,13 +1,15 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-13T10:39:54Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-13T13:32:36Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-94 candidates and 188 controls so far. Archetypes: other 91, low_float_runner 3.
+96 candidates and 192 controls so far. Archetypes: other 93, low_float_runner 3.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| USAR | 2026-10-13 13:32 | other | listed | 11.6 | -1.9% | -13.4% | 1.0x | 148.9M | 30.3% | 3 |  |
+| OKLO | 2026-10-13 13:32 | other | listed | 31.49 | -2.2% | -10.5% | 1.0x | 157.9M | 20.8% | 1 |  |
 | JPM | 2026-10-13 10:39 | other | listed | 324.9 | -2.8% | +0.6% | 0.7x | 2.64B | 0.9% | 5893 |  |
 | SXTC | 2026-10-13 08:00 | other | listed | 0.0917 | -10.1% | -95.1% | 4.6x | 0.4M | 16.3% | 3 |  |
 | CRWV | 2026-10-13 03:58 | other | listed | 79.19 | -1.3% | -8.2% | 0.6x | 328.3M | 18.3% | 1 |  |
@@ -36,5 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | TSM | 2026-10-09 12:39 | other | listed | 465.4 | +1.6% | -0.3% | 1.4x | 37.84B | 0.1% | 0 |  |
 | HUM | 2026-10-09 12:39 | other | listed | 449 | +16.0% | +2.0% | 2.2x | 119.8M | 2.4% | 0 |  |
 | ONDS | 2026-10-09 01:49 | other | listed | 6.874 | +0.4% | -3.8% | 1.0x | 533.4M | 44.5% | 5 |  |
-| IBM | 2026-10-09 01:09 | other | listed | 225.5 | +2.3% | +0.3% | 0.6x | 940.2M | 2.4% | 2 |  |
-| SOXL | 2026-10-09 00:30 | other | listed | 142.2 | -10.5% | +7.5% | 0.9x |  |  |  |  |
