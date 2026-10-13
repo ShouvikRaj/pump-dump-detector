@@ -1,13 +1,15 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-13T13:32:36Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-13T13:59:32Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-96 candidates and 192 controls so far. Archetypes: other 93, low_float_runner 3.
+98 candidates and 196 controls so far. Archetypes: other 95, low_float_runner 3.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| MSFT | 2026-10-13 13:59 | other | listed | 550.2 | +1.7% | +3.0% | 0.8x | 7.41B | 0.8% | 0 |  |
+| AMC | 2026-10-13 13:59 | other | listed | 3.135 | +4.5% | +7.5% | 0.5x | 835.3M | 5.9% | 0 |  |
 | USAR | 2026-10-13 13:32 | other | listed | 11.6 | -1.9% | -13.4% | 1.0x | 148.9M | 30.3% | 3 |  |
 | OKLO | 2026-10-13 13:32 | other | listed | 31.49 | -2.2% | -10.5% | 1.0x | 157.9M | 20.8% | 1 |  |
 | JPM | 2026-10-13 10:39 | other | listed | 324.9 | -2.8% | +0.6% | 0.7x | 2.64B | 0.9% | 5893 |  |
@@ -36,5 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | SLS | 2026-10-09 13:19 | other | listed | 11.4 | +1.2% | -0.6% | 0.7x | 201.1M | 29.4% | 0 |  |
 | DAL | 2026-10-09 12:52 | other | listed | 80.14 | -2.4% | -2.4% | 1.2x | 649.7M | 4.0% | 0 |  |
 | TSM | 2026-10-09 12:39 | other | listed | 465.4 | +1.6% | -0.3% | 1.4x | 37.84B | 0.1% | 0 |  |
-| HUM | 2026-10-09 12:39 | other | listed | 449 | +16.0% | +2.0% | 2.2x | 119.8M | 2.4% | 0 |  |
-| ONDS | 2026-10-09 01:49 | other | listed | 6.874 | +0.4% | -3.8% | 1.0x | 533.4M | 44.5% | 5 |  |
