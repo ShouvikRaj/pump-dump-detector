@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-13T18:51:52Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-13T20:11:14Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-102 candidates and 204 controls so far. Archetypes: other 97, low_float_runner 5.
+103 candidates and 206 controls so far. Archetypes: other 98, low_float_runner 5.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| AAOI | 2026-10-13 20:10 | other | listed | 99 | +1.2% | -24.9% | 1.1x | 80.9M | 17.2% | 1 |  |
 | JBDI | 2026-10-13 18:51 | low float runner | listed | 3.677 | +267.7% | +0.0% | 0.0x | 5.0M | 0.7% | 0 |  |
 | TTWO | 2026-10-13 18:32 | other | listed | 199.2 | -4.6% | +2.6% | 0.8x | 186.1M | 5.0% | 0 |  |
 | CLGN | 2026-10-13 16:38 | low float runner | listed | 4.05 | +0.7% | +17.9% | 2.4x | 0.9M | 4.9% | 1 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | MU | 2026-10-12 14:20 | other | listed | 984.9 | -4.3% | -4.3% | 0.8x | 1.13B | 2.3% | 0 |  |
 | CBRS | 2026-10-12 14:20 | other | listed | 150.7 | -8.2% | -1.4% | 0.9x | 109.9M | 12.8% | 0 |  |
 | MGM | 2026-10-12 06:49 | other | listed | 29.36 | +0.3% | -4.0% | 1.0x | 181.0M | 10.5% | 0 |  |
-| IREN | 2026-10-12 03:44 | other | listed | 35.21 | +0.0% | -15.7% | 1.0x | 346.2M | 23.6% | 1 |  |
