@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-10-12T05:47:32Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-10-13T00:17:51Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-10-12)
 
@@ -17,6 +17,21 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-10-12 22:44 | NIO | other | no model | no model | 100% / 0% / 9.1% / 0% | Users discuss NIO's financial health, express strong negative opinions, and mention a potential short squeeze. |
+| 2026-10-12 21:51 | SOFI | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss SOFI as a meme stock, mention its short float, and list it among stocks near 52-week lows. |
+| 2026-10-12 20:58 | BMBL | other | no model | no model | 100% / 10% / 30% / 30% | Users discuss a reported $1B buyout of Bumble Inc. and warn of a potential pump-and-dump scheme. |
+| 2026-10-12 20:58 | META | other | no model | no model | 100% / 2.5% / 0% / 2.5% | Chatter discusses META's AI model 'Muse', price movements, and potential earnings impact with mixed sentiment. |
+| 2026-10-12 20:32 | UNH | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss UNH earnings anticipation and call options with mixed bullish and bearish sentiments. |
+| 2026-10-12 20:18 | RDDT | other | no model | no model | 100% / 12% / 0% / 0% | Users discuss RDDT valuation, express bullish optimism, and reference a large position increase. |
+| 2026-10-12 18:19 | WFF | other | no model | no model | 100% / 30% / 0% / 0% | Users discuss erratic price movements, halts, and express confusion about the stock's performance without citing specific corporate events. |
+| 2026-10-12 17:40 | ASML | other | no model | no model | 100% / 10% / 0% / 60% | Users discuss upcoming earnings for ASML and TSMC, with mixed opinions on potential price drops. |
+| 2026-10-12 17:00 | SMCI | other | no model | no model | 100% / 27% / 0% / 0% | Users discuss SMCI price movements, express bullish optimism, and mention unrelated geopolitical events. |
+| 2026-10-12 15:13 | TSM | other | no model | no model | 100% / 0% / 0% / 36% | Users discuss TSM earnings anticipation, trading strategies, and general market sentiment regarding the semiconductor stock. |
+| 2026-10-12 14:47 | ONDS | other | no model | no model | 100% / 36% / 9.1% / 0% | Users discuss ONDS potential, warn of dilution, and set price targets. |
+| 2026-10-12 14:20 | CBRS | other | no model | no model | 100% / 0% / 0% / 0% | Users express extreme distress, fear, and hopelessness regarding a sharp decline in CBRS stock price. |
+| 2026-10-12 14:20 | MU | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss a sharp price drop in $MU, blaming manipulation and expressing anger over the crash. |
+| 2026-10-12 14:20 | SOXX | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss SOXX holdings, compare it to other funds, and analyze recent price movements and sector correlations. |
+| 2026-10-12 06:49 | MGM | other | no model | no model | 91% / 0% / 0% / 0% | Users discuss MGM's oversold technicals and potential for a mean reversion bounce. |
 | 2026-10-12 03:44 | IREN | other | no model | no model | 100% / 0% / 0% / 7.4% | Chatter focuses on a rumored deal between IREN and Anthropic, with mixed reactions ranging from bullish excitement to skepticism about the company's fundamentals. |
 | 2026-10-09 13:59 | UNH | other | no model | no model | 100% / 20% / 0% / 0% | Discussions focus on UNH earnings, options activity, and mixed sentiment regarding potential pumps or delusions. |
 | 2026-10-09 13:19 | SLS | other | no model | no model | 100% / 0% / 0% / 8.3% | Users discuss SLS clinical data, express bullish sentiment, and mention specific upcoming events like the 80th patient milestone. |
@@ -42,21 +57,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-08 13:27 | TTWO | other | no model | no model | 100% / 9.1% / 0% / 0% | Users discuss TTWO price targets, GTA VI anticipation, and trading strategies without specific corporate events. |
 | 2026-10-08 13:12 | PLTR | other | no model | no model | 100% / 0% / 7.7% / 0% | Chatter includes mixed reactions to PLTR price movements, with some users warning of a pump-and-dump while others express bullish optimism. |
 | 2026-10-08 04:07 | ADBE | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss bearish theses regarding AI clones and open-source alternatives threatening Adobe's subscription model. |
-| 2026-10-08 03:01 | KEEL | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss KEEL stock performance, express skepticism about its progress, and mention buying calls for a potential drop. |
-| 2026-10-07 20:50 | SMCI | other | no model | no model | 100% / 23% / 0% / 7.7% | Mixed chatter on SMCI ranging from bullish price targets to bearish warnings and a rumor of a buyout. |
-| 2026-10-07 20:50 | UUUU | other | no model | no model | 100% / 0% / 0% / 0% | Users express extreme frustration and disappointment over UUUU's recent price decline and poor performance. |
-| 2026-10-07 20:37 | LEVI | other | no model | no model | 100% / 0% / 0% / 7.7% | Users discuss LEVI stock performance, noting a stock drop despite positive earnings results. |
-| 2026-10-07 19:18 | IREN | other | no model | no model | 100% / 9.1% / 0% / 0% | Mixed chatter includes bullish targets, complaints about price drops, and mentions of analyst upgrades. |
-| 2026-10-07 17:44 | LLY | other | no model | no model | 100% / 18% / 0% / 0% | Users express bullish sentiment and speculate on a stock split for LLY. |
-| 2026-10-07 16:38 | BIYA | low float runner | no model | no model | 100% / 20% / 0% / 0% | Users discuss BIYA price spikes, volume, and set aggressive sell targets, with one user claiming a massive percentage gain. |
-| 2026-10-07 13:01 | GLD | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss GLD price drops, short positions, and speculate on Burry's holdings without specific company events. |
-| 2026-10-07 12:34 | SOXL | other | no model | no model | 100% / 9.7% / 0% / 0% | Users discuss SOXL price movements, express bearish views via put options, and issue a coordinated buy signal. |
-| 2026-10-07 12:08 | BULL | other | no model | no model | 100% / 7.7% / 0% / 0% | Users discuss Webull stock volatility, regulatory news, and ask for buy/sell advice. |
-| 2026-10-07 12:08 | SOXS | other | no model | no model | 100% / 23% / 0% / 0% | Users urge buying SOXS based on a non-existent Iran deal rumor and a specific options pinning event. |
-| 2026-10-07 10:09 | SNDK | other | no model | no model | 100% / 0% / 0% / 0% | Users express extreme frustration and bearish sentiment regarding Sandisk stock performance. |
-| 2026-10-06 23:59 | CRWD | other | no model | no model | 100% / 10% / 10% / 0% | Users discuss CRWD price movements, past outages, and speculate on future trends with mixed bullish and bearish sentiment. |
-| 2026-10-06 19:34 | AVGO | other | no model | no model | 100% / 0% / 0% / 0% | Chatter focuses on AVGO price action, bagholder frustration, and expectations for a significant price increase. |
-| 2026-10-06 18:54 | SKHY | other | no model | no model | 91% / 18% / 9.1% / 0% | Mixed chatter includes bullish call options, bearish warnings, and unrelated comments. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
