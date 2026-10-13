@@ -1,276 +1,318 @@
 # Stage 3 tracking
 
-Updated 2026-10-13T03:13:14Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-10-13T22:53:48Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 2026-10-13 02:56 | AFL | control | other | active | 0 |  |  |  |  |  |
-| 2026-10-13 02:56 | SWX | control | other | active | 0 |  |  |  |  |  |
-| 2026-10-13 02:56 | SKHY | candidate | other | active | 0 |  |  |  |  |  |
-| 2026-10-13 01:10 | NEU | control | other | active | 0 |  |  |  |  |  |
-| 2026-10-13 01:10 | MPWR | control | other | active | 0 |  |  |  |  |  |
-| 2026-10-13 01:10 | SNDK | candidate | other | active | 0 |  |  |  |  |  |
-| 2026-10-12 22:44 | CIG | control | other | active | 0 |  |  |  |  |  |
-| 2026-10-12 22:44 | VFS | control | other | active | 0 |  |  |  |  |  |
-| 2026-10-12 22:44 | NIO | candidate | other | active | 0 |  |  |  |  |  |
-| 2026-10-12 21:51 | KIM | control | other | active | 0 |  |  |  |  |  |
-| 2026-10-12 21:51 | VOD | control | other | active | 0 |  |  |  |  |  |
-| 2026-10-12 21:51 | SOFI | candidate | other | active | 0 |  |  |  |  |  |
-| 2026-10-12 20:58 | AVIR | control | other | active | 0 |  |  |  |  |  |
-| 2026-10-12 20:58 | TRTX | control | other | active | 0 |  |  |  |  |  |
-| 2026-10-12 20:58 | LFUS | control | other | active | 0 |  |  |  |  |  |
-| 2026-10-12 20:58 | REGN | control | other | active | 0 |  |  |  |  |  |
-| 2026-10-12 20:58 | BMBL | candidate | other | active | 0 |  |  |  |  |  |
-| 2026-10-12 20:58 | META | candidate | other | active | 0 |  |  |  |  |  |
-| 2026-10-12 20:32 | EG | control | other | active | 0 |  |  |  |  |  |
-| 2026-10-12 20:32 | WELL | control | other | active | 0 |  |  |  |  |  |
-| 2026-10-12 20:32 | UNH | candidate | other | active | 0 |  |  |  |  |  |
-| 2026-10-12 20:18 | ON | control | other | active | 0 |  |  |  |  |  |
-| 2026-10-12 20:18 | BURL | control | other | active | 0 |  |  |  |  |  |
-| 2026-10-12 20:18 | RDDT | candidate | other | active | 0 |  |  |  |  |  |
-| 2026-10-12 18:19 | WHR | control | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 18:19 | NSP | control | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 18:19 | WFF | candidate | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 17:40 | WTM | control | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 17:40 | MPWR | control | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 17:40 | ASML | candidate | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 17:00 | WPC | control | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 17:00 | BEN | control | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 17:00 | SMCI | candidate | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 15:13 | DJCO | control | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 15:13 | ALX | control | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 15:13 | TSM | candidate | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 14:47 | LION | control | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 14:47 | CTOS | control | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 14:47 | ONDS | candidate | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 14:20 | EHC | control | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 14:20 | WEC | control | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 14:20 | EQIX | control | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 14:20 | CMI | control | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 14:20 | TDY | control | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 14:20 | AIT | control | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 14:20 | CBRS | candidate | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 14:20 | MU | candidate | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 14:20 | SOXX | candidate | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 06:49 | INGM | control | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 06:49 | KVYO | control | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 06:49 | MGM | candidate | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 03:44 | EMN | control | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 03:44 | BEPC | control | other | active | 1 |  |  |  |  |  |
-| 2026-10-12 03:44 | IREN | candidate | other | active | 1 |  |  |  |  |  |
-| 2026-10-09 13:59 | DY | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 13:59 | JLL | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 13:59 | UNH | candidate | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 13:19 | ALKT | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 13:19 | RNW | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 13:19 | SLS | candidate | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 12:52 | FAST | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 12:52 | DVN | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 12:52 | DAL | candidate | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 12:39 | EXPE | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 12:39 | GRMN | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 12:39 | FDX | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 12:39 | ONC | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 12:39 | HUM | candidate | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 12:39 | TSM | candidate | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 01:49 | GBDC | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 01:49 | KD | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 01:49 | ONDS | candidate | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 01:09 | UNP | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 01:09 | ETN | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 01:09 | IBM | candidate | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 00:30 | LB | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 00:30 | AGL | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 00:30 | SOXL | candidate | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 00:16 | COF | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 00:16 | ICE | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-09 00:16 | MCD | candidate | other | active | 2 |  |  |  |  |  |
-| 2026-10-08 21:37 | AVTR | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-08 21:37 | STNE | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-08 21:37 | CIFR | candidate | other | active | 2 |  |  |  |  |  |
-| 2026-10-08 21:11 | BBIO | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-08 21:11 | WF | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-08 21:11 | ASTS | candidate | other | active | 2 |  |  |  |  |  |
-| 2026-10-08 20:17 | CGNX | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-08 20:17 | ABVX | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-08 20:17 | AAOI | candidate | other | active | 2 |  |  |  |  |  |
-| 2026-10-08 19:38 | IOT | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 19:38 | TRP | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 19:38 | CMG | candidate | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 18:59 | AEP | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 18:59 | NEE | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 18:59 | SBUX | candidate | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 18:20 | LOPE | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 18:20 | ITRI | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 18:20 | USO | candidate | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 18:05 | BIIB | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 18:05 | CNI | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 18:05 | NBIS | candidate | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 17:52 | TT | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 17:52 | GS | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 17:52 | DELL | candidate | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 17:11 | MRK | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 17:11 | NVS | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 17:11 | ORCL | candidate | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 16:17 | LNC | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 16:17 | SM | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 16:17 | GME | candidate | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 15:51 | CW | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 15:51 | DE | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 15:51 | BWET | candidate | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 13:39 | MSI | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 13:39 | BIO | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 13:39 | META | candidate | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 13:27 | NRG | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 13:27 | RVMD | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 13:27 | TTWO | candidate | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 13:12 | AWI | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 13:12 | CVSA | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 13:12 | PLTR | candidate | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 04:07 | EOG | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 04:07 | DLR | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 04:07 | ADBE | candidate | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 03:01 | HSLV | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-08 03:01 | PLBL | control | low_float_runner | active | 3 |  |  |  |  |  |
-| 2026-10-08 03:01 | KEEL | candidate | other | active | 3 |  |  |  |  |  |
-| 2026-10-07 20:50 | VIK | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-07 20:50 | AMCR | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-07 20:50 | AADX | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-07 20:50 | RVT | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-07 20:50 | SMCI | candidate | other | active | 3 |  |  |  |  |  |
-| 2026-10-07 20:50 | UUUU | candidate | other | active | 3 |  |  |  |  |  |
-| 2026-10-07 20:37 | ABXL | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-07 20:37 | IMPPP | control | other | active | 3 |  |  |  |  |  |
-| 2026-10-07 20:37 | LEVI | candidate | other | active | 3 |  |  |  |  |  |
-| 2026-10-07 19:18 | TTEK | control | other | active | 4 |  |  |  |  |  |
-| 2026-10-07 19:18 | RAL | control | other | active | 4 |  |  |  |  |  |
-| 2026-10-07 19:18 | IREN | candidate | other | active | 4 |  |  |  |  |  |
-| 2026-10-07 17:44 | URI | control | other | active | 4 |  |  |  |  |  |
-| 2026-10-07 17:44 | DJCO | control | other | active | 4 |  |  |  |  |  |
-| 2026-10-07 17:44 | LLY | candidate | other | active | 4 |  |  |  |  |  |
-| 2026-10-07 16:38 | DUKRW | control | low_float_runner | active | 4 |  |  |  |  |  |
-| 2026-10-07 16:38 | MKZR | control | low_float_runner | active | 4 |  |  |  |  |  |
-| 2026-10-07 16:38 | BIYA | candidate | low_float_runner | active | 4 |  |  |  |  |  |
-| 2026-10-07 13:01 | LIN | control | other | active | 4 |  |  |  |  |  |
-| 2026-10-07 13:01 | ADP | control | other | active | 4 |  |  |  |  |  |
-| 2026-10-07 13:01 | GLD | candidate | other | active | 4 |  |  |  |  |  |
-| 2026-10-07 12:34 | SE | control | other | active | 4 |  |  |  |  |  |
-| 2026-10-07 12:34 | AGCO | control | other | active | 4 |  |  |  |  |  |
-| 2026-10-07 12:34 | SOXL | candidate | other | active | 4 |  |  |  |  |  |
-| 2026-10-07 12:08 | LUXE | control | other | active | 4 |  |  |  |  |  |
-| 2026-10-07 12:08 | MLCO | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-13 20:37 | CMC | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-13 20:37 | CNK | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-13 20:37 | BAC | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-13 20:10 | MANE | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-13 20:10 | FSV | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-13 20:10 | AAOI | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-13 18:51 | MLCI | control | low_float_runner | active | 1 |  |  |  |  |  |
+| 2026-10-13 18:51 | ZOOZ | control | low_float_runner | active | 1 |  |  |  |  |  |
+| 2026-10-13 18:51 | JBDI | candidate | low_float_runner | active | 1 |  |  |  |  |  |
+| 2026-10-13 18:32 | VEEV | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 18:32 | CNI | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 18:32 | TTWO | candidate | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 16:38 | AMIX | control | low_float_runner | active | 1 |  |  |  |  |  |
+| 2026-10-13 16:38 | BTLN | control | low_float_runner | active | 1 |  |  |  |  |  |
+| 2026-10-13 16:38 | CLGN | candidate | low_float_runner | active | 1 |  |  |  |  |  |
+| 2026-10-13 14:38 | MTCH | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 14:38 | APA | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 14:38 | GME | candidate | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 13:59 | JBLU | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 13:59 | UAA | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 13:59 | TRV | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 13:59 | LH | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 13:59 | AMC | candidate | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 13:59 | MSFT | candidate | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 13:32 | HASI | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 13:32 | PTRN | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 13:32 | RSI | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 13:32 | NEOG | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 13:32 | OKLO | candidate | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 13:32 | USAR | candidate | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 10:39 | HIFS | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 10:39 | ALL | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 10:39 | JPM | candidate | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 08:00 | AIM | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 08:00 | AZTR | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 08:00 | SXTC | candidate | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 03:58 | FAST | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 03:58 | APO | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 03:58 | CRWV | candidate | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 03:35 | HIG | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 03:35 | NTAP | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 03:35 | NBIS | candidate | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 02:56 | AFL | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 02:56 | SWX | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 02:56 | SKHY | candidate | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 01:10 | NEU | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 01:10 | MPWR | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-13 01:10 | SNDK | candidate | other | active | 1 |  |  |  |  |  |
+| 2026-10-12 22:44 | CIG | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-12 22:44 | VFS | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-12 22:44 | NIO | candidate | other | active | 1 |  |  |  |  |  |
+| 2026-10-12 21:51 | KIM | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-12 21:51 | VOD | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-12 21:51 | SOFI | candidate | other | active | 1 |  |  |  |  |  |
+| 2026-10-12 20:58 | AVIR | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-12 20:58 | TRTX | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-12 20:58 | LFUS | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-12 20:58 | REGN | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-12 20:58 | BMBL | candidate | other | active | 1 |  |  |  |  |  |
+| 2026-10-12 20:58 | META | candidate | other | active | 1 |  |  |  |  |  |
+| 2026-10-12 20:32 | EG | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-12 20:32 | WELL | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-12 20:32 | UNH | candidate | other | active | 1 |  |  |  |  |  |
+| 2026-10-12 20:18 | ON | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-12 20:18 | BURL | control | other | active | 1 |  |  |  |  |  |
+| 2026-10-12 20:18 | RDDT | candidate | other | active | 1 |  |  |  |  |  |
+| 2026-10-12 18:19 | WHR | control | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 18:19 | NSP | control | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 18:19 | WFF | candidate | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 17:40 | WTM | control | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 17:40 | MPWR | control | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 17:40 | ASML | candidate | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 17:00 | WPC | control | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 17:00 | BEN | control | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 17:00 | SMCI | candidate | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 15:13 | DJCO | control | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 15:13 | ALX | control | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 15:13 | TSM | candidate | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 14:47 | LION | control | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 14:47 | CTOS | control | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 14:47 | ONDS | candidate | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 14:20 | EHC | control | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 14:20 | WEC | control | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 14:20 | EQIX | control | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 14:20 | CMI | control | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 14:20 | TDY | control | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 14:20 | AIT | control | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 14:20 | CBRS | candidate | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 14:20 | MU | candidate | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 14:20 | SOXX | candidate | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 06:49 | INGM | control | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 06:49 | KVYO | control | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 06:49 | MGM | candidate | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 03:44 | EMN | control | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 03:44 | BEPC | control | other | active | 2 |  |  |  |  |  |
+| 2026-10-12 03:44 | IREN | candidate | other | active | 2 |  |  |  |  |  |
+| 2026-10-09 13:59 | DY | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 13:59 | JLL | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 13:59 | UNH | candidate | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 13:19 | ALKT | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 13:19 | RNW | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 13:19 | SLS | candidate | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 12:52 | FAST | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 12:52 | DVN | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 12:52 | DAL | candidate | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 12:39 | EXPE | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 12:39 | GRMN | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 12:39 | FDX | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 12:39 | ONC | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 12:39 | HUM | candidate | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 12:39 | TSM | candidate | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 01:49 | GBDC | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 01:49 | KD | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 01:49 | ONDS | candidate | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 01:09 | UNP | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 01:09 | ETN | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 01:09 | IBM | candidate | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 00:30 | LB | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 00:30 | AGL | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 00:30 | SOXL | candidate | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 00:16 | COF | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 00:16 | ICE | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-09 00:16 | MCD | candidate | other | active | 3 |  |  |  |  |  |
+| 2026-10-08 21:37 | AVTR | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-08 21:37 | STNE | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-08 21:37 | CIFR | candidate | other | active | 3 |  |  |  |  |  |
+| 2026-10-08 21:11 | BBIO | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-08 21:11 | WF | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-08 21:11 | ASTS | candidate | other | active | 3 |  |  |  |  |  |
+| 2026-10-08 20:17 | CGNX | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-08 20:17 | ABVX | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-08 20:17 | AAOI | candidate | other | active | 3 |  |  |  |  |  |
+| 2026-10-08 19:38 | IOT | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 19:38 | TRP | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 19:38 | CMG | candidate | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 18:59 | AEP | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 18:59 | NEE | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 18:59 | SBUX | candidate | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 18:20 | LOPE | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 18:20 | ITRI | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 18:20 | USO | candidate | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 18:05 | BIIB | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 18:05 | CNI | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 18:05 | NBIS | candidate | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 17:52 | TT | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 17:52 | GS | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 17:52 | DELL | candidate | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 17:11 | MRK | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 17:11 | NVS | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 17:11 | ORCL | candidate | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 16:17 | LNC | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 16:17 | SM | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 16:17 | GME | candidate | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 15:51 | CW | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 15:51 | DE | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 15:51 | BWET | candidate | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 13:39 | MSI | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 13:39 | BIO | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 13:39 | META | candidate | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 13:27 | NRG | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 13:27 | RVMD | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 13:27 | TTWO | candidate | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 13:12 | AWI | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 13:12 | CVSA | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 13:12 | PLTR | candidate | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 04:07 | EOG | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 04:07 | DLR | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 04:07 | ADBE | candidate | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 03:01 | HSLV | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-08 03:01 | PLBL | control | low_float_runner | active | 4 |  |  |  |  |  |
+| 2026-10-08 03:01 | KEEL | candidate | other | active | 4 |  |  |  |  |  |
+| 2026-10-07 20:50 | VIK | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-07 20:50 | AMCR | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-07 20:50 | AADX | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-07 20:50 | RVT | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-07 20:50 | SMCI | candidate | other | active | 4 |  |  |  |  |  |
+| 2026-10-07 20:50 | UUUU | candidate | other | active | 4 |  |  |  |  |  |
+| 2026-10-07 20:37 | ABXL | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-07 20:37 | IMPPP | control | other | active | 4 |  |  |  |  |  |
+| 2026-10-07 20:37 | LEVI | candidate | other | active | 4 |  |  |  |  |  |
+| 2026-10-07 19:18 | TTEK | control | other | active | 5 | +4% |  | +3% |  |  |
+| 2026-10-07 19:18 | RAL | control | other | active | 5 | +1% |  | -1% |  |  |
+| 2026-10-07 19:18 | IREN | candidate | other | active | 5 | +4% |  | -10% |  |  |
+| 2026-10-07 17:44 | URI | control | other | active | 5 | +3% |  | +2% |  |  |
+| 2026-10-07 17:44 | DJCO | control | other | active | 5 | +4% |  | +3% |  |  |
+| 2026-10-07 17:44 | LLY | candidate | other | active | 5 | +1% |  | -2% |  |  |
+| 2026-10-07 16:38 | DUKRW | control | low_float_runner | active | 5 | +17% |  | -7% |  |  |
+| 2026-10-07 16:38 | MKZR | control | low_float_runner | active | 5 | +8% |  | -8% |  |  |
+| 2026-10-07 16:38 | BIYA | candidate | low_float_runner | active | 5 | +37% |  | -30% |  |  |
+| 2026-10-07 13:01 | LIN | control | other | active | 5 | +0% |  | -0% |  |  |
+| 2026-10-07 13:01 | ADP | control | other | active | 5 | +5% |  | +5% |  |  |
+| 2026-10-07 13:01 | GLD | candidate | other | active | 5 | +3% |  | +2% |  |  |
+| 2026-10-07 12:34 | SE | control | other | active | 5 | +2% |  | +0% |  |  |
+| 2026-10-07 12:34 | AGCO | control | other | active | 5 | -1% |  | -7% |  |  |
+| 2026-10-07 12:34 | SOXL | candidate | other | active | 5 | +4% |  | -17% |  |  |
+| 2026-10-07 12:08 | LUXE | control | other | active | 5 | +5% |  | -3% |  |  |
+| 2026-10-07 12:08 | MLCO | control | other | active | 5 | +2% |  | +0% |  |  |
 | 2026-10-07 12:08 | NSLRL | control | other | active | 4 |  |  |  |  |  |
-| 2026-10-07 12:08 | UFCS | control | other | active | 4 |  |  |  |  |  |
-| 2026-10-07 12:08 | BULL | candidate | other | active | 4 |  |  |  |  |  |
-| 2026-10-07 12:08 | SOXS | candidate | other | active | 4 |  |  |  |  |  |
-| 2026-10-07 10:09 | PH | control | other | active | 4 |  |  |  |  |  |
-| 2026-10-07 10:09 | NEU | control | other | active | 4 |  |  |  |  |  |
-| 2026-10-07 10:09 | SNDK | candidate | other | active | 4 |  |  |  |  |  |
-| 2026-10-06 23:59 | MS | control | other | active | 4 |  |  |  |  |  |
-| 2026-10-06 23:59 | ADI | control | other | active | 4 |  |  |  |  |  |
-| 2026-10-06 23:59 | CRWD | candidate | other | active | 4 |  |  |  |  |  |
-| 2026-10-06 19:34 | HUBB | control | other | active | 5 | +1% |  | -2% |  |  |
-| 2026-10-06 19:34 | SLAB | control | other | active | 5 | +0% |  | -0% |  |  |
-| 2026-10-06 19:34 | AVGO | candidate | other | active | 5 | +1% |  | -6% |  |  |
-| 2026-10-06 18:54 | OPY | control | other | active | 5 | +2% |  | -9% |  |  |
-| 2026-10-06 18:54 | WDFC | control | other | active | 5 | +1% |  | -1% |  |  |
-| 2026-10-06 18:54 | SKHY | candidate | other | active | 5 | +4% |  | -12% |  |  |
-| 2026-10-06 18:28 | BANF | control | other | active | 5 | +2% |  | +0% |  |  |
-| 2026-10-06 18:28 | HLI | control | other | active | 5 | +2% |  | +2% |  |  |
-| 2026-10-06 18:28 | INTC | candidate | other | active | 5 | +3% |  | -12% |  |  |
-| 2026-10-06 18:14 | INGM | control | other | active | 5 | +1% |  | -2% |  |  |
-| 2026-10-06 18:14 | BRX | control | other | active | 5 | +1% |  | +1% |  |  |
-| 2026-10-06 18:14 | OKLO | candidate | other | active | 5 | +1% |  | -18% |  |  |
-| 2026-10-06 18:01 | CXT | control | other | active | 5 | +4% |  | +3% |  |  |
-| 2026-10-06 18:01 | YETI | control | other | active | 5 | +1% |  | -3% |  |  |
-| 2026-10-06 18:01 | PENG | candidate | other | active | 5 | +40% |  | +38% |  |  |
-| 2026-10-06 17:21 | GCL | control | other | active | 5 | +23% |  | +9% |  |  |
-| 2026-10-06 17:21 | TEAD | control | other | active | 5 | +5% |  | -13% |  |  |
-| 2026-10-06 17:21 | CIRC | candidate | other | active | 5 | +59% |  | +2% |  |  |
-| 2026-10-06 17:08 | DE | control | other | active | 5 | +2% |  | -7% |  |  |
-| 2026-10-06 17:08 | UI | control | other | active | 5 | +7% |  | -0% |  |  |
-| 2026-10-06 17:08 | SPY | candidate | other | active | 5 | +0% |  | -0% |  |  |
-| 2026-10-06 16:43 | RR | control | other | active | 5 | +4% |  | -10% |  |  |
-| 2026-10-06 16:43 | VTEX | control | other | active | 5 | +6% |  | +5% |  |  |
-| 2026-10-06 16:43 | RWTO | control | other | active | 5 | +6% |  | -3% |  |  |
-| 2026-10-06 16:43 | SPNT | control | other | active | 5 | +3% |  | +3% |  |  |
-| 2026-10-06 16:43 | HTZ | candidate | other | active | 5 | +11% |  | -8% |  |  |
-| 2026-10-06 16:43 | INFQ | candidate | other | active | 5 | +4% |  | -19% |  |  |
-| 2026-10-06 16:15 | EG | control | other | active | 5 | +2% |  | +1% |  |  |
-| 2026-10-06 16:15 | SNA | control | other | active | 5 | +0% |  | -3% |  |  |
-| 2026-10-06 16:15 | VOO | candidate | other | active | 5 | +0% |  | -0% |  |  |
-| 2026-10-06 15:49 | VOD | control | other | active | 5 | +2% |  | -7% |  |  |
-| 2026-10-06 15:49 | NWG | control | other | active | 5 | +0% |  | -3% |  |  |
-| 2026-10-06 15:49 | NOK | candidate | other | active | 5 | +2% |  | -8% |  |  |
-| 2026-10-06 14:55 | GS | control | other | active | 5 | +1% |  | -1% |  |  |
-| 2026-10-06 14:55 | NEU | control | other | active | 5 | +2% |  | -2% |  |  |
-| 2026-10-06 14:55 | AMD | candidate | other | active | 5 | +1% |  | -9% |  |  |
-| 2026-10-06 14:02 | FNV | control | other | active | 5 | +3% |  | +2% |  |  |
-| 2026-10-06 14:02 | PCAR | control | other | active | 5 | +0% |  | -2% |  |  |
-| 2026-10-06 14:02 | THG | control | other | active | 5 | +1% |  | +0% |  |  |
-| 2026-10-06 14:02 | JKHY | control | other | active | 5 | +5% |  | +3% |  |  |
-| 2026-10-06 14:02 | MRNA | candidate | other | active | 5 | +15% |  | +8% |  |  |
-| 2026-10-06 14:02 | NVDA | candidate | other | active | 5 | +0% |  | -7% |  |  |
-| 2026-10-06 13:49 | RYAAY | control | other | active | 5 | +0% |  | -5% |  |  |
-| 2026-10-06 13:49 | EW | control | other | active | 5 | +1% |  | -1% |  |  |
-| 2026-10-06 13:49 | ARQT | control | other | active | 5 | +8% |  | +5% |  |  |
-| 2026-10-06 13:49 | IMTX | control | other | active | 5 | +2% |  | -6% |  |  |
-| 2026-10-06 13:49 | CRWV | candidate | other | active | 5 | +4% |  | -11% |  |  |
-| 2026-10-06 13:49 | NVAX | candidate | other | active | 5 | +1% |  | -4% |  |  |
-| 2026-10-06 13:36 | LOW | control | other | active | 5 | +5% |  | +3% |  |  |
-| 2026-10-06 13:36 | SCCO | control | other | active | 5 | +3% |  | +2% |  |  |
-| 2026-10-06 13:36 | VRTX | control | other | active | 5 | +2% |  | +1% |  |  |
-| 2026-10-06 13:36 | ADI | control | other | active | 5 | +0% |  | -4% |  |  |
-| 2026-10-06 13:36 | CEG | candidate | other | active | 5 | +3% |  | -3% |  |  |
-| 2026-10-06 13:36 | MRVL | candidate | other | active | 5 | +5% |  | -7% |  |  |
-| 2026-10-06 11:49 | REGN | control | other | active | 5 | +5% |  | +4% |  |  |
-| 2026-10-06 11:49 | ETN | control | other | active | 5 | +2% |  | -2% |  |  |
-| 2026-10-06 11:49 | QQQ | candidate | other | active | 5 | +0% |  | -2% |  |  |
-| 2026-10-06 08:17 | LOW | control | other | active | 5 | +5% |  | +3% |  |  |
-| 2026-10-06 08:17 | APD | control | other | active | 5 | +2% |  | +2% |  |  |
-| 2026-10-06 08:17 | MSTR | candidate | other | active | 5 | +3% |  | -7% |  |  |
-| 2026-10-06 00:59 | RJF | control | other | active | 5 | +1% |  | -1% |  |  |
-| 2026-10-06 00:59 | ITIC | control | other | active | 5 | +4% |  | -1% |  |  |
-| 2026-10-06 00:59 | IWM | candidate | other | active | 5 | +1% |  | -2% |  |  |
-| 2026-10-05 23:41 | WDH | control | other | active | 5 | +2% |  | -1% |  |  |
-| 2026-10-05 23:41 | INO | control | other | active | 5 | +4% |  | -4% |  |  |
-| 2026-10-05 23:41 | ALEC | candidate | other | active | 5 | +14% |  | +6% |  |  |
-| 2026-10-05 21:14 | MDGL | control | other | active | 5 | +2% |  | -5% |  |  |
-| 2026-10-05 21:14 | WAT | control | other | active | 5 | +3% |  | -2% |  |  |
-| 2026-10-05 21:14 | RY | control | other | active | 5 | +1% |  | -1% |  |  |
-| 2026-10-05 21:14 | BNY | control | other | active | 5 | +1% |  | -1% |  |  |
-| 2026-10-05 21:14 | MSFT | candidate | other | active | 5 | +3% |  | +3% |  |  |
-| 2026-10-05 21:14 | QCOM | candidate | other | active | 5 | +1% |  | -4% |  |  |
-| 2026-10-05 17:49 | NI | control | other | active | 6 | +3% |  | +3% |  |  |
-| 2026-10-05 17:49 | AMRZ | control | other | active | 6 | +1% |  | -3% |  |  |
-| 2026-10-05 17:49 | IREN | candidate | other | active | 6 | +5% |  | -13% |  |  |
-| 2026-10-05 16:38 | ADI | control | other | active | 6 | +2% |  | -2% |  |  |
-| 2026-10-05 16:38 | PWR | control | other | active | 6 | +5% |  | +2% |  |  |
-| 2026-10-05 16:38 | DELL | candidate | other | active | 6 | +7% |  | +6% |  |  |
-| 2026-10-05 16:24 | SOBO | control | other | active | 6 | +1% |  | -2% |  |  |
-| 2026-10-05 16:24 | BEN | control | other | active | 6 | +1% |  | -3% |  |  |
-| 2026-10-05 16:24 | GME | candidate | other | active | 6 | +5% |  | +4% |  |  |
-| 2026-10-05 15:33 | MPU | control | low_float_runner | active | 6 | +8% |  | +2% |  |  |
-| 2026-10-05 15:33 | FIEE | control | low_float_runner | active | 6 | +2% |  | +1% |  |  |
-| 2026-10-05 15:33 | VEEA | candidate | low_float_runner | active | 6 | +40% |  | +13% |  |  |
-| 2026-10-05 15:18 | SAIA | control | other | active | 6 | +4% |  | -2% |  |  |
-| 2026-10-05 15:18 | MYRG | control | other | active | 6 | +8% |  | +2% |  |  |
-| 2026-10-05 15:18 | TSM | candidate | other | active | 6 | +1% |  | -6% |  |  |
-| 2026-10-05 14:51 | PPG | control | other | active | 6 | +2% |  | -1% |  |  |
-| 2026-10-05 14:51 | TEL | control | other | active | 6 | +2% |  | -1% |  |  |
-| 2026-10-05 14:51 | SPCX | candidate | other | active | 6 | +6% |  | -3% |  |  |
-| 2026-10-05 14:23 | SNN | control | other | active | 6 | +2% |  | +1% |  |  |
-| 2026-10-05 14:23 | LTH | control | other | active | 6 | +1% |  | -0% |  |  |
-| 2026-10-05 14:23 | APLD | candidate | other | active | 6 | +5% |  | -4% |  |  |
-| 2026-10-05 14:09 | RILYL | control | other | active | 6 | -1% |  | -12% |  |  |
-| 2026-10-05 14:09 | PFLT | control | other | active | 6 | +1% |  | -2% |  |  |
-| 2026-10-05 14:09 | SDEV | candidate | other | active | 6 | +43% |  | -78% |  |  |
-| 2026-10-05 13:55 | DTST | control | low_float_runner | active | 6 | +4% |  | +0% |  |  |
-| 2026-10-05 13:55 | ARBB | control | low_float_runner | active | 6 | -2% |  | -5% |  |  |
-| 2026-10-05 13:55 | PMI | candidate | low_float_runner | active | 6 | +65% |  | +54% |  |  |
-| 2026-10-05 04:15 | MMM | control | other | active | 6 | +1% |  | -1% |  |  |
-| 2026-10-05 04:15 | STRF | control | other | active | 6 | +1% |  | +1% |  |  |
-| 2026-10-05 04:15 | VST | candidate | other | active | 6 | +17% |  | +12% |  |  |
-| 2026-10-04 23:23 | BCSF | control | other | active | 6 | +2% |  | -4% |  |  |
-| 2026-10-04 23:23 | NCNO | control | other | active | 6 | +8% |  | +6% |  |  |
-| 2026-10-04 23:23 | DRTS | candidate | other | active | 6 | +4% |  | -1% |  |  |
+| 2026-10-07 12:08 | UFCS | control | other | active | 5 | +4% |  | +2% |  |  |
+| 2026-10-07 12:08 | BULL | candidate | other | active | 5 | +18% |  | +16% |  |  |
+| 2026-10-07 12:08 | SOXS | candidate | other | active | 5 | +31% |  | +20% |  |  |
+| 2026-10-07 10:09 | PH | control | other | active | 5 | -1% |  | -3% |  |  |
+| 2026-10-07 10:09 | NEU | control | other | active | 5 | +0% |  | -3% |  |  |
+| 2026-10-07 10:09 | SNDK | candidate | other | active | 5 | +7% |  | -9% |  |  |
+| 2026-10-06 23:59 | MS | control | other | active | 5 | +1% |  | -3% |  |  |
+| 2026-10-06 23:59 | ADI | control | other | active | 5 | -1% |  | -1% |  |  |
+| 2026-10-06 23:59 | CRWD | candidate | other | active | 5 | -1% |  | -6% |  |  |
+| 2026-10-06 19:34 | HUBB | control | other | active | 6 | +1% |  | -2% |  |  |
+| 2026-10-06 19:34 | SLAB | control | other | active | 6 | +0% |  | -0% |  |  |
+| 2026-10-06 19:34 | AVGO | candidate | other | active | 6 | +1% |  | -6% |  |  |
+| 2026-10-06 18:54 | OPY | control | other | active | 6 | +2% |  | -9% |  |  |
+| 2026-10-06 18:54 | WDFC | control | other | active | 6 | +1% |  | -1% |  |  |
+| 2026-10-06 18:54 | SKHY | candidate | other | active | 6 | +4% |  | -12% |  |  |
+| 2026-10-06 18:28 | BANF | control | other | active | 6 | +2% |  | +0% |  |  |
+| 2026-10-06 18:28 | HLI | control | other | active | 6 | +2% |  | +2% |  |  |
+| 2026-10-06 18:28 | INTC | candidate | other | active | 6 | +3% |  | -12% |  |  |
+| 2026-10-06 18:14 | INGM | control | other | active | 6 | +1% |  | -2% |  |  |
+| 2026-10-06 18:14 | BRX | control | other | active | 6 | +1% |  | +1% |  |  |
+| 2026-10-06 18:14 | OKLO | candidate | other | active | 6 | +1% |  | -18% |  |  |
+| 2026-10-06 18:01 | CXT | control | other | active | 6 | +4% |  | +3% |  |  |
+| 2026-10-06 18:01 | YETI | control | other | active | 6 | +1% |  | -3% |  |  |
+| 2026-10-06 18:01 | PENG | candidate | other | active | 6 | +40% |  | +38% |  |  |
+| 2026-10-06 17:21 | GCL | control | other | active | 6 | +23% |  | +9% |  |  |
+| 2026-10-06 17:21 | TEAD | control | other | active | 6 | +5% |  | -13% |  |  |
+| 2026-10-06 17:21 | CIRC | candidate | other | active | 6 | +59% |  | +2% |  |  |
+| 2026-10-06 17:08 | DE | control | other | active | 6 | +2% |  | -7% |  |  |
+| 2026-10-06 17:08 | UI | control | other | active | 6 | +7% |  | -0% |  |  |
+| 2026-10-06 17:08 | SPY | candidate | other | active | 6 | +0% |  | -0% |  |  |
+| 2026-10-06 16:43 | RR | control | other | active | 6 | +4% |  | -10% |  |  |
+| 2026-10-06 16:43 | VTEX | control | other | active | 6 | +6% |  | +5% |  |  |
+| 2026-10-06 16:43 | RWTO | control | other | active | 6 | +6% |  | -3% |  |  |
+| 2026-10-06 16:43 | SPNT | control | other | active | 6 | +3% |  | +3% |  |  |
+| 2026-10-06 16:43 | HTZ | candidate | other | active | 6 | +11% |  | -8% |  |  |
+| 2026-10-06 16:43 | INFQ | candidate | other | active | 6 | +4% |  | -19% |  |  |
+| 2026-10-06 16:15 | EG | control | other | active | 6 | +2% |  | +1% |  |  |
+| 2026-10-06 16:15 | SNA | control | other | active | 6 | +0% |  | -3% |  |  |
+| 2026-10-06 16:15 | VOO | candidate | other | active | 6 | +0% |  | -0% |  |  |
+| 2026-10-06 15:49 | VOD | control | other | active | 6 | +2% |  | -7% |  |  |
+| 2026-10-06 15:49 | NWG | control | other | active | 6 | +0% |  | -3% |  |  |
+| 2026-10-06 15:49 | NOK | candidate | other | active | 6 | +2% |  | -8% |  |  |
+| 2026-10-06 14:55 | GS | control | other | active | 6 | +1% |  | -1% |  |  |
+| 2026-10-06 14:55 | NEU | control | other | active | 6 | +2% |  | -2% |  |  |
+| 2026-10-06 14:55 | AMD | candidate | other | active | 6 | +1% |  | -9% |  |  |
+| 2026-10-06 14:02 | FNV | control | other | active | 6 | +3% |  | +2% |  |  |
+| 2026-10-06 14:02 | PCAR | control | other | active | 6 | +0% |  | -2% |  |  |
+| 2026-10-06 14:02 | THG | control | other | active | 6 | +1% |  | +0% |  |  |
+| 2026-10-06 14:02 | JKHY | control | other | active | 6 | +5% |  | +3% |  |  |
+| 2026-10-06 14:02 | MRNA | candidate | other | active | 6 | +15% |  | +8% |  |  |
+| 2026-10-06 14:02 | NVDA | candidate | other | active | 6 | +0% |  | -7% |  |  |
+| 2026-10-06 13:49 | RYAAY | control | other | active | 6 | +0% |  | -5% |  |  |
+| 2026-10-06 13:49 | EW | control | other | active | 6 | +1% |  | -1% |  |  |
+| 2026-10-06 13:49 | ARQT | control | other | active | 6 | +8% |  | +5% |  |  |
+| 2026-10-06 13:49 | IMTX | control | other | active | 6 | +2% |  | -6% |  |  |
+| 2026-10-06 13:49 | CRWV | candidate | other | active | 6 | +4% |  | -11% |  |  |
+| 2026-10-06 13:49 | NVAX | candidate | other | active | 6 | +1% |  | -4% |  |  |
+| 2026-10-06 13:36 | LOW | control | other | active | 6 | +5% |  | +3% |  |  |
+| 2026-10-06 13:36 | SCCO | control | other | active | 6 | +3% |  | +2% |  |  |
+| 2026-10-06 13:36 | VRTX | control | other | active | 6 | +2% |  | +1% |  |  |
+| 2026-10-06 13:36 | ADI | control | other | active | 6 | +0% |  | -4% |  |  |
+| 2026-10-06 13:36 | CEG | candidate | other | active | 6 | +3% |  | -3% |  |  |
+| 2026-10-06 13:36 | MRVL | candidate | other | active | 6 | +5% |  | -7% |  |  |
+| 2026-10-06 11:49 | REGN | control | other | active | 6 | +5% |  | +4% |  |  |
+| 2026-10-06 11:49 | ETN | control | other | active | 6 | +2% |  | -2% |  |  |
+| 2026-10-06 11:49 | QQQ | candidate | other | active | 6 | +0% |  | -2% |  |  |
+| 2026-10-06 08:17 | LOW | control | other | active | 6 | +5% |  | +3% |  |  |
+| 2026-10-06 08:17 | APD | control | other | active | 6 | +2% |  | +2% |  |  |
+| 2026-10-06 08:17 | MSTR | candidate | other | active | 6 | +3% |  | -7% |  |  |
+| 2026-10-06 00:59 | RJF | control | other | active | 6 | +1% |  | -1% |  |  |
+| 2026-10-06 00:59 | ITIC | control | other | active | 6 | +4% |  | -1% |  |  |
+| 2026-10-06 00:59 | IWM | candidate | other | active | 6 | +1% |  | -2% |  |  |
+| 2026-10-05 23:41 | WDH | control | other | active | 6 | +2% |  | -1% |  |  |
+| 2026-10-05 23:41 | INO | control | other | active | 6 | +4% |  | -4% |  |  |
+| 2026-10-05 23:41 | ALEC | candidate | other | active | 6 | +14% |  | +6% |  |  |
+| 2026-10-05 21:14 | MDGL | control | other | active | 6 | +2% |  | -5% |  |  |
+| 2026-10-05 21:14 | WAT | control | other | active | 6 | +3% |  | -2% |  |  |
+| 2026-10-05 21:14 | RY | control | other | active | 6 | +1% |  | -1% |  |  |
+| 2026-10-05 21:14 | BNY | control | other | active | 6 | +1% |  | -1% |  |  |
+| 2026-10-05 21:14 | MSFT | candidate | other | active | 6 | +3% |  | +3% |  |  |
+| 2026-10-05 21:14 | QCOM | candidate | other | active | 6 | +1% |  | -4% |  |  |
+| 2026-10-05 17:49 | NI | control | other | active | 7 | +3% |  | +3% |  |  |
+| 2026-10-05 17:49 | AMRZ | control | other | active | 7 | +1% |  | -3% |  |  |
+| 2026-10-05 17:49 | IREN | candidate | other | active | 7 | +5% |  | -13% |  |  |
+| 2026-10-05 16:38 | ADI | control | other | active | 7 | +2% |  | -2% |  |  |
+| 2026-10-05 16:38 | PWR | control | other | active | 7 | +5% |  | +2% |  |  |
+| 2026-10-05 16:38 | DELL | candidate | other | active | 7 | +7% |  | +6% |  |  |
+| 2026-10-05 16:24 | SOBO | control | other | active | 7 | +1% |  | -2% |  |  |
+| 2026-10-05 16:24 | BEN | control | other | active | 7 | +1% |  | -3% |  |  |
+| 2026-10-05 16:24 | GME | candidate | other | active | 7 | +5% |  | +4% |  |  |
+| 2026-10-05 15:33 | MPU | control | low_float_runner | active | 7 | +8% |  | +2% |  |  |
+| 2026-10-05 15:33 | FIEE | control | low_float_runner | active | 7 | +2% |  | +1% |  |  |
+| 2026-10-05 15:33 | VEEA | candidate | low_float_runner | active | 7 | +40% |  | +13% |  |  |
+| 2026-10-05 15:18 | SAIA | control | other | active | 7 | +4% |  | -2% |  |  |
+| 2026-10-05 15:18 | MYRG | control | other | active | 7 | +8% |  | +2% |  |  |
+| 2026-10-05 15:18 | TSM | candidate | other | active | 7 | +1% |  | -6% |  |  |
+| 2026-10-05 14:51 | PPG | control | other | active | 7 | +2% |  | -1% |  |  |
+| 2026-10-05 14:51 | TEL | control | other | active | 7 | +2% |  | -1% |  |  |
+| 2026-10-05 14:51 | SPCX | candidate | other | active | 7 | +6% |  | -3% |  |  |
+| 2026-10-05 14:23 | SNN | control | other | active | 7 | +2% |  | +1% |  |  |
+| 2026-10-05 14:23 | LTH | control | other | active | 7 | +1% |  | -0% |  |  |
+| 2026-10-05 14:23 | APLD | candidate | other | active | 7 | +5% |  | -4% |  |  |
+| 2026-10-05 14:09 | RILYL | control | other | active | 7 | -1% |  | -12% |  |  |
+| 2026-10-05 14:09 | PFLT | control | other | active | 7 | +1% |  | -2% |  |  |
+| 2026-10-05 14:09 | SDEV | candidate | other | active | 7 | +43% |  | -78% |  |  |
+| 2026-10-05 13:55 | DTST | control | low_float_runner | active | 7 | +4% |  | +0% |  |  |
+| 2026-10-05 13:55 | ARBB | control | low_float_runner | active | 7 | -2% |  | -5% |  |  |
+| 2026-10-05 13:55 | PMI | candidate | low_float_runner | active | 7 | +65% |  | +54% |  |  |
+| 2026-10-05 04:15 | MMM | control | other | active | 7 | +1% |  | -1% |  |  |
+| 2026-10-05 04:15 | STRF | control | other | active | 7 | +1% |  | +1% |  |  |
+| 2026-10-05 04:15 | VST | candidate | other | active | 7 | +17% |  | +12% |  |  |
+| 2026-10-04 23:23 | BCSF | control | other | active | 7 | +2% |  | -4% |  |  |
+| 2026-10-04 23:23 | NCNO | control | other | active | 7 | +8% |  | +6% |  |  |
+| 2026-10-04 23:23 | DRTS | candidate | other | active | 7 | +4% |  | -1% |  |  |
