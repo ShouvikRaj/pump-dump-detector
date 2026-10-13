@@ -8,17 +8,17 @@ Live since 2026-10-07T12:32:05Z.
 | Events | Count |
 |---|---|
 | history / announcement | 2471 |
-| scan / spike | 303 |
+| scan / spike | 305 |
 | telegram / announcement | 151 |
-| telegram / call | 1982 |
+| telegram / call | 1984 |
 
 | Outcome status | Count |
 |---|---|
 | no_data | 475 |
 | not_covered | 1575 |
 | partial | 5 |
-| pending | 295 |
-| settled | 2557 |
+| pending | 292 |
+| settled | 2564 |
 
 - `events.csv`: one row per event; `outcomes.csv`: crypto-label-v1 per event, rebuilt every run.
 - `bars/<source>/<event_id>.json.gz`: the event's 1-minute and hourly bars [open time ms, open, high, low,
