@@ -1,9 +1,18 @@
 # Stage 3 tracking
 
-Updated 2026-10-12T22:46:20Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-10-13T03:13:14Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-10-13 02:56 | AFL | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-13 02:56 | SWX | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-13 02:56 | SKHY | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-13 01:10 | NEU | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-13 01:10 | MPWR | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-13 01:10 | SNDK | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-12 22:44 | CIG | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-12 22:44 | VFS | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-12 22:44 | NIO | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-10-12 21:51 | KIM | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-12 21:51 | VOD | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-12 21:51 | SOFI | candidate | other | active | 0 |  |  |  |  |  |
@@ -150,7 +159,7 @@ Updated 2026-10-12T22:46:20Z. Each candidate and control is followed for 20 trad
 | 2026-10-07 12:34 | SOXL | candidate | other | active | 4 |  |  |  |  |  |
 | 2026-10-07 12:08 | LUXE | control | other | active | 4 |  |  |  |  |  |
 | 2026-10-07 12:08 | MLCO | control | other | active | 4 |  |  |  |  |  |
-| 2026-10-07 12:08 | NSLRL | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-07 12:08 | NSLRL | control | other | active | 4 |  |  |  |  |  |
 | 2026-10-07 12:08 | UFCS | control | other | active | 4 |  |  |  |  |  |
 | 2026-10-07 12:08 | BULL | candidate | other | active | 4 |  |  |  |  |  |
 | 2026-10-07 12:08 | SOXS | candidate | other | active | 4 |  |  |  |  |  |
