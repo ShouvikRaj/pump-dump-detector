@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-14T19:51:36Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-14T20:05:24Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-120 candidates and 240 controls so far. Archetypes: other 114, low_float_runner 6.
+121 candidates and 242 controls so far. Archetypes: other 115, low_float_runner 6.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| HOOD | 2026-10-14 20:04 | other | listed | 101.1 | +0.0% | -7.7% | 1.1x | 784.4M | 5.1% | 0 |  |
 | TSM | 2026-10-14 19:51 | other | listed | 430.8 | -3.2% | -7.7% | 0.9x | 37.84B | 0.1% | 0 |  |
 | WMT | 2026-10-14 19:24 | other | listed | 115.7 | +3.1% | +4.7% | 0.8x | 4.85B | 1.7% | 0 |  |
 | RKLB | 2026-10-14 19:24 | other | listed | 59.41 | -7.5% | -14.4% | 0.7x | 556.9M | 8.0% | 2 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | JPM | 2026-10-13 10:39 | other | listed | 324.9 | -2.8% | +0.6% | 0.7x | 2.64B | 0.9% | 5893 |  |
 | SXTC | 2026-10-13 08:00 | other | listed | 0.0917 | -10.1% | -95.1% | 4.6x | 0.4M | 16.3% | 3 |  |
 | CRWV | 2026-10-13 03:58 | other | listed | 79.19 | -1.3% | -8.2% | 0.6x | 328.3M | 18.3% | 1 |  |
-| NBIS | 2026-10-13 03:35 | other | listed | 207.3 | -1.3% | -9.7% | 0.9x | 228.7M | 19.5% | 0 |  |
