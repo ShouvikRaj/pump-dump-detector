@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-14T18:18:39Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-14T18:32:07Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-115 candidates and 230 controls so far. Archetypes: other 109, low_float_runner 6.
+116 candidates and 232 controls so far. Archetypes: other 110, low_float_runner 6.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| TLT | 2026-10-14 18:31 | other | listed | 78.93 | +0.7% | +1.4% | 0.6x |  |  |  |  |
 | SOFI | 2026-10-14 18:18 | other | listed | 14.01 | -8.1% | -3.3% | 0.6x | 1.27B | 16.9% | 0 |  |
 | VOO | 2026-10-14 17:34 | other | listed | 706.2 | -1.3% | -0.1% | 0.6x |  |  |  |  |
 | ORCL | 2026-10-14 16:58 | other | listed | 133.1 | -7.1% | -1.1% | 0.9x | 1.86B | 2.6% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | SNDK | 2026-10-13 01:10 | other | listed | 1,454 | -8.1% | -8.0% | 0.6x | 144.5M | 3.3% | 0 |  |
 | NIO | 2026-10-12 22:44 | other | listed | 3.47 | +0.0% | +1.5% | 0.9x | 1.90B | 6.9% | 0 |  |
 | SOFI | 2026-10-12 21:51 | other | listed | 15.25 | +0.1% | -4.3% | 0.9x | 1.27B | 16.9% | 0 |  |
-| META | 2026-10-12 20:58 | other | listed | 742.4 | -0.1% | +0.1% | 1.1x | 2.20B | 1.5% | 0 |  |
