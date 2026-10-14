@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-14T17:35:02Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-14T18:18:39Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-114 candidates and 228 controls so far. Archetypes: other 108, low_float_runner 6.
+115 candidates and 230 controls so far. Archetypes: other 109, low_float_runner 6.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SOFI | 2026-10-14 18:18 | other | listed | 14.01 | -8.1% | -3.3% | 0.6x | 1.27B | 16.9% | 0 |  |
 | VOO | 2026-10-14 17:34 | other | listed | 706.2 | -1.3% | -0.1% | 0.6x |  |  |  |  |
 | ORCL | 2026-10-14 16:58 | other | listed | 133.1 | -7.1% | -1.1% | 0.9x | 1.86B | 2.6% | 0 |  |
 | ARM | 2026-10-14 15:25 | other | listed | 243.1 | -4.8% | -15.6% | 1.2x | 142.6M | 11.4% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | NIO | 2026-10-12 22:44 | other | listed | 3.47 | +0.0% | +1.5% | 0.9x | 1.90B | 6.9% | 0 |  |
 | SOFI | 2026-10-12 21:51 | other | listed | 15.25 | +0.1% | -4.3% | 0.9x | 1.27B | 16.9% | 0 |  |
 | META | 2026-10-12 20:58 | other | listed | 742.4 | -0.1% | +0.1% | 1.1x | 2.20B | 1.5% | 0 |  |
-| BMBL | 2026-10-12 20:58 | other | listed | 3.82 | +0.5% | +49.0% | 18.5x | 109.3M | 13.4% | 0 |  |
