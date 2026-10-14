@@ -1,6 +1,6 @@
 event_id,source,kind,status,p0,p_entry,peak_ret_1h,minutes_to_peak,pump,pump_dump,crash_7d,ret_entry_1h,ret_entry_24h,ret_entry_7d,max_ret_entry_24h,min_ret_entry_24h,delisted,label_version
 scan-mexc-ANVL-2026100619,scan,spike,settled,0.0007321,0.000881,0.240131,55.0,1,0,0,0.0,0.359364,0.303519,1.132577,-0.003065,0,crypto-label-v1
-scan-mexc-GLMR-2026100709,scan,spike,pending,0.011009,0.013195,0.226088,48.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-mexc-GLMR-2026100709,scan,spike,settled,0.011009,0.013195,0.226088,48.0,1,1,0,0.0,-0.071163,-0.168852,0.0,-0.164987,0,crypto-label-v1
 scan-mexc-GRIFFAIN-2026100614,scan,spike,settled,0.01995,0.022053,0.253133,47.0,1,1,0,0.0,-0.249717,-0.276742,0.309935,-0.348252,0,crypto-label-v1
 scan-mexc-GTT-2026100616,scan,spike,settled,0.17,0.15999,0.447059,0.0,1,1,1,0.0,-0.124945,-0.374961,1.160635,-0.309269,0,crypto-label-v1
 scan-mexc-KRAFT-2026100616,scan,spike,settled,0.2,0.2792,0.45,58.0,1,1,1,0.0,-0.498567,-0.949857,0.253582,-0.621777,0,crypto-label-v1
@@ -10,13 +10,13 @@ scan-mexc-NATIX-2026100618,scan,spike,settled,0.00024411,0.00030613,0.35185,47.0
 scan-mexc-OKAI-2026100616,scan,spike,settled,3.01e-06,3.575e-06,0.328904,27.0,1,1,1,0.0,-0.546853,-0.955245,0.818182,-0.547133,0,crypto-label-v1
 scan-mexc-ORCA-2026100617,scan,spike,settled,2.5902,3.153,0.253764,36.0,1,1,0,0.0,-0.118744,-0.357786,0.055312,-0.148493,0,crypto-label-v1
 scan-mexc-PAID-2026100618,scan,spike,settled,0.004201,0.00504,0.427755,38.0,1,1,0,0.0,0.079563,-0.149802,0.463889,0.0,0,crypto-label-v1
-scan-mexc-SHARE-2026100709,scan,spike,pending,0.6816,0.8446,0.250147,57.0,1,,,0.0,,,,,0,crypto-label-v1
+scan-mexc-SHARE-2026100709,scan,spike,settled,0.6816,0.8446,0.250147,57.0,1,0,0,0.0,0.03623,1.919133,0.121951,-0.027113,0,crypto-label-v1
 scan-mexc-STAMP-2026100621,scan,spike,settled,0.0003307,0.0003722,0.571213,52.0,1,1,0,0.0,-0.165234,-0.324825,0.324825,-0.247448,0,crypto-label-v1
 scan-mexc-TICS-2026100614,scan,spike,settled,0.00265,0.00157,0.203774,1.0,1,1,1,0.0,-0.350318,-0.30828,0.006369,-0.363057,0,crypto-label-v1
 scan-gate-ELIZAOS-2026100711,scan,spike,pending,0.00080444,0.00109416,0.412225,55.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-gate-FARM-2026100618,scan,spike,settled,8.435,9.754,0.301245,28.0,1,1,0,0.0,-0.229137,-0.215194,0.060078,-0.249641,0,crypto-label-v1
 scan-gate-FORT-2026100621,scan,spike,settled,0.01788,0.02435,0.47651,50.0,1,1,0,0.0,-0.263655,-0.298973,0.05462,-0.279261,0,crypto-label-v1
-scan-gate-GLMR-2026100709,scan,spike,pending,0.011212,0.013163,0.202372,47.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-gate-GLMR-2026100709,scan,spike,settled,0.011212,0.013163,0.202372,47.0,1,1,0,0.0,-0.065107,-0.16554,0.004406,-0.15384,0,crypto-label-v1
 scan-gate-GRIFFAIN-2026100614,scan,spike,settled,0.019905,0.022063,0.220648,48.0,1,1,0,0.0,-0.251371,-0.272946,0.328151,-0.352763,0,crypto-label-v1
 scan-gate-HONEY-2026100619,scan,spike,settled,0.0023762,0.002728,0.250905,54.0,1,1,0,0.0,0.017155,-0.150587,0.216019,-0.132331,0,crypto-label-v1
 scan-gate-MVLLG-2026100613,scan,spike,settled,37.82,43.49,0.211793,44.0,1,1,0,0.0,-0.070131,-0.233617,0.03771,-0.102782,0,crypto-label-v1
@@ -29,8 +29,8 @@ scan-gate-TOWN-2026100618,scan,spike,settled,0.0001002,0.0001071,1.593812,21.0,1
 scan-gate-ZEUS-2026100617,scan,spike,settled,0.00557,0.006127,0.256014,40.0,1,1,0,0.0,1.01322,0.384528,2.293129,-0.224743,0,crypto-label-v1
 scan-kucoin-2U2-2026100614,scan,spike,settled,0.0199,0.02611,0.436181,8.0,1,0,0,0.0,0.067024,-0.010341,0.125239,-0.061279,0,crypto-label-v1
 scan-kucoin-ELIZAOS-2026100711,scan,spike,pending,0.000798,0.001096,0.525063,57.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-kucoin-GAIA-2026100709,scan,spike,pending,0.00284,0.0037,1.112676,18.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-kucoin-GLMR-2026100709,scan,spike,pending,0.01106,0.01313,0.220615,47.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-kucoin-GAIA-2026100709,scan,spike,settled,0.00284,0.0037,1.112676,18.0,1,1,0,0.0,-0.240541,-0.413514,0.340541,-0.297297,0,crypto-label-v1
+scan-kucoin-GLMR-2026100709,scan,spike,settled,0.01106,0.01313,0.220615,47.0,1,1,0,0.0,-0.067022,-0.168317,0.008378,-0.156893,0,crypto-label-v1
 scan-kucoin-GRIFFAIN-2026100614,scan,spike,settled,0.01994,0.02196,0.214142,48.0,1,1,0,0.0,-0.25,-0.268215,0.312386,-0.34745,0,crypto-label-v1
 scan-kucoin-HAI-2026100705,scan,spike,settled,0.001491,0.001631,0.207243,7.0,1,1,0,0.0,-0.009197,-0.049663,0.012876,-0.0374,0,crypto-label-v1
 scan-kucoin-NATIX-2026100618,scan,spike,settled,0.00024483,0.00030811,0.606421,46.0,1,1,0,0.0,-0.256532,-0.402129,0.014995,-0.305443,0,crypto-label-v1
@@ -39,8 +39,8 @@ scan-kucoin-POND-2026100700,scan,spike,settled,0.001646,0.00203,0.261847,57.0,1,
 scan-kucoin-SIREN-2026100613,scan,spike,settled,0.04479,0.04886,0.213441,32.0,1,1,0,0.0,-0.035407,-0.223496,0.095375,-0.118093,0,crypto-label-v1
 scan-kucoin-SUNDOG-2026100706,scan,spike,settled,0.00157,0.00177,0.305732,18.0,1,1,0,0.0,-0.129944,-0.271186,0.096045,-0.175141,0,crypto-label-v1
 scan-kucoin-UOS-2026100616,scan,spike,settled,0.005405,0.004946,0.475486,18.0,1,1,0,0.0,-0.17873,-0.329559,0.102507,-0.217347,0,crypto-label-v1
-scan-kucoin-ZEUS-2026100709,scan,spike,pending,0.00854,0.01042,0.298595,46.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-binance-GLMR-2026100709,scan,spike,pending,0.011089,0.013187,0.217423,47.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-kucoin-ZEUS-2026100709,scan,spike,settled,0.00854,0.01042,0.298595,46.0,1,1,0,0.0,0.443378,-0.040307,0.975048,-0.119002,0,crypto-label-v1
+scan-binance-GLMR-2026100709,scan,spike,settled,0.011089,0.013187,0.217423,47.0,1,1,0,0.0,-0.072116,-0.167741,0.005687,-0.165011,0,crypto-label-v1
 scan-binance-LAZIO-2026100619,scan,spike,settled,0.401,0.445,0.234414,26.0,1,1,0,0.0,-0.040449,-0.058427,0.213483,-0.150562,0,crypto-label-v1
 scan-binance-MVLLB-2026100613,scan,spike,settled,37.77,43.45,0.216309,44.0,1,1,0,0.0,-0.066053,-0.234522,0.039356,-0.101956,0,crypto-label-v1
 scan-binance-ORCA-2026100617,scan,spike,settled,2.593,3.154,0.246818,40.0,1,1,0,0.0,-0.118263,-0.358909,0.057387,-0.149334,0,crypto-label-v1
@@ -4915,4 +4915,8 @@ scan-mexc-TRUTH-2026101404,scan,spike,pending,0.018003,0.021443,0.295229,31.0,1,
 scan-gate-BLUE-2026101404,scan,spike,pending,0.010632,0.011325,0.246238,52.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-kucoin-TRUTH-2026101404,scan,spike,pending,0.017935,0.021332,0.297909,31.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-mexc-CLAUDIA-2026101405,scan,spike,pending,0.004022,0.00676,0.720288,59.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-kucoin-STAY-2026101406,scan,spike,pending,8.24e-06,1.034e-05,0.334951,,1,,,0.0,,,,,0,crypto-label-v1
+scan-kucoin-STAY-2026101406,scan,spike,pending,8.24e-06,1.034e-05,0.334951,42.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-mexc-MUSEBOOK-2026101409,scan,spike,pending,2.311e-05,2.672e-05,0.228473,,1,,,0.0,,,,,0,crypto-label-v1
+scan-mexc-NAVI-2026101409,scan,spike,pending,0.006,0.007146,0.92,,1,,,0.0,,,,,0,crypto-label-v1
+scan-gate-MUSEBOOK-2026101409,scan,spike,pending,2.33e-05,2.666e-05,0.227897,,1,,,0.0,,,,,0,crypto-label-v1
+scan-kucoin-MAJOR-2026101409,scan,spike,pending,0.03413,0.03542,0.435687,,1,,,0.0,,,,,0,crypto-label-v1
