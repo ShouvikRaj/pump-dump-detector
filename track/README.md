@@ -1,9 +1,15 @@
 # Stage 3 tracking
 
-Updated 2026-10-13T22:53:48Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-10-14T01:25:59Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-10-14 00:41 | TW | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-14 00:41 | KALU | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-14 00:41 | RSP | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-13 22:51 | SOLV | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-13 22:51 | SO | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-13 22:51 | SOXL | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-10-13 20:37 | CMC | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-13 20:37 | CNK | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-13 20:37 | BAC | candidate | other | active | 0 |  |  |  |  |  |
