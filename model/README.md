@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-10-14T04:45:40Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-10-15T00:16:45Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-10-12)
 
@@ -17,6 +17,22 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-10-14 20:17 | PFE | other | no model | no model | 100% / 10% / 0% / 0% | Users discuss Pfizer as a defensive stock, dividend play, and potential AI beneficiary with mixed bullish and neutral sentiments. |
+| 2026-10-14 20:04 | HOOD | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss HOOD price drops, buying dips, and general market sentiment without specific company events. |
+| 2026-10-14 19:51 | TSM | other | no model | no model | 94% / 24% / 0% / 53% | Users discuss TSM earnings anticipation, market recovery, and set price targets. |
+| 2026-10-14 19:24 | RKLB | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss RKLB losses, compare it to competitors, and express skepticism about its future potential. |
+| 2026-10-14 19:24 | WMT | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss WMT as a defensive stock, express bullish sentiment, and mention buying calls. |
+| 2026-10-14 19:11 | LQDA | other | no model | no model | 100% / 70% / 0% / 20% | Users discuss LQDA price targets, a lawsuit settlement, and short interest, with mixed bullish and bearish sentiments. |
+| 2026-10-14 18:31 | TLT | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss TLT price movements, yields, and correlations with other assets without mentioning specific corporate events. |
+| 2026-10-14 18:18 | SOFI | other | no model | no model | 100% / 0% / 0% / 0% | Users express extreme frustration and bearish sentiment regarding SOFI's price drop and performance. |
+| 2026-10-14 17:34 | VOO | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss holding VOO for long-term growth, comparing it to other assets, and expressing mixed views on current market valuations. |
+| 2026-10-14 16:58 | ORCL | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss ORCL price movements, options strategies, and rumors of a deal or government stake. |
+| 2026-10-14 15:25 | ARM | other | no model | no model | 100% / 0% / 0% / 20% | Users discuss ARM's legal loss to Qualcomm and a potential forced sale due to collateralized debt. |
+| 2026-10-14 13:12 | TCRT | low float runner | no model | no model | 100% / 20% / 0% / 0% | Chatter focuses on TCRT price targets, volume, and a reported catalyst driving a significant price increase. |
+| 2026-10-14 12:46 | UPST | other | no model | no model | 100% / 40% / 10% / 0% | Users express frustration over losses, warn of potential pump-and-dumps, and share price targets for UPST. |
+| 2026-10-14 12:29 | GLND | other | no model | no model | 100% / 55% / 0% / 0% | Users discuss Greenland Energy Company, citing a Greenland announcement and volume increases as reasons to buy. |
+| 2026-10-14 11:39 | CLF | other | no model | no model | 100% / 10% / 0% / 10% | Users discuss Cleveland-Cliffs earnings, datacenter demand, and potential short squeeze. |
+| 2026-10-14 05:42 | BBAI | other | no model | no model | 100% / 20% / 0% / 0% | Users discuss BBAI's recent $225M government contract announcement and speculate on potential price spikes. |
 | 2026-10-14 00:41 | RSP | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss RSP performance, correlation with SPY, and market breadth without specific company events or urgent buy pitches. |
 | 2026-10-13 22:51 | SOXL | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss SOXL volatility, losses, and leverage while joking about its performance. |
 | 2026-10-13 20:37 | BAC | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss BAC options and express bearish views citing a recent fine. |
@@ -41,22 +57,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-12 20:58 | META | other | no model | no model | 100% / 2.5% / 0% / 2.5% | Chatter discusses META's AI model 'Muse', price movements, and potential earnings impact with mixed sentiment. |
 | 2026-10-12 20:32 | UNH | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss UNH earnings anticipation and call options with mixed bullish and bearish sentiments. |
 | 2026-10-12 20:18 | RDDT | other | no model | no model | 100% / 12% / 0% / 0% | Users discuss RDDT valuation, express bullish optimism, and reference a large position increase. |
-| 2026-10-12 18:19 | WFF | other | no model | no model | 100% / 30% / 0% / 0% | Users discuss erratic price movements, halts, and express confusion about the stock's performance without citing specific corporate events. |
-| 2026-10-12 17:40 | ASML | other | no model | no model | 100% / 10% / 0% / 60% | Users discuss upcoming earnings for ASML and TSMC, with mixed opinions on potential price drops. |
-| 2026-10-12 17:00 | SMCI | other | no model | no model | 100% / 27% / 0% / 0% | Users discuss SMCI price movements, express bullish optimism, and mention unrelated geopolitical events. |
-| 2026-10-12 15:13 | TSM | other | no model | no model | 100% / 0% / 0% / 36% | Users discuss TSM earnings anticipation, trading strategies, and general market sentiment regarding the semiconductor stock. |
-| 2026-10-12 14:47 | ONDS | other | no model | no model | 100% / 36% / 9.1% / 0% | Users discuss ONDS potential, warn of dilution, and set price targets. |
-| 2026-10-12 14:20 | CBRS | other | no model | no model | 100% / 0% / 0% / 0% | Users express extreme distress, fear, and hopelessness regarding a sharp decline in CBRS stock price. |
-| 2026-10-12 14:20 | MU | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss a sharp price drop in $MU, blaming manipulation and expressing anger over the crash. |
-| 2026-10-12 14:20 | SOXX | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss SOXX holdings, compare it to other funds, and analyze recent price movements and sector correlations. |
-| 2026-10-12 06:49 | MGM | other | no model | no model | 91% / 0% / 0% / 0% | Users discuss MGM's oversold technicals and potential for a mean reversion bounce. |
-| 2026-10-12 03:44 | IREN | other | no model | no model | 100% / 0% / 0% / 7.4% | Chatter focuses on a rumored deal between IREN and Anthropic, with mixed reactions ranging from bullish excitement to skepticism about the company's fundamentals. |
-| 2026-10-09 13:59 | UNH | other | no model | no model | 100% / 20% / 0% / 0% | Discussions focus on UNH earnings, options activity, and mixed sentiment regarding potential pumps or delusions. |
-| 2026-10-09 13:19 | SLS | other | no model | no model | 100% / 0% / 0% / 8.3% | Users discuss SLS clinical data, express bullish sentiment, and mention specific upcoming events like the 80th patient milestone. |
-| 2026-10-09 12:52 | DAL | other | no model | no model | 100% / 0% / 0% / 20% | Users discuss Delta Air Lines stock, mentioning missed guidance, late conference calls, and trading puts. |
-| 2026-10-09 12:39 | HUM | other | no model | no model | 100% / 0% / 0% / 9.1% | Chatter focuses on Humana stock price, options premiums, and a scheduled CMS rating event. |
-| 2026-10-09 12:39 | TSM | other | no model | no model | 92% / 0% / 0% / 0% | Users discuss TSM earnings expectations, meme stock behavior, and clarify its relationship to semiconductor ETFs. |
-| 2026-10-09 01:49 | ONDS | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss owning ONDS, speculate on price targets, and mention speculative growth stocks. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
