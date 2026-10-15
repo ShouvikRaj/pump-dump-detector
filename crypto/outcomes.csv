@@ -4698,10 +4698,10 @@ scan-mexc-RLC-2026100816,scan,spike,settled,0.7341,0.8884,0.211279,59.0,1,0,0,0.
 scan-mexc-SI-2026100816,scan,spike,settled,0.02056,0.02302,0.279183,23.0,1,1,1,0.0,0.133797,-0.331451,0.349262,-0.049957,0,crypto-label-v1
 scan-gate-SI-2026100816,scan,spike,settled,0.02051,0.02287,0.278888,24.0,1,1,1,0.000437,0.148666,-0.31045,0.35505,-0.046349,0,crypto-label-v1
 scan-gate-RLC-2026100817,scan,spike,settled,0.8893,0.9469,0.219836,33.0,1,1,0,0.0,-0.104657,-0.047312,0.68983,-0.11902,0,crypto-label-v1
-scan-mexc-BATON-2026100818,scan,spike,pending,0.007721,0.011738,0.623106,58.0,1,,,0.0,,,,,0,crypto-label-v1
+scan-mexc-BATON-2026100818,scan,spike,settled,0.007721,0.011738,0.623106,58.0,1,0,0,0.0,0.156841,-0.140654,0.384819,-0.03297,0,crypto-label-v1
 scan-mexc-DLB-2026100818,scan,spike,pending,8.483e-05,5.96e-05,0.994577,17.0,1,1,1,0.0,,,,,0,crypto-label-v1
-scan-gate-OGPU-2026100818,scan,spike,pending,0.03717,0.04335,0.619317,26.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-gate-PUMPBTC-2026100818,scan,spike,pending,0.002635,0.002809,0.212903,20.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-gate-OGPU-2026100818,scan,spike,settled,0.03717,0.04335,0.619317,26.0,1,1,0,0.0,-0.036448,-0.172088,0.027682,-0.065744,0,crypto-label-v1
+scan-gate-PUMPBTC-2026100818,scan,spike,settled,0.002635,0.002809,0.212903,20.0,1,1,1,0.0,0.018156,-0.435386,0.249555,-0.049484,0,crypto-label-v1
 tg-Whalesguide-19513,telegram,call,pending,0.19521,0.19781,0.078736,58.1,0,0,,0.06299,,,,,0,crypto-label-v1
 scan-mexc-AMI-2026100819,scan,spike,pending,0.0009284,0.0009364,0.357174,30.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-mexc-JCT-2026100819,scan,spike,pending,0.001509,0.001925,0.349238,49.0,1,,,0.0,,,,,0,crypto-label-v1
@@ -4966,10 +4966,10 @@ scan-mexc-OTC-2026101514,scan,spike,pending,0.007008,0.008381,0.295234,53.0,1,1,
 scan-mexc-SIREN-2026101514,scan,spike,pending,0.02913,0.02986,0.20872,18.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-gate-STRAX-2026101514,scan,spike,pending,0.01005,0.010636,0.301393,24.0,1,1,,0.011,,,,,0,crypto-label-v1
 scan-binance-STRAX-2026101514,scan,spike,pending,0.01004,0.01078,0.316733,23.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-mexc-AGT-2026101515,scan,spike,pending,0.015217,0.022012,0.468292,,1,,,0.0,,,,,0,crypto-label-v1
-scan-mexc-BATON-2026101515,scan,spike,pending,0.009435,0.011124,0.227981,,1,,,0.0,,,,,0,crypto-label-v1
-scan-mexc-KSKD-2026101515,scan,spike,pending,0.004864,0.006323,0.304482,,1,,,0.0,,,,,0,crypto-label-v1
-scan-kucoin-AGT-2026101515,scan,spike,pending,0.015219,0.022085,0.458703,,1,,,0.0,,,,,0,crypto-label-v1
+scan-mexc-AGT-2026101515,scan,spike,pending,0.015217,0.022012,0.468292,47.0,1,,,0.0,,,,,0,crypto-label-v1
+scan-mexc-BATON-2026101515,scan,spike,pending,0.009435,0.011124,0.227981,49.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-mexc-KSKD-2026101515,scan,spike,pending,0.004864,0.006323,0.304482,54.0,1,,,0.0,,,,,0,crypto-label-v1
+scan-kucoin-AGT-2026101515,scan,spike,pending,0.015219,0.022085,0.458703,56.0,1,,,0.0,,,,,0,crypto-label-v1
 scan-mexc-ANIME-2026101516,scan,spike,pending,0.002887,0.002934,0.358504,,1,,,0.0,,,,,0,crypto-label-v1
 scan-mexc-CTX-2026101516,scan,spike,pending,0.00855,0.00663,0.473684,,1,,,0.0,,,,,0,crypto-label-v1
 scan-mexc-NXPC-2026101516,scan,spike,pending,0.1976,0.2633,0.517713,,1,,,0.0,,,,,0,crypto-label-v1
@@ -4986,3 +4986,8 @@ tg-cryptoninjacoach-3766,telegram,call,pending,,,,,,,,,,,,,,crypto-label-v1
 tg-cryptoprofitcoach-9216,telegram,call,pending,,,,,,,,,,,,,,crypto-label-v1
 tg-cryptoprofitcoach-9217,telegram,call,pending,,,,,,,,,,,,,,crypto-label-v1
 scan-mexc-ZCAT-2026101517,scan,spike,pending,0.0556,0.06493,0.233993,,1,,,0.0,,,,,0,crypto-label-v1
+scan-mexc-GP-2026101518,scan,spike,pending,0.001549,0.00182,0.236281,,1,,,0.0,,,,,0,crypto-label-v1
+scan-mexc-POND-2026101518,scan,spike,pending,0.0013682,0.0018908,0.416679,,1,,,0.0,,,,,0,crypto-label-v1
+scan-gate-POND-2026101518,scan,spike,pending,0.0013589,0.00197,0.449702,,1,,,0.0,,,,,0,crypto-label-v1
+scan-kucoin-POND-2026101518,scan,spike,pending,0.00137,0.001905,0.426277,,1,,,0.0,,,,,0,crypto-label-v1
+scan-kucoin-READY-2026101518,scan,spike,pending,0.00206,0.002407,0.205825,,1,,,0.0,,,,,0,crypto-label-v1
