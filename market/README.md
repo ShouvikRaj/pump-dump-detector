@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-15T15:04:57Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-15T21:16:29Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-123 candidates and 246 controls so far. Archetypes: other 117, low_float_runner 6.
+124 candidates and 248 controls so far. Archetypes: other 117, low_float_runner 7.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| WETO | 2026-10-15 21:16 | low float runner | listed | 1.23 | +0.8% | +13.0% | 16.8x | 0.2M | 1159.2% | 2 |  |
 | SOXS | 2026-10-15 15:04 | other | listed | 45.26 | +6.4% | +38.7% | 1.2x |  |  |  |  |
 | PFE | 2026-10-14 20:17 | other | listed | 29.17 | -0.1% | +4.3% | 1.2x | 5.69B | 2.6% | 0 |  |
 | HOOD | 2026-10-14 20:04 | other | listed | 101.1 | +0.0% | -7.7% | 1.1x | 784.4M | 5.1% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | AMC | 2026-10-13 13:59 | other | listed | 3.135 | +4.5% | +7.5% | 0.5x | 835.3M | 5.9% | 0 |  |
 | USAR | 2026-10-13 13:32 | other | listed | 11.6 | -1.9% | -13.4% | 1.0x | 148.9M | 30.3% | 3 |  |
 | OKLO | 2026-10-13 13:32 | other | listed | 31.49 | -2.2% | -10.5% | 1.0x | 157.9M | 20.8% | 1 |  |
-| JPM | 2026-10-13 10:39 | other | listed | 324.9 | -2.8% | +0.6% | 0.7x | 2.64B | 0.9% | 5893 |  |
