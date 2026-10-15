@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-15T10:11:51Z by run `38718473271`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-15T10:25:05Z by run `38720060141`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -11,13 +11,13 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | CRWV | 2026-10-13 03:58 | mention spike | 126 | 5.0 | 90 | 0 | wallstreetbets 126 | Nasdaq | #1 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x622ly/comment/pgulrei/) |
 | GLND | 2026-10-14 12:29 | mention spike | 25 | 0.57 | 14 | 0 | pennystocks 20, wallstreetbets 5 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x5wiii/) |
 | HOOD | 2026-10-14 20:04 | mention spike | 25 | 9.29 | 15 | 0 | wallstreetbets 25 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x60zj9/) |
-| NBIS | 2026-10-13 03:35 | mention spike | 161 | 35.57 | 84 | 0 | wallstreetbets 161 | Nasdaq | #3 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x61ifg/comment/pguas0p/) |
-| RKLB | 2026-10-14 19:24 | mention spike | 53 | 9.43 | 43 | 0 | wallstreetbets 53 | Nasdaq | #4 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x5uzho/) |
+| NBIS | 2026-10-13 03:35 | mention spike | 161 | 35.57 | 84 | 0 | wallstreetbets 161 | Nasdaq | #4 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x61ifg/comment/pguas0p/) |
+| RKLB | 2026-10-14 19:24 | mention spike | 53 | 9.43 | 43 | 0 | wallstreetbets 53 | Nasdaq | #7 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x5uzho/) |
 | SOFI | 2026-10-14 18:18 | mention spike | 18 | 3.71 | 16 | 0 | wallstreetbets 18 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x61ifg/comment/pguh4n1/) |
-| TLT | 2026-10-14 18:31 | mention spike | 31 | 8.29 | 17 | 0 | wallstreetbets 31 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x5nazb/comment/pguhkxs/) |
-| TSM | 2026-10-14 19:51 | mention spike | 37 | 7.86 | 27 | 0 | wallstreetbets 37 | NYSE | #7 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x61ifg/comment/pgukfbn/) |
+| TLT | 2026-10-14 18:31 | mention spike | 31 | 8.14 | 17 | 0 | wallstreetbets 31 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x5nazb/comment/pguhkxs/) |
+| TSM | 2026-10-14 19:51 | mention spike | 37 | 7.86 | 27 | 0 | wallstreetbets 37 | NYSE | #6 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x61ifg/comment/pgukfbn/) |
 | WMT | 2026-10-14 19:24 | mention spike | 16 | 1.14 | 9 | 0 | wallstreetbets 16 | Nasdaq | #5 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x61ifg/comment/pgron2a/) |
-| ASML | 2026-10-12 17:40 | mention spike | 13 | 13.86 | 11 | 0 | wallstreetbets 13 | Nasdaq | #18 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x5vqm4/comment/pgq68r4/) |
+| ASML | 2026-10-12 17:40 | mention spike | 12 | 14.0 | 11 | 0 | wallstreetbets 12 | Nasdaq | #20 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x5vqm4/comment/pgq68r4/) |
 | PFE | 2026-10-14 20:17 | mention spike | 9 | 0.57 | 6 | 0 | wallstreetbets 8, smallstreetbets 1 | NYSE |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1x5r0q2/) |
 | TCRT | 2026-10-14 13:12 | mention spike | 8 | 1.14 | 5 | 0 | pennystocks 7, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1x5hhxp/comment/pgpx9qi/) |
 | LQDA | 2026-10-14 19:11 | mention spike | 5 | 1.14 | 5 | 0 | smallstreetbets 2, wallstreetbets 2, pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1x5zon7/) |
