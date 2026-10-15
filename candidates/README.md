@@ -1,13 +1,13 @@
 # Stage 1 candidates
 
-Updated 2026-10-15T01:21:53Z by run `38665199651`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-15T01:35:11Z by run `38666403673`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
 
 | Ticker | Flagged since (UTC) | Why | Mentions 24h | Baseline/day | Authors | Hype posts | Subreddits | Exchange | StockTwits | Example |
 |---|---|---|---|---|---|---|---|---|---|---|
-| ASML | 2026-10-12 17:40 | mention spike | 55 | 8.0 | 44 | 0 | wallstreetbets 55 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x5j4ud/) |
+| ASML | 2026-10-12 17:40 | mention spike | 52 | 8.43 | 43 | 0 | wallstreetbets 52 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x5j4ud/) |
 | CLF | 2026-10-14 11:39 | mention spike | 20 | 0.29 | 16 | 1 | wallstreetbets 20 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x5h8uq/) |
 | CRWV | 2026-10-13 03:58 | mention spike | 126 | 4.86 | 90 | 0 | wallstreetbets 126 | Nasdaq | #3 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x61ifg/comment/pgrt97x/) |
 | GLND | 2026-10-14 12:29 | mention spike | 27 | 0.29 | 15 | 0 | pennystocks 22, wallstreetbets 5 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x5wiii/) |
@@ -18,15 +18,15 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | SOFI | 2026-10-14 18:18 | mention spike | 17 | 3.71 | 15 | 0 | wallstreetbets 17 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x61ifg/comment/pgrif8f/) |
 | TLT | 2026-10-14 18:31 | mention spike | 29 | 9.0 | 17 | 0 | wallstreetbets 29 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x5nazb/comment/pgredqo/) |
 | TSM | 2026-10-14 19:51 | mention spike | 24 | 7.71 | 18 | 0 | wallstreetbets 24 | NYSE | #11 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x61ifg/comment/pgru9em/) |
-| WMT | 2026-10-14 19:24 | mention spike | 16 | 1.14 | 9 | 0 | wallstreetbets 16 | Nasdaq | #25 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x61ifg/comment/pgron2a/) |
+| WMT | 2026-10-14 19:24 | mention spike | 16 | 1.14 | 9 | 0 | wallstreetbets 16 | Nasdaq | #20 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x61ifg/comment/pgron2a/) |
 | TCRT | 2026-10-14 13:12 | mention spike | 8 | 1.14 | 5 | 0 | pennystocks 7, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1x5hhxp/comment/pgpx9qi/) |
 | LQDA | 2026-10-14 19:11 | mention spike | 6 | 1.0 | 6 | 0 | wallstreetbets 3, smallstreetbets 2, pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1x5zon7/) |
-| ORCL | 2026-10-14 16:58 | mention spike | 24 | 7.43 | 17 | 0 | wallstreetbets 24 | NYSE | #20 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x61ifg/comment/pgrfckg/) |
+| ORCL | 2026-10-14 16:58 | mention spike | 24 | 7.43 | 17 | 0 | wallstreetbets 24 | NYSE | #18 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x61ifg/comment/pgrfckg/) |
 | BAC | 2026-10-13 20:37 | mention spike | 12 | 5.29 | 12 | 0 | wallstreetbets 12 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x61ifg/comment/pgrdasi/) |
 | VOO | 2026-10-14 17:34 | mention spike | 18 | 11.43 | 15 | 0 | wallstreetbets 18 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x5nazb/comment/pgr0et2/) |
 | GME | 2026-10-13 14:38 | mention spike | 29 | 25.86 | 25 | 0 | wallstreetbets 29 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x62lbv/comment/pgruchb/) |
 | RSP | 2026-10-14 00:41 | mention spike | 3 | 3.57 | 3 | 0 | wallstreetbets 3 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x5415v/comment/pgohtrh/) |
-| SOXL | 2026-10-13 22:51 | mention spike | 36 | 32.86 | 29 | 0 | wallstreetbets 36 | NYSE Arca | #24 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x60img/comment/pgrk2rg/) |
+| SOXL | 2026-10-13 22:51 | mention spike | 36 | 32.86 | 29 | 0 | wallstreetbets 36 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x60img/comment/pgrk2rg/) |
 | AAOI | 2026-10-13 20:10 | mention spike | 11 | 5.43 | 7 | 0 | wallstreetbets 11 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x5nazb/comment/pgq8zu7/) |
 | ARM | 2026-10-14 15:25 | mention spike | 3 | 2.43 | 2 | 0 | wallstreetbets 3 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x5nazb/comment/pgpd748/) |
 | TTWO | 2026-10-13 18:32 | mention spike | 2 | 8.14 | 2 | 0 | wallstreetbets 2 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x5nazb/comment/pgqjxq9/) |
@@ -37,7 +37,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | BBAI | 2026-10-14 05:42 | mention spike | 2 | 1.43 | 2 | 0 | pennystocks 1, wallstreetbets 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x61ifg/comment/pgrmob6/) |
 | UNH | 2026-10-12 20:32 | mention spike | 7 | 9.29 | 7 | 0 | wallstreetbets 7 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x5nazb/comment/pgoteiu/) |
 | META | 2026-10-12 20:58 | mention spike | 21 | 25.86 | 19 | 0 | wallstreetbets 21 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x5g8rr/) |
-| JPM | 2026-10-13 10:39 | mention spike | 5 | 9.86 | 4 | 0 | wallstreetbets 5 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x1qqq0/comment/pgqxww3/) |
+| JPM | 2026-10-13 10:39 | mention spike | 4 | 10.0 | 3 | 0 | wallstreetbets 4 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x1qqq0/comment/pgqxww3/) |
 | BMBL | 2026-10-12 20:58 | mention spike | 2 | 4.0 | 2 | 0 | wallstreetbets 2 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x58pjp/comment/pgmjw4k/) |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
