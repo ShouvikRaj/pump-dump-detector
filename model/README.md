@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-10-15T04:27:44Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-10-16T00:22:15Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-10-12)
 
@@ -17,6 +17,10 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-10-15 23:28 | BETR | other | no model | no model | 100% / 91% / 0% / 0% | Users discuss BETR as a heavily shorted penny stock with high squeeze potential and urge others to buy. |
+| 2026-10-15 23:28 | DRMA | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss DRMA price action, volume, and potential moves based on test results. |
+| 2026-10-15 21:16 | WETO | low float runner | no model | no model | 100% / 55% / 0% / 9.1% | Users discuss WETO trading strategy, warn against stop losses, and mention a cancelled ATM offering. |
+| 2026-10-15 15:04 | SOXS | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss holding, selling, or buying SOXS, with mentions of AI news and market volatility. |
 | 2026-10-14 20:17 | PFE | other | no model | no model | 100% / 10% / 0% / 0% | Users discuss Pfizer as a defensive stock, dividend play, and potential AI beneficiary with mixed bullish and neutral sentiments. |
 | 2026-10-14 20:04 | HOOD | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss HOOD price drops, buying dips, and general market sentiment without specific company events. |
 | 2026-10-14 19:51 | TSM | other | no model | no model | 94% / 24% / 0% / 53% | Users discuss TSM earnings anticipation, market recovery, and set price targets. |
@@ -53,10 +57,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-13 01:10 | SNDK | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss SNDK price drops, express confusion over news, and speculate on future movements. |
 | 2026-10-12 22:44 | NIO | other | no model | no model | 100% / 0% / 9.1% / 0% | Users discuss NIO's financial health, express strong negative opinions, and mention a potential short squeeze. |
 | 2026-10-12 21:51 | SOFI | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss SOFI as a meme stock, mention its short float, and list it among stocks near 52-week lows. |
-| 2026-10-12 20:58 | BMBL | other | no model | no model | 100% / 10% / 30% / 30% | Users discuss a reported $1B buyout of Bumble Inc. and warn of a potential pump-and-dump scheme. |
-| 2026-10-12 20:58 | META | other | no model | no model | 100% / 2.5% / 0% / 2.5% | Chatter discusses META's AI model 'Muse', price movements, and potential earnings impact with mixed sentiment. |
-| 2026-10-12 20:32 | UNH | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss UNH earnings anticipation and call options with mixed bullish and bearish sentiments. |
-| 2026-10-12 20:18 | RDDT | other | no model | no model | 100% / 12% / 0% / 0% | Users discuss RDDT valuation, express bullish optimism, and reference a large position increase. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
