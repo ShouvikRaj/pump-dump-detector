@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-16T10:43:29Z by run `38889038371`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-16T10:56:46Z by run `38890474581`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -14,8 +14,8 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | WETO | 2026-10-15 21:16 | mention spike | 21 | 0.14 | 8 | 0 | pennystocks 19, smallstreetbets 1, wallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1x6ky4z/) |
 | RKLB | 2026-10-14 19:24 | mention spike | 47 | 15.43 | 41 | 0 | wallstreetbets 47 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x6vy59/comment/ph2s937/) |
 | WMT | 2026-10-14 19:24 | mention spike | 12 | 3.43 | 8 | 0 | wallstreetbets 12 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x6hm3b/comment/pgxdtjm/) |
-| TLT | 2026-10-14 18:31 | mention spike | 25 | 9.86 | 16 | 0 | wallstreetbets 25 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x6vy59/comment/ph23vw1/) |
-| CRWV | 2026-10-13 03:58 | mention spike | 90 | 21.86 | 67 | 0 | wallstreetbets 88, smallstreetbets 2 | Nasdaq | #4 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x77qv8/) |
+| TLT | 2026-10-14 18:31 | mention spike | 25 | 9.57 | 16 | 0 | wallstreetbets 25 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x6vy59/comment/ph23vw1/) |
+| CRWV | 2026-10-13 03:58 | mention spike | 92 | 21.86 | 69 | 0 | wallstreetbets 90, smallstreetbets 2 | Nasdaq | #4 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x77qv8/) |
 | SOFI | 2026-10-14 18:18 | mention spike | 4 | 6.29 | 4 | 0 | wallstreetbets 4 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x6hm3b/comment/pgxaxph/) |
 | HOOD | 2026-10-14 20:04 | mention spike | 10 | 10.29 | 7 | 0 | wallstreetbets 10 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x6vy59/comment/ph2rl4u/) |
 | SOXS | 2026-10-15 15:04 | mention spike | 8 | 5.57 | 8 | 0 | wallstreetbets 8 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x6vy59/comment/pgzttml/) |
