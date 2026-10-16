@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-16T08:17:45Z by run `38872670332`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-16T08:30:56Z by run `38874135948`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -9,7 +9,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 |---|---|---|---|---|---|---|---|---|---|---|
 | BETR | 2026-10-15 23:28 | mention spike | 11 | 0.14 | 5 | 1 | pennystocks 9, wallstreetbets 2 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x6vy59/comment/pgzlywb/) |
 | DRMA | 2026-10-15 23:28 | mention spike | 11 | 0.0 | 5 | 0 | pennystocks 11 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1x6bsmm/comment/pgzqmfi/) |
-| TSLA | 2026-10-16 07:11 | mention spike | 56 | 18.71 | 44 | 0 | wallstreetbets 55, smallstreetbets 1 | Nasdaq | #1 | [link](https://www.reddit.com/r/smallstreetbets/comments/1x7abu4/) |
+| TSLA | 2026-10-16 07:11 | mention spike | 58 | 18.71 | 45 | 0 | wallstreetbets 57, smallstreetbets 1 | Nasdaq | #1 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x7apv5/) |
 | TSM | 2026-10-14 19:51 | mention spike | 46 | 13.0 | 27 | 2 | wallstreetbets 45, smallstreetbets 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x6vy59/comment/ph16gut/) |
 | WETO | 2026-10-15 21:16 | mention spike | 21 | 0.14 | 8 | 0 | pennystocks 19, smallstreetbets 1, wallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1x6ky4z/) |
 | RKLB | 2026-10-14 19:24 | mention spike | 46 | 15.43 | 40 | 0 | wallstreetbets 46 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x6vy59/comment/ph2hcmk/) |
