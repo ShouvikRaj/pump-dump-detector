@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-16T23:29:28Z by run `38981662606`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-16T23:45:22Z by run `38983026649`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -8,14 +8,14 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | Ticker | Flagged since (UTC) | Why | Mentions 24h | Baseline/day | Authors | Hype posts | Subreddits | Exchange | StockTwits | Example |
 |---|---|---|---|---|---|---|---|---|---|---|
 | AMD | 2026-10-16 21:33 | mention spike | 55 | 28.0 | 43 | 0 | wallstreetbets 55 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x7nfws/) |
-| AVGO | 2026-10-16 20:14 | mention spike | 27 | 10.71 | 20 | 0 | wallstreetbets 27 | Nasdaq | #2 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x7qdzy/comment/ph6j2sr/) |
+| AVGO | 2026-10-16 20:14 | mention spike | 27 | 10.71 | 20 | 0 | wallstreetbets 27 | Nasdaq | #3 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x7qdzy/comment/ph6j2sr/) |
 | OPEX | 2026-10-16 19:07 | mention spike | 13 | 0.71 | 12 | 0 | wallstreetbets 13 | Cboe BZX |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x7c5j6/comment/ph69x61/) |
-| QQQ | 2026-10-16 18:27 | mention spike | 211 | 65.0 | 122 | 0 | wallstreetbets 211 | Nasdaq | #18 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x7sg39/) |
+| QQQ | 2026-10-16 18:27 | mention spike | 211 | 65.0 | 122 | 0 | wallstreetbets 211 | Nasdaq | #11 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x7sg39/) |
 | RCS | 2026-10-16 12:29 | mention spike | 14 | 0.0 | 13 | 0 | wallstreetbets 14 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x7n0ov/comment/ph6bpbn/) |
 | SGRX | 2026-10-16 21:20 | mention spike | 11 | 0.0 | 5 | 0 | pennystocks 10, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1x7h6m1/) |
-| SOXS | 2026-10-16 19:34 | mention spike | 15 | 6.14 | 10 | 0 | wallstreetbets 14, smallstreetbets 1 | NYSE Arca |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1x7gy8a/) |
-| TQQQ | 2026-10-16 18:54 | mention spike | 14 | 2.57 | 12 | 0 | wallstreetbets 14 | Nasdaq | #26 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x7qdzy/comment/ph6v5sz/) |
-| TSLA | 2026-10-16 07:11 | mention spike | 231 | 19.29 | 158 | 0 | wallstreetbets 228, smallstreetbets 2, pennystocks 1 | Nasdaq | #1 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x7mqih/) |
+| SOXS | 2026-10-16 19:34 | mention spike | 15 | 6.14 | 10 | 0 | wallstreetbets 14, smallstreetbets 1 | NYSE Arca | #27 | [link](https://www.reddit.com/r/smallstreetbets/comments/1x7gy8a/) |
+| TQQQ | 2026-10-16 18:54 | mention spike | 14 | 2.57 | 12 | 0 | wallstreetbets 14 | Nasdaq | #21 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x7qdzy/comment/ph6v5sz/) |
+| TSLA | 2026-10-16 07:11 | mention spike | 231 | 19.14 | 158 | 0 | wallstreetbets 228, smallstreetbets 2, pennystocks 1 | Nasdaq | #1 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x7mqih/) |
 | USO | 2026-10-16 11:23 | mention spike | 27 | 5.29 | 18 | 0 | wallstreetbets 27 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x7qdzy/comment/ph6pjch/) |
 | VOO | 2026-10-16 19:07 | mention spike | 27 | 12.71 | 21 | 0 | wallstreetbets 26, smallstreetbets 1 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x7ukwm/) |
 | XLAB | 2026-10-16 21:20 | mention spike | 14 | 0.0 | 9 | 0 | pennystocks 12, wallstreetbets 2 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1x7hxai/) |
