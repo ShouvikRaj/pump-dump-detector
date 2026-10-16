@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-16T21:20:34Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-16T21:33:27Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-140 candidates and 280 controls so far. Archetypes: other 133, low_float_runner 7.
+141 candidates and 282 controls so far. Archetypes: other 134, low_float_runner 7.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| AMD | 2026-10-16 21:33 | other | listed | 530.1 | +0.2% | -13.0% | 1.0x | 1.62B | 2.4% | 3 |  |
 | XLAB | 2026-10-16 21:20 | other | listed | 2.41 | +2.5% | +141.3% | 189.9x |  |  | 0 |  |
 | SGRX | 2026-10-16 21:20 | other | listed | 0.7814 | -10.0% | +17.4% | 115.8x | 0.7M | 2.1% | 0 |  |
 | AAPL | 2026-10-16 20:40 | other | listed | 343.4 | -0.0% | +2.0% | 1.5x | 14.57B | 0.8% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | VOO | 2026-10-14 17:34 | other | listed | 706.2 | -1.3% | -0.1% | 0.6x |  |  |  |  |
 | ORCL | 2026-10-14 16:58 | other | listed | 133.1 | -7.1% | -1.1% | 0.9x | 1.86B | 2.6% | 0 |  |
 | ARM | 2026-10-14 15:25 | other | listed | 243.1 | -4.8% | -15.6% | 1.2x | 142.6M | 11.4% | 0 |  |
-| TCRT | 2026-10-14 13:12 | low float runner | listed | 3.842 | +26.8% | +309.5% | 93.8x | 1.9M | 0.5% | 1 |  |
