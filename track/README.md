@@ -1,9 +1,15 @@
 # Stage 3 tracking
 
-Updated 2026-10-15T22:51:12Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-10-16T00:48:10Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-10-15 23:28 | AUC | control | low_float_runner | active | 0 |  |  |  |  |  |
+| 2026-10-15 23:28 | WNEB | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-15 23:28 | CALC | control | low_float_runner | active | 0 |  |  |  |  |  |
+| 2026-10-15 23:28 | MITQ | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-15 23:28 | BETR | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-15 23:28 | DRMA | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-10-15 21:16 | MYSZ | control | low_float_runner | active | 0 |  |  |  |  |  |
 | 2026-10-15 21:16 | HTCR | control | low_float_runner | active | 0 |  |  |  |  |  |
 | 2026-10-15 21:16 | WETO | candidate | low_float_runner | active | 0 |  |  |  |  |  |
