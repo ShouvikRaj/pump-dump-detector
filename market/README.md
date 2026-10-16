@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-16T12:29:54Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-16T13:36:05Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-129 candidates and 258 controls so far. Archetypes: other 122, low_float_runner 7.
+130 candidates and 260 controls so far. Archetypes: other 123, low_float_runner 7.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| IBKR | 2026-10-16 13:35 | other | listed | 84.83 | -1.4% | -0.5% | 1.5x | 439.2M | 3.1% | 3 |  |
 | RCS | 2026-10-16 12:29 | other | listed | 5 | +1.0% | -1.8% | 0.9x |  |  | 0 |  |
 | USO | 2026-10-16 11:23 | other | listed | 156.9 | -0.3% | +6.6% | 0.8x |  |  | 0 |  |
 | TSLA | 2026-10-16 07:11 | other | listed | 362.3 | -0.0% | -3.3% | 0.8x | 2.82B | 2.5% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | AAOI | 2026-10-13 20:10 | other | listed | 99 | +1.2% | -24.9% | 1.1x | 80.9M | 17.2% | 1 |  |
 | JBDI | 2026-10-13 18:51 | low float runner | listed | 3.677 | +267.7% | +0.0% | 0.0x | 5.0M | 0.7% | 0 |  |
 | TTWO | 2026-10-13 18:32 | other | listed | 199.2 | -4.6% | +2.6% | 0.8x | 186.1M | 5.0% | 0 |  |
-| CLGN | 2026-10-13 16:38 | low float runner | listed | 4.05 | +0.7% | +17.9% | 2.4x | 0.9M | 4.9% | 1 |  |
