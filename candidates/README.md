@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-16T03:26:44Z by run `38845493977`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-16T03:40:02Z by run `38846592524`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -21,7 +21,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | NBIS | 2026-10-13 03:35 | mention spike | 90 | 55.0 | 57 | 0 | wallstreetbets 88, smallstreetbets 2 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x6w7ry/) |
 | PFE | 2026-10-14 20:17 | mention spike | 2 | 1.57 | 2 | 0 | wallstreetbets 2 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x6hm3b/comment/pgwndqx/) |
 | GLND | 2026-10-14 12:29 | mention spike | 1 | 4.0 | 1 | 0 | pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1x6mb1l/) |
-| ORCL | 2026-10-14 16:58 | mention spike | 8 | 10.29 | 7 | 0 | wallstreetbets 7, smallstreetbets 1 | NYSE |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1x6knlh/) |
+| ORCL | 2026-10-14 16:58 | mention spike | 8 | 10.14 | 7 | 0 | wallstreetbets 7, smallstreetbets 1 | NYSE |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1x6knlh/) |
 | CLF | 2026-10-14 11:39 | mention spike | 0 |  | 0 | 0 |  | NYSE |  |  |
 | ASML | 2026-10-12 17:40 | mention spike | 6 | 15.29 | 4 | 0 | wallstreetbets 6 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x6oykz/comment/pgx6vkt/) |
 
