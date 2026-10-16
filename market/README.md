@@ -1,13 +1,16 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-16T18:54:40Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-16T19:08:06Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-132 candidates and 264 controls so far. Archetypes: other 125, low_float_runner 7.
+135 candidates and 270 controls so far. Archetypes: other 128, low_float_runner 7.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| VOO | 2026-10-16 19:07 | other | listed | 699.9 | -1.3% | -0.3% | 0.8x |  |  |  |  |
+| OPEX | 2026-10-16 19:07 | other | listed | 2.812 | -18.0% | -1.2% | 5.6x |  |  |  |  |
+| MSTR | 2026-10-16 19:07 | other | listed | 134.4 | -11.1% | -0.1% | 1.0x | 363.6M | 8.1% | 0 |  |
 | TQQQ | 2026-10-16 18:54 | other | listed | 68.22 | -7.6% | -8.0% | 1.5x |  |  |  |  |
 | QQQ | 2026-10-16 18:27 | other | listed | 710.8 | -2.4% | -2.6% | 1.4x |  |  |  |  |
 | IBKR | 2026-10-16 13:35 | other | listed | 84.83 | -1.4% | -0.5% | 1.5x | 439.2M | 3.1% | 3 |  |
@@ -35,6 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | CLF | 2026-10-14 11:39 | other | listed | 12.94 | +0.6% | +5.0% | 0.9x | 564.4M | 13.9% | 0 |  |
 | BBAI | 2026-10-14 05:42 | other | listed | 2.44 | +2.1% | -7.4% | 2.3x | 475.4M | 29.6% | 1 |  |
 | RSP | 2026-10-14 00:41 | other | listed | 213.4 | +0.1% | +1.0% | 0.6x |  |  |  |  |
-| SOXL | 2026-10-13 22:51 | other | listed | 129.4 | +1.4% | -22.3% | 1.3x |  |  |  |  |
-| BAC | 2026-10-13 20:37 | other | listed | 53 | -1.8% | -0.2% | 1.1x | 6.97B | 1.2% | 2673 |  |
-| AAOI | 2026-10-13 20:10 | other | listed | 99 | +1.2% | -24.9% | 1.1x | 80.9M | 17.2% | 1 |  |
