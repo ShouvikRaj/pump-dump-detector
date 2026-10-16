@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-16T19:34:31Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-16T20:14:52Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-136 candidates and 272 controls so far. Archetypes: other 129, low_float_runner 7.
+137 candidates and 274 controls so far. Archetypes: other 130, low_float_runner 7.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| AVGO | 2026-10-16 20:14 | other | listed | 329.6 | +0.3% | -9.1% | 1.3x | 4.72B | 1.1% | 1 |  |
 | SOXS | 2026-10-16 19:34 | other | listed | 48.04 | +10.1% | +29.2% | 1.5x |  |  |  |  |
 | VOO | 2026-10-16 19:07 | other | listed | 699.9 | -1.3% | -0.3% | 0.8x |  |  |  |  |
 | OPEX | 2026-10-16 19:07 | other | listed | 2.812 | -18.0% | -1.2% | 5.6x |  |  |  |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | UPST | 2026-10-14 12:46 | other | listed | 23.28 | -2.3% | -0.1% | 0.7x | 83.7M | 34.1% | 0 |  |
 | GLND | 2026-10-14 12:29 | other | listed | 4.09 | +85.1% | -26.3% | 0.1x |  |  | 0 |  |
 | CLF | 2026-10-14 11:39 | other | listed | 12.94 | +0.6% | +5.0% | 0.9x | 564.4M | 13.9% | 0 |  |
-| BBAI | 2026-10-14 05:42 | other | listed | 2.44 | +2.1% | -7.4% | 2.3x | 475.4M | 29.6% | 1 |  |
