@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-16T07:12:12Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-16T11:23:39Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-127 candidates and 254 controls so far. Archetypes: other 120, low_float_runner 7.
+128 candidates and 256 controls so far. Archetypes: other 121, low_float_runner 7.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| USO | 2026-10-16 11:23 | other | listed | 156.9 | -0.3% | +6.6% | 0.8x |  |  | 0 |  |
 | TSLA | 2026-10-16 07:11 | other | listed | 362.3 | -0.0% | -3.3% | 0.8x | 2.82B | 2.5% | 0 |  |
 | DRMA | 2026-10-15 23:28 | other | listed | 0.9 | -1.1% | -15.0% | 4315.7x | 2.9M | 2.9% | 1 |  |
 | BETR | 2026-10-15 23:28 | other | listed | 10.8 | +0.4% | +6.0% | 4.3x | 8.5M | 44.1% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | TTWO | 2026-10-13 18:32 | other | listed | 199.2 | -4.6% | +2.6% | 0.8x | 186.1M | 5.0% | 0 |  |
 | CLGN | 2026-10-13 16:38 | low float runner | listed | 4.05 | +0.7% | +17.9% | 2.4x | 0.9M | 4.9% | 1 |  |
 | GME | 2026-10-13 14:38 | other | listed | 26.95 | -1.0% | +7.9% | 0.9x | 461.2M | 9.3% | 0 |  |
-| MSFT | 2026-10-13 13:59 | other | listed | 550.2 | +1.7% | +3.0% | 0.8x | 7.41B | 0.8% | 0 |  |
