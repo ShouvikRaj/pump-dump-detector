@@ -5,7 +5,7 @@ scan-mexc-GRIFFAIN-2026100614,scan,spike,settled,0.01995,0.022053,0.253133,47.0,
 scan-mexc-GTT-2026100616,scan,spike,settled,0.17,0.15999,0.447059,0.0,1,1,1,0.0,-0.124945,-0.374961,1.160635,-0.309269,0,crypto-label-v1
 scan-mexc-KRAFT-2026100616,scan,spike,settled,0.2,0.2792,0.45,58.0,1,1,1,0.0,-0.498567,-0.949857,0.253582,-0.621777,0,crypto-label-v1
 scan-mexc-MBK-2026100616,scan,spike,settled,0.068,0.1,0.632353,20.0,1,1,1,0.0,-0.57,-0.9698,0.65,-0.571,0,crypto-label-v1
-scan-mexc-MODA-2026100616,scan,spike,pending,0.0005,9.7e-05,0.216,0.0,1,1,1,0.0,,,,,0,crypto-label-v1
+scan-mexc-MODA-2026100616,scan,spike,partial,0.0005,9.7e-05,0.216,0.0,1,1,1,0.0,,,0.474227,-0.484536,1,crypto-label-v1
 scan-mexc-NATIX-2026100618,scan,spike,settled,0.00024411,0.00030613,0.35185,47.0,1,1,0,0.0,-0.232026,-0.396956,0.0,-0.290171,0,crypto-label-v1
 scan-mexc-OKAI-2026100616,scan,spike,settled,3.01e-06,3.575e-06,0.328904,27.0,1,1,1,0.0,-0.546853,-0.955245,0.818182,-0.547133,0,crypto-label-v1
 scan-mexc-ORCA-2026100617,scan,spike,settled,2.5902,3.153,0.253764,36.0,1,1,0,0.0,-0.118744,-0.357786,0.055312,-0.148493,0,crypto-label-v1
@@ -4699,7 +4699,7 @@ scan-mexc-SI-2026100816,scan,spike,settled,0.02056,0.02302,0.279183,23.0,1,1,1,0
 scan-gate-SI-2026100816,scan,spike,settled,0.02051,0.02287,0.278888,24.0,1,1,1,0.000437,0.148666,-0.31045,0.35505,-0.046349,0,crypto-label-v1
 scan-gate-RLC-2026100817,scan,spike,settled,0.8893,0.9469,0.219836,33.0,1,1,0,0.0,-0.104657,-0.047312,0.68983,-0.11902,0,crypto-label-v1
 scan-mexc-BATON-2026100818,scan,spike,settled,0.007721,0.011738,0.623106,58.0,1,0,0,0.0,0.156841,-0.140654,0.384819,-0.03297,0,crypto-label-v1
-scan-mexc-DLB-2026100818,scan,spike,pending,8.483e-05,5.96e-05,0.994577,17.0,1,1,1,0.0,,,,,0,crypto-label-v1
+scan-mexc-DLB-2026100818,scan,spike,partial,8.483e-05,5.96e-05,0.994577,17.0,1,1,1,0.0,,,0.001007,-0.028523,1,crypto-label-v1
 scan-gate-OGPU-2026100818,scan,spike,settled,0.03717,0.04335,0.619317,26.0,1,1,0,0.0,-0.036448,-0.172088,0.027682,-0.065744,0,crypto-label-v1
 scan-gate-PUMPBTC-2026100818,scan,spike,settled,0.002635,0.002809,0.212903,20.0,1,1,1,0.0,0.018156,-0.435386,0.249555,-0.049484,0,crypto-label-v1
 tg-Whalesguide-19513,telegram,call,settled,0.19521,0.19781,0.078736,58.1,0,0,0,0.06299,-0.013397,0.018755,0.12967,-0.084981,0,crypto-label-v1
@@ -4752,7 +4752,7 @@ scan-mexc-OKAI-2026100916,scan,spike,settled,6.12e-07,7.92e-07,0.470588,38.0,1,1
 scan-kucoin-MAGIC-2026100916,scan,spike,settled,0.0919,0.1046,0.314472,10.0,1,1,0,0.0,-0.006692,0.052581,0.562141,-0.063098,0,crypto-label-v1
 scan-mexc-KRAFT-2026100920,scan,spike,settled,0.0954,0.105,0.226415,30.0,1,1,1,0.0,-0.253333,-0.969524,0.857143,-0.527619,0,crypto-label-v1
 scan-mexc-AGRS-2026101000,scan,spike,settled,0.5591,0.5799,0.386156,7.0,1,1,1,0.0,-0.048284,-0.41921,0.250216,-0.056389,0,crypto-label-v1
-scan-kucoin-C98-2026101004,scan,spike,pending,0.01827,0.01875,0.258894,56.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-kucoin-C98-2026101004,scan,spike,settled,0.01827,0.01875,0.258894,56.0,1,1,0,0.0,-0.068267,-0.157333,0.067733,-0.1104,0,crypto-label-v1
 scan-mexc-LUMIA-2026101007,scan,spike,pending,0.08727,0.1249,0.552653,48.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-gate-LUMIA-2026101007,scan,spike,pending,0.08807,0.12463,0.541728,48.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-binance-LUMIA-2026101007,scan,spike,pending,0.0875,0.1247,0.550857,48.0,1,1,,0.0,,,,,0,crypto-label-v1
@@ -5033,5 +5033,5 @@ scan-mexc-STOP-2026101622,scan,spike,pending,0.001524,0.001926,0.384514,41.0,1,,
 scan-mexc-Q-2026101623,scan,spike,pending,0.055919,0.058077,0.280888,17.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-gate-Q-2026101623,scan,spike,pending,0.055968,0.057929,0.286503,17.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-kucoin-Q-2026101623,scan,spike,pending,0.055965,0.058116,0.27519,17.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-gate-UNION-2026101701,scan,spike,pending,8.92e-05,0.0001002,0.232063,,1,,,0.0,,,,,0,crypto-label-v1
-scan-kucoin-ILY-2026101701,scan,spike,pending,0.0738,0.132,0.822493,,1,,,0.0,,,,,0,crypto-label-v1
+scan-gate-UNION-2026101701,scan,spike,pending,8.92e-05,0.0001002,0.232063,48.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-kucoin-ILY-2026101701,scan,spike,pending,0.0738,0.132,0.822493,56.0,1,1,,0.0,,,,,0,crypto-label-v1
