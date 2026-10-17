@@ -16,8 +16,8 @@ Live since 2026-10-07T12:32:05Z.
 |---|---|
 | no_data | 475 |
 | not_covered | 1575 |
-| partial | 7 |
-| pending | 266 |
+| partial | 8 |
+| pending | 265 |
 | settled | 2736 |
 
 - `events.csv`: one row per event; `outcomes.csv`: crypto-label-v1 per event, rebuilt every run.
