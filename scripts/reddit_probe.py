@@ -3,12 +3,18 @@
 For when Arctic Shift is down: does Arctic Shift answer, is PullPush reachable,
 and do Reddit's public RSS feeds answer from GitHub's runners, how far back a
 feed reaches with ?after= paging, and what rate limit Reddit announces.
+
+With UTC hours as arguments (2026-10-15T09 ...) it only counts the
+r/wallstreetbets comments and posts Arctic Shift has in each of those hours
+now, e.g. to see whether it filled a hole in its archive.
 """
 
 import json
+import re
+import sys
 import time
 import xml.etree.ElementTree as ET
-from datetime import datetime
+from datetime import datetime, timezone
 
 import requests
 
@@ -92,6 +98,42 @@ def pages(name, base, n):
         seen |= set(ids)
         after = ids[-1]
 
+
+def hour_counts(hours, sub="wallstreetbets", max_pages=30):
+    print(f"== Arctic Shift r/{sub} per UTC hour now (comments counted up to {max_pages * 100}, posts up to 100)")
+    for h in hours:
+        start = int(datetime.strptime(h, "%Y-%m-%dT%H").replace(tzinfo=timezone.utc).timestamp())
+        counts, retrieved = {}, []
+        for kind, pages in (("comments", max_pages), ("posts", 1)):
+            n, after = 0, start - 1
+            for _ in range(pages):
+                url = f"{AS}/api/{kind}/search?subreddit={sub}&after={after}&before={start + 3600}&limit=100&sort=asc"
+                code, _, body, _ = get(url + "&fields=id,created_utc,retrieved_on")
+                if code != 200:
+                    n = f"{n}+ (HTTP {code}: {body[:80]!r})"
+                    break
+                items = json.loads(body).get("data") or []
+                n += len(items)
+                retrieved += [it["retrieved_on"] for it in items if kind == "comments" and it.get("retrieved_on")]
+                if len(items) < 100:
+                    break
+                after = max(int(it["created_utc"]) for it in items)
+            else:
+                n = f"{n}+"
+            counts[kind] = n
+        span = ""
+        if retrieved:
+            span = " comments archived " + " to ".join(datetime.fromtimestamp(t, timezone.utc).strftime("%m-%d %H:%MZ") for t in (min(retrieved), max(retrieved)))
+        print(f"{h}  comments {counts['comments']!s:>6}  posts {counts['posts']!s:>4}{span}", flush=True)
+
+
+hours = sys.argv[1:]
+if hours:
+    bad = [h for h in hours if not re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}", h)]
+    if bad:
+        sys.exit(f"not a UTC hour like 2026-10-15T09: {' '.join(bad)}")
+    hour_counts(hours)
+    sys.exit(0)
 
 print("== Arctic Shift")
 probe("front page", f"{AS}/", "raw")

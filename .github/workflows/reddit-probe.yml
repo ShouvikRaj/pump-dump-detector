@@ -3,8 +3,14 @@ name: reddit-probe
 # Manual reachability check for Reddit data sources, for when Arctic Shift is
 # down: Arctic Shift, PullPush and Reddit's public RSS feeds as seen from
 # GitHub's runners. Prints to the log only; writes nothing.
+# With `hours` it only counts what Arctic Shift has in those UTC hours now.
 on:
   workflow_dispatch:
+    inputs:
+      hours:
+        description: "Only count r/wallstreetbets comments and posts Arctic Shift has in these UTC hours, e.g. 2026-10-15T09 2026-10-15T18"
+        required: false
+        default: ""
 
 permissions:
   contents: read
@@ -18,4 +24,6 @@ jobs:
         with:
           sparse-checkout: scripts
       - run: pip install requests
-      - run: python scripts/reddit_probe.py
+      - run: python scripts/reddit_probe.py $HOURS
+        env:
+          HOURS: ${{ inputs.hours }}
