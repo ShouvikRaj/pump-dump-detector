@@ -145,6 +145,11 @@ class Settings:
     symbol_refresh_seconds: int = 20 * 3600
     symbol_retry_seconds: int = 2 * 3600  # sooner when a source failed last time
     daily_after_seconds: int = 30 * 60  # reconcile yesterday once it's 00:30 UTC
+    # Arctic Shift can keep answering while its archive stands still (2026-10-14 to 16: 2 to 8 hours at a time,
+    # every stream at once, never filled in later). When the busiest stream's newest item is older than this
+    # at the start of a run, the run reads Reddit's RSS feeds as well.
+    stall_stream: str = "wallstreetbets/comments"
+    stall_seconds: int = 15 * 60
     # Collection stops once there is enough for the planned analysis (README, "How long it runs"):
     # stop_min_days of live data and stop_min_episodes post-warm-up candidates old enough to have
     # their follow-up chatter, or stop_max_days regardless.
@@ -229,8 +234,10 @@ def health(state: dict, now: float, s: Settings) -> dict:
         if last is None:
             if now - st["initialized_at"] > s.catchup_seconds:
                 problems.append(f"{key}: still not caught up {round((now - st['initialized_at']) / 3600, 1)}h after starting")
-        elif now - last > s.stale_seconds:
-            problems.append(f"{key}: no complete fetch for {round((now - last) / 3600, 1)}h (last error: {st.get('last_error')})")
+        else:
+            last = max(last, st.get("fallback_complete_at") or 0)  # Reddit's feeds count while Arctic Shift lags
+            if now - last > s.stale_seconds:
+                problems.append(f"{key}: no complete fetch for {round((now - last) / 3600, 1)}h (last error: {st.get('last_error')})")
         if st.get("consecutive_errors", 0) >= s.max_consecutive_errors:
             problems.append(f"{key}: {st['consecutive_errors']} failed runs in a row: {st.get('last_error')}")
     return {"healthy": not problems, "problems": problems}
@@ -333,7 +340,9 @@ def run_collect(
         client.probing = True
     new_records: list[dict] = []
     log_rows = []
-    fallback_due = []
+    fallback_due = []  # streams Reddit's feeds should cover: Arctic Shift failed them, or (if stalled) served them
+    completed = []  # streams Arctic Shift served in full, current once its archive turns out not to have stalled
+    behind = None  # how far its archive is behind, from the newest item of settings.stall_stream
     for sub, kind in settings.streams():
         key = f"{sub}/{kind}"
         st = state["streams"].setdefault(
@@ -347,20 +356,22 @@ def run_collect(
                 "last_error": None,
             },
         )
-        mode = "live" if st["last_complete_at"] is not None else "backfill"
+        caught_up = st["last_complete_at"] is not None
+        mode = "live" if caught_up else "backfill"
         after = st["cursor"] - settings.overlap(kind) if st["cursor"] is not None else st["complete_since"]
         res, recs, fresh = _fetch_stream(client, sub, kind, after, None, mode, run_id, conn, settings, regular_deadline)
         new_records += fresh
         if res.newest_created is not None:
             st["cursor"] = max(st["cursor"] or 0, res.newest_created)
-        if res.complete:
-            st["last_complete_at"] = clock()
         if res.error:
             st["consecutive_errors"] = st.get("consecutive_errors", 0) + 1
             st["last_error"] = res.error[:300]
             st["last_error_at"] = clock()
         elif res.complete:
             st["consecutive_errors"] = 0
+            completed.append((st, clock(), caught_up))
+            if key == settings.stall_stream and caught_up and st["cursor"] is not None:
+                behind = started - st["cursor"]
         row = {
             "run_id": run_id,
             "run_started_at_utc": iso(started),
@@ -380,14 +391,28 @@ def run_collect(
         }
         log_rows.append(row)
         summary["streams"].append(row)
-        if res.error and fallback is not None and st["last_complete_at"] is not None:
-            fallback_due.append((sub, kind, key, st, row))
+        if fallback is not None and caught_up and (res.error or res.complete):
+            fallback_due.append((sub, kind, key, st, row, bool(res.error)))
 
-    # -- Arctic Shift failed: read Reddit's RSS feeds instead, busiest stream first since its feed reaches back
-    # least. Their items are stored like any other, but the cursors above stay put, so once Arctic Shift is back
-    # it re-reads the stretch and fills in whatever the feeds missed (removed items, and anything older than a
-    # feed's ~1000 items reach back).
-    for sub, kind, key, st, row in reversed(fallback_due):
+    stalled = behind is not None and behind > settings.stall_seconds
+    if stalled:
+        newest = iso(started - behind)
+        summary["warnings"].append(
+            f"Arctic Shift's archive is {behind / 60:.0f} min behind (newest {settings.stall_stream} item {newest}); "
+            "reading Reddit's RSS feeds as well"
+        )
+    for st, at, was_caught_up in completed:
+        if stalled and was_caught_up:  # served in full, but only up to where the archive stopped
+            st["last_error"], st["last_error_at"] = f"Arctic Shift's archive stalled at {newest}", at
+        else:
+            st["last_complete_at"] = at
+    fallback_due = [due for due in fallback_due if stalled or due[-1]]
+
+    # -- Arctic Shift failed or its archive stalled: read Reddit's RSS feeds instead, busiest stream first since
+    # its feed reaches back least. Their items are stored like any other, but the cursors above stay put, so once
+    # Arctic Shift is back it re-reads the stretch and fills in whatever the feeds missed (removed items, and
+    # anything older than a feed's ~1000 items reach back) if its archive has them by then.
+    for sub, kind, key, st, row, _failed in reversed(fallback_due):
         seen_to = st["cursor"] if st["cursor"] is not None else st["complete_since"]
         since = max(seen_to, st.get("fallback_cursor") or 0)
         try:  # with Arctic Shift down the daily re-fetch can't use the rest of the run either

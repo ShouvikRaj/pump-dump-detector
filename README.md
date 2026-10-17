@@ -69,8 +69,9 @@ can't be used without Reddit's manual approval. Posts and comments come from the
 [Arctic Shift](https://github.com/ArthurHeitmann/arctic_shift) Reddit archive instead: same content, archived about
 20-30 seconds after posting, no key needed. Its `score`/`num_comments` are placeholders (1/0) until it refreshes them
 about 36 hours later, so they are stored but must not be used as decision-time features. While Arctic Shift is down,
-the collector reads Reddit's public RSS feeds instead (no key either), and Arctic Shift fills in whatever they missed
-once it is back ([docs/stage1.md](docs/stage1.md)).
+or answering while its archive stands still, the collector reads Reddit's public RSS feeds instead (no key either),
+and Arctic Shift fills in whatever they missed once it is back, if its archive has it
+([docs/stage1.md](docs/stage1.md)).
 
 StockTwits' public trending list is recorded each run as a second, independent hype signal. Ticker symbols come
 from the Nasdaq Trader symbol directory and the SEC's `company_tickers_exchange.json` (refreshed daily, or after

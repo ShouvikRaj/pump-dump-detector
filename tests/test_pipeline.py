@@ -549,3 +549,79 @@ def test_a_feed_read_cut_short_by_the_rate_limit_is_read_again_next_run(setup):
 
     assert {f"t1_w{j}" for j in range(250)} <= {r["id"] for r in raw_records(ds)}
     assert summary["detection"] == "ran" and not [w for w in summary["warnings"] if "Reddit RSS only reaches" in w]
+
+
+def stalled_world(ds, server, clock):
+    """r1 at T sees r/wallstreetbets comments up to T - 60; after it, Arctic Shift's archive stands still."""
+    server.items["comments"].append(comment("w0", T - 60, sub="wallstreetbets", body="hi"))
+    run(ds, server, clock, "r1")
+
+
+def test_feeds_fill_in_while_arctic_shift_answers_but_its_archive_has_stalled(setup):
+    # 2026-10-14 to 16: Arctic Shift answered as usual while its archive stood still for 2 to 8 hours at a
+    # time, in every stream at once, and it never filled those hours in later
+    ds, server, clock = setup
+    stalled_world(ds, server, clock)
+    arctic_complete = {k: st["last_complete_at"] for k, st in ds.load_state()["streams"].items()}
+    new = chatter("y", T + 600, 12)  # only Reddit has these
+    reddit = FakeRedditRSS(posts=server.items["posts"], comments=server.items["comments"] + new)
+
+    clock.now = T + 3600
+    summary = run(ds, server, clock, "r2", rss=reddit)
+
+    assert summary["detection"] == "ran" and summary["new_candidates"] == ["YYYY"]
+    assert any("Arctic Shift's archive is 61 min behind" in w for w in summary["warnings"])
+    stored = {r["id"]: r for r in raw_records(ds)}
+    assert all(stored[f"t1_y{j}"]["source"] == "reddit_rss" for j in range(12))
+    streams = ds.load_state()["streams"]
+    assert {k: st["last_complete_at"] for k, st in streams.items()} == arctic_complete  # it is not current
+    assert all(st["fallback_complete_at"] >= T + 3600 for st in streams.values())
+    assert all(st["consecutive_errors"] == 0 for st in streams.values())  # nor down
+    log = [r for r in ds.read_csv("logs/runs/2026-10.csv") if r["run_id"] == "r2"]
+    assert [r["stream"] for r in log if r["mode"] == "fallback"][0] == "wallstreetbets/comments"
+
+
+def test_once_the_archive_catches_up_the_feeds_rest_and_nothing_is_stored_twice(setup):
+    ds, server, clock = setup
+    stalled_world(ds, server, clock)
+    talk = [comment(f"w{j}", T + j * 60, sub="wallstreetbets", body="hi") for j in range(1, 75)]
+    reddit = FakeRedditRSS(posts=server.items["posts"], comments=server.items["comments"] + talk[:59])
+    clock.now = T + 3600
+    run(ds, server, clock, "r2", rss=reddit)  # the feed has what was said up to now, Arctic Shift nothing
+
+    server.items["comments"] += talk  # its archive caught up
+    reddit.calls.clear()
+    clock.now = T + 4500
+    summary = run(ds, server, clock, "r3", rss=reddit)
+
+    assert reddit.calls == [] and summary["warnings"] == []
+    modes = {r["id"]: r["fetch_mode"] for r in raw_records(ds) if r["id"].startswith("t1_w")}
+    assert len(modes) == 75 and sum(1 for r in raw_records(ds) if r["id"].startswith("t1_w")) == 75
+    assert [modes[f"t1_w{j}"] for j in (1, 59, 60, 74)] == ["fallback", "fallback", "live", "live"]
+    assert ds.load_state()["streams"]["wallstreetbets/comments"]["last_complete_at"] >= T + 4500
+
+
+def test_a_stall_the_feeds_cannot_cover_holds_detection_back_and_health_says_why(setup):
+    ds, server, clock = setup
+    stalled_world(ds, server, clock)
+    reddit = FakeRedditRSS(status=403)
+
+    clock.now = T + 1800
+    assert run(ds, server, clock, "r2", rss=reddit)["detection"] == "ran"  # the last 3 hours are still covered
+    clock.now = T + 4 * 3600
+    summary = run(ds, server, clock, "r3", rss=reddit)
+
+    assert summary["detection"].startswith("skipped: ")
+    h = json.loads(ds.path("reports/health.json").read_text())
+    assert not h["healthy"]
+    assert any(p.startswith("wallstreetbets/comments: no complete fetch for 4.0h") and "stalled" in p for p in h["problems"])
+
+
+def test_health_counts_a_complete_feed_read_while_arctic_shift_is_behind():
+    state = {
+        "streams": {
+            f"a/{k}": {"initialized_at": T - DAY, "last_complete_at": T - 5 * 3600, "fallback_complete_at": T - 600, "consecutive_errors": 0}
+            for k in ("posts", "comments")
+        }
+    }
+    assert health(state, T, Settings(subreddits=("a",))) == {"healthy": True, "problems": []}
