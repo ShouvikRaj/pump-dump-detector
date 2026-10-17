@@ -1,9 +1,18 @@
 # Stage 3 tracking
 
-Updated 2026-10-17T00:49:40Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-10-17T22:44:53Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-10-17 17:37 | BHP | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-17 17:37 | VZ | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-17 17:37 | NFLX | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-17 04:49 | ZTO | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-17 04:49 | DOW | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-17 04:49 | SCHD | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-17 01:44 | IDCC | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-17 01:44 | MDB | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-17 01:44 | SOXX | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-10-16 21:33 | APD | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-16 21:33 | KRYS | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-16 21:33 | AMD | candidate | other | active | 0 |  |  |  |  |  |
@@ -149,7 +158,7 @@ Updated 2026-10-17T00:49:40Z. Each candidate and control is followed for 20 trad
 | 2026-10-13 10:39 | ALL | control | other | active | 4 |  |  |  |  |  |
 | 2026-10-13 10:39 | JPM | candidate | other | active | 4 |  |  |  |  |  |
 | 2026-10-13 08:00 | AIM | control | other | active | 4 |  |  |  |  |  |
-| 2026-10-13 08:00 | AZTR | control | other | active | 3 |  |  |  |  |  |
+| 2026-10-13 08:00 | AZTR | control | other | active | 4 |  |  |  |  |  |
 | 2026-10-13 08:00 | SXTC | candidate | other | active | 4 |  |  |  |  |  |
 | 2026-10-13 03:58 | FAST | control | other | active | 4 |  |  |  |  |  |
 | 2026-10-13 03:58 | APO | control | other | active | 4 |  |  |  |  |  |
