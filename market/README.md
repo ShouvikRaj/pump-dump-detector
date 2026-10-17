@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-17T01:45:16Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-17T04:50:08Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-142 candidates and 284 controls so far. Archetypes: other 135, low_float_runner 7.
+143 candidates and 286 controls so far. Archetypes: other 136, low_float_runner 7.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SCHD | 2026-10-17 04:49 | other | listed | 34.37 | +0.1% | +4.0% | 1.1x |  |  |  |  |
 | SOXX | 2026-10-17 01:44 | other | listed | 493.7 | +0.1% | -11.8% | 2.1x |  |  |  |  |
 | AMD | 2026-10-16 21:33 | other | listed | 530.1 | +0.2% | -13.0% | 1.0x | 1.62B | 2.4% | 3 |  |
 | XLAB | 2026-10-16 21:20 | other | listed | 2.41 | +2.5% | +141.3% | 189.9x |  |  | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | TLT | 2026-10-14 18:31 | other | listed | 78.93 | +0.7% | +1.4% | 0.6x |  |  |  |  |
 | SOFI | 2026-10-14 18:18 | other | listed | 14.01 | -8.1% | -3.3% | 0.6x | 1.27B | 16.9% | 0 |  |
 | VOO | 2026-10-14 17:34 | other | listed | 706.2 | -1.3% | -0.1% | 0.6x |  |  |  |  |
-| ORCL | 2026-10-14 16:58 | other | listed | 133.1 | -7.1% | -1.1% | 0.9x | 1.86B | 2.6% | 0 |  |
