@@ -145,7 +145,7 @@ class Settings:
     symbol_refresh_seconds: int = 20 * 3600
     symbol_retry_seconds: int = 2 * 3600  # sooner when a source failed last time
     daily_after_seconds: int = 30 * 60  # reconcile yesterday once it's 00:30 UTC
-    # Arctic Shift can keep answering while its archive stands still (2026-10-14 to 16: 2 to 8 hours at a time,
+    # Arctic Shift can keep answering while its archive stands still (2026-10-14 to 17: 1.5 to 8 hours at a time,
     # every stream at once, never filled in later). When the busiest stream's newest item is older than this
     # at the start of a run, the run reads Reddit's RSS feeds as well.
     stall_stream: str = "wallstreetbets/comments"

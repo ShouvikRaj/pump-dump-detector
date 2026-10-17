@@ -62,9 +62,10 @@ each run spent its whole budget retrying. Since then:
 
 ### When Arctic Shift answers but its archive has stalled
 
-From 2026-10-14 Arctic Shift kept answering normally while its archive stood still for 2 to 8 hours at a time, in
-every stream at once (six times by 2026-10-17). When it moved again it only picked up the last hour or so, and it
-never filled the rest in: on 2026-10-17 it still had almost no r/wallstreetbets comments in any of the 19 thin hours
+From 2026-10-14 Arctic Shift kept answering normally while its archive stood still for 1.5 to 8 hours at a time,
+in every stream at once (seven times by 2026-10-17). When it moved again it only picked up about the last 1000
+items of each stream, which is days of the small subreddits but only an hour or so of r/wallstreetbets comments,
+and it never filled the rest in: on 2026-10-17 it still had almost no r/wallstreetbets comments in any of the 19 thin hours
 checked (the `reddit-probe` workflow's `hours` input). Health stayed green throughout, since every read
 completed.
 
@@ -73,8 +74,10 @@ minute, under 8 minutes in 99% of runs). Over 15 minutes means its archive has s
 stream's feed as well, as above, from where Arctic Shift stopped, and logs a warning. Arctic Shift's reads then
 don't count as current: spike detection and health go by the feeds, so a stall the feeds can't cover holds
 detection back after 3 h and turns health red with `last error: Arctic Shift's archive stalled at ...`. A stall
-alone is not an outage: no failed runs are counted. Holes it already left (about 22 hours of r/wallstreetbets comments
-between Oct 14 21:30 and Oct 17 01:00 UTC) stay in the data.
+alone is not an outage: no failed runs are counted. The holes it already left stay in the data: about 24 hours
+of r/wallstreetbets comments (2026-10-14 21:30 to 10-15 04:50, 10-15 06:50 to 08:00, 08:10 to 11:20, 16:50 to
+20:10, 10-15 22:50 to 10-16 02:20, 10-16 03:10 to 06:00, 10-16 21:30 to 10-17 00:40 UTC); the other five streams
+have none. Flags while those hours sit in a ticker's baseline (until Oct 25) face a lower bar.
 
 If Reddit ever grants API access, a PRAW source can be added next to `sources/arctic_shift.py`; nothing else
 depends on where records come from (each record carries `source`).
