@@ -175,3 +175,26 @@ def test_run_end_to_end(tmp_path):
     s2 = run_crypto(ds, "r2", http=FakeHttp(now), clock=lambda: now / 1000 + 3600, log=lambda *_: None)
     assert s2["new_events"] == 0
     assert json.loads((tmp_path / "crypto/state.json").read_text())["live_since"] == now / 1000
+
+
+class DelistedHttp(FakeHttp):
+    def json(self, url, params=None):
+        if "mexc.com/api/v3/klines" in url and params["symbol"] == "GONEUSDT":
+            raise ExchangeError(f"{url} -> 400 Invalid symbol.")
+        return super().json(url, params)
+
+
+def test_delisted_pair_settles_as_partial(tmp_path):
+    ds = Datastore(tmp_path)
+    now = ms("2026-10-17T04:30:00")
+    t0 = now - now % HOUR - 9 * 24 * HOUR
+    ds.append_csv("crypto/events.csv", ["event_id", "source", "kind", "exchange", "base", "quote", "t0"],
+                  [dict(event_id="scan-mexc-GONE-x", source="scan", kind="spike", exchange="mexc", base="GONE",
+                        quote="USDT", t0=t0)])
+    bars = hours(t0 - 30 * HOUR, [1.0] * 31, spike_at=t0, spike_high=1.3, spike_qv=50_000)
+    from pumpdump.crypto.run import save_bars
+    save_bars(ds, "scan", "scan-mexc-GONE-x", dict(hourly=bars, hourly_fetched_at="2026-10-08T00:00:00Z"))
+    s = run_crypto(ds, "r1", http=DelistedHttp(now), clock=lambda: now / 1000, log=lambda *_: None)
+    assert not any("GONE" in x for x in s["errors"])
+    o = {o["event_id"]: o for o in ds.read_csv("crypto/outcomes.csv")}["scan-mexc-GONE-x"]
+    assert o["status"] == "partial" and o["delisted"] == "1"

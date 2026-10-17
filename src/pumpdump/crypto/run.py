@@ -337,8 +337,15 @@ class Run:
                     stats["final"] += 1
                     changed = True
             except (ExchangeError, ValueError, KeyError, IndexError) as exc:
-                stats["failed"] += 1
-                self.errors.append(f"bars {e['event_id']}: {exc}")
+                if e["exchange"] in self.tickers and not self.listed(e["exchange"], e["base"]):
+                    # the pair is gone from the exchange: keep the bars fetched so far and stop asking
+                    b.setdefault("minute_fetched_at", iso(self.clock()))
+                    b.update(final_at=iso(self.clock()), delisted=True)
+                    stats["delisted"] = stats.get("delisted", 0) + 1
+                    changed = True
+                else:
+                    stats["failed"] += 1
+                    self.errors.append(f"bars {e['event_id']}: {exc}")
             if changed:
                 save_bars(self.ds, e["source"], e["event_id"], b)
         return stats
