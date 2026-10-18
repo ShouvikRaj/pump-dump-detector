@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS docs (
     score INTEGER,                       -- as received; NOT a decision-time feature
     num_comments INTEGER,
     run_id TEXT,
-    fetch_mode TEXT,                     -- backfill | live | reconcile | fallback
+    fetch_mode TEXT,                     -- backfill | live | reconcile | late | fallback
     extracted INTEGER NOT NULL DEFAULT 0
 );
 CREATE INDEX IF NOT EXISTS docs_created ON docs(created_utc);

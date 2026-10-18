@@ -65,19 +65,22 @@ each run spent its whole budget retrying. Since then:
 From 2026-10-14 Arctic Shift kept answering normally while its archive stood still for 1.5 to 8 hours at a time,
 in every stream at once (seven times by 2026-10-17). When it moved again it only picked up about the last 1000
 items of each stream, which is days of the small subreddits but only an hour or so of r/wallstreetbets comments,
-and it never filled the rest in: on 2026-10-17 it still had almost no r/wallstreetbets comments in any of the 19 thin hours
-checked (the `reddit-probe` workflow's `hours` input). Health stayed green throughout, since every read
-completed.
+and it filled the rest in only two to three days later: on 2026-10-17 the 19 thin hours checked still had almost
+no r/wallstreetbets comments, on 2026-10-18 most had them (the `reddit-probe` workflow's `hours` input). Health
+stayed green throughout, since every read completed.
 
 Now each run checks how old the newest r/wallstreetbets comment Arctic Shift served is (normally under a
 minute, under 8 minutes in 99% of runs). Over 15 minutes means its archive has stalled: the run reads every
 stream's feed as well, as above, from where Arctic Shift stopped, and logs a warning. Arctic Shift's reads then
 don't count as current: spike detection and health go by the feeds, so a stall the feeds can't cover holds
 detection back after 3 h and turns health red with `last error: Arctic Shift's archive stalled at ...`. A stall
-alone is not an outage: no failed runs are counted. The holes it already left stay in the data: about 24 hours
-of r/wallstreetbets comments (2026-10-14 21:30 to 10-15 04:50, 10-15 06:50 to 08:00, 08:10 to 11:20, 16:50 to
-20:10, 10-15 22:50 to 10-16 02:20, 10-16 03:10 to 06:00, 10-16 21:30 to 10-17 00:40 UTC); the other five streams
-have none. Flags while those hours sit in a ticker's baseline (until Oct 25) face a lower bar.
+alone is not an outage: no failed runs are counted.
+
+The stalls left about 24 hours of r/wallstreetbets comments missing (2026-10-14 21:30 to 10-15 04:50, 10-15
+06:50 to 08:00, 08:10 to 11:20, 16:50 to 20:10, 10-15 22:50 to 10-16 02:20, 10-16 03:10 to 06:00, 10-16 21:30 to
+10-17 00:40 UTC); the other five streams had none. To pick up what Arctic Shift fills in late, the collector reads
+each day once more two days later (see "Collection loop"). Flags raised before a day's late items arrived saw a
+lower baseline for that day.
 
 If Reddit ever grants API access, a PRAW source can be added next to `sources/arctic_shift.py`; nothing else
 depends on where records come from (each record carries `source`).
@@ -117,8 +120,8 @@ the detector over history reproduces what it could have known at each moment. Th
 wins; later re-fetches never overwrite it.
 
 `fetch_mode` records how a document arrived: `backfill` (first 9 days at start-up), `live`, `reconcile`
-(picked up by the daily re-fetch after being archived late), or `fallback` (read from Reddit's RSS feed while
-Arctic Shift was down; see above).
+(picked up by the daily re-fetch after being archived late), `late` (picked up when its day was read once more
+two days later), or `fallback` (read from Reddit's RSS feed while Arctic Shift was down or stalled; see above).
 
 ## Collection loop
 
@@ -132,6 +135,12 @@ missing, then writes that day's per-ticker mention counts (all tickers, for cont
 fit in one run, the next run resumes the re-fetch where it stopped instead of starting over. Days that never get
 this rollover (the backfilled days, or days missed while the collector was down) get their counts once every
 stream has completed a fetch after the day ended, so rows in `daily/mention_counts/` are not in date order.
+
+Arctic Shift can fill holes in its archive days later, so every day from 2026-10-14 on is read once more two days
+later, in at most 3 minutes of a run once yesterday's re-fetch is done and Arctic Shift is answering (resuming
+where it stopped, like the re-fetch). What it finds is stored with `fetch_mode=late` and its own collection time, so replayed detection
+doesn't see it early. That day's mention counts were already written and stay as they were. Days older than the
+working window (the last 8) are never read again, since their items would be stored twice.
 
 On the very first run every stream backfills 9 days (1 current + 7 baseline + 1 spare), which can take more
 than one run for r/wallstreetbets; cursors make it resume.

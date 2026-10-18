@@ -65,6 +65,8 @@ def render_summary(summary: dict) -> str:
         lines.append(f"Daily catch-up and mention counts written for {summary['daily']}.")
     if summary.get("daily_filled"):
         lines.append(f"Mention counts filled in for {', '.join(summary['daily_filled'])}.")
+    if summary.get("late"):
+        lines.append(f"Read {summary['late']} once more for what Arctic Shift archived late.")
     if summary["new_candidates"]:
         lines.append(f"New candidates: {', '.join(summary['new_candidates'])}")
     if summary["active"]:

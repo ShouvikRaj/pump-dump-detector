@@ -150,6 +150,11 @@ class Settings:
     # at the start of a run, the run reads Reddit's RSS feeds as well.
     stall_stream: str = "wallstreetbets/comments"
     stall_seconds: int = 15 * 60
+    # It fills those holes days later (the Oct 14-17 ones on Oct 17-18), after each day's re-fetch at 00:30, so
+    # every day from late_first_day on is read once more late_days later, in at most late_seconds of a run.
+    late_first_day: str = "2026-10-14"  # the first stall; earlier days had no holes to fill
+    late_days: int = 2
+    late_seconds: float = 180.0
     # Collection stops once there is enough for the planned analysis (README, "How long it runs"):
     # stop_min_days of live data and stop_min_episodes post-warm-up candidates old enough to have
     # their follow-up chatter, or stop_max_days regardless.
@@ -252,6 +257,51 @@ def _fetch_stream(client, sub, kind, after, before, mode, run_id, conn, settings
         r["fetch_mode"] = mode
     db.insert_docs(conn, fresh)
     return res, recs, fresh
+
+
+def _reread_day(state, slot, day: date, *, client, conn, run_id, started, settings, clock, deadline):
+    """Read every stream's items created on `day` again. A busy day may not fit in one run, so progress is
+    kept per stream in state[slot] and the next run resumes where this one stopped instead of starting over.
+    Returns the newly stored records, the run log rows, and whether the day is done."""
+    start = int(_midnight(day))
+    rec = state.get(slot)
+    if not rec or rec.get("day") != day.isoformat():
+        rec = state[slot] = {"day": day.isoformat(), "after": {}, "done": []}
+    new, rows = [], []
+    for sub, kind in settings.streams():
+        key = f"{sub}/{kind}"
+        if key in rec["done"]:
+            continue
+        if clock() >= deadline:
+            break
+        after = rec["after"].get(key, start - 1)
+        res, recs, fresh = _fetch_stream(client, sub, kind, after, start + DAY, slot, run_id, conn, settings, deadline)
+        new += fresh
+        if res.newest_created is not None:
+            rec["after"][key] = max(after, res.newest_created - 1)  # re-read the boundary second
+        if res.complete:
+            rec["done"].append(key)
+        rows.append(
+            {
+                "run_id": run_id,
+                "run_started_at_utc": iso(started),
+                "stream": key,
+                "mode": slot,
+                "after_utc": iso(after),
+                "fetched": len(recs),
+                "new": len(fresh),
+                "pages": res.pages,
+                "complete": int(res.complete),
+                "cursor_utc": "",
+                "median_archive_lag_s": "",
+                "median_collect_lag_s": _median([r["collected_at"] - r["created_utc"] for r in fresh]),
+                "error": res.error or "",
+            }
+        )
+    done = all(f"{sub}/{kind}" in rec["done"] for sub, kind in settings.streams())
+    if done:
+        del state[slot]
+    return new, rows, done
 
 
 def run_collect(
@@ -456,49 +506,30 @@ def run_collect(
         summary["streams"].append(row)
 
     # -- reconcile yesterday: pick up anything archived after we passed it -----
-    # A busy day may not fit in one run, so progress is kept per stream and the
-    # next run resumes where this one stopped instead of starting over.
     reconciled_day_start = None
+    reread = dict(client=client, conn=conn, run_id=run_id, started=started, settings=settings, clock=clock)
     if rollover:
-        y_start = day_start_ts - DAY
-        rec = state.get("reconcile")
-        if not rec or rec.get("day") != yesterday:
-            rec = state["reconcile"] = {"day": yesterday, "after": {}, "done": []}
-        for sub, kind in settings.streams():
-            key = f"{sub}/{kind}"
-            if key in rec["done"]:
-                continue
-            after = rec["after"].get(key, int(y_start) - 1)
-            res, recs, fresh = _fetch_stream(
-                client, sub, kind, after, day_start_ts, "reconcile", run_id, conn, settings, deadline
-            )
-            new_records += fresh
-            if res.newest_created is not None:
-                rec["after"][key] = max(after, res.newest_created - 1)  # re-read the boundary second
-            if res.complete:
-                rec["done"].append(key)
-            log_rows.append(
-                {
-                    "run_id": run_id,
-                    "run_started_at_utc": iso(started),
-                    "stream": key,
-                    "mode": "reconcile",
-                    "after_utc": iso(after),
-                    "fetched": len(recs),
-                    "new": len(fresh),
-                    "pages": res.pages,
-                    "complete": int(res.complete),
-                    "cursor_utc": "",
-                    "median_archive_lag_s": "",
-                    "median_collect_lag_s": _median([r["collected_at"] - r["created_utc"] for r in fresh]),
-                    "error": res.error or "",
-                }
-            )
-        if all(f"{sub}/{kind}" in rec["done"] for sub, kind in settings.streams()):
-            reconciled_day_start = int(y_start)
-            del state["reconcile"]
+        fresh, rows, done = _reread_day(state, "reconcile", today - timedelta(days=1), deadline=deadline, **reread)
+        new_records += fresh
+        log_rows += rows
+        if done:
+            reconciled_day_start = int(day_start_ts - DAY)
         else:
             summary["warnings"].append(f"reconcile of {yesterday} incomplete, will resume next run")
+
+    # -- and an older day once more: Arctic Shift fills holes in its archive days late ----------
+    summary["late"] = None
+    if (reconciled_day_start is not None or not rollover) and not client.down and clock() < deadline:
+        last = state.get("late_done_for") or (date.fromisoformat(settings.late_first_day) - timedelta(days=1)).isoformat()
+        # older items aren't in the working database, so reading them again would store them twice
+        day = max(date.fromisoformat(last) + timedelta(days=1), utc_dt(started - settings.window_days * DAY).date())
+        if day <= today - timedelta(days=settings.late_days):
+            late_deadline = min(deadline, clock() + settings.late_seconds)
+            fresh, rows, done = _reread_day(state, "late", day, deadline=late_deadline, **reread)
+            new_records += fresh
+            log_rows += rows
+            if done:
+                state["late_done_for"] = summary["late"] = day.isoformat()
     summary["warnings"] += [
         f"arctic shift: API rejected field {f}; collecting without it" for f in getattr(client, "dropped_fields", [])
     ]

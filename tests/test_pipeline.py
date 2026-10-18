@@ -625,3 +625,77 @@ def test_health_counts_a_complete_feed_read_while_arctic_shift_is_behind():
         }
     }
     assert health(state, T, Settings(subreddits=("a",))) == {"healthy": True, "problems": []}
+
+
+LATE = dict(late_first_day="2026-10-02", late_days=2)
+
+
+def test_each_day_is_read_again_two_days_later_for_what_arctic_shift_filled_in_late(setup):
+    # 2026-10-17/18: Arctic Shift filled the holes its stalls had left two to three days late, long after the
+    # daily re-fetch of each day
+    ds, server, clock = setup
+    settings = Settings(subreddits=SETTINGS.subreddits, max_seconds=10_000, **LATE)
+    run(ds, server, clock, "r1", settings=settings)  # Oct 4: Oct 2 is due and gets its second read now
+    assert ds.load_state()["late_done_for"] == "2026-10-02"
+    oct3 = T - DAY - 6 * 3600  # 2026-10-03 15:52 UTC
+    server.items["comments"].append(comment("filled", oct3, author="q", body="$ZZZZ"))
+
+    clock.now = T + 3 * 3600  # 2026-10-05 00:52 UTC: yesterday's re-fetch, then Oct 3 once more
+    summary = run(ds, server, clock, "r2", settings=settings)
+
+    stored = {r["id"]: r for r in raw_records(ds)}
+    assert stored["t1_filled"]["fetch_mode"] == "late"
+    assert summary["late"] == "2026-10-03" and ds.load_state()["late_done_for"] == "2026-10-03"
+    log = [r for r in ds.read_csv("logs/runs/2026-10.csv") if r["run_id"] == "r2" and r["mode"] == "late"]
+    assert {r["stream"] for r in log} == {f"{s}/{k}" for s in SETTINGS.subreddits for k in ("posts", "comments")}
+
+    clock.now += 900  # done for today
+    assert not [r for r in run(ds, server, clock, "r3", settings=settings)["warnings"] if "late" in r]
+    assert not [r for r in ds.read_csv("logs/runs/2026-10.csv") if r["run_id"] == "r3" and r["mode"] == "late"]
+
+
+def test_the_late_read_takes_little_of_a_run_and_resumes_where_it_stopped(setup):
+    ds, server, clock = setup
+    settings = Settings(subreddits=SETTINGS.subreddits, max_seconds=10_000, late_seconds=25, **LATE)
+    run(ds, server, clock, "r1", settings=settings)
+    oct3 = T - DAY - 15 * 3600  # 2026-10-03 06:52 UTC
+    server.items["comments"] += [comment(f"f{i}", oct3 + i * 60, author="q", body="hi") for i in range(600)]
+
+    clock.now = T + 3 * 3600
+    run(ds, server, clock, "r2", settings=settings, min_interval=10)  # a 250-item page per 10 s, 25 s allowed
+    assert ds.load_state()["late_done_for"] == "2026-10-02"
+    for i in range(3, 6):
+        clock.now += 900
+        run(ds, server, clock, f"r{i}", settings=settings, min_interval=10)
+
+    modes = [r["fetch_mode"] for r in raw_records(ds) if r["id"].startswith("t1_f")]
+    assert modes == ["late"] * 600  # each stored once
+    assert ds.load_state()["late_done_for"] == "2026-10-03"
+
+
+def test_the_late_read_never_reaches_back_past_the_stored_window(setup):
+    # older items aren't in the working database, so reading them again would store them twice
+    ds, server, clock = setup
+    settings = Settings(subreddits=SETTINGS.subreddits, max_seconds=10_000, late_first_day="2026-09-01", late_days=2)
+    run(ds, server, clock, "r1", settings=settings)
+
+    days = {r["after_utc"][:10] for r in ds.read_csv("logs/runs/2026-10.csv") if r["mode"] == "late"}
+    assert days and min(days) >= "2026-09-25"  # the window starts Sep 25 for a run on Oct 4
+    ids = [r["id"] for r in raw_records(ds)]
+    assert len(ids) == len(set(ids))
+
+
+def test_the_late_read_waits_while_arctic_shift_is_down(setup):
+    ds, server, clock = setup
+    settings = Settings(subreddits=SETTINGS.subreddits, max_seconds=10_000, late_first_day="2026-10-02", late_days=1)
+    run(ds, server, clock, "r1", settings=settings)  # Oct 4: Oct 2 read once more, Oct 3 due next run
+    real_get, server.get = server.get, Outage().get
+
+    clock.now += 900
+    run(ds, server, clock, "r2", settings=settings)
+    assert not [r for r in ds.read_csv("logs/runs/2026-10.csv") if r["run_id"] == "r2" and r["mode"] == "late"]
+
+    server.get = real_get
+    clock.now += 900
+    run(ds, server, clock, "r3", settings=settings)
+    assert ds.load_state()["late_done_for"] == "2026-10-03"
