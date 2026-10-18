@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-18T08:37:07Z by run `39112110702`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-18T08:50:35Z by run `39112959197`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -12,7 +12,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | VOO | 2026-10-16 19:07 | mention spike | 30 | 16.29 | 28 | 0 | wallstreetbets 30 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x8s3ma/) |
 | NFLX | 2026-10-17 17:37 | mention spike | 12 | 7.43 | 9 | 0 | wallstreetbets 12 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1typ6n0/comment/phg6fu3/) |
 | TQQQ | 2026-10-16 18:54 | mention spike | 6 | 4.71 | 6 | 0 | wallstreetbets 6 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x8t7xg/comment/phg0wwv/) |
-| QQQ | 2026-10-16 18:27 | mention spike | 38 | 82.14 | 32 | 0 | wallstreetbets 38 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x8aojz/) |
+| QQQ | 2026-10-16 18:27 | mention spike | 37 | 82.29 | 31 | 0 | wallstreetbets 37 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x8aojz/) |
 | OPEX | 2026-10-16 19:07 | mention spike | 1 | 2.57 | 1 | 0 | smallstreetbets 1 | Cboe BZX |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1x7yj41/comment/phb22us/) |
 | USO | 2026-10-16 11:23 | mention spike | 1 | 9.14 | 1 | 0 | wallstreetbets 1 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x8nbc1/comment/phe5ejf/) |
 | AVGO | 2026-10-16 20:14 | mention spike | 15 | 13.14 | 14 | 0 | wallstreetbets 15 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x8t7xg/comment/phgfz97/) |
