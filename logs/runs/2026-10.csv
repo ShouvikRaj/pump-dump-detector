@@ -9486,3 +9486,10 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 39141503980,2026-10-18T15:40:11Z,smallstreetbets/comments,live,2026-10-18T14:45:00Z,7,0,1,1,2026-10-18T15:15:00Z,714.0,,
 39141503980,2026-10-18T15:40:11Z,wallstreetbets/comments,live,2026-10-18T14:51:35Z,480,167,5,1,2026-10-18T15:36:23Z,232.5,660.0,
 39141503980,2026-10-18T15:40:11Z,wallstreetbets/comments,late,2026-10-11T23:23:40Z,100,0,1,0,,,,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
+39142495532,2026-10-18T15:53:25Z,pennystocks/posts,live,2026-10-18T01:01:03Z,1,0,1,1,2026-10-18T04:01:03Z,14.0,,
+39142495532,2026-10-18T15:53:25Z,smallstreetbets/posts,live,2026-10-18T11:42:15Z,2,0,1,1,2026-10-18T14:42:15Z,16.5,,
+39142495532,2026-10-18T15:53:25Z,wallstreetbets/posts,live,2026-10-18T12:30:58Z,10,0,1,1,2026-10-18T15:30:58Z,18.0,,
+39142495532,2026-10-18T15:53:25Z,pennystocks/comments,live,2026-10-18T11:37:49Z,1,0,1,1,2026-10-18T12:07:49Z,5059.0,,
+39142495532,2026-10-18T15:53:25Z,smallstreetbets/comments,live,2026-10-18T14:45:00Z,7,0,1,1,2026-10-18T15:15:00Z,714.0,,
+39142495532,2026-10-18T15:53:25Z,wallstreetbets/comments,live,2026-10-18T15:06:23Z,465,139,5,1,2026-10-18T15:49:54Z,230.0,667.5,
+39142495532,2026-10-18T15:53:25Z,wallstreetbets/comments,late,2026-10-11T23:31:42Z,199,0,2,0,,,,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
