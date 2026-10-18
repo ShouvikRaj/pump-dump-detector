@@ -152,7 +152,7 @@ class Settings:
     stall_seconds: int = 15 * 60
     # It fills those holes days later (the Oct 14-17 ones on Oct 17-18), after each day's re-fetch at 00:30, so
     # every day from late_first_day on is read once more late_days later, in at most late_seconds of a run.
-    late_first_day: str = "2026-10-14"  # the first stall; earlier days had no holes to fill
+    late_first_day: str = "2026-10-04"  # the start of collection; only days still in the working window are read
     late_days: int = 2
     late_seconds: float = 180.0
     # Collection stops once there is enough for the planned analysis (README, "How long it runs"):

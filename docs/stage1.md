@@ -136,11 +136,12 @@ fit in one run, the next run resumes the re-fetch where it stopped instead of st
 this rollover (the backfilled days, or days missed while the collector was down) get their counts once every
 stream has completed a fetch after the day ended, so rows in `daily/mention_counts/` are not in date order.
 
-Arctic Shift can fill holes in its archive days later, so every day from 2026-10-14 on is read once more two days
-later, in at most 3 minutes of a run once yesterday's re-fetch is done and Arctic Shift is answering (resuming
-where it stopped, like the re-fetch). What it finds is stored with `fetch_mode=late` and its own collection time, so replayed detection
-doesn't see it early. That day's mention counts were already written and stay as they were. Days older than the
-working window (the last 8) are never read again, since their items would be stored twice.
+Arctic Shift can fill holes in its archive days later, so every day is read once more two days later (from
+2026-10-10, the oldest day still in the working window when this started), in at most 3 minutes of a run once
+yesterday's re-fetch is done and Arctic Shift is answering, resuming where it stopped like the re-fetch. What it
+finds is stored with `fetch_mode=late` and its own collection time, so replayed detection doesn't see it early.
+That day's mention counts were already written and stay as they were. Days older than the working window (the
+last 8) are never read again, since their items would be stored twice.
 
 On the very first run every stream backfills 9 days (1 current + 7 baseline + 1 spare), which can take more
 than one run for r/wallstreetbets; cursors make it resume.
