@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-18T08:23:55Z by run `39111250081`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-18T08:37:07Z by run `39112110702`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -23,7 +23,5 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | AAPL | 2026-10-16 20:40 | mention spike | 7 | 24.0 | 7 | 0 | wallstreetbets 7 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x8t7xg/comment/phg5frl/) |
 | AMD | 2026-10-16 21:33 | mention spike | 25 | 31.29 | 21 | 0 | wallstreetbets 25 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x8t7xg/comment/phgdwoy/) |
 | MSTR | 2026-10-16 19:07 | mention spike | 5 | 3.86 | 5 | 0 | wallstreetbets 5 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x8k6vw/) |
-| RCS | 2026-10-16 12:29 | mention spike | 0 |  | 0 | 0 |  | NYSE |  |  |
-| SOXX | 2026-10-17 01:44 | mention spike | 6 | 9.71 | 6 | 0 | wallstreetbets 6 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x8cbn8/comment/phfwyio/) |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
