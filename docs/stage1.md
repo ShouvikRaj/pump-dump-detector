@@ -78,9 +78,12 @@ alone is not an outage: no failed runs are counted.
 
 The stalls left about 24 hours of r/wallstreetbets comments missing (2026-10-14 21:30 to 10-15 04:50, 10-15
 06:50 to 08:00, 08:10 to 11:20, 16:50 to 20:10, 10-15 22:50 to 10-16 02:20, 10-16 03:10 to 06:00, 10-16 21:30 to
-10-17 00:40 UTC); the other five streams had none. To pick up what Arctic Shift fills in late, the collector reads
-each day once more two days later (see "Collection loop"). Flags raised before a day's late items arrived saw a
-lower baseline for that day.
+10-17 00:40 UTC), and posts in all three subreddits (37, most from 2026-10-14 20:00 to 24:00). Arctic Shift filled
+them in only after each day's re-fetch had passed, so the collector now reads each day once more two days later
+(see "Collection loop"). Its first pass, over 2026-10-10 to 10-16 on 2026-10-18, brought back 26,416
+r/wallstreetbets comments in those hours (they now hold 26,935, 250 to 1,833 an hour, in line with the same hours
+on other days) and the 37 posts, with nothing stored twice. Flags raised before that saw a lower baseline for
+those days.
 
 If Reddit ever grants API access, a PRAW source can be added next to `sources/arctic_shift.py`; nothing else
 depends on where records come from (each record carries `source`).
