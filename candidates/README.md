@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-18T06:38:06Z by run `39104700404`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-18T06:51:15Z by run `39105482954`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -17,12 +17,12 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | USO | 2026-10-16 11:23 | mention spike | 2 | 9.0 | 2 | 0 | wallstreetbets 2 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x8nbc1/comment/phe5ejf/) |
 | AVGO | 2026-10-16 20:14 | mention spike | 14 | 13.14 | 13 | 0 | wallstreetbets 14 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x7qdzy/comment/phg1zel/) |
 | SGRX | 2026-10-16 21:20 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
-| TSLA | 2026-10-16 07:11 | mention spike | 16 | 47.71 | 15 | 0 | wallstreetbets 16 | Nasdaq | #19 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x8aojz/) |
+| TSLA | 2026-10-16 07:11 | mention spike | 16 | 47.71 | 15 | 0 | wallstreetbets 16 | Nasdaq | #22 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x8aojz/) |
 | XLAB | 2026-10-16 21:20 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
 | SOXS | 2026-10-16 19:34 | mention spike | 2 | 7.57 | 2 | 0 | wallstreetbets 2 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x7qdzy/comment/phfar68/) |
 | AAPL | 2026-10-16 20:40 | mention spike | 7 | 24.0 | 7 | 0 | wallstreetbets 7 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x8t7xg/comment/phg5frl/) |
 | AMD | 2026-10-16 21:33 | mention spike | 24 | 31.29 | 20 | 0 | wallstreetbets 24 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x8t7xg/comment/phg75vd/) |
-| MSTR | 2026-10-16 19:07 | mention spike | 5 | 3.86 | 5 | 0 | wallstreetbets 5 | Nasdaq | #4 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x8k6vw/) |
+| MSTR | 2026-10-16 19:07 | mention spike | 5 | 3.86 | 5 | 0 | wallstreetbets 5 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x8k6vw/) |
 | RCS | 2026-10-16 12:29 | mention spike | 0 |  | 0 | 0 |  | NYSE |  |  |
 | SOXX | 2026-10-17 01:44 | mention spike | 6 | 9.71 | 6 | 0 | wallstreetbets 6 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x8cbn8/comment/phfwyio/) |
 
