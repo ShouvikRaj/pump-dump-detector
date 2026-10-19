@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-19T00:56:14Z by run `39182951825`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-19T01:09:31Z by run `39183978474`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -9,6 +9,6 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 |---|---|---|---|---|---|---|---|---|---|---|
 | VTI | 2026-10-18 05:58 | mention spike | 12 | 2.71 | 11 | 0 | wallstreetbets 12 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x9guju/comment/phlcwg8/) |
 | SCHD | 2026-10-17 04:49 | mention spike | 7 | 5.71 | 7 | 0 | wallstreetbets 7 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x8t7xg/comment/phlq2d7/) |
-| NFLX | 2026-10-17 17:37 | mention spike | 5 | 9.14 | 5 | 0 | wallstreetbets 5 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x9ct1y/comment/phkqequ/) |
+| NFLX | 2026-10-17 17:37 | mention spike | 7 | 9.14 | 7 | 0 | wallstreetbets 7 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x9ct1y/comment/phlw6im/) |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
