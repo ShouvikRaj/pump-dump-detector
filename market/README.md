@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-19T18:52:04Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-19T19:31:52Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-151 candidates and 302 controls so far. Archetypes: other 143, low_float_runner 8.
+152 candidates and 304 controls so far. Archetypes: other 144, low_float_runner 8.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| NFLX | 2026-10-19 19:31 | other | listed | 69.83 | -1.0% | +0.3% | 1.1x | 4.13B | 2.0% | 1 |  |
 | RIVN | 2026-10-19 18:51 | other | listed | 12.29 | -1.1% | -11.0% | 1.0x | 945.4M | 17.9% | 0 |  |
 | TQQQ | 2026-10-19 16:13 | other | listed | 71.72 | +5.1% | -16.1% | 1.7x |  |  |  |  |
 | GLD | 2026-10-19 16:13 | other | listed | 379.6 | -0.6% | -0.7% | 1.2x |  |  | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | BETR | 2026-10-15 23:28 | other | listed | 10.8 | +0.4% | +6.0% | 4.3x | 8.5M | 44.1% | 0 |  |
 | WETO | 2026-10-15 21:16 | low float runner | listed | 1.23 | +0.8% | +13.0% | 16.8x | 0.2M | 1159.2% | 2 |  |
 | SOXS | 2026-10-15 15:04 | other | listed | 45.26 | +6.4% | +38.7% | 1.2x |  |  |  |  |
-| PFE | 2026-10-14 20:17 | other | listed | 29.17 | -0.1% | +4.3% | 1.2x | 5.69B | 2.6% | 0 |  |
