@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-20T09:25:37Z by run `39400500314`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-20T09:38:43Z by run `39402125695`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -8,7 +8,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | Ticker | Flagged since (UTC) | Why | Mentions 24h | Baseline/day | Authors | Hype posts | Subreddits | Exchange | StockTwits | Example |
 |---|---|---|---|---|---|---|---|---|---|---|
 | AMZN | 2026-10-19 16:13 | mention spike | 68 | 20.43 | 40 | 0 | wallstreetbets 68 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xa66i7/) |
-| APLD | 2026-10-20 04:07 | mention spike | 36 | 16.71 | 24 | 0 | wallstreetbets 35, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xamm2t/) |
+| APLD | 2026-10-20 04:07 | mention spike | 37 | 16.71 | 24 | 0 | wallstreetbets 36, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xamm2t/) |
 | GLD | 2026-10-19 16:13 | mention spike | 17 | 4.71 | 11 | 0 | wallstreetbets 17 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xa7cu6/comment/phszhop/) |
 | NFLX | 2026-10-19 19:31 | mention spike | 25 | 9.86 | 21 | 0 | wallstreetbets 25 | Nasdaq | #22 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xa8tas/) |
 | RIVN | 2026-10-19 18:51 | mention spike | 23 | 2.57 | 13 | 0 | wallstreetbets 23 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xa7cu6/comment/phseny4/) |
