@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-20T12:18:10Z by run `39421088575`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-20T12:31:39Z by run `39422759780`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -10,8 +10,8 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | AMZN | 2026-10-19 16:13 | mention spike | 77 | 20.29 | 43 | 0 | wallstreetbets 77 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xa66i7/) |
 | GLD | 2026-10-19 16:13 | mention spike | 17 | 4.71 | 11 | 0 | wallstreetbets 17 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xa7cu6/comment/phszhop/) |
 | NFLX | 2026-10-19 19:31 | mention spike | 30 | 9.57 | 25 | 0 | wallstreetbets 30 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xa8tas/) |
-| RIVN | 2026-10-19 18:51 | mention spike | 23 | 2.57 | 13 | 0 | wallstreetbets 23 | Nasdaq | #15 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xa7cu6/comment/phseny4/) |
-| SPCX | 2026-10-20 10:18 | mention spike | 87 | 37.0 | 60 | 0 | wallstreetbets 87 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xad35t/) |
+| RIVN | 2026-10-19 18:51 | mention spike | 23 | 2.43 | 13 | 0 | wallstreetbets 23 | Nasdaq | #21 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xa7cu6/comment/phseny4/) |
+| SPCX | 2026-10-20 10:18 | mention spike | 91 | 37.0 | 63 | 0 | wallstreetbets 91 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xad35t/) |
 | APLD | 2026-10-20 04:07 | mention spike | 28 | 18.0 | 20 | 0 | wallstreetbets 27, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xamm2t/) |
 | TCRT | 2026-10-19 14:18 | mention spike | 9 | 4.71 | 5 | 0 | pennystocks 9 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1x9mwl7/comment/phpkaok/) |
 | GOOG | 2026-10-19 22:36 | mention spike | 22 | 18.14 | 14 | 0 | wallstreetbets 22 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xao1uu/comment/phvh9m1/) |
