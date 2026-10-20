@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-20T08:32:30Z by run `39394075958`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-20T08:45:45Z by run `39395660357`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -15,6 +15,6 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | TCRT | 2026-10-19 14:18 | mention spike | 13 | 4.14 | 6 | 0 | pennystocks 13 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1x9mwl7/comment/phpkaok/) |
 | GOOG | 2026-10-19 22:36 | mention spike | 21 | 18.14 | 13 | 0 | wallstreetbets 21 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xa7cu6/comment/phtaake/) |
 | TQQQ | 2026-10-19 16:13 | mention spike | 8 | 8.43 | 8 | 1 | wallstreetbets 8 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x9guju/comment/phuiac2/) |
-| WDC | 2026-10-19 06:00 | mention spike | 5 | 12.57 | 5 | 0 | wallstreetbets 5 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xa2deu/) |
+| WDC | 2026-10-19 06:00 | mention spike | 4 | 12.71 | 4 | 0 | wallstreetbets 4 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xa2deu/) |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
