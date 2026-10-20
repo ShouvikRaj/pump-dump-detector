@@ -1,13 +1,13 @@
 # Stage 1 candidates
 
-Updated 2026-10-20T01:17:32Z by run `39352376946`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-20T01:30:37Z by run `39353601727`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
 
 | Ticker | Flagged since (UTC) | Why | Mentions 24h | Baseline/day | Authors | Hype posts | Subreddits | Exchange | StockTwits | Example |
 |---|---|---|---|---|---|---|---|---|---|---|
-| AMZN | 2026-10-19 16:13 | mention spike | 61 | 20.57 | 37 | 0 | wallstreetbets 61 | Nasdaq | #6 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xa66i7/) |
+| AMZN | 2026-10-19 16:13 | mention spike | 61 | 20.57 | 37 | 0 | wallstreetbets 61 | Nasdaq | #7 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xa66i7/) |
 | GLD | 2026-10-19 16:13 | mention spike | 18 | 4.57 | 12 | 0 | wallstreetbets 18 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xa7cu6/comment/phszhop/) |
 | GOOG | 2026-10-19 22:36 | mention spike | 28 | 17.0 | 18 | 0 | wallstreetbets 28 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x9ox1r/) |
 | NFLX | 2026-10-19 19:31 | mention spike | 26 | 9.71 | 22 | 0 | wallstreetbets 26 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xa8tas/) |
