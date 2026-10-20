@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-20T21:21:45Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-20T23:18:30Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-162 candidates and 324 controls so far. Archetypes: other 154, low_float_runner 8.
+163 candidates and 326 controls so far. Archetypes: other 155, low_float_runner 8.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| MRNA | 2026-10-20 23:18 | other | listed | 241.5 | -0.2% | +11.9% | 0.9x | 372.0M | 8.3% | 0 |  |
 | OKLO | 2026-10-20 21:21 | other | listed | 27.92 | +1.6% | -13.5% | 0.8x | 157.4M | 20.8% | 1 |  |
 | SMCI | 2026-10-20 21:06 | other | listed | 36.6 | +12.7% | -16.9% | 1.1x | 557.7M | 15.7% | 0 |  |
 | GOOGL | 2026-10-20 18:16 | other | listed | 340.8 | -1.0% | -2.4% | 0.8x | 10.88B | 0.7% | 3 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | SOXS | 2026-10-16 19:34 | other | listed | 48.04 | +10.1% | +29.2% | 1.5x |  |  |  |  |
 | VOO | 2026-10-16 19:07 | other | listed | 699.9 | -1.3% | -0.3% | 0.8x |  |  |  |  |
 | OPEX | 2026-10-16 19:07 | other | listed | 2.812 | -18.0% | -1.2% | 5.6x |  |  |  |  |
-| MSTR | 2026-10-16 19:07 | other | listed | 134.4 | -11.1% | -0.1% | 1.0x | 363.6M | 8.1% | 0 |  |
