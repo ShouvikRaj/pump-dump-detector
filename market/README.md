@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-20T16:43:22Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-20T18:16:42Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-159 candidates and 318 controls so far. Archetypes: other 151, low_float_runner 8.
+160 candidates and 320 controls so far. Archetypes: other 152, low_float_runner 8.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| GOOGL | 2026-10-20 18:16 | other | listed | 340.8 | -1.0% | -2.4% | 0.8x | 10.88B | 0.7% | 3 |  |
 | LRCX | 2026-10-20 16:42 | other | listed | 264.7 | -2.8% | -12.1% | 1.2x | 1.25B | 2.1% | 0 |  |
 | IWM | 2026-10-20 16:03 | other | listed | 275.8 | +1.7% | -2.4% | 0.7x |  |  |  |  |
 | CRWV | 2026-10-20 14:57 | other | listed | 63.86 | +4.5% | -23.8% | 2.5x | 328.3M | 18.3% | 1 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | MSTR | 2026-10-16 19:07 | other | listed | 134.4 | -11.1% | -0.1% | 1.0x | 363.6M | 8.1% | 0 |  |
 | TQQQ | 2026-10-16 18:54 | other | listed | 68.22 | -7.6% | -8.0% | 1.5x |  |  |  |  |
 | QQQ | 2026-10-16 18:27 | other | listed | 710.8 | -2.4% | -2.6% | 1.4x |  |  |  |  |
-| IBKR | 2026-10-16 13:35 | other | listed | 84.83 | -1.4% | -0.5% | 1.5x | 439.2M | 3.1% | 3 |  |
