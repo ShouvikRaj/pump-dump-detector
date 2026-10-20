@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-10-20T00:23:13Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-10-20T04:40:12Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-10-19)
 
@@ -17,6 +17,7 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-10-20 04:07 | APLD | other | no model | no model | 100% / 6.7% / 0% / 0% | Users discuss APLD price action, CEO insider buying, and AI infrastructure risks with mixed bullish and bearish sentiment. |
 | 2026-10-19 22:36 | GOOG | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss GOOG investment strategies, price targets, and banbet challenges without specific corporate events. |
 | 2026-10-19 19:31 | NFLX | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss NFLX earnings, potential price drops, and hold positions before the event. |
 | 2026-10-19 18:51 | RIVN | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss RIVN options, compare it to TSLA, and express skepticism about its future performance. |
@@ -56,7 +57,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-14 19:11 | LQDA | other | no model | no model | 100% / 70% / 0% / 20% | Users discuss LQDA price targets, a lawsuit settlement, and short interest, with mixed bullish and bearish sentiments. |
 | 2026-10-14 18:31 | TLT | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss TLT price movements, yields, and correlations with other assets without mentioning specific corporate events. |
 | 2026-10-14 18:18 | SOFI | other | no model | no model | 100% / 0% / 0% / 0% | Users express extreme frustration and bearish sentiment regarding SOFI's price drop and performance. |
-| 2026-10-14 17:34 | VOO | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss holding VOO for long-term growth, comparing it to other assets, and expressing mixed views on current market valuations. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
