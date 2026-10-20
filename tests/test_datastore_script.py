@@ -194,3 +194,69 @@ def test_model_checkout_has_what_the_model_job_needs(env, tmp_path):
     sh("bash", str(SCRIPT), "checkout-model", str(md), "3", env=env)
     assert [rel for rel in needed if not (md / rel).exists()] == []
     assert [rel for rel in not_needed if (md / rel).exists()] == []
+
+
+def flaky_push_env(env, tmp_path, then=""):
+    """git on PATH that lets the first push land and then reports it failed, as GitHub did on 2026-10-20 03:01Z
+    ("cannot lock ref 'refs/heads/data': is at <the run's commit> but expected <its parent>"). `then` runs in
+    between, e.g. another writer pushing on top."""
+    bin_dir = tmp_path / "flaky-bin"
+    bin_dir.mkdir(exist_ok=True)
+    shim = bin_dir / "git"
+    shim.write_text(
+        "#!/usr/bin/env bash\n"
+        f"real={shutil.which('git')}\n"
+        'for a in "$@"; do\n'
+        '  if [ "$a" = push ] && [ ! -e "$FLAKY_MARK" ]; then\n'
+        '    "$real" "$@" || exit $?\n'
+        '    touch "$FLAKY_MARK"\n'
+        '    if [ -n "$FLAKY_THEN" ]; then bash -c "$FLAKY_THEN" || exit 99; fi\n'
+        "    echo \" ! [remote rejected] HEAD -> data (cannot lock ref 'refs/heads/data')\" >&2\n"
+        "    exit 1\n"
+        "  fi\n"
+        "done\n"
+        'exec "$real" "$@"\n'
+    )
+    shim.chmod(0o755)
+    return {**env, "PATH": f"{bin_dir}:{env['PATH']}", "FLAKY_MARK": str(tmp_path / "flaky-pushed"), "FLAKY_THEN": then}
+
+
+def remote_log(env):
+    git_dir = env["DATASTORE_REMOTE"].removeprefix("file://")
+    return sh("git", "--git-dir", git_dir, "log", "--format=%s", "data", env=env).stdout.split()
+
+
+def test_a_push_that_landed_though_git_said_it_failed_succeeds_once(env, tmp_path):
+    a = tmp_path / "a"
+    sh("bash", str(SCRIPT), "checkout", str(a), "2", env=env)
+    write(a, "state/state.json", "{}\n")
+    sh("bash", str(SCRIPT), "push", str(a), "seed", env=env)
+
+    b = tmp_path / "b"
+    sh("bash", str(SCRIPT), "checkout", str(b), "2", env=env)
+    write(b, f"raw/reddit/{day_dir(0)}/b.jsonl.gz", "b")
+    res = sh("bash", str(SCRIPT), "push", str(b), "b", env=flaky_push_env(env, tmp_path), check=False)
+
+    assert res.returncode == 0, res.stdout + res.stderr
+    assert "landed" in res.stdout
+    assert remote_log(env) == ["b", "seed"]
+
+
+def test_a_landed_push_another_writer_built_on_is_not_replayed(env, tmp_path):
+    a = tmp_path / "a"
+    sh("bash", str(SCRIPT), "checkout", str(a), "2", env=env)
+    write(a, "state/state.json", "{}\n")
+    sh("bash", str(SCRIPT), "push", str(a), "seed", env=env)
+
+    b = tmp_path / "b"
+    sh("bash", str(SCRIPT), "checkout", str(b), "2", env=env)
+    write(b, f"raw/reddit/{day_dir(0)}/b.jsonl.gz", "b")
+    other = tmp_path / "other"
+    then = (
+        f"git clone -q --branch data {env['DATASTORE_REMOTE']} {other} && cd {other} && echo m > m.txt && git add m.txt"
+        " && git -c user.name=m -c user.email=m@example.com commit -qm market && git push -q origin data"
+    )
+    res = sh("bash", str(SCRIPT), "push", str(b), "b", env=flaky_push_env(env, tmp_path, then), check=False)
+
+    assert res.returncode == 0, res.stdout + res.stderr
+    assert remote_log(env) == ["market", "b", "seed"]

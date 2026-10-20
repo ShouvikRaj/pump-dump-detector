@@ -120,7 +120,7 @@ cmd_checkout_all() {
 }
 
 cmd_push() {
-  local dir="$1" msg="$2" attempt
+  local dir="$1" msg="$2" attempt mine
   # --sparse: also stage new files outside the sparse checkout (files that are
   # merely not checked out are kept, not deleted)
   git -C "$dir" add -A --sparse
@@ -134,9 +134,18 @@ cmd_push() {
       echo "pushed $(git -C "$dir" rev-parse --short HEAD) to $BRANCH"
       return 0
     fi
-    echo "push rejected (attempt $attempt); replaying this run's commit on the new branch tip"
     sleep $((attempt * 5))
-    git -C "$dir" fetch --quiet --depth 1 origin "$BRANCH"
+    mine="$(git -C "$dir" rev-parse HEAD)"
+    # Without --depth a fetch into this shallow clone stops at its shallow commit: it gets just the commits pushed
+    # since and keeps the history below readable. (With --depth 1 the fetched tip turns shallow, and when that tip
+    # was this run's own commit, so did HEAD, and the replay below failed.)
+    git -C "$dir" fetch --quiet origin "$BRANCH"
+    if git -C "$dir" merge-base --is-ancestor "$mine" FETCH_HEAD; then
+      # GitHub can update the branch and still answer the push with an error (2026-10-20: "cannot lock ref")
+      echo "the push landed after all: $BRANCH has $(git -C "$dir" rev-parse --short "$mine")"
+      return 0
+    fi
+    echo "push rejected (attempt $attempt); replaying this run's commit on the new branch tip"
     if ! git -C "$dir" rebase --quiet --onto FETCH_HEAD HEAD~1; then
       git -C "$dir" rebase --abort || true
       echo "could not replay commit on top of $BRANCH" >&2
