@@ -1,18 +1,18 @@
 # Stage 1 candidates
 
-Updated 2026-10-20T04:07:52Z by run `39367846158`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-20T04:20:56Z by run `39369039007`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
 
 | Ticker | Flagged since (UTC) | Why | Mentions 24h | Baseline/day | Authors | Hype posts | Subreddits | Exchange | StockTwits | Example |
 |---|---|---|---|---|---|---|---|---|---|---|
-| AMZN | 2026-10-19 16:13 | mention spike | 65 | 20.29 | 38 | 0 | wallstreetbets 65 | Nasdaq | #19 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xa66i7/) |
+| AMZN | 2026-10-19 16:13 | mention spike | 65 | 20.29 | 38 | 0 | wallstreetbets 65 | Nasdaq | #9 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xa66i7/) |
+| APLD | 2026-10-20 04:07 | mention spike | 30 | 16.57 | 20 | 0 | wallstreetbets 29, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1x9wz30/) |
 | GLD | 2026-10-19 16:13 | mention spike | 18 | 4.57 | 12 | 0 | wallstreetbets 18 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xa7cu6/comment/phszhop/) |
 | NFLX | 2026-10-19 19:31 | mention spike | 26 | 10.0 | 22 | 0 | wallstreetbets 26 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xa8tas/) |
-| RIVN | 2026-10-19 18:51 | mention spike | 23 | 2.57 | 13 | 0 | wallstreetbets 23 | Nasdaq | #7 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xa7cu6/comment/phseny4/) |
+| RIVN | 2026-10-19 18:51 | mention spike | 23 | 2.57 | 13 | 0 | wallstreetbets 23 | Nasdaq | #11 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xa7cu6/comment/phseny4/) |
 | TCRT | 2026-10-19 14:18 | mention spike | 13 | 4.14 | 6 | 0 | pennystocks 13 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1x9mwl7/comment/phpkaok/) |
-| APLD | 2026-10-20 04:07 | mention spike | 30 | 16.57 | 20 | 0 | wallstreetbets 29, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1x9wz30/) |
 | GOOG | 2026-10-19 22:36 | mention spike | 26 | 17.43 | 17 | 0 | wallstreetbets 26 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x9ox1r/) |
 | TQQQ | 2026-10-19 16:13 | mention spike | 9 | 8.43 | 9 | 0 | wallstreetbets 9 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x7chad/comment/phtstqk/) |
 | WDC | 2026-10-19 06:00 | mention spike | 9 | 11.86 | 8 | 0 | wallstreetbets 9 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xa2deu/) |
