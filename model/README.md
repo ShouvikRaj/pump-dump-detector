@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-10-19T04:30:53Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-10-20T00:23:13Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-10-19)
 
@@ -17,6 +17,14 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-10-19 22:36 | GOOG | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss GOOG investment strategies, price targets, and banbet challenges without specific corporate events. |
+| 2026-10-19 19:31 | NFLX | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss NFLX earnings, potential price drops, and hold positions before the event. |
+| 2026-10-19 18:51 | RIVN | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss RIVN options, compare it to TSLA, and express skepticism about its future performance. |
+| 2026-10-19 16:13 | AMZN | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss AMZN price movements, express bullish sentiment, and speculate on manipulation without citing specific corporate events. |
+| 2026-10-19 16:13 | GLD | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss losses, boredom, and lack of movement in GLD, with no specific corporate events or pump-and-dump warnings. |
+| 2026-10-19 16:13 | TQQQ | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss TQQQ volatility, losses, and weekend trading strategies with mixed sentiment. |
+| 2026-10-19 14:18 | TCRT | low float runner | no model | no model | 100% / 83% / 0% / 0% | Users discuss high trading volume and price targets for TCRT, with no specific company events mentioned. |
+| 2026-10-19 06:00 | WDC | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss WDC price movements, losses, and potential upcoming reports without specific event announcements or promotional pitches. |
 | 2026-10-18 05:58 | VTI | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss VTI as a long-term hold and tax-loss partner, with no specific events or pump-and-dump warnings. |
 | 2026-10-17 17:37 | NFLX | other | no model | no model | 100% / 0% / 0% / 7.7% | Mixed chatter on NFLX ranging from skepticism about value traps to speculation on earnings and IV. |
 | 2026-10-17 04:49 | SCHD | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss buying SCHD as a safe value pick and dividend growth strategy. |
@@ -49,14 +57,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-14 18:31 | TLT | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss TLT price movements, yields, and correlations with other assets without mentioning specific corporate events. |
 | 2026-10-14 18:18 | SOFI | other | no model | no model | 100% / 0% / 0% / 0% | Users express extreme frustration and bearish sentiment regarding SOFI's price drop and performance. |
 | 2026-10-14 17:34 | VOO | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss holding VOO for long-term growth, comparing it to other assets, and expressing mixed views on current market valuations. |
-| 2026-10-14 16:58 | ORCL | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss ORCL price movements, options strategies, and rumors of a deal or government stake. |
-| 2026-10-14 15:25 | ARM | other | no model | no model | 100% / 0% / 0% / 20% | Users discuss ARM's legal loss to Qualcomm and a potential forced sale due to collateralized debt. |
-| 2026-10-14 13:12 | TCRT | low float runner | no model | no model | 100% / 20% / 0% / 0% | Chatter focuses on TCRT price targets, volume, and a reported catalyst driving a significant price increase. |
-| 2026-10-14 12:46 | UPST | other | no model | no model | 100% / 40% / 10% / 0% | Users express frustration over losses, warn of potential pump-and-dumps, and share price targets for UPST. |
-| 2026-10-14 12:29 | GLND | other | no model | no model | 100% / 55% / 0% / 0% | Users discuss Greenland Energy Company, citing a Greenland announcement and volume increases as reasons to buy. |
-| 2026-10-14 11:39 | CLF | other | no model | no model | 100% / 10% / 0% / 10% | Users discuss Cleveland-Cliffs earnings, datacenter demand, and potential short squeeze. |
-| 2026-10-14 05:42 | BBAI | other | no model | no model | 100% / 20% / 0% / 0% | Users discuss BBAI's recent $225M government contract announcement and speculate on potential price spikes. |
-| 2026-10-14 00:41 | RSP | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss RSP performance, correlation with SPY, and market breadth without specific company events or urgent buy pitches. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
