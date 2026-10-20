@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-20T04:08:27Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-20T10:19:01Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-154 candidates and 308 controls so far. Archetypes: other 146, low_float_runner 8.
+155 candidates and 310 controls so far. Archetypes: other 147, low_float_runner 8.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SPCX | 2026-10-20 10:18 | other | listed | 146.8 | -0.8% | -9.5% | 0.9x | 4.97B | 3.6% | 0 |  |
 | APLD | 2026-10-20 04:07 | other | listed | 19.34 | +0.5% | -17.2% | 1.5x | 261.4M | 21.7% | 0 |  |
 | GOOG | 2026-10-19 22:36 | other | listed | 340.1 | -0.0% | -2.5% | 0.7x | 10.88B | 0.5% | 3 |  |
 | NFLX | 2026-10-19 19:31 | other | listed | 69.83 | -1.0% | +0.3% | 1.1x | 4.13B | 2.0% | 1 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | USO | 2026-10-16 11:23 | other | listed | 156.9 | -0.3% | +6.6% | 0.8x |  |  | 0 |  |
 | TSLA | 2026-10-16 07:11 | other | listed | 362.3 | -0.0% | -3.3% | 0.8x | 2.82B | 2.5% | 0 |  |
 | DRMA | 2026-10-15 23:28 | other | listed | 0.9 | -1.1% | -15.0% | 4315.7x | 2.9M | 2.9% | 1 |  |
-| BETR | 2026-10-15 23:28 | other | listed | 10.8 | +0.4% | +6.0% | 4.3x | 8.5M | 44.1% | 0 |  |
