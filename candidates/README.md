@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-21T08:15:09Z by run `39567163659`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-21T08:28:09Z by run `39568809093`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -15,7 +15,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | NFLX | 2026-10-19 19:31 | mention spike | 213 | 12.0 | 151 | 0 | wallstreetbets 210, smallstreetbets 3 | Nasdaq | #2 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xbdbqm/) |
 | OKLO | 2026-10-20 21:21 | mention spike | 17 | 5.57 | 15 | 0 | wallstreetbets 17 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xbcbq2/) |
 | PAC | 2026-10-21 02:19 | mention spike | 11 | 0.14 | 11 | 0 | smallstreetbets 11 | NYSE |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1xay6zv/comment/phyzgua/) |
-| SLS | 2026-10-21 08:01 | mention spike | 13 | 5.43 | 10 | 0 | wallstreetbets 13 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xb2j2b/comment/phzo68y/) |
+| SLS | 2026-10-21 08:01 | mention spike | 13 | 5.43 | 10 | 0 | wallstreetbets 13 | Nasdaq | #17 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xb2j2b/comment/phzo68y/) |
 | SMCI | 2026-10-20 21:06 | mention spike | 90 | 5.29 | 61 | 1 | wallstreetbets 90 | Nasdaq | #3 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xb2j2b/comment/phzjq0c/) |
 | SPCX | 2026-10-20 10:18 | mention spike | 378 | 43.86 | 239 | 2 | wallstreetbets 377, smallstreetbets 1 | Nasdaq | #1 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xb69ph/) |
 | AMZN | 2026-10-19 16:13 | mention spike | 44 | 28.43 | 24 | 0 | wallstreetbets 44 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xb7uvn/) |
