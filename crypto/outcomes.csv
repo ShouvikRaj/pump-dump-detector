@@ -4934,8 +4934,8 @@ scan-mexc-EVT-2026101416,scan,spike,settled,0.02522,0.01889,0.229183,0.0,1,1,1,0
 scan-mexc-GTT-2026101416,scan,spike,settled,0.07,0.07209,0.728571,24.0,1,1,1,0.0,-0.257872,-0.891524,1.358163,-0.395894,0,crypto-label-v1
 scan-mexc-OBI-2026101416,scan,spike,settled,0.00124,0.001351,0.209677,19.0,1,1,0,0.0,-0.201554,-0.037676,0.109548,-0.378238,0,crypto-label-v1
 scan-mexc-UMXM-2026101416,scan,spike,settled,0.0584,0.175,2.883562,52.0,1,1,1,0.0,-0.679429,-0.825143,4.186286,-0.719429,0,crypto-label-v1
-scan-gate-L3-2026101417,scan,spike,pending,0.00299,0.003342,0.325084,2.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-gate-PIRATE-2026101417,scan,spike,pending,9.26e-05,8.1e-05,1.277538,45.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-gate-L3-2026101417,scan,spike,settled,0.00299,0.003342,0.325084,2.0,1,1,0,0.0,-0.166068,-0.219928,-0.000299,-0.202274,0,crypto-label-v1
+scan-gate-PIRATE-2026101417,scan,spike,partial,9.26e-05,8.1e-05,1.277538,45.0,1,1,0,0.0,,,0.851852,0.0,1,crypto-label-v1
 scan-kucoin-UMXM-2026101418,scan,spike,pending,0.2628,0.4619,1.420091,48.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-mexc-AGENCY-2026101420,scan,spike,pending,0.001173,0.001743,0.73572,14.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-gate-AIOT-2026101420,scan,spike,pending,0.04958,0.05457,0.262001,49.0,1,1,,0.0,,,,,0,crypto-label-v1
@@ -5142,9 +5142,9 @@ scan-gate-ZEREBRO-2026102108,scan,spike,pending,0.024321,0.028678,0.243534,47.0,
 scan-kucoin-ZEREBRO-2026102108,scan,spike,pending,0.02422,0.02895,0.244013,49.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-mexc-MICRODUCK-2026102110,scan,spike,pending,0.001891,0.003351,0.883659,59.0,1,,,0.0,,,,,0,crypto-label-v1
 scan-mexc-HMND-2026102111,scan,spike,pending,0.002466,0.00259,0.26399,24.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-mexc-RLS-2026102113,scan,spike,pending,0.001923,0.002252,0.23973,,1,,,0.0,,,,,0,crypto-label-v1
-scan-gate-RLS-2026102113,scan,spike,pending,0.001924,0.002243,0.299376,,1,,,0.0,,,,,0,crypto-label-v1
-scan-mexc-PTB-2026102114,scan,spike,pending,0.0005114,0.0004908,0.255573,,1,,,0.0,,,,,0,crypto-label-v1
+scan-mexc-RLS-2026102113,scan,spike,pending,0.001923,0.002252,0.23973,39.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-gate-RLS-2026102113,scan,spike,pending,0.001924,0.002243,0.299376,38.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-mexc-PTB-2026102114,scan,spike,pending,0.0005114,0.0004908,0.255573,34.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-mexc-ALTLAYER-2026102116,scan,spike,pending,0.009641,0.01415,0.495695,,1,,,0.0,,,,,0,crypto-label-v1
 scan-mexc-CTX-2026102116,scan,spike,pending,0.00105,0.000743,0.238095,,1,,,0.0,,,,,0,crypto-label-v1
 scan-mexc-GSTOCK-2026102115,scan,spike,pending,0.006325,0.008225,0.425455,,1,,,0.0,,,,,0,crypto-label-v1
@@ -5154,3 +5154,6 @@ scan-gate-ALT-2026102116,scan,spike,pending,0.009651,0.014134,0.495804,,1,,,0.0,
 scan-gate-GSTOCKBSC-2026102115,scan,spike,pending,0.006245,0.008242,0.467414,,1,,,0.0,,,,,0,crypto-label-v1
 scan-kucoin-ALT-2026102116,scan,spike,pending,0.009649,0.014121,0.552078,,1,,,0.0,,,,,0,crypto-label-v1
 scan-binance-ALT-2026102116,scan,spike,pending,0.00964,0.01414,0.497925,,1,,,0.0,,,,,0,crypto-label-v1
+tg-TCGFORYOU-35081,telegram,call,pending,,,,,,,,,,,,,,crypto-label-v1
+scan-gate-PTB-2026102117,scan,spike,pending,0.0005192,0.0006057,0.310285,,1,,,0.0,,,,,0,crypto-label-v1
+scan-kucoin-PTB-2026102117,scan,spike,pending,0.000522,0.000606,0.296935,,1,,,0.0,,,,,0,crypto-label-v1
