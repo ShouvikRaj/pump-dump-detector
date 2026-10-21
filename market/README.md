@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-21T02:19:32Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-21T08:01:34Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-164 candidates and 328 controls so far. Archetypes: other 156, low_float_runner 8.
+165 candidates and 330 controls so far. Archetypes: other 157, low_float_runner 8.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SLS | 2026-10-21 08:01 | other | listed | 11.97 | -0.1% | -3.5% | 1.9x | 201.1M | 27.4% | 0 |  |
 | PAC | 2026-10-21 02:19 | other | listed | 217.4 | +0.0% | +9.3% | 1.0x | 5.51B | 0.0% | 0 |  |
 | MRNA | 2026-10-20 23:18 | other | listed | 241.5 | -0.2% | +11.9% | 0.9x | 372.0M | 8.3% | 0 |  |
 | OKLO | 2026-10-20 21:21 | other | listed | 27.92 | +1.6% | -13.5% | 0.8x | 157.4M | 20.8% | 1 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | AAPL | 2026-10-16 20:40 | other | listed | 343.4 | -0.0% | +2.0% | 1.5x | 14.57B | 0.8% | 0 |  |
 | AVGO | 2026-10-16 20:14 | other | listed | 329.6 | +0.3% | -9.1% | 1.3x | 4.72B | 1.1% | 1 |  |
 | SOXS | 2026-10-16 19:34 | other | listed | 48.04 | +10.1% | +29.2% | 1.5x |  |  |  |  |
-| VOO | 2026-10-16 19:07 | other | listed | 699.9 | -1.3% | -0.3% | 0.8x |  |  |  |  |
