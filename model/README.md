@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-10-20T04:40:12Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-10-21T00:14:28Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-10-19)
 
@@ -17,6 +17,15 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-10-20 23:18 | MRNA | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss MRNA price movements, express bearish views, and speculate on a potential pump or squeeze. |
+| 2026-10-20 21:21 | OKLO | other | no model | no model | 100% / 7.7% / 7.7% / 0% | Users discuss OKLO's massive market cap decline, potential pump-and-dump status, and hold positions despite pre-revenue status. |
+| 2026-10-20 21:06 | SMCI | other | no model | no model | 100% / 26% / 0% / 4.3% | Users discuss SMCI price spikes, earnings rumors, and potential regulatory issues. |
+| 2026-10-20 18:16 | GOOGL | other | no model | no model | 100% / 0% / 0% / 0% | Users express frustration with GOOGL's lack of movement and discuss options, with no specific company events mentioned. |
+| 2026-10-20 16:42 | LRCX | other | no model | no model | 100% / 9.1% / 0% / 36% | Users discuss LRCX earnings anticipation, price targets, and potential upside before the event. |
+| 2026-10-20 16:03 | IWM | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss new extended-hours options trading for IWM and speculate on price movements. |
+| 2026-10-20 14:57 | CRWV | other | no model | no model | 100% / 15% / 0% / 5.0% | Mixed chatter regarding CoreWeave's financial health, potential bankruptcy rumors, and conflicting price targets. |
+| 2026-10-20 13:24 | HTZ | other | no model | no model | 100% / 53% / 0% / 0% | Users discuss a potential short squeeze and express bullish optimism for HTZ stock. |
+| 2026-10-20 10:18 | SPCX | other | no model | no model | 100% / 10% / 10% / 7.5% | Chatter focuses on upcoming SPCX earnings, Elon Musk's 'giving away shares' meme, and potential price volatility. |
 | 2026-10-20 04:07 | APLD | other | no model | no model | 100% / 6.7% / 0% / 0% | Users discuss APLD price action, CEO insider buying, and AI infrastructure risks with mixed bullish and bearish sentiment. |
 | 2026-10-19 22:36 | GOOG | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss GOOG investment strategies, price targets, and banbet challenges without specific corporate events. |
 | 2026-10-19 19:31 | NFLX | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss NFLX earnings, potential price drops, and hold positions before the event. |
@@ -48,15 +57,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-15 23:28 | BETR | other | no model | no model | 100% / 91% / 0% / 0% | Users discuss BETR as a heavily shorted penny stock with high squeeze potential and urge others to buy. |
 | 2026-10-15 23:28 | DRMA | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss DRMA price action, volume, and potential moves based on test results. |
 | 2026-10-15 21:16 | WETO | low float runner | no model | no model | 100% / 55% / 0% / 9.1% | Users discuss WETO trading strategy, warn against stop losses, and mention a cancelled ATM offering. |
-| 2026-10-15 15:04 | SOXS | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss holding, selling, or buying SOXS, with mentions of AI news and market volatility. |
-| 2026-10-14 20:17 | PFE | other | no model | no model | 100% / 10% / 0% / 0% | Users discuss Pfizer as a defensive stock, dividend play, and potential AI beneficiary with mixed bullish and neutral sentiments. |
-| 2026-10-14 20:04 | HOOD | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss HOOD price drops, buying dips, and general market sentiment without specific company events. |
-| 2026-10-14 19:51 | TSM | other | no model | no model | 94% / 24% / 0% / 53% | Users discuss TSM earnings anticipation, market recovery, and set price targets. |
-| 2026-10-14 19:24 | RKLB | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss RKLB losses, compare it to competitors, and express skepticism about its future potential. |
-| 2026-10-14 19:24 | WMT | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss WMT as a defensive stock, express bullish sentiment, and mention buying calls. |
-| 2026-10-14 19:11 | LQDA | other | no model | no model | 100% / 70% / 0% / 20% | Users discuss LQDA price targets, a lawsuit settlement, and short interest, with mixed bullish and bearish sentiments. |
-| 2026-10-14 18:31 | TLT | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss TLT price movements, yields, and correlations with other assets without mentioning specific corporate events. |
-| 2026-10-14 18:18 | SOFI | other | no model | no model | 100% / 0% / 0% / 0% | Users express extreme frustration and bearish sentiment regarding SOFI's price drop and performance. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
