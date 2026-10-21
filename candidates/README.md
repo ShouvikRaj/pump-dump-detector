@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-21T09:35:09Z by run `39577303064`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-21T09:42:10Z by run `39578340648`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -15,9 +15,9 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | NFLX | 2026-10-19 19:31 | mention spike | 221 | 12.0 | 158 | 0 | wallstreetbets 217, smallstreetbets 4 | Nasdaq | #2 | [link](https://www.reddit.com/r/smallstreetbets/comments/1xbil0a/) |
 | OKLO | 2026-10-20 21:21 | mention spike | 17 | 5.57 | 15 | 0 | wallstreetbets 17 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xbcbq2/) |
 | PAC | 2026-10-21 02:19 | mention spike | 11 | 0.14 | 11 | 0 | smallstreetbets 11 | NYSE |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1xay6zv/comment/phyzgua/) |
-| SLS | 2026-10-21 08:01 | mention spike | 13 | 5.43 | 10 | 0 | wallstreetbets 13 | Nasdaq | #6 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xb2j2b/comment/phzo68y/) |
+| SLS | 2026-10-21 08:01 | mention spike | 13 | 5.43 | 10 | 0 | wallstreetbets 13 | Nasdaq | #8 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xb2j2b/comment/phzo68y/) |
 | SMCI | 2026-10-20 21:06 | mention spike | 91 | 5.29 | 62 | 1 | wallstreetbets 90, smallstreetbets 1 | Nasdaq | #3 | [link](https://www.reddit.com/r/smallstreetbets/comments/1xbi8mj/) |
-| SPCX | 2026-10-20 10:18 | mention spike | 379 | 44.43 | 241 | 2 | wallstreetbets 378, smallstreetbets 1 | Nasdaq | #1 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xb69ph/) |
+| SPCX | 2026-10-20 10:18 | mention spike | 381 | 44.43 | 243 | 2 | wallstreetbets 380, smallstreetbets 1 | Nasdaq | #1 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xb69ph/) |
 | AMZN | 2026-10-19 16:13 | mention spike | 44 | 28.29 | 24 | 0 | wallstreetbets 44 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xb7uvn/) |
 | RIVN | 2026-10-19 18:51 | mention spike | 4 | 4.71 | 3 | 0 | wallstreetbets 4 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xb2j2b/comment/phygrnr/) |
 | CRWV | 2026-10-20 14:57 | mention spike | 123 | 95.57 | 66 | 1 | wallstreetbets 123 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xau0nd/) |
