@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-10-21T00:14:28Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-10-21T04:34:04Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-10-19)
 
@@ -17,6 +17,7 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-10-21 02:19 | PAC | other | no model | no model | 0% / 0% / 0% / 0% | All documents discuss political PACs and Super PACs, not the stock PAC. |
 | 2026-10-20 23:18 | MRNA | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss MRNA price movements, express bearish views, and speculate on a potential pump or squeeze. |
 | 2026-10-20 21:21 | OKLO | other | no model | no model | 100% / 7.7% / 7.7% / 0% | Users discuss OKLO's massive market cap decline, potential pump-and-dump status, and hold positions despite pre-revenue status. |
 | 2026-10-20 21:06 | SMCI | other | no model | no model | 100% / 26% / 0% / 4.3% | Users discuss SMCI price spikes, earnings rumors, and potential regulatory issues. |
@@ -56,7 +57,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-16 07:11 | TSLA | other | no model | no model | 100% / 28% / 0% / 5.0% | Users discuss a SpaceX/TSLA merger rumor, price targets, and general bullish sentiment. |
 | 2026-10-15 23:28 | BETR | other | no model | no model | 100% / 91% / 0% / 0% | Users discuss BETR as a heavily shorted penny stock with high squeeze potential and urge others to buy. |
 | 2026-10-15 23:28 | DRMA | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss DRMA price action, volume, and potential moves based on test results. |
-| 2026-10-15 21:16 | WETO | low float runner | no model | no model | 100% / 55% / 0% / 9.1% | Users discuss WETO trading strategy, warn against stop losses, and mention a cancelled ATM offering. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
