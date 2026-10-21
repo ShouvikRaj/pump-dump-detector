@@ -1,13 +1,13 @@
 # Stage 1 candidates
 
-Updated 2026-10-21T07:23:09Z by run `39560840917`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-21T07:35:08Z by run `39562370568`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
 
 | Ticker | Flagged since (UTC) | Why | Mentions 24h | Baseline/day | Authors | Hype posts | Subreddits | Exchange | StockTwits | Example |
 |---|---|---|---|---|---|---|---|---|---|---|
-| GOOG | 2026-10-19 22:36 | mention spike | 30 | 19.29 | 25 | 0 | wallstreetbets 30 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xb4ajv/) |
+| GOOG | 2026-10-19 22:36 | mention spike | 31 | 19.29 | 26 | 0 | wallstreetbets 31 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xb4ajv/) |
 | GOOGL | 2026-10-20 18:16 | mention spike | 55 | 18.71 | 21 | 0 | wallstreetbets 55 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xba7uk/comment/phz1yat/) |
 | HTZ | 2026-10-20 13:24 | mention spike | 23 | 7.71 | 18 | 0 | wallstreetbets 22, pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xaqvd4/) |
 | LRCX | 2026-10-20 16:42 | mention spike | 15 | 2.0 | 8 | 0 | wallstreetbets 15 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1x7lpd9/comment/phz2lop/) |
