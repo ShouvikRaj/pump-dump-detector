@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-21T00:37:11Z by run `39521310202`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-21T00:46:32Z by run `39522634846`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -21,7 +21,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | CRWV | 2026-10-20 14:57 | mention spike | 120 | 94.14 | 68 | 1 | wallstreetbets 120 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xau0nd/) |
 | GLD | 2026-10-19 16:13 | mention spike | 5 | 6.57 | 4 | 0 | wallstreetbets 5 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xao1uu/comment/phxdbir/) |
 | IWM | 2026-10-20 16:03 | mention spike | 8 | 5.43 | 8 | 0 | wallstreetbets 8 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xao1uu/comment/phxslms/) |
-| APLD | 2026-10-20 04:07 | mention spike | 15 | 19.14 | 13 | 0 | wallstreetbets 15 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xamm2t/) |
+| APLD | 2026-10-20 04:07 | mention spike | 15 | 19.0 | 13 | 0 | wallstreetbets 15 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xamm2t/) |
 | TCRT | 2026-10-19 14:18 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
