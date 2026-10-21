@@ -1,9 +1,12 @@
 # Stage 3 tracking
 
-Updated 2026-10-20T22:57:47Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-10-21T01:00:51Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-10-20 23:18 | HLT | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-20 23:18 | AMT | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-20 23:18 | MRNA | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-10-20 21:21 | HG | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-20 21:21 | FLR | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-20 21:21 | OKLO | candidate | other | active | 0 |  |  |  |  |  |
