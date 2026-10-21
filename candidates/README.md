@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-21T04:31:09Z by run `39543857527`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-21T04:43:09Z by run `39544986062`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -11,7 +11,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | HTZ | 2026-10-20 13:24 | mention spike | 22 | 7.71 | 17 | 0 | wallstreetbets 21, pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xaqvd4/) |
 | LRCX | 2026-10-20 16:42 | mention spike | 15 | 2.0 | 8 | 0 | wallstreetbets 15 | Nasdaq | #12 | [link](https://www.reddit.com/r/wallstreetbets/comments/1x7lpd9/comment/phz2lop/) |
 | MRNA | 2026-10-20 23:18 | mention spike | 20 | 8.43 | 17 | 0 | wallstreetbets 20 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xb2qdl/) |
-| NFLX | 2026-10-19 19:31 | mention spike | 204 | 12.29 | 145 | 0 | wallstreetbets 201, smallstreetbets 3 | Nasdaq | #3 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xbdbqm/) |
+| NFLX | 2026-10-19 19:31 | mention spike | 205 | 12.14 | 146 | 0 | wallstreetbets 202, smallstreetbets 3 | Nasdaq | #3 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xbdbqm/) |
 | OKLO | 2026-10-20 21:21 | mention spike | 17 | 5.57 | 15 | 0 | wallstreetbets 17 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xbcbq2/) |
 | PAC | 2026-10-21 02:19 | mention spike | 11 | 0.14 | 11 | 0 | smallstreetbets 11 | NYSE |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1xay6zv/comment/phyzgua/) |
 | SMCI | 2026-10-20 21:06 | mention spike | 88 | 5.29 | 59 | 1 | wallstreetbets 88 | Nasdaq | #1 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xbcbq2/comment/phz7vux/) |
