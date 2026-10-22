@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-22T21:05:31Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-22T21:18:32Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-196 candidates and 391 controls so far. Archetypes: other 185, low_float_runner 10, otc_penny 1.
+197 candidates and 393 controls so far. Archetypes: other 186, low_float_runner 10, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| INTC | 2026-10-22 21:18 | other | listed | 85.24 | -0.3% | -10.4% | 1.3x | 4.62B | 3.6% | 3 |  |
 | SCHD | 2026-10-22 21:05 | other | listed | 35.37 | -0.1% | +3.8% | 1.3x |  |  |  |  |
 | LULU | 2026-10-22 20:12 | other | listed | 103.4 | -0.6% | +5.0% | 1.5x | 101.7M | 15.1% | 0 |  |
 | VST | 2026-10-22 19:45 | other | listed | 139.4 | -10.7% | +2.9% | 0.7x | 313.0M | 3.3% | 3 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | RDDT | 2026-10-21 22:45 | other | listed | 153.5 | +0.1% | +3.1% | 0.8x | 140.7M | 15.7% | 0 |  |
 | MSTR | 2026-10-21 19:47 | other | listed | 153.1 | +7.3% | -6.2% | 1.0x | 363.6M | 8.1% | 0 |  |
 | IBM | 2026-10-21 18:15 | other | listed | 245.6 | +1.5% | +4.8% | 1.1x | 940.2M | 2.6% | 2 |  |
-| AMOD | 2026-10-21 16:41 | low float runner | listed | 1.91 | +48.1% | -21.3% | 0.0x | 1.1M | 3.6% | 4 |  |
