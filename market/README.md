@@ -1,13 +1,15 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-22T22:06:38Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-22T22:30:37Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-199 candidates and 397 controls so far. Archetypes: other 188, low_float_runner 10, otc_penny 1.
+201 candidates and 401 controls so far. Archetypes: other 190, low_float_runner 10, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| WMT | 2026-10-22 22:30 | other | listed | 120.8 | -0.2% | +2.8% | 1.3x | 4.85B | 1.7% | 4 |  |
+| SNDK | 2026-10-22 22:30 | other | listed | 1,236 | -2.0% | -9.6% | 1.3x | 144.5M | 3.3% | 0 |  |
 | SQQQ | 2026-10-22 22:06 | other | listed | 39.67 | +0.2% | +9.6% | 1.2x |  |  |  |  |
 | LMT | 2026-10-22 22:06 | other | listed | 590 | +0.0% | +10.8% | 2.6x | 197.4M | 1.4% | 0 |  |
 | INTC | 2026-10-22 21:18 | other | listed | 85.24 | -0.3% | -10.4% | 1.3x | 4.62B | 3.6% | 3 |  |
@@ -36,5 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | TSLA | 2026-10-22 07:27 | other | listed | 373.6 | -3.3% | +5.3% | 1.4x | 2.82B | 2.5% | 0 |  |
 | SDEV | 2026-10-22 07:27 | other | listed | 1.21 | +10.0% | +11.1% | 3.1x | 49.3M | 7.0% | 3 |  |
 | NOK | 2026-10-22 05:55 | other | listed | 9.22 | -0.3% | -1.6% | 1.1x | 4.45B | 1.9% | 0 |  |
-| BABA | 2026-10-22 02:50 | other | listed | 104 | -0.4% | -6.1% | 1.5x | 2.22B | 1.7% | 0 |  |
-| RDDT | 2026-10-21 22:45 | other | listed | 153.5 | +0.1% | +3.1% | 0.8x | 140.7M | 15.7% | 0 |  |
