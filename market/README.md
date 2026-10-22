@@ -1,13 +1,15 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-22T05:55:36Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-22T07:27:36Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-172 candidates and 343 controls so far. Archetypes: other 163, low_float_runner 9.
+174 candidates and 347 controls so far. Archetypes: other 165, low_float_runner 9.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| TSLA | 2026-10-22 07:27 | other | listed | 373.6 | -3.3% | +5.3% | 1.4x | 2.82B | 2.5% | 0 |  |
+| SDEV | 2026-10-22 07:27 | other | listed | 1.21 | +10.0% | +11.1% | 3.1x | 49.3M | 7.0% | 3 |  |
 | NOK | 2026-10-22 05:55 | other | listed | 9.22 | -0.3% | -1.6% | 1.1x | 4.45B | 1.9% | 0 |  |
 | BABA | 2026-10-22 02:50 | other | listed | 104 | -0.4% | -6.1% | 1.5x | 2.22B | 1.7% | 0 |  |
 | RDDT | 2026-10-21 22:45 | other | listed | 153.5 | +0.1% | +3.1% | 0.8x | 140.7M | 15.7% | 0 |  |
@@ -36,5 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | TCRT | 2026-10-19 14:18 | low float runner | listed | 3.185 | +21.1% | +232.9% | 1.7x | 1.2M | 0.8% | 1 |  |
 | WDC | 2026-10-19 06:00 | other | listed | 327.3 | -1.4% | -16.4% | 0.9x |  |  | 0 | yahoo summary: crumb HTTP 429: Too Many Requests |
 | VTI | 2026-10-18 05:58 | other | listed | 373.5 | -0.2% | -2.1% | 1.1x |  |  |  |  |
-| NFLX | 2026-10-17 17:37 | other | listed | 70.33 | -0.3% | +0.3% | 1.1x | 4.13B | 2.0% | 2 |  |
-| SCHD | 2026-10-17 04:49 | other | listed | 34.37 | +0.1% | +4.0% | 1.1x |  |  |  |  |
