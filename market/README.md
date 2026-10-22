@@ -1,13 +1,16 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-22T14:13:06Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-22T14:55:45Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-178 candidates and 355 controls so far. Archetypes: other 169, low_float_runner 9.
+181 candidates and 361 controls so far. Archetypes: other 171, low_float_runner 10.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| WDC | 2026-10-22 14:55 | other | listed | 352.8 | -6.8% | +4.0% | 1.0x | 358.2M | 5.1% | 0 |  |
+| SHFS | 2026-10-22 14:55 | other | listed | 0.2479 | +61.0% | -33.6% | 34.6x | 0.9M | 4.1% | 3 |  |
+| BKYI | 2026-10-22 14:55 | low float runner | listed | 2.937 | +39.9% | -27.8% | 0.0x | 1.3M | 74.5% | 1 |  |
 | IWM | 2026-10-22 14:12 | other | listed | 276.2 | -0.1% | +1.9% | 0.6x |  |  |  |  |
 | HTZ | 2026-10-22 14:12 | other | listed | 2.375 | +14.7% | +11.9% | 1.1x | 170.6M | 72.3% | 0 |  |
 | AVGO | 2026-10-22 14:12 | other | listed | 329.2 | -2.5% | -2.4% | 0.8x | 4.72B | 1.1% | 1 |  |
@@ -35,6 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | APLD | 2026-10-20 04:07 | other | listed | 19.34 | +0.5% | -17.2% | 1.5x | 261.4M | 21.7% | 0 |  |
 | GOOG | 2026-10-19 22:36 | other | listed | 340.1 | -0.0% | -2.5% | 0.7x | 10.88B | 0.5% | 3 |  |
 | NFLX | 2026-10-19 19:31 | other | listed | 69.83 | -1.0% | +0.3% | 1.1x | 4.13B | 2.0% | 1 |  |
-| RIVN | 2026-10-19 18:51 | other | listed | 12.29 | -1.1% | -11.0% | 1.0x | 945.4M | 17.9% | 0 |  |
-| TQQQ | 2026-10-19 16:13 | other | listed | 71.72 | +5.1% | -16.1% | 1.7x |  |  |  |  |
-| GLD | 2026-10-19 16:13 | other | listed | 379.6 | -0.6% | -0.7% | 1.2x |  |  | 0 |  |
