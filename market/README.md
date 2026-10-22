@@ -1,13 +1,16 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-22T14:55:45Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-22T15:59:46Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-181 candidates and 361 controls so far. Archetypes: other 171, low_float_runner 10.
+184 candidates and 367 controls so far. Archetypes: other 174, low_float_runner 10.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SOXL | 2026-10-22 15:59 | other | listed | 85.17 | -17.5% | -6.6% | 1.0x |  |  |  |  |
+| PLTR | 2026-10-22 15:59 | other | listed | 198.2 | -1.7% | +0.4% | 0.9x | 2.11B | 2.6% | 0 |  |
+| GEV | 2026-10-22 15:59 | other | listed | 822.1 | -11.2% | -1.7% | 1.4x | 265.8M | 2.8% | 0 |  |
 | WDC | 2026-10-22 14:55 | other | listed | 352.8 | -6.8% | +4.0% | 1.0x | 358.2M | 5.1% | 0 |  |
 | SHFS | 2026-10-22 14:55 | other | listed | 0.2479 | +61.0% | -33.6% | 34.6x | 0.9M | 4.1% | 3 |  |
 | BKYI | 2026-10-22 14:55 | low float runner | listed | 2.937 | +39.9% | -27.8% | 0.0x | 1.3M | 74.5% | 1 |  |
@@ -35,6 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | CRWV | 2026-10-20 14:57 | other | listed | 63.86 | +4.5% | -23.8% | 2.5x | 328.3M | 18.3% | 1 |  |
 | HTZ | 2026-10-20 13:24 | other | listed | 2.108 | +14.6% | -0.5% | 0.8x | 170.6M | 72.3% | 0 |  |
 | SPCX | 2026-10-20 10:18 | other | listed | 146.8 | -0.8% | -9.5% | 0.9x | 4.97B | 3.6% | 0 |  |
-| APLD | 2026-10-20 04:07 | other | listed | 19.34 | +0.5% | -17.2% | 1.5x | 261.4M | 21.7% | 0 |  |
-| GOOG | 2026-10-19 22:36 | other | listed | 340.1 | -0.0% | -2.5% | 0.7x | 10.88B | 0.5% | 3 |  |
-| NFLX | 2026-10-19 19:31 | other | listed | 69.83 | -1.0% | +0.3% | 1.1x | 4.13B | 2.0% | 1 |  |
