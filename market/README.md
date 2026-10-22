@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-22T15:59:46Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-22T16:39:33Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-184 candidates and 367 controls so far. Archetypes: other 174, low_float_runner 10.
+185 candidates and 369 controls so far. Archetypes: other 175, low_float_runner 10.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| FPS | 2026-10-22 16:39 | other | listed | 24.64 | -22.4% | -2.9% | 0.9x | 170.6M | 8.3% | 0 |  |
 | SOXL | 2026-10-22 15:59 | other | listed | 85.17 | -17.5% | -6.6% | 1.0x |  |  |  |  |
 | PLTR | 2026-10-22 15:59 | other | listed | 198.2 | -1.7% | +0.4% | 0.9x | 2.11B | 2.6% | 0 |  |
 | GEV | 2026-10-22 15:59 | other | listed | 822.1 | -11.2% | -1.7% | 1.4x | 265.8M | 2.8% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | IWM | 2026-10-20 16:03 | other | listed | 275.8 | +1.7% | -2.4% | 0.7x |  |  |  |  |
 | CRWV | 2026-10-20 14:57 | other | listed | 63.86 | +4.5% | -23.8% | 2.5x | 328.3M | 18.3% | 1 |  |
 | HTZ | 2026-10-20 13:24 | other | listed | 2.108 | +14.6% | -0.5% | 0.8x | 170.6M | 72.3% | 0 |  |
-| SPCX | 2026-10-20 10:18 | other | listed | 146.8 | -0.8% | -9.5% | 0.9x | 4.97B | 3.6% | 0 |  |
