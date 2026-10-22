@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-22T22:49:44Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-22T23:50:26Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-202 candidates and 403 controls so far. Archetypes: other 191, low_float_runner 10, otc_penny 1.
+203 candidates and 405 controls so far. Archetypes: other 192, low_float_runner 10, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SOXS | 2026-10-22 23:50 | other | listed | 54.75 | +2.4% | +22.5% | 1.2x |  |  |  |  |
 | CBRS | 2026-10-22 22:49 | other | listed | 108.7 | -0.3% | -23.4% | 1.1x | 109.9M | 12.8% | 0 |  |
 | WMT | 2026-10-22 22:30 | other | listed | 120.8 | -0.2% | +2.8% | 1.3x | 4.85B | 1.7% | 4 |  |
 | SNDK | 2026-10-22 22:30 | other | listed | 1,236 | -2.0% | -9.6% | 1.3x | 144.5M | 3.3% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | AVGO | 2026-10-22 14:12 | other | listed | 329.2 | -2.5% | -2.4% | 0.8x | 4.72B | 1.1% | 1 |  |
 | AVEX | 2026-10-22 11:25 | other | listed | 10.6 | +9.5% | -31.7% | 7.3x | 19.9M | 18.1% | 0 |  |
 | TSLA | 2026-10-22 07:27 | other | listed | 373.6 | -3.3% | +5.3% | 1.4x | 2.82B | 2.5% | 0 |  |
-| SDEV | 2026-10-22 07:27 | other | listed | 1.21 | +10.0% | +11.1% | 3.1x | 49.3M | 7.0% | 3 |  |
