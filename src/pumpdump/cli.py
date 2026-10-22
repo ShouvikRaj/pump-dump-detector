@@ -46,7 +46,7 @@ def make_client(max_retries: int = 5) -> ArcticShift:
 
 
 def make_fallback():
-    # Reddit's RSS feeds, read only for streams Arctic Shift failed this run
+    # Reddit's RSS feeds: the small subreddits' comments every run, other streams when Arctic Shift fails or stalls
     return RedditRSS().fetch_back_to
 
 
@@ -374,7 +374,7 @@ def main(argv: list[str] | None = None) -> int:
     c.add_argument("--max-retries", type=int, default=5)
     c.add_argument("--summary", help="append a markdown summary here (e.g. $GITHUB_STEP_SUMMARY)")
     c.add_argument("--no-stocktwits", action="store_true")
-    c.add_argument("--no-rss", action="store_true", help="don't fall back to Reddit's RSS feeds when Arctic Shift fails")
+    c.add_argument("--no-rss", action="store_true", help="don't read Reddit's RSS feeds, not even when Arctic Shift fails")
     c.set_defaults(func=cmd_collect)
 
     m = sub.add_parser("market", help="Stage 2: snapshot new candidates' market data")

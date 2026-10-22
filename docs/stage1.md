@@ -85,6 +85,23 @@ r/wallstreetbets comments in those hours (they now hold 26,935, 250 to 1,833 an 
 on other days) and the 37 posts, with nothing stored twice. Flags raised before that saw a lower baseline for
 those days.
 
+### The small subreddits' comments: their feeds every run
+
+From about 2026-10-19 Arctic Shift archived r/pennystocks and r/smallstreetbets comments patchily while
+r/wallstreetbets was current, so the stall check saw nothing: a few new comments arrived within a minute, most of the
+rest hours to days later. On 2026-10-19, 560 of their 913 comments arrived only with the day's second read two days
+later; on 2026-10-21, 1,227 of 1,431 came from the feeds read during r/wallstreetbets stalls; on 2026-10-22, after a
+stall ended at 11:33 UTC, 7 were stored by 14:11 against 230 in the same hours the day before. Penny-stock chatter
+lives in these two subreddits, and a comment collected days late doesn't count towards the flag it belonged to.
+
+So these two streams read their feed every run, back to where the feed's last read reached rather than to Arctic
+Shift's cursor, which can sit ahead of a hole. One page of 100 reaches back hours there. Their items are stored
+with `fetch_mode=feed` (`fallback` when Arctic Shift had failed or stalled) and never from before the 8-day
+working window, which is all a run can check for doubles; Arctic Shift's copy still wins when it comes first.
+Reddit's budget belongs to the runner's address and on 2026-10-21/22 allowed about one feed request a minute (each
+feed read of a stall run waited about 60 s), so the other streams keep their feeds for outages and stalls: posts
+are caught by the 3-hour overlap, and r/wallstreetbets comments would need several pages a run.
+
 If Reddit ever grants API access, a PRAW source can be added next to `sources/arctic_shift.py`; nothing else
 depends on where records come from (each record carries `source`).
 
@@ -124,7 +141,8 @@ wins; later re-fetches never overwrite it.
 
 `fetch_mode` records how a document arrived: `backfill` (first 9 days at start-up), `live`, `reconcile`
 (picked up by the daily re-fetch after being archived late), `late` (picked up when its day was read once more
-two days later), or `fallback` (read from Reddit's RSS feed while Arctic Shift was down or stalled; see above).
+two days later), `fallback` (read from Reddit's RSS feed while Arctic Shift was down or stalled; see above), or
+`feed` (read from the r/pennystocks or r/smallstreetbets comment feed, which every run reads).
 
 ## Collection loop
 
