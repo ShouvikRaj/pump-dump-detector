@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-22T18:52:34Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-22T19:30:39Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-191 candidates and 381 controls so far. Archetypes: other 180, low_float_runner 10, otc_penny 1.
+192 candidates and 383 controls so far. Archetypes: other 181, low_float_runner 10, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| AMAT | 2026-10-22 19:30 | other | listed | 378.9 | -7.4% | -8.4% | 1.0x | 790.5M | 1.7% | 0 |  |
 | SOXX | 2026-10-22 18:52 | other | listed | 476.7 | -6.6% | -1.7% | 1.1x |  |  |  |  |
 | RSP | 2026-10-22 18:38 | other | listed | 217.2 | +0.3% | +2.1% | 1.0x |  |  |  |  |
 | XXII | 2026-10-22 17:45 | other | listed | 0.2476 | -9.3% | -58.1% | 0.3x | 0.5M | 7.6% | 1 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | SLS | 2026-10-21 08:01 | other | listed | 11.97 | -0.1% | -3.5% | 1.9x | 201.1M | 27.4% | 0 |  |
 | PAC | 2026-10-21 02:19 | other | listed | 217.4 | +0.0% | +9.3% | 1.0x | 5.51B | 0.0% | 0 |  |
 | MRNA | 2026-10-20 23:18 | other | listed | 241.5 | -0.2% | +11.9% | 0.9x | 372.0M | 8.3% | 0 |  |
-| OKLO | 2026-10-20 21:21 | other | listed | 27.92 | +1.6% | -13.5% | 0.8x | 157.4M | 20.8% | 1 |  |
