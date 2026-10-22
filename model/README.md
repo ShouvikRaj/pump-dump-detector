@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-10-21T04:34:04Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-10-22T00:18:44Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-10-19)
 
@@ -17,6 +17,12 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-10-21 22:45 | RDDT | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss RDDT price targets, app issues, and warn against chasing the stock due to overcrowding. |
+| 2026-10-21 19:47 | MSTR | other | no model | no model | 100% / 27% / 6.7% / 0% | Users discuss MSTR price targets, leverage, and ownership of BTC vs the stock. |
+| 2026-10-21 18:15 | IBM | other | no model | no model | 100% / 9.1% / 0% / 9.1% | Users discuss IBM's recent price surge, earnings anticipation, and comparisons to other tech giants. |
+| 2026-10-21 16:41 | AMOD | low float runner | no model | no model | 100% / 18% / 0% / 5.9% | Users discuss AMOD's price surge, low float, and a news link regarding Bitcoin holdings. |
+| 2026-10-21 11:34 | META | other | no model | no model | 100% / 0% / 0% / 22% | Users discuss META earnings, capex, and AI themes with mixed bullish and bearish sentiments. |
+| 2026-10-21 08:01 | SLS | other | no model | no model | 92% / 0% / 0% / 0% | Chatter discusses SLS stock price movements, potential gains, and mentions unrelated SpaceX infrastructure. |
 | 2026-10-21 02:19 | PAC | other | no model | no model | 0% / 0% / 0% / 0% | All documents discuss political PACs and Super PACs, not the stock PAC. |
 | 2026-10-20 23:18 | MRNA | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss MRNA price movements, express bearish views, and speculate on a potential pump or squeeze. |
 | 2026-10-20 21:21 | OKLO | other | no model | no model | 100% / 7.7% / 7.7% / 0% | Users discuss OKLO's massive market cap decline, potential pump-and-dump status, and hold positions despite pre-revenue status. |
@@ -51,12 +57,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-16 19:07 | VOO | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss VOO as a safe investment, express regret over missing out, and react to price drops. |
 | 2026-10-16 18:54 | TQQQ | other | no model | no model | 100% / 18% / 0% / 0% | Users discuss TQQQ trading strategies, past performance, and express bullish optimism for upcoming market moves. |
 | 2026-10-16 18:27 | QQQ | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss QQQ price drops, short positions, and bearish sentiment without mentioning specific corporate events. |
-| 2026-10-16 13:35 | IBKR | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss IBKR trading mechanics, commissions, and portfolio margin requirements without mentioning specific company events. |
-| 2026-10-16 12:29 | RCS | other | no model | no model | 0% / 0% / 0% / 0% | All documents discuss RCS thrusters in a rocket engineering context, not the PIMCO fund. |
-| 2026-10-16 11:23 | USO | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss USO price movements, express regret over buying puts, and joke about market volatility. |
-| 2026-10-16 07:11 | TSLA | other | no model | no model | 100% / 28% / 0% / 5.0% | Users discuss a SpaceX/TSLA merger rumor, price targets, and general bullish sentiment. |
-| 2026-10-15 23:28 | BETR | other | no model | no model | 100% / 91% / 0% / 0% | Users discuss BETR as a heavily shorted penny stock with high squeeze potential and urge others to buy. |
-| 2026-10-15 23:28 | DRMA | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss DRMA price action, volume, and potential moves based on test results. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
