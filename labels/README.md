@@ -1,6 +1,6 @@
 # Stage 4 labels
 
-Updated 2026-10-21T23:24:29Z. Every candidate and control gets the same rule, `label-v1`, written down before any outcome was looked at (docs/stage4.md in the code branch). Sessions count from the flag; returns are against the price at the flag. All rows: `labels/labels.csv`.
+Updated 2026-10-22T01:34:35Z. Every candidate and control gets the same rule, `label-v1`, written down before any outcome was looked at (docs/stage4.md in the code branch). Sessions count from the flag; returns are against the price at the flag. All rows: `labels/labels.csv`.
 
 - **pump**: up 50% or more within 5 sessions, then down 40% or more from that peak within the next 10
 - **real news**: earnings, a completed acquisition, a change of control, bankruptcy or a material agreement that isn't a share sale, filed with the SEC (8-K) between 72 hours before the flag and session 5; it beats pump
@@ -11,8 +11,8 @@ Updated 2026-10-21T23:24:29Z. Every candidate and control gets the same rule, `l
 |---|---|---|---|---|---|---|---|
 | low float runner | candidate | 0 | 1 | 3 | 3 of 5 (60%) | 5 | 0 |
 | low float runner | control | 0 | 1 | 7 | 1 of 8 (12%) | 18 | 0 |
-| other | candidate | 1 | 21 | 58 | 3 of 59 (5%) | 80 | 0 |
-| other | control | 0 | 17 | 109 | 1 of 113 (1%) | 185 | 0 |
+| other | candidate | 1 | 21 | 58 | 3 of 59 (5%) | 81 | 0 |
+| other | control | 0 | 17 | 109 | 1 of 113 (1%) | 187 | 0 |
 
 Crash counts the snapshots whose crash label has settled.
 66 of the labeled candidates were flagged in Stage 1's warm-up week (`warmup = 1`), when part of the chatter baseline was backfilled.
