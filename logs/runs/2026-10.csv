@@ -12697,3 +12697,15 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 39718914745,2026-10-22T03:49:13Z,pennystocks/comments,fallback,2026-10-22T03:32:43Z,100,0,1,1,2026-10-22T03:32:43Z,,,
 39718914745,2026-10-22T03:49:13Z,wallstreetbets/posts,fallback,2026-10-22T02:14:03Z,100,0,1,1,2026-10-22T02:14:03Z,,,
 39718914745,2026-10-22T03:49:13Z,smallstreetbets/posts,fallback,2026-10-22T00:48:44Z,100,0,1,1,2026-10-22T00:48:44Z,,,
+39720113525,2026-10-22T04:02:27Z,pennystocks/posts,live,2026-10-21T20:56:01Z,0,0,0,0,2026-10-21T23:56:01Z,,,"HTTP 500 for posts r/pennystocks after 6 tries: {'data': None, 'error': 'Internal server error'}"
+39720113525,2026-10-22T04:02:27Z,smallstreetbets/posts,live,2026-10-21T21:48:44Z,0,0,0,0,2026-10-22T00:48:44Z,,,"skipped: Arctic Shift unreachable earlier in this run (HTTP 500 for posts r/pennystocks after 6 tries: {'data': None, 'error': 'Internal server error'})"
+39720113525,2026-10-22T04:02:27Z,wallstreetbets/posts,live,2026-10-21T22:06:25Z,0,0,0,0,2026-10-22T01:06:25Z,,,"skipped: Arctic Shift unreachable earlier in this run (HTTP 500 for posts r/pennystocks after 6 tries: {'data': None, 'error': 'Internal server error'})"
+39720113525,2026-10-22T04:02:27Z,pennystocks/comments,live,2026-10-21T23:26:22Z,0,0,0,0,2026-10-21T23:56:22Z,,,"skipped: Arctic Shift unreachable earlier in this run (HTTP 500 for posts r/pennystocks after 6 tries: {'data': None, 'error': 'Internal server error'})"
+39720113525,2026-10-22T04:02:27Z,smallstreetbets/comments,live,2026-10-21T23:53:26Z,0,0,0,0,2026-10-22T00:23:26Z,,,"skipped: Arctic Shift unreachable earlier in this run (HTTP 500 for posts r/pennystocks after 6 tries: {'data': None, 'error': 'Internal server error'})"
+39720113525,2026-10-22T04:02:27Z,wallstreetbets/comments,live,2026-10-22T00:36:39Z,0,0,0,0,2026-10-22T01:06:39Z,,,"skipped: Arctic Shift unreachable earlier in this run (HTTP 500 for posts r/pennystocks after 6 tries: {'data': None, 'error': 'Internal server error'})"
+39720113525,2026-10-22T04:02:27Z,wallstreetbets/comments,fallback,2026-10-22T03:50:08Z,300,240,3,1,2026-10-22T04:03:23Z,,473.8,
+39720113525,2026-10-22T04:02:27Z,smallstreetbets/comments,fallback,2026-10-22T03:53:24Z,100,1,1,1,2026-10-22T03:59:12Z,,409.7,
+39720113525,2026-10-22T04:02:27Z,pennystocks/comments,fallback,2026-10-22T03:32:43Z,100,2,1,1,2026-10-22T04:02:31Z,,385.5,
+39720113525,2026-10-22T04:02:27Z,wallstreetbets/posts,fallback,2026-10-22T02:14:03Z,100,1,1,1,2026-10-22T04:04:51Z,,191.3,
+39720113525,2026-10-22T04:02:27Z,smallstreetbets/posts,fallback,2026-10-22T00:48:44Z,100,0,1,1,2026-10-22T00:48:44Z,,,
+39720113525,2026-10-22T04:02:27Z,pennystocks/posts,fallback,2026-10-22T01:47:55Z,100,1,1,1,2026-10-22T04:00:49Z,,553.3,
