@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-22T17:45:49Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-22T18:38:28Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-189 candidates and 377 controls so far. Archetypes: other 178, low_float_runner 10, otc_penny 1.
+190 candidates and 379 controls so far. Archetypes: other 179, low_float_runner 10, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| RSP | 2026-10-22 18:38 | other | listed | 217.2 | +0.3% | +2.1% | 1.0x |  |  |  |  |
 | XXII | 2026-10-22 17:45 | other | listed | 0.2476 | -9.3% | -58.1% | 0.3x | 0.5M | 7.6% | 1 |  |
 | TOGI | 2026-10-22 17:45 | otc penny | otc | 0.0129 | -19.4% | -15.8% | 1.2x | 154.0M | 0.0% | 0 |  |
 | ORCL | 2026-10-22 17:45 | other | listed | 124.1 | -3.9% | -1.1% | 0.9x | 1.86B | 2.6% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | MRNA | 2026-10-20 23:18 | other | listed | 241.5 | -0.2% | +11.9% | 0.9x | 372.0M | 8.3% | 0 |  |
 | OKLO | 2026-10-20 21:21 | other | listed | 27.92 | +1.6% | -13.5% | 0.8x | 157.4M | 20.8% | 1 |  |
 | SMCI | 2026-10-20 21:06 | other | listed | 36.6 | +12.7% | -16.9% | 1.1x | 557.7M | 15.7% | 0 |  |
-| GOOGL | 2026-10-20 18:16 | other | listed | 340.8 | -1.0% | -2.4% | 0.8x | 10.88B | 0.7% | 3 |  |
