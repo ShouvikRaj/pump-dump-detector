@@ -105,6 +105,17 @@ def test_leaves_it_to_a_collect_run_that_is_already_queued_or_running(run):
         assert dispatched == []
 
 
+def test_starts_collect_when_github_still_shows_a_long_finished_run_as_running(run):
+    # 2026-10-22: a collect run's job finished at 16:52 UTC, but GitHub listed the run as in progress until 17:34,
+    # so the pacers of 17:03, 17:17 and 17:30 all left it alone and nothing was collected for 53 minutes
+    res, dispatched = run([("in_progress", 26 * 60), ("completed", 40 * 60)])
+    assert res.returncode == 0, res.stderr
+    assert [c[:3] for c in dispatched] == [["workflow", "run", "collect.yml"]]
+
+    res, dispatched = run([("in_progress", 14 * 60), ("completed", 27 * 60)])  # a slow run can still be going
+    assert dispatched == []
+
+
 def test_stops_the_chain_when_the_wait_timer_is_missing(run):
     # without the environment's wait timer the pacer would restart collect every couple of minutes
     res, dispatched = run([("completed", 2 * 60)])

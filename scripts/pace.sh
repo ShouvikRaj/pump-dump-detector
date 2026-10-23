@@ -4,9 +4,12 @@
 # even when GitHub's cron doesn't fire.
 #
 # Does nothing when a collect run is already queued or running (that run queues
-# the next pacer itself), and stops the chain when the last collect run started
-# less than 10 minutes ago: that means the wait timer is missing, and without it
-# the chain would restart collect every couple of minutes.
+# the next pacer itself), unless GitHub has listed it that way for over 20
+# minutes: a collect run takes under 15, and GitHub sometimes goes on listing a
+# finished run as in progress (2026-10-22: for 42 minutes after its job ended,
+# so nothing was collected for 53). It also stops the chain when the last
+# collect run started less than 10 minutes ago: that means the wait timer is
+# missing, and without it the chain would restart collect every couple of minutes.
 #
 # Then it queues the next pacer itself as well, so a collect run that GitHub never
 # gives a runner (it happened 2026-10-05 19:43 UTC and stopped collection for an
@@ -27,6 +30,7 @@
 set -euo pipefail
 
 min_gap="${PACE_MIN_GAP_SECONDS:-600}"
+stale_after="${PACE_STALE_SECONDS:-1200}"
 retry_delay="${PACE_RETRY_DELAY:-10}"
 now="${PACE_NOW:-$(date +%s)}"
 
@@ -78,11 +82,16 @@ queue_next_pacer() {
 }
 
 start_collect() {
-  local runs age attempt
+  local runs active age attempt
   runs="$(gh run list --workflow collect.yml --limit 10 --json status,createdAt)"
-  if [ "$(jq '[.[] | select(.status != "completed")] | length' <<<"$runs")" -gt 0 ]; then
+  active="$(jq --argjson now "$now" --argjson stale "$stale_after" \
+    '[.[] | select(.status != "completed" and $now - (.createdAt | fromdateiso8601) < $stale)] | length' <<<"$runs")"
+  if [ "$active" -gt 0 ]; then
     echo "a collect run is already queued or running; it queues the next pacer"
     return 0
+  fi
+  if [ "$(jq '[.[] | select(.status != "completed")] | length' <<<"$runs")" -gt 0 ]; then
+    echo "GitHub still lists a collect run from over $((stale_after / 60)) minutes ago as unfinished; starting the next one anyway"
   fi
 
   age="$(jq --argjson now "$now" 'if length == 0 then null else $now - (.[0].createdAt | fromdateiso8601) end' <<<"$runs")"

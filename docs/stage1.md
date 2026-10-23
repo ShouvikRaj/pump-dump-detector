@@ -246,7 +246,10 @@ GitHub's cron fired once in this repo's first hours (2026-10-05 01:18 UTC) and t
 common for new repositories. So collection paces itself: the last step of every `collect` run, whatever its outcome,
 starts the `pace` workflow. Its job runs in the `pacer` environment, whose 13-minute wait timer (a repository
 setting) delays the job without holding a runner; the job then starts the next `collect` run unless one is already
-queued or running. Runs end up about 15 minutes apart. If the last `collect` run started less than 10 minutes earlier,
+queued or running. Runs end up about 15 minutes apart. A run GitHub has listed as queued or running for over 20
+minutes doesn't count, since a `collect` run takes under 15 and GitHub sometimes goes on listing a finished one as in
+progress: on 2026-10-22 one stayed listed for 42 minutes after its job ended, three pacers in a row left it alone,
+and nothing was collected for 53 minutes. If the last `collect` run started less than 10 minutes earlier,
 the timer must be missing, so `scripts/pace.sh` stops the chain rather than looping. Each pacer also queues the next
 pacer, because on 2026-10-05 GitHub never gave a runner to one `collect` run (19:43 UTC), which therefore queued no
 pacer and collection stopped for an hour; with collect -> pacer and pacer -> pacer, one lost run of either can't break
