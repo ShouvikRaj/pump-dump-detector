@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-23T16:35:46Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-23T18:21:44Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-216 candidates and 431 controls so far. Archetypes: other 205, low_float_runner 10, otc_penny 1.
+217 candidates and 433 controls so far. Archetypes: other 206, low_float_runner 10, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| LUNR | 2026-10-23 18:21 | other | listed | 10.56 | +1.1% | -9.7% | 0.8x | 131.6M | 27.7% | 0 |  |
 | USO | 2026-10-23 16:35 | other | listed | 168.3 | +3.6% | +3.3% | 0.8x |  |  | 0 |  |
 | BE | 2026-10-23 15:42 | other | listed | 191.3 | -12.1% | -7.8% | 1.7x | 289.2M | 7.3% | 0 |  |
 | IREN | 2026-10-23 14:50 | other | listed | 25.74 | +0.9% | -16.1% | 1.3x | 346.2M | 23.6% | 1 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | RSP | 2026-10-22 18:38 | other | listed | 217.2 | +0.3% | +2.1% | 1.0x |  |  |  |  |
 | XXII | 2026-10-22 17:45 | other | listed | 0.2476 | -9.3% | -58.1% | 0.3x | 0.5M | 7.6% | 1 |  |
 | TOGI | 2026-10-22 17:45 | otc penny | otc | 0.0129 | -19.4% | -15.8% | 1.2x | 154.0M | 0.0% | 0 |  |
-| ORCL | 2026-10-22 17:45 | other | listed | 124.1 | -3.9% | -1.1% | 0.9x | 1.86B | 2.6% | 0 |  |
