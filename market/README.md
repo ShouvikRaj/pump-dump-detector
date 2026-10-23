@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-23T02:14:33Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-23T03:07:30Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-206 candidates and 411 controls so far. Archetypes: other 195, low_float_runner 10, otc_penny 1.
+207 candidates and 413 controls so far. Archetypes: other 196, low_float_runner 10, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SPY | 2026-10-23 03:07 | other | listed | 764.1 | +0.0% | -1.0% | 1.3x |  |  | 0 |  |
 | NVDA | 2026-10-23 02:14 | other | listed | 212.4 | +0.1% | -2.3% | 1.2x | 23.13B | 1.3% | 0 |  |
 | TQQQ | 2026-10-23 00:59 | other | listed | 66.02 | -9.1% | -2.0% | 1.0x |  |  |  |  |
 | AAPL | 2026-10-23 00:03 | other | listed | 348.6 | +1.3% | +0.3% | 1.0x | 14.57B | 0.8% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | SHFS | 2026-10-22 14:55 | other | listed | 0.2479 | +61.0% | -33.6% | 34.6x | 0.9M | 4.1% | 3 |  |
 | BKYI | 2026-10-22 14:55 | low float runner | listed | 2.937 | +39.9% | -27.8% | 0.0x | 1.3M | 74.5% | 1 |  |
 | IWM | 2026-10-22 14:12 | other | listed | 276.2 | -0.1% | +1.9% | 0.6x |  |  |  |  |
-| HTZ | 2026-10-22 14:12 | other | listed | 2.375 | +14.7% | +11.9% | 1.1x | 170.6M | 72.3% | 0 |  |
