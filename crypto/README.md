@@ -10,15 +10,15 @@ Live since 2026-10-07T12:32:05Z.
 | history / announcement | 2471 |
 | scan / spike | 587 |
 | telegram / announcement | 151 |
-| telegram / call | 1995 |
+| telegram / call | 1997 |
 
 | Outcome status | Count |
 |---|---|
 | no_data | 475 |
-| not_covered | 1576 |
+| not_covered | 1578 |
 | partial | 10 |
-| pending | 198 |
-| settled | 2945 |
+| pending | 196 |
+| settled | 2947 |
 
 - `events.csv`: one row per event; `outcomes.csv`: crypto-label-v1 per event, rebuilt every run.
 - `bars/<source>/<event_id>.json.gz`: the event's 1-minute and hourly bars [open time ms, open, high, low,
