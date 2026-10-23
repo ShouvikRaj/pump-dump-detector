@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-23T13:45:31Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-23T14:50:32Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-213 candidates and 425 controls so far. Archetypes: other 202, low_float_runner 10, otc_penny 1.
+214 candidates and 427 controls so far. Archetypes: other 203, low_float_runner 10, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| IREN | 2026-10-23 14:50 | other | listed | 25.74 | +0.9% | -16.1% | 1.3x | 346.2M | 23.6% | 1 |  |
 | ASTS | 2026-10-23 13:45 | other | listed | 37.61 | -3.0% | -12.8% | 1.0x | 266.5M | 24.3% | 0 |  |
 | SKHY | 2026-10-23 13:03 | other | listed | 137.1 | +4.1% | -9.9% | 1.3x | 5.67B | 0.7% | 0 |  |
 | CRDO | 2026-10-23 12:23 | other | listed | 154.3 | -5.2% | -8.8% | 1.1x | 170.9M | 6.6% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | ORCL | 2026-10-22 17:45 | other | listed | 124.1 | -3.9% | -1.1% | 0.9x | 1.86B | 2.6% | 0 |  |
 | AAOI | 2026-10-22 17:45 | other | listed | 67.53 | -12.7% | -10.3% | 0.7x | 80.9M | 17.2% | 1 |  |
 | FPS | 2026-10-22 16:39 | other | listed | 24.64 | -22.4% | -2.9% | 0.9x | 170.6M | 8.3% | 0 |  |
-| SOXL | 2026-10-22 15:59 | other | listed | 85.17 | -17.5% | -6.6% | 1.0x |  |  |  |  |
