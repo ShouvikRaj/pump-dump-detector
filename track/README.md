@@ -1,9 +1,18 @@
 # Stage 3 tracking
 
-Updated 2026-10-22T22:53:49Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-10-23T01:01:25Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-10-23 00:03 | UTHR | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-23 00:03 | TEAM | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-23 00:03 | AAPL | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-22 23:50 | CNS | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-22 23:50 | CSTL | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-22 23:50 | SOXS | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-22 22:49 | KYMR | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-22 22:49 | SSB | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-22 22:49 | CBRS | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-10-22 22:30 | WTM | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-22 22:30 | GHC | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-22 22:30 | CNR | control | other | active | 0 |  |  |  |  |  |
