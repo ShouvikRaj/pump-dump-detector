@@ -5047,8 +5047,8 @@ scan-gate-XR-2026101709,scan,spike,settled,0.002111,0.003068,0.72667,23.0,1,1,0,
 scan-mexc-DSYNC-2026101710,scan,spike,settled,0.008225,0.008069,0.3031,17.0,1,1,0,0.0,-0.051184,-0.099145,0.014624,-0.068038,0,crypto-label-v1
 scan-gate-ELIZAOS-2026101710,scan,spike,settled,0.00038662,0.00045398,0.212974,56.0,1,1,0,0.0,0.160866,-0.251619,0.27803,-0.07084,0,crypto-label-v1
 scan-kucoin-ELIZAOS-2026101710,scan,spike,settled,0.000384,0.000455,0.200521,56.0,1,0,0,0.0,0.164835,-0.254945,0.246154,-0.061538,0,crypto-label-v1
-scan-gate-ZEUS-2026101711,scan,spike,pending,0.00883,0.009824,0.245753,40.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-kucoin-ZEUS-2026101711,scan,spike,pending,0.00883,0.00984,0.245753,40.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-gate-ZEUS-2026101711,scan,spike,settled,0.00883,0.009824,0.245753,40.0,1,1,0,0.0,0.010586,-0.270257,0.119605,-0.068607,0,crypto-label-v1
+scan-kucoin-ZEUS-2026101711,scan,spike,settled,0.00883,0.00984,0.245753,40.0,1,1,0,0.0,0.007114,-0.26626,0.128049,-0.069106,0,crypto-label-v1
 scan-mexc-ELIZAOS-2026101712,scan,spike,pending,0.000469,0.0005596,0.224947,57.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-gate-OBI-2026101714,scan,spike,pending,0.0014092,0.0016676,0.26327,51.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-kucoin-BABYSHARK-2026101714,scan,spike,pending,0.004232,0.004967,0.306947,25.0,1,1,,0.0,,,,,0,crypto-label-v1
@@ -5249,11 +5249,11 @@ scan-gate-FORT-2026102403,scan,spike,pending,0.0234,0.0256,0.215812,21.0,1,1,,0.
 scan-kucoin-EPIC-2026102403,scan,spike,pending,0.1129,0.1485,0.390611,23.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-binance-EPIC-2026102403,scan,spike,pending,0.1131,0.1475,0.458886,23.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-mexc-IN-2026102405,scan,spike,pending,0.0441,0.05489,0.259637,57.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-mexc-ORDER-2026102408,scan,spike,pending,0.0397,0.0616,0.551637,,1,,,0.0,,,,,0,crypto-label-v1
-scan-gate-BLEND-2026102408,scan,spike,pending,0.06279,0.06728,0.239051,,1,,,0.0,,,,,0,crypto-label-v1
-scan-gate-ORDER-2026102408,scan,spike,pending,0.03984,0.06108,0.566014,,1,,,0.0,,,,,0,crypto-label-v1
-scan-kucoin-BLEND-2026102408,scan,spike,pending,0.0627,0.06738,0.215789,,1,,,0.0,,,,,0,crypto-label-v1
-scan-kucoin-ORDER-2026102408,scan,spike,pending,0.03989,0.06113,0.550263,,1,,,0.0,,,,,0,crypto-label-v1
+scan-mexc-ORDER-2026102408,scan,spike,pending,0.0397,0.0616,0.551637,59.0,1,,,0.0,,,,,0,crypto-label-v1
+scan-gate-BLEND-2026102408,scan,spike,pending,0.06279,0.06728,0.239051,40.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-gate-ORDER-2026102408,scan,spike,pending,0.03984,0.06108,0.566014,59.0,1,,,0.0,,,,,0,crypto-label-v1
+scan-kucoin-BLEND-2026102408,scan,spike,pending,0.0627,0.06738,0.215789,39.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-kucoin-ORDER-2026102408,scan,spike,pending,0.03989,0.06113,0.550263,59.0,1,,,0.0,,,,,0,crypto-label-v1
 scan-kucoin-SLC-2026102407,scan,spike,pending,0.0002184,0.000324,0.721612,42.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-mexc-FRONG-2026102409,scan,spike,pending,0.002174,0.00278,0.316467,,1,,,0.0,,,,,0,crypto-label-v1
 scan-mexc-GHX-2026102409,scan,spike,pending,0.010197,0.010478,0.270962,,1,,,0.0,,,,,0,crypto-label-v1
@@ -5264,3 +5264,8 @@ scan-gate-WET-2026102409,scan,spike,pending,0.06005,0.07328,0.351207,,1,,,0.0,,,
 scan-kucoin-TREE-2026102409,scan,spike,pending,0.0466,0.0607,0.302575,,1,,,0.0,,,,,0,crypto-label-v1
 scan-kucoin-WET-2026102409,scan,spike,pending,0.05979,0.07244,0.81803,,1,,,0.0,,,,,0,crypto-label-v1
 scan-binance-TREE-2026102409,scan,spike,pending,0.0467,0.0605,0.299786,,1,,,0.0,,,,,0,crypto-label-v1
+scan-mexc-KAT-2026102411,scan,spike,pending,0.004548,0.004767,0.39248,,1,,,0.0,,,,,0,crypto-label-v1
+scan-gate-ELSA-2026102411,scan,spike,pending,0.07833,0.07491,0.258139,,1,,,0.0,,,,,0,crypto-label-v1
+scan-gate-KAT-2026102411,scan,spike,pending,0.004499,0.004765,0.405646,,1,,,0.0,,,,,0,crypto-label-v1
+scan-kucoin-KAT-2026102411,scan,spike,pending,0.00452,0.00475,0.75885,,1,,,0.0,,,,,0,crypto-label-v1
+scan-binance-KAT-2026102411,scan,spike,pending,0.0045,0.00478,0.413333,,1,,,0.0,,,,,0,crypto-label-v1
