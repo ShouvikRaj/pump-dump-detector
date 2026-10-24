@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-24T06:31:11Z by run `40070034657`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-24T06:39:10Z by run `40070741143`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -9,8 +9,8 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 |---|---|---|---|---|---|---|---|---|---|---|
 | CRDO | 2026-10-23 12:23 | mention spike | 26 | 2.14 | 10 | 0 | wallstreetbets 26 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xdof8h/comment/19rk60rrt0d29/) |
 | CRWD | 2026-10-23 20:37 | mention spike | 10 | 4.43 | 10 | 0 | wallstreetbets 10 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xdof8h/comment/19rjwkjkz934y/) |
-| MSFT | 2026-10-23 06:51 | mention spike | 37 | 21.57 | 27 | 1 | wallstreetbets 37 | Nasdaq | #16 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xdtop6/) |
-| USO | 2026-10-23 16:35 | mention spike | 49 | 15.86 | 39 | 0 | wallstreetbets 49 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xdof8h/comment/19rk0qrn2ppgi/) |
+| MSFT | 2026-10-23 06:51 | mention spike | 36 | 21.71 | 26 | 1 | wallstreetbets 36 | Nasdaq | #20 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xdtop6/) |
+| USO | 2026-10-23 16:35 | mention spike | 49 | 15.71 | 39 | 0 | wallstreetbets 49 | NYSE Arca | #25 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xdof8h/comment/19rk0qrn2ppgi/) |
 | LUNR | 2026-10-23 18:21 | mention spike | 8 | 2.43 | 6 | 0 | wallstreetbets 8 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xdof8h/comment/19rkcp2vo5u05/) |
 | NVDA | 2026-10-23 02:14 | mention spike | 74 | 64.86 | 53 | 0 | wallstreetbets 73, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1xdfazf/) |
 | RDDT | 2026-10-23 20:37 | mention spike | 17 | 11.29 | 13 | 0 | wallstreetbets 17 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xdof8h/comment/19rkee68l604i/) |
@@ -19,7 +19,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | INTC | 2026-10-22 21:18 | mention spike | 8 | 11.71 | 7 | 0 | wallstreetbets 8 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xdlw0k/comment/19rjp6sra4kqp/) |
 | WDC | 2026-10-22 14:55 | mention spike | 32 | 36.43 | 23 | 0 | wallstreetbets 32 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xdof8h/comment/19rk3780n9i5d/) |
 | BE | 2026-10-23 15:42 | mention spike | 7 | 1.71 | 6 | 0 | wallstreetbets 7 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xd9uuo/comment/19rjnuyvhw5vl/) |
-| AAPL | 2026-10-23 00:03 | mention spike | 42 | 29.29 | 29 | 0 | wallstreetbets 41, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xdiit1/) |
+| AAPL | 2026-10-23 00:03 | mention spike | 43 | 29.29 | 30 | 0 | wallstreetbets 42, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xdiit1/) |
 | LULU | 2026-10-22 20:12 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
 | SOXL | 2026-10-22 15:59 | mention spike | 35 | 57.14 | 27 | 0 | wallstreetbets 35 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xddjp0/) |
 | FPS | 2026-10-22 16:39 | mention spike | 7 | 2.29 | 4 | 0 | wallstreetbets 6, smallstreetbets 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xd9uuo/comment/19rjnr74g1rr4/) |
