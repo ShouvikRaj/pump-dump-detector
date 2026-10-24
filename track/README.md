@@ -1,6 +1,6 @@
 # Stage 3 tracking
 
-Updated 2026-10-24T01:09:23Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-10-24T22:58:44Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -98,8 +98,8 @@ Updated 2026-10-24T01:09:23Z. Each candidate and control is followed for 20 trad
 | 2026-10-22 17:45 | HQY | control | other | active | 2 |  |  |  |  |  |
 | 2026-10-22 17:45 | SHOP | control | other | active | 2 |  |  |  |  |  |
 | 2026-10-22 17:45 | TD | control | other | active | 2 |  |  |  |  |  |
-| 2026-10-22 17:45 | EXCBF | control | otc_penny | active | 1 |  |  |  |  |  |
-| 2026-10-22 17:45 | ZSPC | control | otc_penny | active | 1 |  |  |  |  |  |
+| 2026-10-22 17:45 | EXCBF | control | otc_penny | active | 2 |  |  |  |  |  |
+| 2026-10-22 17:45 | ZSPC | control | otc_penny | active | 2 |  |  |  |  |  |
 | 2026-10-22 17:45 | ARAY | control | other | active | 2 |  |  |  |  |  |
 | 2026-10-22 17:45 | BLNK | control | other | active | 2 |  |  |  |  |  |
 | 2026-10-22 17:45 | AAOI | candidate | other | active | 2 |  |  |  |  |  |
@@ -382,7 +382,7 @@ Updated 2026-10-24T01:09:23Z. Each candidate and control is followed for 20 trad
 | 2026-10-13 10:39 | ALL | control | other | active | 9 | +7% |  | +6% |  |  |
 | 2026-10-13 10:39 | JPM | candidate | other | active | 9 | +6% |  | +3% |  |  |
 | 2026-10-13 08:00 | AIM | control | other | active | 9 | +0% |  | -9% |  |  |
-| 2026-10-13 08:00 | AZTR | control | other | active | 8 | +1% |  | -40% |  |  |
+| 2026-10-13 08:00 | AZTR | control | other | active | 9 | +1% |  | -40% |  |  |
 | 2026-10-13 08:00 | SXTC | candidate | other | active | 9 | +34% |  | +21% |  |  |
 | 2026-10-13 03:58 | FAST | control | other | active | 9 | +3% |  | -1% |  |  |
 | 2026-10-13 03:58 | APO | control | other | active | 9 | +1% |  | -7% |  |  |
@@ -526,7 +526,7 @@ Updated 2026-10-24T01:09:23Z. Each candidate and control is followed for 20 trad
 | 2026-10-07 20:50 | SMCI | candidate | other | active | 12 | -2% | -30% | -20% |  | 3 |
 | 2026-10-07 20:50 | UUUU | candidate | other | active | 12 | -1% | -28% | -19% |  | 2 |
 | 2026-10-07 20:37 | ABXL | control | other | active | 12 | +0% |  | -1% |  | 0 |
-| 2026-10-07 20:37 | IMPPP | control | other | active | 11 | +0% |  | -1% |  | 0 |
+| 2026-10-07 20:37 | IMPPP | control | other | active | 12 | +0% |  | -1% |  | 0 |
 | 2026-10-07 20:37 | LEVI | candidate | other | active | 12 | +3% |  | +2% |  | 0 |
 | 2026-10-07 19:18 | TTEK | control | other | active | 13 | +4% |  | +3% |  | 0 |
 | 2026-10-07 19:18 | RAL | control | other | active | 13 | +1% | -12% | -1% |  | 0 |
@@ -534,7 +534,7 @@ Updated 2026-10-24T01:09:23Z. Each candidate and control is followed for 20 trad
 | 2026-10-07 17:44 | URI | control | other | active | 13 | +3% |  | +2% |  | 0 |
 | 2026-10-07 17:44 | DJCO | control | other | active | 13 | +4% |  | +3% |  | 1 |
 | 2026-10-07 17:44 | LLY | candidate | other | active | 13 | +1% | -6% | -2% |  | 0 |
-| 2026-10-07 16:38 | DUKRW | control | low_float_runner | active | 12 | +17% |  | -7% |  | 0 |
+| 2026-10-07 16:38 | DUKRW | control | low_float_runner | active | 13 | +17% | -49% | -7% |  | 0 |
 | 2026-10-07 16:38 | MKZR | control | low_float_runner | active | 13 | +8% | -35% | -8% |  | 0 |
 | 2026-10-07 16:38 | BIYA | candidate | low_float_runner | active | 13 | +37% | -59% | -30% |  | 0 |
 | 2026-10-07 13:01 | LIN | control | other | active | 13 | +0% |  | -0% |  | 0 |
