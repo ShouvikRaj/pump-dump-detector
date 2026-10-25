@@ -36,79 +36,79 @@
     }
   },
   "last_run": {
-    "finished_at": 1792914491.609304,
-    "new_docs": 57,
-    "run_id": "40173765789",
-    "started_at": 1792914145.8422751
+    "finished_at": 1792915269.870737,
+    "new_docs": 77,
+    "run_id": "40174614599",
+    "started_at": 1792914936.9556634
   },
   "late_done_for": "2026-10-23",
   "live_since": 1791153669.8332794,
   "streams": {
     "pennystocks/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 2,
+      "consecutive_errors": 0,
       "cursor": 1792910635,
-      "fallback_complete_at": 1792914301.997609,
-      "fallback_cursor": 1792912245,
+      "fallback_complete_at": 1792915081.0919871,
+      "fallback_cursor": 1792914687,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1792853055.6533284,
-      "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 500 for posts r/pennystocks after 6 tries: {'data': None, 'error': 'Internal server error'})",
-      "last_error_at": 1792914213.224944
+      "last_error": "Arctic Shift's archive stalled at 2026-10-25T05:49:08Z",
+      "last_error_at": 1792915006.833775
     },
     "pennystocks/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 2,
+      "consecutive_errors": 0,
       "cursor": 1792910623,
-      "fallback_complete_at": 1792914485.504518,
+      "fallback_complete_at": 1792915262.6555345,
       "fallback_cursor": 1792910623,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1792853048.971268,
-      "last_error": "HTTP 500 for posts r/pennystocks after 6 tries: {'data': None, 'error': 'Internal server error'}",
-      "last_error_at": 1792914213.2247856
+      "last_error": "Arctic Shift's archive stalled at 2026-10-25T05:49:08Z",
+      "last_error_at": 1792915003.919407
     },
     "smallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 2,
+      "consecutive_errors": 0,
       "cursor": 1792864815,
-      "fallback_complete_at": 1792914241.4358375,
+      "fallback_complete_at": 1792915021.6399667,
       "fallback_cursor": 1792913194,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1792853057.0498867,
-      "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 500 for posts r/pennystocks after 6 tries: {'data': None, 'error': 'Internal server error'})",
-      "last_error_at": 1792914213.2249758
+      "last_error": "Arctic Shift's archive stalled at 2026-10-25T05:49:08Z",
+      "last_error_at": 1792915007.9300103
     },
     "smallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 2,
+      "consecutive_errors": 0,
       "cursor": 1792889976,
-      "fallback_complete_at": 1792914424.4249701,
+      "fallback_complete_at": 1792915201.5127993,
       "fallback_cursor": 1792889976,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1792853050.3464048,
-      "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 500 for posts r/pennystocks after 6 tries: {'data': None, 'error': 'Internal server error'})",
-      "last_error_at": 1792914213.2248704
+      "last_error": "Arctic Shift's archive stalled at 2026-10-25T05:49:08Z",
+      "last_error_at": 1792915005.030449
     },
     "wallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 2,
+      "consecutive_errors": 0,
       "cursor": 1792907348,
-      "fallback_complete_at": 1792914213.85918,
-      "fallback_cursor": 1792914191,
+      "fallback_complete_at": 1792915009.2275991,
+      "fallback_cursor": 1792914987,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1792853058.6765857,
-      "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 500 for posts r/pennystocks after 6 tries: {'data': None, 'error': 'Internal server error'})",
-      "last_error_at": 1792914213.225006
+      "last_error": "Arctic Shift's archive stalled at 2026-10-25T05:49:08Z",
+      "last_error_at": 1792915008.8187077
     },
     "wallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 2,
+      "consecutive_errors": 0,
       "cursor": 1792912500,
-      "fallback_complete_at": 1792914361.9738672,
+      "fallback_complete_at": 1792915141.8480089,
       "fallback_cursor": 1792913504,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1792853054.4334705,
-      "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 500 for posts r/pennystocks after 6 tries: {'data': None, 'error': 'Internal server error'})",
-      "last_error_at": 1792914213.2249095
+      "last_error": "Arctic Shift's archive stalled at 2026-10-25T05:49:08Z",
+      "last_error_at": 1792915005.9632633
     }
   },
   "symbols_refresh_errors": 0,
