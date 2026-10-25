@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-25T00:26:07Z by run `40145931000`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-25T00:46:16Z by run `40147511536`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -11,6 +11,6 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | CRDO | 2026-10-23 12:23 | mention spike | 2 | 5.29 | 2 | 0 | wallstreetbets 2 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xdof8h/comment/19rkv8jmr8qhv/) |
 | MSFT | 2026-10-23 06:51 | mention spike | 17 | 24.0 | 15 | 0 | wallstreetbets 15, pennystocks 1, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xe985s/) |
 | CRWD | 2026-10-23 20:37 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
-| LUNR | 2026-10-23 18:21 | mention spike | 2 | 2.86 | 2 | 0 | wallstreetbets 2 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xdof8h/comment/19rkcp2vo5u05/) |
+| LUNR | 2026-10-23 18:21 | mention spike | 1 | 3.0 | 1 | 0 | wallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xdof8h/comment/19rkcp2vo5u05/) |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
