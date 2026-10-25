@@ -5063,10 +5063,10 @@ scan-mexc-CLAUDIA-2026101800,scan,spike,settled,0.00866,0.00986,0.210162,33.0,1,
 scan-mexc-RSC-2026101800,scan,spike,settled,0.05985,0.0816,0.3868,41.0,1,1,0,0.0,-0.136152,-0.358456,0.125123,-0.202941,0,crypto-label-v1
 scan-gate-RSC-2026101800,scan,spike,settled,0.06007,0.08257,0.415016,40.0,1,1,0,0.0,-0.141577,-0.364297,0.104033,-0.209277,0,crypto-label-v1
 scan-gate-MY-2026101805,scan,spike,settled,0.01675,0.01921,0.361194,8.0,1,1,0,0.0,-0.064029,0.088496,0.132743,-0.083811,0,crypto-label-v1
-scan-mexc-WOD-2026101808,scan,spike,pending,0.00667,0.00892,0.394303,55.0,1,,,0.0,,,,,0,crypto-label-v1
-scan-gate-UXLINK-2026101808,scan,spike,pending,0.0004926,0.00065,0.380227,47.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-gate-WOD-2026101808,scan,spike,pending,0.00667,0.00843,0.424288,57.0,1,,,0.0,,,,,0,crypto-label-v1
-scan-kucoin-WOD-2026101808,scan,spike,pending,0.00665,0.00891,0.466165,56.0,1,,,0.0,,,,,0,crypto-label-v1
+scan-mexc-WOD-2026101808,scan,spike,settled,0.00667,0.00892,0.394303,55.0,1,0,0,0.0,-0.057175,0.108744,0.414798,-0.078475,0,crypto-label-v1
+scan-gate-UXLINK-2026101808,scan,spike,settled,0.0004926,0.00065,0.380227,47.0,1,1,0,0.0,0.027077,-0.518769,0.143077,-0.091077,0,crypto-label-v1
+scan-gate-WOD-2026101808,scan,spike,settled,0.00667,0.00843,0.424288,57.0,1,0,0,0.0,0.00605,0.172361,0.520878,-0.028826,0,crypto-label-v1
+scan-kucoin-WOD-2026101808,scan,spike,settled,0.00665,0.00891,0.466165,56.0,1,1,0,0.0,-0.041526,0.112233,0.415264,-0.08642,0,crypto-label-v1
 scan-kucoin-ROOBEE-2026101809,scan,spike,pending,0.0001154,0.00017,0.620451,54.0,1,,,0.0,,,,,0,crypto-label-v1
 scan-binance-QKC-2026101813,scan,spike,pending,0.002359,0.002881,0.22128,59.0,1,1,,0.0,,,,,0,crypto-label-v1
 tg-CoinCoachSignals-39418,telegram,call,not_covered,,,,,,,,,,,,,,crypto-label-v1
@@ -5304,3 +5304,6 @@ scan-binance-T-2026102500,scan,spike,pending,0.00464,0.00749,0.704741,44.0,1,,,0
 scan-mexc-OWL-2026102503,scan,spike,pending,0.00044,0.0005301,0.265455,32.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-gate-DAO-2026102504,scan,spike,pending,0.02082,0.02217,0.243996,48.0,1,1,,0.0,,,,,0,crypto-label-v1
 tg-Whalesguide-19534,telegram,call,pending,,,,,,,,,,,,,,crypto-label-v1
+scan-mexc-TAG-2026102508,scan,spike,pending,0.00054,0.0006643,0.323889,,1,,,0.0,,,,,0,crypto-label-v1
+scan-gate-TAG-2026102508,scan,spike,pending,0.0005419,0.000665,0.341945,,1,,,0.0,,,,,0,crypto-label-v1
+scan-kucoin-TAG-2026102508,scan,spike,pending,0.0005425,0.0006666,0.323687,,1,,,0.0,,,,,0,crypto-label-v1
