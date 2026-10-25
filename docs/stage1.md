@@ -250,7 +250,9 @@ queued or running. Runs end up about 15 minutes apart. A run GitHub has listed a
 minutes doesn't count, since a `collect` run takes under 15 and GitHub sometimes goes on listing a finished one as in
 progress: on 2026-10-22 one stayed listed for 42 minutes after its job ended, three pacers in a row left it alone,
 and nothing was collected for 53 minutes. If the last `collect` run started less than 10 minutes earlier,
-the timer must be missing, so `scripts/pace.sh` stops the chain rather than looping. Each pacer also queues the next
+the timer must be missing, so `scripts/pace.sh` stops the chain rather than looping; a finished run that the cron
+started doesn't count, since holding off after one left 20-22 minutes between reads (5 times on 2026-10-24/25), and
+one still going is left alone as usual. Each pacer also queues the next
 pacer, because on 2026-10-05 GitHub never gave a runner to one `collect` run (19:43 UTC), which therefore queued no
 pacer and collection stopped for an hour; with collect -> pacer and pacer -> pacer, one lost run of either can't break
 the chain. The `pace` concurrency group runs one pacer at a time with at most one queued behind it (a newer queued

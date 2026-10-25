@@ -10,6 +10,9 @@
 # so nothing was collected for 53). It also stops the chain when the last
 # collect run started less than 10 minutes ago: that means the wait timer is
 # missing, and without it the chain would restart collect every couple of minutes.
+# A finished run that GitHub's backup cron started doesn't count for that: the
+# cron fires a few times a day at random, and holding off after such a run left
+# 20-22 minutes between reads (5 times on 2026-10-24/25).
 #
 # Then it queues the next pacer itself as well, so a collect run that GitHub never
 # gives a runner (it happened 2026-10-05 19:43 UTC and stopped collection for an
@@ -83,7 +86,7 @@ queue_next_pacer() {
 
 start_collect() {
   local runs active age attempt
-  runs="$(gh run list --workflow collect.yml --limit 10 --json status,createdAt)"
+  runs="$(gh run list --workflow collect.yml --limit 10 --json status,createdAt,event)"
   active="$(jq --argjson now "$now" --argjson stale "$stale_after" \
     '[.[] | select(.status != "completed" and $now - (.createdAt | fromdateiso8601) < $stale)] | length' <<<"$runs")"
   if [ "$active" -gt 0 ]; then
@@ -94,7 +97,9 @@ start_collect() {
     echo "GitHub still lists a collect run from over $((stale_after / 60)) minutes ago as unfinished; starting the next one anyway"
   fi
 
-  age="$(jq --argjson now "$now" 'if length == 0 then null else $now - (.[0].createdAt | fromdateiso8601) end' <<<"$runs")"
+  # the newest run this chain (or a person) started; a cron run doesn't show whether the wait timer works
+  age="$(jq --argjson now "$now" '[.[] | select(.event != "schedule")]
+    | if length == 0 then null else $now - (.[0].createdAt | fromdateiso8601) end' <<<"$runs")"
   if [ "$age" != "null" ] && [ "$age" -lt "$min_gap" ]; then
     echo "::warning::the last collect run started ${age}s ago, so the pacer environment's wait timer seems to be missing; not starting another (the cron still runs)"
     return 0

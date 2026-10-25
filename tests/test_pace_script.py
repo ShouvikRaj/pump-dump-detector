@@ -54,8 +54,9 @@ def run(tmp_path):
             os.environ,
             PATH=f"{bindir}{os.pathsep}{os.environ['PATH']}",
             FAKE_GH_LOG=str(log),
-            # newest first, like `gh run list`
-            FAKE_RUNS=json.dumps([{"status": s, "createdAt": iso(now - age)} for s, age in runs]),
+            # newest first, like `gh run list`; (status, age) or (status, age, event)
+            FAKE_RUNS=json.dumps([{"status": r[0], "createdAt": iso(now - r[1]), "event": r[2] if len(r) > 2 else "workflow_dispatch"}
+                                  for r in runs]),
             FAKE_NIGHTLY=json.dumps([] if nightly_age is None else [{"createdAt": iso(now - nightly_age)}]),
             FAKE_DISPATCH_FAILURES=str(dispatch_failures),
             FAKE_SELF_CREATED=iso(now - waited),
@@ -113,6 +114,23 @@ def test_starts_collect_when_github_still_shows_a_long_finished_run_as_running(r
     assert [c[:3] for c in dispatched] == [["workflow", "run", "collect.yml"]]
 
     res, dispatched = run([("in_progress", 14 * 60), ("completed", 27 * 60)])  # a slow run can still be going
+    assert dispatched == []
+
+
+def test_a_finished_run_started_by_githubs_cron_does_not_make_the_pacer_hold_off(run):
+    # 2026-10-24/25: GitHub's backup cron started a collect run a few minutes before a pacer fired; the pacer took it
+    # for a sign of a missing wait timer and held off, so 20-22 minutes passed between reads, 5 times in two days
+    res, dispatched = run([("completed", 7 * 60, "schedule"), ("completed", 20 * 60)])
+    assert res.returncode == 0, res.stderr
+    assert [c[:3] for c in dispatched] == [["workflow", "run", "collect.yml"]]
+    assert "wait timer" not in res.stdout
+
+    res, dispatched = run([("completed", 7 * 60, "schedule"), ("completed", 8 * 60)])  # the chain's own run is too recent
+    assert dispatched == []
+    assert "wait timer" in res.stdout
+
+    # a cron run still going does this slot's reading, so the pacer leaves it alone as before
+    res, dispatched = run([("in_progress", 4 * 60, "schedule"), ("completed", 13 * 60)])
     assert dispatched == []
 
 
