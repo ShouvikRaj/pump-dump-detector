@@ -18255,3 +18255,15 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 40327140188,2026-10-26T13:02:09Z,smallstreetbets/comments,fallback,2026-10-26T12:51:30Z,100,8,1,1,2026-10-26T13:05:50Z,,356.7,
 40327140188,2026-10-26T13:02:09Z,pennystocks/comments,fallback,2026-10-26T12:52:03Z,100,3,1,1,2026-10-26T13:03:02Z,,527.8,
 40327140188,2026-10-26T13:02:09Z,wallstreetbets/posts,fallback,2026-10-26T12:52:38Z,100,1,1,1,2026-10-26T12:54:04Z,,837.8,
+40328955588,2026-10-26T13:15:20Z,pennystocks/posts,live,2026-10-26T04:26:25Z,0,0,0,0,2026-10-26T07:26:25Z,,,HTTP 530 for posts r/pennystocks after 6 tries: {'error': 'Cloudflare Tunnel error | arctic-shift.photon-reddit.com | Cloudflare'}
+40328955588,2026-10-26T13:15:20Z,smallstreetbets/posts,live,2026-10-26T03:34:08Z,0,0,0,0,2026-10-26T06:34:08Z,,,skipped: Arctic Shift unreachable earlier in this run (HTTP 530 for posts r/pennystocks after 6 tries: {'error': 'Cloudflare Tunnel error | arctic-shift.photon-reddit.com | Cloudflare'})
+40328955588,2026-10-26T13:15:20Z,wallstreetbets/posts,live,2026-10-26T08:59:01Z,0,0,0,0,2026-10-26T11:59:01Z,,,skipped: Arctic Shift unreachable earlier in this run (HTTP 530 for posts r/pennystocks after 6 tries: {'error': 'Cloudflare Tunnel error | arctic-shift.photon-reddit.com | Cloudflare'})
+40328955588,2026-10-26T13:15:20Z,pennystocks/comments,live,2026-10-26T11:05:23Z,0,0,0,0,2026-10-26T11:35:23Z,,,skipped: Arctic Shift unreachable earlier in this run (HTTP 530 for posts r/pennystocks after 6 tries: {'error': 'Cloudflare Tunnel error | arctic-shift.photon-reddit.com | Cloudflare'})
+40328955588,2026-10-26T13:15:20Z,smallstreetbets/comments,live,2026-10-26T09:19:43Z,0,0,0,0,2026-10-26T09:49:43Z,,,skipped: Arctic Shift unreachable earlier in this run (HTTP 530 for posts r/pennystocks after 6 tries: {'error': 'Cloudflare Tunnel error | arctic-shift.photon-reddit.com | Cloudflare'})
+40328955588,2026-10-26T13:15:20Z,wallstreetbets/comments,live,2026-10-26T10:57:03Z,0,0,0,0,2026-10-26T11:27:03Z,,,skipped: Arctic Shift unreachable earlier in this run (HTTP 530 for posts r/pennystocks after 6 tries: {'error': 'Cloudflare Tunnel error | arctic-shift.photon-reddit.com | Cloudflare'})
+40328955588,2026-10-26T13:15:20Z,wallstreetbets/comments,fallback,2026-10-26T13:03:06Z,400,345,4,1,2026-10-26T13:16:16Z,,429.9,
+40328955588,2026-10-26T13:15:20Z,smallstreetbets/comments,fallback,2026-10-26T13:05:50Z,100,11,1,1,2026-10-26T13:19:31Z,,484.7,
+40328955588,2026-10-26T13:15:20Z,pennystocks/comments,fallback,2026-10-26T13:03:02Z,100,2,1,1,2026-10-26T13:20:27Z,,127.7,
+40328955588,2026-10-26T13:15:20Z,wallstreetbets/posts,fallback,2026-10-26T12:54:04Z,100,2,1,1,2026-10-26T13:16:17Z,,417.1,
+40328955588,2026-10-26T13:15:20Z,smallstreetbets/posts,fallback,2026-10-26T06:34:08Z,100,1,1,1,2026-10-26T13:12:11Z,,651.5,
+40328955588,2026-10-26T13:15:20Z,pennystocks/posts,fallback,2026-10-26T07:26:25Z,100,0,1,1,2026-10-26T06:13:56Z,,,
