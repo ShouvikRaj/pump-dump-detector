@@ -1,13 +1,13 @@
 # Stage 5 model
 
-Updated 2026-10-25T04:31:08Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-10-26T00:15:34Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
-## This week's models (week of 2026-10-19)
+## This week's models (week of 2026-10-26)
 
 | Target | Status | Trained on | Positives | Base rate | Flag at | Feature groups |
 |---|---|---|---|---|---|---|
-| crash | no model yet | 33 rows | 1 | - | - | chatter, text, llm, price_volume, size, short_interest, filings, history, technical |
-| pump | no model yet | 32 rows | 0 | - | - | chatter, text, llm, price_volume, size, short_interest, filings, history, technical |
+| crash | no model yet | 246 rows | 4 | - | - | chatter, text, llm, price_volume, size, short_interest, filings, history, technical |
+| pump | no model yet | 244 rows | 0 | - | - | chatter, text, llm, price_volume, size, short_interest, filings, history, technical |
 
 A week's model needs 50 rows and 5 positives whose labels were settled before the week began; a label settles 10 sessions (two weeks) after the flag, 15 after a 50% rise.
 
