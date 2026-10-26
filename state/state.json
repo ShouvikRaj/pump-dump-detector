@@ -4,8 +4,8 @@
     "ANT": {
       "episode_id": "ANT-20261026T132409Z",
       "first_flagged_at": 1793021049.6687326,
-      "last_flagged_at": 1793021891.6954007,
-      "n_flags": 2,
+      "last_flagged_at": 1793022667.0232086,
+      "n_flags": 3,
       "peak_mentions": 12,
       "peak_z": 12.0,
       "reasons_seen": [
@@ -15,10 +15,10 @@
     "EWZ": {
       "episode_id": "EWZ-20261026T002108Z",
       "first_flagged_at": 1792974068.8431416,
-      "last_flagged_at": 1793021891.6954007,
-      "n_flags": 63,
-      "peak_mentions": 44,
-      "peak_z": 35.509,
+      "last_flagged_at": 1793022667.0232086,
+      "n_flags": 64,
+      "peak_mentions": 45,
+      "peak_z": 36.332,
       "reasons_seen": [
         "mention_spike"
       ]
@@ -26,10 +26,10 @@
     "MELI": {
       "episode_id": "MELI-20261026T084208Z",
       "first_flagged_at": 1793004128.6696541,
-      "last_flagged_at": 1793021891.6954007,
-      "n_flags": 24,
-      "peak_mentions": 26,
-      "peak_z": 25.857,
+      "last_flagged_at": 1793022667.0232086,
+      "n_flags": 25,
+      "peak_mentions": 27,
+      "peak_z": 26.857,
       "reasons_seen": [
         "mention_spike"
       ]
@@ -37,10 +37,10 @@
     "NU": {
       "episode_id": "NU-20261026T114806Z",
       "first_flagged_at": 1793015286.556567,
-      "last_flagged_at": 1793021891.6954007,
-      "n_flags": 9,
-      "peak_mentions": 10,
-      "peak_z": 10.0,
+      "last_flagged_at": 1793022667.0232086,
+      "n_flags": 10,
+      "peak_mentions": 15,
+      "peak_z": 15.0,
       "reasons_seen": [
         "mention_spike"
       ]
@@ -48,10 +48,10 @@
     "PBR": {
       "episode_id": "PBR-20261026T092208Z",
       "first_flagged_at": 1793006528.6734512,
-      "last_flagged_at": 1793021891.6954007,
-      "n_flags": 21,
-      "peak_mentions": 23,
-      "peak_z": 18.048,
+      "last_flagged_at": 1793022667.0232086,
+      "n_flags": 22,
+      "peak_mentions": 24,
+      "peak_z": 18.885,
       "reasons_seen": [
         "mention_spike"
       ]
@@ -59,89 +59,89 @@
     "STNE": {
       "episode_id": "STNE-20261026T132409Z",
       "first_flagged_at": 1793021049.6687326,
-      "last_flagged_at": 1793021891.6954007,
-      "n_flags": 2,
-      "peak_mentions": 10,
-      "peak_z": 10.0,
+      "last_flagged_at": 1793022667.0232086,
+      "n_flags": 3,
+      "peak_mentions": 11,
+      "peak_z": 11.0,
       "reasons_seen": [
         "mention_spike"
       ]
     }
   },
   "last_run": {
-    "finished_at": 1793021891.7352948,
-    "new_docs": 492,
-    "run_id": "40330850939",
-    "started_at": 1793021313.6700828
+    "finished_at": 1793022667.0495367,
+    "new_docs": 447,
+    "run_id": "40332813271",
+    "started_at": 1793022108.8214777
   },
   "late_done_for": "2026-10-24",
   "live_since": 1791153669.8332794,
   "streams": {
     "pennystocks/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 6,
+      "consecutive_errors": 7,
       "cursor": 1793014523,
-      "fallback_complete_at": 1793021701.0392585,
-      "fallback_cursor": 1793021668,
+      "fallback_complete_at": 1793022481.6422393,
+      "fallback_cursor": 1793022357,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1793016562.8119853,
-      "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 530 for posts r/pennystocks after 6 tries: {'error': 'Cloudflare Tunnel error | arctic-shift.photon-reddit.com | Cloudflare'})",
-      "last_error_at": 1793021380.196736
+      "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 0 for posts r/pennystocks after 6 tries: {'error': \"ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection wit)",
+      "last_error_at": 1793022173.6125836
     },
     "pennystocks/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 2,
+      "consecutive_errors": 3,
       "cursor": 1792999585,
-      "fallback_complete_at": 1793021882.5549395,
+      "fallback_complete_at": 1793022662.7508729,
       "fallback_cursor": 1792995236,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1793019734.0729766,
-      "last_error": "HTTP 530 for posts r/pennystocks after 6 tries: {'error': 'Cloudflare Tunnel error | arctic-shift.photon-reddit.com | Cloudflare'}",
-      "last_error_at": 1793021380.1965404
+      "last_error": "HTTP 0 for posts r/pennystocks after 6 tries: {'error': \"ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))\"}",
+      "last_error_at": 1793022173.6124358
     },
     "smallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 7,
+      "consecutive_errors": 8,
       "cursor": 1793008183,
-      "fallback_complete_at": 1793021641.6401315,
-      "fallback_cursor": 1793021470,
+      "fallback_complete_at": 1793022421.7111273,
+      "fallback_cursor": 1793022356,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1793014243.2067719,
-      "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 530 for posts r/pennystocks after 6 tries: {'error': 'Cloudflare Tunnel error | arctic-shift.photon-reddit.com | Cloudflare'})",
-      "last_error_at": 1793021380.196766
+      "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 0 for posts r/pennystocks after 6 tries: {'error': \"ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection wit)",
+      "last_error_at": 1793022173.6126015
     },
     "smallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 2,
+      "consecutive_errors": 3,
       "cursor": 1792996448,
-      "fallback_complete_at": 1793021821.4837112,
-      "fallback_cursor": 1793020331,
+      "fallback_complete_at": 1793022602.5529804,
+      "fallback_cursor": 1793022060,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1793019735.0209153,
-      "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 530 for posts r/pennystocks after 6 tries: {'error': 'Cloudflare Tunnel error | arctic-shift.photon-reddit.com | Cloudflare'})",
-      "last_error_at": 1793021380.1966164
+      "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 0 for posts r/pennystocks after 6 tries: {'error': \"ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection wit)",
+      "last_error_at": 1793022173.6125405
     },
     "wallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 7,
+      "consecutive_errors": 8,
       "cursor": 1793014023,
-      "fallback_complete_at": 1793021581.1453683,
-      "fallback_cursor": 1793021370,
+      "fallback_complete_at": 1793022361.2707527,
+      "fallback_cursor": 1793022156,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1793014244.7122066,
-      "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 530 for posts r/pennystocks after 6 tries: {'error': 'Cloudflare Tunnel error | arctic-shift.photon-reddit.com | Cloudflare'})",
-      "last_error_at": 1793021380.1967933
+      "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 0 for posts r/pennystocks after 6 tries: {'error': \"ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection wit)",
+      "last_error_at": 1793022173.6126192
     },
     "wallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 6,
+      "consecutive_errors": 7,
       "cursor": 1793015941,
-      "fallback_complete_at": 1793021761.7194288,
+      "fallback_complete_at": 1793022542.5326126,
       "fallback_cursor": 1793020577,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1793016560.4514675,
-      "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 530 for posts r/pennystocks after 6 tries: {'error': 'Cloudflare Tunnel error | arctic-shift.photon-reddit.com | Cloudflare'})",
-      "last_error_at": 1793021380.1966949
+      "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 0 for posts r/pennystocks after 6 tries: {'error': \"ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection wit)",
+      "last_error_at": 1793022173.6125636
     }
   },
   "symbols_refresh_errors": 0,
