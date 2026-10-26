@@ -18206,3 +18206,12 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 40318664086,2026-10-26T11:55:49Z,wallstreetbets/posts,fallback,2026-10-26T11:29:22Z,100,0,1,1,2026-10-26T11:29:22Z,,,
 40318664086,2026-10-26T11:55:49Z,smallstreetbets/posts,fallback,2026-10-26T06:34:08Z,100,0,1,1,2026-10-26T06:34:08Z,,,
 40318664086,2026-10-26T11:55:49Z,pennystocks/posts,fallback,2026-10-26T07:26:25Z,100,0,1,1,2026-10-26T06:13:56Z,,,
+40320292936,2026-10-26T12:09:09Z,pennystocks/posts,live,2026-10-26T04:26:25Z,3,0,1,1,2026-10-26T07:26:25Z,22.0,,
+40320292936,2026-10-26T12:09:09Z,smallstreetbets/posts,live,2026-10-26T03:34:08Z,1,0,1,1,2026-10-26T06:34:08Z,25.0,,
+40320292936,2026-10-26T12:09:09Z,wallstreetbets/posts,live,2026-10-26T08:29:22Z,15,1,1,1,2026-10-26T11:59:01Z,22.0,619.5,
+40320292936,2026-10-26T12:09:09Z,pennystocks/comments,live,2026-10-26T11:05:23Z,7,0,1,1,2026-10-26T11:35:23Z,1701.0,,
+40320292936,2026-10-26T12:09:09Z,smallstreetbets/comments,live,2026-10-26T09:19:43Z,0,0,0,0,2026-10-26T09:49:43Z,,,"HTTP 422 for comments r/smallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
+40320292936,2026-10-26T12:09:09Z,wallstreetbets/comments,live,2026-10-26T10:57:03Z,0,0,0,0,2026-10-26T11:27:03Z,,,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
+40320292936,2026-10-26T12:09:09Z,wallstreetbets/comments,fallback,2026-10-26T11:55:41Z,200,196,2,1,2026-10-26T12:11:31Z,,421.0,
+40320292936,2026-10-26T12:09:09Z,smallstreetbets/comments,fallback,2026-10-26T11:56:05Z,100,11,1,1,2026-10-26T12:12:30Z,,400.8,
+40320292936,2026-10-26T12:09:09Z,pennystocks/comments,feed,2026-10-26T11:46:14Z,100,2,1,1,2026-10-26T12:07:34Z,,613.3,
