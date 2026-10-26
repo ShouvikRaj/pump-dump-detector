@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-26T23:45:08Z by run `40421103120`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-26T23:59:10Z by run `40422586519`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -8,12 +8,12 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | Ticker | Flagged since (UTC) | Why | Mentions 24h | Baseline/day | Authors | Hype posts | Subreddits | Exchange | StockTwits | Example |
 |---|---|---|---|---|---|---|---|---|---|---|
 | ANT | 2026-10-26 13:24 | mention spike | 23 | 0.0 | 21 | 0 | wallstreetbets 23 | ? |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xg24l4/) |
-| CLS | 2026-10-26 19:24 | mention spike | 24 | 1.0 | 13 | 0 | wallstreetbets 24 | NYSE | #4 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xg7hq7/comment/19rp8i1qi8blx/) |
-| EWZ | 2026-10-26 00:21 | mention spike | 56 | 1.0 | 46 | 0 | wallstreetbets 53, smallstreetbets 3 | NYSE Arca | #29 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xfu7p0/) |
+| CLS | 2026-10-26 19:24 | mention spike | 25 | 1.0 | 14 | 0 | wallstreetbets 25 | NYSE | #4 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xdjnsl/comment/19rpe2yani2g0/) |
+| EWZ | 2026-10-26 00:21 | mention spike | 53 | 1.43 | 45 | 0 | wallstreetbets 52, smallstreetbets 1 | NYSE Arca | #17 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xfu7p0/) |
 | MELI | 2026-10-26 08:42 | mention spike | 38 | 0.14 | 30 | 1 | wallstreetbets 38 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgavgk/) |
-| PBR | 2026-10-26 09:22 | mention spike | 30 | 1.57 | 24 | 0 | wallstreetbets 27, smallstreetbets 3 | NYSE | #27 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgavgk/) |
-| RDDT | 2026-10-26 14:04 | mention spike | 81 | 12.29 | 58 | 0 | wallstreetbets 81 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xg7hq7/comment/19rpd9jhhg2pt/) |
+| PBR | 2026-10-26 09:22 | mention spike | 27 | 2.0 | 22 | 0 | wallstreetbets 27 | NYSE | #11 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgavgk/) |
+| RDDT | 2026-10-26 14:04 | mention spike | 83 | 12.29 | 60 | 1 | wallstreetbets 83 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgd9x7/) |
 | STNE | 2026-10-26 13:24 | mention spike | 11 | 0.0 | 6 | 0 | wallstreetbets 11 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xfu7p0/comment/19ronas7lreit/) |
-| NU | 2026-10-26 11:48 | mention spike | 18 | 0.14 | 4 | 0 | wallstreetbets 18 | NYSE | #26 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xg7hq7/comment/19rpcq1wjvjcw/) |
+| NU | 2026-10-26 11:48 | mention spike | 18 | 0.14 | 4 | 0 | wallstreetbets 18 | NYSE | #14 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xg7hq7/comment/19rpcq1wjvjcw/) |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
