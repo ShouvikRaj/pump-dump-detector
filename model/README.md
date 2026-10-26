@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-10-26T00:15:34Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-10-26T04:35:25Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-10-26)
 
@@ -17,6 +17,7 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-10-26 00:21 | EWZ | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss EWZ price drops following Brazilian election results, with no specific corporate events or pitches identified. |
 | 2026-10-23 20:37 | CRWD | other | no model | no model | 100% / 30% / 0% / 0% | Users discuss CRWD stock performance, price targets, and relative strength in a bearish market. |
 | 2026-10-23 20:37 | RDDT | other | no model | no model | 100% / 25% / 0% / 5.0% | Users discuss RDDT earnings, price targets, and meme stock potential with mixed sentiment. |
 | 2026-10-23 18:21 | LUNR | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss LUNR in relation to Cathie Wood's Ark fund and general tech sector volatility. |
@@ -56,7 +57,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-22 15:59 | PLTR | other | no model | no model | 100% / 14% / 0% / 0% | Mixed chatter on PLTR price action, with some users expressing bullish optimism and others showing bearish frustration or calling for a decline. |
 | 2026-10-22 15:59 | SOXL | other | no model | no model | 100% / 7.5% / 0% / 0% | Users discuss SOXL price volatility, losses, and potential reversals without mentioning specific corporate events. |
 | 2026-10-22 14:55 | BKYI | low float runner | no model | no model | 100% / 0% / 0% / 0% | Users discuss BKYI's potential price surge, volume, and short interest following news of a new contract. |
-| 2026-10-22 14:55 | SHFS | other | no model | no model | 100% / 50% / 0% / 0% | Users discuss SHFS as a penny stock with high potential and volume, suggesting buy entries. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
