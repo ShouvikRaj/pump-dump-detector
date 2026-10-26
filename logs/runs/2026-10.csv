@@ -18235,3 +18235,13 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 40323682132,2026-10-26T12:35:35Z,smallstreetbets/comments,fallback,2026-10-26T12:19:34Z,100,4,1,1,2026-10-26T12:38:18Z,,660.3,
 40323682132,2026-10-26T12:35:35Z,pennystocks/comments,fallback,2026-10-26T12:25:33Z,100,3,1,1,2026-10-26T12:37:24Z,,570.4,
 40323682132,2026-10-26T12:35:35Z,wallstreetbets/posts,fallback,2026-10-26T11:59:01Z,100,0,1,1,2026-10-26T11:29:22Z,,,
+40325394073,2026-10-26T12:48:53Z,pennystocks/posts,live,2026-10-26T04:26:25Z,3,0,1,1,2026-10-26T07:26:25Z,22.0,,
+40325394073,2026-10-26T12:48:53Z,smallstreetbets/posts,live,2026-10-26T03:34:08Z,1,0,1,1,2026-10-26T06:34:08Z,25.0,,
+40325394073,2026-10-26T12:48:53Z,wallstreetbets/posts,live,2026-10-26T08:59:01Z,0,0,0,0,2026-10-26T11:59:01Z,,,"HTTP 500 for posts r/wallstreetbets after 6 tries: {'data': None, 'error': 'Internal server error'}"
+40325394073,2026-10-26T12:48:53Z,pennystocks/comments,live,2026-10-26T11:05:23Z,0,0,0,0,2026-10-26T11:35:23Z,,,"skipped: Arctic Shift unreachable earlier in this run (HTTP 500 for posts r/wallstreetbets after 6 tries: {'data': None, 'error': 'Internal server error'})"
+40325394073,2026-10-26T12:48:53Z,smallstreetbets/comments,live,2026-10-26T09:19:43Z,0,0,0,0,2026-10-26T09:49:43Z,,,"skipped: Arctic Shift unreachable earlier in this run (HTTP 500 for posts r/wallstreetbets after 6 tries: {'data': None, 'error': 'Internal server error'})"
+40325394073,2026-10-26T12:48:53Z,wallstreetbets/comments,live,2026-10-26T10:57:03Z,0,0,0,0,2026-10-26T11:27:03Z,,,"skipped: Arctic Shift unreachable earlier in this run (HTTP 500 for posts r/wallstreetbets after 6 tries: {'data': None, 'error': 'Internal server error'})"
+40325394073,2026-10-26T12:48:53Z,wallstreetbets/comments,fallback,2026-10-26T12:36:35Z,200,182,2,1,2026-10-26T12:49:48Z,,411.6,
+40325394073,2026-10-26T12:48:53Z,smallstreetbets/comments,fallback,2026-10-26T12:38:18Z,100,5,1,1,2026-10-26T12:51:30Z,,637.8,
+40325394073,2026-10-26T12:48:53Z,pennystocks/comments,fallback,2026-10-26T12:37:24Z,100,2,1,1,2026-10-26T12:52:03Z,,63.6,
+40325394073,2026-10-26T12:48:53Z,wallstreetbets/posts,fallback,2026-10-26T11:59:01Z,100,2,1,1,2026-10-26T12:52:38Z,,229.7,
