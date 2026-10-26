@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-23T20:37:46Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-26T00:21:37Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-219 candidates and 437 controls so far. Archetypes: other 208, low_float_runner 10, otc_penny 1.
+220 candidates and 439 controls so far. Archetypes: other 209, low_float_runner 10, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| EWZ | 2026-10-26 00:21 | other | listed | 42.75 | +0.4% | +1.8% | 1.6x |  |  |  |  |
 | RDDT | 2026-10-23 20:37 | other | listed | 145 | +0.5% | -7.6% | 1.0x | 140.7M | 15.7% | 0 |  |
 | CRWD | 2026-10-23 20:37 | other | listed | 258.2 | +0.2% | +13.3% | 1.6x | 1.01B | 2.6% | 1 |  |
 | LUNR | 2026-10-23 18:21 | other | listed | 10.56 | +1.1% | -9.7% | 0.8x | 131.6M | 27.7% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | QQQ | 2026-10-22 19:45 | other | listed | 702.6 | -3.1% | -0.5% | 0.9x |  |  |  |  |
 | AMAT | 2026-10-22 19:30 | other | listed | 378.9 | -7.4% | -8.4% | 1.0x | 790.5M | 1.7% | 0 |  |
 | SOXX | 2026-10-22 18:52 | other | listed | 476.7 | -6.6% | -1.7% | 1.1x |  |  |  |  |
-| RSP | 2026-10-22 18:38 | other | listed | 217.2 | +0.3% | +2.1% | 1.0x |  |  |  |  |
