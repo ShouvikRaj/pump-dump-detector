@@ -1,13 +1,15 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-26T11:48:38Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-26T13:24:42Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-223 candidates and 445 controls so far. Archetypes: other 212, low_float_runner 10, otc_penny 1.
+225 candidates and 447 controls so far. Archetypes: other 213, low_float_runner 10, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| STNE | 2026-10-26 13:24 | other | listed | 7 | -39.0% | +1.8% | 0.9x | 204.7M | 5.1% | 0 |  |
+| ANT | 2026-10-26 13:24 | unknown | unknown |  |  |  |  |  |  |  | yahoo: No data found, symbol may be delisted |
 | NU | 2026-10-26 11:48 | other | listed | 11.2 | -26.1% | +4.1% | 1.0x | 3.71B | 3.6% | 0 |  |
 | PBR | 2026-10-26 09:22 | other | listed | 20.33 | -22.3% | +0.6% | 1.1x | 3.94B | 0.9% | 0 |  |
 | MELI | 2026-10-26 08:42 | other | listed | 1,614 | -10.8% | -1.3% | 0.8x | 50.6M | 1.8% | 2 |  |
@@ -36,5 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | LMT | 2026-10-22 22:06 | other | listed | 590 | +0.0% | +10.8% | 2.6x | 197.4M | 1.4% | 0 |  |
 | INTC | 2026-10-22 21:18 | other | listed | 85.24 | -0.3% | -10.4% | 1.3x | 4.62B | 3.6% | 3 |  |
 | SCHD | 2026-10-22 21:05 | other | listed | 35.37 | -0.1% | +3.8% | 1.3x |  |  |  |  |
-| LULU | 2026-10-22 20:12 | other | listed | 103.4 | -0.6% | +5.0% | 1.5x | 101.7M | 15.1% | 0 |  |
-| VST | 2026-10-22 19:45 | other | listed | 139.4 | -10.7% | +2.9% | 0.7x | 313.0M | 3.3% | 3 |  |
