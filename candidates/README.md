@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-27T22:31:08Z by run `40594564805`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-27T22:37:09Z by run `40596085487`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -16,7 +16,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | STX | 2026-10-27 19:12 | mention spike | 62 | 3.86 | 44 | 0 | wallstreetbets 62 | Nasdaq | #3 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xh322j/comment/19rr1x7l5w0ir/) |
 | USAR | 2026-10-27 17:13 | mention spike | 8 | 3.29 | 5 | 0 | wallstreetbets 8 | Nasdaq | #19 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgodye/comment/19rqogga9iqv9/) |
 | CLS | 2026-10-26 19:24 | mention spike | 20 | 5.57 | 15 | 1 | wallstreetbets 20 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xdjnsl/comment/19rqum1ev7hlt/) |
-| RIVN | 2026-10-27 00:43 | mention spike | 10 | 5.0 | 4 | 0 | wallstreetbets 10 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgodye/comment/19rqtxk4edeo3/) |
+| RIVN | 2026-10-27 00:43 | mention spike | 9 | 5.0 | 4 | 0 | wallstreetbets 9 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgodye/comment/19rqtxk4edeo3/) |
 | ASML | 2026-10-27 17:38 | mention spike | 9 | 2.0 | 8 | 0 | wallstreetbets 9 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgpx1n/comment/19rqqgdow8dvk/) |
 | MSFT | 2026-10-27 00:09 | mention spike | 42 | 27.86 | 37 | 0 | wallstreetbets 42 | Nasdaq | #17 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgqawe/comment/19rr1jidsn78i/) |
 | AMKR | 2026-10-27 00:43 | mention spike | 3 | 3.0 | 3 | 0 | wallstreetbets 3 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgodye/comment/19rqhpcyhs0ar/) |
