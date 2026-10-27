@@ -1,6 +1,6 @@
 # Stage 4 labels
 
-Updated 2026-10-26T23:25:13Z. Every candidate and control gets the same rule, `label-v1`, written down before any outcome was looked at (docs/stage4.md in the code branch). Sessions count from the flag; returns are against the price at the flag. All rows: `labels/labels.csv`.
+Updated 2026-10-27T02:08:03Z. Every candidate and control gets the same rule, `label-v1`, written down before any outcome was looked at (docs/stage4.md in the code branch). Sessions count from the flag; returns are against the price at the flag. All rows: `labels/labels.csv`.
 
 - **pump**: up 50% or more within 5 sessions, then down 40% or more from that peak within the next 10
 - **real news**: earnings, a completed acquisition, a change of control, bankruptcy or a material agreement that isn't a share sale, filed with the SEC (8-K) between 72 hours before the flag and session 5; it beats pump
@@ -13,8 +13,8 @@ Updated 2026-10-26T23:25:13Z. Every candidate and control gets the same rule, `l
 | low float runner | control | 0 | 1 | 10 | 2 of 12 (17%) | 17 | 0 |
 | otc penny | candidate | 0 | 0 | 0 | - | 1 | 0 |
 | otc penny | control | 0 | 0 | 0 | - | 2 | 0 |
-| other | candidate | 2 | 33 | 99 | 7 of 100 (7%) | 81 | 0 |
-| other | control | 0 | 34 | 184 | 1 of 193 (1%) | 203 | 0 |
+| other | candidate | 2 | 34 | 99 | 7 of 100 (7%) | 87 | 0 |
+| other | control | 0 | 34 | 184 | 1 of 193 (1%) | 217 | 0 |
 | unknown | candidate | 0 | 0 | 0 | - | 0 | 1 |
 
 Crash counts the snapshots whose crash label has settled.
@@ -24,6 +24,7 @@ Crash counts the snapshots whose crash label has settled.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Label | Crash | Peak, 5 sessions | Drop from peak | Lowest close, 10 sessions | News filings |
 |---|---|---|---|---|---|---|---|---|---|
+| 2026-10-27 00:43 | AMKR | candidate | other | real news |  |  |  |  | 8-K 2026-10-26T20:07 2.02,9.01 (news) |
 | 2026-10-26 13:24 | ANT | candidate | unknown | unknown (no price at the flag) |  |  |  |  |  |
 | 2026-10-23 20:37 | DOV | control | other | real news |  |  |  |  | 8-K 2026-10-22T15:01 2.02,7.01,9.01 (news) |
 | 2026-10-23 20:37 | DHR | control | other | real news |  |  |  |  | 8-K 2026-10-21T01:43 2.02,9.01 (news) |
@@ -73,6 +74,5 @@ Crash counts the snapshots whose crash label has settled.
 | 2026-10-16 19:34 | FDBC | control | other | real news |  | +9% |  |  | 8-K 2026-10-21T18:40 2.02,9.01 (news) |
 | 2026-10-16 19:07 | VOO | candidate | other | not pump |  | +2% |  |  |  |
 | 2026-10-16 19:07 | OPEX | candidate | other | not pump |  | +29% |  |  |  |
-| 2026-10-16 19:07 | FLEX | control | other | real news |  | +7% |  |  | 8-K 2026-10-14T16:13 1.01,2.01,2.03,8.01,9.01 (news) |
 
-319 older rows are in `labels/labels.csv`.
+320 older rows are in `labels/labels.csv`.
