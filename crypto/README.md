@@ -17,8 +17,8 @@ Live since 2026-10-07T12:32:05Z.
 | no_data | 475 |
 | not_covered | 1578 |
 | partial | 12 |
-| pending | 250 |
-| settled | 3044 |
+| pending | 249 |
+| settled | 3045 |
 
 - `events.csv`: one row per event; `outcomes.csv`: crypto-label-v1 per event, rebuilt every run.
 - `bars/<source>/<event_id>.json.gz`: the event's 1-minute and hourly bars [open time ms, open, high, low,
