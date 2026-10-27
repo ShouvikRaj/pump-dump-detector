@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-27T18:12:07Z by run `40557572793`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-27T18:14:09Z by run `40557844595`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -28,6 +28,6 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | STNE | 2026-10-26 13:24 | mention spike | 2 | 1.71 | 2 | 0 | wallstreetbets 2 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgodye/comment/19rqko5wd67pg/) |
 | COIN | 2026-10-27 00:43 | mention spike | 4 | 2.43 | 3 | 0 | wallstreetbets 4 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgodye/comment/19rqc950zqglh/) |
 | VOO | 2026-10-27 02:38 | mention spike | 20 | 16.14 | 20 | 0 | wallstreetbets 20 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgodye/comment/19rqq39nuztds/) |
-| NU | 2026-10-26 11:48 | mention spike | 7 | 2.71 | 1 | 5 | wallstreetbets 7 | NYSE | #29 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgodye/comment/19rqf3uemth1c/) |
+| NU | 2026-10-26 11:48 | mention spike | 7 | 2.71 | 1 | 5 | wallstreetbets 7 | NYSE | #27 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgodye/comment/19rqf3uemth1c/) |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
