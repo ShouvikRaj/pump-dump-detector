@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-27T15:30:09Z by run `40529689851`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-27T15:33:08Z by run `40531904307`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -14,7 +14,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | HOOD | 2026-10-27 03:54 | mention spike | 34 | 9.71 | 24 | 0 | wallstreetbets 34 | Nasdaq | #11 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgodye/comment/19rqjmij4l7k1/) |
 | INOD | 2026-10-27 14:48 | mention spike | 12 | 0.0 | 6 | 0 | wallstreetbets 12 | Nasdaq | #3 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgodye/comment/19rqij0lafc74/) |
 | MSFT | 2026-10-27 00:09 | mention spike | 57 | 23.86 | 50 | 0 | wallstreetbets 57 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgqawe/comment/19rqio8eel5cz/) |
-| RDDT | 2026-10-26 14:04 | mention spike | 70 | 18.86 | 49 | 1 | wallstreetbets 70 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgus2q/) |
+| RDDT | 2026-10-26 14:04 | mention spike | 69 | 19.0 | 48 | 1 | wallstreetbets 69 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgus2q/) |
 | RIVN | 2026-10-27 00:43 | mention spike | 22 | 5.71 | 5 | 0 | wallstreetbets 22 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xg7hq7/comment/19rplkqmhxscj/) |
 | SOFI | 2026-10-27 00:43 | mention spike | 40 | 3.29 | 33 | 0 | wallstreetbets 40 | Nasdaq | #2 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgodye/comment/19rqj5ih0igsk/) |
 | ANT | 2026-10-26 13:24 | mention spike | 15 | 2.71 | 15 | 0 | wallstreetbets 15 | ? |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgt876/) |
