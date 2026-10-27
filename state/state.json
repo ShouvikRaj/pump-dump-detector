@@ -37,8 +37,8 @@
     "BBAI": {
       "episode_id": "BBAI-20261027T205709Z",
       "first_flagged_at": 1793134629.5805466,
-      "last_flagged_at": 1793140629.4702024,
-      "n_flags": 10,
+      "last_flagged_at": 1793141767.771935,
+      "n_flags": 11,
       "peak_mentions": 11,
       "peak_z": 10.714,
       "reasons_seen": [
@@ -48,8 +48,8 @@
     "BRAI": {
       "episode_id": "BRAI-20261027T175309Z",
       "first_flagged_at": 1793123589.95105,
-      "last_flagged_at": 1793140629.4702024,
-      "n_flags": 25,
+      "last_flagged_at": 1793141767.771935,
+      "n_flags": 26,
       "peak_mentions": 10,
       "peak_z": 10.0,
       "reasons_seen": [
@@ -125,10 +125,10 @@
     "HOOD": {
       "episode_id": "HOOD-20261027T035408Z",
       "first_flagged_at": 1793073248.1518116,
-      "last_flagged_at": 1793140629.4702024,
-      "n_flags": 77,
-      "peak_mentions": 155,
-      "peak_z": 16.91,
+      "last_flagged_at": 1793141767.771935,
+      "n_flags": 78,
+      "peak_mentions": 157,
+      "peak_z": 17.144,
       "reasons_seen": [
         "mention_spike"
       ]
@@ -136,10 +136,10 @@
     "INOD": {
       "episode_id": "INOD-20261027T144809Z",
       "first_flagged_at": 1793112489.9120417,
-      "last_flagged_at": 1793140629.4702024,
-      "n_flags": 39,
-      "peak_mentions": 21,
-      "peak_z": 21.0,
+      "last_flagged_at": 1793141767.771935,
+      "n_flags": 40,
+      "peak_mentions": 22,
+      "peak_z": 22.0,
       "reasons_seen": [
         "mention_spike"
       ]
@@ -213,10 +213,10 @@
     "SKHY": {
       "episode_id": "SKHY-20261027T195107Z",
       "first_flagged_at": 1793130667.400011,
-      "last_flagged_at": 1793140629.4702024,
-      "n_flags": 15,
-      "peak_mentions": 41,
-      "peak_z": 5.39,
+      "last_flagged_at": 1793141767.771935,
+      "n_flags": 16,
+      "peak_mentions": 44,
+      "peak_z": 5.873,
       "reasons_seen": [
         "mention_spike"
       ]
@@ -224,8 +224,8 @@
     "SOFI": {
       "episode_id": "SOFI-20261027T004306Z",
       "first_flagged_at": 1793061786.0432732,
-      "last_flagged_at": 1793140629.4702024,
-      "n_flags": 90,
+      "last_flagged_at": 1793141767.771935,
+      "n_flags": 91,
       "peak_mentions": 56,
       "peak_z": 22.986,
       "reasons_seen": [
@@ -246,10 +246,10 @@
     "STX": {
       "episode_id": "STX-20261027T191206Z",
       "first_flagged_at": 1793128326.7028587,
-      "last_flagged_at": 1793140629.4702024,
-      "n_flags": 18,
-      "peak_mentions": 62,
-      "peak_z": 24.123,
+      "last_flagged_at": 1793141767.771935,
+      "n_flags": 19,
+      "peak_mentions": 63,
+      "peak_z": 24.538,
       "reasons_seen": [
         "mention_spike"
       ]
@@ -278,24 +278,24 @@
     }
   },
   "last_run": {
-    "finished_at": 1793140629.5199525,
-    "new_docs": 37,
-    "run_id": "40596085487",
-    "started_at": 1793140592.4228673
+    "finished_at": 1793141767.8092887,
+    "new_docs": 377,
+    "run_id": "40597706311",
+    "started_at": 1793141383.1515346
   },
   "late_done_for": "2026-10-25",
   "live_since": 1791153669.8332794,
   "streams": {
     "pennystocks/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 0,
+      "consecutive_errors": 1,
       "cursor": 1793135721,
-      "fallback_complete_at": 1793140622.0023265,
-      "fallback_cursor": 1793139725,
+      "fallback_complete_at": 1793141641.4739084,
+      "fallback_cursor": 1793141510,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1793140600.6342845,
-      "last_error": "Arctic Shift's archive stalled at 2026-10-27T21:41:28Z",
-      "last_error_at": 1793139802.7897594
+      "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 500 for posts r/smallstreetbets after 6 tries: {'data': None, 'error': 'Internal server error'})",
+      "last_error_at": 1793141450.4165008
     },
     "pennystocks/posts": {
       "complete_since": 1790376069.8332794,
@@ -304,53 +304,53 @@
       "fallback_complete_at": 1793140202.825182,
       "fallback_cursor": 1793126080,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1793140597.6984584,
+      "last_complete_at": 1793141386.695557,
       "last_error": "Arctic Shift's archive stalled at 2026-10-27T21:41:28Z",
       "last_error_at": 1793139799.6657786
     },
     "smallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 0,
+      "consecutive_errors": 1,
       "cursor": 1793135217,
-      "fallback_complete_at": 1793140603.4544406,
-      "fallback_cursor": 1793140543,
+      "fallback_complete_at": 1793141581.0681877,
+      "fallback_cursor": 1793141551,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1793140601.6538177,
-      "last_error": "Arctic Shift's archive stalled at 2026-10-27T21:41:28Z",
-      "last_error_at": 1793139803.8017285
+      "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 500 for posts r/smallstreetbets after 6 tries: {'data': None, 'error': 'Internal server error'})",
+      "last_error_at": 1793141450.416522
     },
     "smallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 0,
+      "consecutive_errors": 1,
       "cursor": 1793138464,
-      "fallback_complete_at": 1793140143.099564,
-      "fallback_cursor": 1793138464,
+      "fallback_complete_at": 1793141762.016783,
+      "fallback_cursor": 1793141587,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1793140598.821237,
-      "last_error": "Arctic Shift's archive stalled at 2026-10-27T21:41:28Z",
-      "last_error_at": 1793139800.542235
+      "last_error": "HTTP 500 for posts r/smallstreetbets after 6 tries: {'data': None, 'error': 'Internal server error'}",
+      "last_error_at": 1793141450.4163804
     },
     "wallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 0,
+      "consecutive_errors": 1,
       "cursor": 1793140314,
-      "fallback_complete_at": 1793139901.5504735,
-      "fallback_cursor": 1793139794,
+      "fallback_complete_at": 1793141521.6798122,
+      "fallback_cursor": 1793141439,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1793140602.791864,
-      "last_error": "Arctic Shift's archive stalled at 2026-10-27T21:41:28Z",
-      "last_error_at": 1793139804.5370586
+      "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 500 for posts r/smallstreetbets after 6 tries: {'data': None, 'error': 'Internal server error'})",
+      "last_error_at": 1793141450.416542
     },
     "wallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 0,
+      "consecutive_errors": 1,
       "cursor": 1793140312,
-      "fallback_complete_at": 1793140082.0293512,
-      "fallback_cursor": 1793139000,
+      "fallback_complete_at": 1793141701.1132395,
+      "fallback_cursor": 1793140312,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1793140599.7083821,
-      "last_error": "Arctic Shift's archive stalled at 2026-10-27T21:41:28Z",
-      "last_error_at": 1793139801.8000884
+      "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 500 for posts r/smallstreetbets after 6 tries: {'data': None, 'error': 'Internal server error'})",
+      "last_error_at": 1793141450.416475
     }
   },
   "symbols_refresh_errors": 0,
