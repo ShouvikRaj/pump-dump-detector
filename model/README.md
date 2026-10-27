@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-10-26T04:35:25Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-10-27T00:19:25Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-10-26)
 
@@ -17,6 +17,13 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-10-27 00:09 | MSFT | other | no model | no model | 100% / 0% / 0% / 5.0% | Chatter discusses MSFT layoffs, earnings anticipation, and general market sentiment with mixed bullish and bearish views. |
+| 2026-10-26 19:24 | CLS | other | no model | no model | 100% / 70% / 0% / 70% | Users discuss CLS earnings anticipation, price drops, and urge buying calls. |
+| 2026-10-26 14:04 | RDDT | other | no model | no model | 93% / 6.7% / 3.3% / 3.3% | Users discuss RDDT price drops, earnings anticipation, and express confusion or bearish sentiment. |
+| 2026-10-26 13:24 | STNE | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss buying Brazilian stocks including STNE following a market dip. |
+| 2026-10-26 11:48 | NU | other | no model | no model | 100% / 30% / 0% / 0% | Users express disappointment and hope for a rebound in NU, with one user urging others to buy the dip. |
+| 2026-10-26 09:22 | PBR | other | no model | no model | 100% / 40% / 0% / 20% | Users discuss PBR volatility due to Brazilian election results and express bullish intent to buy. |
+| 2026-10-26 08:42 | MELI | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss a significant drop in MELI stock prices, attributing it to Brazil news and political factors. |
 | 2026-10-26 00:21 | EWZ | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss EWZ price drops following Brazilian election results, with no specific corporate events or pitches identified. |
 | 2026-10-23 20:37 | CRWD | other | no model | no model | 100% / 30% / 0% / 0% | Users discuss CRWD stock performance, price targets, and relative strength in a bearish market. |
 | 2026-10-23 20:37 | RDDT | other | no model | no model | 100% / 25% / 0% / 5.0% | Users discuss RDDT earnings, price targets, and meme stock potential with mixed sentiment. |
@@ -50,13 +57,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-22 18:38 | RSP | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss RSP price movements, comparing it to SPY and noting sector rotations. |
 | 2026-10-22 17:45 | AAOI | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss AAOI price drops, express confusion about company news, and offer conflicting bullish and bearish opinions. |
 | 2026-10-22 17:45 | ORCL | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss ORCL's declining price, bearish outlook, and potential risks to its AI strategy. |
-| 2026-10-22 17:45 | TOGI | otc penny | no model | no model | 0% / 0% / 0% / 0% | Chatter discusses a YouTuber named TOGI and their positions on MRNA, unrelated to TurnOnGreen, Inc. |
-| 2026-10-22 17:45 | XXII | other | no model | no model | 100% / 23% / 0% / 31% | Users discuss high volume and positive preliminary financials for XXII, urging others to buy without stop losses. |
-| 2026-10-22 16:39 | FPS | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss a recent price drop in FPS, citing CFO departure and energy sector trends. |
-| 2026-10-22 15:59 | GEV | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss GEV price drops, express bearish sentiment, and create a banbet targeting a $900 price level. |
-| 2026-10-22 15:59 | PLTR | other | no model | no model | 100% / 14% / 0% / 0% | Mixed chatter on PLTR price action, with some users expressing bullish optimism and others showing bearish frustration or calling for a decline. |
-| 2026-10-22 15:59 | SOXL | other | no model | no model | 100% / 7.5% / 0% / 0% | Users discuss SOXL price volatility, losses, and potential reversals without mentioning specific corporate events. |
-| 2026-10-22 14:55 | BKYI | low float runner | no model | no model | 100% / 0% / 0% / 0% | Users discuss BKYI's potential price surge, volume, and short interest following news of a new contract. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
