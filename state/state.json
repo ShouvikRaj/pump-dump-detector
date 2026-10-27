@@ -37,8 +37,8 @@
     "BBAI": {
       "episode_id": "BBAI-20261027T205709Z",
       "first_flagged_at": 1793134629.5805466,
-      "last_flagged_at": 1793142550.1102955,
-      "n_flags": 12,
+      "last_flagged_at": 1793143389.1170733,
+      "n_flags": 13,
       "peak_mentions": 11,
       "peak_z": 10.714,
       "reasons_seen": [
@@ -48,10 +48,10 @@
     "BRAI": {
       "episode_id": "BRAI-20261027T175309Z",
       "first_flagged_at": 1793123589.95105,
-      "last_flagged_at": 1793142550.1102955,
-      "n_flags": 27,
-      "peak_mentions": 11,
-      "peak_z": 11.0,
+      "last_flagged_at": 1793143389.1170733,
+      "n_flags": 28,
+      "peak_mentions": 13,
+      "peak_z": 13.0,
       "reasons_seen": [
         "mention_spike"
       ]
@@ -125,9 +125,9 @@
     "HOOD": {
       "episode_id": "HOOD-20261027T035408Z",
       "first_flagged_at": 1793073248.1518116,
-      "last_flagged_at": 1793142550.1102955,
-      "n_flags": 79,
-      "peak_mentions": 159,
+      "last_flagged_at": 1793143389.1170733,
+      "n_flags": 80,
+      "peak_mentions": 161,
       "peak_z": 17.377,
       "reasons_seen": [
         "mention_spike"
@@ -136,8 +136,8 @@
     "INOD": {
       "episode_id": "INOD-20261027T144809Z",
       "first_flagged_at": 1793112489.9120417,
-      "last_flagged_at": 1793142550.1102955,
-      "n_flags": 41,
+      "last_flagged_at": 1793143389.1170733,
+      "n_flags": 42,
       "peak_mentions": 22,
       "peak_z": 22.0,
       "reasons_seen": [
@@ -162,17 +162,6 @@
       "n_flags": 97,
       "peak_mentions": 57,
       "peak_z": 6.059,
-      "reasons_seen": [
-        "mention_spike"
-      ]
-    },
-    "NU": {
-      "episode_id": "NU-20261026T114806Z",
-      "first_flagged_at": 1793015286.556567,
-      "last_flagged_at": 1793056810.4305282,
-      "n_flags": 52,
-      "peak_mentions": 19,
-      "peak_z": 19.0,
       "reasons_seen": [
         "mention_spike"
       ]
@@ -213,10 +202,10 @@
     "SKHY": {
       "episode_id": "SKHY-20261027T195107Z",
       "first_flagged_at": 1793130667.400011,
-      "last_flagged_at": 1793142550.1102955,
-      "n_flags": 17,
-      "peak_mentions": 44,
-      "peak_z": 5.873,
+      "last_flagged_at": 1793143389.1170733,
+      "n_flags": 18,
+      "peak_mentions": 45,
+      "peak_z": 6.04,
       "reasons_seen": [
         "mention_spike"
       ]
@@ -224,8 +213,8 @@
     "SOFI": {
       "episode_id": "SOFI-20261027T004306Z",
       "first_flagged_at": 1793061786.0432732,
-      "last_flagged_at": 1793142550.1102955,
-      "n_flags": 92,
+      "last_flagged_at": 1793143389.1170733,
+      "n_flags": 93,
       "peak_mentions": 56,
       "peak_z": 22.986,
       "reasons_seen": [
@@ -246,8 +235,8 @@
     "STX": {
       "episode_id": "STX-20261027T191206Z",
       "first_flagged_at": 1793128326.7028587,
-      "last_flagged_at": 1793142550.1102955,
-      "n_flags": 20,
+      "last_flagged_at": 1793143389.1170733,
+      "n_flags": 21,
       "peak_mentions": 63,
       "peak_z": 24.538,
       "reasons_seen": [
@@ -278,10 +267,10 @@
     }
   },
   "last_run": {
-    "finished_at": 1793142550.1595075,
-    "new_docs": 225,
-    "run_id": "40599298573",
-    "started_at": 1793142174.5253317
+    "finished_at": 1793143389.1605017,
+    "new_docs": 259,
+    "run_id": "40600928399",
+    "started_at": 1793142977.2296376
   },
   "late_done_for": "2026-10-25",
   "live_since": 1791153669.8332794,
@@ -290,67 +279,67 @@
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
       "cursor": 1793135721,
-      "fallback_complete_at": 1793142361.51668,
-      "fallback_cursor": 1793141510,
+      "fallback_complete_at": 1793143201.2327247,
+      "fallback_cursor": 1793142928,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1793140600.6342845,
       "last_error": "Arctic Shift's archive stalled at 2026-10-27T22:31:54Z",
-      "last_error_at": 1793142182.8403263
+      "last_error_at": 1793142985.0901332
     },
     "pennystocks/posts": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
       "cursor": 1793126080,
-      "fallback_complete_at": 1793142542.651868,
+      "fallback_complete_at": 1793143382.683721,
       "fallback_cursor": 1793126080,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1793141386.695557,
       "last_error": "Arctic Shift's archive stalled at 2026-10-27T22:31:54Z",
-      "last_error_at": 1793142179.4874732
+      "last_error_at": 1793142982.3533041
     },
     "smallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
       "cursor": 1793135217,
-      "fallback_complete_at": 1793142301.2240021,
-      "fallback_cursor": 1793142255,
+      "fallback_complete_at": 1793143141.6849062,
+      "fallback_cursor": 1793143123,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1793140601.6538177,
       "last_error": "Arctic Shift's archive stalled at 2026-10-27T22:31:54Z",
-      "last_error_at": 1793142183.6145525
+      "last_error_at": 1793142986.0505216
     },
     "smallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
       "cursor": 1793141587,
-      "fallback_complete_at": 1793142482.5530164,
+      "fallback_complete_at": 1793143322.406343,
       "fallback_cursor": 1793141587,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1793140598.821237,
       "last_error": "Arctic Shift's archive stalled at 2026-10-27T22:31:54Z",
-      "last_error_at": 1793142180.4271808
+      "last_error_at": 1793142983.3849585
     },
     "wallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
       "cursor": 1793140314,
-      "fallback_complete_at": 1793142240.8099945,
-      "fallback_cursor": 1793142167,
+      "fallback_complete_at": 1793143082.2230673,
+      "fallback_cursor": 1793142974,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1793140602.791864,
       "last_error": "Arctic Shift's archive stalled at 2026-10-27T22:31:54Z",
-      "last_error_at": 1793142184.9438438
+      "last_error_at": 1793142987.2321548
     },
     "wallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
       "cursor": 1793141517,
-      "fallback_complete_at": 1793142421.616144,
-      "fallback_cursor": 1793140312,
+      "fallback_complete_at": 1793143262.373117,
+      "fallback_cursor": 1793143216,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1793140599.7083821,
       "last_error": "Arctic Shift's archive stalled at 2026-10-27T22:31:54Z",
-      "last_error_at": 1793142181.5701447
+      "last_error_at": 1793142984.1162498
     }
   },
   "symbols_refresh_errors": 0,
