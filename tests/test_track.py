@@ -115,6 +115,22 @@ def test_prices_stay_in_flag_time_terms_after_a_reverse_split(tmp_path):
     assert [r["close"] for r in rows] == ["4.0", "4.0", "4.0"] and rows[0]["adj_factor"] == "10.0"
 
 
+def test_sessions_keep_their_number_when_yahoo_serves_only_part_of_the_history(tmp_path):
+    # after a reverse split Yahoo served only the newest bar of the window (SXTC, 2026-10-26): k counts the stored
+    # sessions, not the bar's position in what Yahoo sent this time
+    bars = path_bars([4.0, 4.1, 4.2, 4.3])
+    ds, src, clock, http = setup(tmp_path, [snap()], [("GET", "https://query1.finance.yahoo.com", [(200, chart_json(bars[:3]))])],
+                                 et(2026, 10, 7, 18))
+    track.run_track(ds, src, clock=clock.time)
+    http.add("GET", "https://query1.finance.yahoo.com", (200, chart_json(bars[3:])))
+    clock.now = et(2026, 10, 8, 18)
+    track.run_track(ds, src, clock=clock.time)
+    rows = ds.read_csv(track.DAILY)
+    assert [(r["session"], r["k"]) for r in rows] == [("2026-10-05", "1"), ("2026-10-06", "2"), ("2026-10-07", "3"),
+                                                     ("2026-10-08", "4")]
+    assert ds.read_csv(track.OUTCOMES)[0]["ret_close_1"] == "0.0"
+
+
 def test_gives_up_on_a_ticker_yahoo_no_longer_knows(tmp_path):
     ds, src, clock, http = setup(tmp_path, [snap()], [("GET", "https://query1.finance.yahoo.com", [(404, CHART_404)])],
                                  et(2026, 10, 7, 12))

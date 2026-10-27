@@ -229,9 +229,18 @@ def run_track(ds: Datastore, src: MarketSources, clock: Callable[[], float] = ti
             summary["warnings"].append(f"{snap['ticker']}: {exc}; retrying next run")
             continue
         sessions = sessions_after(chart, as_of, now)
-        added = [s for s in sessions if s["session"] not in have[sid]]
-        for s in added:
+        added = []
+        for s in sessions:
+            if s["session"] in have[sid]:
+                continue
+            # Yahoo can serve only part of the history (seen after reverse splits), so the position in this chart
+            # can undercount; the sessions already stored are a floor
+            s["k"] = max(s["k"], 1 + sum(1 for d in have[sid] if d < s["session"]))
+            if s["k"] > SESSIONS:
+                continue
             have[sid].add(s["session"])
+            added.append(s)
+        for s in added:
             new_daily.append({**key, **s, **stamp})
         summary["new_sessions"] += len(added)
         summary["tracked"].append(f"{snap['ticker']} ({snap['role']}, {len(have[sid])}/{SESSIONS})")

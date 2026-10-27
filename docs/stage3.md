@@ -69,3 +69,6 @@ why the drop is measured only over sessions after the peak's.
   shift still carries the extra hours. Rows from before 2026-10-07 had no accession number: their shifted copies were
   dropped and the rest matched to accession numbers on the next read.
 - Session closes are taken as 16:00 ET, so half days are recorded one session late at worst.
+- After a reverse split Yahoo can serve only part of a ticker's history. On 2026-10-26 it did so for SXTC and its
+  control AZTR, and their new session got its position in the short chart (k=1 and k=3) instead of k=10. A new
+  session's `k` is now at least 1 + the sessions already stored before it, and those two rows were set to k=10 by hand.
