@@ -1,9 +1,30 @@
 # Stage 3 tracking
 
-Updated 2026-10-26T22:51:06Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-10-27T01:43:05Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-10-27 00:43 | PTCT | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-27 00:43 | ULS | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-27 00:43 | KEYS | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-27 00:43 | WDAY | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-27 00:43 | ADIG | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-27 00:43 | TCBK | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-27 00:43 | KAI | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-27 00:43 | RACE | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-27 00:43 | TME | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-27 00:43 | DKNG | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-27 00:43 | VIV | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-27 00:43 | TLK | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-27 00:43 | AMKR | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-27 00:43 | COIN | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-27 00:43 | DXYZ | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-27 00:43 | GOOG | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-27 00:43 | RIVN | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-27 00:43 | SOFI | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-27 00:09 | CMI | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-27 00:09 | CW | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-27 00:09 | MSFT | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-10-26 19:24 | JBHT | control | other | active | 1 |  |  |  |  |  |
 | 2026-10-26 19:24 | FFIV | control | other | active | 1 |  |  |  |  |  |
 | 2026-10-26 19:24 | CLS | candidate | other | active | 1 |  |  |  |  |  |
