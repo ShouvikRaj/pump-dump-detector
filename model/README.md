@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-10-27T00:19:25Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-10-27T04:53:47Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-10-26)
 
@@ -17,6 +17,14 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-10-27 03:54 | HOOD | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss HOOD earnings, express bearish sentiment, and mention potential price drops. |
+| 2026-10-27 02:38 | VOO | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss VOO as a safe index fund, contrasting it with risky individual stocks and options. |
+| 2026-10-27 00:43 | AMKR | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss AMKR earnings, NVIDIA partnership, and price movements with mixed bullish and bearish sentiments. |
+| 2026-10-27 00:43 | COIN | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss COIN alongside other stocks, mentioning potential earnings misses, dilution fears, and general market sentiment. |
+| 2026-10-27 00:43 | DXYZ | other | no model | no model | 100% / 70% / 0% / 10% | Users hype DXYZ as a high-risk, high-reward stock with potential for massive gains. |
+| 2026-10-27 00:43 | GOOG | other | no model | no model | 100% / 0% / 0% / 0% | Chatter discusses GOOG price action, earnings rumors, and mixed sentiment with no confirmed specific events. |
+| 2026-10-27 00:43 | RIVN | other | no model | no model | 100% / 0% / 0% / 0% | Users express extreme frustration and regret over significant financial losses on RIVN, with no promotional content or specific corporate events mentioned. |
+| 2026-10-27 00:43 | SOFI | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss SOFI earnings, options plays, and potential stock movement before a scheduled event. |
 | 2026-10-27 00:09 | MSFT | other | no model | no model | 100% / 0% / 0% / 5.0% | Chatter discusses MSFT layoffs, earnings anticipation, and general market sentiment with mixed bullish and bearish views. |
 | 2026-10-26 19:24 | CLS | other | no model | no model | 100% / 70% / 0% / 70% | Users discuss CLS earnings anticipation, price drops, and urge buying calls. |
 | 2026-10-26 14:04 | RDDT | other | no model | no model | 93% / 6.7% / 3.3% / 3.3% | Users discuss RDDT price drops, earnings anticipation, and express confusion or bearish sentiment. |
@@ -49,14 +57,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-22 22:06 | SQQQ | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss holding, selling, or buying SQQQ calls based on recent market movements. |
 | 2026-10-22 21:18 | INTC | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss INTC price levels, missed highs, and upcoming earnings alongside jokes and bearish fair value opinions. |
 | 2026-10-22 21:05 | SCHD | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss SCHD performance, portfolio allocation, and compare it to other ETFs with mixed sentiment. |
-| 2026-10-22 20:12 | LULU | other | no model | no model | 100% / 14% / 7.1% / 0% | Users discuss LULU price movements, joke about founder racism, and speculate on a fake NVDA acquisition. |
-| 2026-10-22 19:45 | QQQ | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss QQQ price movements, options strategies, and market sentiment with mixed bullish and bearish views. |
-| 2026-10-22 19:45 | VST | other | no model | no model | 100% / 20% / 20% / 0% | Users discuss VST price drops, potential rug pulls, and request pumps. |
-| 2026-10-22 19:30 | AMAT | other | no model | no model | 100% / 20% / 0% / 0% | Mixed chatter on AMAT ranging from bearish views on hardware to urgent buy pitches and confusion about bankruptcy. |
-| 2026-10-22 18:52 | SOXX | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss SOXX price volatility, express bearish views, and mention a potential earnings-driven rally. |
-| 2026-10-22 18:38 | RSP | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss RSP price movements, comparing it to SPY and noting sector rotations. |
-| 2026-10-22 17:45 | AAOI | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss AAOI price drops, express confusion about company news, and offer conflicting bullish and bearish opinions. |
-| 2026-10-22 17:45 | ORCL | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss ORCL's declining price, bearish outlook, and potential risks to its AI strategy. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
