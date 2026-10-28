@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-28T21:20:45Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-28T21:46:41Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-254 candidates and 505 controls so far. Archetypes: other 242, low_float_runner 10, otc_penny 1, unknown 1.
+255 candidates and 507 controls so far. Archetypes: other 243, low_float_runner 10, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| GOOGL | 2026-10-28 21:46 | other | listed | 289.9 | -10.8% | -2.9% | 2.2x | 10.88B | 0.7% | 3 |  |
 | MRVL | 2026-10-28 21:20 | other | listed | 227.5 | -9.6% | +2.8% | 0.6x | 873.8M | 2.8% | 0 |  |
 | LITE | 2026-10-28 21:20 | other | listed | 1,016 | +11.1% | +7.4% | 0.9x | 89.1M | 8.7% | 0 |  |
 | FTNT | 2026-10-28 21:20 | other | listed | 131.1 | -24.7% | +0.0% | 2.8x | 618.9M | 2.0% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | MSFT | 2026-10-27 00:09 | other | listed | 532.4 | +1.5% | -0.9% | 0.6x | 7.41B | 0.9% | 0 |  |
 | CLS | 2026-10-26 19:24 | other | listed | 258 | -0.8% | -14.4% | 1.4x | 114.1M | 3.9% | 2 |  |
 | RDDT | 2026-10-26 14:04 | other | listed | 138.3 | -4.1% | -7.6% | 1.0x | 140.7M | 15.7% | 0 |  |
-| STNE | 2026-10-26 13:24 | other | listed | 7 | -39.0% | +1.8% | 0.9x | 204.7M | 5.1% | 0 |  |
