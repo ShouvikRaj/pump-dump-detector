@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-28T22:11:35Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-28T23:40:42Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-257 candidates and 511 controls so far. Archetypes: other 245, low_float_runner 10, otc_penny 1, unknown 1.
+258 candidates and 513 controls so far. Archetypes: other 246, low_float_runner 10, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| COHR | 2026-10-28 23:40 | other | listed | 243.6 | +1.7% | +0.9% | 1.0x | 195.0M | 4.6% | 0 |  |
 | GGLL | 2026-10-28 22:11 | other | listed | 68.93 | -21.7% | -5.8% | 3.1x |  |  |  |  |
 | NOW | 2026-10-28 21:57 | other | listed | 123.1 | -18.0% | -2.0% | 2.3x | 1.03B | 2.7% | 0 |  |
 | GOOGL | 2026-10-28 21:46 | other | listed | 289.9 | -10.8% | -2.9% | 2.2x | 10.88B | 0.7% | 3 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | DXYZ | 2026-10-27 00:43 | other | listed | 28.49 | +3.6% | -1.5% | 0.8x |  |  | 2 |  |
 | COIN | 2026-10-27 00:43 | other | listed | 160.1 | -2.6% | -5.0% | 0.8x | 219.8M | 10.8% | 0 |  |
 | AMKR | 2026-10-27 00:43 | other | listed | 38.32 | -2.5% | -6.0% | 1.3x | 108.7M | 9.2% | 0 |  |
-| MSFT | 2026-10-27 00:09 | other | listed | 532.4 | +1.5% | -0.9% | 0.6x | 7.41B | 0.9% | 0 |  |
