@@ -1,9 +1,12 @@
 # Stage 3 tracking
 
-Updated 2026-10-27T22:55:48Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-10-28T01:48:41Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-10-28 00:47 | DHR | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-28 00:47 | ITW | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-28 00:47 | GLD | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-10-27 20:57 | GSM | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-27 20:57 | TRON | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-27 20:57 | BBAI | candidate | other | active | 0 |  |  |  |  |  |
@@ -607,7 +610,7 @@ Updated 2026-10-27T22:55:48Z. Each candidate and control is followed for 20 trad
 | 2026-10-07 17:44 | URI | control | other | active | 15 | +3% | -6% | +2% |  | 0 |
 | 2026-10-07 17:44 | DJCO | control | other | active | 15 | +4% | -14% | +3% |  | 1 |
 | 2026-10-07 17:44 | LLY | candidate | other | active | 15 | +1% | -6% | -2% |  | 0 |
-| 2026-10-07 16:38 | DUKRW | control | low_float_runner | active | 14 | +17% | -49% | -7% |  | 0 |
+| 2026-10-07 16:38 | DUKRW | control | low_float_runner | active | 15 | +17% | -49% | -7% |  | 0 |
 | 2026-10-07 16:38 | MKZR | control | low_float_runner | active | 15 | +8% | -35% | -8% |  | 0 |
 | 2026-10-07 16:38 | BIYA | candidate | low_float_runner | active | 15 | +37% | -59% | -30% |  | 0 |
 | 2026-10-07 13:01 | LIN | control | other | active | 15 | +0% | -1% | -0% |  | 0 |
