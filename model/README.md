@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-10-28T00:23:28Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-10-28T05:28:23Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-10-26)
 
@@ -17,6 +17,7 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-10-28 00:47 | GLD | other | no model | no model | 100% / 14% / 0% / 0% | Users discuss GLD price movements, FOMC impact, and speculate on buying calls or the stock reaching $400. |
 | 2026-10-27 20:57 | BBAI | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss BBAI earnings, volume, and price movements in r/pennystocks and r/wallstreetbets. |
 | 2026-10-27 19:51 | SKHY | other | no model | no model | 100% / 0% / 0% / 20% | Chatter focuses on SKHY earnings anticipation, price targets, and speculative trading strategies. |
 | 2026-10-27 19:12 | STX | other | no model | no model | 100% / 55% / 0% / 9.1% | Users discuss buying STX calls, mention earnings leaks, and compare it to other stocks. |
@@ -56,7 +57,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-23 03:07 | SPY | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss SPY price movements, options strategies, and market sentiment with mixed bullish and bearish views. |
 | 2026-10-23 02:14 | NVDA | other | no model | no model | 100% / 0% / 0% / 0% | Mixed chatter regarding NVDA price action, valuation concerns, and potential earnings impact. |
 | 2026-10-23 00:59 | TQQQ | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss TQQQ volatility, express regret over losses, and speculate on potential price movements. |
-| 2026-10-23 00:03 | AAPL | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss AAPL price strength, earnings anticipation, and general market sentiment with mixed bullish and bearish views. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
