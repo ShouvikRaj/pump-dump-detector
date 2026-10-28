@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-10-28T00:47:16Z by run `40609722706`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-10-28T00:57:58Z by run `40611130018`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -9,13 +9,13 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 |---|---|---|---|---|---|---|---|---|---|---|
 | BBAI | 2026-10-27 20:57 | mention spike | 13 | 0.29 | 9 | 0 | pennystocks 8, wallstreetbets 5 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xh322j/comment/19rr0dkev1k83/) |
 | BRAI | 2026-10-27 17:53 | mention spike | 13 | 0.0 | 6 | 0 | pennystocks 10, wallstreetbets 2, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1xgyubd/) |
-| HOOD | 2026-10-27 03:54 | mention spike | 183 | 9.71 | 121 | 0 | wallstreetbets 183 | Nasdaq | #2 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xh322j/comment/19rr8nhojnsma/) |
-| INOD | 2026-10-27 14:48 | mention spike | 24 | 0.0 | 10 | 0 | wallstreetbets 24 | Nasdaq | #9 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xh4cqy/) |
-| MSFT | 2026-10-27 00:09 | mention spike | 51 | 28.14 | 46 | 0 | wallstreetbets 51 | Nasdaq | #29 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xh322j/comment/19rr8nbs6jkbp/) |
-| SKHY | 2026-10-27 19:51 | mention spike | 75 | 9.14 | 42 | 0 | wallstreetbets 75 | Nasdaq | #1 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xh322j/comment/19rr8ov7wx1uo/) |
-| SOFI | 2026-10-27 00:43 | mention spike | 57 | 4.0 | 43 | 0 | wallstreetbets 55, smallstreetbets 2 | Nasdaq | #10 | [link](https://www.reddit.com/r/smallstreetbets/comments/1xh67vd/) |
-| STX | 2026-10-27 19:12 | mention spike | 70 | 4.0 | 50 | 0 | wallstreetbets 70 | Nasdaq | #5 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xh322j/comment/19rr85gvouq3p/) |
 | GLD | 2026-10-28 00:47 | mention spike | 14 | 5.57 | 5 | 0 | wallstreetbets 14 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgouhl/) |
+| HOOD | 2026-10-27 03:54 | mention spike | 183 | 9.71 | 121 | 0 | wallstreetbets 183 | Nasdaq | #2 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xh322j/comment/19rr8nhojnsma/) |
+| INOD | 2026-10-27 14:48 | mention spike | 24 | 0.0 | 10 | 0 | wallstreetbets 24 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xh4cqy/) |
+| MSFT | 2026-10-27 00:09 | mention spike | 51 | 28.14 | 46 | 0 | wallstreetbets 51 | Nasdaq | #14 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xh322j/comment/19rr8nbs6jkbp/) |
+| SKHY | 2026-10-27 19:51 | mention spike | 77 | 9.14 | 44 | 0 | wallstreetbets 77 | Nasdaq | #1 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xh322j/comment/19rr977ycrh5u/) |
+| SOFI | 2026-10-27 00:43 | mention spike | 57 | 4.0 | 43 | 0 | wallstreetbets 55, smallstreetbets 2 | Nasdaq | #16 | [link](https://www.reddit.com/r/smallstreetbets/comments/1xh67vd/) |
+| STX | 2026-10-27 19:12 | mention spike | 70 | 4.0 | 50 | 0 | wallstreetbets 70 | Nasdaq | #6 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xh322j/comment/19rr85gvouq3p/) |
 | USAR | 2026-10-27 17:13 | mention spike | 8 | 3.57 | 4 | 0 | wallstreetbets 8 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xh322j/comment/19rr43inm0vxg/) |
 | CLS | 2026-10-26 19:24 | mention spike | 16 | 6.14 | 14 | 0 | wallstreetbets 16 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xdjnsl/comment/19rqum1ev7hlt/) |
 | RIVN | 2026-10-27 00:43 | mention spike | 8 | 5.43 | 4 | 0 | wallstreetbets 8 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgodye/comment/19rqtxk4edeo3/) |
@@ -23,7 +23,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | AMKR | 2026-10-27 00:43 | mention spike | 4 | 3.0 | 3 | 0 | wallstreetbets 4 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xh322j/comment/19rr7nj13q55v/) |
 | GOOGL | 2026-10-27 13:39 | mention spike | 88 | 51.14 | 46 | 0 | wallstreetbets 88 | Nasdaq | #3 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xh322j/comment/19rr7jfiul21v/) |
 | RDDT | 2026-10-26 14:04 | mention spike | 49 | 24.43 | 33 | 0 | wallstreetbets 49 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgus2q/) |
-| GOOG | 2026-10-27 00:43 | mention spike | 115 | 59.29 | 66 | 1 | wallstreetbets 115 | Nasdaq | #6 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xh322j/comment/19rr8kmhbxk83/) |
+| GOOG | 2026-10-27 00:43 | mention spike | 115 | 59.43 | 65 | 1 | wallstreetbets 115 | Nasdaq | #4 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xh322j/comment/19rr91iogwof6/) |
 | ANT | 2026-10-26 13:24 | mention spike | 9 | 4.0 | 9 | 0 | wallstreetbets 9 | ? |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgt876/) |
 | DXYZ | 2026-10-27 00:43 | mention spike | 2 | 1.86 | 2 | 0 | wallstreetbets 2 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xgodye/comment/19rqwbjh7xyte/) |
 | PBR | 2026-10-26 09:22 | mention spike | 4 | 5.71 | 3 | 0 | wallstreetbets 4 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xfpzai/comment/19rqrlu9mipc2/) |

@@ -20054,3 +20054,16 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 40609722706,2026-10-28T00:35:40Z,smallstreetbets/comments,reconcile,2026-10-26T23:59:59Z,1335,0,14,1,,,,
 40609722706,2026-10-28T00:35:40Z,wallstreetbets/comments,reconcile,2026-10-26T23:59:59Z,19403,1448,197,1,,,33392.4,
 40609722706,2026-10-28T00:35:40Z,wallstreetbets/comments,late,2026-10-26T23:26:02Z,0,0,0,0,,,,"HTTP 0 for comments r/wallstreetbets after 6 tries: {'error': ""ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))""}"
+40611130018,2026-10-28T00:48:54Z,pennystocks/posts,live,2026-10-27T21:15:12Z,1,0,1,1,2026-10-28T00:15:12Z,19.0,,
+40611130018,2026-10-28T00:48:54Z,smallstreetbets/posts,live,2026-10-27T21:12:32Z,5,1,1,1,2026-10-28T00:47:51Z,26.0,68.7,
+40611130018,2026-10-28T00:48:54Z,wallstreetbets/posts,live,2026-10-27T21:21:32Z,25,1,1,1,2026-10-28T00:45:59Z,19.0,181.6,
+40611130018,2026-10-28T00:48:54Z,pennystocks/comments,live,2026-10-27T23:16:48Z,1,0,1,1,2026-10-27T23:46:48Z,847.0,,
+40611130018,2026-10-28T00:48:54Z,smallstreetbets/comments,live,2026-10-27T23:42:33Z,1,0,1,1,2026-10-28T00:12:33Z,16.0,,
+40611130018,2026-10-28T00:48:54Z,wallstreetbets/comments,live,2026-10-27T23:31:03Z,403,0,5,1,2026-10-28T00:22:59Z,810.0,,
+40611130018,2026-10-28T00:48:54Z,wallstreetbets/comments,fallback,2026-10-28T00:35:40Z,300,268,3,1,2026-10-28T00:48:55Z,,453.4,
+40611130018,2026-10-28T00:48:54Z,smallstreetbets/comments,fallback,2026-10-28T00:37:41Z,100,55,1,1,2026-10-28T00:51:46Z,,433.1,
+40611130018,2026-10-28T00:48:54Z,pennystocks/comments,fallback,2026-10-28T00:29:50Z,100,0,1,1,2026-10-28T00:29:50Z,,,
+40611130018,2026-10-28T00:48:54Z,wallstreetbets/posts,fallback,2026-10-28T00:45:59Z,100,0,1,1,2026-10-28T00:45:59Z,,,
+40611130018,2026-10-28T00:48:54Z,smallstreetbets/posts,fallback,2026-10-28T00:47:51Z,100,0,1,1,2026-10-28T00:47:51Z,,,
+40611130018,2026-10-28T00:48:54Z,pennystocks/posts,fallback,2026-10-28T00:15:12Z,100,0,1,1,2026-10-27T18:34:40Z,,,
+40611130018,2026-10-28T00:48:54Z,wallstreetbets/comments,late,2026-10-26T23:26:02Z,198,0,2,0,,,,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
