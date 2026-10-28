@@ -21094,3 +21094,15 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 40769345772,2026-10-28T21:08:13Z,pennystocks/comments,fallback,2026-10-28T20:57:35Z,100,0,1,1,2026-10-28T20:57:35Z,,,
 40769345772,2026-10-28T21:08:13Z,wallstreetbets/posts,fallback,2026-10-28T21:00:45Z,100,2,1,1,2026-10-28T21:17:08Z,,124.0,
 40769345772,2026-10-28T21:08:13Z,smallstreetbets/posts,fallback,2026-10-28T20:36:34Z,100,0,1,1,2026-10-28T20:36:34Z,,,
+40771229546,2026-10-28T21:21:25Z,pennystocks/posts,live,2026-10-28T16:53:09Z,0,0,0,0,2026-10-28T19:53:09Z,,,"HTTP 503 for posts r/pennystocks after 6 tries: {'data': None, 'error': 'Under maintenance'}"
+40771229546,2026-10-28T21:21:25Z,smallstreetbets/posts,live,2026-10-28T17:36:34Z,0,0,0,0,2026-10-28T20:36:34Z,,,"skipped: Arctic Shift unreachable earlier in this run (HTTP 503 for posts r/pennystocks after 6 tries: {'data': None, 'error': 'Under maintenance'})"
+40771229546,2026-10-28T21:21:25Z,wallstreetbets/posts,live,2026-10-28T17:37:51Z,0,0,0,0,2026-10-28T20:37:51Z,,,"skipped: Arctic Shift unreachable earlier in this run (HTTP 503 for posts r/pennystocks after 6 tries: {'data': None, 'error': 'Under maintenance'})"
+40771229546,2026-10-28T21:21:25Z,pennystocks/comments,live,2026-10-28T19:23:16Z,0,0,0,0,2026-10-28T19:53:16Z,,,"skipped: Arctic Shift unreachable earlier in this run (HTTP 503 for posts r/pennystocks after 6 tries: {'data': None, 'error': 'Under maintenance'})"
+40771229546,2026-10-28T21:21:25Z,smallstreetbets/comments,live,2026-10-28T20:05:12Z,0,0,0,0,2026-10-28T20:35:12Z,,,"skipped: Arctic Shift unreachable earlier in this run (HTTP 503 for posts r/pennystocks after 6 tries: {'data': None, 'error': 'Under maintenance'})"
+40771229546,2026-10-28T21:21:25Z,wallstreetbets/comments,live,2026-10-28T19:53:02Z,0,0,0,0,2026-10-28T20:23:02Z,,,"skipped: Arctic Shift unreachable earlier in this run (HTTP 503 for posts r/pennystocks after 6 tries: {'data': None, 'error': 'Under maintenance'})"
+40771229546,2026-10-28T21:21:25Z,wallstreetbets/comments,fallback,2026-10-28T21:09:09Z,700,700,8,0,2026-10-28T21:22:21Z,,571.0,
+40771229546,2026-10-28T21:21:25Z,smallstreetbets/comments,fallback,2026-10-28T21:16:30Z,100,19,1,1,2026-10-28T21:29:47Z,,394.0,
+40771229546,2026-10-28T21:21:25Z,pennystocks/comments,fallback,2026-10-28T20:57:35Z,100,2,1,1,2026-10-28T21:29:41Z,,311.9,
+40771229546,2026-10-28T21:21:25Z,wallstreetbets/posts,fallback,2026-10-28T21:17:08Z,100,0,1,1,2026-10-28T21:17:08Z,,,
+40771229546,2026-10-28T21:21:25Z,smallstreetbets/posts,fallback,2026-10-28T20:36:34Z,100,0,1,1,2026-10-28T20:36:34Z,,,
+40771229546,2026-10-28T21:21:25Z,pennystocks/posts,fallback,2026-10-28T19:53:09Z,0,0,0,0,2026-10-28T19:53:09Z,,,"Reddit RSS rate limit used up for 59 s more, past this run's time"
