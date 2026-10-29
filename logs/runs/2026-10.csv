@@ -21310,3 +21310,17 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 40795498398,2026-10-29T00:39:53Z,wallstreetbets/comments,reconcile,2026-10-27T23:59:59Z,15089,2368,153,1,,,22338.6,
 40795498398,2026-10-29T00:39:53Z,smallstreetbets/comments,late,2026-10-27T23:23:29Z,0,0,0,0,,,,"HTTP 422 for comments r/smallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
 40795498398,2026-10-29T00:39:53Z,wallstreetbets/comments,late,2026-10-27T23:07:56Z,0,0,0,0,,,,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
+40798318148,2026-10-29T01:06:16Z,pennystocks/posts,live,2026-10-28T20:03:06Z,2,1,1,1,2026-10-29T00:48:08Z,577.0,1090.6,
+40798318148,2026-10-29T01:06:16Z,smallstreetbets/posts,live,2026-10-28T21:29:50Z,4,0,1,1,2026-10-29T00:29:50Z,52.0,,
+40798318148,2026-10-29T01:06:16Z,wallstreetbets/posts,live,2026-10-28T21:34:45Z,26,0,1,1,2026-10-29T00:34:45Z,1291.0,,
+40798318148,2026-10-29T01:06:16Z,pennystocks/comments,live,2026-10-28T19:23:16Z,3,0,1,1,2026-10-28T20:35:52Z,14696.0,,
+40798318148,2026-10-29T01:06:16Z,smallstreetbets/comments,live,2026-10-28T22:58:22Z,3,0,1,1,2026-10-29T00:28:45Z,1031.0,,
+40798318148,2026-10-29T01:06:16Z,wallstreetbets/comments,live,2026-10-28T23:49:12Z,9,0,1,1,2026-10-29T00:30:31Z,1235.0,,
+40798318148,2026-10-29T01:06:16Z,wallstreetbets/comments,fallback,2026-10-29T00:39:48Z,600,514,6,1,2026-10-29T01:06:10Z,,912.0,
+40798318148,2026-10-29T01:06:16Z,smallstreetbets/comments,fallback,2026-10-29T00:45:46Z,100,23,1,1,2026-10-29T01:11:19Z,,869.2,
+40798318148,2026-10-29T01:06:16Z,pennystocks/comments,fallback,2026-10-29T00:36:38Z,100,0,1,1,2026-10-29T00:36:38Z,,,
+40798318148,2026-10-29T01:06:16Z,wallstreetbets/posts,fallback,2026-10-29T00:34:45Z,100,0,1,1,2026-10-29T00:24:40Z,,,
+40798318148,2026-10-29T01:06:16Z,smallstreetbets/posts,fallback,2026-10-29T00:29:50Z,100,0,1,1,2026-10-28T23:48:25Z,,,
+40798318148,2026-10-29T01:06:16Z,pennystocks/posts,fallback,2026-10-29T00:48:08Z,100,0,1,1,2026-10-28T19:53:09Z,,,
+40798318148,2026-10-29T01:06:16Z,smallstreetbets/comments,late,2026-10-27T23:23:29Z,0,0,0,0,,,,"HTTP 422 for comments r/smallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
+40798318148,2026-10-29T01:06:16Z,wallstreetbets/comments,late,2026-10-27T23:07:56Z,0,0,0,0,,,,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
