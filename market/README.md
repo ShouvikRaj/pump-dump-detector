@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-29T14:06:39Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-29T14:09:35Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-267 candidates and 531 controls so far. Archetypes: other 254, low_float_runner 11, otc_penny 1, unknown 1.
+268 candidates and 533 controls so far. Archetypes: other 255, low_float_runner 11, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| LLY | 2026-10-29 14:09 | other | listed | 1,385 | +7.5% | +1.4% | 0.9x | 889.0M | 0.8% | 0 |  |
 | RDDT | 2026-10-29 14:06 | other | listed | 130.3 | -3.3% | -12.1% | 1.3x | 140.7M | 15.4% | 0 |  |
 | AMZN | 2026-10-29 14:06 | other | listed | 245.7 | -3.5% | -3.0% | 1.0x | 9.81B | 1.0% | 3 |  |
 | DXYZ | 2026-10-29 13:37 | other | listed | 27.21 | -1.6% | -4.7% | 0.8x |  |  | 2 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | BRAI | 2026-10-27 17:53 | other | listed | 3.9 | +84.0% | -52.6% | 86.0x | 40.0M | 0.2% | 0 |  |
 | ASML | 2026-10-27 17:38 | other | listed | 1,638 | +2.9% | -3.4% | 1.3x | 21.28B | 0.0% | 0 |  |
 | USAR | 2026-10-27 17:13 | other | listed | 10.12 | +13.6% | -11.7% | 1.1x | 182.2M | 28.3% | 3 |  |
-| INOD | 2026-10-27 14:48 | other | listed | 45.03 | -24.8% | +10.9% | 0.6x | 33.1M | 13.7% | 2 |  |
