@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-29T17:49:32Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-29T19:09:44Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-269 candidates and 535 controls so far. Archetypes: other 256, low_float_runner 11, otc_penny 1, unknown 1.
+270 candidates and 537 controls so far. Archetypes: other 257, low_float_runner 11, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| IWM | 2026-10-29 19:09 | other | listed | 283.3 | +0.7% | +1.7% | 0.8x |  |  |  |  |
 | SAP | 2026-10-29 17:49 | other | listed | 233.3 | -1.5% | +1.8% | 0.7x | 14.45B | 0.0% | 0 |  |
 | LLY | 2026-10-29 14:09 | other | listed | 1,385 | +7.5% | +1.4% | 0.9x | 889.0M | 0.8% | 0 |  |
 | RDDT | 2026-10-29 14:06 | other | listed | 130.3 | -3.3% | -12.1% | 1.3x | 140.7M | 15.4% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | SKHY | 2026-10-27 19:51 | other | listed | 146.5 | +2.7% | -0.2% | 0.9x | 5.67B | 0.6% | 0 |  |
 | STX | 2026-10-27 19:12 | other | listed | 676.6 | +5.0% | -2.5% | 0.8x | 225.9M | 3.5% | 0 |  |
 | BRAI | 2026-10-27 17:53 | other | listed | 3.9 | +84.0% | -52.6% | 86.0x | 40.0M | 0.2% | 0 |  |
-| ASML | 2026-10-27 17:38 | other | listed | 1,638 | +2.9% | -3.4% | 1.3x | 21.28B | 0.0% | 0 |  |
