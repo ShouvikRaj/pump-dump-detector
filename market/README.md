@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-29T11:49:28Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-29T13:37:33Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-264 candidates and 525 controls so far. Archetypes: other 251, low_float_runner 11, otc_penny 1, unknown 1.
+265 candidates and 527 controls so far. Archetypes: other 252, low_float_runner 11, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| DXYZ | 2026-10-29 13:37 | other | listed | 27.21 | -1.6% | -4.7% | 0.8x |  |  | 2 |  |
 | INTC | 2026-10-29 11:49 | other | listed | 92.52 | -3.2% | +2.8% | 0.8x | 4.62B | 3.2% | 3 |  |
 | ELPW | 2026-10-29 10:54 | low float runner | listed | 2.8 | -6.7% | +30.4% | 956.9x | 0.1M | 39.6% | 4 |  |
 | TTWO | 2026-10-29 04:39 | other | listed | 196.3 | +0.5% | -5.3% | 0.9x | 186.1M | 5.2% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | INOD | 2026-10-27 14:48 | other | listed | 45.03 | -24.8% | +10.9% | 0.6x | 33.1M | 13.7% | 2 |  |
 | GOOGL | 2026-10-27 13:39 | other | listed | 318.9 | +0.7% | -8.0% | 1.0x | 10.88B | 0.7% | 3 |  |
 | HOOD | 2026-10-27 03:54 | other | listed | 93.64 | +0.9% | -3.8% | 0.8x | 784.4M | 4.7% | 0 |  |
-| VOO | 2026-10-27 02:38 | other | listed | 704.4 | +0.1% | -0.2% | 0.8x |  |  |  |  |
