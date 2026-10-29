@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-10-28T05:28:23Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-10-29T00:14:35Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-10-26)
 
@@ -17,6 +17,19 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-10-28 23:40 | COHR | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss sudden price movements of COHR, linking it to LITE and MRVL without specific company events. |
+| 2026-10-28 22:11 | GGLL | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss holding Direxion Daily GOOGL Bull 2X ETF and express bullish sentiment. |
+| 2026-10-28 21:57 | NOW | other | no model | no model | 100% / 30% / 0% / 10% | Users discuss ServiceNow stock price movements, potential earnings spikes, and market sentiment in r/wallstreetbets. |
+| 2026-10-28 21:46 | GOOGL | other | no model | no model | 100% / 0% / 0% / 0% | Chatter focuses on GOOGL's earnings miss, AI concerns, and subsequent stock decline with mixed sentiment. |
+| 2026-10-28 21:20 | FTNT | other | no model | no model | 100% / 10% / 0% / 0% | Chatter discusses a massive sector drop, attributing it to FTNT, with mixed bearish and bullish sentiments. |
+| 2026-10-28 21:20 | LITE | other | no model | no model | 100% / 56% / 0% / 56% | Users discuss a rumor of Marvell acquiring Lumentum, driving aggressive buy signals and price speculation. |
+| 2026-10-28 21:20 | MRVL | other | no model | no model | 100% / 0% / 0% / 14% | Users discuss a sudden 11% drop in MRVL following rumors of an acquisition of Lumentum Holdings. |
+| 2026-10-28 20:50 | GOOG | other | no model | no model | 100% / 0% / 0% / 2.5% | Users discuss GOOG earnings miss, AI concerns, and significant price drops. |
+| 2026-10-28 18:38 | ORCL | other | no model | no model | 100% / 25% / 2.5% / 0% | Users discuss a sudden price surge in ORCL, citing potential insider trading and pump-and-dump suspicions alongside bullish hype. |
+| 2026-10-28 17:04 | DJT | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss DJT's AI capabilities, political connections, and make jokes about its intelligence and market performance. |
+| 2026-10-28 16:10 | ENPH | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss ENPH price drops, past highs, and potential data center demand while expressing regret over losses. |
+| 2026-10-28 13:05 | SLS | other | no model | no model | 100% / 31% / 15% / 31% | Chatter focuses on an announced '80th event' and mixed opinions on the stock price. |
+| 2026-10-28 11:39 | VRT | other | no model | no model | 100% / 0% / 0% / 10% | Chatter focuses on VRT earnings beat, guidance raises, and price reaction. |
 | 2026-10-28 00:47 | GLD | other | no model | no model | 100% / 14% / 0% / 0% | Users discuss GLD price movements, FOMC impact, and speculate on buying calls or the stock reaching $400. |
 | 2026-10-27 20:57 | BBAI | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss BBAI earnings, volume, and price movements in r/pennystocks and r/wallstreetbets. |
 | 2026-10-27 19:51 | SKHY | other | no model | no model | 100% / 0% / 0% / 20% | Chatter focuses on SKHY earnings anticipation, price targets, and speculative trading strategies. |
@@ -44,19 +57,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-26 00:21 | EWZ | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss EWZ price drops following Brazilian election results, with no specific corporate events or pitches identified. |
 | 2026-10-23 20:37 | CRWD | other | no model | no model | 100% / 30% / 0% / 0% | Users discuss CRWD stock performance, price targets, and relative strength in a bearish market. |
 | 2026-10-23 20:37 | RDDT | other | no model | no model | 100% / 25% / 0% / 5.0% | Users discuss RDDT earnings, price targets, and meme stock potential with mixed sentiment. |
-| 2026-10-23 18:21 | LUNR | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss LUNR in relation to Cathie Wood's Ark fund and general tech sector volatility. |
-| 2026-10-23 16:35 | USO | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss USO price targets, rallies, and short interest with mixed bullish and bearish sentiments. |
-| 2026-10-23 15:42 | BE | other | no model | no model | 100% / 9.1% / 0% / 9.1% | Users discuss BE's Q3 earnings beat, S&P 500 inclusion, and subsequent price reaction. |
-| 2026-10-23 14:50 | IREN | other | no model | no model | 100% / 2.5% / 2.5% / 10% | Mixed chatter regarding IREN, including bullish hype about a new EU deal, bearish warnings about dilution, and general price discussion. |
-| 2026-10-23 13:45 | ASTS | other | no model | no model | 100% / 10% / 0% / 0% | Users discuss ASTS losses, SpaceX competition, and potential buy opportunities. |
-| 2026-10-23 13:03 | SKHY | other | no model | no model | 100% / 8.0% / 4.0% / 0% | Users discuss SKHY earnings, price dips, and potential pumps before the upcoming event. |
-| 2026-10-23 12:23 | CRDO | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss holding CRDO, express confusion over a sudden price drop, and speculate on a potential dump. |
-| 2026-10-23 10:49 | MU | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss Micron stock price movements, express bearish views via put options, and mention earnings context. |
-| 2026-10-23 06:51 | MSFT | other | no model | no model | 100% / 0% / 0% / 3.3% | Discussions focus on MSFT earnings anticipation, AI valuation concerns, and mixed trading sentiment. |
-| 2026-10-23 05:06 | AMD | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss AMD price volatility, express bearish views on recent drops, and debate AI sector health. |
-| 2026-10-23 03:07 | SPY | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss SPY price movements, options strategies, and market sentiment with mixed bullish and bearish views. |
-| 2026-10-23 02:14 | NVDA | other | no model | no model | 100% / 0% / 0% / 0% | Mixed chatter regarding NVDA price action, valuation concerns, and potential earnings impact. |
-| 2026-10-23 00:59 | TQQQ | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss TQQQ volatility, express regret over losses, and speculate on potential price movements. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
