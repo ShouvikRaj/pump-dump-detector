@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-10-29T00:14:35Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-10-29T05:37:47Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-10-26)
 
@@ -17,6 +17,10 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-10-29 04:39 | TTWO | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss TTWO's stock performance relative to GTA6 hype, with mixed opinions on valuation and future potential. |
+| 2026-10-29 04:31 | WEN | other | no model | no model | 100% / 10% / 0% / 10% | Chatter discusses a potential takeover, regulatory statement, and price surge for Wendy's stock. |
+| 2026-10-29 04:06 | CVNA | other | no model | no model | 100% / 0% / 0% / 9.1% | Users discuss CVNA earnings, joke about its health, and ironically wish others bad luck. |
+| 2026-10-29 00:52 | CBRS | other | no model | no model | 100% / 6.2% / 0% / 31% | Users discuss a partnership between Cerebras and Oracle, debate valuation, and share bullish opinions on the stock. |
 | 2026-10-28 23:40 | COHR | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss sudden price movements of COHR, linking it to LITE and MRVL without specific company events. |
 | 2026-10-28 22:11 | GGLL | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss holding Direxion Daily GOOGL Bull 2X ETF and express bullish sentiment. |
 | 2026-10-28 21:57 | NOW | other | no model | no model | 100% / 30% / 0% / 10% | Users discuss ServiceNow stock price movements, potential earnings spikes, and market sentiment in r/wallstreetbets. |
@@ -53,10 +57,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-26 13:24 | STNE | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss buying Brazilian stocks including STNE following a market dip. |
 | 2026-10-26 11:48 | NU | other | no model | no model | 100% / 30% / 0% / 0% | Users express disappointment and hope for a rebound in NU, with one user urging others to buy the dip. |
 | 2026-10-26 09:22 | PBR | other | no model | no model | 100% / 40% / 0% / 20% | Users discuss PBR volatility due to Brazilian election results and express bullish intent to buy. |
-| 2026-10-26 08:42 | MELI | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss a significant drop in MELI stock prices, attributing it to Brazil news and political factors. |
-| 2026-10-26 00:21 | EWZ | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss EWZ price drops following Brazilian election results, with no specific corporate events or pitches identified. |
-| 2026-10-23 20:37 | CRWD | other | no model | no model | 100% / 30% / 0% / 0% | Users discuss CRWD stock performance, price targets, and relative strength in a bearish market. |
-| 2026-10-23 20:37 | RDDT | other | no model | no model | 100% / 25% / 0% / 5.0% | Users discuss RDDT earnings, price targets, and meme stock potential with mixed sentiment. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
