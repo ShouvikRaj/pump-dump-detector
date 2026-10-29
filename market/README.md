@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-29T20:27:32Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-29T20:56:34Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-271 candidates and 539 controls so far. Archetypes: other 258, low_float_runner 11, otc_penny 1, unknown 1.
+272 candidates and 541 controls so far. Archetypes: other 259, low_float_runner 11, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| NRXP | 2026-10-29 20:56 | other | listed | 2.77 | +4.1% | +10.8% | 1.2x | 37.4M | 26.6% | 0 |  |
 | SNDK | 2026-10-29 20:27 | other | listed | 1,355 | +1.9% | +5.5% | 0.8x | 144.5M | 3.3% | 0 |  |
 | IWM | 2026-10-29 19:09 | other | listed | 283.3 | +0.7% | +1.7% | 0.8x |  |  |  |  |
 | SAP | 2026-10-29 17:49 | other | listed | 233.3 | -1.5% | +1.8% | 0.7x | 14.45B | 0.0% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | GLD | 2026-10-28 00:47 | other | listed | 372.3 | +1.2% | -3.1% | 0.8x |  |  | 0 |  |
 | BBAI | 2026-10-27 20:57 | other | listed | 2.28 | -3.0% | +8.3% | 2.1x | 475.3M | 28.7% | 1 |  |
 | SKHY | 2026-10-27 19:51 | other | listed | 146.5 | +2.7% | -0.2% | 0.9x | 5.67B | 0.6% | 0 |  |
-| STX | 2026-10-27 19:12 | other | listed | 676.6 | +5.0% | -2.5% | 0.8x | 225.9M | 3.5% | 0 |  |
