@@ -151,10 +151,11 @@ class Settings:
     stall_stream: str = "wallstreetbets/comments"
     stall_seconds: int = 15 * 60
     # It has also archived the small subreddits' comments patchily while stall_stream was current (2026-10-19 to 22:
-    # a few new ones within a minute, most of the rest hours to days later). A feed page reaches back hours on these
-    # streams, so they read their feed every run. Only these: Reddit's budget is shared with other users of the
-    # runner's address and often allows about one request a minute (each feed read of a stall run waits ~60 s).
-    feed_streams: tuple[str, ...] = ("pennystocks/comments", "smallstreetbets/comments")
+    # a few new ones within a minute, most of the rest hours to days later), and from 2026-10-26 stall_stream itself
+    # (its newest comment minutes old, 1,640 of one busy hour's comments a day late). So the comment streams read
+    # their feed every run. Not the posts: their 3 h overlap covers them, and Reddit's budget, shared with other
+    # users of the runner's address, often allows about one request a minute (each feed page waits ~60 s).
+    feed_streams: tuple[str, ...] = ("pennystocks/comments", "smallstreetbets/comments", "wallstreetbets/comments")
     # It fills those holes days later (the Oct 14-17 ones on Oct 17-18), after each day's re-fetch at 00:30, so
     # every day from late_first_day on is read once more late_days later, in at most late_seconds of a run.
     late_first_day: str = "2026-10-04"  # the start of collection; only days still in the working window are read

@@ -46,7 +46,7 @@ def make_client(max_retries: int = 5) -> ArcticShift:
 
 
 def make_fallback():
-    # Reddit's RSS feeds: the small subreddits' comments every run, other streams when Arctic Shift fails or stalls
+    # Reddit's RSS feeds: the comment streams every run, the posts when Arctic Shift fails or stalls
     return RedditRSS().fetch_back_to
 
 

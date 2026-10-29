@@ -581,7 +581,7 @@ def test_feeds_fill_in_while_arctic_shift_answers_but_its_archive_has_stalled(se
     assert [r["stream"] for r in log if r["mode"] == "fallback"][0] == "wallstreetbets/comments"
 
 
-def test_once_the_archive_catches_up_the_busy_feed_rests_and_nothing_is_stored_twice(setup):
+def test_once_the_archive_catches_up_the_posts_feeds_rest_and_nothing_is_stored_twice(setup):
     ds, server, clock = setup
     stalled_world(ds, server, clock)
     talk = [comment(f"w{j}", T + j * 60, sub="wallstreetbets", body="hi") for j in range(1, 75)]
@@ -594,7 +594,7 @@ def test_once_the_archive_catches_up_the_busy_feed_rests_and_nothing_is_stored_t
     clock.now = T + 4500
     summary = run(ds, server, clock, "r3", rss=reddit)
 
-    assert not [url for url, _ in reddit.calls if "/r/wallstreetbets/comments/" in url] and summary["warnings"] == []
+    assert not [url for url, _ in reddit.calls if "/new/" in url] and summary["warnings"] == []
     modes = {r["id"]: r["fetch_mode"] for r in raw_records(ds) if r["id"].startswith("t1_w")}
     assert len(modes) == 75 and sum(1 for r in raw_records(ds) if r["id"].startswith("t1_w")) == 75
     assert [modes[f"t1_w{j}"] for j in (1, 59, 60, 74)] == ["fallback", "fallback", "live", "live"]
@@ -622,9 +622,25 @@ def test_small_subreddit_comments_read_their_feed_every_run_for_what_arctic_shif
     assert summary["new_candidates"] == ["YYYY"] and summary["warnings"] == []  # no stall
     stored = {r["id"]: r for r in raw_records(ds)}
     assert [stored[f"t1_{p}{j}"]["fetch_mode"] for p in "yv" for j in (0, 10, 11)] == ["feed", "feed", "live"] * 2
-    assert [url.split("/")[4:6] for url, _ in reddit.calls] == [["pennystocks", "comments"]]  # the rest wait for stalls
+    assert [url.split("/")[4:6] for url, _ in reddit.calls] == [["wallstreetbets", "comments"], ["pennystocks", "comments"]]
     log = [r for r in ds.read_csv("logs/runs/2026-10.csv") if r["run_id"] == "r3" and r["mode"] == "feed"]
-    assert [(r["stream"], r["complete"]) for r in log] == [("pennystocks/comments", "1")]
+    assert [(r["stream"], r["complete"]) for r in log] == [("wallstreetbets/comments", "1"), ("pennystocks/comments", "1")]
+
+
+def test_wallstreetbets_comments_read_their_feed_every_run_too_since_a_current_archive_can_be_patchy(setup):
+    # 2026-10-26 to 28: Arctic Shift's newest r/wallstreetbets comment was minutes old, so no stall showed, while most
+    # of some hours' comments only arrived a day later (1,640 of the 18:00 UTC hour on 2026-10-28)
+    ds, server, clock = setup
+    stalled_world(ds, server, clock)
+    talk = chatter("q", T + 60, 12, sub="wallstreetbets")  # T+1 min to T+12 min; Arctic Shift has only the newest
+    server.items["comments"].append(talk[-1])
+    reddit = FakeRedditRSS(posts=server.items["posts"], comments=server.items["comments"] + talk[:-1])
+    clock.now = T + 900
+    summary = run(ds, server, clock, "r2", rss=reddit)
+
+    assert summary["new_candidates"] == ["YYYY"] and summary["warnings"] == []  # no stall
+    stored = {r["id"]: r for r in raw_records(ds)}
+    assert [stored[f"t1_q{j}"]["fetch_mode"] for j in (0, 10, 11)] == ["feed", "feed", "live"]
 
 
 def test_a_feed_item_older_than_the_stored_window_is_not_stored_again(setup):

@@ -70,9 +70,9 @@ can't be used without Reddit's manual approval. Posts and comments come from the
 20-30 seconds after posting, no key needed. Its `score`/`num_comments` are placeholders (1/0) until it refreshes them
 about 36 hours later, so they are stored but must not be used as decision-time features. While Arctic Shift is down,
 or answering while its archive stands still, the collector reads Reddit's public RSS feeds instead (no key either),
-and Arctic Shift fills in whatever they missed once it is back, if its archive has it. The r/pennystocks and
-r/smallstreetbets comment feeds are read every run anyway, since Arctic Shift has archived many of those comments
-hours to days late. Each day is also read once more two days later, since Arctic Shift sometimes fills holes days
+and Arctic Shift fills in whatever they missed once it is back, if its archive has it. The comment feeds of all
+three subreddits are read every run anyway, since Arctic Shift has archived many comments hours to days late while
+its newest ones looked current. Each day is also read once more two days later, since Arctic Shift sometimes fills holes days
 late ([docs/stage1.md](docs/stage1.md)).
 
 StockTwits' public trending list is recorded each run as a second, independent hype signal. Ticker symbols come
