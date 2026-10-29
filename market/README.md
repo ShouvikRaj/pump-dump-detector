@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-29T04:06:40Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-29T04:31:29Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-260 candidates and 517 controls so far. Archetypes: other 248, low_float_runner 10, otc_penny 1, unknown 1.
+261 candidates and 519 controls so far. Archetypes: other 249, low_float_runner 10, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| WEN | 2026-10-29 04:31 | other | listed | 7.05 | -0.3% | +12.6% | 6.6x | 157.1M | 33.3% | 0 |  |
 | CVNA | 2026-10-29 04:06 | other | listed | 63.94 | +8.3% | -0.2% | 2.1x | 706.4M | 9.5% | 0 |  |
 | CBRS | 2026-10-29 00:52 | other | listed | 109.7 | -8.0% | +0.9% | 1.4x | 109.9M | 18.1% | 0 |  |
 | COHR | 2026-10-28 23:40 | other | listed | 243.6 | +1.7% | +0.9% | 1.0x | 195.0M | 4.6% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | SOFI | 2026-10-27 00:43 | other | listed | 14.48 | -0.9% | +0.4% | 0.9x | 1.27B | 17.3% | 0 |  |
 | RIVN | 2026-10-27 00:43 | other | listed | 11.5 | -2.8% | -4.8% | 0.9x | 945.4M | 17.4% | 0 |  |
 | GOOG | 2026-10-27 00:43 | other | listed | 315.1 | -0.7% | -5.8% | 0.7x | 10.88B | 0.4% | 3 |  |
-| DXYZ | 2026-10-27 00:43 | other | listed | 28.49 | +3.6% | -1.5% | 0.8x |  |  | 2 |  |
