@@ -1,9 +1,15 @@
 # Stage 3 tracking
 
-Updated 2026-10-28T23:00:29Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-10-29T02:03:11Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-10-29 00:52 | FLS | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-29 00:52 | PTC | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-29 00:52 | CBRS | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-28 23:40 | VMC | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-28 23:40 | BDX | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-28 23:40 | COHR | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-10-28 22:11 | CFFI | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-28 22:11 | E | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-28 22:11 | GGLL | candidate | other | active | 0 |  |  |  |  |  |
