@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-10-30T00:18:05Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-10-30T05:36:41Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-10-26)
 
@@ -17,6 +17,10 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-10-30 05:02 | SCHD | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss SCHD as a safe dividend play, noting its performance and rotation from tech stocks. |
+| 2026-10-30 04:49 | VOO | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss holding VOO for retirement, express relief from trading stress, and joke about market volatility. |
+| 2026-10-30 01:20 | DJT | other | no model | no model | 100% / 20% / 0% / 0% | Users discuss DJT, referencing political figures, memes, and potential trading opportunities without specific corporate events. |
+| 2026-10-30 00:42 | DELL | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss a sharp price drop, rumors of bankruptcy, and past losses regarding DELL stock. |
 | 2026-10-30 00:00 | MSTR | other | no model | no model | 100% / 5.6% / 5.6% / 11% | Users discuss MSTR earnings, price movements, and speculate on a potential pump-and-dump scheme. |
 | 2026-10-29 22:53 | AAPL | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss AAPL's price resilience, valuation concerns, and its role as a safe haven amidst market volatility. |
 | 2026-10-29 22:12 | PINS | other | no model | no model | 100% / 30% / 0% / 60% | Users discuss PINS earnings and express bullish sentiment with price targets. |
@@ -53,10 +57,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-28 00:47 | GLD | other | no model | no model | 100% / 14% / 0% / 0% | Users discuss GLD price movements, FOMC impact, and speculate on buying calls or the stock reaching $400. |
 | 2026-10-27 20:57 | BBAI | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss BBAI earnings, volume, and price movements in r/pennystocks and r/wallstreetbets. |
 | 2026-10-27 19:51 | SKHY | other | no model | no model | 100% / 0% / 0% / 20% | Chatter focuses on SKHY earnings anticipation, price targets, and speculative trading strategies. |
-| 2026-10-27 19:12 | STX | other | no model | no model | 100% / 55% / 0% / 9.1% | Users discuss buying STX calls, mention earnings leaks, and compare it to other stocks. |
-| 2026-10-27 17:53 | BRAI | other | no model | no model | 100% / 30% / 10% / 0% | Users discuss BRAI's massive price surge, attributing it to momentum, news, or potential pump-and-dump schemes. |
-| 2026-10-27 17:38 | ASML | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss ASML's critical role in semiconductor manufacturing and AI hardware supply chains. |
-| 2026-10-27 17:13 | USAR | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss USAR price movements, political context, and trading strategies without citing specific corporate events. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
