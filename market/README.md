@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-30T00:00:36Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-30T00:43:00Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-278 candidates and 553 controls so far. Archetypes: other 265, low_float_runner 11, otc_penny 1, unknown 1.
+279 candidates and 555 controls so far. Archetypes: other 266, low_float_runner 11, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| DELL | 2026-10-30 00:42 | other | listed | 443.2 | -10.3% | +1.6% | 0.6x | 292.1M | 4.2% | 2 |  |
 | MSTR | 2026-10-30 00:00 | other | listed | 133.6 | -8.0% | -5.4% | 0.6x | 363.6M | 8.0% | 0 |  |
 | AAPL | 2026-10-29 22:53 | other | listed | 350.5 | +0.5% | +0.2% | 1.1x | 14.57B | 0.9% | 0 |  |
 | ROPE | 2026-10-29 22:12 | other | listed | 30.96 | +0.0% | +1.2% | 0.5x |  |  |  |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | FTNT | 2026-10-28 21:20 | other | listed | 131.1 | -24.7% | +0.0% | 2.8x | 618.9M | 2.0% | 0 |  |
 | GOOG | 2026-10-28 20:50 | other | listed | 292.9 | -9.0% | -2.7% | 1.6x | 10.88B | 0.4% | 3 |  |
 | ORCL | 2026-10-28 18:38 | other | listed | 142.9 | +9.5% | -0.5% | 0.9x | 1.86B | 2.6% | 0 |  |
-| DJT | 2026-10-28 17:04 | other | listed | 5.975 | -6.1% | -1.7% | 1.0x | 160.9M | 10.9% | 0 |  |
