@@ -1,9 +1,21 @@
 # Stage 3 tracking
 
-Updated 2026-10-29T22:51:21Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-10-30T02:15:43Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-10-30 01:20 | MLCO | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-30 01:20 | XRAY | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-30 01:20 | DJT | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-30 00:42 | TMO | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-30 00:42 | ACN | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-30 00:42 | DELL | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-30 00:00 | STLD | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-30 00:00 | VTR | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-30 00:00 | MSTR | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-29 22:53 | PAG | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-29 22:53 | CB | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-29 22:53 | AAPL | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-10-29 22:12 | OUT | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-29 22:12 | KT | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-29 22:12 | ISTR | control | other | active | 0 |  |  |  |  |  |
@@ -268,7 +280,7 @@ Updated 2026-10-29T22:51:21Z. Each candidate and control is followed for 20 trad
 | 2026-10-22 17:45 | SHOP | control | other | active | 6 | +4% |  | -1% |  |  |
 | 2026-10-22 17:45 | TD | control | other | active | 6 | +1% |  | +1% |  |  |
 | 2026-10-22 17:45 | EXCBF | control | otc_penny | active | 5 | +22% |  | -9% |  |  |
-| 2026-10-22 17:45 | ZSPC | control | otc_penny | active | 5 | +10% |  | -10% |  |  |
+| 2026-10-22 17:45 | ZSPC | control | otc_penny | active | 6 | +10% |  | -10% |  |  |
 | 2026-10-22 17:45 | ARAY | control | other | active | 6 | +11% |  | +5% |  |  |
 | 2026-10-22 17:45 | BLNK | control | other | active | 6 | +8% |  | +4% |  |  |
 | 2026-10-22 17:45 | AAOI | candidate | other | active | 6 | +22% |  | +22% |  |  |
@@ -695,7 +707,7 @@ Updated 2026-10-29T22:51:21Z. Each candidate and control is followed for 20 trad
 | 2026-10-07 20:50 | SMCI | candidate | other | active | 16 | -2% | -30% | -20% |  | 3 |
 | 2026-10-07 20:50 | UUUU | candidate | other | active | 16 | -1% | -28% | -19% |  | 2 |
 | 2026-10-07 20:37 | ABXL | control | other | active | 16 | +0% | -1% | -1% |  | 0 |
-| 2026-10-07 20:37 | IMPPP | control | other | active | 15 | +0% | -100% | -1% |  | 0 |
+| 2026-10-07 20:37 | IMPPP | control | other | active | 16 | +0% | -100% | -1% |  | 0 |
 | 2026-10-07 20:37 | LEVI | candidate | other | active | 16 | +3% | -2% | +2% |  | 0 |
 | 2026-10-07 19:18 | TTEK | control | other | active | 17 | +4% | -2% | +3% |  | 0 |
 | 2026-10-07 19:18 | RAL | control | other | active | 17 | +1% | -12% | -1% |  | 0 |
