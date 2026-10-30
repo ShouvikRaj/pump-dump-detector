@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-30T11:00:34Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-30T11:53:39Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-286 candidates and 569 controls so far. Archetypes: other 273, low_float_runner 11, otc_penny 1, unknown 1.
+287 candidates and 571 controls so far. Archetypes: other 274, low_float_runner 11, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| NVDA | 2026-10-30 11:53 | other | listed | 206.8 | -3.2% | +0.7% | 0.8x | 23.13B | 1.3% | 0 |  |
 | ARM | 2026-10-30 11:00 | other | listed | 208.5 | -8.9% | +8.9% | 1.0x | 142.6M | 12.4% | 0 |  |
 | BURU | 2026-10-30 10:30 | other | listed | 0.5403 | +45.2% | -9.3% | 192.8x | 8.4M | 18.2% | 2 |  |
 | NKE | 2026-10-30 09:12 | other | listed | 38.91 | +1.3% | +0.3% | 0.5x | 1.18B | 8.8% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | CVNA | 2026-10-29 04:06 | other | listed | 63.94 | +8.3% | -0.2% | 2.1x | 706.4M | 9.5% | 0 |  |
 | CBRS | 2026-10-29 00:52 | other | listed | 109.7 | -8.0% | +0.9% | 1.4x | 109.9M | 18.1% | 0 |  |
 | COHR | 2026-10-28 23:40 | other | listed | 243.6 | +1.7% | +0.9% | 1.0x | 195.0M | 4.6% | 0 |  |
-| GGLL | 2026-10-28 22:11 | other | listed | 68.93 | -21.7% | -5.8% | 3.1x |  |  |  |  |
