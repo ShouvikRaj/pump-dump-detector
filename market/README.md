@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-30T13:25:32Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-30T13:42:51Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-288 candidates and 573 controls so far. Archetypes: other 275, low_float_runner 11, otc_penny 1, unknown 1.
+289 candidates and 575 controls so far. Archetypes: other 276, low_float_runner 11, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SMCI | 2026-10-30 13:42 | other | listed | 32.76 | -4.9% | +2.1% | 0.7x | 557.7M | 14.4% | 0 |  |
 | AMD | 2026-10-30 13:25 | other | listed | 512 | -9.6% | +11.5% | 0.8x | 1.62B | 2.3% | 3 |  |
 | NVDA | 2026-10-30 11:53 | other | listed | 206.8 | -3.2% | +0.7% | 0.8x | 23.13B | 1.3% | 0 |  |
 | ARM | 2026-10-30 11:00 | other | listed | 208.5 | -8.9% | +8.9% | 1.0x | 142.6M | 12.4% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | TTWO | 2026-10-29 04:39 | other | listed | 196.3 | +0.5% | -5.3% | 0.9x | 186.1M | 5.2% | 0 |  |
 | WEN | 2026-10-29 04:31 | other | listed | 7.05 | -0.3% | +12.6% | 6.6x | 157.1M | 33.3% | 0 |  |
 | CVNA | 2026-10-29 04:06 | other | listed | 63.94 | +8.3% | -0.2% | 2.1x | 706.4M | 9.5% | 0 |  |
-| CBRS | 2026-10-29 00:52 | other | listed | 109.7 | -8.0% | +0.9% | 1.4x | 109.9M | 18.1% | 0 |  |
