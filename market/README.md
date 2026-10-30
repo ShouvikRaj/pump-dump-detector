@@ -1,13 +1,16 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-30T16:45:37Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-30T17:00:50Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-298 candidates and 593 controls so far. Archetypes: other 285, low_float_runner 11, otc_penny 1, unknown 1.
+301 candidates and 599 controls so far. Archetypes: other 288, low_float_runner 11, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SPY | 2026-10-30 17:00 | other | listed | 756.1 | -1.7% | +0.7% | 1.1x |  |  | 0 |  |
+| SBUX | 2026-10-30 17:00 | other | listed | 103 | -2.4% | +3.5% | 1.2x | 1.14B | 3.8% | 0 |  |
+| APP | 2026-10-30 17:00 | other | listed | 233.7 | -8.3% | -3.5% | 1.0x | 265.4M | 4.2% | 0 |  |
 | WMT | 2026-10-30 16:45 | other | listed | 124 | +2.3% | +0.1% | 0.8x | 4.85B | 1.6% | 4 |  |
 | RSP | 2026-10-30 16:45 | other | listed | 218.6 | -0.7% | +0.8% | 1.0x |  |  |  |  |
 | SOXS | 2026-10-30 15:55 | other | listed | 52.02 | +24.8% | -22.0% | 1.0x |  |  |  |  |
@@ -35,6 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | GME | 2026-10-29 21:47 | other | listed | 23.9 | -0.4% | -5.5% | 0.5x | 460.4M | 10.4% | 0 |  |
 | CROX | 2026-10-29 21:35 | other | listed | 150.5 | +0.2% | +24.2% | 4.7x | 46.1M | 9.9% | 0 |  |
 | NRXP | 2026-10-29 20:56 | other | listed | 2.77 | +4.1% | +10.8% | 1.2x | 37.4M | 26.6% | 0 |  |
-| SNDK | 2026-10-29 20:27 | other | listed | 1,355 | +1.9% | +5.5% | 0.8x | 144.5M | 3.3% | 0 |  |
-| IWM | 2026-10-29 19:09 | other | listed | 283.3 | +0.7% | +1.7% | 0.8x |  |  |  |  |
-| SAP | 2026-10-29 17:49 | other | listed | 233.3 | -1.5% | +1.8% | 0.7x | 14.45B | 0.0% | 0 |  |
