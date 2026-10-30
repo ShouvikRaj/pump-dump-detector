@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-30T05:02:29Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-30T08:33:34Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-282 candidates and 561 controls so far. Archetypes: other 269, low_float_runner 11, otc_penny 1, unknown 1.
+283 candidates and 563 controls so far. Archetypes: other 270, low_float_runner 11, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| PLTR | 2026-10-30 08:33 | other | listed | 193.7 | -1.4% | +0.1% | 0.9x | 2.11B | 2.7% | 0 |  |
 | SCHD | 2026-10-30 05:02 | other | listed | 35.83 | +0.6% | +0.6% | 1.1x |  |  |  |  |
 | VOO | 2026-10-30 04:49 | other | listed | 703 | -0.6% | +0.7% | 0.9x |  |  |  |  |
 | DJT | 2026-10-30 01:20 | other | listed | 5.67 | -5.0% | -10.4% | 1.8x | 160.9M | 10.9% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | NOW | 2026-10-28 21:57 | other | listed | 123.1 | -18.0% | -2.0% | 2.3x | 1.03B | 2.7% | 0 |  |
 | GOOGL | 2026-10-28 21:46 | other | listed | 289.9 | -10.8% | -2.9% | 2.2x | 10.88B | 0.7% | 3 |  |
 | MRVL | 2026-10-28 21:20 | other | listed | 227.5 | -9.6% | +2.8% | 0.6x | 873.8M | 2.8% | 0 |  |
-| LITE | 2026-10-28 21:20 | other | listed | 1,016 | +11.1% | +7.4% | 0.9x | 89.1M | 8.7% | 0 |  |
