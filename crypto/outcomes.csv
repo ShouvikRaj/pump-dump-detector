@@ -5205,8 +5205,8 @@ scan-gate-FOLD-2026102311,scan,spike,settled,0.04859,0.04909,0.343486,16.0,1,1,0
 scan-binance-ARK-2026102312,scan,spike,settled,0.1971,0.227,0.217656,53.0,1,1,0,0.0,-0.185022,-0.268722,0.06652,-0.196916,0,crypto-label-v1
 tg-CoinCoachSignals-39421,telegram,call,not_covered,,,,,,,,,,,,,,crypto-label-v1
 tg-CryptoGuruSignal-18591,telegram,call,not_covered,,,,,,,,,,,,,,crypto-label-v1
-scan-mexc-CHOMP-2026102314,scan,spike,pending,3.299,3.308,0.230676,40.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-mexc-EVT-2026102314,scan,spike,pending,0.0033,0.00382,0.545455,58.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-mexc-CHOMP-2026102314,scan,spike,settled,3.299,3.308,0.230676,40.0,1,1,1,0.0,-0.292624,-0.743652,0.113362,-0.334946,0,crypto-label-v1
+scan-mexc-EVT-2026102314,scan,spike,settled,0.0033,0.00382,0.545455,58.0,1,1,1,0.0,-0.442408,-0.997094,0.335079,-0.47644,0,crypto-label-v1
 scan-mexc-BIRB-2026102315,scan,spike,pending,0.07103,0.0953,0.488104,47.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-mexc-DMTR-2026102315,scan,spike,pending,0.007005,0.008235,0.270521,14.0,1,,,0.0,,,,,0,crypto-label-v1
 scan-mexc-FOLD-2026102315,scan,spike,pending,0.0497,0.05178,0.29497,51.0,1,1,,0.0,,,,,0,crypto-label-v1
@@ -5481,5 +5481,8 @@ scan-binance-ALPINE-2026103007,scan,spike,pending,0.308,0.333,0.237013,26.0,1,1,
 scan-gate-PTB-2026103008,scan,spike,pending,0.0001202,0.0001457,0.308652,39.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-kucoin-PTB-2026103008,scan,spike,pending,0.00012,0.000146,0.325,39.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-kucoin-ALPINE-2026103009,scan,spike,pending,0.4358,1.1361,1.856815,43.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-gate-LAPTOP-2026103011,scan,spike,pending,0.04198,0.05202,0.265603,,1,,,0.0,,,,,0,crypto-label-v1
-scan-kucoin-LAPTOP-2026103011,scan,spike,pending,0.042,0.05271,0.260238,,1,,,0.0,,,,,0,crypto-label-v1
+scan-gate-LAPTOP-2026103011,scan,spike,pending,0.04198,0.05202,0.265603,58.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-kucoin-LAPTOP-2026103011,scan,spike,pending,0.042,0.05271,0.260238,58.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-mexc-VEREM-2026103013,scan,spike,pending,37.14,45.0,0.319871,,1,1,,0.0,,,,,0,crypto-label-v1
+scan-gate-MEZO-2026103013,scan,spike,pending,0.004267,0.005015,0.242559,,1,1,,0.0,,,,,0,crypto-label-v1
+scan-kucoin-LSK-2026103014,scan,spike,pending,0.2103,0.2094,0.331431,,1,,,0.0,,,,,0,crypto-label-v1
