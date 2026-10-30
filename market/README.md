@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-10-30T19:04:37Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-10-30T19:57:27Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-304 candidates and 605 controls so far. Archetypes: other 291, low_float_runner 11, otc_penny 1, unknown 1.
+305 candidates and 607 controls so far. Archetypes: other 292, low_float_runner 11, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SOXL | 2026-10-30 19:57 | other | listed | 71.7 | -30.0% | +24.7% | 1.1x |  |  |  |  |
 | SOXX | 2026-10-30 19:04 | other | listed | 461.9 | -10.1% | +8.0% | 0.7x |  |  |  |  |
 | TQQQ | 2026-10-30 18:26 | other | listed | 60.62 | -12.5% | +4.3% | 1.2x |  |  |  |  |
 | INTL | 2026-10-30 17:43 | other | listed | 29.19 | -2.0% | +1.4% | 2.6x |  |  |  |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | MSTR | 2026-10-30 00:00 | other | listed | 133.6 | -8.0% | -5.4% | 0.6x | 363.6M | 8.0% | 0 |  |
 | AAPL | 2026-10-29 22:53 | other | listed | 350.5 | +0.5% | +0.2% | 1.1x | 14.57B | 0.9% | 0 |  |
 | ROPE | 2026-10-29 22:12 | other | listed | 30.96 | +0.0% | +1.2% | 0.5x |  |  |  |  |
-| PINS | 2026-10-29 22:12 | other | listed | 18.02 | -9.5% | -13.1% | 3.9x | 484.6M | 9.7% | 0 |  |
