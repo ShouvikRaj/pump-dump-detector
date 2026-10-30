@@ -5190,9 +5190,9 @@ scan-mexc-KIMCHI-2026102220,scan,spike,settled,0.01452,0.01894,0.385675,58.0,1,1
 scan-mexc-ABEL-2026102221,scan,spike,settled,0.09667,0.10396,0.26668,29.0,1,1,0,0.0,-0.116391,0.42045,0.0,-0.153424,0,crypto-label-v1
 scan-mexc-SIREN-2026102300,scan,spike,settled,0.02948,0.03457,0.265265,32.0,1,1,0,0.0,-0.021406,-0.205091,0.183107,-0.119178,0,crypto-label-v1
 scan-gate-BIRB-2026102302,scan,spike,settled,0.05316,0.06428,0.307186,51.0,1,1,0,0.0,1.775047,0.059428,2.422526,-0.102365,0,crypto-label-v1
-scan-mexc-PNIC-2026102307,scan,spike,pending,0.00046,0.000799,1.026087,50.0,1,,,0.0,,,,,0,crypto-label-v1
-scan-mexc-XEL-2026102307,scan,spike,pending,0.19,0.252,0.336842,12.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-gate-ACP-2026102307,scan,spike,pending,0.003764,0.004353,0.232731,16.0,1,,,0.0,,,,,0,crypto-label-v1
+scan-mexc-PNIC-2026102307,scan,spike,settled,0.00046,0.000799,1.026087,50.0,1,0,0,0.0,0.205257,0.451815,0.251564,-0.012516,0,crypto-label-v1
+scan-mexc-XEL-2026102307,scan,spike,settled,0.19,0.252,0.336842,12.0,1,1,0,0.0,0.111111,0.174603,0.242063,-0.087302,0,crypto-label-v1
+scan-gate-ACP-2026102307,scan,spike,settled,0.003764,0.004353,0.232731,16.0,1,1,0,0.0,-0.07535,-0.044797,0.010338,-0.093499,0,crypto-label-v1
 scan-mexc-SOPH-2026102310,scan,spike,pending,0.001807,0.002136,0.221361,52.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-mexc-STAMP-2026102310,scan,spike,pending,0.000171,0.0001701,0.40117,29.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-gate-IRYS-2026102310,scan,spike,pending,0.03563,0.04046,0.214707,46.0,1,1,,0.0,,,,,0,crypto-label-v1
@@ -5466,7 +5466,7 @@ scan-gate-NEON-2026103002,scan,spike,pending,0.004331,0.005365,0.352574,56.0,1,1
 scan-gate-PRO-2026103002,scan,spike,pending,0.297,0.3011,0.431987,53.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-kucoin-FORT-2026103003,scan,spike,pending,0.027,0.0282,1.014815,46.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-binance-FLUX-2026103003,scan,spike,pending,0.0598,0.0594,0.220736,13.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-mexc-CLAUDIA-2026103004,scan,spike,pending,0.002042,0.00256,0.735064,,1,,,0.0,,,,,0,crypto-label-v1
+scan-mexc-CLAUDIA-2026103004,scan,spike,pending,0.002042,0.00256,0.735064,16.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-gate-MAGMA-2026103005,scan,spike,pending,0.28397,0.35367,0.250132,,1,,,0.0,,,,,0,crypto-label-v1
 scan-kucoin-DENT-2026103005,scan,spike,pending,2.35e-05,2.75e-05,0.285106,,1,,,0.0,,,,,0,crypto-label-v1
 scan-mexc-AIN-2026103006,scan,spike,pending,0.14992,0.16602,0.288154,,1,,,0.0,,,,,0,crypto-label-v1
@@ -5475,3 +5475,6 @@ scan-kucoin-AIN-2026103006,scan,spike,pending,0.15075,0.1662,0.273035,,1,,,0.0,,
 scan-kucoin-POND-2026103006,scan,spike,pending,0.000952,0.00115,0.233193,,1,,,0.0,,,,,0,crypto-label-v1
 scan-binance-S-2026103006,scan,spike,pending,0.04145,0.04337,0.2538,,1,,,0.0,,,,,0,crypto-label-v1
 scan-binance-VELODROME-2026103006,scan,spike,pending,0.02624,0.02748,0.251143,,1,,,0.0,,,,,0,crypto-label-v1
+scan-mexc-ALPINE-2026103007,scan,spike,pending,0.3076,0.3334,0.229844,,1,,,0.0,,,,,0,crypto-label-v1
+scan-gate-ALPINE-2026103007,scan,spike,pending,0.309,0.336,0.370227,,1,,,0.0,,,,,0,crypto-label-v1
+scan-binance-ALPINE-2026103007,scan,spike,pending,0.308,0.333,0.237013,,1,,,0.0,,,,,0,crypto-label-v1
