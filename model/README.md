@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-10-31T00:14:18Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-10-31T05:26:13Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-10-26)
 
@@ -17,6 +17,10 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-10-31 02:57 | INO | other | no model | no model | 100% / 0% / 0% / 0% | Chatter discusses INO's price movement following FDA approval rumors and insider leak claims. |
+| 2026-10-31 00:58 | GLD | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss GLD price drops, express frustration, and place bearish bets. |
+| 2026-10-31 00:51 | AAOI | other | no model | no model | 100% / 0% / 0% / 0% | Chatter focuses on AAOI price volatility, user holdings, and a specific warning about customer concentration risks. |
+| 2026-10-31 00:21 | QCOM | other | no model | no model | 100% / 10% / 0% / 10% | Users discuss QCOM earnings, express bearish views on price drops, and some buy positions. |
 | 2026-10-30 22:07 | TLT | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss TLT price movements, trading strategies, and comparisons to other assets without specific corporate events. |
 | 2026-10-30 19:57 | SOXL | other | no model | no model | 100% / 5.0% / 0% / 0% | Users discuss SOXL's massive drop, margin calls, and leveraged ETF risks. |
 | 2026-10-30 19:04 | SOXX | other | no model | no model | 100% / 17% / 0% / 0% | Users discuss SOXX price drops, portfolio composition, and market volatility with mixed bullish and bearish sentiments. |
@@ -53,10 +57,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-29 21:35 | CROX | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss CROX performance, rotation from tech, and potential shorting opportunities. |
 | 2026-10-29 20:56 | NRXP | other | no model | no model | 100% / 10% / 0% / 90% | Chatter focuses on an upcoming FDA regulatory decision and potential stock squeeze for NRXP. |
 | 2026-10-29 20:27 | SNDK | other | no model | no model | 100% / 0% / 0% / 18% | Users discuss SNDK earnings expectations, price targets, and potential market moves in r/wallstreetbets. |
-| 2026-10-29 19:09 | IWM | other | no model | no model | 100% / 30% / 0% / 0% | Users discuss IWM price movements, express bullish optimism, and note a subsequent drop. |
-| 2026-10-29 17:49 | SAP | other | no model | no model | 100% / 17% / 0% / 0% | Users discuss SAP's CEO backstory and express frustration with the software, with one user claiming insider knowledge of post-earnings buying. |
-| 2026-10-29 14:09 | LLY | other | no model | no model | 100% / 0% / 0% / 8.3% | Users discuss LLY price targets, earnings anticipation, and general bullish sentiment in r/wallstreetbets. |
-| 2026-10-29 14:06 | AMZN | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss AMZN earnings anticipation, price targets, and market sentiment in r/wallstreetbets. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
