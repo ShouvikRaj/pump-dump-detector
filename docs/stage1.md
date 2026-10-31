@@ -253,13 +253,15 @@ GitHub's cron fired once in this repo's first hours (2026-10-05 01:18 UTC) and t
 common for new repositories. So collection paces itself: the last step of every `collect` run, whatever its outcome,
 starts the `pace` workflow. Its job runs in the `pacer` environment, whose 13-minute wait timer (a repository
 setting) delays the job without holding a runner; the job then starts the next `collect` run unless one is already
-queued or running. Runs end up about 15 minutes apart. A run GitHub has listed as queued or running for over 20
-minutes doesn't count, since a `collect` run takes under 15 and GitHub sometimes goes on listing a finished one as in
-progress: on 2026-10-22 one stayed listed for 42 minutes after its job ended, three pacers in a row left it alone,
-and nothing was collected for 53 minutes. If the last `collect` run started less than 10 minutes earlier,
-the timer must be missing, so `scripts/pace.sh` stops the chain rather than looping; a finished run that the cron
-started doesn't count, since holding off after one left 20-22 minutes between reads (5 times on 2026-10-24/25), and
-one still going is left alone as usual. Each pacer also queues the next
+waiting to start. Runs end up about 13 minutes apart. A run that is still going doesn't hold it off: the new one
+waits behind it in the `datastore` concurrency group and starts when it ends. Holding off for one left 16-31 minutes
+between reads 8 times on 2026-10-29/30, more than r/wallstreetbets' comment feed reaches back at the US market's
+busiest: GitHub went on listing runs as in progress for 7-14 minutes after they finished (on 2026-10-22 for 42,
+when nothing was collected for 53 minutes), or a run the cron started was still going. A run that has waited
+over 20 minutes to start doesn't count, since GitHub sometimes never gives one a runner. If the last `collect` run
+started less than 10 minutes earlier, the timer must be missing, so `scripts/pace.sh` stops the chain rather than
+looping; a run that the cron started doesn't count for that, since holding off after one left 20-22 minutes between
+reads (5 times on 2026-10-24/25). Each pacer also queues the next
 pacer, because on 2026-10-05 GitHub never gave a runner to one `collect` run (19:43 UTC), which therefore queued no
 pacer and collection stopped for an hour; with collect -> pacer and pacer -> pacer, one lost run of either can't break
 the chain. The `pace` concurrency group runs one pacer at a time with at most one queued behind it (a newer queued

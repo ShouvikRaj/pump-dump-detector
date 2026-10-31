@@ -99,21 +99,34 @@ def test_starts_a_run_when_there_is_no_history(run):
     assert len(dispatched) == 1
 
 
-def test_leaves_it_to_a_collect_run_that_is_already_queued_or_running(run):
-    for status in ("queued", "in_progress", "waiting"):
-        res, dispatched = run([(status, 60), ("completed", 16 * 60)])
+def test_leaves_it_to_a_collect_run_that_is_still_waiting_to_start(run):
+    # queued for a runner, or pending behind a running one in the `datastore` concurrency group
+    for status in ("queued", "pending", "waiting", "requested"):
+        res, dispatched = run([(status, 60), ("in_progress", 13 * 60)])
         assert res.returncode == 0, res.stderr
         assert dispatched == []
 
 
-def test_starts_collect_when_github_still_shows_a_long_finished_run_as_running(run):
-    # 2026-10-22: a collect run's job finished at 16:52 UTC, but GitHub listed the run as in progress until 17:34,
-    # so the pacers of 17:03, 17:17 and 17:30 all left it alone and nothing was collected for 53 minutes
-    res, dispatched = run([("in_progress", 26 * 60), ("completed", 40 * 60)])
+def test_starts_the_next_run_while_one_is_still_running_so_it_waits_behind_it(run):
+    # 2026-10-29/30: GitHub went on listing two collect runs as in progress for 7 and 14 minutes after they finished,
+    # and 6 times a run GitHub's backup cron started was still going when a pacer fired; those pacers left them
+    # alone, so 16-31 minutes passed between reads, more than r/wallstreetbets' comment feed reaches back at
+    # the US market's busiest. A new run waits behind a running one in the `datastore` group instead.
+    for runs in ([("in_progress", 13 * 60), ("completed", 26 * 60)],
+                 [("in_progress", 6 * 60, "schedule"), ("completed", 13 * 60)],
+                 [("in_progress", 26 * 60), ("completed", 40 * 60)]):  # 2026-10-22: listed for 42 minutes
+        res, dispatched = run(runs)
+        assert res.returncode == 0, res.stderr
+        assert [c[:3] for c in dispatched] == [["workflow", "run", "collect.yml"]]
+
+
+def test_starts_collect_when_a_run_has_waited_over_20_minutes_to_start(run):
+    # GitHub sometimes never gives a run a runner (2026-10-05), so a run listed as waiting that long doesn't count
+    res, dispatched = run([("queued", 26 * 60), ("completed", 40 * 60)])
     assert res.returncode == 0, res.stderr
     assert [c[:3] for c in dispatched] == [["workflow", "run", "collect.yml"]]
 
-    res, dispatched = run([("in_progress", 14 * 60), ("completed", 27 * 60)])  # a slow run can still be going
+    res, dispatched = run([("pending", 14 * 60), ("in_progress", 27 * 60)])  # still behind a slow run
     assert dispatched == []
 
 
@@ -128,10 +141,6 @@ def test_a_finished_run_started_by_githubs_cron_does_not_make_the_pacer_hold_off
     res, dispatched = run([("completed", 7 * 60, "schedule"), ("completed", 8 * 60)])  # the chain's own run is too recent
     assert dispatched == []
     assert "wait timer" in res.stdout
-
-    # a cron run still going does this slot's reading, so the pacer leaves it alone as before
-    res, dispatched = run([("in_progress", 4 * 60, "schedule"), ("completed", 13 * 60)])
-    assert dispatched == []
 
 
 def test_stops_the_chain_when_the_wait_timer_is_missing(run):

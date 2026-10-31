@@ -3,16 +3,20 @@
 # environment's wait timer, so runs follow each other about every 15 minutes
 # even when GitHub's cron doesn't fire.
 #
-# Does nothing when a collect run is already queued or running (that run queues
-# the next pacer itself), unless GitHub has listed it that way for over 20
-# minutes: a collect run takes under 15, and GitHub sometimes goes on listing a
-# finished run as in progress (2026-10-22: for 42 minutes after its job ended,
-# so nothing was collected for 53). It also stops the chain when the last
-# collect run started less than 10 minutes ago: that means the wait timer is
-# missing, and without it the chain would restart collect every couple of minutes.
-# A finished run that GitHub's backup cron started doesn't count for that: the
-# cron fires a few times a day at random, and holding off after such a run left
-# 20-22 minutes between reads (5 times on 2026-10-24/25).
+# Does nothing when a collect run is still waiting to start (queued for a runner,
+# or pending behind a running one in the `datastore` concurrency group), unless it
+# has waited over 20 minutes: GitHub sometimes never gives a run a runner. A run
+# that is still going doesn't hold it off; the new one waits behind it and starts
+# when it ends. Holding off for one left 16-31 minutes between reads 8 times on
+# 2026-10-29/30, more than r/wallstreetbets' comment feed reaches back at the US
+# market's busiest: GitHub went on listing runs as in progress for 7-14 minutes
+# after they finished (2026-10-22: for 42, so nothing was collected for 53), or a
+# run GitHub's backup cron started was still going. It also stops the chain
+# when the last collect run started less than 10 minutes ago: that means the
+# wait timer is missing, and without it the chain would restart collect every
+# couple of minutes. A run that GitHub's backup cron started doesn't count for
+# that: the cron fires a few times a day at random, and holding off after such
+# a run left 20-22 minutes between reads (5 times on 2026-10-24/25).
 #
 # Then it queues the next pacer itself as well, so a collect run that GitHub never
 # gives a runner (it happened 2026-10-05 19:43 UTC and stopped collection for an
@@ -85,16 +89,20 @@ queue_next_pacer() {
 }
 
 start_collect() {
-  local runs active age attempt
+  local runs waiting age attempt
   runs="$(gh run list --workflow collect.yml --limit 10 --json status,createdAt,event)"
-  active="$(jq --argjson now "$now" --argjson stale "$stale_after" \
-    '[.[] | select(.status != "completed" and $now - (.createdAt | fromdateiso8601) < $stale)] | length' <<<"$runs")"
-  if [ "$active" -gt 0 ]; then
-    echo "a collect run is already queued or running; it queues the next pacer"
+  waiting="$(jq --argjson now "$now" --argjson stale "$stale_after" \
+    '[.[] | select(.status != "completed" and .status != "in_progress"
+                   and $now - (.createdAt | fromdateiso8601) < $stale)] | length' <<<"$runs")"
+  if [ "$waiting" -gt 0 ]; then
+    echo "a collect run is already waiting to start"
     return 0
   fi
-  if [ "$(jq '[.[] | select(.status != "completed")] | length' <<<"$runs")" -gt 0 ]; then
-    echo "GitHub still lists a collect run from over $((stale_after / 60)) minutes ago as unfinished; starting the next one anyway"
+  if [ "$(jq '[.[] | select(.status != "completed" and .status != "in_progress")] | length' <<<"$runs")" -gt 0 ]; then
+    echo "a collect run has waited over $((stale_after / 60)) minutes to start; starting another anyway"
+  fi
+  if [ "$(jq '[.[] | select(.status == "in_progress")] | length' <<<"$runs")" -gt 0 ]; then
+    echo "a collect run is still going (or GitHub still lists it so); the next one waits behind it"
   fi
 
   # the newest run this chain (or a person) started; a cron run doesn't show whether the wait timer works
