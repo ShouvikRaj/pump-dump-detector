@@ -1,9 +1,15 @@
 # Stage 3 tracking
 
-Updated 2026-10-31T01:55:22Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-10-31T22:50:55Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-10-31 21:03 | ROC | control | low_float_runner | active | 0 |  |  |  |  |  |
+| 2026-10-31 21:03 | CLPR | control | low_float_runner | active | 0 |  |  |  |  |  |
+| 2026-10-31 21:03 | MSOS | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-10-31 02:57 | CIA | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-31 02:57 | TDUP | control | other | active | 0 |  |  |  |  |  |
+| 2026-10-31 02:57 | INO | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-10-31 00:58 | DHR | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-31 00:58 | NTRA | control | other | active | 0 |  |  |  |  |  |
 | 2026-10-31 00:58 | GLD | candidate | other | active | 0 |  |  |  |  |  |
@@ -366,7 +372,7 @@ Updated 2026-10-31T01:55:22Z. Each candidate and control is followed for 20 trad
 | 2026-10-22 17:45 | HQY | control | other | active | 7 | +5% |  | +1% |  |  |
 | 2026-10-22 17:45 | SHOP | control | other | active | 7 | +4% |  | -1% |  |  |
 | 2026-10-22 17:45 | TD | control | other | active | 7 | +1% |  | +1% |  |  |
-| 2026-10-22 17:45 | EXCBF | control | otc_penny | active | 6 | +22% |  | -9% |  |  |
+| 2026-10-22 17:45 | EXCBF | control | otc_penny | active | 7 | +22% |  | -9% |  |  |
 | 2026-10-22 17:45 | ZSPC | control | otc_penny | active | 7 | +10% |  | -10% |  |  |
 | 2026-10-22 17:45 | ARAY | control | other | active | 7 | +11% |  | +5% |  |  |
 | 2026-10-22 17:45 | BLNK | control | other | active | 7 | +8% |  | +4% |  |  |
