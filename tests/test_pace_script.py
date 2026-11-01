@@ -5,6 +5,7 @@ import os
 import shutil
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 import pytest
@@ -27,6 +28,8 @@ if args[:2] == ["run", "list"]:
     if "--jq" in args:
         out = subprocess.run(["jq", "-r", args[args.index("--jq") + 1]], input=out, capture_output=True, text=True, check=True).stdout
     sys.stdout.write(out)
+elif args[0] == "api" and "--include" in args:
+    sys.stdout.write("HTTP/2.0 200 OK\\r\\nDate: " + os.environ["FAKE_DATE"] + "\\r\\n\\r\\n{}\\n")
 elif args[0] == "api":
     sys.stdout.write(os.environ["FAKE_SELF_CREATED"] + "\\n")
 elif args[:2] == ["workflow", "run"]:
@@ -49,7 +52,7 @@ def run(tmp_path):
     log = tmp_path / "gh.log"
 
     def _run(runs, dispatch_failures=0, nightly_age=10 * 60, now=NOW, nightly=False, waited=13 * 60, pacers=False, track_age=10 * 60, tracks=False,
-             label_age=10 * 60, labels=False, model_age=10 * 60, models=False):
+             label_age=10 * 60, labels=False, model_age=10 * 60, models=False, github_clock=False):
         env = dict(
             os.environ,
             PATH=f"{bindir}{os.pathsep}{os.environ['PATH']}",
@@ -67,7 +70,10 @@ def run(tmp_path):
             GITHUB_RUN_ID="1",
             PACE_NOW=str(now),
             PACE_RETRY_DELAY="0",
+            FAKE_DATE=subprocess.run(["date", "-u", "-R", "-d", f"@{now}"], capture_output=True, text=True).stdout.strip(),
         )
+        if github_clock:
+            del env["PACE_NOW"]
         res = subprocess.run(["bash", str(SCRIPT)], env=env, capture_output=True, text=True)
         calls = [json.loads(line) for line in log.read_text().splitlines()] if log.exists() else []
         log.unlink(missing_ok=True)
@@ -149,6 +155,16 @@ def test_stops_the_chain_when_the_wait_timer_is_missing(run):
     assert res.returncode == 0, res.stderr
     assert dispatched == []
     assert "wait timer" in res.stdout
+
+
+def test_times_runs_by_githubs_clock_not_the_runners(run):
+    # 2026-11-01: a runner's clock was an hour slow, so runs looked -2000 s old and both wait-timer guards tripped
+    ahead = int(time.time()) + 3600
+    res, dispatched = run([("completed", 16 * 60)], now=ahead, github_clock=True)
+    assert res.returncode == 0, res.stderr
+    assert len(dispatched) == 1 and "wait timer" not in res.stdout
+    res, pacers = run([("completed", 16 * 60)], now=ahead, github_clock=True, pacers=True)
+    assert len(pacers) == 1
 
 
 def test_retries_a_failed_dispatch(run):

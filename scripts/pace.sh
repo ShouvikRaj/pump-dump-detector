@@ -39,7 +39,14 @@ set -euo pipefail
 min_gap="${PACE_MIN_GAP_SECONDS:-600}"
 stale_after="${PACE_STALE_SECONDS:-1200}"
 retry_delay="${PACE_RETRY_DELAY:-10}"
-now="${PACE_NOW:-$(date +%s)}"
+# GitHub's clock, not the runner's: on 2026-11-01 a runner's clock was an hour slow, so every run looked
+# -2000 s old, both wait-timer guards below tripped, and collection stopped for almost 5 hours
+github_now() {
+  local d
+  d="$(gh api --include rate_limit 2>/dev/null | tr -d '\r' | sed -n 's/^[Dd]ate: //p' | head -1)"
+  [ -n "$d" ] && date -d "$d" +%s
+}
+now="${PACE_NOW:-$(github_now || date +%s)}"
 
 start_daily_if_due() {
   # WORKFLOW HOUR MINUTE: start the workflow once a day, at the first pacer after HH:MM UTC
