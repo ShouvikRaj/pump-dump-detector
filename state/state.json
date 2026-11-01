@@ -147,8 +147,8 @@
     "MSOS": {
       "episode_id": "MSOS-20261031T210309Z",
       "first_flagged_at": 1793480589.471199,
-      "last_flagged_at": 1793491926.7597804,
-      "n_flags": 16,
+      "last_flagged_at": 1793492526.0585322,
+      "n_flags": 17,
       "peak_mentions": 11,
       "peak_z": 10.571,
       "reasons_seen": [
@@ -355,10 +355,10 @@
     }
   },
   "last_run": {
-    "finished_at": 1793491926.784822,
-    "new_docs": 175,
-    "run_id": "41255000256",
-    "started_at": 1793491385.432321
+    "finished_at": 1793492526.0848126,
+    "new_docs": 245,
+    "run_id": "41255980537",
+    "started_at": 1793492169.0715644
   },
   "late": {
     "after": {
@@ -366,7 +366,7 @@
       "pennystocks/posts": 1793398734,
       "smallstreetbets/comments": 1793404570,
       "smallstreetbets/posts": 1793402733,
-      "wallstreetbets/comments": 1793350867,
+      "wallstreetbets/comments": 1793385769,
       "wallstreetbets/posts": 1793404698
     },
     "day": "2026-10-30",
@@ -384,11 +384,11 @@
     "pennystocks/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1793479502,
-      "fallback_complete_at": 1793491561.8791869,
+      "cursor": 1793481342,
+      "fallback_complete_at": 1793492341.1835494,
       "fallback_cursor": 1793491495,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1793489790.8961198,
+      "last_complete_at": 1793492177.706578,
       "last_error": "Arctic Shift's archive stalled at 2026-10-31T23:25:17Z",
       "last_error_at": 1793491392.0930736
     },
@@ -399,18 +399,18 @@
       "fallback_complete_at": 1793491742.5525198,
       "fallback_cursor": 1793479493,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1793489787.796708,
+      "last_complete_at": 1793492172.7632933,
       "last_error": "Arctic Shift's archive stalled at 2026-10-31T23:25:17Z",
       "last_error_at": 1793491388.4564085
     },
     "smallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1793483534,
-      "fallback_complete_at": 1793491501.904816,
-      "fallback_cursor": 1793490829,
+      "cursor": 1793491975,
+      "fallback_complete_at": 1793492281.7693882,
+      "fallback_cursor": 1793491975,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1793489791.862076,
+      "last_complete_at": 1793492178.6985917,
       "last_error": "Arctic Shift's archive stalled at 2026-10-31T23:25:17Z",
       "last_error_at": 1793491393.5329792
     },
@@ -421,29 +421,29 @@
       "fallback_complete_at": 1793491682.3802085,
       "fallback_cursor": 1793477598,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1793489788.5966055,
+      "last_complete_at": 1793492175.0343509,
       "last_error": "Arctic Shift's archive stalled at 2026-10-31T23:25:17Z",
       "last_error_at": 1793491389.6093645
     },
     "wallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1793489117,
-      "fallback_complete_at": 1793491441.2804523,
-      "fallback_cursor": 1793491383,
+      "cursor": 1793491433,
+      "fallback_complete_at": 1793492221.27527,
+      "fallback_cursor": 1793492165,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1793489792.8581676,
+      "last_complete_at": 1793492179.3722777,
       "last_error": "Arctic Shift's archive stalled at 2026-10-31T23:25:17Z",
       "last_error_at": 1793491394.951159
     },
     "wallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1793490705,
+      "cursor": 1793491378,
       "fallback_complete_at": 1793491623.0896156,
       "fallback_cursor": 1793490705,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1793489789.7247484,
+      "last_complete_at": 1793492176.5942013,
       "last_error": "Arctic Shift's archive stalled at 2026-10-31T23:25:17Z",
       "last_error_at": 1793491390.938628
     }
