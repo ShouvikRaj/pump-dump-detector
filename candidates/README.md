@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-01T01:25:05Z by run `41260792254`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-01T01:27:08Z by run `41260984421`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -11,10 +11,10 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | INO | 2026-10-31 02:57 | mention spike | 4 | 1.71 | 3 | 0 | wallstreetbets 3, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1xkae3o/) |
 | TQQQ | 2026-10-30 18:26 | mention spike | 2 | 7.29 | 2 | 0 | wallstreetbets 2 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xjrx34/comment/19rxfkt2pbt2d/) |
 | NVDA | 2026-10-30 11:53 | mention spike | 79 | 72.86 | 70 | 0 | wallstreetbets 79 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xkqgq7/) |
-| AMD | 2026-10-30 13:25 | mention spike | 38 | 47.43 | 34 | 0 | wallstreetbets 38 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xk6oge/) |
+| AMD | 2026-10-30 13:25 | mention spike | 39 | 47.43 | 35 | 0 | wallstreetbets 39 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xk6oge/) |
 | SOXL | 2026-10-30 19:57 | mention spike | 4 | 35.43 | 4 | 0 | wallstreetbets 4 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xjpq2t/comment/19rxtzwknfq76/) |
 | APP | 2026-10-30 17:00 | mention spike | 2 | 4.29 | 2 | 0 | wallstreetbets 2 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xjrx34/comment/19ry48f2kiuw1/) |
-| GLD | 2026-10-31 00:58 | mention spike | 3 | 9.86 | 3 | 0 | wallstreetbets 3 | NYSE Arca | #11 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xjpq2t/comment/19rx0slnobcrk/) |
+| GLD | 2026-10-31 00:58 | mention spike | 2 | 10.0 | 2 | 0 | wallstreetbets 2 | NYSE Arca | #11 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xjpq2t/comment/19rx0slnobcrk/) |
 | AAOI | 2026-10-31 00:51 | mention spike | 2 | 6.57 | 2 | 0 | wallstreetbets 2 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xjpq2t/comment/19ryao1dx5qaq/) |
 | DJT | 2026-10-30 01:20 | mention spike | 2 | 7.43 | 2 | 0 | smallstreetbets 1, wallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xkgkz7/comment/19rxwr7xfu9z4/) |
 | SGOV | 2026-10-30 15:02 | mention spike | 3 | 3.29 | 3 | 0 | wallstreetbets 3 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xjpq2t/comment/19rxmgiuf9201/) |
@@ -30,7 +30,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | SPY | 2026-10-30 17:00 | mention spike | 52 | 179.43 | 42 | 0 | wallstreetbets 52 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xkqgq7/) |
 | ARM | 2026-10-30 11:00 | mention spike | 3 | 3.86 | 3 | 0 | wallstreetbets 3 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xjkxhl/comment/19ryej984g2hv/) |
 | SCHD | 2026-10-30 05:02 | mention spike | 3 | 9.57 | 3 | 0 | wallstreetbets 3 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xjpq2t/comment/19rxtfixd1g85/) |
-| RDDT | 2026-10-29 14:06 | mention spike | 101 | 173.86 | 70 | 0 | wallstreetbets 101 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xknokd/) |
+| RDDT | 2026-10-29 14:06 | mention spike | 100 | 174.0 | 70 | 0 | wallstreetbets 100 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xknokd/) |
 | DELL | 2026-10-30 00:42 | mention spike | 0 |  | 0 | 0 |  | NYSE |  |  |
 | INTC | 2026-10-29 11:49 | mention spike | 48 | 103.0 | 43 | 0 | wallstreetbets 46, smallstreetbets 2 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xkhri3/) |
 | NKE | 2026-10-30 09:12 | mention spike | 1 | 4.14 | 1 | 0 | wallstreetbets 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xjg0y4/comment/19rxhkut9pedc/) |
