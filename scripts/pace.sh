@@ -39,14 +39,25 @@ set -euo pipefail
 min_gap="${PACE_MIN_GAP_SECONDS:-600}"
 stale_after="${PACE_STALE_SECONDS:-1200}"
 retry_delay="${PACE_RETRY_DELAY:-10}"
-# GitHub's clock, not the runner's: on 2026-11-01 a runner's clock was an hour slow, so every run looked
-# -2000 s old, both wait-timer guards below tripped, and collection stopped for almost 5 hours
-github_now() {
-  local d
-  d="$(gh api --include rate_limit 2>/dev/null | tr -d '\r' | sed -n 's/^[Dd]ate: //p' | head -1)"
-  [ -n "$d" ] && date -d "$d" +%s
+
+actions_now() {
+  # "Now" by the clock GitHub Actions stamps its runs with: when this pacer's job
+  # started. The times compared with it come from that clock too, and it can be
+  # off: on 2026-11-01 from about 08:00 to 09:00 UTC it ran an hour ahead of the
+  # runners' clocks (and of Reddit's post times), so by the runner's clock the
+  # last collect run seemed to start in the future; two pacers took that for a
+  # missing wait timer and stopped the chain for 5.7 hours. A time that still
+  # seems to lie in the future (the clock jumping between two stamps) only means
+  # the clocks disagree. The runner's clock only if GitHub doesn't answer.
+  local t
+  t="$(gh api "repos/$GH_REPO/actions/runs/${GITHUB_RUN_ID:?}/jobs" --jq '.jobs[0].started_at // empty' 2>/dev/null)" || t=""
+  if [ -n "$t" ] && jq -rn --arg t "$t" '$t | fromdateiso8601' 2>/dev/null; then
+    return 0
+  fi
+  echo "::warning::could not read when this job started; going by the runner's clock" >&2
+  date +%s
 }
-now="${PACE_NOW:-$(github_now || date +%s)}"
+now="${PACE_NOW:-$(actions_now)}"
 
 start_daily_if_due() {
   # WORKFLOW HOUR MINUTE: start the workflow once a day, at the first pacer after HH:MM UTC
@@ -88,7 +99,9 @@ queue_next_pacer() {
   local created waited
   created="$(gh api "repos/$GH_REPO/actions/runs/${GITHUB_RUN_ID:?}" --jq .created_at)" || return 1
   waited=$(( now - $(jq -rn --arg t "$created" '$t | fromdateiso8601') ))
-  if [ "$waited" -lt "$min_gap" ]; then
+  if [ "$waited" -lt 0 ]; then
+    echo "::warning::this pacer seems to have been queued ${waited#-}s in the future, so the clocks disagree; queueing the next one anyway"
+  elif [ "$waited" -lt "$min_gap" ]; then
     echo "::warning::this pacer waited only ${waited}s, so the pacer environment's wait timer seems to be missing; not queueing another"
     return 0
   fi
@@ -115,7 +128,9 @@ start_collect() {
   # the newest run this chain (or a person) started; a cron run doesn't show whether the wait timer works
   age="$(jq --argjson now "$now" '[.[] | select(.event != "schedule")]
     | if length == 0 then null else $now - (.[0].createdAt | fromdateiso8601) end' <<<"$runs")"
-  if [ "$age" != "null" ] && [ "$age" -lt "$min_gap" ]; then
+  if [ "$age" != "null" ] && [ "$age" -lt 0 ]; then
+    echo "::warning::the last collect run seems to start ${age#-}s from now, so the clocks disagree; starting the next one anyway"
+  elif [ "$age" != "null" ] && [ "$age" -lt "$min_gap" ]; then
     echo "::warning::the last collect run started ${age}s ago, so the pacer environment's wait timer seems to be missing; not starting another (the cron still runs)"
     return 0
   fi

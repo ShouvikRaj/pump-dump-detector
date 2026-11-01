@@ -261,7 +261,11 @@ when nothing was collected for 53 minutes), or a run the cron started was still 
 over 20 minutes to start doesn't count, since GitHub sometimes never gives one a runner. If the last `collect` run
 started less than 10 minutes earlier, the timer must be missing, so `scripts/pace.sh` stops the chain rather than
 looping; a run that the cron started doesn't count for that, since holding off after one left 20-22 minutes between
-reads (5 times on 2026-10-24/25). Each pacer also queues the next
+reads (5 times on 2026-10-24/25). These ages go by the clock GitHub stamps its runs with (when the pacer's own job
+started), not the runner's: on 2026-11-01 from about 08:00 to 09:00 UTC GitHub's ran an hour ahead of the runners'
+(and of Reddit's post times), two pacers saw the last run start in the future, took that for a missing timer, and
+nothing was collected for 5.7 hours. A run or wait that still seems to lie in the future means the clocks disagree,
+not a missing timer. Each pacer also queues the next
 pacer, because on 2026-10-05 GitHub never gave a runner to one `collect` run (19:43 UTC), which therefore queued no
 pacer and collection stopped for an hour; with collect -> pacer and pacer -> pacer, one lost run of either can't break
 the chain. The `pace` concurrency group runs one pacer at a time with at most one queued behind it (a newer queued

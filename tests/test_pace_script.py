@@ -5,7 +5,6 @@ import os
 import shutil
 import subprocess
 import sys
-import time
 from pathlib import Path
 
 import pytest
@@ -28,8 +27,10 @@ if args[:2] == ["run", "list"]:
     if "--jq" in args:
         out = subprocess.run(["jq", "-r", args[args.index("--jq") + 1]], input=out, capture_output=True, text=True, check=True).stdout
     sys.stdout.write(out)
-elif args[0] == "api" and "--include" in args:
-    sys.stdout.write("HTTP/2.0 200 OK\\r\\nDate: " + os.environ["FAKE_DATE"] + "\\r\\n\\r\\n{}\\n")
+elif args[0] == "api" and args[1].endswith("/jobs"):  # when this pacer's job started, by GitHub's clock
+    if "FAKE_JOB_STARTED" not in os.environ:
+        sys.exit(1)
+    sys.stdout.write(os.environ["FAKE_JOB_STARTED"] + "\\n")
 elif args[0] == "api":
     sys.stdout.write(os.environ["FAKE_SELF_CREATED"] + "\\n")
 elif args[:2] == ["workflow", "run"]:
@@ -42,6 +43,13 @@ def iso(ts):
     return subprocess.run(["date", "-u", "-d", f"@{ts}", "+%Y-%m-%dT%H:%M:%SZ"], capture_output=True, text=True).stdout.strip()
 
 
+REAL_DATE = shutil.which("date")
+# the runner's clock: `date +%s` answers FAKE_CLOCK, anything else goes to the real date
+FAKE_DATE = f"""#!/usr/bin/env bash
+if [ "$*" = "+%s" ]; then echo "$FAKE_CLOCK"; else exec {REAL_DATE} "$@"; fi
+"""
+
+
 @pytest.fixture
 def run(tmp_path):
     bindir = tmp_path / "bin"
@@ -52,7 +60,15 @@ def run(tmp_path):
     log = tmp_path / "gh.log"
 
     def _run(runs, dispatch_failures=0, nightly_age=10 * 60, now=NOW, nightly=False, waited=13 * 60, pacers=False, track_age=10 * 60, tracks=False,
-             label_age=10 * 60, labels=False, model_age=10 * 60, models=False, github_clock=False):
+             label_age=10 * 60, labels=False, model_age=10 * 60, models=False, runner_clock=None, github_clock=None):
+        # runner_clock: what the runner's own clock says (otherwise PACE_NOW gives `now`); github_clock: when GitHub
+        # says this pacer's job started (None: GitHub doesn't answer)
+        fake_date = bindir / "date"
+        if runner_clock is None:
+            fake_date.unlink(missing_ok=True)
+        else:
+            fake_date.write_text(FAKE_DATE)
+            fake_date.chmod(0o755)
         env = dict(
             os.environ,
             PATH=f"{bindir}{os.pathsep}{os.environ['PATH']}",
@@ -70,10 +86,12 @@ def run(tmp_path):
             GITHUB_RUN_ID="1",
             PACE_NOW=str(now),
             PACE_RETRY_DELAY="0",
-            FAKE_DATE=subprocess.run(["date", "-u", "-R", "-d", f"@{now}"], capture_output=True, text=True).stdout.strip(),
         )
-        if github_clock:
+        if runner_clock is not None:
             del env["PACE_NOW"]
+            env["FAKE_CLOCK"] = str(runner_clock)
+        if github_clock is not None:
+            env["FAKE_JOB_STARTED"] = iso(github_clock)
         res = subprocess.run(["bash", str(SCRIPT)], env=env, capture_output=True, text=True)
         calls = [json.loads(line) for line in log.read_text().splitlines()] if log.exists() else []
         log.unlink(missing_ok=True)
@@ -149,22 +167,33 @@ def test_a_finished_run_started_by_githubs_cron_does_not_make_the_pacer_hold_off
     assert "wait timer" in res.stdout
 
 
+def test_a_github_clock_an_hour_ahead_of_the_runners_does_not_stop_the_chain(run):
+    # 2026-11-01: GitHub stamped its runs an hour ahead of the runners' clocks (and of Reddit's post times), so two
+    # pacers' runners, at 08:25 and 08:38 UTC, saw the last collect run start 47 minutes in the future; they took that
+    # for a missing wait timer, started nothing and queued no pacer, and nothing was collected for 5.7 hours. The
+    # pacer goes by GitHub's clock instead: when its own job started.
+    res, dispatched = run([("completed", 13 * 60)], runner_clock=NOW - 3600, github_clock=NOW)
+    assert res.returncode == 0, res.stderr
+    assert [c[:3] for c in dispatched] == [["workflow", "run", "collect.yml"]]
+    assert "wait timer" not in res.stdout
+    res, pacers = run([("completed", 13 * 60)], runner_clock=NOW - 3600, github_clock=NOW, pacers=True)
+    assert len(pacers) == 1
+
+    # GitHub doesn't say: a run or a wait that seems to lie in the future means the clocks disagree, not that the
+    # wait timer is missing, so the chain goes on
+    res, dispatched = run([("completed", 13 * 60)], runner_clock=NOW - 3600)
+    assert res.returncode == 0, res.stderr
+    assert [c[:3] for c in dispatched] == [["workflow", "run", "collect.yml"]]
+    res, pacers = run([("completed", 13 * 60)], runner_clock=NOW - 3600, pacers=True)
+    assert len(pacers) == 1
+
+
 def test_stops_the_chain_when_the_wait_timer_is_missing(run):
     # without the environment's wait timer the pacer would restart collect every couple of minutes
     res, dispatched = run([("completed", 2 * 60)])
     assert res.returncode == 0, res.stderr
     assert dispatched == []
     assert "wait timer" in res.stdout
-
-
-def test_times_runs_by_githubs_clock_not_the_runners(run):
-    # 2026-11-01: a runner's clock was an hour slow, so runs looked -2000 s old and both wait-timer guards tripped
-    ahead = int(time.time()) + 3600
-    res, dispatched = run([("completed", 16 * 60)], now=ahead, github_clock=True)
-    assert res.returncode == 0, res.stderr
-    assert len(dispatched) == 1 and "wait timer" not in res.stdout
-    res, pacers = run([("completed", 16 * 60)], now=ahead, github_clock=True, pacers=True)
-    assert len(pacers) == 1
 
 
 def test_retries_a_failed_dispatch(run):
