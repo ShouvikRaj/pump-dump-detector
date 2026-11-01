@@ -460,3 +460,15 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 41287827480,2026-11-01T08:12:06Z,wallstreetbets/posts,fallback,2026-11-01T06:57:02Z,100,0,1,1,2026-11-01T06:57:02Z,,,
 41287827480,2026-11-01T08:12:06Z,smallstreetbets/posts,fallback,2026-11-01T07:26:11Z,100,0,1,1,2026-11-01T07:26:11Z,,,
 41287827480,2026-11-01T08:12:06Z,pennystocks/posts,fallback,2026-11-01T04:03:46Z,100,0,1,1,2026-11-01T04:03:46Z,,,
+41313772780,2026-11-01T13:58:00Z,pennystocks/posts,live,2026-11-01T01:03:46Z,1,0,1,1,2026-11-01T04:03:46Z,12.0,,
+41313772780,2026-11-01T13:58:00Z,smallstreetbets/posts,live,2026-11-01T04:26:11Z,3,2,1,1,2026-11-01T13:46:12Z,9.0,5691.5,
+41313772780,2026-11-01T13:58:00Z,wallstreetbets/posts,live,2026-11-01T03:57:02Z,31,21,1,1,2026-11-01T13:54:22Z,12.0,7910.2,
+41313772780,2026-11-01T13:58:00Z,pennystocks/comments,live,2026-11-01T07:28:14Z,2,0,1,1,2026-11-01T07:58:14Z,642.0,,
+41313772780,2026-11-01T13:58:00Z,smallstreetbets/comments,live,2026-11-01T06:56:12Z,18,14,1,1,2026-11-01T12:46:37Z,10798.0,14009.7,
+41313772780,2026-11-01T13:58:00Z,wallstreetbets/comments,live,2026-11-01T07:20:07Z,391,284,4,1,2026-11-01T13:35:54Z,9260.0,13496.2,
+41313772780,2026-11-01T13:58:00Z,wallstreetbets/comments,fallback,2026-11-01T08:12:04Z,916,844,10,0,2026-11-01T13:57:59Z,,4366.7,
+41313772780,2026-11-01T13:58:00Z,smallstreetbets/comments,fallback,2026-11-01T08:12:50Z,100,20,1,1,2026-11-01T14:06:47Z,,6818.9,
+41313772780,2026-11-01T13:58:00Z,pennystocks/comments,fallback,2026-11-01T07:58:14Z,100,2,1,1,2026-11-01T13:43:14Z,,5181.1,
+41313772780,2026-11-01T13:58:00Z,wallstreetbets/posts,fallback,2026-11-01T13:54:22Z,0,0,0,0,2026-11-01T06:57:02Z,,,"Reddit RSS rate limit used up for 59 s more, past this run's time"
+41313772780,2026-11-01T13:58:00Z,smallstreetbets/posts,fallback,2026-11-01T13:46:12Z,0,0,0,0,2026-11-01T07:26:11Z,,,"Reddit RSS rate limit used up for 59 s more, past this run's time"
+41313772780,2026-11-01T13:58:00Z,pennystocks/posts,fallback,2026-11-01T04:03:46Z,0,0,0,0,2026-11-01T04:03:46Z,,,"Reddit RSS rate limit used up for 59 s more, past this run's time"
