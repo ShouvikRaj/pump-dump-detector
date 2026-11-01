@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-01T14:22:08Z by run `41315314073`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-01T14:32:06Z by run `41316409772`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -17,7 +17,6 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | GLD | 2026-10-31 00:58 | mention spike | 0 |  | 0 | 0 |  | NYSE Arca |  |  |
 | AAOI | 2026-10-31 00:51 | mention spike | 6 | 6.71 | 3 | 0 | wallstreetbets 6 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xkr5i0/) |
 | DJT | 2026-10-30 01:20 | mention spike | 1 | 7.14 | 1 | 0 | wallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xkgkz7/comment/19rxwr7xfu9z4/) |
-| SGOV | 2026-10-30 15:02 | mention spike | 1 | 3.57 | 1 | 0 | wallstreetbets 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xjpq2t/comment/19rxmgiuf9201/) |
-| TSM | 2026-10-30 13:54 | mention spike | 3 | 4.43 | 2 | 0 | wallstreetbets 3 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xjpq2t/comment/19ryc1z90pba8/) |
+| SGOV | 2026-10-30 15:02 | mention spike | 0 |  | 0 | 0 |  | NYSE |  |  |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
