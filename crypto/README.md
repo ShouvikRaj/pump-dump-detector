@@ -8,16 +8,16 @@ Live since 2026-10-07T12:32:05Z.
 | Events | Count |
 |---|---|
 | history / announcement | 2471 |
-| scan / spike | 908 |
+| scan / spike | 909 |
 | telegram / announcement | 151 |
-| telegram / call | 2007 |
+| telegram / call | 2008 |
 
 | Outcome status | Count |
 |---|---|
 | no_data | 475 |
 | not_covered | 1578 |
 | partial | 16 |
-| pending | 233 |
+| pending | 235 |
 | settled | 3235 |
 
 - `events.csv`: one row per event; `outcomes.csv`: crypto-label-v1 per event, rebuilt every run.
