@@ -22,13 +22,24 @@
       "reasons_seen": [
         "mention_spike"
       ]
+    },
+    "NNN": {
+      "episode_id": "NNN-20261101T193809Z",
+      "first_flagged_at": 1793561889.9777482,
+      "last_flagged_at": 1793561889.9777482,
+      "n_flags": 1,
+      "peak_mentions": 10,
+      "peak_z": 7.407,
+      "reasons_seen": [
+        "mention_spike"
+      ]
     }
   },
   "last_run": {
-    "finished_at": 1793561170.78922,
-    "new_docs": 141,
-    "run_id": "41341221545",
-    "started_at": 1793560833.70039
+    "finished_at": 1793561890.0244303,
+    "new_docs": 156,
+    "run_id": "41342229700",
+    "started_at": 1793561550.8044121
   },
   "late_done_for": "2026-10-30",
   "live_since": 1791153669.8332794,
@@ -37,67 +48,67 @@
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
       "cursor": 1793533327,
-      "fallback_complete_at": 1793560981.657405,
+      "fallback_complete_at": 1793561701.3925083,
       "fallback_cursor": 1793555581,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1793556077.603518,
       "last_error": "Arctic Shift's archive stalled at 2026-11-01T18:26:12Z",
-      "last_error_at": 1793560841.9833374
+      "last_error_at": 1793561559.192166
     },
     "pennystocks/posts": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
       "cursor": 1793551388,
-      "fallback_complete_at": 1793561163.436263,
+      "fallback_complete_at": 1793561882.5480645,
       "fallback_cursor": 1793505826,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1793556070.7150037,
       "last_error": "Arctic Shift's archive stalled at 2026-11-01T18:26:12Z",
-      "last_error_at": 1793560838.936939
+      "last_error_at": 1793561555.7895324
     },
     "smallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
       "cursor": 1793553368,
-      "fallback_complete_at": 1793560922.0782008,
-      "fallback_cursor": 1793560701,
+      "fallback_complete_at": 1793561640.986013,
+      "fallback_cursor": 1793560988,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1793556078.6051624,
       "last_error": "Arctic Shift's archive stalled at 2026-11-01T18:26:12Z",
-      "last_error_at": 1793560842.8505223
+      "last_error_at": 1793561560.068855
     },
     "smallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
       "cursor": 1793558104,
-      "fallback_complete_at": 1793561103.087354,
+      "fallback_complete_at": 1793561822.4775765,
       "fallback_cursor": 1793558104,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1793556072.149469,
       "last_error": "Arctic Shift's archive stalled at 2026-11-01T18:26:12Z",
-      "last_error_at": 1793560839.5194366
+      "last_error_at": 1793561556.6265616
     },
     "wallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
       "cursor": 1793557572,
-      "fallback_complete_at": 1793560862.4418058,
-      "fallback_cursor": 1793560832,
+      "fallback_complete_at": 1793561581.550329,
+      "fallback_cursor": 1793561550,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1793556079.6940193,
       "last_error": "Arctic Shift's archive stalled at 2026-11-01T18:26:12Z",
-      "last_error_at": 1793560843.70524
+      "last_error_at": 1793561560.7287905
     },
     "wallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1793560389,
-      "fallback_complete_at": 1793561041.7431867,
+      "cursor": 1793561243,
+      "fallback_complete_at": 1793561762.2886853,
       "fallback_cursor": 1793557192,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1793556073.5617967,
       "last_error": "Arctic Shift's archive stalled at 2026-11-01T18:26:12Z",
-      "last_error_at": 1793560840.964152
+      "last_error_at": 1793561558.0394816
     }
   },
   "symbols_refresh_errors": 0,
