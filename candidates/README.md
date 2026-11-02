@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-02T16:58:08Z by run `41485235117`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-02T17:08:08Z by run `41487346664`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -9,8 +9,8 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 |---|---|---|---|---|---|---|---|---|---|---|
 | ATC | 2026-11-02 07:17 | mention spike | 10 | 0.0 | 6 | 0 | wallstreetbets 10 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xleb57/comment/19s0na4s25s2o/) |
 | MSOS | 2026-10-31 21:03 | mention spike | 24 | 2.14 | 19 | 0 | wallstreetbets 24 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xlu7un/comment/19s1d23p2fntt/) |
-| NNN | 2026-11-01 19:38 | mention spike | 11 | 1.71 | 9 | 0 | wallstreetbets 11 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xl8bb4/) |
-| PLTR | 2026-11-02 13:09 | mention spike | 52 | 13.71 | 43 | 0 | wallstreetbets 51, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xlu7un/comment/19s1d8kuthf8l/) |
+| NNN | 2026-11-01 19:38 | mention spike | 10 | 1.86 | 8 | 0 | wallstreetbets 10 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xlu7un/comment/19s1d5xwhoqci/) |
+| PLTR | 2026-11-02 13:09 | mention spike | 53 | 13.71 | 44 | 0 | wallstreetbets 52, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xlu7un/comment/19s1dl0one2qp/) |
 | RKLB | 2026-11-02 15:08 | mention spike | 19 | 9.71 | 10 | 0 | wallstreetbets 19 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xlu7un/comment/19s1apllmo8rk/) |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
