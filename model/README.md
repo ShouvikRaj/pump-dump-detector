@@ -1,15 +1,17 @@
 # Stage 5 model
 
-Updated 2026-11-01T05:52:08Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-02T00:12:59Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
-## This week's models (week of 2026-10-26)
+## This week's models (week of 2026-11-02)
 
 | Target | Status | Trained on | Positives | Base rate | Flag at | Feature groups |
 |---|---|---|---|---|---|---|
-| crash | no model yet | 246 rows | 4 | - | - | chatter, text, llm, price_volume, size, short_interest, filings, history, technical |
-| pump | no model yet | 244 rows | 0 | - | - | chatter, text, llm, price_volume, size, short_interest, filings, history, technical |
+| crash | trained | 456 rows | 11 | 5.3% | 11% | chatter, text, llm, price_volume, size, short_interest, filings, history, technical |
+| pump | no model yet | 452 rows | 2 | - | - | chatter, text, llm, price_volume, size, short_interest, filings, history, technical |
 
 A week's model needs 50 rows and 5 positives whose labels were settled before the week began; a label settles 10 sessions (two weeks) after the flag, 15 after a 50% rise.
+
+What this week's crash model leans on (share of split gain): `volatility_20d` 44%, `days_since_report` 9%, `max_ret_20d` 7%, `institution_pct` 5%, `market_cap_log` 5%, `days_since_dilution` 4%, `turnover_last` 4%, `ret_1d` 3%.
 
 ## Latest candidates (last 7 days)
 
@@ -17,6 +19,7 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-01 19:38 | NNN | other | no model | no model | 10% / 10% / 0% / 0% | Chatter focuses on a 'NNN challenge' and slang usage rather than the REIT stock. |
 | 2026-10-31 21:03 | MSOS | other | no model | no model | 100% / 10% / 0% / 0% | Users discuss MSOS ETF price movements, election catalysts, and past losses without specific company events. |
 | 2026-10-31 02:57 | INO | other | no model | no model | 100% / 0% / 0% / 0% | Chatter discusses INO's price movement following FDA approval rumors and insider leak claims. |
 | 2026-10-31 00:58 | GLD | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss GLD price drops, express frustration, and place bearish bets. |
@@ -56,7 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-29 22:12 | ROPE | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss buying $ROPE, referencing a hedge fund manager and general bullish sentiment. |
 | 2026-10-29 21:47 | GME | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss GME's recent price decline, potential eBay/Amazon acquisition rumors, and past squeeze events. |
 | 2026-10-29 21:35 | CROX | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss CROX performance, rotation from tech, and potential shorting opportunities. |
-| 2026-10-29 20:56 | NRXP | other | no model | no model | 100% / 10% / 0% / 90% | Chatter focuses on an upcoming FDA regulatory decision and potential stock squeeze for NRXP. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
