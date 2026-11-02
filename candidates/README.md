@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-02T16:18:09Z by run `41478538617`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-02T16:27:08Z by run `41480708634`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -8,9 +8,9 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | Ticker | Flagged since (UTC) | Why | Mentions 24h | Baseline/day | Authors | Hype posts | Subreddits | Exchange | StockTwits | Example |
 |---|---|---|---|---|---|---|---|---|---|---|
 | ATC | 2026-11-02 07:17 | mention spike | 10 | 0.0 | 6 | 0 | wallstreetbets 10 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xleb57/comment/19s0na4s25s2o/) |
-| MSOS | 2026-10-31 21:03 | mention spike | 21 | 2.14 | 16 | 0 | wallstreetbets 21 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xlu7un/comment/19s1b2gex5gma/) |
+| MSOS | 2026-10-31 21:03 | mention spike | 22 | 2.14 | 17 | 0 | wallstreetbets 22 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xlu7un/comment/19s1bkqi6v5no/) |
 | NNN | 2026-11-01 19:38 | mention spike | 11 | 1.57 | 9 | 0 | wallstreetbets 11 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xl8bb4/) |
-| PLTR | 2026-11-02 13:09 | mention spike | 46 | 13.71 | 40 | 0 | wallstreetbets 45, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xlu7un/comment/19s1b9ndv6gki/) |
+| PLTR | 2026-11-02 13:09 | mention spike | 47 | 13.71 | 41 | 0 | wallstreetbets 46, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xlu7un/comment/19s1bt2r78h9g/) |
 | RKLB | 2026-11-02 15:08 | mention spike | 19 | 9.71 | 10 | 0 | wallstreetbets 19 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xlu7un/comment/19s1apllmo8rk/) |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
