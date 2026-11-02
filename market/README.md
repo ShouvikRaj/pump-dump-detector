@@ -1,13 +1,15 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-02T19:43:31Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-02T20:10:43Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-318 candidates and 633 controls so far. Archetypes: other 305, low_float_runner 11, otc_penny 1, unknown 1.
+320 candidates and 637 controls so far. Archetypes: other 307, low_float_runner 11, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| WMT | 2026-11-02 20:10 | other | listed | 127.3 | +3.1% | +3.0% | 1.5x | 4.85B | 1.6% | 4 |  |
+| AAPL | 2026-11-02 20:10 | other | listed | 339 | -1.6% | -0.9% | 1.8x | 14.57B | 0.9% | 0 |  |
 | MU | 2026-11-02 19:43 | other | listed | 837.1 | -5.4% | +0.8% | 1.2x | 1.13B | 2.0% | 0 |  |
 | SMCI | 2026-11-02 18:46 | other | listed | 31.17 | -5.4% | +0.0% | 1.1x | 557.7M | 14.4% | 0 |  |
 | SOUN | 2026-11-02 17:39 | other | listed | 4.285 | +1.5% | -4.7% | 1.1x | 401.1M | 42.6% | 1 |  |
@@ -36,5 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | SQQQ | 2026-10-30 14:50 | other | listed | 40.77 | +7.8% | -4.5% | 1.0x |  |  |  |  |
 | QQQ | 2026-10-30 14:19 | other | listed | 694.2 | -2.9% | +1.5% | 1.0x |  |  |  |  |
 | COIN | 2026-10-30 14:07 | other | listed | 142.7 | -11.2% | -5.0% | 1.1x | 219.8M | 10.8% | 0 |  |
-| TSM | 2026-10-30 13:54 | other | listed | 415.6 | -3.8% | +4.7% | 0.7x | 37.84B | 0.1% | 0 |  |
-| SMCI | 2026-10-30 13:42 | other | listed | 32.76 | -4.9% | +2.1% | 0.7x | 557.7M | 14.4% | 0 |  |
