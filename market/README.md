@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-02T17:39:35Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-02T18:46:37Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-316 candidates and 629 controls so far. Archetypes: other 303, low_float_runner 11, otc_penny 1, unknown 1.
+317 candidates and 631 controls so far. Archetypes: other 304, low_float_runner 11, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SMCI | 2026-11-02 18:46 | other | listed | 31.17 | -5.4% | +0.0% | 1.1x | 557.7M | 14.4% | 0 |  |
 | SOUN | 2026-11-02 17:39 | other | listed | 4.285 | +1.5% | -4.7% | 1.1x | 401.1M | 42.6% | 1 |  |
 | RKLB | 2026-11-02 15:08 | other | listed | 54.11 | -1.1% | +4.0% | 0.8x | 556.9M | 8.1% | 2 |  |
 | PLTR | 2026-11-02 13:09 | other | listed | 186.4 | +1.2% | -6.4% | 1.2x | 2.11B | 2.7% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | TSM | 2026-10-30 13:54 | other | listed | 415.6 | -3.8% | +4.7% | 0.7x | 37.84B | 0.1% | 0 |  |
 | SMCI | 2026-10-30 13:42 | other | listed | 32.76 | -4.9% | +2.1% | 0.7x | 557.7M | 14.4% | 0 |  |
 | AMD | 2026-10-30 13:25 | other | listed | 512 | -9.6% | +11.5% | 0.8x | 1.62B | 2.3% | 3 |  |
-| NVDA | 2026-10-30 11:53 | other | listed | 206.8 | -3.2% | +0.7% | 0.8x | 23.13B | 1.3% | 0 |  |
