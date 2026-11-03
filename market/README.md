@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-03T00:57:39Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-03T07:23:31Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-326 candidates and 649 controls so far. Archetypes: other 313, low_float_runner 11, otc_penny 1, unknown 1.
+327 candidates and 651 controls so far. Archetypes: other 314, low_float_runner 11, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| APLD | 2026-11-03 07:23 | other | listed | 16.41 | +1.2% | -9.0% | 0.8x | 261.2M | 25.1% | 0 |  |
 | AAOI | 2026-11-03 00:57 | other | listed | 63.56 | +1.7% | -13.1% | 1.2x | 80.8M | 20.2% | 1 |  |
 | AMD | 2026-11-02 21:58 | other | listed | 469.1 | +0.5% | -12.1% | 1.5x | 1.62B | 2.3% | 3 |  |
 | ASTS | 2026-11-02 21:45 | other | listed | 36.86 | +1.5% | -7.9% | 1.0x | 266.5M | 24.7% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | SBUX | 2026-10-30 17:00 | other | listed | 103 | -2.4% | +3.5% | 1.2x | 1.14B | 3.8% | 0 |  |
 | APP | 2026-10-30 17:00 | other | listed | 233.7 | -8.3% | -3.5% | 1.0x | 265.4M | 4.2% | 0 |  |
 | WMT | 2026-10-30 16:45 | other | listed | 124 | +2.3% | +0.1% | 0.8x | 4.85B | 1.6% | 4 |  |
-| RSP | 2026-10-30 16:45 | other | listed | 218.6 | -0.7% | +0.8% | 1.0x |  |  |  |  |
