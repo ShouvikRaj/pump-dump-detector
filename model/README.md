@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-02T05:52:10Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-03T00:14:31Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-02)
 
@@ -19,6 +19,19 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-02 21:58 | AMD | other | 0.1% | no model | 100% / 0% / 0% / 2.5% | Users discuss AMD's high valuation, upcoming earnings, and potential price drops while debating AI sector trends. |
+| 2026-11-02 21:45 | ASTS | other | 0.2% | no model | 100% / 10% / 0% / 0% | Users discuss ASTS stock performance, express frustration over delays, and debate buying opportunities. |
+| 2026-11-02 21:29 | HTZ | other | 0.1% | no model | 100% / 0% / 0% / 20% | Users discuss HTZ earnings and price movements with mixed optimism and skepticism. |
+| 2026-11-02 21:16 | LITE | other | 7.3% | no model | 100% / 0% / 0% / 100% | Chatter focuses on the MRVL/LITE acquisition deal, with mixed reactions regarding valuation, dilution, and market impact. |
+| 2026-11-02 21:05 | MRVL | other | 1.6% | no model | 100% / 0% / 0% / 100% | Users discuss the negative market reaction to Marvell's acquisition of Lumentum, citing dilution and deal terms. |
+| 2026-11-02 20:10 | AAPL | other | 0.0% | no model | 100% / 0% / 0% / 5.0% | Users discuss AAPL earnings expectations, bearish sentiment, and potential market crashes. |
+| 2026-11-02 20:10 | WMT | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss Walmart stock, mentioning supply runs, price levels, and comparing it to other companies. |
+| 2026-11-02 19:43 | MU | other | 0.1% | no model | 100% / 12% / 0% / 0% | Chatter is a mix of extreme bearish panic, bankruptcy rumors, and sudden bullish calls to buy. |
+| 2026-11-02 18:46 | SMCI | other | 0.1% | no model | 100% / 9.1% / 9.1% / 18% | Users discuss SMCI earnings, valuation, and potential fraud risks while listing it in an earnings calendar. |
+| 2026-11-02 17:39 | SOUN | other | 0.1% | no model | 100% / 69% / 3.8% / 0% | Chatter focuses on a potential short squeeze for SOUN, with one user warning it is a pump and dump. |
+| 2026-11-02 15:08 | RKLB | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss RKLB holdings, past performance, and general market sentiment without specific upcoming events. |
+| 2026-11-02 13:09 | PLTR | other | 0.1% | no model | 100% / 0% / 0% / 0% | Mixed chatter regarding PLTR options, earnings expectations, and general market sentiment. |
+| 2026-11-02 07:17 | ATC | other | 1.0% | no model | 0% / 0% / 0% / 0% | All documents discuss a Lear jet crash ATC audio, not the GraniteShares Autocallable COIN ETF. |
 | 2026-11-01 19:38 | NNN | other | no model | no model | 10% / 10% / 0% / 0% | Chatter focuses on a 'NNN challenge' and slang usage rather than the REIT stock. |
 | 2026-10-31 21:03 | MSOS | other | no model | no model | 100% / 10% / 0% / 0% | Users discuss MSOS ETF price movements, election catalysts, and past losses without specific company events. |
 | 2026-10-31 02:57 | INO | other | no model | no model | 100% / 0% / 0% / 0% | Chatter discusses INO's price movement following FDA approval rumors and insider leak claims. |
@@ -46,19 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-30 13:25 | AMD | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss AMD's upcoming earnings, current price volatility, and bearish/bullish opinions regarding its valuation and AI prospects. |
 | 2026-10-30 11:53 | NVDA | other | no model | no model | 100% / 0% / 0% / 0% | Mixed chatter regarding NVDA earnings, price targets, and general market sentiment. |
 | 2026-10-30 11:00 | ARM | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss ARM's potential earnings, general market sentiment, and compare it to other chip stocks. |
-| 2026-10-30 10:30 | BURU | other | no model | no model | 100% / 20% / 0% / 10% | Users discuss BURU price targets, express bullish sentiment, and mention a potential financing event. |
-| 2026-10-30 09:12 | NKE | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss NKE positions, noting recent gains and joking about a potential pump-and-dump scheme. |
-| 2026-10-30 08:33 | PLTR | other | no model | no model | 100% / 0% / 0% / 0% | Mixed chatter includes throwback posts, earnings previews, bearish rumors about fake deals, and skepticism regarding software capabilities. |
-| 2026-10-30 05:02 | SCHD | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss SCHD as a safe dividend play, noting its performance and rotation from tech stocks. |
-| 2026-10-30 04:49 | VOO | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss holding VOO for retirement, express relief from trading stress, and joke about market volatility. |
-| 2026-10-30 01:20 | DJT | other | no model | no model | 100% / 20% / 0% / 0% | Users discuss DJT, referencing political figures, memes, and potential trading opportunities without specific corporate events. |
-| 2026-10-30 00:42 | DELL | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss a sharp price drop, rumors of bankruptcy, and past losses regarding DELL stock. |
-| 2026-10-30 00:00 | MSTR | other | no model | no model | 100% / 5.6% / 5.6% / 11% | Users discuss MSTR earnings, price movements, and speculate on a potential pump-and-dump scheme. |
-| 2026-10-29 22:53 | AAPL | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss AAPL's price resilience, valuation concerns, and its role as a safe haven amidst market volatility. |
-| 2026-10-29 22:12 | PINS | other | no model | no model | 100% / 30% / 0% / 60% | Users discuss PINS earnings and express bullish sentiment with price targets. |
-| 2026-10-29 22:12 | ROPE | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss buying $ROPE, referencing a hedge fund manager and general bullish sentiment. |
-| 2026-10-29 21:47 | GME | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss GME's recent price decline, potential eBay/Amazon acquisition rumors, and past squeeze events. |
-| 2026-10-29 21:35 | CROX | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss CROX performance, rotation from tech, and potential shorting opportunities. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
