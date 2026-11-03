@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-03T08:29:08Z by run `41602930263`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-03T08:39:08Z by run `41604574377`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -9,7 +9,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 |---|---|---|---|---|---|---|---|---|---|---|
 | AAOI | 2026-11-03 00:57 | mention spike | 20 | 7.57 | 11 | 1 | wallstreetbets 20 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xmeu2h/) |
 | AAPL | 2026-11-02 20:10 | mention spike | 411 | 57.43 | 211 | 1 | wallstreetbets 408, smallstreetbets 3 | Nasdaq | #1 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xm9hzx/comment/19s2geu2kdvyb/) |
-| AMD | 2026-11-02 21:58 | mention spike | 237 | 59.86 | 174 | 1 | wallstreetbets 236, smallstreetbets 1 | Nasdaq | #6 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xmcf27/) |
+| AMD | 2026-11-02 21:58 | mention spike | 238 | 59.71 | 175 | 1 | wallstreetbets 237, smallstreetbets 1 | Nasdaq | #6 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xmcf27/) |
 | APLD | 2026-11-03 07:23 | mention spike | 11 | 3.86 | 10 | 0 | wallstreetbets 11 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xm9hzx/comment/19s2fiuhp2zur/) |
 | ASTS | 2026-11-02 21:45 | mention spike | 53 | 17.14 | 39 | 0 | wallstreetbets 53 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xm9hzx/comment/19s2dn3otq32d/) |
 | IREN | 2026-11-03 08:03 | mention spike | 22 | 10.71 | 19 | 0 | wallstreetbets 22 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xm2b50/) |
