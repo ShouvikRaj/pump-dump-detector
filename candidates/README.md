@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-03T10:07:07Z by run `41615314093`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-03T10:12:08Z by run `41616932558`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -14,7 +14,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | ASTS | 2026-11-02 21:45 | mention spike | 54 | 17.14 | 40 | 0 | wallstreetbets 54 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xm9hzx/comment/19s2l5kgjn2f6/) |
 | IREN | 2026-11-03 08:03 | mention spike | 22 | 10.29 | 18 | 0 | wallstreetbets 22 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xm2b50/) |
 | LITE | 2026-11-02 21:16 | mention spike | 95 | 17.14 | 68 | 0 | wallstreetbets 95 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xmeu2h/) |
-| MRVL | 2026-11-02 21:05 | mention spike | 113 | 18.86 | 75 | 0 | wallstreetbets 111, smallstreetbets 2 | Nasdaq |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1xmlwif/) |
+| MRVL | 2026-11-02 21:05 | mention spike | 114 | 18.86 | 76 | 0 | wallstreetbets 112, smallstreetbets 2 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xmp5rp/) |
 | MSOS | 2026-10-31 21:03 | mention spike | 38 | 2.71 | 25 | 0 | wallstreetbets 38 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xkftz6/comment/19s241f4nl4kk/) |
 | MU | 2026-11-02 19:43 | mention spike | 33 | 10.0 | 11 | 0 | wallstreetbets 33 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xm9hzx/comment/19s2l0gih2o00/) |
 | PLTR | 2026-11-02 13:09 | mention spike | 226 | 17.0 | 145 | 1 | wallstreetbets 226 | Nasdaq | #4 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xm7gzv/) |
