@@ -1,6 +1,6 @@
 # Stage 4 labels
 
-Updated 2026-11-03T03:56:43Z. Every candidate and control gets the same rule, `label-v1`, written down before any outcome was looked at (docs/stage4.md in the code branch). Sessions count from the flag; returns are against the price at the flag. All rows: `labels/labels.csv`.
+Updated 2026-11-03T23:30:13Z. Every candidate and control gets the same rule, `label-v1`, written down before any outcome was looked at (docs/stage4.md in the code branch). Sessions count from the flag; returns are against the price at the flag. All rows: `labels/labels.csv`.
 
 - **pump**: up 50% or more within 5 sessions, then down 40% or more from that peak within the next 10
 - **real news**: earnings, a completed acquisition, a change of control, bankruptcy or a material agreement that isn't a share sale, filed with the SEC (8-K) between 72 hours before the flag and session 5; it beats pump
@@ -9,12 +9,12 @@ Updated 2026-11-03T03:56:43Z. Every candidate and control gets the same rule, `l
 
 | Archetype | Role | Pump | Real news | Not pump | Crash | Pending | Unknown |
 |---|---|---|---|---|---|---|---|
-| low float runner | candidate | 1 | 1 | 6 | 4 of 9 (44%) | 3 | 0 |
-| low float runner | control | 0 | 1 | 24 | 2 of 25 (8%) | 8 | 0 |
+| low float runner | candidate | 1 | 1 | 7 | 4 of 9 (44%) | 2 | 0 |
+| low float runner | control | 0 | 1 | 25 | 2 of 26 (8%) | 8 | 0 |
 | otc penny | candidate | 0 | 0 | 0 | - | 1 | 0 |
 | otc penny | control | 0 | 0 | 0 | - | 2 | 0 |
-| other | candidate | 2 | 68 | 138 | 9 of 156 (6%) | 105 | 0 |
-| other | control | 0 | 92 | 277 | 1 of 295 (0%) | 245 | 0 |
+| other | candidate | 2 | 75 | 143 | 9 of 164 (5%) | 103 | 0 |
+| other | control | 0 | 97 | 286 | 1 of 311 (0%) | 250 | 0 |
 | unknown | candidate | 0 | 0 | 0 | - | 0 | 1 |
 
 Crash counts the snapshots whose crash label has settled.
@@ -24,8 +24,17 @@ Crash counts the snapshots whose crash label has settled.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Label | Crash | Peak, 5 sessions | Drop from peak | Lowest close, 10 sessions | News filings |
 |---|---|---|---|---|---|---|---|---|---|
+| 2026-11-03 21:29 | ANET | candidate | other | real news |  |  |  |  | 8-K 2026-11-03T21:10 2.02,9.01 (news) |
+| 2026-11-03 21:29 | ALAB | candidate | other | real news |  |  |  |  | 8-K 2026-11-03T21:09 2.02,9.01 (news) |
+| 2026-11-03 15:08 | AEHR | candidate | other | real news |  |  |  |  | 8-K 2026-11-02T21:21 2.02,9.01 (news) |
 | 2026-11-02 21:16 | LITE | candidate | other | real news |  |  |  |  | 8-K 2026-11-02T13:39 1.01,5.02,7.01,9.01 (news) |
 | 2026-11-02 21:05 | MRVL | candidate | other | real news |  |  |  |  | 8-K 2026-11-02T13:09 1.01,9.01 (news) |
+| 2026-11-02 20:10 | AAPL | candidate | other | real news |  |  |  |  | 8-K 2026-11-02T21:30 2.02,9.01 (news) |
+| 2026-11-02 20:10 | IT | control | other | real news |  |  |  |  | 8-K 2026-11-03T13:05 2.02,7.01,9.01 (news) |
+| 2026-11-02 13:09 | PLTR | candidate | other | real news |  |  |  |  | 8-K 2026-11-02T21:06 2.02,7.01,9.01 (news) |
+| 2026-11-02 13:09 | IT | control | other | real news |  |  |  |  | 8-K 2026-11-03T13:05 2.02,7.01,9.01 (news) |
+| 2026-11-02 07:17 | VNO | control | other | real news |  |  |  |  | 8-K 2026-11-02T21:40 2.02,9.01 (news) |
+| 2026-10-30 22:07 | INSP | control | other | real news |  |  |  |  | 8-K 2026-11-02T21:29 2.02,7.01,9.01 (news) |
 | 2026-10-30 17:43 | OMCL | control | other | real news |  |  |  |  | 8-K 2026-10-29T10:35 2.02,9.01 (news) |
 | 2026-10-30 17:00 | SBUX | candidate | other | real news |  |  |  |  | 8-K 2026-10-29T20:07 2.02,9.01 (news) |
 | 2026-10-30 16:45 | CVSA | control | other | real news |  |  |  |  | 8-K 2026-10-29T20:16 2.02,9.01 (news) |
@@ -37,9 +46,11 @@ Crash counts the snapshots whose crash label has settled.
 | 2026-10-30 13:25 | TT | control | other | real news |  |  |  |  | 8-K 2026-10-29T10:40 2.02,9.01 (news) |
 | 2026-10-30 13:25 | SAIA | control | other | real news |  |  |  |  | 8-K 2026-10-29T11:45 2.02,5.02,7.01,8.01,9.01 (news) |
 | 2026-10-30 09:12 | FE | control | other | real news |  |  |  |  | 8-K 2026-10-27T20:31 2.02,7.01,9.01 (news) |
+| 2026-10-30 08:33 | PLTR | candidate | other | real news |  |  |  |  | 8-K 2026-11-02T21:06 2.02,7.01,9.01 (news) |
 | 2026-10-30 08:33 | EHC | control | other | real news |  |  |  |  | 8-K 2026-10-28T20:26 2.02,7.01,9.01 (news) |
 | 2026-10-30 08:33 | BOOT | control | other | real news |  |  |  |  | 8-K 2026-10-28T20:04 2.02,7.01,9.01 (news) |
 | 2026-10-30 00:00 | VTR | control | other | real news |  |  |  |  | 8-K 2026-10-27T20:32 2.02,9.01 (news) |
+| 2026-10-29 22:53 | AAPL | candidate | other | real news |  |  |  |  | 8-K 2026-11-02T21:30 2.02,9.01 (news) |
 | 2026-10-29 22:53 | PAG | control | other | real news |  |  |  |  | 8-K 2026-10-28T13:04 2.02,7.01,9.01 (news) |
 | 2026-10-29 22:12 | PINS | candidate | other | real news |  |  |  |  | 8-K 2026-10-29T20:07 2.02,9.01 (news) |
 | 2026-10-29 22:12 | CRI | control | other | real news |  |  |  |  | 8-K 2026-10-30T10:11 2.02,5.02,8.01 (news) |
@@ -63,16 +74,5 @@ Crash counts the snapshots whose crash label has settled.
 | 2026-10-28 22:11 | CFFI | control | other | real news |  |  |  |  | 8-K 2026-10-26T20:24 2.02,9.01 (news) |
 | 2026-10-28 21:57 | NOW | candidate | other | real news |  |  |  |  | 8-K 2026-10-28T21:10 2.02,9.01 (news) |
 | 2026-10-28 21:46 | GOOGL | candidate | other | real news |  |  |  |  | 8-K 2026-10-28T20:01 2.02,9.01 (news) |
-| 2026-10-28 21:20 | MRVL | candidate | other | real news |  |  |  |  | 8-K 2026-11-02T13:06 2.02,7.01,9.01 (news); 8-K 2026-11-02T13:09 1.01,9.01 (news) |
-| 2026-10-28 21:20 | LITE | candidate | other | real news |  |  |  |  | 8-K 2026-11-02T12:12 2.02,9.01 (news); 8-K 2026-11-02T13:39 1.01,5.02,7.01,9.01 (news) |
-| 2026-10-28 21:20 | FTNT | candidate | other | real news |  |  |  |  | 8-K 2026-10-28T20:09 2.02,9.01 (news) |
-| 2026-10-28 21:20 | NUE | control | other | real news |  |  |  |  | 8-K 2026-10-26T20:54 2.02,7.01,9.01 (news) |
-| 2026-10-28 20:50 | GOOG | candidate | other | real news |  |  |  |  | 8-K 2026-10-28T20:01 2.02,9.01 (news) |
-| 2026-10-28 16:10 | ENPH | candidate | other | real news |  |  |  |  | 8-K 2026-10-27T20:07 2.02,9.01 (news); 8-K 2026-10-29T20:06 8.01 |
-| 2026-10-28 16:10 | PECO | control | other | real news |  |  |  |  | 8-K 2026-10-26T20:18 2.02,7.01,9.01 (news) |
-| 2026-10-28 16:10 | EFOR | control | other | real news |  |  |  |  | 8-K 2026-10-28T20:09 2.02,9.01 (news) |
-| 2026-10-28 11:39 | VRT | candidate | other | real news |  |  |  |  | 8-K 2026-10-28T10:02 2.02,7.01,9.01 (news) |
-| 2026-10-28 11:39 | PSA | control | other | real news |  |  |  |  | 8-K 2026-10-26T20:11 2.02,9.01 (news); 8-K 2026-10-30T20:32 1.01,9.01 |
-| 2026-10-28 00:47 | ITW | control | other | real news |  |  |  |  | 8-K 2026-10-27T13:20 2.02,9.01 (news) |
 
-561 older rows are in `labels/labels.csv`.
+589 older rows are in `labels/labels.csv`.
