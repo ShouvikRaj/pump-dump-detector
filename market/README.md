@@ -1,13 +1,16 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-03T18:57:42Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-03T21:30:14Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-332 candidates and 661 controls so far. Archetypes: other 319, low_float_runner 11, otc_penny 1, unknown 1.
+335 candidates and 667 controls so far. Archetypes: other 322, low_float_runner 11, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| ANET | 2026-11-03 21:29 | other | listed | 182.9 | +7.6% | -9.1% | 1.8x | 1.05B | 1.2% | 0 |  |
+| AMC | 2026-11-03 21:29 | other | listed | 3.28 | +0.0% | +9.7% | 1.4x | 835.3M | 5.7% | 0 |  |
+| ALAB | 2026-11-03 21:29 | other | listed | 231.6 | -0.9% | -18.5% | 1.2x | 156.0M | 5.1% | 0 |  |
 | DDOG | 2026-11-03 18:57 | other | listed | 219.5 | +1.6% | -22.9% | 1.6x | 333.0M | 3.0% | 0 |  |
 | TSM | 2026-11-03 17:35 | other | listed | 405.1 | +1.6% | -6.1% | 1.1x | 37.84B | 0.1% | 0 |  |
 | AEHR | 2026-11-03 15:08 | other | listed | 62.42 | +21.3% | -9.1% | 1.6x | 31.2M | 18.0% | 0 |  |
@@ -35,6 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | AAOI | 2026-10-31 00:51 | other | listed | 69.39 | -12.4% | +16.3% | 0.8x | 80.8M | 20.2% | 1 |  |
 | QCOM | 2026-10-31 00:21 | other | listed | 165.3 | -10.8% | +7.3% | 0.8x | 1.05B | 2.8% | 1 |  |
 | TLT | 2026-10-30 22:07 | other | listed | 81.67 | -0.2% | +0.6% | 1.0x |  |  |  |  |
-| SOXL | 2026-10-30 19:57 | other | listed | 71.7 | -30.0% | +24.7% | 1.1x |  |  |  |  |
-| SOXX | 2026-10-30 19:04 | other | listed | 461.9 | -10.1% | +8.0% | 0.7x |  |  |  |  |
-| TQQQ | 2026-10-30 18:26 | other | listed | 60.62 | -12.5% | +4.3% | 1.2x |  |  |  |  |
