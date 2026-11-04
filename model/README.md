@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-03T06:36:44Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-04T00:24:27Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-02)
 
@@ -19,6 +19,17 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-03 23:11 | NVTS | other | 0.4% | no model | 100% / 0% / 0% / 30% | Users discuss NVTS earnings, price movements, and express bullish or bearish opinions. |
+| 2026-11-03 22:03 | DAMD | other | **41%** | no model | 100% / 0% / 0% / 0% | Users discuss buying the inverse AMD ETF to short the underlying stock. |
+| 2026-11-03 21:29 | ALAB | other | 0.4% | no model | 100% / 0% / 0% / 0% | Users discuss ALAB in relation to a college semiconductor event and speculate on its price movement. |
+| 2026-11-03 21:29 | AMC | other | 0.1% | no model | 90% / 10% / 0% / 10% | Users discuss AMC stock, mentioning Citadel, earnings, and potential fat-finger errors. |
+| 2026-11-03 21:29 | ANET | other | 0.1% | no model | 100% / 0% / 0% / 0% | Mixed chatter regarding ANET stock performance, insider selling concerns, and general market sentiment. |
+| 2026-11-03 18:57 | DDOG | other | 0.2% | no model | 100% / 10% / 0% / 0% | Users discuss DDOG stock prices, express hope for recovery, and mention buying calls. |
+| 2026-11-03 17:35 | TSM | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss TSM price movements, supply chain issues, and express bullish sentiment with no specific company events mentioned. |
+| 2026-11-03 15:08 | AEHR | other | 0.6% | no model | 100% / 60% / 0% / 30% | Users discuss AEHR earnings, short squeeze potential, and express bullish expectations for a price pump. |
+| 2026-11-03 14:58 | OKLO | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss OKLO price history, portfolio performance, and express confusion or regret over recent losses. |
+| 2026-11-03 08:03 | IREN | other | 0.4% | no model | 100% / 9.1% / 0% / 4.5% | Mixed chatter on IREN ranging from bullish earnings rumors to bearish price targets and jokes. |
+| 2026-11-03 07:23 | APLD | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users express extreme distress, massive losses, and frustration over the stock's decline. |
 | 2026-11-03 00:57 | AAOI | other | 1.2% | no model | 100% / 35% / 0% / 24% | Users discuss AAOI earnings, potential AMD partnership rumors, valuation, and recent dilution. |
 | 2026-11-02 21:58 | AMD | other | 0.1% | no model | 100% / 0% / 0% / 2.5% | Users discuss AMD's high valuation, upcoming earnings, and potential price drops while debating AI sector trends. |
 | 2026-11-02 21:45 | ASTS | other | 0.2% | no model | 100% / 10% / 0% / 0% | Users discuss ASTS stock performance, express frustration over delays, and debate buying opportunities. |
@@ -48,17 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-30 17:00 | SBUX | other | no model | no model | 100% / 10% / 0% / 20% | Mixed chatter on SBUX including earnings surprise, CEO praise, and unrelated jokes. |
 | 2026-10-30 17:00 | SPY | other | no model | no model | 100% / 2.5% / 0% / 0% | Users discuss SPY price action, volatility, and trading strategies with mixed bullish and bearish sentiments. |
 | 2026-10-30 16:45 | RSP | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss RSP outperforming SPY and QQQ, with some mentioning calls and portfolio gains. |
-| 2026-10-30 16:45 | WMT | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss WMT price movements, valuations, and portfolio positions without specific company events or pump-and-dump warnings. |
-| 2026-10-30 15:55 | SOXS | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss SOXS price movements, express regret over selling, and speculate on future gains. |
-| 2026-10-30 15:15 | USO | other | no model | no model | 100% / 25% / 0% / 0% | Users discuss USO price movements, express bullish sentiment, and speculate on short covering without mentioning specific corporate events. |
-| 2026-10-30 15:02 | SGOV | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss holding SGOV as a safe haven or joke about its stability, with no specific corporate events or pump-and-dump warnings. |
-| 2026-10-30 14:50 | SQQQ | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss SQQQ price movements, express regret over selling, and joke about buying TQQQ instead. |
-| 2026-10-30 14:19 | QQQ | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss QQQ price levels, options trading, and market sentiment with mixed bullish and bearish views. |
-| 2026-10-30 14:07 | COIN | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss shorting COIN, mention CEO selling, and express bearish views. |
-| 2026-10-30 13:54 | TSM | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss holding TSM, note its resilience compared to other tech stocks, and mention options positions. |
-| 2026-10-30 13:42 | SMCI | other | no model | no model | 100% / 0% / 9.1% / 0% | Users discuss SMCI's accounting issues, past performance, and potential buying opportunities despite skepticism. |
-| 2026-10-30 13:25 | AMD | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss AMD's upcoming earnings, current price volatility, and bearish/bullish opinions regarding its valuation and AI prospects. |
-| 2026-10-30 11:53 | NVDA | other | no model | no model | 100% / 0% / 0% / 0% | Mixed chatter regarding NVDA earnings, price targets, and general market sentiment. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
