@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-04T00:24:27Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-04T06:04:50Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-02)
 
@@ -19,6 +19,8 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-04 05:49 | SPCX | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss SPCX price drops, Elon Musk's political troubles, and potential nationalization or merger rumors. |
+| 2026-11-04 01:25 | SGOV | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss SGOV as a safe cash alternative and express relief at holding it during market volatility. |
 | 2026-11-03 23:11 | NVTS | other | 0.4% | no model | 100% / 0% / 0% / 30% | Users discuss NVTS earnings, price movements, and express bullish or bearish opinions. |
 | 2026-11-03 22:03 | DAMD | other | **41%** | no model | 100% / 0% / 0% / 0% | Users discuss buying the inverse AMD ETF to short the underlying stock. |
 | 2026-11-03 21:29 | ALAB | other | 0.4% | no model | 100% / 0% / 0% / 0% | Users discuss ALAB in relation to a college semiconductor event and speculate on its price movement. |
@@ -57,8 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-10-30 17:43 | INTL | other | no model | no model | 90% / 0% / 0% / 0% | Users discuss INTL's price drop, confusion over its identity, and comparisons to other stocks. |
 | 2026-10-30 17:00 | APP | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss APP stock price drops, express confusion about upcoming earnings, and joke about portfolio losses. |
 | 2026-10-30 17:00 | SBUX | other | no model | no model | 100% / 10% / 0% / 20% | Mixed chatter on SBUX including earnings surprise, CEO praise, and unrelated jokes. |
-| 2026-10-30 17:00 | SPY | other | no model | no model | 100% / 2.5% / 0% / 0% | Users discuss SPY price action, volatility, and trading strategies with mixed bullish and bearish sentiments. |
-| 2026-10-30 16:45 | RSP | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss RSP outperforming SPY and QQQ, with some mentioning calls and portfolio gains. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
