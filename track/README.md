@@ -1,9 +1,15 @@
 # Stage 3 tracking
 
-Updated 2026-11-03T22:58:15Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-11-04T02:49:11Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-11-04 01:25 | PRK | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-04 01:25 | AAMI | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-04 01:25 | SGOV | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-11-03 23:11 | WB | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-03 23:11 | CSQR | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-03 23:11 | NVTS | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-11-03 22:03 | ASBP | control | low_float_runner | active | 0 |  |  |  |  |  |
 | 2026-11-03 22:03 | KARD | control | other | active | 0 |  |  |  |  |  |
 | 2026-11-03 22:03 | DAMD | candidate | other | active | 0 |  |  |  |  |  |
@@ -453,7 +459,7 @@ Updated 2026-11-03T22:58:15Z. Each candidate and control is followed for 20 trad
 | 2026-10-22 17:45 | BLNK | control | other | active | 9 | +8% |  | +4% |  |  |
 | 2026-10-22 17:45 | AAOI | candidate | other | active | 9 | +22% |  | +22% |  |  |
 | 2026-10-22 17:45 | ORCL | candidate | other | active | 9 | +20% |  | +16% |  |  |
-| 2026-10-22 17:45 | TOGI | candidate | otc_penny | active | 8 | +9% |  | +9% |  |  |
+| 2026-10-22 17:45 | TOGI | candidate | otc_penny | active | 9 | +9% |  | +9% |  |  |
 | 2026-10-22 17:45 | XXII | candidate | other | active | 9 | +76% |  | -61% |  |  |
 | 2026-10-22 16:39 | MWH | control | other | active | 9 | +8% |  | +8% |  |  |
 | 2026-10-22 16:39 | BBUC | control | other | active | 9 | +2% |  | +1% |  |  |
@@ -875,7 +881,7 @@ Updated 2026-11-03T22:58:15Z. Each candidate and control is followed for 20 trad
 | 2026-10-07 20:50 | SMCI | candidate | other | active | 19 | -2% | -30% | -20% |  | 3 |
 | 2026-10-07 20:50 | UUUU | candidate | other | active | 19 | -1% | -28% | -19% |  | 2 |
 | 2026-10-07 20:37 | ABXL | control | other | active | 19 | +0% | -1% | -1% |  | 0 |
-| 2026-10-07 20:37 | IMPPP | control | other | active | 18 | +0% | -100% | -1% |  | 0 |
+| 2026-10-07 20:37 | IMPPP | control | other | active | 19 | +0% | -100% | -1% |  | 0 |
 | 2026-10-07 20:37 | LEVI | candidate | other | active | 19 | +3% | -2% | +2% |  | 0 |
 | 2026-10-07 19:18 | TTEK | control | other | done | 20 | +4% | -2% | +3% | +21% | 0 |
 | 2026-10-07 19:18 | RAL | control | other | done | 20 | +1% | -12% | -1% | -3% | 0 |
@@ -883,7 +889,7 @@ Updated 2026-11-03T22:58:15Z. Each candidate and control is followed for 20 trad
 | 2026-10-07 17:44 | URI | control | other | done | 20 | +3% | -6% | +2% | +13% | 0 |
 | 2026-10-07 17:44 | DJCO | control | other | done | 20 | +4% | -14% | +3% | +1% | 1 |
 | 2026-10-07 17:44 | LLY | candidate | other | done | 20 | +1% | -6% | -2% | +18% | 0 |
-| 2026-10-07 16:38 | DUKRW | control | low_float_runner | active | 19 | +17% | -49% | -7% |  | 0 |
+| 2026-10-07 16:38 | DUKRW | control | low_float_runner | done | 20 | +17% | -49% | -7% | -31% | 0 |
 | 2026-10-07 16:38 | MKZR | control | low_float_runner | done | 20 | +8% | -35% | -8% | -28% | 0 |
 | 2026-10-07 16:38 | BIYA | candidate | low_float_runner | done | 20 | +37% | -59% | -30% | -42% | 0 |
 | 2026-10-07 13:01 | LIN | control | other | done | 20 | +0% | -1% | -0% | +4% | 0 |
