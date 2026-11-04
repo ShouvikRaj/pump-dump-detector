@@ -1,13 +1,15 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-04T21:07:32Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-04T21:19:37Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-358 candidates and 713 controls so far. Archetypes: other 344, low_float_runner 12, otc_penny 1, unknown 1.
+360 candidates and 717 controls so far. Archetypes: other 346, low_float_runner 12, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| COHR | 2026-11-04 21:19 | other | listed | 197.9 | +1.4% | -18.6% | 1.4x | 195.0M | 4.6% | 0 |  |
+| APP | 2026-11-04 21:19 | other | listed | 315.1 | +16.0% | +4.5% | 2.7x | 265.4M | 4.2% | 0 |  |
 | UUUU | 2026-11-04 21:07 | other | listed | 7.27 | +0.8% | -14.1% | 1.0x | 248.2M | 23.4% | 1 |  |
 | ARM | 2026-11-04 20:01 | other | listed | 191.2 | -5.6% | -10.6% | 0.7x | 142.6M | 12.4% | 0 |  |
 | MU | 2026-11-04 19:48 | other | listed | 801.9 | -6.2% | -7.9% | 0.8x | 1.13B | 2.0% | 0 |  |
@@ -36,5 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | ALAB | 2026-11-03 21:29 | other | listed | 231.6 | -0.9% | -18.5% | 1.2x | 156.0M | 5.1% | 0 |  |
 | DDOG | 2026-11-03 18:57 | other | listed | 219.5 | +1.6% | -22.9% | 1.6x | 333.0M | 3.0% | 0 |  |
 | TSM | 2026-11-03 17:35 | other | listed | 405.1 | +1.6% | -6.1% | 1.1x | 37.84B | 0.1% | 0 |  |
-| AEHR | 2026-11-03 15:08 | other | listed | 62.42 | +21.3% | -9.1% | 1.6x | 31.2M | 18.0% | 0 |  |
-| OKLO | 2026-11-03 14:58 | other | listed | 24.05 | +2.3% | -9.3% | 0.9x | 157.4M | 22.8% | 1 |  |
