@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-04T20:01:38Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-04T21:07:32Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-357 candidates and 711 controls so far. Archetypes: other 343, low_float_runner 12, otc_penny 1, unknown 1.
+358 candidates and 713 controls so far. Archetypes: other 344, low_float_runner 12, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| UUUU | 2026-11-04 21:07 | other | listed | 7.27 | +0.8% | -14.1% | 1.0x | 248.2M | 23.4% | 1 |  |
 | ARM | 2026-11-04 20:01 | other | listed | 191.2 | -5.6% | -10.6% | 0.7x | 142.6M | 12.4% | 0 |  |
 | MU | 2026-11-04 19:48 | other | listed | 801.9 | -6.2% | -7.9% | 0.8x | 1.13B | 2.0% | 0 |  |
 | MCD | 2026-11-04 19:21 | other | listed | 279.1 | +6.1% | +5.4% | 1.1x | 706.6M | 1.9% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | TSM | 2026-11-03 17:35 | other | listed | 405.1 | +1.6% | -6.1% | 1.1x | 37.84B | 0.1% | 0 |  |
 | AEHR | 2026-11-03 15:08 | other | listed | 62.42 | +21.3% | -9.1% | 1.6x | 31.2M | 18.0% | 0 |  |
 | OKLO | 2026-11-03 14:58 | other | listed | 24.05 | +2.3% | -9.3% | 0.9x | 157.4M | 22.8% | 1 |  |
-| IREN | 2026-11-03 08:03 | other | listed | 22.42 | +1.8% | -13.4% | 0.9x | 385.8M | 24.5% | 0 |  |
