@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-04T14:27:37Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-04T14:40:40Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-345 candidates and 687 controls so far. Archetypes: other 331, low_float_runner 12, otc_penny 1, unknown 1.
+346 candidates and 689 controls so far. Archetypes: other 332, low_float_runner 12, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| DJT | 2026-11-04 14:40 | other | listed | 5.3 | -10.9% | -6.4% | 0.9x | 160.9M | 10.9% | 0 |  |
 | TSLA | 2026-11-04 14:27 | other | listed | 380 | -4.6% | -2.2% | 0.7x | 2.82B | 2.5% | 0 |  |
 | TLT | 2026-11-04 13:44 | other | listed | 81.39 | +0.3% | -0.6% | 0.8x |  |  |  |  |
 | PARA | 2026-11-04 13:44 | low float runner | listed | 1.17 | -57.0% | +540.0% | 146.8x | 0.3M | 76.2% | 4 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | AAPL | 2026-11-02 20:10 | other | listed | 339 | -1.6% | -0.9% | 1.8x | 14.57B | 0.9% | 0 |  |
 | MU | 2026-11-02 19:43 | other | listed | 837.1 | -5.4% | +0.8% | 1.2x | 1.13B | 2.0% | 0 |  |
 | SMCI | 2026-11-02 18:46 | other | listed | 31.17 | -5.4% | +0.0% | 1.1x | 557.7M | 14.4% | 0 |  |
-| SOUN | 2026-11-02 17:39 | other | listed | 4.285 | +1.5% | -4.7% | 1.1x | 401.1M | 42.6% | 1 |  |
