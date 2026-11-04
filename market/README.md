@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-03T23:11:32Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-04T01:25:53Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-337 candidates and 671 controls so far. Archetypes: other 324, low_float_runner 11, otc_penny 1, unknown 1.
+338 candidates and 673 controls so far. Archetypes: other 325, low_float_runner 11, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SGOV | 2026-11-04 01:25 | other | listed | 100.4 | +0.0% | -0.2% | 1.8x |  |  |  |  |
 | NVTS | 2026-11-03 23:11 | other | listed | 9.14 | +6.8% | -8.4% | 1.3x | 242.9M | 21.0% | 0 |  |
 | DAMD | 2026-11-03 22:03 | other | listed | 10.54 | -15.9% | +26.4% | 2.8x |  |  |  |  |
 | ANET | 2026-11-03 21:29 | other | listed | 182.9 | +7.6% | -9.1% | 1.8x | 1.05B | 1.2% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | MSOS | 2026-10-31 21:03 | other | listed | 3.95 | +0.3% | +0.8% | 1.3x |  |  |  |  |
 | INO | 2026-10-31 02:57 | other | listed | 2.06 | +243.3% | -33.3% | 15.5x | 95.8M | 22.2% | 0 |  |
 | GLD | 2026-10-31 00:58 | other | listed | 356.1 | -3.4% | -0.1% | 1.2x |  |  | 0 |  |
-| AAOI | 2026-10-31 00:51 | other | listed | 69.39 | -12.4% | +16.3% | 0.8x | 80.8M | 20.2% | 1 |  |
