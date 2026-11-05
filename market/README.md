@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-05T09:54:35Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-05T13:17:38Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-368 candidates and 733 controls so far. Archetypes: other 354, low_float_runner 12, otc_penny 1, unknown 1.
+369 candidates and 735 controls so far. Archetypes: other 355, low_float_runner 12, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| OKLO | 2026-11-05 13:17 | other | listed | 21.5 | -2.8% | -18.4% | 1.4x | 157.4M | 22.8% | 1 |  |
 | WMT | 2026-11-05 09:54 | other | listed | 129.7 | +0.4% | +8.8% | 1.4x | 4.85B | 1.6% | 4 |  |
 | IBKR | 2026-11-05 08:22 | other | listed | 78.05 | +0.2% | -6.8% | 1.6x | 438.4M | 3.0% | 0 |  |
 | TTWO | 2026-11-05 07:30 | other | listed | 209.6 | +0.3% | +7.0% | 1.8x | 186.1M | 5.2% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | MRNA | 2026-11-04 13:20 | other | listed | 234.8 | +2.8% | +9.8% | 0.5x | 372.0M | 8.8% | 0 |  |
 | DXYZ | 2026-11-04 12:50 | other | listed | 26.61 | -0.2% | -5.2% | 0.7x |  |  | 2 |  |
 | FSLR | 2026-11-04 07:16 | other | listed | 191 | +2.7% | +5.7% | 1.6x | 101.7M | 11.4% | 0 |  |
-| SPCX | 2026-11-04 05:49 | other | listed | 138.8 | -1.7% | -4.9% | 0.7x | 3.05B | 5.5% | 0 |  |
