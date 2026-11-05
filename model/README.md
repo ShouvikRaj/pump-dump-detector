@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-04T06:04:50Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-05T00:20:49Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-02)
 
@@ -19,6 +19,28 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-04 22:27 | BROS | other | 0.2% | no model | 100% / 0% / 0% / 10% | Users discuss a sharp price drop and question a recent earnings call for Dutch Bros. |
+| 2026-11-04 21:19 | APP | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss Applovin's earnings beat, massive put open interest, and price targets in a highly speculative manner. |
+| 2026-11-04 21:19 | COHR | other | 1.2% | no model | 100% / 0% / 0% / 23% | Users discuss COHR earnings, express bearish sentiment, and joke about the stock price dropping. |
+| 2026-11-04 21:07 | UUUU | other | 0.1% | no model | 100% / 62% / 0% / 23% | Users discuss UUUU earnings, price targets, and potential stock movements in r/wallstreetbets. |
+| 2026-11-04 20:01 | ARM | other | 0.1% | no model | 100% / 0% / 0% / 6.2% | Users discuss ARM earnings, short positions, and potential price drops before the event. |
+| 2026-11-04 19:48 | MU | other | 0.1% | no model | 100% / 16% / 0% / 0% | Chatter includes hype, price targets, and confusion over a price drop, with no specific corporate events mentioned. |
+| 2026-11-04 19:21 | MCD | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss MCD price gains, ownership, and general market sentiment without specific events or pitches. |
+| 2026-11-04 18:32 | NBIS | other | 0.1% | no model | 100% / 0% / 5.0% / 0% | Users express extreme bearish sentiment, calling the stock a scam or pump-and-dump, while some speculate on a potential rebound. |
+| 2026-11-04 18:32 | USO | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss USO price movements, geopolitical tensions with Iran, and trading strategies involving puts and calls. |
+| 2026-11-04 18:08 | CRWV | other | 0.2% | no model | 100% / 18% / 15% / 0% | Chatter is overwhelmingly bearish, with users calling CRWV a scam, predicting insolvency, and warning of a pump-and-dump. |
+| 2026-11-04 18:08 | IREN | other | 0.2% | no model | 100% / 0% / 0% / 3.3% | Mixed chatter regarding IREN data center policies, earnings expectations, and potential regulatory headwinds. |
+| 2026-11-04 18:08 | QCOM | other | 0.1% | no model | 100% / 0% / 0% / 14% | Users discuss QCOM earnings, potential price moves, and specific financial data in a bearish to neutral tone. |
+| 2026-11-04 15:47 | DUOL | other | 0.1% | no model | 100% / 10% / 20% / 0% | Users discuss potential earnings leaks, massive price spikes, and extreme volatility for DUOL. |
+| 2026-11-04 15:47 | VST | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss VST price drops, political news, and express bearish sentiment without specific company events. |
+| 2026-11-04 15:35 | UBER | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss UBER stock ownership, price targets, and robotaxi growth without specific company events. |
+| 2026-11-04 14:40 | DJT | other | 0.1% | no model | 100% / 0% / 0% / 0% | Chatter includes jokes, shorting calls, and confusion about the stock's identity and recent performance. |
+| 2026-11-04 14:27 | TSLA | other | 0.0% | no model | 100% / 0% / 0% / 0% | Users discuss TSLA's price drop, attributing it to Elon Musk's political involvement and potential investigations. |
+| 2026-11-04 13:44 | PARA | low float runner | **77%** | no model | 100% / 10% / 0% / 0% | Chatter focuses on PARA price movements, breakouts, and a trading recap showing significant gains. |
+| 2026-11-04 13:44 | TLT | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss TLT price movements, dividends, and market correlations without specific corporate events. |
+| 2026-11-04 13:20 | MRNA | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users express confusion and frustration over Moderna's unexpected price rise, with some admitting short squeezes. |
+| 2026-11-04 12:50 | DXYZ | other | 0.1% | no model | 100% / 30% / 10% / 0% | Users discuss DXYZ's potential rise due to an Anthropic IPO, with mixed sentiments on dilution and valuation. |
+| 2026-11-04 07:16 | FSLR | other | 0.1% | no model | 100% / 9.1% / 0% / 0% | Users discuss FSLR price movements, political context, and express bullish optimism or caution regarding potential pumps. |
 | 2026-11-04 05:49 | SPCX | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss SPCX price drops, Elon Musk's political troubles, and potential nationalization or merger rumors. |
 | 2026-11-04 01:25 | SGOV | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss SGOV as a safe cash alternative and express relief at holding it during market volatility. |
 | 2026-11-03 23:11 | NVTS | other | 0.4% | no model | 100% / 0% / 0% / 30% | Users discuss NVTS earnings, price movements, and express bullish or bearish opinions. |
@@ -37,28 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-02 21:45 | ASTS | other | 0.2% | no model | 100% / 10% / 0% / 0% | Users discuss ASTS stock performance, express frustration over delays, and debate buying opportunities. |
 | 2026-11-02 21:29 | HTZ | other | 0.1% | no model | 100% / 0% / 0% / 20% | Users discuss HTZ earnings and price movements with mixed optimism and skepticism. |
 | 2026-11-02 21:16 | LITE | other | 7.3% | no model | 100% / 0% / 0% / 100% | Chatter focuses on the MRVL/LITE acquisition deal, with mixed reactions regarding valuation, dilution, and market impact. |
-| 2026-11-02 21:05 | MRVL | other | 1.6% | no model | 100% / 0% / 0% / 100% | Users discuss the negative market reaction to Marvell's acquisition of Lumentum, citing dilution and deal terms. |
-| 2026-11-02 20:10 | AAPL | other | 0.0% | no model | 100% / 0% / 0% / 5.0% | Users discuss AAPL earnings expectations, bearish sentiment, and potential market crashes. |
-| 2026-11-02 20:10 | WMT | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss Walmart stock, mentioning supply runs, price levels, and comparing it to other companies. |
-| 2026-11-02 19:43 | MU | other | 0.1% | no model | 100% / 12% / 0% / 0% | Chatter is a mix of extreme bearish panic, bankruptcy rumors, and sudden bullish calls to buy. |
-| 2026-11-02 18:46 | SMCI | other | 0.1% | no model | 100% / 9.1% / 9.1% / 18% | Users discuss SMCI earnings, valuation, and potential fraud risks while listing it in an earnings calendar. |
-| 2026-11-02 17:39 | SOUN | other | 0.1% | no model | 100% / 69% / 3.8% / 0% | Chatter focuses on a potential short squeeze for SOUN, with one user warning it is a pump and dump. |
-| 2026-11-02 15:08 | RKLB | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss RKLB holdings, past performance, and general market sentiment without specific upcoming events. |
-| 2026-11-02 13:09 | PLTR | other | 0.1% | no model | 100% / 0% / 0% / 0% | Mixed chatter regarding PLTR options, earnings expectations, and general market sentiment. |
-| 2026-11-02 07:17 | ATC | other | 1.0% | no model | 0% / 0% / 0% / 0% | All documents discuss a Lear jet crash ATC audio, not the GraniteShares Autocallable COIN ETF. |
-| 2026-11-01 19:38 | NNN | other | no model | no model | 10% / 10% / 0% / 0% | Chatter focuses on a 'NNN challenge' and slang usage rather than the REIT stock. |
-| 2026-10-31 21:03 | MSOS | other | no model | no model | 100% / 10% / 0% / 0% | Users discuss MSOS ETF price movements, election catalysts, and past losses without specific company events. |
-| 2026-10-31 02:57 | INO | other | no model | no model | 100% / 0% / 0% / 0% | Chatter discusses INO's price movement following FDA approval rumors and insider leak claims. |
-| 2026-10-31 00:58 | GLD | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss GLD price drops, express frustration, and place bearish bets. |
-| 2026-10-31 00:51 | AAOI | other | no model | no model | 100% / 0% / 0% / 0% | Chatter focuses on AAOI price volatility, user holdings, and a specific warning about customer concentration risks. |
-| 2026-10-31 00:21 | QCOM | other | no model | no model | 100% / 10% / 0% / 10% | Users discuss QCOM earnings, express bearish views on price drops, and some buy positions. |
-| 2026-10-30 22:07 | TLT | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss TLT price movements, trading strategies, and comparisons to other assets without specific corporate events. |
-| 2026-10-30 19:57 | SOXL | other | no model | no model | 100% / 5.0% / 0% / 0% | Users discuss SOXL's massive drop, margin calls, and leveraged ETF risks. |
-| 2026-10-30 19:04 | SOXX | other | no model | no model | 100% / 17% / 0% / 0% | Users discuss SOXX price drops, portfolio composition, and market volatility with mixed bullish and bearish sentiments. |
-| 2026-10-30 18:26 | TQQQ | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss TQQQ price levels, express bullish optimism, and joke about potential drops or gains. |
-| 2026-10-30 17:43 | INTL | other | no model | no model | 90% / 0% / 0% / 0% | Users discuss INTL's price drop, confusion over its identity, and comparisons to other stocks. |
-| 2026-10-30 17:00 | APP | other | no model | no model | 100% / 0% / 0% / 0% | Users discuss APP stock price drops, express confusion about upcoming earnings, and joke about portfolio losses. |
-| 2026-10-30 17:00 | SBUX | other | no model | no model | 100% / 10% / 0% / 20% | Mixed chatter on SBUX including earnings surprise, CEO praise, and unrelated jokes. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
@@ -66,7 +66,29 @@ Each development week replayed exactly as it would have run: its model trained o
 
 ### crash
 
-No scored candidate with a settled label yet.
+| Candidates | n | Positives | Base rate | Flagged | Precision | Recall | F1 | Lift | AP | AUC |
+|---|---|---|---|---|---|---|---|---|---|---|
+| all candidates | 1 | 1 | 100% | 1 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
+| low float runner | 1 | 1 | 100% | 1 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
+| pump types together | 1 | 1 | 100% | 1 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
+
+| Model | AP | Precision | Recall | F1 |
+|---|---|---|---|---|
+| all groups | 1.00 | 100% | 100% | 1.00 |
+| market only | 1.00 | 100% | 100% | 1.00 |
+| social only | 1.00 | 100% | 100% | 1.00 |
+
+| Robustness check | Result | Detail |
+|---|---|---|
+| beats the base rate | not enough data | 1 positives (needs 10) |
+| separate periods | not enough data | needs 3 positives in each of three blocks of weeks |
+| per pump type | not enough data | needs 5 positives in a pump type |
+| beats the control group | not enough data | 0 flagged with settled controls (needs 10) |
+| survives slippage | not enough data | 0 flagged with a 10-session return (needs 10) |
+
+Verdict: **not robust yet** (some checks need more labels).
+
+Feature groups: all used; weak groups are pruned once the replay holds 20 positive candidates (1 so far).
 
 ### pump
 
