@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-05T21:12:43Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-05T22:06:34Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-376 candidates and 749 controls so far. Archetypes: other 362, low_float_runner 12, otc_penny 1, unknown 1.
+377 candidates and 749 controls so far. Archetypes: other 362, low_float_runner 12, unknown 2, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| ANT | 2026-11-05 22:06 | unknown | unknown |  |  |  |  |  |  | 2 | yahoo: No data found, symbol may be delisted |
 | SNDK | 2026-11-05 21:12 | other | listed | 810.7 | +0.5% | -39.4% | 3.2x | 140.4M | 3.4% | 0 |  |
 | ROPE | 2026-11-05 20:49 | other | listed | 31 | -2.0% | +3.8% | 0.7x |  |  |  |  |
 | SQQQ | 2026-11-05 19:19 | other | listed | 48.29 | +16.2% | +14.6% | 1.5x |  |  |  |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | CRWV | 2026-11-04 18:08 | other | listed | 48.82 | -9.2% | -9.8% | 0.6x | 328.3M | 21.3% | 1 |  |
 | VST | 2026-11-04 15:47 | other | listed | 119.3 | -14.6% | -4.8% | 0.8x | 313.0M | 3.2% | 3 |  |
 | DUOL | 2026-11-04 15:47 | other | listed | 167.7 | +31.0% | -9.4% | 2.9x | 40.0M | 17.8% | 0 |  |
-| UBER | 2026-11-04 15:35 | other | listed | 71.52 | +7.4% | +1.2% | 1.3x | 2.04B | 2.4% | 2 |  |
