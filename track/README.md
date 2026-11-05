@@ -1,9 +1,15 @@
 # Stage 3 tracking
 
-Updated 2026-11-04T22:55:15Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-11-05T02:54:19Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-11-05 01:08 | APPF | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-05 01:08 | FNV | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-05 01:08 | SOXX | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-11-05 00:45 | UI | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-05 00:45 | ARGX | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-05 00:45 | GEV | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-11-04 22:27 | PCVX | control | other | active | 0 |  |  |  |  |  |
 | 2026-11-04 22:27 | SPNT | control | other | active | 0 |  |  |  |  |  |
 | 2026-11-04 22:27 | BROS | candidate | other | active | 0 |  |  |  |  |  |
@@ -47,7 +53,7 @@ Updated 2026-11-04T22:55:15Z. Each candidate and control is followed for 20 trad
 | 2026-11-04 15:47 | DUOL | candidate | other | active | 1 |  |  |  |  |  |
 | 2026-11-04 15:47 | VST | candidate | other | active | 1 |  |  |  |  |  |
 | 2026-11-04 15:35 | NEE | control | other | active | 1 |  |  |  |  |  |
-| 2026-11-04 15:35 | CCZ | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-04 15:35 | CCZ | control | other | active | 1 |  |  |  |  |  |
 | 2026-11-04 15:35 | UBER | candidate | other | active | 1 |  |  |  |  |  |
 | 2026-11-04 14:40 | ALMS | control | other | active | 1 |  |  |  |  |  |
 | 2026-11-04 14:40 | AMBP | control | other | active | 1 |  |  |  |  |  |
@@ -950,7 +956,7 @@ Updated 2026-11-04T22:55:15Z. Each candidate and control is followed for 20 trad
 | 2026-10-07 20:50 | SMCI | candidate | other | done | 20 | -2% | -30% | -20% | -34% | 3 |
 | 2026-10-07 20:50 | UUUU | candidate | other | done | 20 | -1% | -28% | -19% | -30% | 2 |
 | 2026-10-07 20:37 | ABXL | control | other | done | 20 | +0% | -1% | -1% | +1% | 0 |
-| 2026-10-07 20:37 | IMPPP | control | other | active | 19 | +0% | -100% | -1% |  | 0 |
+| 2026-10-07 20:37 | IMPPP | control | other | done | 20 | +0% | -100% | -1% | -1% | 0 |
 | 2026-10-07 20:37 | LEVI | candidate | other | done | 20 | +3% | -2% | +2% | +24% | 0 |
 | 2026-10-07 19:18 | TTEK | control | other | done | 20 | +4% | -2% | +3% | +21% | 0 |
 | 2026-10-07 19:18 | RAL | control | other | done | 20 | +1% | -12% | -1% | -3% | 0 |
