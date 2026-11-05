@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-05T17:29:43Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-05T19:19:31Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-373 candidates and 743 controls so far. Archetypes: other 359, low_float_runner 12, otc_penny 1, unknown 1.
+374 candidates and 745 controls so far. Archetypes: other 360, low_float_runner 12, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SQQQ | 2026-11-05 19:19 | other | listed | 48.29 | +16.2% | +14.6% | 1.5x |  |  |  |  |
 | APLD | 2026-11-05 17:29 | other | listed | 14.02 | -15.6% | -18.5% | 1.2x | 261.2M | 25.1% | 0 |  |
 | DNUT | 2026-11-05 16:25 | other | listed | 4.635 | +31.7% | +15.4% | 1.5x | 91.6M | 20.5% | 0 |  |
 | CRWD | 2026-11-05 16:25 | other | listed | 220.3 | -8.6% | -9.6% | 1.0x | 1.01B | 2.4% | 1 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | UBER | 2026-11-04 15:35 | other | listed | 71.52 | +7.4% | +1.2% | 1.3x | 2.04B | 2.4% | 2 |  |
 | DJT | 2026-11-04 14:40 | other | listed | 5.3 | -10.9% | -6.4% | 0.9x | 160.9M | 10.9% | 0 |  |
 | TSLA | 2026-11-04 14:27 | other | listed | 380 | -4.6% | -2.2% | 0.7x | 2.82B | 2.5% | 0 |  |
-| TLT | 2026-11-04 13:44 | other | listed | 81.39 | +0.3% | -0.6% | 0.8x |  |  |  |  |
