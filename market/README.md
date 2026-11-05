@@ -1,13 +1,15 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-05T15:05:59Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-05T16:25:48Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-370 candidates and 737 controls so far. Archetypes: other 356, low_float_runner 12, otc_penny 1, unknown 1.
+372 candidates and 741 controls so far. Archetypes: other 358, low_float_runner 12, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| DNUT | 2026-11-05 16:25 | other | listed | 4.635 | +31.7% | +15.4% | 1.5x | 91.6M | 20.5% | 0 |  |
+| CRWD | 2026-11-05 16:25 | other | listed | 220.3 | -8.6% | -9.6% | 1.0x | 1.01B | 2.4% | 1 |  |
 | NVDA | 2026-11-05 15:05 | other | listed | 189.2 | -5.5% | -7.1% | 1.5x | 23.13B | 1.3% | 0 |  |
 | OKLO | 2026-11-05 13:17 | other | listed | 21.5 | -2.8% | -18.4% | 1.4x | 157.4M | 22.8% | 1 |  |
 | WMT | 2026-11-05 09:54 | other | listed | 129.7 | +0.4% | +8.8% | 1.4x | 4.85B | 1.6% | 4 |  |
@@ -36,5 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | TSLA | 2026-11-04 14:27 | other | listed | 380 | -4.6% | -2.2% | 0.7x | 2.82B | 2.5% | 0 |  |
 | TLT | 2026-11-04 13:44 | other | listed | 81.39 | +0.3% | -0.6% | 0.8x |  |  |  |  |
 | PARA | 2026-11-04 13:44 | low float runner | listed | 1.17 | -57.0% | +540.0% | 146.8x | 0.3M | 76.2% | 4 |  |
-| MRNA | 2026-11-04 13:20 | other | listed | 234.8 | +2.8% | +9.8% | 0.5x | 372.0M | 8.8% | 0 |  |
-| DXYZ | 2026-11-04 12:50 | other | listed | 26.61 | -0.2% | -5.2% | 0.7x |  |  | 2 |  |
