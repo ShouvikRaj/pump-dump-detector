@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-04T22:27:41Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-05T00:45:46Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-361 candidates and 719 controls so far. Archetypes: other 347, low_float_runner 12, otc_penny 1, unknown 1.
+362 candidates and 721 controls so far. Archetypes: other 348, low_float_runner 12, otc_penny 1, unknown 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| GEV | 2026-11-05 00:45 | other | listed | 828 | -0.6% | -5.1% | 2.0x | 264.1M | 2.8% | 0 |  |
 | BROS | 2026-11-04 22:27 | other | listed | 35.97 | -18.2% | +2.5% | 2.2x | 130.3M | 15.5% | 1 |  |
 | COHR | 2026-11-04 21:19 | other | listed | 197.9 | +1.4% | -18.6% | 1.4x | 195.0M | 4.6% | 0 |  |
 | APP | 2026-11-04 21:19 | other | listed | 315.1 | +16.0% | +4.5% | 2.7x | 265.4M | 4.2% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | ANET | 2026-11-03 21:29 | other | listed | 182.9 | +7.6% | -9.1% | 1.8x | 1.05B | 1.2% | 0 |  |
 | AMC | 2026-11-03 21:29 | other | listed | 3.28 | +0.0% | +9.7% | 1.4x | 835.3M | 5.7% | 0 |  |
 | ALAB | 2026-11-03 21:29 | other | listed | 231.6 | -0.9% | -18.5% | 1.2x | 156.0M | 5.1% | 0 |  |
-| DDOG | 2026-11-03 18:57 | other | listed | 219.5 | +1.6% | -22.9% | 1.6x | 333.0M | 3.0% | 0 |  |
