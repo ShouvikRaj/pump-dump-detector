@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-06T09:05:36Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-06T14:52:33Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-390 candidates and 775 controls so far. Archetypes: other 375, low_float_runner 12, unknown 2, otc_penny 1.
+391 candidates and 777 controls so far. Archetypes: other 376, low_float_runner 12, unknown 2, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| DKNG | 2026-11-06 14:52 | other | listed | 17.13 | -27.2% | +13.5% | 2.0x | 425.5M | 9.3% | 0 |  |
 | KORU | 2026-11-06 09:05 | other | listed | 7.181 | +10.0% | -48.7% | 3.5x |  |  |  |  |
 | TQQQ | 2026-11-06 07:56 | other | listed | 51.1 | +1.3% | -27.1% | 3.5x |  |  |  |  |
 | ASTS | 2026-11-06 07:56 | other | listed | 30.84 | +2.1% | -29.9% | 1.8x | 272.7M | 24.2% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | SOXL | 2026-11-05 03:15 | other | listed | 64.01 | -4.0% | -37.9% | 2.3x |  |  |  |  |
 | SOXX | 2026-11-05 01:08 | other | listed | 445 | -4.3% | -9.0% | 1.4x |  |  |  |  |
 | GEV | 2026-11-05 00:45 | other | listed | 828 | -0.6% | -5.1% | 2.0x | 264.1M | 2.8% | 0 |  |
-| BROS | 2026-11-04 22:27 | other | listed | 35.97 | -18.2% | +2.5% | 2.2x | 130.3M | 15.5% | 1 |  |
