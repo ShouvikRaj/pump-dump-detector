@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-06T01:00:01Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-06T02:44:34Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-384 candidates and 763 controls so far. Archetypes: other 369, low_float_runner 12, unknown 2, otc_penny 1.
+385 candidates and 765 controls so far. Archetypes: other 370, low_float_runner 12, unknown 2, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| QQQ | 2026-11-06 02:44 | other | listed | 651.2 | +0.6% | -9.5% | 3.0x |  |  |  |  |
 | SPY | 2026-11-06 00:59 | other | listed | 734.4 | +0.2% | -4.7% | 3.0x |  |  | 0 |  |
 | EWY | 2026-11-06 00:59 | other | listed | 133 | +1.0% | -18.6% | 2.6x |  |  |  |  |
 | SGOV | 2026-11-05 23:26 | other | listed | 100.5 | +0.0% | -0.3% | 1.8x |  |  |  |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | UUUU | 2026-11-04 21:07 | other | listed | 7.27 | +0.8% | -14.1% | 1.0x | 248.2M | 23.4% | 1 |  |
 | ARM | 2026-11-04 20:01 | other | listed | 191.2 | -5.6% | -10.6% | 0.7x | 142.6M | 12.4% | 0 |  |
 | MU | 2026-11-04 19:48 | other | listed | 801.9 | -6.2% | -7.9% | 0.8x | 1.13B | 2.0% | 0 |  |
-| MCD | 2026-11-04 19:21 | other | listed | 279.1 | +6.1% | +5.4% | 1.1x | 706.6M | 1.9% | 0 |  |
