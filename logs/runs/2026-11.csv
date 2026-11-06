@@ -5968,3 +5968,16 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 42138019366,2026-11-06T00:47:16Z,smallstreetbets/comments,feed,2026-11-06T00:29:43Z,100,99,1,0,2026-11-06T00:29:43Z,,509.1,"Reddit RSS rate limit used up for 60 s more, past this run's time"
 42138019366,2026-11-06T00:47:16Z,pennystocks/comments,feed,2026-11-06T00:24:16Z,0,0,0,0,2026-11-06T00:24:16Z,,,"Reddit RSS rate limit used up for 60 s more, past this run's time"
 42138019366,2026-11-06T00:47:16Z,wallstreetbets/comments,reconcile,2026-11-05T15:52:29Z,14363,3123,146,0,,,23313.6,
+42139587236,2026-11-06T00:59:59Z,pennystocks/posts,live,2026-11-05T13:59:09Z,7,0,1,1,2026-11-05T16:59:09Z,14.0,,
+42139587236,2026-11-06T00:59:59Z,smallstreetbets/posts,live,2026-11-05T21:45:48Z,11,0,1,1,2026-11-06T00:45:48Z,15.0,,
+42139587236,2026-11-06T00:59:59Z,wallstreetbets/posts,live,2026-11-05T21:46:20Z,93,8,1,1,2026-11-06T00:58:01Z,14.0,216.9,
+42139587236,2026-11-06T00:59:59Z,pennystocks/comments,live,2026-11-05T19:16:17Z,1,0,1,1,2026-11-05T19:46:17Z,773.0,,
+42139587236,2026-11-06T00:59:59Z,smallstreetbets/comments,live,2026-11-06T00:15:49Z,7,0,1,1,2026-11-06T00:45:49Z,408.0,,
+42139587236,2026-11-06T00:59:59Z,wallstreetbets/comments,live,2026-11-06T00:07:21Z,40,2,1,1,2026-11-06T00:51:54Z,1543.5,515.7,
+42139587236,2026-11-06T00:59:59Z,wallstreetbets/comments,feed,2026-11-06T00:47:24Z,700,637,7,1,2026-11-06T01:00:11Z,,569.6,
+42139587236,2026-11-06T00:59:59Z,smallstreetbets/comments,feed,2026-11-06T00:29:43Z,100,63,1,0,2026-11-06T00:29:43Z,,448.8,"Reddit RSS rate limit used up for 59 s more, past this run's time"
+42139587236,2026-11-06T00:59:59Z,pennystocks/comments,feed,2026-11-06T00:24:16Z,0,0,0,0,2026-11-06T00:24:16Z,,,"Reddit RSS rate limit used up for 59 s more, past this run's time"
+42139587236,2026-11-06T00:59:59Z,wallstreetbets/comments,reconcile,2026-11-05T22:11:58Z,3170,5,33,1,,,7441.5,
+42139587236,2026-11-06T00:59:59Z,pennystocks/comments,late,2026-11-04T23:35:47Z,0,0,0,0,,,,"HTTP 422 for comments r/pennystocks after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
+42139587236,2026-11-06T00:59:59Z,smallstreetbets/comments,late,2026-11-03T23:59:59Z,602,0,7,1,,,,
+42139587236,2026-11-06T00:59:59Z,wallstreetbets/comments,late,2026-11-03T23:59:59Z,3156,0,32,0,,,,
