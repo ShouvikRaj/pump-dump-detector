@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-06T16:54:33Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-06T18:01:36Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-393 candidates and 781 controls so far. Archetypes: other 378, low_float_runner 12, unknown 2, otc_penny 1.
+394 candidates and 783 controls so far. Archetypes: other 379, low_float_runner 12, unknown 2, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| GRND | 2026-11-06 18:01 | other | listed | 13.5 | -1.0% | +5.7% | 1.8x | 45.0M | 18.5% | 0 |  |
 | WDC | 2026-11-06 16:54 | other | listed | 262.2 | -2.0% | -32.3% | 2.1x | 371.9M | 5.2% | 0 |  |
 | INOD | 2026-11-06 15:46 | other | listed | 35.75 | -7.4% | -16.4% | 2.1x | 33.1M | 13.7% | 0 |  |
 | DKNG | 2026-11-06 14:52 | other | listed | 17.13 | -27.2% | +13.5% | 2.0x | 425.5M | 9.3% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | IBKR | 2026-11-05 08:22 | other | listed | 78.05 | +0.2% | -6.8% | 1.6x | 438.4M | 3.0% | 0 |  |
 | TTWO | 2026-11-05 07:30 | other | listed | 209.6 | +0.3% | +7.0% | 1.8x | 186.1M | 5.2% | 0 |  |
 | SOXS | 2026-11-05 04:50 | other | listed | 60.9 | +4.4% | +46.7% | 1.4x |  |  |  |  |
-| SOXL | 2026-11-05 03:15 | other | listed | 64.01 | -4.0% | -37.9% | 2.3x |  |  |  |  |
