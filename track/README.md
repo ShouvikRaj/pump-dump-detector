@@ -1,9 +1,24 @@
 # Stage 3 tracking
 
-Updated 2026-11-05T22:58:34Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-11-06T02:57:50Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-11-06 02:44 | TDG | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-06 02:44 | CSL | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-06 02:44 | QQQ | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-11-06 00:59 | FRHC | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-06 00:59 | THO | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-06 00:59 | WST | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-06 00:59 | CVCO | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-06 00:59 | EWY | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-11-06 00:59 | SPY | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-11-05 23:26 | DTE | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-05 23:26 | DVA | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-05 23:26 | SGOV | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-11-05 23:10 | TEL | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-05 23:10 | AZN | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-05 23:10 | VTI | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-11-05 22:33 | BX | control | other | active | 0 |  |  |  |  |  |
 | 2026-11-05 22:33 | SNOW | control | other | active | 0 |  |  |  |  |  |
 | 2026-11-05 22:33 | HBM | control | other | active | 0 |  |  |  |  |  |
