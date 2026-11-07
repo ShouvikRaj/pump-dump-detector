@@ -10,14 +10,14 @@ Live since 2026-10-07T12:32:05Z.
 | history / announcement | 2471 |
 | scan / spike | 1059 |
 | telegram / announcement | 151 |
-| telegram / call | 2012 |
+| telegram / call | 2013 |
 
 | Outcome status | Count |
 |---|---|
 | no_data | 475 |
 | not_covered | 1578 |
 | partial | 19 |
-| pending | 163 |
+| pending | 164 |
 | settled | 3458 |
 
 - `events.csv`: one row per event; `outcomes.csv`: crypto-label-v1 per event, rebuilt every run.
