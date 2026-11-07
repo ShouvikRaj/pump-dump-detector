@@ -1,9 +1,15 @@
 # Stage 3 tracking
 
-Updated 2026-11-07T02:29:37Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-11-07T22:52:40Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-11-07 11:05 | CPB | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-07 11:05 | RF | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-07 11:05 | GME | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-11-07 03:40 | EXE | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-07 03:40 | KDP | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-07 03:40 | RKLB | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-11-07 02:18 | TMCI | control | other | active | 0 |  |  |  |  |  |
 | 2026-11-07 02:18 | RCKT | control | other | active | 0 |  |  |  |  |  |
 | 2026-11-07 02:18 | SPCE | candidate | other | active | 0 |  |  |  |  |  |
@@ -156,7 +162,7 @@ Updated 2026-11-07T02:29:37Z. Each candidate and control is followed for 20 trad
 | 2026-11-04 15:47 | DUOL | candidate | other | active | 3 |  |  |  |  |  |
 | 2026-11-04 15:47 | VST | candidate | other | active | 3 |  |  |  |  |  |
 | 2026-11-04 15:35 | NEE | control | other | active | 3 |  |  |  |  |  |
-| 2026-11-04 15:35 | CCZ | control | other | active | 2 |  |  |  |  |  |
+| 2026-11-04 15:35 | CCZ | control | other | active | 3 |  |  |  |  |  |
 | 2026-11-04 15:35 | UBER | candidate | other | active | 3 |  |  |  |  |  |
 | 2026-11-04 14:40 | ALMS | control | other | active | 3 |  |  |  |  |  |
 | 2026-11-04 14:40 | AMBP | control | other | active | 3 |  |  |  |  |  |
@@ -407,7 +413,7 @@ Updated 2026-11-07T02:29:37Z. Each candidate and control is followed for 20 trad
 | 2026-10-29 11:49 | CMC | control | other | active | 7 | +6% |  | +4% |  |  |
 | 2026-10-29 11:49 | CINF | control | other | active | 7 | +6% |  | +6% |  |  |
 | 2026-10-29 11:49 | INTC | candidate | other | active | 7 | +1% |  | -37% |  |  |
-| 2026-10-29 10:54 | LXEH | control | low_float_runner | active | 6 | +1% |  | -6% |  |  |
+| 2026-10-29 10:54 | LXEH | control | low_float_runner | active | 7 | +1% |  | -6% |  |  |
 | 2026-10-29 10:54 | JUNS | control | low_float_runner | active | 7 | +6% |  | +2% |  |  |
 | 2026-10-29 10:54 | ELPW | candidate | low_float_runner | active | 7 | +4% |  | -10% |  |  |
 | 2026-10-29 04:39 | EL | control | other | active | 7 | +4% |  | +2% |  |  |
@@ -631,7 +637,7 @@ Updated 2026-11-07T02:29:37Z. Each candidate and control is followed for 20 trad
 | 2026-10-22 17:45 | HQY | control | other | active | 12 | +5% |  | +1% |  | 0 |
 | 2026-10-22 17:45 | SHOP | control | other | active | 12 | +4% | -23% | -1% |  | 1 |
 | 2026-10-22 17:45 | TD | control | other | active | 12 | +1% |  | +1% |  | 1 |
-| 2026-10-22 17:45 | EXCBF | control | otc_penny | active | 11 | +22% |  | -9% |  | 0 |
+| 2026-10-22 17:45 | EXCBF | control | otc_penny | active | 12 | +22% |  | -9% |  | 0 |
 | 2026-10-22 17:45 | ZSPC | control | otc_penny | active | 12 | +10% | -45% | -10% |  | 0 |
 | 2026-10-22 17:45 | ARAY | control | other | active | 12 | +11% |  | +5% |  | 0 |
 | 2026-10-22 17:45 | BLNK | control | other | active | 12 | +8% | -11% | +4% |  | 1 |
