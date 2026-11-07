@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-06T06:28:01Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-07T00:15:54Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-02)
 
@@ -19,6 +19,16 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-06 20:47 | LUNR | other | 0.3% | no model | 100% / 10% / 0% / 0% | Users discuss LUNR price movements, compare it to other stocks, and make bullish jokes without citing specific corporate events. |
+| 2026-11-06 18:22 | VIVK | other | **77%** | no model | 100% / 0% / 0% / 0% | Chatter discusses VIVK price spikes, trading volume, and a halted status without specific company events. |
+| 2026-11-06 18:13 | ORCL | other | 1.6% | no model | 100% / 0% / 0% / 25% | Chatter discusses a Microsoft deal wind-down causing Oracle stock to drop, with mixed reactions from bearish to skeptical. |
+| 2026-11-06 18:01 | GRND | other | 0.1% | no model | 100% / 0% / 0% / 20% | Chatter includes an AMA announcement, earnings results, and mixed speculative comments on Grindr stock. |
+| 2026-11-06 16:54 | WDC | other | 0.4% | no model | 100% / 0% / 0% / 0% | Users express bearish sentiment, discuss price drops, and question the company's future viability. |
+| 2026-11-06 15:46 | INOD | other | 2.4% | no model | 100% / 8.7% / 4.3% / 8.7% | Chatter focuses on INOD earnings results, price targets, and a subsequent sell-off described as a rug pull. |
+| 2026-11-06 14:52 | DKNG | other | 0.4% | no model | 100% / 10% / 0% / 0% | Users discuss DKNG's price drop, compare it to semis, and express bearish views on its performance. |
+| 2026-11-06 09:05 | KORU | other | **27%** | no model | 100% / 0% / 0% / 0% | Users discuss KORU's severe decline, hedge fund failures, and personal losses without any promotional activity. |
+| 2026-11-06 07:56 | ASTS | other | 0.3% | no model | 100% / 0% / 0% / 2.5% | Users discuss severe losses, bag holding, and skepticism regarding ASTS fundamentals and upcoming earnings. |
+| 2026-11-06 07:56 | TQQQ | other | 8.4% | no model | 100% / 10% / 0% / 0% | Users discuss holding, buying, and price targets for TQQQ with mixed bullish and bearish sentiments. |
 | 2026-11-06 04:28 | LABT | other | **16%** | no model | 100% / 10% / 0% / 0% | Users discuss $LABT price targets, recent gains, and breakout patterns without mentioning specific corporate events. |
 | 2026-11-06 03:36 | UVXY | other | 9.5% | no model | 100% / 0% / 0% / 0% | Users discuss UVXY volatility, recent gains, and potential crashes due to falling volume. |
 | 2026-11-06 02:44 | QQQ | other | 0.5% | no model | 100% / 0% / 0% / 0% | Users discuss QQQ price movements, option trades, and market sentiment without mentioning specific corporate events. |
@@ -49,16 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-04 21:19 | COHR | other | 1.2% | no model | 100% / 0% / 0% / 23% | Users discuss COHR earnings, express bearish sentiment, and joke about the stock price dropping. |
 | 2026-11-04 21:07 | UUUU | other | 0.1% | no model | 100% / 62% / 0% / 23% | Users discuss UUUU earnings, price targets, and potential stock movements in r/wallstreetbets. |
 | 2026-11-04 20:01 | ARM | other | 0.1% | no model | 100% / 0% / 0% / 6.2% | Users discuss ARM earnings, short positions, and potential price drops before the event. |
-| 2026-11-04 19:48 | MU | other | 0.1% | no model | 100% / 16% / 0% / 0% | Chatter includes hype, price targets, and confusion over a price drop, with no specific corporate events mentioned. |
-| 2026-11-04 19:21 | MCD | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss MCD price gains, ownership, and general market sentiment without specific events or pitches. |
-| 2026-11-04 18:32 | NBIS | other | 0.1% | no model | 100% / 0% / 5.0% / 0% | Users express extreme bearish sentiment, calling the stock a scam or pump-and-dump, while some speculate on a potential rebound. |
-| 2026-11-04 18:32 | USO | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss USO price movements, geopolitical tensions with Iran, and trading strategies involving puts and calls. |
-| 2026-11-04 18:08 | CRWV | other | 0.2% | no model | 100% / 18% / 15% / 0% | Chatter is overwhelmingly bearish, with users calling CRWV a scam, predicting insolvency, and warning of a pump-and-dump. |
-| 2026-11-04 18:08 | IREN | other | 0.2% | no model | 100% / 0% / 0% / 3.3% | Mixed chatter regarding IREN data center policies, earnings expectations, and potential regulatory headwinds. |
-| 2026-11-04 18:08 | QCOM | other | 0.1% | no model | 100% / 0% / 0% / 14% | Users discuss QCOM earnings, potential price moves, and specific financial data in a bearish to neutral tone. |
-| 2026-11-04 15:47 | DUOL | other | 0.1% | no model | 100% / 10% / 20% / 0% | Users discuss potential earnings leaks, massive price spikes, and extreme volatility for DUOL. |
-| 2026-11-04 15:47 | VST | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss VST price drops, political news, and express bearish sentiment without specific company events. |
-| 2026-11-04 15:35 | UBER | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss UBER stock ownership, price targets, and robotaxi growth without specific company events. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
