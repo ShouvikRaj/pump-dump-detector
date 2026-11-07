@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-07T21:58:11Z by run `42417841401`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-07T22:02:08Z by run `42418446708`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -11,9 +11,9 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | ORCL | 2026-11-06 18:13 | mention spike | 9 | 21.57 | 7 | 0 | wallstreetbets 9 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xoj597/comment/19sam6ng7avi8/) |
 | LUNR | 2026-11-06 20:47 | mention spike | 3 | 4.14 | 3 | 0 | wallstreetbets 3 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xpjj4e/comment/19sa3dpxndq3k/) |
 | SPCE | 2026-11-07 02:18 | mention spike | 4 | 2.57 | 4 | 0 | wallstreetbets 4 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xpjj4e/comment/19sa3dpxndq3k/) |
-| RKLB | 2026-11-07 03:40 | mention spike | 20 | 18.29 | 17 | 0 | wallstreetbets 19, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xpo1gj/comment/19sa9qjkou2lg/) |
+| RKLB | 2026-11-07 03:40 | mention spike | 20 | 18.14 | 17 | 0 | wallstreetbets 19, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xpo1gj/comment/19sa9qjkou2lg/) |
 | OKLO | 2026-11-05 13:17 | mention spike | 0 |  | 0 | 0 |  | NYSE |  |  |
-| WDC | 2026-11-06 16:54 | mention spike | 5 | 4.86 | 5 | 0 | wallstreetbets 5 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xqddim/) |
+| WDC | 2026-11-06 16:54 | mention spike | 5 | 4.71 | 5 | 0 | wallstreetbets 5 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xqddim/) |
 | VIVK | 2026-11-06 18:22 | mention spike | 1 | 2.43 | 1 | 0 | pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1xp4dgo/comment/19s90bqydrw3p/) |
 | DKNG | 2026-11-06 14:52 | mention spike | 1 | 2.57 | 1 | 0 | pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1xpy130/comment/19s9xztdhcf1d/) |
 | GME | 2026-11-07 11:05 | mention spike | 11 | 8.57 | 6 | 0 | wallstreetbets 11 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xq3jww/comment/19s9xge7gqoeb/) |
