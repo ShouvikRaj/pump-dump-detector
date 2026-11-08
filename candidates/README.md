@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-08T08:05:10Z by run `42461052121`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-08T08:18:07Z by run `42462005840`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -12,7 +12,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | LUNR | 2026-11-06 20:47 | mention spike | 1 | 4.43 | 1 | 0 | wallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xpjj4e/comment/19sa3dpxndq3k/) |
 | SPCE | 2026-11-07 02:18 | mention spike | 1 | 3.0 | 1 | 0 | wallstreetbets 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xpjj4e/comment/19sa3dpxndq3k/) |
 | RKLB | 2026-11-07 03:40 | mention spike | 12 | 19.86 | 10 | 0 | wallstreetbets 11, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xpo1gj/comment/19sbesn3tya3n/) |
-| OKLO | 2026-11-05 13:17 | mention spike | 2 | 8.57 | 2 | 0 | wallstreetbets 2 | NYSE | #6 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xpo1gj/comment/19sbesn3tya3n/) |
+| OKLO | 2026-11-05 13:17 | mention spike | 2 | 8.57 | 2 | 0 | wallstreetbets 2 | NYSE | #2 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xpo1gj/comment/19sbesn3tya3n/) |
 | WDC | 2026-11-06 16:54 | mention spike | 6 | 4.71 | 5 | 0 | wallstreetbets 6 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xqddim/) |
 | VIVK | 2026-11-06 18:22 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
 | DKNG | 2026-11-06 14:52 | mention spike | 1 | 2.57 | 1 | 0 | pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1xpy130/comment/19s9xztdhcf1d/) |
