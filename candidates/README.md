@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-08T15:22:10Z by run `42494038099`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-08T15:35:10Z by run `42495152205`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -11,6 +11,6 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | ORCL | 2026-11-06 18:13 | mention spike | 3 | 21.43 | 3 | 0 | wallstreetbets 3 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xqttdj/comment/19sbh91zyfxno/) |
 | LUNR | 2026-11-06 20:47 | mention spike | 1 | 4.57 | 1 | 0 | wallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xqyvuf/comment/19sby4v2p4mow/) |
 | SPCE | 2026-11-07 02:18 | mention spike | 0 |  | 0 | 0 |  | NYSE |  |  |
-| RKLB | 2026-11-07 03:40 | mention spike | 7 | 20.57 | 6 | 0 | wallstreetbets 7 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xqyvuf/comment/19sbx4j9ip8f7/) |
+| RKLB | 2026-11-07 03:40 | mention spike | 8 | 20.57 | 7 | 0 | wallstreetbets 8 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xpjj4e/comment/19sbyttpj31b8/) |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
