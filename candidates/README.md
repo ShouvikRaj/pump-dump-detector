@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-08T06:32:09Z by run `42454828159`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-08T06:46:07Z by run `42455738756`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -15,7 +15,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | OKLO | 2026-11-05 13:17 | mention spike | 1 | 8.57 | 1 | 0 | wallstreetbets 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xp8ery/comment/19sb2z0cqye9w/) |
 | WDC | 2026-11-06 16:54 | mention spike | 6 | 4.71 | 5 | 0 | wallstreetbets 6 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xqddim/) |
 | VIVK | 2026-11-06 18:22 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
-| DKNG | 2026-11-06 14:52 | mention spike | 1 | 2.57 | 1 | 0 | pennystocks 1 | Nasdaq | #24 | [link](https://www.reddit.com/r/pennystocks/comments/1xpy130/comment/19s9xztdhcf1d/) |
+| DKNG | 2026-11-06 14:52 | mention spike | 1 | 2.57 | 1 | 0 | pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1xpy130/comment/19s9xztdhcf1d/) |
 | GME | 2026-11-07 11:05 | mention spike | 4 | 9.29 | 3 | 0 | wallstreetbets 4 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xotkmz/comment/19saqjzm28483/) |
 | INOD | 2026-11-06 15:46 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
 | ASTS | 2026-11-06 07:56 | mention spike | 20 | 34.57 | 17 | 0 | wallstreetbets 20 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xqeihg/) |
