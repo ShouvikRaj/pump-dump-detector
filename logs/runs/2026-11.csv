@@ -8485,3 +8485,16 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 42433054826,2026-11-08T01:10:21Z,smallstreetbets/posts,fallback,2026-11-07T23:46:55Z,100,0,1,1,2026-11-07T23:46:55Z,,,
 42433054826,2026-11-08T01:10:21Z,pennystocks/posts,fallback,2026-11-07T22:03:56Z,100,0,1,1,2026-11-07T22:03:56Z,,,
 42433054826,2026-11-08T01:10:21Z,wallstreetbets/comments,late,2026-11-06T22:44:31Z,100,0,1,0,,,,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
+42433657731,2026-11-08T01:18:22Z,pennystocks/posts,live,2026-11-07T19:03:56Z,1,0,1,1,2026-11-07T22:03:56Z,5.0,,
+42433657731,2026-11-08T01:18:22Z,smallstreetbets/posts,live,2026-11-07T20:46:55Z,2,0,1,1,2026-11-07T23:46:55Z,7.0,,
+42433657731,2026-11-08T01:18:22Z,wallstreetbets/posts,live,2026-11-07T21:51:43Z,16,0,1,1,2026-11-08T00:51:43Z,13.0,,
+42433657731,2026-11-08T01:18:22Z,pennystocks/comments,live,2026-11-07T21:34:00Z,1,0,1,1,2026-11-07T22:04:00Z,6.0,,
+42433657731,2026-11-08T01:18:22Z,smallstreetbets/comments,live,2026-11-07T22:45:50Z,2,0,1,1,2026-11-07T23:15:50Z,199.0,,
+42433657731,2026-11-08T01:18:22Z,wallstreetbets/comments,live,2026-11-08T00:06:35Z,24,0,1,1,2026-11-08T00:36:35Z,403.5,,
+42433657731,2026-11-08T01:18:22Z,wallstreetbets/comments,fallback,2026-11-08T01:10:14Z,100,63,1,1,2026-11-08T01:18:15Z,,321.3,
+42433657731,2026-11-08T01:18:22Z,smallstreetbets/comments,fallback,2026-11-08T01:11:20Z,100,7,1,1,2026-11-08T01:18:37Z,,237.7,
+42433657731,2026-11-08T01:18:22Z,pennystocks/comments,fallback,2026-11-08T01:06:01Z,100,0,1,1,2026-11-08T01:06:01Z,,,
+42433657731,2026-11-08T01:18:22Z,wallstreetbets/posts,fallback,2026-11-08T00:51:43Z,100,0,1,1,2026-11-08T00:43:36Z,,,
+42433657731,2026-11-08T01:18:22Z,smallstreetbets/posts,fallback,2026-11-07T23:46:55Z,100,0,1,1,2026-11-07T23:46:55Z,,,
+42433657731,2026-11-08T01:18:22Z,pennystocks/posts,fallback,2026-11-07T22:03:56Z,100,0,1,1,2026-11-07T22:03:56Z,,,
+42433657731,2026-11-08T01:18:22Z,wallstreetbets/comments,late,2026-11-06T22:54:24Z,100,0,1,0,,,,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
