@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-08T10:54:07Z by run `42473265607`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-08T11:11:08Z by run `42474219847`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -16,6 +16,5 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | WDC | 2026-11-06 16:54 | mention spike | 6 | 4.71 | 5 | 0 | wallstreetbets 6 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xqddim/) |
 | VIVK | 2026-11-06 18:22 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
 | DKNG | 2026-11-06 14:52 | mention spike | 1 | 2.57 | 1 | 0 | pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1xpy130/comment/19s9xztdhcf1d/) |
-| GME | 2026-11-07 11:05 | mention spike | 3 | 9.43 | 3 | 0 | wallstreetbets 3 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xotkmz/comment/19saqjzm28483/) |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
