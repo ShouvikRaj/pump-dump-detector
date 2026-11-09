@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-09T11:01:35Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-09T13:52:28Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-402 candidates and 799 controls so far. Archetypes: other 387, low_float_runner 12, unknown 2, otc_penny 1.
+403 candidates and 801 controls so far. Archetypes: other 388, low_float_runner 12, unknown 2, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| CVS | 2026-11-09 13:52 | other | listed | 84.75 | +1.1% | -7.1% | 1.5x | 1.28B | 1.3% | 0 |  |
 | NYT | 2026-11-09 11:01 | other | listed | 68.5 | +0.2% | -2.6% | 1.3x | 132.3M | 14.1% | 0 |  |
 | NVDA | 2026-11-09 00:16 | other | listed | 188.7 | +1.1% | -8.8% | 1.6x | 23.13B | 1.3% | 0 |  |
 | GME | 2026-11-07 11:05 | other | listed | 24.99 | -0.5% | +3.7% | 0.6x | 460.4M | 10.4% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | SNDK | 2026-11-05 21:12 | other | listed | 810.7 | +0.5% | -39.4% | 3.2x | 140.4M | 3.4% | 0 |  |
 | ROPE | 2026-11-05 20:49 | other | listed | 31 | -2.0% | +3.8% | 0.7x |  |  |  |  |
 | SQQQ | 2026-11-05 19:19 | other | listed | 48.29 | +16.2% | +14.6% | 1.5x |  |  |  |  |
-| APLD | 2026-11-05 17:29 | other | listed | 14.02 | -15.6% | -18.5% | 1.2x | 261.2M | 25.1% | 0 |  |
