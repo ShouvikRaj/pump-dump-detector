@@ -1,9 +1,12 @@
 # Stage 3 tracking
 
-Updated 2026-11-08T22:55:35Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-11-09T02:06:01Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-11-09 00:16 | LCII | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-09 00:16 | PEN | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-09 00:16 | NVDA | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-11-07 11:05 | CPB | control | other | active | 0 |  |  |  |  |  |
 | 2026-11-07 11:05 | RF | control | other | active | 0 |  |  |  |  |  |
 | 2026-11-07 11:05 | GME | candidate | other | active | 0 |  |  |  |  |  |
