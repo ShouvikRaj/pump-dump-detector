@@ -9882,3 +9882,13 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 42549002723,2026-11-09T02:16:03Z,smallstreetbets/comments,feed,2026-11-09T02:09:24Z,100,12,1,1,2026-11-09T02:19:30Z,,348.4,
 42549002723,2026-11-09T02:16:03Z,pennystocks/comments,feed,2026-11-09T01:22:02Z,100,0,1,1,2026-11-09T01:22:02Z,,,
 42549002723,2026-11-09T02:16:03Z,wallstreetbets/comments,late,2026-11-07T22:47:07Z,0,0,0,0,,,,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
+42550237986,2026-11-09T02:22:47Z,pennystocks/posts,live,2026-11-08T22:10:27Z,1,0,1,1,2026-11-09T01:10:27Z,3266.0,,
+42550237986,2026-11-09T02:22:47Z,smallstreetbets/posts,live,2026-11-08T22:04:39Z,8,0,1,1,2026-11-09T01:04:39Z,17.5,,
+42550237986,2026-11-09T02:22:47Z,wallstreetbets/posts,live,2026-11-08T23:14:42Z,68,4,1,1,2026-11-09T02:20:17Z,319.0,336.9,
+42550237986,2026-11-09T02:22:47Z,pennystocks/comments,live,2026-11-08T21:21:00Z,1,0,1,1,2026-11-08T21:51:00Z,2115.0,,
+42550237986,2026-11-09T02:22:47Z,smallstreetbets/comments,live,2026-11-09T01:29:24Z,12,0,1,1,2026-11-09T02:18:54Z,1520.0,,
+42550237986,2026-11-09T02:22:47Z,wallstreetbets/comments,live,2026-11-09T01:42:01Z,103,0,2,1,2026-11-09T02:12:01Z,1333.0,,
+42550237986,2026-11-09T02:22:47Z,wallstreetbets/comments,feed,2026-11-09T02:16:24Z,300,268,3,1,2026-11-09T02:23:12Z,,254.5,
+42550237986,2026-11-09T02:22:47Z,smallstreetbets/comments,feed,2026-11-09T02:19:30Z,100,10,1,1,2026-11-09T02:25:24Z,,228.2,
+42550237986,2026-11-09T02:22:47Z,pennystocks/comments,feed,2026-11-09T01:22:02Z,100,2,1,1,2026-11-09T02:23:08Z,,255.2,
+42550237986,2026-11-09T02:22:47Z,wallstreetbets/comments,late,2026-11-07T22:47:07Z,0,0,0,0,,,,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
