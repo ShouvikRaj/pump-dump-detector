@@ -1,17 +1,17 @@
 # Stage 5 model
 
-Updated 2026-11-08T05:52:25Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-09T00:20:59Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
-## This week's models (week of 2026-11-02)
+## This week's models (week of 2026-11-09)
 
 | Target | Status | Trained on | Positives | Base rate | Flag at | Feature groups |
 |---|---|---|---|---|---|---|
-| crash | trained | 456 rows | 11 | 5.3% | 11% | chatter, text, llm, price_volume, size, short_interest, filings, history, technical |
-| pump | no model yet | 452 rows | 2 | - | - | chatter, text, llm, price_volume, size, short_interest, filings, history, technical |
+| crash | trained | 677 rows | 15 | 5.3% | 11% | chatter, text, llm, price_volume, size, short_interest, filings, history, technical |
+| pump | no model yet | 675 rows | 3 | - | - | chatter, text, llm, price_volume, size, short_interest, filings, history, technical |
 
 A week's model needs 50 rows and 5 positives whose labels were settled before the week began; a label settles 10 sessions (two weeks) after the flag, 15 after a 50% rise.
 
-What this week's crash model leans on (share of split gain): `volatility_20d` 44%, `days_since_report` 9%, `max_ret_20d` 7%, `institution_pct` 5%, `market_cap_log` 5%, `days_since_dilution` 4%, `turnover_last` 4%, `ret_1d` 3%.
+What this week's crash model leans on (share of split gain): `volatility_20d` 44%, `days_since_report` 7%, `market_cap_log` 6%, `turnover_last` 5%, `vol_60m_rel` 4%, `institution_pct` 3%, `wsb_share` 3%, `ret_1d` 3%.
 
 ## Latest candidates (last 7 days)
 
@@ -19,6 +19,7 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-09 00:16 | NVDA | other | 0.1% | no model | 100% / 12% / 0% / 0% | Chatter focuses on Jensen Huang's personal scandal and its potential impact on NVDA stock price. |
 | 2026-11-07 11:05 | GME | other | 0.0% | no model | 100% / 0% / 0% / 0% | Users discuss GME's history, warn against squeeze plays, and debate its current investment viability. |
 | 2026-11-07 03:40 | RKLB | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss RKLB price action, earnings expectations, and bearish sentiment regarding high capex and potential dilution. |
 | 2026-11-07 02:18 | SPCE | other | 0.1% | no model | 100% / 50% / 20% / 0% | Users discuss SPCE price movements, joke about Elon Musk, and reference a past pump-and-dump scheme. |
@@ -58,7 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-05 01:08 | SOXX | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss SOXX price movements, leverage mechanics, and market conditions without specific company events or buy pitches. |
 | 2026-11-05 00:45 | GEV | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss GEV price movements, ownership, and general market sentiment without specific corporate events. |
 | 2026-11-04 22:27 | BROS | other | 0.2% | no model | 100% / 0% / 0% / 10% | Users discuss a sharp price drop and question a recent earnings call for Dutch Bros. |
-| 2026-11-04 21:19 | APP | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss Applovin's earnings beat, massive put open interest, and price targets in a highly speculative manner. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
