@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-09T20:48:42Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-09T21:11:30Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-407 candidates and 809 controls so far. Archetypes: other 392, low_float_runner 12, unknown 2, otc_penny 1.
+408 candidates and 811 controls so far. Archetypes: other 393, low_float_runner 12, unknown 2, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| TTD | 2026-11-09 21:11 | other | listed | 18.86 | +26.3% | +19.0% | 4.3x | 416.6M | 20.0% | 1 |  |
 | ONDS | 2026-11-09 20:48 | other | listed | 6.025 | +12.9% | -15.6% | 0.9x | 533.4M | 47.6% | 3 |  |
 | OMH | 2026-11-09 20:48 | other | listed | 35.19 | +378.1% | +157.3% | 2.0x | 0.5M | 12.1% | 1 |  |
 | AVGO | 2026-11-09 15:56 | other | listed | 318.9 | +8.6% | -9.9% | 1.4x | 4.72B | 1.1% | 1 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | VTI | 2026-11-05 23:10 | other | listed | 359 | -0.4% | -4.7% | 3.3x |  |  |  |  |
 | IONQ | 2026-11-05 22:33 | other | listed | 27.23 | +3.0% | -16.7% | 1.6x | 378.4M | 12.7% | 2 |  |
 | ABNB | 2026-11-05 22:33 | other | listed | 186.5 | +9.6% | +2.2% | 2.6x | 405.8M | 3.6% | 0 |  |
-| VOO | 2026-11-05 22:19 | other | listed | 671.9 | -0.3% | -4.7% | 3.2x |  |  |  |  |
