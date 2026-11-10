@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-10T11:32:09Z by run `42807369285`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-10T11:45:07Z by run `42809171570`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -8,11 +8,11 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | Ticker | Flagged since (UTC) | Why | Mentions 24h | Baseline/day | Authors | Hype posts | Subreddits | Exchange | StockTwits | Example |
 |---|---|---|---|---|---|---|---|---|---|---|
 | ASTS | 2026-11-09 22:33 | mention spike | 89 | 39.86 | 58 | 0 | wallstreetbets 89 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xsk1rq/comment/19sf7uax5kl51/) |
-| CVS | 2026-11-09 13:52 | mention spike | 15 | 1.57 | 14 | 0 | wallstreetbets 15 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xrfbie/comment/19sei8viswold/) |
+| CVS | 2026-11-09 13:52 | mention spike | 16 | 1.57 | 15 | 0 | wallstreetbets 16 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xrfbie/comment/19sf8vuyo16rp/) |
 | HIMS | 2026-11-09 21:25 | mention spike | 19 | 1.71 | 15 | 0 | wallstreetbets 19 | NYSE | #2 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xs3lzi/comment/19sf5qxfv663p/) |
 | IVF | 2026-11-09 22:18 | mention spike | 16 | 0.71 | 16 | 0 | wallstreetbets 15, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xs4ayj/comment/19se9z81pfzxg/) |
 | NNN | 2026-11-09 15:04 | mention spike | 12 | 5.71 | 9 | 0 | wallstreetbets 11, smallstreetbets 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xsct7h/) |
-| NVDA | 2026-11-09 00:16 | mention spike | 1060 | 252.29 | 613 | 0 | wallstreetbets 1045, smallstreetbets 15 | Nasdaq | #4 | [link](https://www.reddit.com/r/smallstreetbets/comments/1xsfg6v/) |
+| NVDA | 2026-11-09 00:16 | mention spike | 1051 | 253.57 | 609 | 0 | wallstreetbets 1036, smallstreetbets 15 | Nasdaq | #7 | [link](https://www.reddit.com/r/smallstreetbets/comments/1xsfg6v/) |
 | OMH | 2026-11-09 20:48 | mention spike | 18 | 1.14 | 15 | 0 | wallstreetbets 11, pennystocks 7 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xsk1rq/comment/19sf8bp78356s/) |
 | RKLB | 2026-11-09 21:25 | mention spike | 130 | 21.29 | 72 | 2 | wallstreetbets 130 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xsdy48/) |
 | TTD | 2026-11-09 21:11 | mention spike | 42 | 2.0 | 28 | 0 | wallstreetbets 42 | Nasdaq | #1 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xs3lzi/comment/19sei2raj6cf9/) |
