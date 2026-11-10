@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-09T06:06:53Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-10T00:23:45Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-09)
 
@@ -19,6 +19,19 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-09 23:23 | MSS | other | 10% | no model | 0% / 0% / 0% / 0% | All documents discuss the Chinese Ministry of State Security (MSS) and Alice Huang, not Maison Solutions Inc. |
+| 2026-11-09 22:33 | ASTS | other | 1.4% | no model | 100% / 5.0% / 0% / 0% | Chatter focuses on ASTS stock performance relative to RKLB, with mixed opinions, jokes, and speculation about earnings or reports. |
+| 2026-11-09 22:18 | ASML | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss ASML espionage rumors, joke about blueprints, and express general bearishness without specific events. |
+| 2026-11-09 22:18 | IVF | low float runner | **29%** | no model | 0% / 0% / 0% / 0% | All documents discuss Elon Musk's children and IVF procedures, unrelated to the stock. |
+| 2026-11-09 21:25 | HIMS | other | 1.5% | no model | 100% / 0% / 0% / 0% | Users discuss HIMS stock price drops, earnings expectations, and joke about product changes. |
+| 2026-11-09 21:25 | RKLB | other | 0.5% | no model | 92% / 0% / 7.5% / 12% | Users discuss RKLB earnings, express bearish sentiment, joke about the stock name, and warn of dilution. |
+| 2026-11-09 21:11 | TTD | other | 0.2% | no model | 100% / 30% / 0% / 0% | Users discuss TTD price movements, express exhaustion from volatility, and speculate on future gains. |
+| 2026-11-09 20:48 | OMH | other | **34%** | no model | 100% / 0% / 0% / 0% | Users discuss OMH price movements, express confusion, and compare it to other stocks without specific company events. |
+| 2026-11-09 20:48 | ONDS | other | 0.2% | no model | 100% / 0% / 0% / 10% | Users discuss holding Ondas Inc for earnings, set price targets, and joke about the stock's potential rise. |
+| 2026-11-09 15:56 | AVGO | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss AVGO price movements, sector rotation, and potential risks while some express bullish intent. |
+| 2026-11-09 15:04 | NNN | other | 0.0% | no model | 0% / 0% / 0% / 0% | All documents refer to NNN as a slang term for masturbation, not the stock. |
+| 2026-11-09 13:52 | CVS | other | 0.0% | no model | 100% / 0% / 0% / 10% | Users discuss CVS's potential breakup, poor customer service, and high prices, with no specific corporate events mentioned. |
+| 2026-11-09 11:01 | NYT | other | 0.0% | no model | 0% / 0% / 0% / 0% | All documents discuss a New York Times article about Nvidia CEO Jensen Huang's alleged espionage and affair, not the stock. |
 | 2026-11-09 00:16 | NVDA | other | 0.1% | no model | 100% / 12% / 0% / 0% | Chatter focuses on Jensen Huang's personal scandal and its potential impact on NVDA stock price. |
 | 2026-11-07 11:05 | GME | other | 0.0% | no model | 100% / 0% / 0% / 0% | Users discuss GME's history, warn against squeeze plays, and debate its current investment viability. |
 | 2026-11-07 03:40 | RKLB | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss RKLB price action, earnings expectations, and bearish sentiment regarding high capex and potential dilution. |
@@ -46,19 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-05 21:12 | SNDK | other | 6.0% | no model | 100% / 5.0% / 0% / 7.5% | Chatter discusses SNDK price drops, potential stock splits, and mixed investment opinions. |
 | 2026-11-05 20:49 | ROPE | other | 0.3% | no model | 100% / 0% / 0% / 0% | Users discuss $ROPE with high urgency, mentioning full portfolio allocations and calls. |
 | 2026-11-05 19:19 | SQQQ | other | 0.3% | no model | 100% / 18% / 0% / 0% | Users discuss SQQQ price movements, express bullish sentiment, and mention selling positions. |
-| 2026-11-05 17:29 | APLD | other | 0.2% | no model | 100% / 0% / 7.7% / 0% | Users discuss APLD's performance, location, and potential as an AI/data center stock with mixed sentiment. |
-| 2026-11-05 16:25 | CRWD | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss CRWD price action, potential lawsuits, and general market sentiment without specific buy pitches or confirmed events. |
-| 2026-11-05 16:25 | DNUT | other | 0.2% | no model | 100% / 30% / 0% / 0% | Users express excitement and urgency about significant price gains in DNUT stock. |
-| 2026-11-05 15:05 | NVDA | other | 0.1% | no model | 100% / 0% / 0% / 0% | Mixed chatter regarding NVDA price targets, earnings anticipation, and general market sentiment. |
-| 2026-11-05 13:17 | OKLO | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss OKLO's poor performance, potential for a bounce, and compare it to other failing stocks. |
-| 2026-11-05 09:54 | WMT | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss WMT valuation, growth, and portfolio performance with mixed bullish and sarcastic tones. |
-| 2026-11-05 08:22 | IBKR | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss IBKR trading features, platform complaints, and personal losses on options. |
-| 2026-11-05 07:30 | TTWO | other | 0.1% | no model | 100% / 16% / 0% / 5.3% | Users discuss TTWO's price surge, speculate on GTA 6, and mention potential earnings or events. |
-| 2026-11-05 04:50 | SOXS | other | 7.3% | no model | 100% / 3.8% / 0% / 0% | Users discuss SOXS price movements, express bullish/bearish opinions, and joke about its history. |
-| 2026-11-05 03:15 | SOXL | other | **28%** | no model | 100% / 0% / 0% / 0% | Users discuss SOXL volatility, express pain from losses, debate holding leveraged ETFs, and make bearish price predictions. |
-| 2026-11-05 01:08 | SOXX | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss SOXX price movements, leverage mechanics, and market conditions without specific company events or buy pitches. |
-| 2026-11-05 00:45 | GEV | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss GEV price movements, ownership, and general market sentiment without specific corporate events. |
-| 2026-11-04 22:27 | BROS | other | 0.2% | no model | 100% / 0% / 0% / 10% | Users discuss a sharp price drop and question a recent earnings call for Dutch Bros. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
