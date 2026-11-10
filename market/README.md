@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-09T23:23:29Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-10T14:52:28Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-414 candidates and 823 controls so far. Archetypes: other 398, low_float_runner 13, unknown 2, otc_penny 1.
+415 candidates and 823 controls so far. Archetypes: other 398, low_float_runner 13, unknown 3, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| ANT | 2026-11-10 14:52 | unknown | unknown |  |  |  |  |  |  | 3 | yahoo: No data found, symbol may be delisted |
 | MSS | 2026-11-09 23:23 | other | listed | 0.996 | +0.0% | -1.4% | 0.9x | 0.4M | 14.0% | 0 |  |
 | ASTS | 2026-11-09 22:33 | other | listed | 37.23 | +0.9% | +1.5% | 1.5x | 272.7M | 24.2% | 0 |  |
 | IVF | 2026-11-09 22:18 | low float runner | listed | 2.299 | -2.2% | +28.4% | 0.6x | 0.6M | 4.2% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | ASTS | 2026-11-06 07:56 | other | listed | 30.84 | +2.1% | -29.9% | 1.8x | 272.7M | 24.2% | 0 |  |
 | LABT | 2026-11-06 04:28 | other | listed | 0.5099 | -5.6% | +125.0% | 185.7x | 0.8M | 10.6% | 2 |  |
 | UVXY | 2026-11-06 03:36 | other | listed | 23.06 | -2.3% | +41.0% | 3.5x |  |  | 0 |  |
-| QQQ | 2026-11-06 02:44 | other | listed | 651.2 | +0.6% | -9.5% | 3.0x |  |  |  |  |
