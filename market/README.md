@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-10T19:20:28Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-10T20:00:40Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-419 candidates and 831 controls so far. Archetypes: other 402, low_float_runner 13, unknown 3, otc_penny 1.
+420 candidates and 833 controls so far. Archetypes: other 403, low_float_runner 13, unknown 3, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| CRWV | 2026-11-10 20:00 | other | listed | 47.3 | -3.4% | -2.3% | 0.7x | 328.3M | 21.3% | 1 |  |
 | MSTR | 2026-11-10 19:20 | other | listed | 120.4 | -4.1% | -4.0% | 0.8x | 401.8M | 7.2% | 5 |  |
 | GLD | 2026-11-10 17:08 | other | listed | 368.6 | -2.9% | +4.9% | 0.8x |  |  | 0 |  |
 | TTWO | 2026-11-10 16:24 | other | listed | 220.4 | +6.3% | +8.0% | 2.2x | 186.4M | 5.2% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | WDC | 2026-11-06 16:54 | other | listed | 262.2 | -2.0% | -32.3% | 2.1x | 371.9M | 5.2% | 0 |  |
 | INOD | 2026-11-06 15:46 | other | listed | 35.75 | -7.4% | -16.4% | 2.1x | 33.1M | 13.7% | 0 |  |
 | DKNG | 2026-11-06 14:52 | other | listed | 17.13 | -27.2% | +13.5% | 2.0x | 425.5M | 9.3% | 0 |  |
-| KORU | 2026-11-06 09:05 | other | listed | 7.181 | +10.0% | -48.7% | 3.5x |  |  |  |  |
