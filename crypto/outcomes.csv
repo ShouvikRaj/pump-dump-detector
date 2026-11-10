@@ -5581,9 +5581,9 @@ scan-gate-RAIN-2026110307,scan,spike,settled,0.006468,0.006347,0.205782,2.0,1,1,
 scan-gate-ALPINE-2026110308,scan,spike,settled,0.3686,0.529,0.437873,55.0,1,1,0,0.0,-0.421361,-0.459168,1.328922,-0.430624,0,crypto-label-v1
 scan-kucoin-ALPINE-2026110308,scan,spike,settled,0.387,0.51,0.447028,54.0,1,1,0,0.0,-0.394314,-0.437059,0.901961,-0.411961,0,crypto-label-v1
 scan-gate-MEZO-2026110309,scan,spike,settled,0.007241,0.006578,0.219445,6.0,1,1,1,0.0,-0.040894,-0.398601,0.05716,-0.123442,0,crypto-label-v1
-scan-gate-HONEY-2026110311,scan,spike,pending,0.0015629,0.0019738,0.522042,21.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-gate-HOT-2026110311,scan,spike,pending,0.0004655,0.0005393,0.241246,38.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-binance-HOT-2026110311,scan,spike,pending,0.000464,0.000538,0.221983,39.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-gate-HONEY-2026110311,scan,spike,settled,0.0015629,0.0019738,0.522042,21.0,1,1,0,0.0,-0.143682,-0.055325,0.026801,-0.206911,0,crypto-label-v1
+scan-gate-HOT-2026110311,scan,spike,settled,0.0004655,0.0005393,0.241246,38.0,1,1,0,0.0,-0.029297,-0.142778,0.111441,-0.133692,0,crypto-label-v1
+scan-binance-HOT-2026110311,scan,spike,settled,0.000464,0.000538,0.221983,39.0,1,1,0,0.0,-0.042751,-0.133829,0.107807,-0.150558,0,crypto-label-v1
 scan-kucoin-BMT-2026110312,scan,spike,pending,0.02281,0.02736,0.213503,58.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-binance-BMT-2026110312,scan,spike,pending,0.02325,0.02802,0.225376,58.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-mexc-PNG-2026110313,scan,spike,pending,0.02376,0.02672,0.215909,21.0,1,1,,0.0,,,,,0,crypto-label-v1
@@ -5751,4 +5751,7 @@ scan-gate-INIT-2026111004,scan,spike,pending,0.17403,0.20545,0.26415,54.0,1,1,,0
 scan-gate-BENQI-2026111007,scan,spike,pending,0.001887,0.002268,0.264441,58.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-kucoin-QI-2026111007,scan,spike,pending,0.001876,0.002247,0.275053,58.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-binance-QI-2026111007,scan,spike,pending,0.001873,0.00227,0.297384,58.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-mexc-ONE-2026111008,scan,spike,pending,0.0016148,0.0018376,0.218541,,1,,,0.0,,,,,0,crypto-label-v1
+scan-mexc-ONE-2026111008,scan,spike,pending,0.0016148,0.0018376,0.218541,57.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-mexc-CYBER-2026111011,scan,spike,pending,0.2675,0.3376,0.262056,,1,,,0.0,,,,,0,crypto-label-v1
+scan-gate-COMMON-2026111011,scan,spike,pending,3.42e-05,4.204e-05,0.22924,,1,,,0.0,,,,,0,crypto-label-v1
+scan-gate-CYBER-2026111011,scan,spike,pending,0.2675,0.338,0.263551,,1,,,0.0,,,,,0,crypto-label-v1
