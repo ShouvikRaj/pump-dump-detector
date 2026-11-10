@@ -1,9 +1,12 @@
 # Stage 3 tracking
 
-Updated 2026-11-09T22:58:12Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-11-10T04:27:05Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-11-09 23:23 | CSAI | control | low_float_runner | active | 0 |  |  |  |  |  |
+| 2026-11-09 23:23 | RUBI | control | low_float_runner | active | 0 |  |  |  |  |  |
+| 2026-11-09 23:23 | MSS | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-11-09 22:33 | COLB | control | other | active | 0 |  |  |  |  |  |
 | 2026-11-09 22:33 | FHN | control | other | active | 0 |  |  |  |  |  |
 | 2026-11-09 22:33 | ASTS | candidate | other | active | 0 |  |  |  |  |  |
@@ -22,7 +25,7 @@ Updated 2026-11-09T22:58:12Z. Each candidate and control is followed for 20 trad
 | 2026-11-09 21:11 | WPP | control | other | active | 0 |  |  |  |  |  |
 | 2026-11-09 21:11 | MAT | control | other | active | 0 |  |  |  |  |  |
 | 2026-11-09 21:11 | TTD | candidate | other | active | 0 |  |  |  |  |  |
-| 2026-11-09 20:48 | AUBN | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-09 20:48 | AUBN | control | other | active | 1 |  |  |  |  |  |
 | 2026-11-09 20:48 | RGS | control | other | active | 1 |  |  |  |  |  |
 | 2026-11-09 20:48 | LBTYK | control | other | active | 1 |  |  |  |  |  |
 | 2026-11-09 20:48 | CCU | control | other | active | 1 |  |  |  |  |  |
@@ -201,7 +204,7 @@ Updated 2026-11-09T22:58:12Z. Each candidate and control is followed for 20 trad
 | 2026-11-04 15:47 | DUOL | candidate | other | active | 4 |  |  |  |  |  |
 | 2026-11-04 15:47 | VST | candidate | other | active | 4 |  |  |  |  |  |
 | 2026-11-04 15:35 | NEE | control | other | active | 4 |  |  |  |  |  |
-| 2026-11-04 15:35 | CCZ | control | other | active | 3 |  |  |  |  |  |
+| 2026-11-04 15:35 | CCZ | control | other | active | 4 |  |  |  |  |  |
 | 2026-11-04 15:35 | UBER | candidate | other | active | 4 |  |  |  |  |  |
 | 2026-11-04 14:40 | ALMS | control | other | active | 4 |  |  |  |  |  |
 | 2026-11-04 14:40 | AMBP | control | other | active | 4 |  |  |  |  |  |
