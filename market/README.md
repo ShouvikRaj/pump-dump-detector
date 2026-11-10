@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-10T15:44:33Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-10T16:24:40Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-416 candidates and 825 controls so far. Archetypes: other 399, low_float_runner 13, unknown 3, otc_penny 1.
+417 candidates and 827 controls so far. Archetypes: other 400, low_float_runner 13, unknown 3, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| TTWO | 2026-11-10 16:24 | other | listed | 220.4 | +6.3% | +8.0% | 2.2x | 186.4M | 5.2% | 0 |  |
 | GEV | 2026-11-10 15:44 | other | listed | 774.4 | -6.6% | -3.8% | 1.1x | 264.1M | 2.8% | 0 |  |
 | ANT | 2026-11-10 14:52 | unknown | unknown |  |  |  |  |  |  | 3 | yahoo: No data found, symbol may be delisted |
 | MSS | 2026-11-09 23:23 | other | listed | 0.996 | +0.0% | -1.4% | 0.9x | 0.4M | 14.0% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | KORU | 2026-11-06 09:05 | other | listed | 7.181 | +10.0% | -48.7% | 3.5x |  |  |  |  |
 | TQQQ | 2026-11-06 07:56 | other | listed | 51.1 | +1.3% | -27.1% | 3.5x |  |  |  |  |
 | ASTS | 2026-11-06 07:56 | other | listed | 30.84 | +2.1% | -29.9% | 1.8x | 272.7M | 24.2% | 0 |  |
-| LABT | 2026-11-06 04:28 | other | listed | 0.5099 | -5.6% | +125.0% | 185.7x | 0.8M | 10.6% | 2 |  |
