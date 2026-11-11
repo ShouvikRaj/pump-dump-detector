@@ -4,8 +4,8 @@
     "ANT": {
       "episode_id": "ANT-20261110T145208Z",
       "first_flagged_at": 1794322328.5642924,
-      "last_flagged_at": 1794393129.100516,
-      "n_flags": 93,
+      "last_flagged_at": 1794393909.1030242,
+      "n_flags": 94,
       "peak_mentions": 132,
       "peak_z": 9.147,
       "reasons_seen": [
@@ -26,8 +26,8 @@
     "AVGO": {
       "episode_id": "AVGO-20261109T155608Z",
       "first_flagged_at": 1794239768.721035,
-      "last_flagged_at": 1794393129.100516,
-      "n_flags": 98,
+      "last_flagged_at": 1794393909.1030242,
+      "n_flags": 99,
       "peak_mentions": 43,
       "peak_z": 5.16,
       "reasons_seen": [
@@ -37,9 +37,9 @@
     "CRWV": {
       "episode_id": "CRWV-20261110T200010Z",
       "first_flagged_at": 1794340810.15035,
-      "last_flagged_at": 1794393129.100516,
-      "n_flags": 69,
-      "peak_mentions": 413,
+      "last_flagged_at": 1794393909.1030242,
+      "n_flags": 70,
+      "peak_mentions": 415,
       "peak_z": 20.658,
       "reasons_seen": [
         "mention_spike"
@@ -59,8 +59,8 @@
     "GEV": {
       "episode_id": "GEV-20261110T154407Z",
       "first_flagged_at": 1794325447.5594838,
-      "last_flagged_at": 1794393129.100516,
-      "n_flags": 83,
+      "last_flagged_at": 1794393909.1030242,
+      "n_flags": 84,
       "peak_mentions": 17,
       "peak_z": 2.55,
       "reasons_seen": [
@@ -125,8 +125,8 @@
     "NVDA": {
       "episode_id": "NVDA-20261109T001610Z",
       "first_flagged_at": 1794183370.7367644,
-      "last_flagged_at": 1794393129.100516,
-      "n_flags": 208,
+      "last_flagged_at": 1794393909.1030242,
+      "n_flags": 209,
       "peak_mentions": 1411,
       "peak_z": 14.45,
       "reasons_seen": [
@@ -136,8 +136,8 @@
     "NVDL": {
       "episode_id": "NVDL-20261111T073908Z",
       "first_flagged_at": 1794382748.50897,
-      "last_flagged_at": 1794393129.100516,
-      "n_flags": 14,
+      "last_flagged_at": 1794393909.1030242,
+      "n_flags": 15,
       "peak_mentions": 10,
       "peak_z": 2.887,
       "reasons_seen": [
@@ -169,8 +169,8 @@
     "RGTI": {
       "episode_id": "RGTI-20261110T212106Z",
       "first_flagged_at": 1794345666.773178,
-      "last_flagged_at": 1794393129.100516,
-      "n_flags": 63,
+      "last_flagged_at": 1794393909.1030242,
+      "n_flags": 64,
       "peak_mentions": 18,
       "peak_z": 7.258,
       "reasons_seen": [
@@ -212,10 +212,10 @@
     }
   },
   "last_run": {
-    "finished_at": 1794393129.1478598,
-    "new_docs": 122,
-    "run_id": "43003598236",
-    "started_at": 1794392789.2178485
+    "finished_at": 1794393909.1527357,
+    "new_docs": 142,
+    "run_id": "43005449681",
+    "started_at": 1794393581.8747401
   },
   "late_done_for": "2026-11-09",
   "live_since": 1791153669.8332794,
@@ -224,67 +224,67 @@
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
       "cursor": 1794377879,
-      "fallback_complete_at": 1794392941.8797216,
+      "fallback_complete_at": 1794393720.9887164,
       "fallback_cursor": 1794390835,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1794379274.2352107,
       "last_error": "Arctic Shift's archive stalled at 2026-11-11T09:02:40Z",
-      "last_error_at": 1794392806.929599
+      "last_error_at": 1794393595.4413316
     },
     "pennystocks/posts": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
       "cursor": 1794373234,
-      "fallback_complete_at": 1794393122.5860074,
+      "fallback_complete_at": 1794393902.605321,
       "fallback_cursor": 1794373234,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1794379263.9489114,
       "last_error": "Arctic Shift's archive stalled at 2026-11-11T09:02:40Z",
-      "last_error_at": 1794392795.070369
+      "last_error_at": 1794393587.508763
     },
     "smallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
       "cursor": 1794388327,
-      "fallback_complete_at": 1794392881.3007245,
-      "fallback_cursor": 1794392574,
+      "fallback_complete_at": 1794393661.591768,
+      "fallback_cursor": 1794393229,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1794379279.3472311,
       "last_error": "Arctic Shift's archive stalled at 2026-11-11T09:02:40Z",
-      "last_error_at": 1794392811.4582465
+      "last_error_at": 1794393596.9209504
     },
     "smallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
       "cursor": 1794388846,
-      "fallback_complete_at": 1794393063.246315,
+      "fallback_complete_at": 1794393842.4637368,
       "fallback_cursor": 1794388846,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1794379267.0487227,
       "last_error": "Arctic Shift's archive stalled at 2026-11-11T09:02:40Z",
-      "last_error_at": 1794392797.0670037
+      "last_error_at": 1794393589.4215252
     },
     "wallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
       "cursor": 1794387760,
-      "fallback_complete_at": 1794392821.6594691,
-      "fallback_cursor": 1794392795,
+      "fallback_complete_at": 1794393601.1759264,
+      "fallback_cursor": 1794393585,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1794379281.2867846,
       "last_error": "Arctic Shift's archive stalled at 2026-11-11T09:02:40Z",
-      "last_error_at": 1794392813.5215468
+      "last_error_at": 1794393598.3845508
     },
     "wallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1794392173,
-      "fallback_complete_at": 1794393002.1917155,
+      "cursor": 1794393532,
+      "fallback_complete_at": 1794393781.6880298,
       "fallback_cursor": 1794391276,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1794379272.185293,
       "last_error": "Arctic Shift's archive stalled at 2026-11-11T09:02:40Z",
-      "last_error_at": 1794392801.7083158
+      "last_error_at": 1794393591.2437682
     }
   },
   "symbols_refresh_errors": 0,
