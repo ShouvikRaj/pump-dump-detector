@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-10T07:07:40Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-11T00:17:48Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-09)
 
@@ -19,6 +19,12 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-10 21:21 | RGTI | other | 0.5% | no model | 100% / 9.1% / 0% / 64% | Chatter focuses on Rigetti Computing earnings results, with mixed reactions ranging from bearish disappointment to bullish price targets. |
+| 2026-11-10 20:00 | CRWV | other | 0.2% | no model | 100% / 0% / 0% / 0% | Chatter focuses on CRWV earnings anticipation, sector correlations, and mixed sentiment regarding potential price moves. |
+| 2026-11-10 19:20 | MSTR | other | 0.5% | no model | 100% / 0% / 0% / 0% | Users discuss MSTR price movements, express skepticism about Michael Saylor's funds, and debate the stock's legitimacy. |
+| 2026-11-10 17:08 | GLD | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss GLD trading strategies, profits, and price movements without mentioning specific corporate events. |
+| 2026-11-10 16:24 | TTWO | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss TTWO stock price movements, GTA 6 hype, and earnings reactions without specific company events. |
+| 2026-11-10 15:44 | GEV | other | 0.0% | no model | 82% / 18% / 0% / 0% | Chatter includes jokes, price targets, and confusion about a 'Chinese spy' rumor regarding GE Vernova. |
 | 2026-11-09 23:23 | MSS | other | 10% | no model | 0% / 0% / 0% / 0% | All documents discuss the Chinese Ministry of State Security (MSS) and Alice Huang, not Maison Solutions Inc. |
 | 2026-11-09 22:33 | ASTS | other | 1.4% | no model | 100% / 5.0% / 0% / 0% | Chatter focuses on ASTS stock performance relative to RKLB, with mixed opinions, jokes, and speculation about earnings or reports. |
 | 2026-11-09 22:18 | ASML | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss ASML espionage rumors, joke about blueprints, and express general bearishness without specific events. |
@@ -53,12 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-06 00:59 | SPY | other | 0.4% | no model | 100% / 0% / 0% / 0% | Users discuss SPY options trading, market volatility, and potential price movements without specific company events. |
 | 2026-11-05 23:26 | SGOV | other | 0.3% | no model | 100% / 0% / 0% / 0% | Users discuss holding SGOV for tax-free yields and compare it to volatile stocks, with no specific corporate events mentioned. |
 | 2026-11-05 23:10 | VTI | other | 0.6% | no model | 100% / 0% / 0% / 0% | Users discuss buying, selling, and holding VTI as a safe investment or diversification tool. |
-| 2026-11-05 22:33 | ABNB | other | 0.1% | no model | 100% / 0% / 0% / 20% | Users discuss upcoming earnings, express skepticism about management, and joke about stock buybacks. |
-| 2026-11-05 22:33 | IONQ | other | 3.3% | no model | 100% / 0% / 0% / 10% | Mixed chatter includes bearish skepticism about valuations, a specific earnings beat mention, and bullish hype. |
-| 2026-11-05 22:19 | VOO | other | 0.6% | no model | 100% / 0% / 0% / 0% | Users discuss VOO as a safe investment alternative to high-risk leveraged ETFs and meme stocks. |
-| 2026-11-05 21:12 | SNDK | other | 6.0% | no model | 100% / 5.0% / 0% / 7.5% | Chatter discusses SNDK price drops, potential stock splits, and mixed investment opinions. |
-| 2026-11-05 20:49 | ROPE | other | 0.3% | no model | 100% / 0% / 0% / 0% | Users discuss $ROPE with high urgency, mentioning full portfolio allocations and calls. |
-| 2026-11-05 19:19 | SQQQ | other | 0.3% | no model | 100% / 18% / 0% / 0% | Users discuss SQQQ price movements, express bullish sentiment, and mention selling positions. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
@@ -68,8 +68,9 @@ Each development week replayed exactly as it would have run: its model trained o
 
 | Candidates | n | Positives | Base rate | Flagged | Precision | Recall | F1 | Lift | AP | AUC |
 |---|---|---|---|---|---|---|---|---|---|---|
-| all candidates | 1 | 1 | 100% | 1 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
+| all candidates | 3 | 3 | 100% | 3 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
 | low float runner | 1 | 1 | 100% | 1 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
+| other | 2 | 2 | 100% | 2 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
 | pump types together | 1 | 1 | 100% | 1 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
 
 | Model | AP | Precision | Recall | F1 |
@@ -80,7 +81,7 @@ Each development week replayed exactly as it would have run: its model trained o
 
 | Robustness check | Result | Detail |
 |---|---|---|
-| beats the base rate | not enough data | 1 positives (needs 10) |
+| beats the base rate | not enough data | 3 positives (needs 10) |
 | separate periods | not enough data | needs 3 positives in each of three blocks of weeks |
 | per pump type | not enough data | needs 5 positives in a pump type |
 | beats the control group | not enough data | 0 flagged with settled controls (needs 10) |
@@ -88,7 +89,7 @@ Each development week replayed exactly as it would have run: its model trained o
 
 Verdict: **not robust yet** (some checks need more labels).
 
-Feature groups: all used; weak groups are pruned once the replay holds 20 positive candidates (1 so far).
+Feature groups: all used; weak groups are pruned once the replay holds 20 positive candidates (3 so far).
 
 ### pump
 
