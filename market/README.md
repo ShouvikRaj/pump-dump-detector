@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-11T07:39:28Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-11T12:32:31Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-422 candidates and 837 controls so far. Archetypes: other 405, low_float_runner 13, unknown 3, otc_penny 1.
+423 candidates and 839 controls so far. Archetypes: other 406, low_float_runner 13, unknown 3, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| NBIS | 2026-11-11 12:32 | other | listed | 154 | +15.0% | -11.6% | 0.8x | 228.7M | 22.3% | 0 |  |
 | NVDL | 2026-11-11 07:39 | other | listed | 19.62 | +1.8% | -34.5% | 5.8x |  |  |  |  |
 | RGTI | 2026-11-10 21:21 | other | listed | 11.48 | -5.5% | +9.6% | 1.1x | 328.0M | 21.7% | 0 |  |
 | CRWV | 2026-11-10 20:00 | other | listed | 47.3 | -3.4% | -2.3% | 0.7x | 328.3M | 21.3% | 1 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | VIVK | 2026-11-06 18:22 | other | listed | 0.5063 | +36.8% | -75.3% | 0.4x | 0.5M | 21.8% | 0 |  |
 | ORCL | 2026-11-06 18:13 | other | listed | 113.8 | -1.1% | -17.5% | 1.4x | 1.86B | 2.6% | 5 |  |
 | GRND | 2026-11-06 18:01 | other | listed | 13.5 | -1.0% | +5.7% | 1.8x | 45.0M | 18.5% | 0 |  |
-| WDC | 2026-11-06 16:54 | other | listed | 262.2 | -2.0% | -32.3% | 2.1x | 371.9M | 5.2% | 0 |  |
