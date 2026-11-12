@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-12T20:43:43Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-12T20:54:32Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-439 candidates and 871 controls so far. Archetypes: other 420, low_float_runner 15, unknown 3, otc_penny 1.
+440 candidates and 873 controls so far. Archetypes: other 421, low_float_runner 15, unknown 3, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| MSFT | 2026-11-12 20:54 | other | listed | 522.5 | +0.3% | -6.2% | 1.1x | 7.42B | 0.8% | 2 |  |
 | ASML | 2026-11-12 20:43 | other | listed | 1,493 | -2.7% | +2.5% | 0.8x | 21.28B | 0.0% | 0 |  |
 | AMAT | 2026-11-12 18:42 | other | listed | 392.4 | -0.7% | +7.0% | 0.9x | 790.5M | 1.8% | 0 |  |
 | GLD | 2026-11-12 18:15 | other | listed | 355.5 | -2.6% | -2.0% | 0.6x |  |  | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | ASTS | 2026-11-09 22:33 | other | listed | 37.23 | +0.9% | +1.5% | 1.5x | 272.7M | 24.2% | 0 |  |
 | IVF | 2026-11-09 22:18 | low float runner | listed | 2.299 | -2.2% | +28.4% | 0.6x | 0.6M | 4.2% | 0 |  |
 | ASML | 2026-11-09 22:18 | other | listed | 1,523 | +0.7% | -0.8% | 1.3x | 21.28B | 0.0% | 0 |  |
-| RKLB | 2026-11-09 21:25 | other | listed | 55.01 | -6.5% | +13.0% | 1.4x | 556.8M | 8.1% | 2 |  |
