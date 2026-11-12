@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-12T20:54:32Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-12T21:20:31Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-440 candidates and 873 controls so far. Archetypes: other 421, low_float_runner 15, unknown 3, otc_penny 1.
+441 candidates and 875 controls so far. Archetypes: other 422, low_float_runner 15, unknown 3, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| CSCO | 2026-11-12 21:20 | other | listed | 104.4 | +2.4% | +6.6% | 1.2x | 3.94B | 1.5% | 0 |  |
 | MSFT | 2026-11-12 20:54 | other | listed | 522.5 | +0.3% | -6.2% | 1.1x | 7.42B | 0.8% | 2 |  |
 | ASML | 2026-11-12 20:43 | other | listed | 1,493 | -2.7% | +2.5% | 0.8x | 21.28B | 0.0% | 0 |  |
 | AMAT | 2026-11-12 18:42 | other | listed | 392.4 | -0.7% | +7.0% | 0.9x | 790.5M | 1.8% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | MSS | 2026-11-09 23:23 | other | listed | 0.996 | +0.0% | -1.4% | 0.9x | 0.4M | 14.0% | 0 |  |
 | ASTS | 2026-11-09 22:33 | other | listed | 37.23 | +0.9% | +1.5% | 1.5x | 272.7M | 24.2% | 0 |  |
 | IVF | 2026-11-09 22:18 | low float runner | listed | 2.299 | -2.2% | +28.4% | 0.6x | 0.6M | 4.2% | 0 |  |
-| ASML | 2026-11-09 22:18 | other | listed | 1,523 | +0.7% | -0.8% | 1.3x | 21.28B | 0.0% | 0 |  |
