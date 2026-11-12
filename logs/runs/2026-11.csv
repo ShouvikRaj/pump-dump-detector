@@ -13475,3 +13475,13 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 43164410955,2026-11-12T05:54:07Z,smallstreetbets/comments,feed,2026-11-11T20:14:26Z,900,30,9,0,2026-11-11T20:14:26Z,,388.1,"Reddit RSS rate limit used up for 60 s more, past this run's time"
 43164410955,2026-11-12T05:54:07Z,pennystocks/comments,feed,2026-11-11T20:03:25Z,0,0,0,0,2026-11-11T20:03:25Z,,,"Reddit RSS rate limit used up for 60 s more, past this run's time"
 43164410955,2026-11-12T05:54:07Z,wallstreetbets/comments,late,2026-11-10T22:50:33Z,0,0,0,0,,,,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
+43165885656,2026-11-12T06:07:49Z,pennystocks/posts,live,2026-11-12T02:01:09Z,1,0,1,1,2026-11-12T05:01:09Z,16.0,,
+43165885656,2026-11-12T06:07:49Z,smallstreetbets/posts,live,2026-11-12T02:39:13Z,13,0,1,1,2026-11-12T05:39:13Z,17.0,,
+43165885656,2026-11-12T06:07:49Z,wallstreetbets/posts,live,2026-11-12T02:47:42Z,96,1,1,1,2026-11-12T05:58:05Z,16.0,601.4,
+43165885656,2026-11-12T06:07:49Z,pennystocks/comments,live,2026-11-12T04:18:01Z,4,0,1,1,2026-11-12T04:48:01Z,1308.0,,
+43165885656,2026-11-12T06:07:49Z,smallstreetbets/comments,live,2026-11-12T04:43:16Z,28,0,1,1,2026-11-12T05:55:34Z,3665.0,,
+43165885656,2026-11-12T06:07:49Z,wallstreetbets/comments,live,2026-11-12T05:17:22Z,128,2,2,1,2026-11-12T05:58:45Z,974.0,718.4,
+43165885656,2026-11-12T06:07:49Z,wallstreetbets/comments,feed,2026-11-12T05:54:31Z,400,385,4,1,2026-11-12T06:08:59Z,,495.0,
+43165885656,2026-11-12T06:07:49Z,smallstreetbets/comments,feed,2026-11-11T20:14:26Z,700,29,7,0,2026-11-11T20:14:26Z,,432.3,"Reddit RSS rate limit used up for 59 s more, past this run's time"
+43165885656,2026-11-12T06:07:49Z,pennystocks/comments,feed,2026-11-11T20:03:25Z,0,0,0,0,2026-11-11T20:03:25Z,,,"Reddit RSS rate limit used up for 59 s more, past this run's time"
+43165885656,2026-11-12T06:07:49Z,wallstreetbets/comments,late,2026-11-10T22:50:33Z,100,0,1,0,,,,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
