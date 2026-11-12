@@ -13410,3 +13410,13 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 43155680288,2026-11-12T04:34:59Z,smallstreetbets/comments,feed,2026-11-11T20:14:26Z,600,33,6,0,2026-11-11T20:14:26Z,,263.5,"Reddit RSS rate limit used up for 60 s more, past this run's time"
 43155680288,2026-11-12T04:34:59Z,pennystocks/comments,feed,2026-11-11T20:03:25Z,0,0,0,0,2026-11-11T20:03:25Z,,,"Reddit RSS rate limit used up for 60 s more, past this run's time"
 43155680288,2026-11-12T04:34:59Z,wallstreetbets/comments,late,2026-11-10T22:27:17Z,397,0,4,0,,,,
+43157104422,2026-11-12T04:47:55Z,pennystocks/posts,live,2026-11-11T21:44:04Z,4,0,1,1,2026-11-12T00:44:04Z,13.5,,
+43157104422,2026-11-12T04:47:55Z,smallstreetbets/posts,live,2026-11-12T01:08:37Z,21,0,1,1,2026-11-12T04:08:37Z,16.0,,
+43157104422,2026-11-12T04:47:55Z,wallstreetbets/posts,live,2026-11-12T01:34:23Z,125,5,2,1,2026-11-12T04:47:48Z,15.0,232.2,
+43157104422,2026-11-12T04:47:55Z,pennystocks/comments,live,2026-11-12T02:15:49Z,2,0,1,1,2026-11-12T02:45:49Z,1839.0,,
+43157104422,2026-11-12T04:47:55Z,smallstreetbets/comments,live,2026-11-12T03:54:11Z,48,0,1,1,2026-11-12T04:24:11Z,1116.0,,
+43157104422,2026-11-12T04:47:55Z,wallstreetbets/comments,live,2026-11-12T03:50:05Z,54,1,1,1,2026-11-12T04:44:42Z,764.0,232.4,
+43157104422,2026-11-12T04:47:55Z,wallstreetbets/comments,feed,2026-11-12T04:35:24Z,500,415,5,1,2026-11-12T04:48:23Z,,442.2,
+43157104422,2026-11-12T04:47:55Z,smallstreetbets/comments,feed,2026-11-11T20:14:26Z,700,42,7,0,2026-11-11T20:14:26Z,,302.4,"Reddit RSS rate limit used up for 59 s more, past this run's time"
+43157104422,2026-11-12T04:47:55Z,pennystocks/comments,feed,2026-11-11T20:03:25Z,0,0,0,0,2026-11-11T20:03:25Z,,,"Reddit RSS rate limit used up for 59 s more, past this run's time"
+43157104422,2026-11-12T04:47:55Z,wallstreetbets/comments,late,2026-11-10T22:50:33Z,0,0,0,0,,,,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
