@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-11T05:59:07Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-12T01:17:02Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-09)
 
@@ -19,6 +19,11 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-12 01:02 | NYT | other | 0.1% | no model | 0% / 0% / 0% / 0% | All documents discuss an affair involving Nvidia's CEO, not the New York Times Company stock. |
+| 2026-11-12 01:02 | OUST | other | 4.7% | no model | 0% / 0% / 0% / 0% | All documents discuss NVIDIA CEO Jensen Huang, not Ouster, Inc. |
+| 2026-11-11 15:26 | MSFT | other | 0.3% | no model | 100% / 0% / 0% / 0% | Users discuss MSFT price movements, AI competition with Anthropic, and trade positions without specific corporate events. |
+| 2026-11-11 12:32 | NBIS | other | 1.2% | no model | 100% / 0% / 0% / 0% | Chatter focuses on NBIS price action, upcoming earnings, and bullish sentiment regarding CoreWeave news. |
+| 2026-11-11 07:39 | NVDL | other | 2.8% | no model | 100% / 0% / 0% / 0% | Users discuss buying, selling, and holding strategies for the NVDL ETF with mixed sentiment. |
 | 2026-11-10 21:21 | RGTI | other | 0.5% | no model | 100% / 9.1% / 0% / 64% | Chatter focuses on Rigetti Computing earnings results, with mixed reactions ranging from bearish disappointment to bullish price targets. |
 | 2026-11-10 20:00 | CRWV | other | 0.2% | no model | 100% / 0% / 0% / 0% | Chatter focuses on CRWV earnings anticipation, sector correlations, and mixed sentiment regarding potential price moves. |
 | 2026-11-10 19:20 | MSTR | other | 0.5% | no model | 100% / 0% / 0% / 0% | Users discuss MSTR price movements, express skepticism about Michael Saylor's funds, and debate the stock's legitimacy. |
@@ -54,11 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-06 07:56 | TQQQ | other | 8.4% | no model | 100% / 10% / 0% / 0% | Users discuss holding, buying, and price targets for TQQQ with mixed bullish and bearish sentiments. |
 | 2026-11-06 04:28 | LABT | other | **16%** | no model | 100% / 10% / 0% / 0% | Users discuss $LABT price targets, recent gains, and breakout patterns without mentioning specific corporate events. |
 | 2026-11-06 03:36 | UVXY | other | 9.5% | no model | 100% / 0% / 0% / 0% | Users discuss UVXY volatility, recent gains, and potential crashes due to falling volume. |
-| 2026-11-06 02:44 | QQQ | other | 0.5% | no model | 100% / 0% / 0% / 0% | Users discuss QQQ price movements, option trades, and market sentiment without mentioning specific corporate events. |
-| 2026-11-06 00:59 | EWY | other | 1.4% | no model | 100% / 0% / 0% / 0% | Users discuss EWY price movements relative to KOSPI and joke about Korean market volatility. |
-| 2026-11-06 00:59 | SPY | other | 0.4% | no model | 100% / 0% / 0% / 0% | Users discuss SPY options trading, market volatility, and potential price movements without specific company events. |
-| 2026-11-05 23:26 | SGOV | other | 0.3% | no model | 100% / 0% / 0% / 0% | Users discuss holding SGOV for tax-free yields and compare it to volatile stocks, with no specific corporate events mentioned. |
-| 2026-11-05 23:10 | VTI | other | 0.6% | no model | 100% / 0% / 0% / 0% | Users discuss buying, selling, and holding VTI as a safe investment or diversification tool. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
