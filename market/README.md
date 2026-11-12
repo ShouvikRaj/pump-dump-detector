@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-12T05:40:58Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-12T14:43:33Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-430 candidates and 853 controls so far. Archetypes: other 412, low_float_runner 14, unknown 3, otc_penny 1.
+431 candidates and 855 controls so far. Archetypes: other 413, low_float_runner 14, unknown 3, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| LUNR | 2026-11-12 14:43 | other | listed | 13.96 | +14.6% | +22.7% | 1.2x | 131.6M | 27.5% | 0 |  |
 | SLI | 2026-11-12 05:40 | other | listed | 1.49 | +2.1% | +1.4% | 0.5x | 239.2M | 2.5% | 0 |  |
 | AMD | 2026-11-12 05:14 | other | listed | 576.8 | +4.3% | +13.1% | 1.4x | 1.63B | 2.4% | 1 |  |
 | NXXT | 2026-11-12 03:27 | low float runner | listed | 2.05 | +20.6% | -33.1% | 191.7x | 0.8M | 5.9% | 2 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | NNN | 2026-11-09 15:04 | other | listed | 41.3 | +0.4% | +0.3% | 1.1x | 181.6M | 3.9% | 0 |  |
 | CVS | 2026-11-09 13:52 | other | listed | 84.75 | +1.1% | -7.1% | 1.5x | 1.28B | 1.3% | 0 |  |
 | NYT | 2026-11-09 11:01 | other | listed | 68.5 | +0.2% | -2.6% | 1.3x | 132.3M | 14.1% | 0 |  |
-| NVDA | 2026-11-09 00:16 | other | listed | 188.7 | +1.1% | -8.8% | 1.6x | 23.13B | 1.3% | 0 |  |
