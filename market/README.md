@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-12T17:47:32Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-12T18:15:33Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-436 candidates and 865 controls so far. Archetypes: other 417, low_float_runner 15, unknown 3, otc_penny 1.
+437 candidates and 867 controls so far. Archetypes: other 418, low_float_runner 15, unknown 3, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| GLD | 2026-11-12 18:15 | other | listed | 355.5 | -2.6% | -2.0% | 0.6x |  |  | 0 |  |
 | SMCI | 2026-11-12 17:47 | other | listed | 26.97 | -11.4% | +2.8% | 1.0x | 560.0M | 13.4% | 0 |  |
 | TRT | 2026-11-12 17:34 | low float runner | listed | 5.82 | +10.6% | +6.0% | 0.9x | 7.8M | 9.2% | 0 |  |
 | PARA | 2026-11-12 17:04 | other | listed | 0.1135 | +57.6% | -77.4% | 3.2x | 0.3M | 15.4% | 5 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | RKLB | 2026-11-09 21:25 | other | listed | 55.01 | -6.5% | +13.0% | 1.4x | 556.8M | 8.1% | 2 |  |
 | HIMS | 2026-11-09 21:25 | other | listed | 22.46 | -2.1% | -9.1% | 4.4x | 213.8M | 25.0% | 0 |  |
 | TTD | 2026-11-09 21:11 | other | listed | 18.86 | +26.3% | +19.0% | 4.3x | 416.6M | 20.0% | 1 |  |
-| ONDS | 2026-11-09 20:48 | other | listed | 6.025 | +12.9% | -15.6% | 0.9x | 533.4M | 47.6% | 3 |  |
