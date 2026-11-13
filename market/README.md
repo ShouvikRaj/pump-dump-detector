@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-13T00:27:37Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-13T01:09:46Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-443 candidates and 879 controls so far. Archetypes: other 424, low_float_runner 15, unknown 3, otc_penny 1.
+444 candidates and 881 controls so far. Archetypes: other 425, low_float_runner 15, unknown 3, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SLS | 2026-11-13 01:09 | other | listed | 9.646 | +14.6% | -7.9% | 0.5x | 201.1M | 28.4% | 0 |  |
 | NFLX | 2026-11-13 00:27 | other | listed | 62.86 | +0.3% | -4.4% | 0.7x | 4.08B | 2.2% | 0 |  |
 | IBM | 2026-11-13 00:27 | other | listed | 245 | +0.2% | -1.0% | 0.5x | 943.2M | 1.9% | 1 |  |
 | CSCO | 2026-11-12 21:20 | other | listed | 104.4 | +2.4% | +6.6% | 1.2x | 3.94B | 1.5% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | TTWO | 2026-11-10 16:24 | other | listed | 220.4 | +6.3% | +8.0% | 2.2x | 186.4M | 5.2% | 0 |  |
 | GEV | 2026-11-10 15:44 | other | listed | 774.4 | -6.6% | -3.8% | 1.1x | 264.1M | 2.8% | 0 |  |
 | ANT | 2026-11-10 14:52 | unknown | unknown |  |  |  |  |  |  | 3 | yahoo: No data found, symbol may be delisted |
-| MSS | 2026-11-09 23:23 | other | listed | 0.996 | +0.0% | -1.4% | 0.9x | 0.4M | 14.0% | 0 |  |
