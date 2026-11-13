@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-13T00:18:36Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-13T06:29:04Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-09)
 
@@ -19,6 +19,10 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-13 06:20 | MSTR | other | 1.1% | no model | 100% / 0% / 0% / 0% | Users express extreme bearishness, fear of delisting, and joke about nationalizing the company. |
+| 2026-11-13 01:09 | SLS | other | 1.1% | no model | 100% / 20% / 0% / 0% | Chatter discusses SLS upcoming catalysts, short interest, and recent price spikes without specific company event details. |
+| 2026-11-13 00:27 | IBM | other | 0.3% | no model | 100% / 0% / 0% / 0% | Discussions about IBM's history, leadership, and market performance compared to other tech stocks. |
+| 2026-11-13 00:27 | NFLX | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss NFLX price action, joke about a documentary, and mention buybacks without specific events or pitches. |
 | 2026-11-12 21:20 | CSCO | other | 0.0% | no model | 100% / 0% / 0% / 0% | Users discuss CSCO options pricing, compare it to NVDA/AMAT, and react to potential earnings beats. |
 | 2026-11-12 20:54 | MSFT | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss a major Microsoft Outlook outage, expressing skepticism about the stock's resilience and calling for short positions. |
 | 2026-11-12 20:43 | ASML | other | 0.0% | no model | 100% / 0% / 0% / 0% | Users discuss ASML's market position, EUV technology, and geopolitical tensions with China. |
@@ -55,10 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-09 20:48 | OMH | other | **34%** | no model | 100% / 0% / 0% / 0% | Users discuss OMH price movements, express confusion, and compare it to other stocks without specific company events. |
 | 2026-11-09 20:48 | ONDS | other | 0.2% | no model | 100% / 0% / 0% / 10% | Users discuss holding Ondas Inc for earnings, set price targets, and joke about the stock's potential rise. |
 | 2026-11-09 15:56 | AVGO | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss AVGO price movements, sector rotation, and potential risks while some express bullish intent. |
-| 2026-11-09 15:04 | NNN | other | 0.0% | no model | 0% / 0% / 0% / 0% | All documents refer to NNN as a slang term for masturbation, not the stock. |
-| 2026-11-09 13:52 | CVS | other | 0.0% | no model | 100% / 0% / 0% / 10% | Users discuss CVS's potential breakup, poor customer service, and high prices, with no specific corporate events mentioned. |
-| 2026-11-09 11:01 | NYT | other | 0.0% | no model | 0% / 0% / 0% / 0% | All documents discuss a New York Times article about Nvidia CEO Jensen Huang's alleged espionage and affair, not the stock. |
-| 2026-11-09 00:16 | NVDA | other | 0.1% | no model | 100% / 12% / 0% / 0% | Chatter focuses on Jensen Huang's personal scandal and its potential impact on NVDA stock price. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
