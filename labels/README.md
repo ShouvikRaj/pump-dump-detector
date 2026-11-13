@@ -1,6 +1,6 @@
 # Stage 4 labels
 
-Updated 2026-11-12T23:24:31Z. Every candidate and control gets the same rule, `label-v1`, written down before any outcome was looked at (docs/stage4.md in the code branch). Sessions count from the flag; returns are against the price at the flag. All rows: `labels/labels.csv`.
+Updated 2026-11-13T03:27:05Z. Every candidate and control gets the same rule, `label-v1`, written down before any outcome was looked at (docs/stage4.md in the code branch). Sessions count from the flag; returns are against the price at the flag. All rows: `labels/labels.csv`.
 
 - **pump**: up 50% or more within 5 sessions, then down 40% or more from that peak within the next 10
 - **real news**: earnings, a completed acquisition, a change of control, bankruptcy or a material agreement that isn't a share sale, filed with the SEC (8-K) between 72 hours before the flag and session 5; it beats pump
@@ -13,8 +13,8 @@ Updated 2026-11-12T23:24:31Z. Every candidate and control gets the same rule, `l
 | low float runner | control | 0 | 2 | 30 | 3 of 32 (9%) | 14 | 0 |
 | otc penny | candidate | 0 | 0 | 1 | 0 of 1 (0%) | 0 | 0 |
 | otc penny | control | 0 | 0 | 2 | 0 of 2 (0%) | 0 | 0 |
-| other | candidate | 3 | 122 | 234 | 19 of 296 (6%) | 63 | 0 |
-| other | control | 0 | 157 | 473 | 2 of 574 (0%) | 197 | 0 |
+| other | candidate | 3 | 123 | 234 | 19 of 296 (6%) | 65 | 0 |
+| other | control | 0 | 157 | 473 | 2 of 574 (0%) | 203 | 0 |
 | unknown | candidate | 0 | 0 | 0 | - | 0 | 3 |
 
 Crash counts the snapshots whose crash label has settled.
@@ -24,6 +24,7 @@ Crash counts the snapshots whose crash label has settled.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Label | Crash | Peak, 5 sessions | Drop from peak | Lowest close, 10 sessions | News filings |
 |---|---|---|---|---|---|---|---|---|---|
+| 2026-11-13 01:09 | SLS | candidate | other | real news |  |  |  |  | 8-K 2026-11-12T21:07 2.02,9.01 (news) |
 | 2026-11-12 21:20 | CSCO | candidate | other | real news |  |  |  |  | 8-K 2026-11-12T21:06 2.02,9.01 (news) |
 | 2026-11-12 20:43 | TDG | control | other | real news |  |  |  |  | 8-K 2026-11-10T11:32 2.02,9.01 (news) |
 | 2026-11-12 17:34 | TRT | candidate | low float runner | real news |  |  |  |  | 8-K 2026-11-12T17:28 2.02,9.01 (news) |
@@ -73,6 +74,5 @@ Crash counts the snapshots whose crash label has settled.
 | 2026-11-05 19:19 | OPCH | control | other | real news |  | +1% |  |  | 8-K 2026-11-04T11:55 2.02,9.01 (news) |
 | 2026-11-05 16:25 | DNUT | candidate | other | real news |  | +9% |  |  | 8-K 2026-11-05T11:53 2.02 (news); 8-K 2026-11-05T21:44 5.02 |
 | 2026-11-05 13:17 | XNCR | control | other | real news |  | +14% |  |  | 8-K 2026-11-04T21:01 2.02,9.01 (news) |
-| 2026-11-05 13:17 | CLDX | control | other | real news |  | +6% |  |  | 8-K 2026-11-05T21:01 2.02,9.01 (news) |
 
-989 older rows are in `labels/labels.csv`.
+990 older rows are in `labels/labels.csv`.
