@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-14T19:58:09Z by run `43634226687`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-14T20:08:11Z by run `43635410694`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -19,10 +19,9 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | MSTR | 2026-11-13 06:20 | mention spike | 8 | 7.86 | 8 | 0 | wallstreetbets 8 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xwan3u/comment/19smzlg9hyhj5/) |
 | SMU | 2026-11-13 14:07 | mention spike | 3 | 2.0 | 3 | 0 | wallstreetbets 2, smallstreetbets 1 | Cboe BZX |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1xuejhq/comment/19smnvh5ft4dh/) |
 | WMT | 2026-11-14 02:06 | mention spike | 2 | 3.29 | 2 | 0 | wallstreetbets 2 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjlim/comment/19smchb7e8mdd/) |
-| GME | 2026-11-12 01:54 | mention spike | 13 | 12.86 | 13 | 0 | wallstreetbets 11, pennystocks 1, smallstreetbets 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xw06p8/) |
+| GME | 2026-11-12 01:54 | mention spike | 12 | 13.0 | 12 | 0 | wallstreetbets 11, pennystocks 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xw06p8/) |
 | SLS | 2026-11-13 01:09 | mention spike | 4 | 5.57 | 4 | 0 | wallstreetbets 4 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjlim/comment/19sm4quxrjhad/) |
 | CBRS | 2026-11-12 16:56 | mention spike | 1 | 13.0 | 1 | 0 | wallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjlim/comment/19smx9xf5d26a/) |
 | CSCO | 2026-11-12 21:20 | mention spike | 2 | 5.43 | 2 | 0 | wallstreetbets 2 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjlim/comment/19slriey0wlkz/) |
-| AMAT | 2026-11-12 18:42 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
