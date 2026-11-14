@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-14T00:25:14Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-14T06:08:37Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-09)
 
@@ -19,6 +19,10 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-14 03:08 | LHX | other | 0.1% | no model | 100% / 0% / 0% / 10% | Users discuss LHX price drops, shorting activity, and joke about a flight grounding event. |
+| 2026-11-14 02:06 | WMT | other | 0.2% | no model | 100% / 40% / 0% / 0% | Mixed chatter on WMT ranging from bullish mooning claims to bearish recession warnings and general portfolio mentions. |
+| 2026-11-14 01:03 | HSBC | other | 0.1% | no model | 90% / 0% / 0% / 0% | Users discuss HSBC's reputation for money laundering, a downgrade, and express strong negative sentiment. |
+| 2026-11-14 00:36 | DHS | other | 0.1% | no model | 0% / 0% / 0% / 0% | All documents discuss the Department of Homeland Security, not the WisdomTree U.S. High Dividend Fund. |
 | 2026-11-13 23:41 | NWS | other | 0.1% | no model | 0% / 0% / 0% / 0% | Chatter discusses a nationwide outage of the US National Weather Service, not the stock. |
 | 2026-11-13 22:10 | ATC | other | 0.5% | no model | 0% / 0% / 0% / 0% | All documents discuss an unrelated Air Traffic Control system outage, not the GraniteShares Autocallable COIN ETF. |
 | 2026-11-13 19:02 | IWM | other | 0.3% | no model | 100% / 0% / 0% / 0% | Users discuss IWM price action, technical breaches, and general market sentiment without specific company events. |
@@ -55,10 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-10 21:21 | RGTI | other | 0.5% | no model | 100% / 9.1% / 0% / 64% | Chatter focuses on Rigetti Computing earnings results, with mixed reactions ranging from bearish disappointment to bullish price targets. |
 | 2026-11-10 20:00 | CRWV | other | 0.2% | no model | 100% / 0% / 0% / 0% | Chatter focuses on CRWV earnings anticipation, sector correlations, and mixed sentiment regarding potential price moves. |
 | 2026-11-10 19:20 | MSTR | other | 0.5% | no model | 100% / 0% / 0% / 0% | Users discuss MSTR price movements, express skepticism about Michael Saylor's funds, and debate the stock's legitimacy. |
-| 2026-11-10 17:08 | GLD | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss GLD trading strategies, profits, and price movements without mentioning specific corporate events. |
-| 2026-11-10 16:24 | TTWO | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss TTWO stock price movements, GTA 6 hype, and earnings reactions without specific company events. |
-| 2026-11-10 15:44 | GEV | other | 0.0% | no model | 82% / 18% / 0% / 0% | Chatter includes jokes, price targets, and confusion about a 'Chinese spy' rumor regarding GE Vernova. |
-| 2026-11-09 23:23 | MSS | other | 10% | no model | 0% / 0% / 0% / 0% | All documents discuss the Chinese Ministry of State Security (MSS) and Alice Huang, not Maison Solutions Inc. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
@@ -68,20 +68,20 @@ Each development week replayed exactly as it would have run: its model trained o
 
 | Candidates | n | Positives | Base rate | Flagged | Precision | Recall | F1 | Lift | AP | AUC |
 |---|---|---|---|---|---|---|---|---|---|---|
-| all candidates | 13 | 5 | 38% | 5 | 100% | 100% | 1.00 | 2.6x | 1.00 | 1.00 |
-| low float runner | 1 | 1 | 100% | 1 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
+| all candidates | 14 | 6 | 43% | 6 | 100% | 100% | 1.00 | 2.3x | 1.00 | 1.00 |
+| low float runner | 2 | 2 | 100% | 2 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
 | other | 12 | 4 | 33% | 4 | 100% | 100% | 1.00 | 3.0x | 1.00 | 1.00 |
-| pump types together | 1 | 1 | 100% | 1 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
+| pump types together | 2 | 2 | 100% | 2 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
 
 | Model | AP | Precision | Recall | F1 |
 |---|---|---|---|---|
 | all groups | 1.00 | 100% | 100% | 1.00 |
 | market only | 1.00 | 100% | 100% | 1.00 |
-| social only | 0.97 | 100% | 80% | 0.89 |
+| social only | 0.95 | 100% | 67% | 0.80 |
 
 | Robustness check | Result | Detail |
 |---|---|---|
-| beats the base rate | not enough data | 5 positives (needs 10) |
+| beats the base rate | not enough data | 6 positives (needs 10) |
 | separate periods | not enough data | needs 3 positives in each of three blocks of weeks |
 | per pump type | not enough data | needs 5 positives in a pump type |
 | beats the control group | not enough data | 0 flagged with settled controls (needs 10) |
@@ -89,7 +89,7 @@ Each development week replayed exactly as it would have run: its model trained o
 
 Verdict: **not robust yet** (some checks need more labels).
 
-Feature groups: all used; weak groups are pruned once the replay holds 20 positive candidates (5 so far).
+Feature groups: all used; weak groups are pruned once the replay holds 20 positive candidates (6 so far).
 
 ### pump
 
