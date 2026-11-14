@@ -1,9 +1,12 @@
 # Stage 3 tracking
 
-Updated 2026-11-14T02:49:17Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-11-14T22:50:47Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-11-14 03:08 | WST | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-14 03:08 | WAB | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-14 03:08 | LHX | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-11-14 02:06 | DLR | control | other | active | 0 |  |  |  |  |  |
 | 2026-11-14 02:06 | WMS | control | other | active | 0 |  |  |  |  |  |
 | 2026-11-14 02:06 | WMT | candidate | other | active | 0 |  |  |  |  |  |
@@ -806,7 +809,7 @@ Updated 2026-11-14T02:49:17Z. Each candidate and control is followed for 20 trad
 | 2026-10-22 17:45 | HQY | control | other | active | 17 | +5% | -5% | +1% |  | 0 |
 | 2026-10-22 17:45 | SHOP | control | other | active | 17 | +4% | -23% | -1% |  | 1 |
 | 2026-10-22 17:45 | TD | control | other | active | 17 | +1% | -4% | +1% |  | 1 |
-| 2026-10-22 17:45 | EXCBF | control | otc_penny | active | 16 | +22% | -26% | -9% |  | 0 |
+| 2026-10-22 17:45 | EXCBF | control | otc_penny | active | 17 | +22% | -26% | -9% |  | 0 |
 | 2026-10-22 17:45 | ZSPC | control | otc_penny | active | 17 | +10% | -45% | -10% |  | 0 |
 | 2026-10-22 17:45 | ARAY | control | other | active | 17 | +11% | -48% | +5% |  | 0 |
 | 2026-10-22 17:45 | BLNK | control | other | active | 17 | +8% | -11% | +4% |  | 1 |
