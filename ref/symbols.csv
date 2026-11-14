@@ -79,6 +79,7 @@ ABEQ,Absolute Select Value ETF,NYSE Arca,1,,nasdaqtrader
 ABEV,Ambev S.A. American Depositary Shares (Each representing 1 Common Share),NYSE,0,1565025,both
 ABFL,Abacus FCF Leaders ETF,Cboe BZX,1,,nasdaqtrader
 ABG,Asbury Automotive Group Inc Common Stock,NYSE,0,1144980,both
+ABGC,American Barrick Gold Corp,,0,2162540,sec
 ABI,VictoryShares Pioneer Asset-Based Income ETF,Nasdaq,1,,nasdaqtrader
 ABIG,Argent Large Cap ETF,Nasdaq,1,,nasdaqtrader
 ABLD,Abacus FCF Real Assets Leaders ETF,Cboe BZX,1,,nasdaqtrader
@@ -948,7 +949,7 @@ ARES.PB,Ares Management Corp,NYSE,0,1176948,sec
 ARGT,Global X MSCI Argentina ETF,NYSE Arca,1,,nasdaqtrader
 ARGX,argenx SE - American Depositary Shares,Nasdaq,0,1697862,both
 ARHS,"Arhaus, Inc. - Class A Common Stock",Nasdaq,0,1875444,both
-ARI,"Apollo Commercial Real Estate Finance, Inc.",NYSE,0,1467760,sec
+ARI,Apollo Commercial Real Estate Finance Liquidating Trust,NYSE,0,1467760,sec
 ARIA,ARIA Opportunities ETF,NYSE Arca,1,,nasdaqtrader
 ARIS,Aris Mining Corporation Common Shares,NYSE,0,1964504,both
 ARKB,ARK 21Shares Bitcoin ETF,Cboe BZX,1,1869699,both
@@ -1181,7 +1182,6 @@ AUR,"Aurora Innovation, Inc.  - Class A Common Stock",Nasdaq,0,1828108,both
 AURA,"Aura Biosciences, Inc. - Common Stock",Nasdaq,0,1501796,both
 AURE,Aurelion Inc.  - Class A Ordinary Shares,Nasdaq,0,1765850,both
 AURFF,Tincorp Metals Inc.,OTC,0,1864597,sec
-AUROW,"Aurora Innovation, Inc.",Nasdaq,0,1828108,sec
 AURX,"Nuo Therapeutics, Inc.",OTC,0,1091596,sec
 AUSF,Global X Adaptive U.S. Factor ETF,NYSE Arca,1,,nasdaqtrader
 AUSI,AURA SYSTEMS INC,OTC,0,826253,sec
@@ -1669,7 +1669,6 @@ BFOR,Barron's 400 ETF,NYSE Arca,1,,nasdaqtrader
 BFRG,"Bullfrog AI Holdings, Inc. - Common Stock",Nasdaq,0,1829247,both
 BFRGW,"Bullfrog AI Holdings, Inc. - Warrants",Nasdaq,0,1829247,both
 BFRI,Biofrontera Inc. - Common Stock,Nasdaq,0,1858685,both
-BFRIW,Biofrontera Inc.,Nasdaq,0,1858685,sec
 BFRZ,Innovator Equity Managed 100 Buffer ETF,NYSE Arca,1,,nasdaqtrader
 BFS,"Saul Centers, Inc. Common Stock",NYSE,0,907254,both
 BFS.PD,"SAUL CENTERS, INC.",NYSE,0,907254,sec
@@ -1731,7 +1730,7 @@ BHFAO,"Brighthouse Financial, Inc. - Depositary Shares, each representing a 1/1,
 BHFAP,"Brighthouse Financial, Inc. - Depositary Shares 6.6% Non-Cumulative Preferred Stock, Series A",Nasdaq,0,1685040,both
 BHIC,"BioScience Health Innovations, Inc.",OTC,0,1784440,sec
 BHK,Blackrock Core Bond Trust,NYSE,0,1160864,both
-BHLL,Bunker Hill Mining Corp.,OTC,0,1407583,sec
+BHLL,Bunker Hill Silver Corp.,OTC,0,1407583,sec
 BHM,"Bluerock Homes Trust, Inc. Class A Common Stock",NYSE American,0,1903382,both
 BHP,BHP Group Limited American Depositary Shares (Each representing two Ordinary Shares),NYSE,0,811809,both
 BHPLF,BHP Group Ltd,OTC,0,811809,sec
@@ -1958,7 +1957,6 @@ BMNR,"BitMine Immersion Technologies, Inc. Common Stock",NYSE,0,1829311,both
 BMNU,T-REX 2X Long BMNR Daily Target ETF,Cboe BZX,1,,nasdaqtrader
 BMNZ,Defiance Daily Target 2X Short BMNR ETF,NYSE Arca,1,,nasdaqtrader
 BMO,Bank Of Montreal Common Stock,NYSE,0,927971,both
-BMOK,BM Acquisition Corp.,,0,2071607,sec
 BMOP,BNY Mellon Municipal Opportunities ETF,Nasdaq,1,,nasdaqtrader
 BMPA,"BMP AI Technologies, Inc.",OTC,0,1130781,sec
 BMR,Beamr Imaging Ltd. - Ordinary Share,Nasdaq,0,1899005,both
@@ -2542,7 +2540,6 @@ CBXJ,Calamos Bitcoin 90 Series Structured Alt Protection ETF - January,Cboe BZX,
 CBXL,Calamos Laddered Bitcoin 90 Series Structured Alt Protection ETF,Cboe BZX,1,,nasdaqtrader
 CBXO,Calamos Bitcoin 90 Series Structured Alt Protection ETF - October,Cboe BZX,1,,nasdaqtrader
 CBXY,Calamos Bitcoin 90 Series Structured Alt Protection ETF - July,Cboe BZX,1,,nasdaqtrader
-CBZ,"CBIZ, Inc.",NYSE,0,944148,sec
 CC,Chemours Company (The) Common Stock,NYSE,0,1627223,both
 CCAP,"Crescent Capital BDC, Inc. - Common Stock",Nasdaq,0,1633336,both
 CCAQ,Collective Acquisition Corp. - Class A ordinary shares,Nasdaq,0,2041047,both
@@ -2694,7 +2691,7 @@ CFO,VictoryShares US 500 Enhanced Volatility Wtd ETF,Nasdaq,1,,nasdaqtrader
 CFOO,China Foods Holdings Ltd.,OTC,0,1310630,sec
 CFOR,CapForce Inc.,OTC,0,1293818,sec
 CFR,"Cullen/Frost Bankers, Inc. Common Stock",F,0,39263,both
-CFR.PB,"CULLEN/FROST BANKERS, INC.",NYSE,0,39263,sec
+CFR.PB,"CULLEN/FROST BANKERS, INC.",TXSE,0,39263,sec
 CFSU,Complete Financial Solutions Inc.,OTC,0,1621888,sec
 CFTR.PA,"Cantor Fitzgerald Income Trust, Inc.",NYSE,0,1666244,sec
 CG,The Carlyle Group Inc. - Common Stock,Nasdaq,0,1527166,both
@@ -3313,7 +3310,7 @@ CRMD,CorMedix Inc. - Common Stock,Nasdaq,0,1410098,both
 CRMG,Leverage Shares 2X Long CRM Daily ETF,Nasdaq,1,,nasdaqtrader
 CRML,Critical Metals Corp. - Ordinary Shares,Nasdaq,0,1951089,both
 CRMLW,Critical Metals Corp. - Warrants,Nasdaq,0,1951089,both
-CRMN,Skyline Builders Group Holding Limited - Class A Ordinary Shares,Nasdaq,0,,nasdaqtrader
+CRMN,Skyline Builders Group Holding Limited - Class A Ordinary Shares,Nasdaq,0,2031009,both
 CRMNF,Harena Rare Earths Plc,OTC,0,2158201,sec
 CRMT,"America's Car-Mart, Inc. - Common Stock",Nasdaq,0,799850,both
 CRMX,Tradr 2X Long CRML Daily ETF,Cboe BZX,1,,nasdaqtrader
@@ -4738,6 +4735,7 @@ EUDA,Euda Health Holdings Limited - Class A Ordinary Shares,Nasdaq,0,1847846,bot
 EUDAW,Euda Health Holdings Limited - Warrant,Nasdaq,0,1847846,both
 EUDG,WisdomTree Europe Quality Dividend Growth Fund,NYSE Arca,1,,nasdaqtrader
 EUDV,ProShares MSCI Europe Dividend Growers ETF,Cboe BZX,1,,nasdaqtrader
+EUEV,EUROEV Holdings Ltd,,0,2048740,sec
 EUFN,iShares MSCI Europe Financials ETF,Nasdaq,1,,nasdaqtrader
 EUHY,iShares Euro High Yield Corporate Bond USD Hedged ETF,Cboe BZX,1,,nasdaqtrader
 EUIG,iShares Euro Investment Grade Corporate Bond USD Hedged ETF,Cboe BZX,1,,nasdaqtrader
@@ -5923,6 +5921,7 @@ GGG,Graco Inc. Common Stock,NYSE,0,42888,both
 GGLL,Direxion Daily GOOGL Bull 2X ETF,Nasdaq,1,,nasdaqtrader
 GGLS,Direxion Daily GOOGL Bear 1X ETF,Nasdaq,1,,nasdaqtrader
 GGLXD,GGL RESOURCES CORP.,OTC,0,800523,sec
+GGLXF,GGL RESOURCES CORP.,,0,800523,sec
 GGM,GGM Macro Alignment ETF,NYSE Arca,1,,nasdaqtrader
 GGME,Invesco Next Gen Media and Gaming ETF,NYSE Arca,1,,nasdaqtrader
 GGN,"GAMCO Global Gold, Natural Resources & Income Trust",NYSE American,0,1313510,both
@@ -6043,7 +6042,7 @@ GLIN,VanEck India Growth Leaders ETF,NYSE Arca,1,,nasdaqtrader
 GLIV,Grayscale Livepeer Trust (LPT),OTC,0,1852024,sec
 GLIX,Lazard Listed Infrastructure ETF,NYSE Arca,1,,nasdaqtrader
 GLL,ProShares UltraShort Gold,NYSE Arca,1,1415311,both
-GLLD,"MicroSectors Gold 3X Leveraged ETNs due January 29, 2043",NYSE Arca,1,,nasdaqtrader
+GLLD,"MicroSectors Gold 3X Leveraged ETNs due January 29, 2043",NYSE Arca,1,927971,both
 GLND,Greenland Energy Company - Common Stock,Nasdaq,0,2093507,both
 GLNDW,Greenland Energy Company - Warrant,Nasdaq,0,2093507,both
 GLNG,Golar LNG Limited - Common Shares,Nasdaq,0,1207179,both
@@ -8114,6 +8113,7 @@ KNOV,Innovator U.S. Small Cap Power Buffer ETF - November,Cboe BZX,1,,nasdaqtrad
 KNOW,Fundamentals First ETF,Cboe BZX,1,,nasdaqtrader
 KNRG,Simplify Kayne Anderson Energy and Infrastructure Credit ETF,NYSE Arca,1,,nasdaqtrader
 KNRX,KNOREX LTD.,NYSE,0,1982960,sec
+KNRXF,KNOREX LTD.,,0,1982960,sec
 KNSA,"Kiniksa Pharmaceuticals International, plc - Class A Ordinary Shares",Nasdaq,0,1730430,both
 KNSL,"Kinsale Capital Group, Inc. Common Stock",NYSE,0,1669162,both
 KNTK,Kinetik Holdings Inc. Class A Common Stock,NYSE,0,1692787,both
@@ -8158,6 +8158,7 @@ KPO,Kensington Premium Opportunities ETF,Cboe BZX,1,,nasdaqtrader
 KPRO,KraneShares 100% KWEB Defined Outcome January 2027 ETF,NYSE Arca,1,,nasdaqtrader
 KPRX,"Kiora Pharmaceuticals, Inc.  - Common Stock",Nasdaq,0,1372514,both
 KPTI,Karyopharm Therapeutics Inc.,Nasdaq,0,1503802,sec
+KPTIQ,Karyopharm Therapeutics Inc.,,0,1503802,sec
 KQQQ,Kurv Technology Titans Select ETF,Nasdaq,1,,nasdaqtrader
 KR,Kroger Company (The) Common Stock,NYSE,0,56873,both
 KRAQ,KRAKacquisition Corp - Class A Ordinary Shares,Nasdaq,0,2082119,both
@@ -8232,7 +8233,6 @@ KVAWF,Keen Vision Acquisition Corp.,OTC,0,1889983,sec
 KVHI,"KVH Industries, Inc. - Common Stock",Nasdaq,0,1007587,both
 KVLE,KraneShares Value Line Dynamic Dividend Equity Index ETF,NYSE Arca,1,,nasdaqtrader
 KVLT,"CoVolt Power, Inc.",,0,2131613,sec
-KVUE,Kenvue Inc.,NYSE,0,1944048,sec
 KVYO,"Klaviyo, Inc. Series A Common Stock",NYSE,0,1835830,both
 KWEB,KraneShares CSI China Internet ETF,NYSE Arca,1,,nasdaqtrader
 KWH,GMO Power Infrastructure ETF,NYSE Arca,1,,nasdaqtrader
@@ -8545,6 +8545,7 @@ LOAN,"Manhattan Bridge Capital, Inc - Common Stock",Nasdaq,0,1080340,both
 LOAR,Loar Holdings Inc. Common Stock,NYSE,0,2000178,both
 LOB,"Live Oak Bancshares, Inc. Common Stock",NYSE,0,1462120,both
 LOB.PA,"Live Oak Bancshares, Inc.",NYSE,0,1462120,sec
+LOB.PB,"Live Oak Bancshares, Inc.",NYSE,0,1462120,sec
 LOBKV,"Live Oak Bancshares, Inc.",OTC,0,1462120,sec
 LOBO,LOBO TECHNOLOGIES LTD. - Class A Ordinary Shares,Nasdaq,0,1932072,both
 LOCL,Local Bounti Corporation Common Stock,NYSE,0,1840780,both
@@ -8576,8 +8577,9 @@ LOTT,Techlott Inc.,OTC,0,1568969,sec
 LOTWW,Lotus Technology Inc. - Warrants,Nasdaq,0,1962746,both
 LOUP,Innovator Deepwater Frontier Tech ETF,NYSE Arca,1,,nasdaqtrader
 LOVE,The Lovesac Company - Common Stock,Nasdaq,0,1701758,both
-LOVI,Live Oak Acquisition Corp. VI,,0,2115191,sec
+LOVI,Live Oak Acquisition Corp. VI - Class A Ordinary Shares,Nasdaq,0,2115191,both
 LOVIU,Live Oak Acquisition Corp. VI - Units,Nasdaq,0,2115191,both
+LOVIW,Live Oak Acquisition Corp. VI - Warrants,Nasdaq,0,2115191,both
 LOW,"Lowe's Companies, Inc. Common Stock",NYSE,0,60667,both
 LOWV,AB US Low Volatility Equity ETF,NYSE Arca,1,,nasdaqtrader
 LPA,Logistic Properties of the Americas Ordinary Shares,NYSE American,0,1997711,both
@@ -8724,8 +8726,6 @@ LX,LexinFintech Holdings Ltd. - American Depositary Shares,Nasdaq,0,1708259,both
 LXEH,"Lixiang Education Holding Co., Ltd. - American Depositary Shares",Nasdaq,0,1814067,both
 LXEO,"Lexeo Therapeutics, Inc. - Common Stock",Nasdaq,0,1907108,both
 LXFR,Luxfer Holdings PLC Ordinary Shares,NYSE,0,1096056,both
-LXP,LXP Industrial Trust,NYSE,0,910108,sec
-LXP.PC,LXP Industrial Trust,NYSE,0,910108,sec
 LXPIF,"Luxshare Precision Industry Co., Ltd./ADR",OTC,0,2144732,sec
 LXRX,"Lexicon Pharmaceuticals, Inc. - Common Stock",Nasdaq,0,1062822,both
 LXSPY,"Luxshare Precision Industry Co., Ltd./ADR",OTC,0,2144732,sec
@@ -9055,7 +9055,6 @@ MGNR,American Beacon Select Funds American Beacon GLG Natural Resources ETF,NYSE
 MGNX,"MacroGenics, Inc. - Common Stock",Nasdaq,0,1125345,both
 MGOL,Leverage Shares MANGOS ETF,Nasdaq,1,,nasdaqtrader
 MGOV,First Trust Intermediate Government Opportunities ETF,NYSE Arca,1,,nasdaqtrader
-MGPI,"SEMPREON, INC",Nasdaq,0,835011,sec
 MGR,"Affiliated Managers Group, Inc. 5.875% Junior Subordinated Notes due 2059",NYSE,0,1004434,both
 MGRB,"Affiliated Managers Group, Inc. 4.750% Junior Subordinated Notes due 2060",NYSE,0,1004434,both
 MGRC,McGrath RentCorp - Common Stock,Nasdaq,0,752714,both
@@ -9161,7 +9160,6 @@ MLCMF,MILLICOM INTERNATIONAL CELLULAR SA,OTC,0,912958,sec
 MLCO,Melco Resorts & Entertainment Limited - American Depositary Shares,Nasdaq,0,1381640,both
 MLDR,Global X Intermediate-Term Treasury Ladder ETF,NYSE Arca,1,,nasdaqtrader
 MLEC,Moolec Science SA,Nasdaq,0,1937737,sec
-MLECW,Moolec Science SA,Nasdaq,0,1937737,sec
 MLGO,"MicroAlgo, Inc. - Ordinary Shares",Nasdaq,0,1800392,both
 MLI,"Mueller Industries, Inc. Common Stock",NYSE,0,89439,both
 MLIZY,MELIUZ S.A.,OTC,0,2080003,sec
@@ -9546,6 +9544,7 @@ MVFD,Monarch Volume Factor Dividend Tree Index ETF,Cboe BZX,1,,nasdaqtrader
 MVFG,Monarch Volume Factor Global Unconstrained Index ETF,Cboe BZX,1,,nasdaqtrader
 MVIS,"MicroVision, Inc. - Common Stock",Nasdaq,0,65770,both
 MVLL,GraniteShares 2x Long MRVL Daily ETF,Nasdaq,1,,nasdaqtrader
+MVNCD,United KSK Corp,,0,1439264,sec
 MVPA,Miller Value Partners Appreciation ETF,NYSE,1,,nasdaqtrader
 MVPL,Miller Value Partners Leverage ETF,NYSE Arca,1,,nasdaqtrader
 MVRL,ETRACS Monthly Pay 1.5X Leveraged Mortgage REIT ETN,NYSE Arca,1,1114446,both
@@ -10528,7 +10527,7 @@ OPER,ETF ClearShares Ultra-Short Maturity ETF,NYSE Arca,1,,nasdaqtrader
 OPEX,Tradr 2X Long OPEN Daily ETF,Cboe BZX,1,,nasdaqtrader
 OPFI,OppFi Inc. Class A Common Stock,NYSE,0,1818502,both
 OPHC,"OptimumBank Holdings, Inc. Common Stock",NYSE American,0,1288855,both
-OPHI,CollPlant Biotechnologies Ltd. - Ordinary Shares,Nasdaq,0,,nasdaqtrader
+OPHI,CollPlant Biotechnologies Ltd. - Ordinary Shares,Nasdaq,0,1631487,both
 OPI,Office Properties Income Trust - Common shares of beneficial interest,Nasdaq,0,1456772,both
 OPK,"Opko Health, Inc. - Common Stock",Nasdaq,0,944809,both
 OPLN,"OPENLANE, Inc. Common Stock",NYSE,0,1395942,both
@@ -11132,7 +11131,6 @@ PLTR,Palantir Technologies Inc. - Class A Common Stock,Nasdaq,0,1321655,both
 PLTU,Direxion Daily PLTR Bull 2X ETF,Nasdaq,1,,nasdaqtrader
 PLTW,Roundhill PLTR WeeklyPay ETF,Cboe BZX,1,,nasdaqtrader
 PLTY,YieldMax PLTR Option Income Strategy ETF,NYSE Arca,1,,nasdaqtrader
-PLTYF,"Plastec Technologies, Ltd.",OTC,0,1433309,sec
 PLTZ,Defiance Daily Target 2x Short PLTR ETF,Nasdaq,1,,nasdaqtrader
 PLU,Defiance Daily Target 2x Long PL ETF,Cboe BZX,1,,nasdaqtrader
 PLUG,"Plug Power, Inc. - Common Stock",Nasdaq,0,1093691,both
@@ -11443,7 +11441,6 @@ PSP,Invesco Global Listed Private Equity ETF,NYSE Arca,1,,nasdaqtrader
 PSQ,ProShares Short QQQ,NYSE Arca,1,,nasdaqtrader
 PSQA,Palmer Square CLO Senior Debt ETF,NYSE Arca,1,,nasdaqtrader
 PSQH,"PSQ Holdings, Inc.",NYSE,0,1847064,sec
-PSQH.WT,"PSQ Holdings, Inc.",NYSE,0,1847064,sec
 PSQL,Pasqal Holding SA - Ordinary Shares,Nasdaq,0,2119292,both
 PSQLW,Pasqal Holding SA - Warrant,Nasdaq,0,2119292,both
 PSQO,Palmer Square Credit Opportunities ETF,NYSE Arca,1,,nasdaqtrader
@@ -11767,7 +11764,7 @@ QUBT,Quantum Computing Inc. - Common Stock,Nasdaq,0,1758009,both
 QUBX,Tradr 2X Long QUBT Daily ETF,Cboe BZX,1,,nasdaqtrader
 QUCY,Quantum Cyber N.V. - Ordinary Shares,Nasdaq,0,1874252,both
 QUIK,QuickLogic Corporation - Common Stock,Nasdaq,0,882508,both
-QUIT,"Achieve Life Sciences, Inc.  - Common Shares",Nasdaq,0,,nasdaqtrader
+QUIT,"Achieve Life Sciences, Inc.  - Common Shares",Nasdaq,0,949858,both
 QUIZ,Zacks Quality International ETF,NYSE Arca,1,,nasdaqtrader
 QUMS,Quantumsphere Acquisition Corp. - Ordinary Shares,Nasdaq,0,2070900,both
 QUMSR,Quantumsphere Acquisition Corp. - Rights,Nasdaq,0,2070900,both
@@ -11823,7 +11820,6 @@ RAKR,Rainmaker Worldwide Inc.,OTC,0,1872292,sec
 RAL,Ralliant Corporation Common Stock,NYSE,0,2041385,both
 RAM,Roundhill T-REX 2X Long DRAM Daily Target ETF,Cboe BZX,1,,nasdaqtrader
 RAML,Leverage Shares 2X Long Memory Daily ETF,Cboe BZX,1,,nasdaqtrader
-RAMP,"LiveRamp Holdings, Inc.",NYSE,0,733269,sec
 RAMZ,T-REX 2X Inverse DRAM Daily Target ETF,Cboe BZX,1,,nasdaqtrader
 RAND,Rand Capital Corporation - Closed End Fund,Nasdaq,0,81955,both
 RANG,Range Capital Acquisition Corp. - Ordinary Shares,Nasdaq,0,2035644,both
@@ -12706,7 +12702,7 @@ SEIV,SEI Enhanced U.S. Large Cap Value Factor ETF,Cboe BZX,1,,nasdaqtrader
 SEIX,Virtus Seix Senior Loan ETF,NYSE Arca,1,,nasdaqtrader
 SELF,"Global Self Storage, Inc. - Common Stock",Nasdaq,0,1031235,both
 SELV,SEI Enhanced Low Volatility U.S. Large Cap ETF,Cboe BZX,1,,nasdaqtrader
-SELXF,Semilux International Ltd.,,0,1990950,sec
+SELXF,Semilux International Ltd.,OTC,0,1990950,sec
 SEMG,Suncoast Select Growth ETF,NYSE Arca,1,,nasdaqtrader
 SEMHF,Siemens Healthineers AG/ADR,OTC,0,1738519,sec
 SEMI,Columbia Select Technology ETF,NYSE Arca,1,,nasdaqtrader
@@ -12841,7 +12837,6 @@ SHMP,NaturalShrimp Inc,OTC,0,1465470,sec
 SHMXY,Shimadzu Corporation/ADR,OTC,0,1648512,sec
 SHMZF,Shimadzu Corporation/ADR,OTC,0,1648512,sec
 SHNTY,"Shanghai Top Numerical Control Technology Co., Ltd./ADR",OTC,0,2138554,sec
-SHNY,BANK OF MONTREAL /CAN/,NYSE,0,927971,sec
 SHO,"Sunstone Hotel Investors, Inc. Sunstone Hotel Investors, Inc. Common Shares",NYSE,0,1295810,both
 SHO.PH,"Sunstone Hotel Investors, Inc.",NYSE,0,1295810,sec
 SHO.PI,"Sunstone Hotel Investors, Inc.",NYSE,0,1295810,sec
@@ -13347,7 +13342,6 @@ SPOT,Spotify Technology S.A. Ordinary Shares,NYSE,0,1639920,both
 SPOWF,Strata Power Corp,OTC,0,1227282,sec
 SPPL,SIMPPLE LTD. - Ordinary Shares,Nasdaq,0,1948697,both
 SPPP,Sprott Physical Platinum and Palladium Trust,NYSE Arca,1,1539190,both
-SPQS,"SportsQuest, Inc.",,0,803097,sec
 SPRB,"Spruce Biosciences, Inc. - Common Stock",Nasdaq,0,1683553,both
 SPRC,SciSparc Ltd. - Ordinary Shares,Nasdaq,0,1611746,both
 SPRE,SP Funds S&P Global REIT Sharia ETF,NYSE Arca,1,,nasdaqtrader
@@ -13505,7 +13499,7 @@ SSYS,"Stratasys, Ltd. - Common Stock",Nasdaq,0,1517396,both
 ST,Sensata Technologies Holding plc Ordinary Shares,NYSE,0,1477294,both
 STAA,STAAR Surgical Company - Common Stock,Nasdaq,0,718937,both
 STAG,"Stag Industrial, Inc. Common Stock",NYSE,0,1479094,both
-STAI,ScanTech AI Systems Inc.,OTC,0,1994624,sec
+STAI,ScanTech AI Systems Inc.,Nasdaq,0,1994624,sec
 STAK,STAK Inc. - Class A Ordinary Shares,Nasdaq,0,2002453,both
 STAX,Nomura Tax-Free USA Short Term ETF,NYSE Arca,1,,nasdaqtrader
 STBA,"S&T Bancorp, Inc. - Common Stock",Nasdaq,0,719220,both
@@ -13687,7 +13681,6 @@ SWDS,"Starwood Real Estate Income Trust, Inc.",OTC,0,1711929,sec
 SWIM,"Latham Group, Inc. - Common Stock",Nasdaq,0,1833197,both
 SWISF,Sekur Private Data Ltd.,OTC,0,1771755,sec
 SWK,"Stanley Black & Decker, Inc. Common Stock",NYSE,0,93556,both
-SWKHL,SWK Holdings Corp,Nasdaq,0,1089907,sec
 SWKS,"Skyworks Solutions, Inc. - Common Stock",Nasdaq,0,4127,both
 SWMR,"Swarmer, Inc - common stock",Nasdaq,0,2092574,both
 SWP,SWP Growth & Income ETF,Nasdaq,1,,nasdaqtrader
@@ -14122,7 +14115,7 @@ TLSA,Tiziana Life Sciences Ltd - Common Shares,Nasdaq,0,1723069,both
 TLSI,"TriSalus Life Sciences, Inc. - Common Stock",Nasdaq,0,1826667,both
 TLSIW,"TriSalus Life Sciences, Inc. - Warrant",Nasdaq,0,1826667,both
 TLSS,"Transportation & Logistics Systems, Inc.",OTC,0,1463208,sec
-TLSSD,"Transportation & Logistics Systems, Inc.",OTC,0,1463208,sec
+TLSSD,"Transportation & Logistics Systems, Inc.",,0,1463208,sec
 TLT,iShares 20+ Year Treasury Bond ETF,Nasdaq,1,,nasdaqtrader
 TLTD,Northern Trust Morningstar Developed Markets ex-US Factor Tilt ETF,NYSE Arca,1,,nasdaqtrader
 TLTE,Northern Trust Morningstar Emerging Markets Factor Tilt ETF,NYSE Arca,1,,nasdaqtrader
@@ -14234,6 +14227,7 @@ TOPT,iShares Top 20 U.S. Stocks ETF,NYSE Arca,1,,nasdaqtrader
 TOPW,Roundhill Top WeeklyPay ETF,Cboe BZX,1,,nasdaqtrader
 TORK,KraneShares Actuator ETF,Nasdaq,1,,nasdaqtrader
 TORO,Toro Corp. - Common Shares,Nasdaq,0,1941131,both
+TORXF,Torex Resources Inc.,OTC,0,1561540,sec
 TOS,Twin Oak Strategic Solutions ETF,Cboe BZX,1,,nasdaqtrader
 TOST,"Toast, Inc. Class A Common Stock",NYSE,0,1650164,both
 TOTL,State Street DoubleLine Total Return Tactical ETF,NYSE Arca,1,,nasdaqtrader
@@ -14663,7 +14657,7 @@ UJB,ProShares Ultra High Yield ETF,NYSE Arca,1,,nasdaqtrader
 UJUL,Innovator U.S. Equity Ultra Buffer ETF - July,Cboe BZX,1,,nasdaqtrader
 UJUN,Innovator U.S. Equity Ultra Buffer ETF - June,Cboe BZX,1,,nasdaqtrader
 UK,Ucommune International Ltd  - Class A Ordinary Shares,Nasdaq,0,1821424,both
-UKSK,Marvion Inc.,OTC,0,1439264,sec
+UKSK,United KSK Corp,OTC,0,1439264,sec
 UL,Unilever PLC American Depositary Shares (each representing One Ordinary Share),NYSE,0,217410,both
 ULBI,Ultralife Corporation - Common Stock,Nasdaq,0,875657,both
 ULCC,"Frontier Group Holdings, Inc. - Common Stock",Nasdaq,0,1670076,both
@@ -14768,12 +14762,12 @@ USAS,"Americas Gold and Silver Corporation Common Shares, no par value",NYSE Ame
 USAU,U.S. Gold Corp. - Common Stock,Nasdaq,0,27093,both
 USAX,Tradr 2X Long USAR Daily ETF,Cboe BZX,1,,nasdaqtrader
 USB,U.S. Bancorp Common Stock,NYSE,0,36104,both
-USB.PA,US BANCORP DE,NYSE,0,36104,sec
-USB.PH,US BANCORP DE,NYSE,0,36104,sec
-USB.PP,US BANCORP DE,NYSE,0,36104,sec
-USB.PQ,US BANCORP DE,NYSE,0,36104,sec
-USB.PR,US BANCORP DE,NYSE,0,36104,sec
-USB.PS,US BANCORP DE,NYSE,0,36104,sec
+USB.PA,US BANCORP \DE\,NYSE,0,36104,sec
+USB.PH,US BANCORP \DE\,NYSE,0,36104,sec
+USB.PP,US BANCORP \DE\,NYSE,0,36104,sec
+USB.PQ,US BANCORP \DE\,NYSE,0,36104,sec
+USB.PR,US BANCORP \DE\,NYSE,0,36104,sec
+USB.PS,US BANCORP \DE\,NYSE,0,36104,sec
 USBC,"USBC, Inc. Common Stock",NYSE American,0,1074828,both
 USCA,Xtrackers MSCI USA Climate Action Equity ETF,NYSE Arca,1,,nasdaqtrader
 USCB,"USCB Financial Holdings, Inc.  - Class A Common Stock",Nasdaq,0,1901637,both
@@ -14983,7 +14977,6 @@ VERI,"Veritone, Inc. - Common Stock",Nasdaq,0,1615165,both
 VERTF,Vertiqal Studios Corp.,OTC,0,1178526,sec
 VERU,Veru Inc. - Common Stock,Nasdaq,0,863894,both
 VERX,"Vertex, Inc. - Class A Common Stock",Nasdaq,0,1806837,both
-VEST,Loan Artificial Intelligence Corp.,,0,1594968,sec
 VET,Vermilion Energy Inc. Common (Canada),NYSE,0,1293135,both
 VETZ,Academy Veteran Bond ETF,NYSE Arca,1,,nasdaqtrader
 VEU,Vanguard FTSE All World Ex US ETF,NYSE Arca,1,,nasdaqtrader
@@ -15599,7 +15592,7 @@ WVE,"Wave Life Sciences, Inc. - Common Stock",Nasdaq,0,1631574,both
 WVVI,"Willamette Valley Vineyards, Inc. - Common Stock",Nasdaq,0,838875,both
 WVVIP,"Willamette Valley Vineyards, Inc. - Series A Redeemable Preferred Stock",Nasdaq,0,838875,both
 WW,"WW International, Inc.  - Common Stock",Nasdaq,0,105319,both
-WWB,WINDWARD BIO GROUP AG,,0,2145089,sec
+WWB,Windward Bio Group AG - Common shares,Nasdaq,0,2145089,both
 WWD,"Woodward, Inc. - Common Stock",Nasdaq,0,108312,both
 WWJD,Inspire International ETF,NYSE Arca,1,,nasdaqtrader
 WWR,"Westwater Resources, Inc. Common Stock",NYSE American,0,839470,both
@@ -15693,7 +15686,7 @@ XFLT,XAI Floating Rate & Alternative Income Trust Common Shares of Beneficial In
 XFLX,FundX Flexible ETF,NYSE Arca,1,,nasdaqtrader
 XFOR,"X4 Pharmaceuticals, Inc. - Common Stock",Nasdaq,0,1501697,both
 XGN,Exagen Inc. - Common Stock,Nasdaq,0,1274737,both
-XGPU,"Reliance Global Group, Inc. - Common Stock",Nasdaq,0,,nasdaqtrader
+XGPU,"Reliance Global Group, Inc. - Common Stock",Nasdaq,0,1812727,both
 XHB,State Street SPDR S&P Homebuilders ETF,NYSE Arca,1,,nasdaqtrader
 XHE,State Street SPDR S&P Health Care Equipment ETF,NYSE Arca,1,,nasdaqtrader
 XHG,XChange TEC.INC - American Depositary Shares,Nasdaq,0,1769256,both
@@ -16135,4 +16128,4 @@ ZVRA,"Zevra Therapeutics, Inc.  - Common Stock",Nasdaq,0,1434647,both
 ZWS,Zurn Elkay Water Solutions Corporation Common Stock,NYSE,0,1439288,both
 ZYBT,Zhengye Biotechnology Holding Limited - Class A Ordinary Shares,Nasdaq,0,1975641,both
 ZYME,Zymeworks Inc. - Common Stock,Nasdaq,0,1937653,both
-ZYN,PTL LTD - Class A Ordinary Shares,Nasdaq,0,,nasdaqtrader
+ZYN,PTL LTD - Class A Ordinary Shares,Nasdaq,0,2016337,both
