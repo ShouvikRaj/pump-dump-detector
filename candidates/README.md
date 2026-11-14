@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-14T13:05:12Z by run `43597438240`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-14T13:18:10Z by run `43598571607`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -15,7 +15,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | NFLX | 2026-11-13 00:27 | mention spike | 21 | 8.29 | 12 | 0 | wallstreetbets 21 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjlim/comment/19sls6pejznlx/) |
 | NWS | 2026-11-13 23:41 | mention spike | 27 | 0.0 | 24 | 0 | wallstreetbets 26, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvm2xs/comment/19sm232qrao75/) |
 | CRWD | 2026-11-13 10:58 | mention spike | 8 | 2.43 | 8 | 0 | wallstreetbets 8 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvqdrh/comment/19slsxliwi90k/) |
-| MSFT | 2026-11-12 20:54 | mention spike | 150 | 87.14 | 94 | 0 | wallstreetbets 149, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvmysb/) |
+| MSFT | 2026-11-12 20:54 | mention spike | 146 | 87.57 | 93 | 0 | wallstreetbets 145, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvmysb/) |
 | MSTR | 2026-11-13 06:20 | mention spike | 11 | 7.0 | 10 | 0 | wallstreetbets 11 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjlim/comment/19slueign48xw/) |
 | SMU | 2026-11-13 14:07 | mention spike | 7 | 1.14 | 6 | 0 | wallstreetbets 7 | Cboe BZX |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xuuci7/comment/19sldrvnzcfoh/) |
 | WMT | 2026-11-14 02:06 | mention spike | 6 | 3.43 | 5 | 0 | wallstreetbets 6 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjlim/comment/19smchb7e8mdd/) |
