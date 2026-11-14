@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-14T14:51:07Z by run `43606481755`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-14T15:04:12Z by run `43607616531`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -11,28 +11,26 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | ATC | 2026-11-13 22:10 | mention spike | 57 | 0.0 | 54 | 0 | wallstreetbets 56, pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1xvzvin/) |
 | DHS | 2026-11-14 00:36 | mention spike | 15 | 0.14 | 13 | 0 | wallstreetbets 15 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvqg7i/comment/19slqfnxjkwqr/) |
 | HSBC | 2026-11-14 01:03 | mention spike | 14 | 0.0 | 13 | 0 | wallstreetbets 14 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjz5i/) |
-| LHX | 2026-11-14 03:08 | mention spike | 11 | 0.43 | 8 | 0 | wallstreetbets 11 | NYSE | #6 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjlim/comment/19slzmc4c008x/) |
+| LHX | 2026-11-14 03:08 | mention spike | 11 | 0.43 | 8 | 0 | wallstreetbets 11 | NYSE | #8 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjlim/comment/19slzmc4c008x/) |
 | NFLX | 2026-11-13 00:27 | mention spike | 20 | 8.0 | 12 | 0 | wallstreetbets 20 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjlim/comment/19sls6pejznlx/) |
 | NWS | 2026-11-13 23:41 | mention spike | 27 | 0.0 | 24 | 0 | wallstreetbets 26, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvm2xs/comment/19sm232qrao75/) |
-| CRWD | 2026-11-13 10:58 | mention spike | 8 | 2.43 | 8 | 0 | wallstreetbets 8 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvqdrh/comment/19slsxliwi90k/) |
-| MSFT | 2026-11-12 20:54 | mention spike | 117 | 91.29 | 77 | 0 | wallstreetbets 116, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvmysb/) |
-| MSTR | 2026-11-13 06:20 | mention spike | 10 | 7.29 | 9 | 0 | wallstreetbets 10 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjlim/comment/19smm7fbgn9s1/) |
-| SMU | 2026-11-13 14:07 | mention spike | 5 | 1.43 | 5 | 0 | wallstreetbets 5 | Cboe BZX |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xuuci7/comment/19sldrvnzcfoh/) |
+| CRWD | 2026-11-13 10:58 | mention spike | 8 | 2.29 | 8 | 0 | wallstreetbets 8 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvqdrh/comment/19slsxliwi90k/) |
+| MSFT | 2026-11-12 20:54 | mention spike | 111 | 92.14 | 72 | 0 | wallstreetbets 110, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvmysb/) |
+| MSTR | 2026-11-13 06:20 | mention spike | 10 | 7.14 | 9 | 0 | wallstreetbets 10 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjlim/comment/19smm7fbgn9s1/) |
+| SMU | 2026-11-13 14:07 | mention spike | 6 | 1.43 | 6 | 0 | wallstreetbets 6 | Cboe BZX |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xuuci7/comment/19smn0h84c21x/) |
 | WMT | 2026-11-14 02:06 | mention spike | 6 | 3.0 | 5 | 0 | wallstreetbets 6 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjlim/comment/19smchb7e8mdd/) |
-| GME | 2026-11-12 01:54 | mention spike | 15 | 12.71 | 15 | 0 | wallstreetbets 13, pennystocks 1, smallstreetbets 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xw06p8/) |
+| GME | 2026-11-12 01:54 | mention spike | 16 | 12.71 | 16 | 0 | wallstreetbets 14, pennystocks 1, smallstreetbets 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xw06p8/) |
 | SLS | 2026-11-13 01:09 | mention spike | 5 | 5.57 | 5 | 0 | wallstreetbets 5 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjlim/comment/19sm4quxrjhad/) |
 | CBRS | 2026-11-12 16:56 | mention spike | 9 | 11.86 | 4 | 0 | wallstreetbets 9 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xv4xx4/comment/19sl7ykb5o7gi/) |
-| CSCO | 2026-11-12 21:20 | mention spike | 7 | 5.71 | 3 | 0 | wallstreetbets 7 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjlim/comment/19slriey0wlkz/) |
+| CSCO | 2026-11-12 21:20 | mention spike | 5 | 6.0 | 3 | 0 | wallstreetbets 5 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjlim/comment/19slriey0wlkz/) |
 | AMAT | 2026-11-12 18:42 | mention spike | 1 | 7.29 | 1 | 0 | wallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xv4xx4/comment/19sl0tk51uojk/) |
-| IWM | 2026-11-13 19:02 | mention spike | 9 | 4.71 | 4 | 0 | wallstreetbets 9 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xv4xx4/comment/19slavxqmp3no/) |
+| IWM | 2026-11-13 19:02 | mention spike | 9 | 4.86 | 5 | 0 | wallstreetbets 9 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjlim/comment/19smmrowa8vur/) |
 | ASML | 2026-11-12 20:43 | mention spike | 1 | 6.0 | 1 | 0 | wallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjlim/comment/19slpq4b53eiq/) |
-| TSLA | 2026-11-13 15:04 | mention spike | 23 | 38.0 | 20 | 0 | wallstreetbets 23 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjlim/comment/19smfwg6vcocj/) |
+| TSLA | 2026-11-13 15:04 | mention spike | 23 | 37.86 | 20 | 0 | wallstreetbets 23 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjlim/comment/19smfwg6vcocj/) |
 | PARA | 2026-11-12 17:04 | mention spike | 4 | 3.14 | 2 | 0 | pennystocks 4 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1xuz0c9/comment/19slcaan9qc9v/) |
 | SMCI | 2026-11-12 17:47 | mention spike | 11 | 21.14 | 7 | 0 | wallstreetbets 11 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvkpm4/) |
 | XLAB | 2026-11-13 16:24 | mention spike | 2 | 2.0 | 2 | 0 | pennystocks 2 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1xuz0c9/comment/19sl0xb7fyaoz/) |
 | AIMD | 2026-11-13 13:30 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
 | TRT | 2026-11-12 17:34 | mention spike | 2 | 2.86 | 2 | 0 | wallstreetbets 2 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xw1tfx/comment/19smipngultmq/) |
-| PLCE | 2026-11-12 16:04 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
-| GLD | 2026-11-12 18:15 | mention spike | 9 | 8.43 | 8 | 0 | wallstreetbets 9 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjlim/comment/19slz95b8kojk/) |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
