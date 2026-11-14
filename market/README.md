@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-14T03:08:33Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-14T23:53:34Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-458 candidates and 909 controls so far. Archetypes: other 439, low_float_runner 15, unknown 3, otc_penny 1.
+459 candidates and 911 controls so far. Archetypes: other 440, low_float_runner 15, unknown 3, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| DXYZ | 2026-11-14 23:53 | other | listed | 26.3 | -0.6% | +8.6% | 1.3x |  |  | 2 |  |
 | LHX | 2026-11-14 03:08 | other | listed | 261.9 | -3.8% | +4.8% | 0.5x | 185.2M | 2.3% | 2 |  |
 | WMT | 2026-11-14 02:06 | other | listed | 127.9 | -0.1% | +2.0% | 0.8x | 4.85B | 1.5% | 4 |  |
 | HSBC | 2026-11-14 01:03 | other | listed | 89.1 | +0.0% | +1.2% | 0.4x | 13.55B | 0.0% | 6 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | PLCE | 2026-11-12 16:04 | other | listed | 0.8535 | +326.8% | -16.7% | 9.4x | 8.1M | 44.3% | 0 |  |
 | LUNR | 2026-11-12 14:43 | other | listed | 13.96 | +14.6% | +22.7% | 1.2x | 131.6M | 27.5% | 0 |  |
 | SLI | 2026-11-12 05:40 | other | listed | 1.49 | +2.1% | +1.4% | 0.5x | 239.2M | 2.5% | 0 |  |
-| AMD | 2026-11-12 05:14 | other | listed | 576.8 | +4.3% | +13.1% | 1.4x | 1.63B | 2.4% | 1 |  |
