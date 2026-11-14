@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-13T06:29:04Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-14T00:25:14Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-09)
 
@@ -19,6 +19,15 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-13 23:41 | NWS | other | 0.1% | no model | 0% / 0% / 0% / 0% | Chatter discusses a nationwide outage of the US National Weather Service, not the stock. |
+| 2026-11-13 22:10 | ATC | other | 0.5% | no model | 0% / 0% / 0% / 0% | All documents discuss an unrelated Air Traffic Control system outage, not the GraniteShares Autocallable COIN ETF. |
+| 2026-11-13 19:02 | IWM | other | 0.3% | no model | 100% / 0% / 0% / 0% | Users discuss IWM price action, technical breaches, and general market sentiment without specific company events. |
+| 2026-11-13 16:24 | XLAB | other | 8.4% | no model | 100% / 55% / 9.1% / 0% | Users discuss increasing volume, potential short squeezes, and weekend selling pressure for XLAB. |
+| 2026-11-13 15:04 | TSLA | other | 0.1% | no model | 100% / 0% / 7.5% / 7.5% | Chatter discusses a potential Tesla-SpaceX merger, Elon Musk's role, and a suspicious price pump. |
+| 2026-11-13 14:07 | SMU | other | **39%** | no model | 0% / 0% / 0% / 0% | Chatter discusses SMU as a university and mocks Colette Kress's background, unrelated to the stock. |
+| 2026-11-13 13:30 | AIMD | other | **22%** | no model | 100% / 50% / 0% / 10% | Users discuss a recent $9M contract announcement and speculate on price increases for AIMD. |
+| 2026-11-13 13:15 | ARM | other | 4.0% | no model | 100% / 0% / 0% / 0% | Users discuss potential CEO changes, hiring rumors, and technical comparisons regarding ARM Holdings. |
+| 2026-11-13 10:58 | CRWD | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss CRWD price movements, valuation concerns, and potential future performance in r/wallstreetbets. |
 | 2026-11-13 06:20 | MSTR | other | 1.1% | no model | 100% / 0% / 0% / 0% | Users express extreme bearishness, fear of delisting, and joke about nationalizing the company. |
 | 2026-11-13 01:09 | SLS | other | 1.1% | no model | 100% / 20% / 0% / 0% | Chatter discusses SLS upcoming catalysts, short interest, and recent price spikes without specific company event details. |
 | 2026-11-13 00:27 | IBM | other | 0.3% | no model | 100% / 0% / 0% / 0% | Discussions about IBM's history, leadership, and market performance compared to other tech stocks. |
@@ -50,15 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-10 16:24 | TTWO | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss TTWO stock price movements, GTA 6 hype, and earnings reactions without specific company events. |
 | 2026-11-10 15:44 | GEV | other | 0.0% | no model | 82% / 18% / 0% / 0% | Chatter includes jokes, price targets, and confusion about a 'Chinese spy' rumor regarding GE Vernova. |
 | 2026-11-09 23:23 | MSS | other | 10% | no model | 0% / 0% / 0% / 0% | All documents discuss the Chinese Ministry of State Security (MSS) and Alice Huang, not Maison Solutions Inc. |
-| 2026-11-09 22:33 | ASTS | other | 1.4% | no model | 100% / 5.0% / 0% / 0% | Chatter focuses on ASTS stock performance relative to RKLB, with mixed opinions, jokes, and speculation about earnings or reports. |
-| 2026-11-09 22:18 | ASML | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss ASML espionage rumors, joke about blueprints, and express general bearishness without specific events. |
-| 2026-11-09 22:18 | IVF | low float runner | **29%** | no model | 0% / 0% / 0% / 0% | All documents discuss Elon Musk's children and IVF procedures, unrelated to the stock. |
-| 2026-11-09 21:25 | HIMS | other | 1.5% | no model | 100% / 0% / 0% / 0% | Users discuss HIMS stock price drops, earnings expectations, and joke about product changes. |
-| 2026-11-09 21:25 | RKLB | other | 0.5% | no model | 92% / 0% / 7.5% / 12% | Users discuss RKLB earnings, express bearish sentiment, joke about the stock name, and warn of dilution. |
-| 2026-11-09 21:11 | TTD | other | 0.2% | no model | 100% / 30% / 0% / 0% | Users discuss TTD price movements, express exhaustion from volatility, and speculate on future gains. |
-| 2026-11-09 20:48 | OMH | other | **34%** | no model | 100% / 0% / 0% / 0% | Users discuss OMH price movements, express confusion, and compare it to other stocks without specific company events. |
-| 2026-11-09 20:48 | ONDS | other | 0.2% | no model | 100% / 0% / 0% / 10% | Users discuss holding Ondas Inc for earnings, set price targets, and joke about the stock's potential rise. |
-| 2026-11-09 15:56 | AVGO | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss AVGO price movements, sector rotation, and potential risks while some express bullish intent. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
@@ -68,20 +68,20 @@ Each development week replayed exactly as it would have run: its model trained o
 
 | Candidates | n | Positives | Base rate | Flagged | Precision | Recall | F1 | Lift | AP | AUC |
 |---|---|---|---|---|---|---|---|---|---|---|
-| all candidates | 4 | 4 | 100% | 4 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
+| all candidates | 13 | 5 | 38% | 5 | 100% | 100% | 1.00 | 2.6x | 1.00 | 1.00 |
 | low float runner | 1 | 1 | 100% | 1 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
-| other | 3 | 3 | 100% | 3 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
+| other | 12 | 4 | 33% | 4 | 100% | 100% | 1.00 | 3.0x | 1.00 | 1.00 |
 | pump types together | 1 | 1 | 100% | 1 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
 
 | Model | AP | Precision | Recall | F1 |
 |---|---|---|---|---|
 | all groups | 1.00 | 100% | 100% | 1.00 |
 | market only | 1.00 | 100% | 100% | 1.00 |
-| social only | 1.00 | 100% | 75% | 0.86 |
+| social only | 0.97 | 100% | 80% | 0.89 |
 
 | Robustness check | Result | Detail |
 |---|---|---|
-| beats the base rate | not enough data | 4 positives (needs 10) |
+| beats the base rate | not enough data | 5 positives (needs 10) |
 | separate periods | not enough data | needs 3 positives in each of three blocks of weeks |
 | per pump type | not enough data | needs 5 positives in a pump type |
 | beats the control group | not enough data | 0 flagged with settled controls (needs 10) |
@@ -89,7 +89,7 @@ Each development week replayed exactly as it would have run: its model trained o
 
 Verdict: **not robust yet** (some checks need more labels).
 
-Feature groups: all used; weak groups are pruned once the replay holds 20 positive candidates (4 so far).
+Feature groups: all used; weak groups are pruned once the replay holds 20 positive candidates (5 so far).
 
 ### pump
 
