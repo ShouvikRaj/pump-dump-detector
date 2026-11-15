@@ -1,13 +1,13 @@
 # Stage 1 candidates
 
-Updated 2026-11-15T03:50:11Z by run `43673913738`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-15T04:04:09Z by run `43674845096`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
 
 | Ticker | Flagged since (UTC) | Why | Mentions 24h | Baseline/day | Authors | Hype posts | Subreddits | Exchange | StockTwits | Example |
 |---|---|---|---|---|---|---|---|---|---|---|
-| DXYZ | 2026-11-14 23:53 | mention spike | 22 | 1.57 | 18 | 1 | wallstreetbets 22 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xwft7z/) |
+| DXYZ | 2026-11-14 23:53 | mention spike | 23 | 1.57 | 19 | 1 | wallstreetbets 23 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xwft7z/) |
 | MSTR | 2026-11-13 06:20 | mention spike | 23 | 8.0 | 20 | 0 | wallstreetbets 23 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xwfswx/) |
 | LHX | 2026-11-14 03:08 | mention spike | 9 | 1.86 | 7 | 0 | wallstreetbets 9 | NYSE | #5 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjlim/comment/19smx8l74fiv4/) |
 | ATC | 2026-11-13 22:10 | mention spike | 13 | 10.0 | 11 | 0 | wallstreetbets 12, pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1xvzvin/) |
