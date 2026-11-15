@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-15T21:05:33Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-15T23:05:41Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-461 candidates and 915 controls so far. Archetypes: other 442, low_float_runner 15, unknown 3, otc_penny 1.
+462 candidates and 917 controls so far. Archetypes: other 443, low_float_runner 15, unknown 3, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| ASML | 2026-11-15 23:05 | other | listed | 1,476 | -1.3% | +4.9% | 0.8x | 21.28B | 0.0% | 0 |  |
 | COIN | 2026-11-15 21:05 | other | listed | 126 | -1.3% | -5.3% | 0.9x | 220.7M | 10.3% | 0 |  |
 | TSM | 2026-11-15 07:52 | other | listed | 394.5 | -1.1% | +6.2% | 0.7x | 37.84B | 0.1% | 0 |  |
 | DXYZ | 2026-11-14 23:53 | other | listed | 26.3 | -0.6% | +8.6% | 1.3x |  |  | 2 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | TRT | 2026-11-12 17:34 | low float runner | listed | 5.82 | +10.6% | +6.0% | 0.9x | 7.8M | 9.2% | 0 |  |
 | PARA | 2026-11-12 17:04 | other | listed | 0.1135 | +57.6% | -77.4% | 3.2x | 0.3M | 15.4% | 5 |  |
 | CBRS | 2026-11-12 16:56 | other | listed | 101.6 | +0.5% | +10.0% | 0.9x | 109.9M | 20.2% | 0 |  |
-| PLCE | 2026-11-12 16:04 | other | listed | 0.8535 | +326.8% | -16.7% | 9.4x | 8.1M | 44.3% | 0 |  |
