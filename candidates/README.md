@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-15T06:59:10Z by run `43687464126`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-15T07:12:10Z by run `43688448478`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -11,7 +11,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | MSTR | 2026-11-13 06:20 | mention spike | 25 | 8.14 | 22 | 0 | wallstreetbets 25 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xwfswx/) |
 | LHX | 2026-11-14 03:08 | mention spike | 8 | 2.0 | 6 | 0 | wallstreetbets 8 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjlim/comment/19smx8l74fiv4/) |
 | ATC | 2026-11-13 22:10 | mention spike | 12 | 10.14 | 10 | 0 | wallstreetbets 11, pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1xvzvin/) |
-| NWS | 2026-11-13 23:41 | mention spike | 2 | 3.57 | 2 | 0 | wallstreetbets 2 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvm2xs/comment/19sm232qrao75/) |
+| NWS | 2026-11-13 23:41 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
 | DHS | 2026-11-14 00:36 | mention spike | 0 |  | 0 | 0 |  | NYSE Arca |  |  |
 | HSBC | 2026-11-14 01:03 | mention spike | 2 | 1.86 | 2 | 0 | wallstreetbets 2 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjz5i/comment/19snc99b1t5s3/) |
 | ARM | 2026-11-13 13:15 | mention spike | 4 | 5.43 | 4 | 0 | wallstreetbets 4 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xwjtnf/comment/19snika8hyn6o/) |
