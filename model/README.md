@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-14T06:08:37Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-15T00:16:38Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-09)
 
@@ -19,6 +19,7 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-14 23:53 | DXYZ | other | 0.1% | no model | 100% / 6.7% / 13% / 0% | Users discuss DXYZ's performance relative to the Anthropic IPO, debating its value as a fund versus a scam. |
 | 2026-11-14 03:08 | LHX | other | 0.1% | no model | 100% / 0% / 0% / 10% | Users discuss LHX price drops, shorting activity, and joke about a flight grounding event. |
 | 2026-11-14 02:06 | WMT | other | 0.2% | no model | 100% / 40% / 0% / 0% | Mixed chatter on WMT ranging from bullish mooning claims to bearish recession warnings and general portfolio mentions. |
 | 2026-11-14 01:03 | HSBC | other | 0.1% | no model | 90% / 0% / 0% / 0% | Users discuss HSBC's reputation for money laundering, a downgrade, and express strong negative sentiment. |
@@ -58,7 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-11 07:39 | NVDL | other | 2.8% | no model | 100% / 0% / 0% / 0% | Users discuss buying, selling, and holding strategies for the NVDL ETF with mixed sentiment. |
 | 2026-11-10 21:21 | RGTI | other | 0.5% | no model | 100% / 9.1% / 0% / 64% | Chatter focuses on Rigetti Computing earnings results, with mixed reactions ranging from bearish disappointment to bullish price targets. |
 | 2026-11-10 20:00 | CRWV | other | 0.2% | no model | 100% / 0% / 0% / 0% | Chatter focuses on CRWV earnings anticipation, sector correlations, and mixed sentiment regarding potential price moves. |
-| 2026-11-10 19:20 | MSTR | other | 0.5% | no model | 100% / 0% / 0% / 0% | Users discuss MSTR price movements, express skepticism about Michael Saylor's funds, and debate the stock's legitimacy. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
