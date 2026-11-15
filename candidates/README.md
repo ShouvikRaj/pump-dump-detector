@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-15T07:52:12Z by run `43691399995`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-15T07:57:10Z by run `43691425466`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -17,6 +17,6 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | HSBC | 2026-11-14 01:03 | mention spike | 2 | 1.86 | 2 | 0 | wallstreetbets 2 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvjz5i/comment/19snc99b1t5s3/) |
 | ARM | 2026-11-13 13:15 | mention spike | 5 | 5.43 | 5 | 0 | wallstreetbets 5 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xwplru/comment/19snvyfipob9c/) |
 | NFLX | 2026-11-13 00:27 | mention spike | 4 | 9.71 | 2 | 0 | wallstreetbets 4 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xvevzf/comment/19snackxw2jhg/) |
-| CRWD | 2026-11-13 10:58 | mention spike | 0 |  | 0 | 0 |  | Nasdaq | #30 |  |
+| CRWD | 2026-11-13 10:58 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
