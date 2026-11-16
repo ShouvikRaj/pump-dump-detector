@@ -4,9 +4,9 @@
     "ANT": {
       "episode_id": "ANT-20261116T163409Z",
       "first_flagged_at": 1794846849.2801945,
-      "last_flagged_at": 1794854410.1885467,
-      "n_flags": 10,
-      "peak_mentions": 162,
+      "last_flagged_at": 1794855428.2771769,
+      "n_flags": 11,
+      "peak_mentions": 164,
       "peak_z": 2.997,
       "reasons_seen": [
         "mention_spike"
@@ -48,10 +48,21 @@
     "HOOD": {
       "episode_id": "HOOD-20261116T150810Z",
       "first_flagged_at": 1794841690.6943853,
-      "last_flagged_at": 1794854410.1885467,
-      "n_flags": 19,
+      "last_flagged_at": 1794855428.2771769,
+      "n_flags": 20,
       "peak_mentions": 14,
       "peak_z": 4.092,
+      "reasons_seen": [
+        "mention_spike"
+      ]
+    },
+    "IREN": {
+      "episode_id": "IREN-20261116T185708Z",
+      "first_flagged_at": 1794855428.2771769,
+      "last_flagged_at": 1794855428.2771769,
+      "n_flags": 1,
+      "peak_mentions": 30,
+      "peak_z": 2.074,
       "reasons_seen": [
         "mention_spike"
       ]
@@ -70,8 +81,8 @@
     "WMT": {
       "episode_id": "WMT-20261116T071711Z",
       "first_flagged_at": 1794813431.754018,
-      "last_flagged_at": 1794854410.1885467,
-      "n_flags": 50,
+      "last_flagged_at": 1794855428.2771769,
+      "n_flags": 51,
       "peak_mentions": 20,
       "peak_z": 6.052,
       "reasons_seen": [
@@ -80,79 +91,79 @@
     }
   },
   "last_run": {
-    "finished_at": 1794854410.232896,
-    "new_docs": 617,
-    "run_id": "43929292238",
-    "started_at": 1794853763.8202815
+    "finished_at": 1794855428.3135924,
+    "new_docs": 739,
+    "run_id": "43931639643",
+    "started_at": 1794854715.7073011
   },
   "late_done_for": "2026-11-14",
   "live_since": 1791153669.8332794,
   "streams": {
     "pennystocks/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 4,
+      "consecutive_errors": 0,
       "cursor": 1794846043,
-      "fallback_complete_at": 1794854281.339475,
-      "fallback_cursor": 1794854241,
+      "fallback_complete_at": 1794855241.0305424,
+      "fallback_cursor": 1794855026,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1794850583.9729803,
-      "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 502 for posts r/smallstreetbets after 6 tries: {'error': 'photon-reddit.com | 502: Bad gateway'})",
-      "last_error_at": 1794853832.316817
+      "last_error": "Arctic Shift's archive stalled at 2026-11-16T18:03:37Z",
+      "last_error_at": 1794854732.8495626
     },
     "pennystocks/posts": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
       "cursor": 1794847089,
-      "fallback_complete_at": 1794853622.401018,
+      "fallback_complete_at": 1794855422.4815896,
       "fallback_cursor": 1794846037,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1794853768.538004,
-      "last_error": "HTTP 502 for posts r/pennystocks after 6 tries: {'error': 'photon-reddit.com | 502: Bad gateway'}",
-      "last_error_at": 1794853029.0929484
+      "last_error": "Arctic Shift's archive stalled at 2026-11-16T18:03:37Z",
+      "last_error_at": 1794854720.5057404
     },
     "smallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 4,
-      "cursor": 1794850119,
-      "fallback_complete_at": 1794854220.708229,
-      "fallback_cursor": 1794853982,
+      "consecutive_errors": 0,
+      "cursor": 1794851598,
+      "fallback_complete_at": 1794855181.5170548,
+      "fallback_cursor": 1794855157,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1794850584.7665124,
-      "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 502 for posts r/smallstreetbets after 6 tries: {'error': 'photon-reddit.com | 502: Bad gateway'})",
-      "last_error_at": 1794853832.3168883
+      "last_error": "Arctic Shift's archive stalled at 2026-11-16T18:03:37Z",
+      "last_error_at": 1794854734.2473974
     },
     "smallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 4,
-      "cursor": 1794850118,
-      "fallback_complete_at": 1794854402.4579406,
-      "fallback_cursor": 1794853256,
+      "consecutive_errors": 0,
+      "cursor": 1794853256,
+      "fallback_complete_at": 1794855362.0094643,
+      "fallback_cursor": 1794855258,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1794850581.3621066,
-      "last_error": "HTTP 502 for posts r/smallstreetbets after 6 tries: {'error': 'photon-reddit.com | 502: Bad gateway'}",
-      "last_error_at": 1794853832.316726
+      "last_error": "Arctic Shift's archive stalled at 2026-11-16T18:03:37Z",
+      "last_error_at": 1794854722.1450353
     },
     "wallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 4,
-      "cursor": 1794849682,
+      "consecutive_errors": 0,
+      "cursor": 1794852217,
       "fallback_complete_at": 1794853321.5549724,
-      "fallback_cursor": 1794853821,
+      "fallback_cursor": 1794854725,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1794850586.7574666,
-      "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 502 for posts r/smallstreetbets after 6 tries: {'error': 'photon-reddit.com | 502: Bad gateway'})",
-      "last_error_at": 1794853832.3169138
+      "last_error": "Arctic Shift's archive stalled at 2026-11-16T18:03:37Z",
+      "last_error_at": 1794854735.6017878
     },
     "wallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 4,
-      "cursor": 1794850508,
-      "fallback_complete_at": 1794854342.309896,
-      "fallback_cursor": 1794853601,
+      "consecutive_errors": 0,
+      "cursor": 1794854528,
+      "fallback_complete_at": 1794855302.0681808,
+      "fallback_cursor": 1794855271,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1794850583.2072916,
-      "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 502 for posts r/smallstreetbets after 6 tries: {'error': 'photon-reddit.com | 502: Bad gateway'})",
-      "last_error_at": 1794853832.316794
+      "last_error": "Arctic Shift's archive stalled at 2026-11-16T18:03:37Z",
+      "last_error_at": 1794854723.9766192
     }
   },
   "symbols_refresh_errors": 0,
