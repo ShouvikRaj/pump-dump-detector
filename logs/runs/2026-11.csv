@@ -18878,3 +18878,15 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 43920062199,2026-11-16T17:36:12Z,wallstreetbets/comments,feed,2026-11-16T17:22:59Z,600,526,6,1,2026-11-16T17:36:16Z,,511.6,
 43920062199,2026-11-16T17:36:12Z,smallstreetbets/comments,feed,2026-11-16T17:28:42Z,100,10,1,1,2026-11-16T17:41:45Z,,334.5,
 43920062199,2026-11-16T17:36:12Z,pennystocks/comments,feed,2026-11-16T17:21:38Z,100,5,1,1,2026-11-16T17:40:51Z,,385.5,
+43922359592,2026-11-16T17:49:30Z,pennystocks/posts,live,2026-11-16T13:38:09Z,0,0,0,0,2026-11-16T16:38:09Z,,,HTTP 502 for posts r/pennystocks after 6 tries: {'error': 'photon-reddit.com | 502: Bad gateway'}
+43922359592,2026-11-16T17:49:30Z,smallstreetbets/posts,live,2026-11-16T14:28:38Z,0,0,0,0,2026-11-16T17:28:38Z,,,skipped: Arctic Shift unreachable earlier in this run (HTTP 502 for posts r/pennystocks after 6 tries: {'error': 'photon-reddit.com | 502: Bad gateway'})
+43922359592,2026-11-16T17:49:30Z,wallstreetbets/posts,live,2026-11-16T14:35:08Z,0,0,0,0,2026-11-16T17:35:08Z,,,skipped: Arctic Shift unreachable earlier in this run (HTTP 502 for posts r/pennystocks after 6 tries: {'error': 'photon-reddit.com | 502: Bad gateway'})
+43922359592,2026-11-16T17:49:30Z,pennystocks/comments,live,2026-11-16T15:50:43Z,0,0,0,0,2026-11-16T16:20:43Z,,,skipped: Arctic Shift unreachable earlier in this run (HTTP 502 for posts r/pennystocks after 6 tries: {'error': 'photon-reddit.com | 502: Bad gateway'})
+43922359592,2026-11-16T17:49:30Z,smallstreetbets/comments,live,2026-11-16T16:58:39Z,0,0,0,0,2026-11-16T17:28:39Z,,,skipped: Arctic Shift unreachable earlier in this run (HTTP 502 for posts r/pennystocks after 6 tries: {'error': 'photon-reddit.com | 502: Bad gateway'})
+43922359592,2026-11-16T17:49:30Z,wallstreetbets/comments,live,2026-11-16T16:51:22Z,0,0,0,0,2026-11-16T17:21:22Z,,,skipped: Arctic Shift unreachable earlier in this run (HTTP 502 for posts r/pennystocks after 6 tries: {'error': 'photon-reddit.com | 502: Bad gateway'})
+43922359592,2026-11-16T17:49:30Z,wallstreetbets/comments,fallback,2026-11-16T17:36:16Z,700,646,7,1,2026-11-16T17:50:30Z,,572.2,
+43922359592,2026-11-16T17:49:30Z,smallstreetbets/comments,fallback,2026-11-16T17:41:45Z,100,12,1,1,2026-11-16T17:55:36Z,,434.5,
+43922359592,2026-11-16T17:49:30Z,pennystocks/comments,fallback,2026-11-16T17:40:51Z,100,7,1,1,2026-11-16T17:57:49Z,,365.0,
+43922359592,2026-11-16T17:49:30Z,wallstreetbets/posts,fallback,2026-11-16T17:35:08Z,100,2,1,1,2026-11-16T17:50:41Z,,821.4,
+43922359592,2026-11-16T17:49:30Z,smallstreetbets/posts,fallback,2026-11-16T17:28:38Z,100,1,1,1,2026-11-16T17:53:17Z,,405.3,
+43922359592,2026-11-16T17:49:30Z,pennystocks/posts,fallback,2026-11-16T16:38:09Z,100,0,1,1,2026-11-16T16:20:37Z,,,
