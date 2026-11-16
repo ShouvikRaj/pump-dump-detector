@@ -37,8 +37,8 @@
     "HOOD": {
       "episode_id": "HOOD-20261116T150810Z",
       "first_flagged_at": 1794841690.6943853,
-      "last_flagged_at": 1794845587.6109211,
-      "n_flags": 8,
+      "last_flagged_at": 1794845950.160965,
+      "n_flags": 9,
       "peak_mentions": 12,
       "peak_z": 2.693,
       "reasons_seen": [
@@ -59,20 +59,20 @@
     "WMT": {
       "episode_id": "WMT-20261116T071711Z",
       "first_flagged_at": 1794813431.754018,
-      "last_flagged_at": 1794845587.6109211,
-      "n_flags": 39,
-      "peak_mentions": 15,
-      "peak_z": 5.278,
+      "last_flagged_at": 1794845950.160965,
+      "n_flags": 40,
+      "peak_mentions": 17,
+      "peak_z": 5.629,
       "reasons_seen": [
         "mention_spike"
       ]
     }
   },
   "last_run": {
-    "finished_at": 1794845587.6438065,
-    "new_docs": 211,
-    "run_id": "43903359411",
-    "started_at": 1794845375.500618
+    "finished_at": 1794845950.2095716,
+    "new_docs": 212,
+    "run_id": "43905518761",
+    "started_at": 1794845760.7025514
   },
   "late_done_for": "2026-11-14",
   "live_since": 1791153669.8332794,
@@ -81,10 +81,10 @@
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
       "cursor": 1794842599,
-      "fallback_complete_at": 1794845581.860047,
+      "fallback_complete_at": 1794845942.14897,
       "fallback_cursor": 1794845459,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1794845383.3495939,
+      "last_complete_at": 1794845772.8789666,
       "last_error": "Arctic Shift's archive stalled at 2026-11-16T15:04:11Z",
       "last_error_at": 1794842942.6808407
     },
@@ -95,7 +95,7 @@
       "fallback_complete_at": 1794843482.3056872,
       "fallback_cursor": 1794842880,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1794845379.8098562,
+      "last_complete_at": 1794845769.0007153,
       "last_error": "Arctic Shift's archive stalled at 2026-11-16T15:04:11Z",
       "last_error_at": 1794842938.589868
     },
@@ -103,10 +103,10 @@
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
       "cursor": 1794842800,
-      "fallback_complete_at": 1794845521.2570357,
-      "fallback_cursor": 1794845480,
+      "fallback_complete_at": 1794845881.5872104,
+      "fallback_cursor": 1794845843,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1794845384.526547,
+      "last_complete_at": 1794845774.8604712,
       "last_error": "Arctic Shift's archive stalled at 2026-11-16T15:04:11Z",
       "last_error_at": 1794842944.2720714
     },
@@ -117,29 +117,29 @@
       "fallback_complete_at": 1794843421.9712334,
       "fallback_cursor": 1794842798,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1794845381.0700438,
+      "last_complete_at": 1794845770.2439818,
       "last_error": "Arctic Shift's archive stalled at 2026-11-16T15:04:11Z",
       "last_error_at": 1794842939.8271983
     },
     "wallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1794845262,
-      "fallback_complete_at": 1794845461.6992848,
-      "fallback_cursor": 1794845373,
+      "cursor": 1794845268,
+      "fallback_complete_at": 1794845821.6019075,
+      "fallback_cursor": 1794845765,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1794845386.222882,
+      "last_complete_at": 1794845776.4313648,
       "last_error": "Arctic Shift's archive stalled at 2026-11-16T15:04:11Z",
       "last_error_at": 1794842945.399016
     },
     "wallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1794845179,
+      "cursor": 1794845388,
       "fallback_complete_at": 1794843361.9985816,
       "fallback_cursor": 1794842593,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1794845382.225665,
+      "last_complete_at": 1794845771.4497328,
       "last_error": "Arctic Shift's archive stalled at 2026-11-16T15:04:11Z",
       "last_error_at": 1794842941.0387936
     }
