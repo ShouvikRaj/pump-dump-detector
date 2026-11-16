@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-16T15:08:51Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-16T16:34:37Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-464 candidates and 921 controls so far. Archetypes: other 445, low_float_runner 15, unknown 3, otc_penny 1.
+465 candidates and 921 controls so far. Archetypes: other 445, low_float_runner 15, unknown 4, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| ANT | 2026-11-16 16:34 | unknown | listed |  |  |  |  |  |  | 3 |  |
 | HOOD | 2026-11-16 15:08 | other | listed | 74.57 | -4.2% | -3.8% | 1.0x | 786.1M | 4.5% | 0 |  |
 | WMT | 2026-11-16 07:17 | other | listed | 127.9 | -0.1% | +2.0% | 0.8x | 4.85B | 1.5% | 4 |  |
 | ASML | 2026-11-15 23:05 | other | listed | 1,476 | -1.3% | +4.9% | 0.8x | 21.28B | 0.0% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | AMAT | 2026-11-12 18:42 | other | listed | 392.4 | -0.7% | +7.0% | 0.9x | 790.5M | 1.8% | 0 |  |
 | GLD | 2026-11-12 18:15 | other | listed | 355.5 | -2.6% | -2.0% | 0.6x |  |  | 0 |  |
 | SMCI | 2026-11-12 17:47 | other | listed | 26.97 | -11.4% | +2.8% | 1.0x | 560.0M | 13.4% | 0 |  |
-| TRT | 2026-11-12 17:34 | low float runner | listed | 5.82 | +10.6% | +6.0% | 0.9x | 7.8M | 9.2% | 0 |  |
