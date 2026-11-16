@@ -4,10 +4,10 @@
     "ANT": {
       "episode_id": "ANT-20261116T163409Z",
       "first_flagged_at": 1794846849.2801945,
-      "last_flagged_at": 1794852073.6681066,
-      "n_flags": 7,
-      "peak_mentions": 157,
-      "peak_z": 2.914,
+      "last_flagged_at": 1794852850.4219232,
+      "n_flags": 8,
+      "peak_mentions": 159,
+      "peak_z": 2.997,
       "reasons_seen": [
         "mention_spike"
       ]
@@ -48,8 +48,8 @@
     "HOOD": {
       "episode_id": "HOOD-20261116T150810Z",
       "first_flagged_at": 1794841690.6943853,
-      "last_flagged_at": 1794852073.6681066,
-      "n_flags": 16,
+      "last_flagged_at": 1794852850.4219232,
+      "n_flags": 17,
       "peak_mentions": 14,
       "peak_z": 4.092,
       "reasons_seen": [
@@ -70,8 +70,8 @@
     "WMT": {
       "episode_id": "WMT-20261116T071711Z",
       "first_flagged_at": 1794813431.754018,
-      "last_flagged_at": 1794852073.6681066,
-      "n_flags": 47,
+      "last_flagged_at": 1794852850.4219232,
+      "n_flags": 48,
       "peak_mentions": 20,
       "peak_z": 6.052,
       "reasons_seen": [
@@ -80,79 +80,79 @@
     }
   },
   "last_run": {
-    "finished_at": 1794852073.726461,
-    "new_docs": 668,
-    "run_id": "43922359592",
-    "started_at": 1794851370.7214468
+    "finished_at": 1794852850.4633317,
+    "new_docs": 624,
+    "run_id": "43924638780",
+    "started_at": 1794852166.1812243
   },
   "late_done_for": "2026-11-14",
   "live_since": 1791153669.8332794,
   "streams": {
     "pennystocks/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 1,
+      "consecutive_errors": 2,
       "cursor": 1794846043,
-      "fallback_complete_at": 1794851881.9841578,
-      "fallback_cursor": 1794851869,
+      "fallback_complete_at": 1794852661.8383079,
+      "fallback_cursor": 1794852615,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1794850583.9729803,
       "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 502 for posts r/pennystocks after 6 tries: {'error': 'photon-reddit.com | 502: Bad gateway'})",
-      "last_error_at": 1794851440.1751733
+      "last_error_at": 1794852233.47849
     },
     "pennystocks/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 1,
+      "consecutive_errors": 2,
       "cursor": 1794847089,
-      "fallback_complete_at": 1794852064.0131803,
+      "fallback_complete_at": 1794852843.5109708,
       "fallback_cursor": 1794846037,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1794850580.1326902,
       "last_error": "HTTP 502 for posts r/pennystocks after 6 tries: {'error': 'photon-reddit.com | 502: Bad gateway'}",
-      "last_error_at": 1794851440.1750386
+      "last_error_at": 1794852233.478375
     },
     "smallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 1,
+      "consecutive_errors": 2,
       "cursor": 1794850119,
-      "fallback_complete_at": 1794851822.4627478,
-      "fallback_cursor": 1794851736,
+      "fallback_complete_at": 1794852601.0087757,
+      "fallback_cursor": 1794852398,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1794850584.7665124,
       "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 502 for posts r/pennystocks after 6 tries: {'error': 'photon-reddit.com | 502: Bad gateway'})",
-      "last_error_at": 1794851440.1751997
+      "last_error_at": 1794852233.478508
     },
     "smallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 1,
+      "consecutive_errors": 2,
       "cursor": 1794850118,
-      "fallback_complete_at": 1794852002.3302207,
-      "fallback_cursor": 1794851597,
+      "fallback_complete_at": 1794852782.653872,
+      "fallback_cursor": 1794852728,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1794850581.3621066,
       "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 502 for posts r/pennystocks after 6 tries: {'error': 'photon-reddit.com | 502: Bad gateway'})",
-      "last_error_at": 1794851440.1751106
+      "last_error_at": 1794852233.4784455
     },
     "wallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 1,
+      "consecutive_errors": 2,
       "cursor": 1794849682,
-      "fallback_complete_at": 1794851761.8836503,
-      "fallback_cursor": 1794851430,
+      "fallback_complete_at": 1794852541.500132,
+      "fallback_cursor": 1794852222,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1794850586.7574666,
       "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 502 for posts r/pennystocks after 6 tries: {'error': 'photon-reddit.com | 502: Bad gateway'})",
-      "last_error_at": 1794851440.1752255
+      "last_error_at": 1794852233.4785254
     },
     "wallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 1,
+      "consecutive_errors": 2,
       "cursor": 1794850508,
-      "fallback_complete_at": 1794851941.9407606,
+      "fallback_complete_at": 1794852721.7322261,
       "fallback_cursor": 1794851441,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1794850583.2072916,
       "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 502 for posts r/pennystocks after 6 tries: {'error': 'photon-reddit.com | 502: Bad gateway'})",
-      "last_error_at": 1794851440.1751444
+      "last_error_at": 1794852233.4784696
     }
   },
   "symbols_refresh_errors": 0,
