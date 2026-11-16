@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-16T22:11:30Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-16T23:04:34Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-468 candidates and 927 controls so far. Archetypes: other 448, low_float_runner 15, unknown 4, otc_penny 1.
+469 candidates and 929 controls so far. Archetypes: other 449, low_float_runner 15, unknown 4, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| PLTR | 2026-11-16 23:04 | other | listed | 160.5 | +0.1% | -5.2% | 0.7x | 2.12B | 2.6% | 0 |  |
 | RCAT | 2026-11-16 22:11 | other | listed | 2.71 | -23.2% | -21.6% | 1.4x | 139.9M | 27.8% | 0 |  |
 | LXEO | 2026-11-16 20:09 | other | listed | 3.265 | +13.8% | -0.7% | 0.3x | 49.8M | 34.2% | 1 |  |
 | IREN | 2026-11-16 18:57 | other | listed | 16.41 | -9.7% | -16.0% | 1.0x | 416.1M | 22.8% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | IBM | 2026-11-13 00:27 | other | listed | 245 | +0.2% | -1.0% | 0.5x | 943.2M | 1.9% | 1 |  |
 | CSCO | 2026-11-12 21:20 | other | listed | 104.4 | +2.4% | +6.6% | 1.2x | 3.94B | 1.5% | 0 |  |
 | MSFT | 2026-11-12 20:54 | other | listed | 522.5 | +0.3% | -6.2% | 1.1x | 7.42B | 0.8% | 2 |  |
-| ASML | 2026-11-12 20:43 | other | listed | 1,493 | -2.7% | +2.5% | 0.8x | 21.28B | 0.0% | 0 |  |
