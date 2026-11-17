@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-17T00:16:26Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-17T07:46:33Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-16)
 
@@ -19,6 +19,12 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-17 06:59 | ROPE | other | 0.2% | no model | 100% / 55% / 0% / 0% | Users discuss buying ROPE, with some urging others to go all-in. |
+| 2026-11-17 03:38 | RSP | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss RSP as a broad market ETF alternative to concentrated tech stocks, noting its performance and holding it in portfolios. |
+| 2026-11-17 03:28 | ASTS | other | 8.4% | no model | 100% / 0% / 0% / 0% | Users discuss ASTS performance, compare it to SpaceX and RKLB, and debate its financial viability and future prospects. |
+| 2026-11-17 01:13 | TQQQ | other | **23%** | no model | 100% / 0% / 0% / 0% | Users discuss TQQQ volatility, losses, and trading strategies with mixed sentiment. |
+| 2026-11-17 00:48 | INTC | other | 12% | no model | 100% / 0% / 0% / 0% | Users discuss a shareholder lawsuit, Nvidia selling Intel shares, and general bearish sentiment regarding Intel's stock performance. |
+| 2026-11-17 00:31 | VOO | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss VOO as a safe index fund alternative to risky individual stocks. |
 | 2026-11-16 23:04 | PLTR | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss PLTR holdings, joke about price drops, and mention potential post-earnings sell-offs without specific event details. |
 | 2026-11-16 22:11 | RCAT | other | 4.8% | no model | 100% / 0% / 0% / 0% | Users discuss RCAT's poor earnings performance, price decline, and potential delisting. |
 | 2026-11-16 20:09 | LXEO | other | 1.8% | no model | 100% / 20% / 0% / 20% | Users discuss LXEO price targets, analyst upgrades, and potential entry points based on trial news. |
@@ -53,12 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-12 18:15 | GLD | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss GLD price movements, express bearish views, and speculate on future drops without mentioning specific corporate events. |
 | 2026-11-12 17:47 | SMCI | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss SMCI's stock drop due to regulatory probes and Jensen's scandal, with no promotional pitches found. |
 | 2026-11-12 17:34 | TRT | low float runner | 0.3% | no model | 0% / 0% / 0% / 0% | All documents discuss TRT as a medical treatment for Jensen, not the stock Trio-Tech International. |
-| 2026-11-12 17:04 | PARA | other | **95%** | no model | 100% / 10% / 0% / 10% | Users discuss trading PARA, noting a price target and recent filings, with mixed sentiment on potential moves. |
-| 2026-11-12 16:56 | CBRS | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss CBRS price movements, earnings anticipation, and potential volatility without confirming specific scheduled events. |
-| 2026-11-12 16:04 | PLCE | other | **14%** | no model | 100% / 10% / 0% / 0% | Users discuss PLCE price movements, potential pumps, and scalp opportunities in penny stock forums. |
-| 2026-11-12 14:43 | LUNR | other | 2.1% | no model | 100% / 0% / 0% / 29% | Users discuss LUNR earnings, price movements, and express bullish or bearish opinions on the stock. |
-| 2026-11-12 05:40 | SLI | other | 0.6% | no model | 0% / 0% / 0% / 0% | All documents discuss Jensen Huang and Nvidia's SLI technology, not Standard Lithium Ltd. |
-| 2026-11-12 05:14 | AMD | other | 2.8% | no model | 100% / 0% / 0% / 0% | Chatter discusses AMD stock price movements, potential NVDA/AMD executive connections, and mixed bullish/bearish opinions. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
