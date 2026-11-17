@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-17T08:03:08Z by run `44042986149`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-17T08:12:11Z by run `44043981732`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -20,7 +20,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | WMT | 2026-11-16 07:17 | mention spike | 21 | 4.57 | 15 | 0 | wallstreetbets 21 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xy146v/comment/19srevgx2gurn/) |
 | ASTS | 2026-11-17 03:28 | mention spike | 88 | 37.43 | 60 | 0 | wallstreetbets 88 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xxvao9/) |
 | RSP | 2026-11-17 03:38 | mention spike | 9 | 2.43 | 9 | 0 | wallstreetbets 9 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xy9o6m/comment/19sr5333e4x1c/) |
-| MSTR | 2026-11-13 06:20 | mention spike | 14 | 14.0 | 11 | 0 | wallstreetbets 14 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xy146v/comment/19sr614ae7mwy/) |
+| MSTR | 2026-11-13 06:20 | mention spike | 14 | 13.86 | 11 | 0 | wallstreetbets 14 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xy146v/comment/19sr614ae7mwy/) |
 | PLTR | 2026-11-16 23:04 | mention spike | 7 | 4.57 | 6 | 0 | wallstreetbets 7 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xy3al4/) |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
