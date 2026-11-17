@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-16T06:13:37Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-17T00:16:26Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-16)
 
@@ -19,6 +19,12 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-16 23:04 | PLTR | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss PLTR holdings, joke about price drops, and mention potential post-earnings sell-offs without specific event details. |
+| 2026-11-16 22:11 | RCAT | other | 4.8% | no model | 100% / 0% / 0% / 0% | Users discuss RCAT's poor earnings performance, price decline, and potential delisting. |
+| 2026-11-16 20:09 | LXEO | other | 1.8% | no model | 100% / 20% / 0% / 20% | Users discuss LXEO price targets, analyst upgrades, and potential entry points based on trial news. |
+| 2026-11-16 18:57 | IREN | other | 3.5% | no model | 100% / 0% / 10% / 3.3% | Users discuss IREN's price, express extreme bearishness, question its legitimacy as a scam, and mention an Intel stake. |
+| 2026-11-16 15:08 | HOOD | other | 0.3% | no model | 100% / 0% / 0% / 0% | Users discuss HOOD price, express confusion, fear of a drop, and mention buying alongside other stocks. |
+| 2026-11-16 07:17 | WMT | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss WMT valuation, earnings impact, and holiday shopping trends with mixed bearish and neutral sentiment. |
 | 2026-11-15 23:05 | ASML | other | 0.1% | no model | 100% / 0% / 0% / 0% | Discussions focus on ASML's monopoly, export bans to China, and technological barriers preventing reverse engineering. |
 | 2026-11-15 21:05 | COIN | other | 0.1% | no model | 90% / 0% / 0% / 0% | Users discuss COIN's performance relative to crypto market trends and compare it to other stocks. |
 | 2026-11-15 07:52 | TSM | other | 0.3% | no model | 100% / 0% / 0% / 0% | Users discuss geopolitical tensions involving Taiwan and TSM, with mixed opinions on stock impact and some jokes. |
@@ -53,12 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-12 14:43 | LUNR | other | 2.1% | no model | 100% / 0% / 0% / 29% | Users discuss LUNR earnings, price movements, and express bullish or bearish opinions on the stock. |
 | 2026-11-12 05:40 | SLI | other | 0.6% | no model | 0% / 0% / 0% / 0% | All documents discuss Jensen Huang and Nvidia's SLI technology, not Standard Lithium Ltd. |
 | 2026-11-12 05:14 | AMD | other | 2.8% | no model | 100% / 0% / 0% / 0% | Chatter discusses AMD stock price movements, potential NVDA/AMD executive connections, and mixed bullish/bearish opinions. |
-| 2026-11-12 03:27 | NXXT | low float runner | **93%** | no model | 100% / 0% / 10% / 10% | Discussions cover NXXT's massive price surge, frequent trading halts, delisting announcements, and potential scam accusations. |
-| 2026-11-12 01:54 | GME | other | 0.2% | no model | 100% / 12% / 0% / 5.9% | Users discuss GME options, past trading experiences, and joke about a fake NVDA acquisition. |
-| 2026-11-12 01:02 | NYT | other | 0.1% | no model | 0% / 0% / 0% / 0% | All documents discuss an affair involving Nvidia's CEO, not the New York Times Company stock. |
-| 2026-11-12 01:02 | OUST | other | 4.7% | no model | 0% / 0% / 0% / 0% | All documents discuss NVIDIA CEO Jensen Huang, not Ouster, Inc. |
-| 2026-11-11 15:26 | MSFT | other | 0.3% | no model | 100% / 0% / 0% / 0% | Users discuss MSFT price movements, AI competition with Anthropic, and trade positions without specific corporate events. |
-| 2026-11-11 12:32 | NBIS | other | 1.2% | no model | 100% / 0% / 0% / 0% | Chatter focuses on NBIS price action, upcoming earnings, and bullish sentiment regarding CoreWeave news. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
@@ -68,20 +68,20 @@ Each development week replayed exactly as it would have run: its model trained o
 
 | Candidates | n | Positives | Base rate | Flagged | Precision | Recall | F1 | Lift | AP | AUC |
 |---|---|---|---|---|---|---|---|---|---|---|
-| all candidates | 14 | 6 | 43% | 6 | 100% | 100% | 1.00 | 2.3x | 1.00 | 1.00 |
+| all candidates | 27 | 7 | 26% | 6 | 100% | 86% | 0.92 | 3.9x | 0.90 | 0.88 |
 | low float runner | 2 | 2 | 100% | 2 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
-| other | 12 | 4 | 33% | 4 | 100% | 100% | 1.00 | 3.0x | 1.00 | 1.00 |
+| other | 25 | 5 | 20% | 4 | 100% | 80% | 0.89 | 5.0x | 0.85 | 0.83 |
 | pump types together | 2 | 2 | 100% | 2 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
 
 | Model | AP | Precision | Recall | F1 |
 |---|---|---|---|---|
-| all groups | 1.00 | 100% | 100% | 1.00 |
-| market only | 1.00 | 100% | 100% | 1.00 |
-| social only | 0.95 | 100% | 67% | 0.80 |
+| all groups | 0.90 | 100% | 86% | 0.92 |
+| market only | 0.91 | 100% | 86% | 0.92 |
+| social only | 0.79 | 80% | 57% | 0.67 |
 
 | Robustness check | Result | Detail |
 |---|---|---|
-| beats the base rate | not enough data | 6 positives (needs 10) |
+| beats the base rate | not enough data | 7 positives (needs 10) |
 | separate periods | not enough data | needs 3 positives in each of three blocks of weeks |
 | per pump type | not enough data | needs 5 positives in a pump type |
 | beats the control group | not enough data | 0 flagged with settled controls (needs 10) |
@@ -89,7 +89,7 @@ Each development week replayed exactly as it would have run: its model trained o
 
 Verdict: **not robust yet** (some checks need more labels).
 
-Feature groups: all used; weak groups are pruned once the replay holds 20 positive candidates (6 so far).
+Feature groups: all used; weak groups are pruned once the replay holds 20 positive candidates (7 so far).
 
 ### pump
 
