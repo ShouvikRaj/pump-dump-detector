@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-17T04:05:06Z by run `44014154141`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-17T04:21:12Z by run `44015739285`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -8,7 +8,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | Ticker | Flagged since (UTC) | Why | Mentions 24h | Baseline/day | Authors | Hype posts | Subreddits | Exchange | StockTwits | Example |
 |---|---|---|---|---|---|---|---|---|---|---|
 | ANT | 2026-11-16 16:34 | mention spike | 220 | 71.86 | 147 | 1 | wallstreetbets 217, smallstreetbets 2, pennystocks 1 | ? |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xy3do2/) |
-| DXYZ | 2026-11-14 23:53 | mention spike | 40 | 6.43 | 19 | 0 | wallstreetbets 39, pennystocks 1 | NYSE | #14 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xy57tm/) |
+| DXYZ | 2026-11-14 23:53 | mention spike | 40 | 6.43 | 19 | 0 | wallstreetbets 39, pennystocks 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xy57tm/) |
 | HOOD | 2026-11-16 15:08 | mention spike | 28 | 4.0 | 23 | 0 | wallstreetbets 28 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xy146v/comment/19sr069pulcqr/) |
 | INTC | 2026-11-17 00:48 | mention spike | 40 | 18.29 | 31 | 0 | wallstreetbets 40 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xy146v/comment/19sr5m6fak6v6/) |
 | IREN | 2026-11-16 18:57 | mention spike | 45 | 11.29 | 36 | 0 | wallstreetbets 45 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xxnvng/) |
