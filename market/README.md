@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-17T16:08:48Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-17T18:16:31Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-481 candidates and 953 controls so far. Archetypes: other 460, low_float_runner 16, unknown 4, otc_penny 1.
+482 candidates and 955 controls so far. Archetypes: other 461, low_float_runner 16, unknown 4, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SOXX | 2026-11-17 18:16 | other | listed | 139.3 | -1.4% | -3.8% | 0.9x |  |  |  |  |
 | SPCX | 2026-11-17 16:08 | other | listed | 140.6 | +2.3% | -3.3% | 0.9x | 3.05B | 4.6% | 0 |  |
 | SPAI | 2026-11-17 14:06 | low float runner | listed | 2.99 | +21.1% | -24.7% | 24.0x | 11.6M | 5.4% | 0 |  |
 | SLS | 2026-11-17 12:33 | other | listed | 8 | +7.1% | -12.9% | 1.0x | 203.1M | 28.1% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | DHS | 2026-11-14 00:36 | other | listed | 120.1 | +0.0% | +2.2% | 1.0x |  |  |  |  |
 | NWS | 2026-11-13 23:41 | other | listed | 29.89 | +0.0% | +3.2% | 0.8x | 473.0M | 0.7% | 0 |  |
 | ATC | 2026-11-13 22:10 | other | listed | 18.72 | +0.0% | -7.5% | 2.3x |  |  |  |  |
-| IWM | 2026-11-13 19:02 | other | listed | 277 | -0.5% | +2.8% | 0.9x |  |  |  |  |
