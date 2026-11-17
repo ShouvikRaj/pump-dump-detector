@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-17T05:11:11Z by run `44021811032`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-17T05:27:09Z by run `44023399208`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -8,11 +8,11 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | Ticker | Flagged since (UTC) | Why | Mentions 24h | Baseline/day | Authors | Hype posts | Subreddits | Exchange | StockTwits | Example |
 |---|---|---|---|---|---|---|---|---|---|---|
 | ANT | 2026-11-16 16:34 | mention spike | 218 | 72.0 | 145 | 1 | wallstreetbets 215, smallstreetbets 2, pennystocks 1 | ? |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xy3do2/) |
-| ASTS | 2026-11-17 03:28 | mention spike | 94 | 36.43 | 61 | 0 | wallstreetbets 94 | Nasdaq | #12 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xxvao9/) |
+| ASTS | 2026-11-17 03:28 | mention spike | 94 | 36.43 | 61 | 0 | wallstreetbets 94 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xxvao9/) |
 | DXYZ | 2026-11-14 23:53 | mention spike | 39 | 6.57 | 18 | 0 | wallstreetbets 38, pennystocks 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xy57tm/) |
 | HOOD | 2026-11-16 15:08 | mention spike | 28 | 4.0 | 23 | 0 | wallstreetbets 28 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xy146v/comment/19sr069pulcqr/) |
-| INTC | 2026-11-17 00:48 | mention spike | 39 | 18.29 | 30 | 0 | wallstreetbets 39 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xy146v/comment/19sr5m6fak6v6/) |
-| IREN | 2026-11-16 18:57 | mention spike | 45 | 11.14 | 36 | 0 | wallstreetbets 45 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xxnvng/) |
+| INTC | 2026-11-17 00:48 | mention spike | 40 | 18.29 | 31 | 0 | wallstreetbets 40 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyc42m/) |
+| IREN | 2026-11-16 18:57 | mention spike | 45 | 11.0 | 36 | 0 | wallstreetbets 45 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xxnvng/) |
 | LXEO | 2026-11-16 20:09 | mention spike | 10 | 0.0 | 7 | 0 | pennystocks 8, smallstreetbets 1, wallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1xxs8on/) |
 | RCAT | 2026-11-16 22:11 | mention spike | 18 | 0.71 | 15 | 0 | wallstreetbets 17, pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xy146v/comment/19sqxbogdhio0/) |
 | RSP | 2026-11-17 03:38 | mention spike | 10 | 2.29 | 9 | 0 | wallstreetbets 10 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xy9o6m/comment/19sr5333e4x1c/) |
