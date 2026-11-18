@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-18T03:32:06Z by run `44230773415`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-18T03:45:07Z by run `44232331035`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -21,8 +21,8 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | DXYZ | 2026-11-14 23:53 | mention spike | 9 | 12.14 | 6 | 0 | wallstreetbets 9 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xys9s8/) |
 | SPCX | 2026-11-17 16:08 | mention spike | 42 | 52.71 | 38 | 0 | wallstreetbets 42 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyw3ym/comment/19ssv5rbjendu/) |
 | TQQQ | 2026-11-17 01:13 | mention spike | 15 | 7.14 | 10 | 0 | wallstreetbets 14, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1xyad7h/) |
-| ASTS | 2026-11-17 03:28 | mention spike | 39 | 37.57 | 33 | 0 | wallstreetbets 39 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyu4sn/) |
-| INTC | 2026-11-17 00:48 | mention spike | 13 | 21.86 | 12 | 0 | wallstreetbets 13 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyc42m/) |
+| ASTS | 2026-11-17 03:28 | mention spike | 39 | 37.43 | 33 | 0 | wallstreetbets 39 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyu4sn/) |
+| INTC | 2026-11-17 00:48 | mention spike | 12 | 21.86 | 11 | 0 | wallstreetbets 12 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyc42m/) |
 | SNDK | 2026-11-17 10:05 | mention spike | 45 | 35.43 | 25 | 0 | wallstreetbets 45 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyuerk/) |
 | WMT | 2026-11-16 07:17 | mention spike | 10 | 7.14 | 9 | 0 | wallstreetbets 10 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyw3ym/comment/19ssttzowvi01/) |
 | IREN | 2026-11-16 18:57 | mention spike | 13 | 17.0 | 10 | 1 | wallstreetbets 13 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyqacj/) |
