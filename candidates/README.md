@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-17T23:58:08Z by run `44203657992`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-18T00:00:11Z by run `44203731723`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -21,7 +21,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | DXYZ | 2026-11-14 23:53 | mention spike | 10 | 11.71 | 7 | 0 | wallstreetbets 10 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xys9s8/) |
 | SPCX | 2026-11-17 16:08 | mention spike | 46 | 51.57 | 42 | 0 | wallstreetbets 46 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyw3ym/comment/19ssmfthaj4rm/) |
 | TQQQ | 2026-11-17 01:13 | mention spike | 15 | 7.29 | 10 | 0 | wallstreetbets 13, smallstreetbets 2 | Nasdaq | #27 | [link](https://www.reddit.com/r/smallstreetbets/comments/1xyad7h/) |
-| ASTS | 2026-11-17 03:28 | mention spike | 48 | 36.57 | 39 | 0 | wallstreetbets 48 | Nasdaq | #29 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyu4sn/) |
+| ASTS | 2026-11-17 03:28 | mention spike | 48 | 36.43 | 39 | 0 | wallstreetbets 48 | Nasdaq | #29 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyu4sn/) |
 | INTC | 2026-11-17 00:48 | mention spike | 18 | 20.71 | 17 | 0 | wallstreetbets 18 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyc42m/) |
 | SNDK | 2026-11-17 10:05 | mention spike | 48 | 35.57 | 27 | 0 | wallstreetbets 48 | Nasdaq | #20 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyuerk/) |
 | WMT | 2026-11-16 07:17 | mention spike | 8 | 7.14 | 7 | 0 | wallstreetbets 8 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyhl51/comment/19ss4fw7vpwdh/) |
