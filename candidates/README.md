@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-18T11:32:07Z by run `44294808527`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-18T11:45:11Z by run `44296801424`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -12,7 +12,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | SOXX | 2026-11-17 18:16 | mention spike | 9 | 6.29 | 5 | 0 | wallstreetbets 9 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xytkey/) |
 | HSBC | 2026-11-17 21:20 | mention spike | 4 | 3.29 | 4 | 0 | wallstreetbets 4 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyotpf/comment/19ssd6bzfveth/) |
 | SHAZ | 2026-11-17 10:45 | mention spike | 4 | 1.57 | 4 | 0 | wallstreetbets 4 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xy69bm/comment/19ss7ome8ctb7/) |
-| RCAT | 2026-11-16 22:11 | mention spike | 9 | 3.43 | 9 | 0 | wallstreetbets 8, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyhl51/comment/19ss66e2zkd9h/) |
+| RCAT | 2026-11-16 22:11 | mention spike | 8 | 3.57 | 8 | 0 | wallstreetbets 7, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyhl51/comment/19ss66e2zkd9h/) |
 | VOO | 2026-11-17 00:31 | mention spike | 11 | 17.71 | 11 | 0 | wallstreetbets 11 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyw3ym/comment/19ssjsq5f5rds/) |
 | SPAI | 2026-11-17 14:06 | mention spike | 4 | 1.14 | 3 | 0 | pennystocks 4 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1xybo6o/comment/19ss6ec32jk69/) |
 | HOOD | 2026-11-16 15:08 | mention spike | 7 | 7.86 | 7 | 0 | wallstreetbets 7 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyprx3/) |
