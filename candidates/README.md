@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-18T07:07:08Z by run `44255705874`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-18T07:17:10Z by run `44256958156`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -23,9 +23,9 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | TQQQ | 2026-11-17 01:13 | mention spike | 15 | 7.14 | 10 | 0 | wallstreetbets 14, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1xz5vej/) |
 | ASTS | 2026-11-17 03:28 | mention spike | 33 | 38.14 | 29 | 0 | wallstreetbets 33 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyu4sn/) |
 | INTC | 2026-11-17 00:48 | mention spike | 10 | 21.86 | 9 | 0 | wallstreetbets 10 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyw3ym/comment/19ssvl1ol0noj/) |
-| SNDK | 2026-11-17 10:05 | mention spike | 42 | 35.86 | 23 | 0 | wallstreetbets 42 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyuerk/) |
-| WMT | 2026-11-16 07:17 | mention spike | 9 | 7.29 | 8 | 0 | wallstreetbets 9 | Nasdaq | #18 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyw3ym/comment/19ssttzowvi01/) |
-| IREN | 2026-11-16 18:57 | mention spike | 13 | 17.0 | 10 | 1 | wallstreetbets 13 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyqacj/) |
+| SNDK | 2026-11-17 10:05 | mention spike | 42 | 35.71 | 23 | 0 | wallstreetbets 42 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyuerk/) |
+| WMT | 2026-11-16 07:17 | mention spike | 8 | 7.29 | 7 | 0 | wallstreetbets 8 | Nasdaq | #16 | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyw3ym/comment/19ssttzowvi01/) |
+| IREN | 2026-11-16 18:57 | mention spike | 12 | 17.14 | 9 | 0 | wallstreetbets 12 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyqacj/) |
 | JPM | 2026-11-17 10:05 | mention spike | 2 | 3.86 | 2 | 0 | wallstreetbets 2 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xy146v/comment/19srm98hohfpg/) |
 | LXEO | 2026-11-16 20:09 | mention spike | 2 | 1.43 | 1 | 0 | pennystocks 2 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1xybo6o/comment/19ss49vieunz8/) |
 
