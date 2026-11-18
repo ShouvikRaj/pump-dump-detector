@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-17T07:46:33Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-18T00:24:49Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-16)
 
@@ -19,6 +19,15 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-17 23:46 | AAOI | other | **23%** | no model | 100% / 27% / 6.7% / 6.7% | Chatter includes jokes, price movements, dilution concerns, and mixed buy/sell sentiments regarding AAOI. |
+| 2026-11-17 21:20 | HSBC | other | 0.0% | no model | 100% / 0% / 0% / 9.1% | Users discuss HSBC selling a loan and express skepticism about the bank's AI strategy and reputation. |
+| 2026-11-17 18:16 | SOXX | other | 1.8% | no model | 100% / 14% / 0% / 0% | Users discuss SOXX price movements, sector trends, and express bullish or bearish opinions on the semiconductor index fund. |
+| 2026-11-17 16:08 | SPCX | other | 1.5% | no model | 100% / 0% / 0% / 0% | Chatter discusses SPCX's IPO performance, potential merger with TSLA, and compares it to other tech stocks like ANT. |
+| 2026-11-17 14:06 | SPAI | low float runner | **22%** | no model | 100% / 30% / 0% / 0% | Users discuss SPAI stock, citing growth, earnings, and specific price targets with rapid buying and selling. |
+| 2026-11-17 12:33 | SLS | other | 3.6% | no model | 100% / 14% / 4.5% / 9.1% | Chatter discusses SLS trading halt, potential buyout rumors, and a Phase 3 clinical trial success announcement. |
+| 2026-11-17 10:45 | SHAZ | other | 4.3% | no model | 100% / 0% / 0% / 0% | Users discuss a major shareholder's massive losses and the stock's sharp decline, mocking the investor. |
+| 2026-11-17 10:05 | JPM | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss a software bug and outage affecting JPM and other banks, while others mention buybacks. |
+| 2026-11-17 10:05 | SNDK | other | **33%** | no model | 100% / 0% / 0% / 0% | Chatter discusses SNDK price drops, compares it to other tech stocks, and mentions a user's call positions. |
 | 2026-11-17 06:59 | ROPE | other | 0.2% | no model | 100% / 55% / 0% / 0% | Users discuss buying ROPE, with some urging others to go all-in. |
 | 2026-11-17 03:38 | RSP | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss RSP as a broad market ETF alternative to concentrated tech stocks, noting its performance and holding it in portfolios. |
 | 2026-11-17 03:28 | ASTS | other | 8.4% | no model | 100% / 0% / 0% / 0% | Users discuss ASTS performance, compare it to SpaceX and RKLB, and debate its financial viability and future prospects. |
@@ -50,15 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-13 10:58 | CRWD | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss CRWD price movements, valuation concerns, and potential future performance in r/wallstreetbets. |
 | 2026-11-13 06:20 | MSTR | other | 1.1% | no model | 100% / 0% / 0% / 0% | Users express extreme bearishness, fear of delisting, and joke about nationalizing the company. |
 | 2026-11-13 01:09 | SLS | other | 1.1% | no model | 100% / 20% / 0% / 0% | Chatter discusses SLS upcoming catalysts, short interest, and recent price spikes without specific company event details. |
-| 2026-11-13 00:27 | IBM | other | 0.3% | no model | 100% / 0% / 0% / 0% | Discussions about IBM's history, leadership, and market performance compared to other tech stocks. |
-| 2026-11-13 00:27 | NFLX | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss NFLX price action, joke about a documentary, and mention buybacks without specific events or pitches. |
-| 2026-11-12 21:20 | CSCO | other | 0.0% | no model | 100% / 0% / 0% / 0% | Users discuss CSCO options pricing, compare it to NVDA/AMAT, and react to potential earnings beats. |
-| 2026-11-12 20:54 | MSFT | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss a major Microsoft Outlook outage, expressing skepticism about the stock's resilience and calling for short positions. |
-| 2026-11-12 20:43 | ASML | other | 0.0% | no model | 100% / 0% / 0% / 0% | Users discuss ASML's market position, EUV technology, and geopolitical tensions with China. |
-| 2026-11-12 18:42 | AMAT | other | 0.1% | no model | 100% / 0% / 0% / 10% | Users discuss AMAT earnings, express bearish sentiment, and speculate on potential stock drops. |
-| 2026-11-12 18:15 | GLD | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss GLD price movements, express bearish views, and speculate on future drops without mentioning specific corporate events. |
-| 2026-11-12 17:47 | SMCI | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss SMCI's stock drop due to regulatory probes and Jensen's scandal, with no promotional pitches found. |
-| 2026-11-12 17:34 | TRT | low float runner | 0.3% | no model | 0% / 0% / 0% / 0% | All documents discuss TRT as a medical treatment for Jensen, not the stock Trio-Tech International. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
@@ -68,24 +68,24 @@ Each development week replayed exactly as it would have run: its model trained o
 
 | Candidates | n | Positives | Base rate | Flagged | Precision | Recall | F1 | Lift | AP | AUC |
 |---|---|---|---|---|---|---|---|---|---|---|
-| all candidates | 27 | 7 | 26% | 6 | 100% | 86% | 0.92 | 3.9x | 0.90 | 0.88 |
+| all candidates | 51 | 7 | 14% | 7 | 86% | 86% | 0.86 | 6.2x | 0.81 | 0.87 |
 | low float runner | 2 | 2 | 100% | 2 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
-| other | 25 | 5 | 20% | 4 | 100% | 80% | 0.89 | 5.0x | 0.85 | 0.83 |
+| other | 49 | 5 | 10% | 5 | 80% | 80% | 0.80 | 7.8x | 0.67 | 0.82 |
 | pump types together | 2 | 2 | 100% | 2 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
 
 | Model | AP | Precision | Recall | F1 |
 |---|---|---|---|---|
-| all groups | 0.90 | 100% | 86% | 0.92 |
-| market only | 0.91 | 100% | 86% | 0.92 |
-| social only | 0.79 | 80% | 57% | 0.67 |
+| all groups | 0.81 | 86% | 86% | 0.86 |
+| market only | 0.81 | 86% | 86% | 0.86 |
+| social only | 0.70 | 67% | 57% | 0.62 |
 
 | Robustness check | Result | Detail |
 |---|---|---|
 | beats the base rate | not enough data | 7 positives (needs 10) |
 | separate periods | not enough data | needs 3 positives in each of three blocks of weeks |
 | per pump type | not enough data | needs 5 positives in a pump type |
-| beats the control group | not enough data | 0 flagged with settled controls (needs 10) |
-| survives slippage | not enough data | 0 flagged with a 10-session return (needs 10) |
+| beats the control group | not enough data | 2 flagged with settled controls (needs 10) |
+| survives slippage | not enough data | 2 flagged with a 10-session return (needs 10) |
 
 Verdict: **not robust yet** (some checks need more labels).
 
