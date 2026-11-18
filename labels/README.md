@@ -1,6 +1,6 @@
 # Stage 4 labels
 
-Updated 2026-11-17T23:30:33Z. Every candidate and control gets the same rule, `label-v1`, written down before any outcome was looked at (docs/stage4.md in the code branch). Sessions count from the flag; returns are against the price at the flag. All rows: `labels/labels.csv`.
+Updated 2026-11-18T04:28:48Z. Every candidate and control gets the same rule, `label-v1`, written down before any outcome was looked at (docs/stage4.md in the code branch). Sessions count from the flag; returns are against the price at the flag. All rows: `labels/labels.csv`.
 
 - **pump**: up 50% or more within 5 sessions, then down 40% or more from that peak within the next 10
 - **real news**: earnings, a completed acquisition, a change of control, bankruptcy or a material agreement that isn't a share sale, filed with the SEC (8-K) between 72 hours before the flag and session 5; it beats pump
@@ -13,8 +13,8 @@ Updated 2026-11-17T23:30:33Z. Every candidate and control gets the same rule, `l
 | low float runner | control | 0 | 5 | 34 | 4 of 38 (11%) | 11 | 0 |
 | otc penny | candidate | 0 | 0 | 1 | 0 of 1 (0%) | 0 | 0 |
 | otc penny | control | 0 | 0 | 2 | 0 of 2 (0%) | 0 | 0 |
-| other | candidate | 3 | 130 | 252 | 21 of 348 (6%) | 77 | 0 |
-| other | control | 0 | 160 | 544 | 2 of 671 (0%) | 201 | 0 |
+| other | candidate | 3 | 130 | 252 | 21 of 348 (6%) | 78 | 0 |
+| other | control | 0 | 160 | 545 | 2 of 672 (0%) | 202 | 0 |
 | unknown | candidate | 0 | 0 | 0 | - | 0 | 4 |
 
 Crash counts the snapshots whose crash label has settled.
@@ -75,4 +75,4 @@ Crash counts the snapshots whose crash label has settled.
 | 2026-11-06 03:36 | AROC | control | other | real news |  | +10% |  |  | 8-K 2026-11-04T13:59 7.01; 8-K 2026-11-10T21:24 1.01,7.01,9.01 (news) |
 | 2026-11-06 02:44 | QQQ | candidate | other | not pump |  | +7% |  |  |  |
 
-1100 older rows are in `labels/labels.csv`.
+1101 older rows are in `labels/labels.csv`.
