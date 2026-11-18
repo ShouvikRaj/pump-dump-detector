@@ -20466,3 +20466,13 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 44214542924,2026-11-18T01:16:55Z,smallstreetbets/posts,fallback,2026-11-17T23:29:18Z,0,0,0,0,2026-11-17T16:27:47Z,,,HTTP 404 for Reddit RSS posts r/smallstreetbets
 44214542924,2026-11-18T01:16:55Z,pennystocks/posts,fallback,2026-11-17T20:55:05Z,0,0,0,0,2026-11-17T17:36:37Z,,,HTTP 404 for Reddit RSS posts r/pennystocks
 44214542924,2026-11-18T01:16:55Z,wallstreetbets/comments,late,2026-11-16T23:30:20Z,0,0,0,0,,,,"HTTP 0 for comments r/wallstreetbets after 6 tries: {'error': ""ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))""}"
+44216247463,2026-11-18T01:30:11Z,pennystocks/posts,live,2026-11-17T17:55:05Z,3,0,1,1,2026-11-17T20:55:05Z,12.0,,
+44216247463,2026-11-18T01:30:11Z,smallstreetbets/posts,live,2026-11-17T20:29:18Z,10,0,1,1,2026-11-17T23:29:18Z,12.5,,
+44216247463,2026-11-18T01:30:11Z,wallstreetbets/posts,live,2026-11-17T22:06:26Z,47,4,1,1,2026-11-18T01:23:01Z,13.0,510.1,
+44216247463,2026-11-18T01:30:11Z,pennystocks/comments,live,2026-11-17T21:28:19Z,1,0,1,1,2026-11-17T21:58:19Z,1392.0,,
+44216247463,2026-11-18T01:30:11Z,smallstreetbets/comments,live,2026-11-17T23:43:50Z,3,0,1,1,2026-11-18T00:13:50Z,2187.0,,
+44216247463,2026-11-18T01:30:11Z,wallstreetbets/comments,live,2026-11-18T00:19:11Z,104,64,2,1,2026-11-18T01:25:15Z,1554.5,2448.0,
+44216247463,2026-11-18T01:30:11Z,wallstreetbets/comments,feed,2026-11-17T17:47:31Z,0,0,0,0,2026-11-17T17:47:31Z,,,HTTP 404 for Reddit RSS comments r/wallstreetbets
+44216247463,2026-11-18T01:30:11Z,smallstreetbets/comments,feed,2026-11-17T17:48:25Z,0,0,0,0,2026-11-17T17:48:25Z,,,HTTP 404 for Reddit RSS comments r/smallstreetbets
+44216247463,2026-11-18T01:30:11Z,pennystocks/comments,feed,2026-11-17T17:48:47Z,0,0,0,0,2026-11-17T17:48:47Z,,,HTTP 404 for Reddit RSS comments r/pennystocks
+44216247463,2026-11-18T01:30:11Z,wallstreetbets/comments,late,2026-11-16T23:30:20Z,847,6,9,1,,,93425.4,
