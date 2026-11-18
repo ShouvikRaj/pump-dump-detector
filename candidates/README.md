@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-18T05:44:10Z by run `44246070808`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-18T05:57:06Z by run `44247589835`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -17,8 +17,8 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | SPAI | 2026-11-17 14:06 | mention spike | 7 | 0.71 | 4 | 0 | pennystocks 7 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1xybo6o/comment/19ss6ec32jk69/) |
 | HOOD | 2026-11-16 15:08 | mention spike | 7 | 7.86 | 7 | 0 | wallstreetbets 7 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyprx3/) |
 | ROPE | 2026-11-17 06:59 | mention spike | 5 | 3.43 | 5 | 0 | wallstreetbets 4, smallstreetbets 1 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyw3ym/comment/19ssgj9tbkfz5/) |
-| ANT | 2026-11-16 16:34 | mention spike | 124 | 100.57 | 98 | 0 | wallstreetbets 121, pennystocks 2, smallstreetbets 1 | ? |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xz744l/) |
-| DXYZ | 2026-11-14 23:53 | mention spike | 9 | 12.14 | 6 | 0 | wallstreetbets 9 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xys9s8/) |
+| ANT | 2026-11-16 16:34 | mention spike | 123 | 100.71 | 98 | 0 | wallstreetbets 120, pennystocks 2, smallstreetbets 1 | ? |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xz744l/) |
+| DXYZ | 2026-11-14 23:53 | mention spike | 8 | 12.29 | 6 | 0 | wallstreetbets 8 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xys9s8/) |
 | SPCX | 2026-11-17 16:08 | mention spike | 41 | 52.57 | 37 | 0 | wallstreetbets 41 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyw3ym/comment/19ssv5rbjendu/) |
 | TQQQ | 2026-11-17 01:13 | mention spike | 15 | 7.14 | 10 | 0 | wallstreetbets 14, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1xz5vej/) |
 | ASTS | 2026-11-17 03:28 | mention spike | 35 | 37.86 | 30 | 0 | wallstreetbets 35 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1xyu4sn/) |
