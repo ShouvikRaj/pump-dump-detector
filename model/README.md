@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-18T07:13:53Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-19T00:18:39Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-16)
 
@@ -19,6 +19,8 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-18 21:40 | PANW | other | 0.8% | no model | 100% / 9.1% / 0% / 9.1% | Chatter focuses on PANW's massive AI acquisition, earnings results, and extremely high valuation metrics. |
+| 2026-11-18 17:15 | UNH | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users express confusion and anger over UNH's significant price drop, with some selling shares and mocking the company. |
 | 2026-11-17 23:46 | AAOI | other | **23%** | no model | 100% / 27% / 6.7% / 6.7% | Chatter includes jokes, price movements, dilution concerns, and mixed buy/sell sentiments regarding AAOI. |
 | 2026-11-17 21:20 | HSBC | other | 0.0% | no model | 100% / 0% / 0% / 9.1% | Users discuss HSBC selling a loan and express skepticism about the bank's AI strategy and reputation. |
 | 2026-11-17 18:16 | SOXX | other | 1.8% | no model | 100% / 14% / 0% / 0% | Users discuss SOXX price movements, sector trends, and express bullish or bearish opinions on the semiconductor index fund. |
@@ -57,8 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-13 13:30 | AIMD | other | **22%** | no model | 100% / 50% / 0% / 10% | Users discuss a recent $9M contract announcement and speculate on price increases for AIMD. |
 | 2026-11-13 13:15 | ARM | other | 4.0% | no model | 100% / 0% / 0% / 0% | Users discuss potential CEO changes, hiring rumors, and technical comparisons regarding ARM Holdings. |
 | 2026-11-13 10:58 | CRWD | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss CRWD price movements, valuation concerns, and potential future performance in r/wallstreetbets. |
-| 2026-11-13 06:20 | MSTR | other | 1.1% | no model | 100% / 0% / 0% / 0% | Users express extreme bearishness, fear of delisting, and joke about nationalizing the company. |
-| 2026-11-13 01:09 | SLS | other | 1.1% | no model | 100% / 20% / 0% / 0% | Chatter discusses SLS upcoming catalysts, short interest, and recent price spikes without specific company event details. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
@@ -68,28 +68,28 @@ Each development week replayed exactly as it would have run: its model trained o
 
 | Candidates | n | Positives | Base rate | Flagged | Precision | Recall | F1 | Lift | AP | AUC |
 |---|---|---|---|---|---|---|---|---|---|---|
-| all candidates | 51 | 7 | 14% | 7 | 86% | 86% | 0.86 | 6.2x | 0.81 | 0.87 |
+| all candidates | 70 | 8 | 11% | 9 | 78% | 88% | 0.82 | 6.8x | 0.81 | 0.89 |
 | low float runner | 2 | 2 | 100% | 2 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
-| other | 49 | 5 | 10% | 5 | 80% | 80% | 0.80 | 7.8x | 0.67 | 0.82 |
+| other | 68 | 6 | 8.8% | 7 | 71% | 83% | 0.77 | 8.1x | 0.71 | 0.85 |
 | pump types together | 2 | 2 | 100% | 2 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
 
 | Model | AP | Precision | Recall | F1 |
 |---|---|---|---|---|
-| all groups | 0.81 | 86% | 86% | 0.86 |
-| market only | 0.81 | 86% | 86% | 0.86 |
-| social only | 0.70 | 67% | 57% | 0.62 |
+| all groups | 0.81 | 78% | 88% | 0.82 |
+| market only | 0.80 | 78% | 88% | 0.82 |
+| social only | 0.74 | 71% | 62% | 0.67 |
 
 | Robustness check | Result | Detail |
 |---|---|---|
-| beats the base rate | not enough data | 7 positives (needs 10) |
+| beats the base rate | not enough data | 8 positives (needs 10) |
 | separate periods | not enough data | needs 3 positives in each of three blocks of weeks |
 | per pump type | not enough data | needs 5 positives in a pump type |
-| beats the control group | not enough data | 2 flagged with settled controls (needs 10) |
-| survives slippage | not enough data | 2 flagged with a 10-session return (needs 10) |
+| beats the control group | not enough data | 3 flagged with settled controls (needs 10) |
+| survives slippage | not enough data | 3 flagged with a 10-session return (needs 10) |
 
 Verdict: **not robust yet** (some checks need more labels).
 
-Feature groups: all used; weak groups are pruned once the replay holds 20 positive candidates (7 so far).
+Feature groups: all used; weak groups are pruned once the replay holds 20 positive candidates (8 so far).
 
 ### pump
 
