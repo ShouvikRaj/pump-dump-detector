@@ -1,13 +1,16 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-18T21:40:37Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-19T00:43:27Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-486 candidates and 963 controls so far. Archetypes: other 465, low_float_runner 16, unknown 4, otc_penny 1.
+489 candidates and 967 controls so far. Archetypes: other 467, low_float_runner 16, unknown 5, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| TTWO | 2026-11-19 00:42 | other | listed | 222.7 | +2.8% | -6.4% | 3.2x | 186.4M | 5.0% | 0 |  |
+| GLD | 2026-11-19 00:42 | other | listed | 343.3 | +0.6% | -6.6% | 1.3x |  |  | 0 |  |
+| ANT | 2026-11-19 00:42 | unknown | listed |  |  |  |  | 965.7M |  | 5 |  |
 | PANW | 2026-11-18 21:40 | other | listed | 375.1 | +10.3% | +1.6% | 2.3x | 812.5M | 2.5% | 0 |  |
 | UNH | 2026-11-18 17:15 | other | listed | 356.8 | -8.4% | -3.8% | 1.6x | 893.4M | 1.6% | 0 |  |
 | AAOI | 2026-11-17 23:46 | other | listed | 41.72 | -7.7% | -6.4% | 1.2x | 86.8M | 20.8% | 2 |  |
@@ -35,6 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | ASML | 2026-11-15 23:05 | other | listed | 1,476 | -1.3% | +4.9% | 0.8x | 21.28B | 0.0% | 0 |  |
 | COIN | 2026-11-15 21:05 | other | listed | 126 | -1.3% | -5.3% | 0.9x | 220.7M | 10.3% | 0 |  |
 | TSM | 2026-11-15 07:52 | other | listed | 394.5 | -1.1% | +6.2% | 0.7x | 37.84B | 0.1% | 0 |  |
-| DXYZ | 2026-11-14 23:53 | other | listed | 26.3 | -0.6% | +8.6% | 1.3x |  |  | 2 |  |
-| LHX | 2026-11-14 03:08 | other | listed | 261.9 | -3.8% | +4.8% | 0.5x | 185.2M | 2.3% | 2 |  |
-| WMT | 2026-11-14 02:06 | other | listed | 127.9 | -0.1% | +2.0% | 0.8x | 4.85B | 1.5% | 4 |  |
