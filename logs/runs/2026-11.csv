@@ -21656,3 +21656,16 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 44438245133,2026-11-19T01:37:19Z,smallstreetbets/comments,feed,2026-11-17T17:48:25Z,0,0,0,0,2026-11-17T17:48:25Z,,,HTTP 404 for Reddit RSS comments r/smallstreetbets
 44438245133,2026-11-19T01:37:19Z,pennystocks/comments,feed,2026-11-17T17:48:47Z,0,0,0,0,2026-11-17T17:48:47Z,,,HTTP 404 for Reddit RSS comments r/pennystocks
 44438245133,2026-11-19T01:37:19Z,wallstreetbets/comments,late,2026-11-17T23:48:23Z,0,0,0,0,,,,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
+44439885212,2026-11-19T01:50:33Z,pennystocks/posts,live,2026-11-18T18:12:54Z,6,0,1,1,2026-11-18T21:12:54Z,25.5,,
+44439885212,2026-11-19T01:50:33Z,smallstreetbets/posts,live,2026-11-18T18:52:18Z,6,0,1,1,2026-11-18T21:52:18Z,16.0,,
+44439885212,2026-11-19T01:50:33Z,wallstreetbets/posts,live,2026-11-18T22:22:37Z,36,2,1,1,2026-11-19T01:42:31Z,14.5,625.8,
+44439885212,2026-11-19T01:50:33Z,pennystocks/comments,live,2026-11-18T23:34:24Z,4,0,1,1,2026-11-19T00:04:24Z,713.0,,
+44439885212,2026-11-19T01:50:33Z,smallstreetbets/comments,live,2026-11-19T00:09:57Z,2,0,1,1,2026-11-19T00:39:57Z,621.5,,
+44439885212,2026-11-19T01:50:33Z,wallstreetbets/comments,live,2026-11-19T00:55:18Z,26,1,1,1,2026-11-19T01:25:18Z,850.0,3215.4,
+44439885212,2026-11-19T01:50:33Z,wallstreetbets/comments,fallback,2026-11-17T17:47:31Z,0,0,0,0,2026-11-17T17:47:31Z,,,HTTP 404 for Reddit RSS comments r/wallstreetbets
+44439885212,2026-11-19T01:50:33Z,smallstreetbets/comments,fallback,2026-11-17T17:48:25Z,0,0,0,0,2026-11-17T17:48:25Z,,,HTTP 404 for Reddit RSS comments r/smallstreetbets
+44439885212,2026-11-19T01:50:33Z,pennystocks/comments,fallback,2026-11-17T17:48:47Z,0,0,0,0,2026-11-17T17:48:47Z,,,HTTP 404 for Reddit RSS comments r/pennystocks
+44439885212,2026-11-19T01:50:33Z,wallstreetbets/posts,fallback,2026-11-19T01:42:31Z,0,0,0,0,2026-11-17T17:35:26Z,,,HTTP 404 for Reddit RSS posts r/wallstreetbets
+44439885212,2026-11-19T01:50:33Z,smallstreetbets/posts,fallback,2026-11-18T21:52:18Z,0,0,0,0,2026-11-17T16:27:47Z,,,HTTP 404 for Reddit RSS posts r/smallstreetbets
+44439885212,2026-11-19T01:50:33Z,pennystocks/posts,fallback,2026-11-18T21:12:54Z,0,0,0,0,2026-11-17T17:36:37Z,,,HTTP 404 for Reddit RSS posts r/pennystocks
+44439885212,2026-11-19T01:50:33Z,wallstreetbets/comments,late,2026-11-17T23:48:23Z,198,176,2,0,,,93820.4,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
