@@ -1,13 +1,16 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-19T00:43:27Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-19T00:50:31Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-489 candidates and 967 controls so far. Archetypes: other 467, low_float_runner 16, unknown 5, otc_penny 1.
+492 candidates and 973 controls so far. Archetypes: other 470, low_float_runner 16, unknown 5, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SPCX | 2026-11-19 00:49 | other | listed | 145 | +1.1% | +2.7% | 0.8x | 3.05B | 4.6% | 0 |  |
+| LULU | 2026-11-19 00:49 | other | listed | 110.1 | -0.6% | +3.1% | 1.2x | 101.7M | 13.7% | 0 |  |
+| AMZN | 2026-11-19 00:49 | other | listed | 272 | +1.6% | +0.6% | 0.8x | 9.84B | 1.0% | 2 |  |
 | TTWO | 2026-11-19 00:42 | other | listed | 222.7 | +2.8% | -6.4% | 3.2x | 186.4M | 5.0% | 0 |  |
 | GLD | 2026-11-19 00:42 | other | listed | 343.3 | +0.6% | -6.6% | 1.3x |  |  | 0 |  |
 | ANT | 2026-11-19 00:42 | unknown | listed |  |  |  |  | 965.7M |  | 5 |  |
@@ -35,6 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | ANT | 2026-11-16 16:34 | unknown | listed |  |  |  |  |  |  | 3 |  |
 | HOOD | 2026-11-16 15:08 | other | listed | 74.57 | -4.2% | -3.8% | 1.0x | 786.1M | 4.5% | 0 |  |
 | WMT | 2026-11-16 07:17 | other | listed | 127.9 | -0.1% | +2.0% | 0.8x | 4.85B | 1.5% | 4 |  |
-| ASML | 2026-11-15 23:05 | other | listed | 1,476 | -1.3% | +4.9% | 0.8x | 21.28B | 0.0% | 0 |  |
-| COIN | 2026-11-15 21:05 | other | listed | 126 | -1.3% | -5.3% | 0.9x | 220.7M | 10.3% | 0 |  |
-| TSM | 2026-11-15 07:52 | other | listed | 394.5 | -1.1% | +6.2% | 0.7x | 37.84B | 0.1% | 0 |  |
