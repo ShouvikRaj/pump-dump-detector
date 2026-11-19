@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-19T00:18:39Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-19T07:13:51Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-16)
 
@@ -19,6 +19,13 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-19 03:02 | CRWD | other | 0.4% | no model | 100% / 0% / 0% / 8.3% | Users discuss CRWD cybersecurity stock, valuations, and mention upcoming earnings. |
+| 2026-11-19 01:56 | MU | other | 6.8% | no model | 100% / 0% / 0% / 0% | Users discuss Micron's earnings, demand, and price targets in a bullish manner. |
+| 2026-11-19 00:49 | AMZN | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss AMZN's potential price rise due to an Anthropic IPO and general market optimism. |
+| 2026-11-19 00:49 | LULU | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss LULU price movements, express confusion over high prices, and report shorting losses. |
+| 2026-11-19 00:49 | SPCX | other | 1.6% | no model | 100% / 0% / 2.5% / 0% | Users discuss SPCX's past performance, compare it to the upcoming Anthropic IPO, and warn of potential pump-and-dump schemes. |
+| 2026-11-19 00:42 | GLD | other | 0.3% | no model | 100% / 0% / 0% / 0% | Users discuss GLD price levels, express bearish views on puts, and share unrelated jokes or opinions. |
+| 2026-11-19 00:42 | TTWO | other | 0.2% | no model | 100% / 2.5% / 5.0% / 0% | Users discuss TTWO stock price movements, GTA 6 launch expectations, and potential trading strategies. |
 | 2026-11-18 21:40 | PANW | other | 0.8% | no model | 100% / 9.1% / 0% / 9.1% | Chatter focuses on PANW's massive AI acquisition, earnings results, and extremely high valuation metrics. |
 | 2026-11-18 17:15 | UNH | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users express confusion and anger over UNH's significant price drop, with some selling shares and mocking the company. |
 | 2026-11-17 23:46 | AAOI | other | **23%** | no model | 100% / 27% / 6.7% / 6.7% | Chatter includes jokes, price movements, dilution concerns, and mixed buy/sell sentiments regarding AAOI. |
@@ -52,13 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-14 00:36 | DHS | other | 0.1% | no model | 0% / 0% / 0% / 0% | All documents discuss the Department of Homeland Security, not the WisdomTree U.S. High Dividend Fund. |
 | 2026-11-13 23:41 | NWS | other | 0.1% | no model | 0% / 0% / 0% / 0% | Chatter discusses a nationwide outage of the US National Weather Service, not the stock. |
 | 2026-11-13 22:10 | ATC | other | 0.5% | no model | 0% / 0% / 0% / 0% | All documents discuss an unrelated Air Traffic Control system outage, not the GraniteShares Autocallable COIN ETF. |
-| 2026-11-13 19:02 | IWM | other | 0.3% | no model | 100% / 0% / 0% / 0% | Users discuss IWM price action, technical breaches, and general market sentiment without specific company events. |
-| 2026-11-13 16:24 | XLAB | other | 8.4% | no model | 100% / 55% / 9.1% / 0% | Users discuss increasing volume, potential short squeezes, and weekend selling pressure for XLAB. |
-| 2026-11-13 15:04 | TSLA | other | 0.1% | no model | 100% / 0% / 7.5% / 7.5% | Chatter discusses a potential Tesla-SpaceX merger, Elon Musk's role, and a suspicious price pump. |
-| 2026-11-13 14:07 | SMU | other | **39%** | no model | 0% / 0% / 0% / 0% | Chatter discusses SMU as a university and mocks Colette Kress's background, unrelated to the stock. |
-| 2026-11-13 13:30 | AIMD | other | **22%** | no model | 100% / 50% / 0% / 10% | Users discuss a recent $9M contract announcement and speculate on price increases for AIMD. |
-| 2026-11-13 13:15 | ARM | other | 4.0% | no model | 100% / 0% / 0% / 0% | Users discuss potential CEO changes, hiring rumors, and technical comparisons regarding ARM Holdings. |
-| 2026-11-13 10:58 | CRWD | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss CRWD price movements, valuation concerns, and potential future performance in r/wallstreetbets. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
