@@ -1,13 +1,15 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-19T03:02:37Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-20T00:51:46Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-494 candidates and 977 controls so far. Archetypes: other 472, low_float_runner 16, unknown 5, otc_penny 1.
+496 candidates and 981 controls so far. Archetypes: other 474, low_float_runner 16, unknown 5, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| OPEX | 2026-11-20 00:51 | other | listed | 1.21 | +10.0% | +25.0% | 3.1x |  |  |  |  |
+| GME | 2026-11-20 00:51 | other | listed | 27.1 | +0.6% | +5.1% | 2.8x | 460.4M | 9.2% | 0 |  |
 | CRWD | 2026-11-19 03:02 | other | listed | 251.2 | +6.0% | +3.5% | 1.3x | 1.01B | 2.2% | 1 |  |
 | MU | 2026-11-19 01:56 | other | listed | 718.4 | +0.8% | -1.8% | 1.1x | 1.13B | 2.1% | 0 |  |
 | SPCX | 2026-11-19 00:49 | other | listed | 145 | +1.1% | +2.7% | 0.8x | 3.05B | 4.6% | 0 |  |
@@ -36,5 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | PLTR | 2026-11-16 23:04 | other | listed | 160.5 | +0.1% | -5.2% | 0.7x | 2.12B | 2.6% | 0 |  |
 | RCAT | 2026-11-16 22:11 | other | listed | 2.71 | -23.2% | -21.6% | 1.4x | 139.9M | 27.8% | 0 |  |
 | LXEO | 2026-11-16 20:09 | other | listed | 3.265 | +13.8% | -0.7% | 0.3x | 49.8M | 34.2% | 1 |  |
-| IREN | 2026-11-16 18:57 | other | listed | 16.41 | -9.7% | -16.0% | 1.0x | 416.1M | 22.8% | 0 |  |
-| ANT | 2026-11-16 16:34 | unknown | listed |  |  |  |  |  |  | 3 |  |
