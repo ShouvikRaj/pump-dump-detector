@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-20T00:13:44Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-20T07:01:08Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-16)
 
@@ -19,6 +19,10 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-20 03:06 | INTU | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss INTU's sharp price drop, joke about bankruptcy, and speculate on a move to $150. |
+| 2026-11-20 03:06 | ROPE | other | 0.1% | no model | 100% / 18% / 0% / 0% | Users discuss buying $ROPE calls and express bullish opinions on the ETF. |
+| 2026-11-20 00:51 | GME | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss GameStop stock, referencing memes, past squeezes, and general bullish sentiment without specific corporate events. |
+| 2026-11-20 00:51 | OPEX | other | 9.9% | no model | 100% / 0% / 0% / 0% | Users discuss OPEX ETF volatility, liquidity issues, and market bleeding before an expiration date. |
 | 2026-11-19 03:02 | CRWD | other | 0.4% | no model | 100% / 0% / 0% / 8.3% | Users discuss CRWD cybersecurity stock, valuations, and mention upcoming earnings. |
 | 2026-11-19 01:56 | MU | other | 6.8% | no model | 100% / 0% / 0% / 0% | Users discuss Micron's earnings, demand, and price targets in a bullish manner. |
 | 2026-11-19 00:49 | AMZN | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss AMZN's potential price rise due to an Anthropic IPO and general market optimism. |
@@ -55,10 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-14 23:53 | DXYZ | other | 0.1% | no model | 100% / 6.7% / 13% / 0% | Users discuss DXYZ's performance relative to the Anthropic IPO, debating its value as a fund versus a scam. |
 | 2026-11-14 03:08 | LHX | other | 0.1% | no model | 100% / 0% / 0% / 10% | Users discuss LHX price drops, shorting activity, and joke about a flight grounding event. |
 | 2026-11-14 02:06 | WMT | other | 0.2% | no model | 100% / 40% / 0% / 0% | Mixed chatter on WMT ranging from bullish mooning claims to bearish recession warnings and general portfolio mentions. |
-| 2026-11-14 01:03 | HSBC | other | 0.1% | no model | 90% / 0% / 0% / 0% | Users discuss HSBC's reputation for money laundering, a downgrade, and express strong negative sentiment. |
-| 2026-11-14 00:36 | DHS | other | 0.1% | no model | 0% / 0% / 0% / 0% | All documents discuss the Department of Homeland Security, not the WisdomTree U.S. High Dividend Fund. |
-| 2026-11-13 23:41 | NWS | other | 0.1% | no model | 0% / 0% / 0% / 0% | Chatter discusses a nationwide outage of the US National Weather Service, not the stock. |
-| 2026-11-13 22:10 | ATC | other | 0.5% | no model | 0% / 0% / 0% / 0% | All documents discuss an unrelated Air Traffic Control system outage, not the GraniteShares Autocallable COIN ETF. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
