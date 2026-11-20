@@ -1,9 +1,21 @@
 # Stage 3 tracking
 
-Updated 2026-11-19T23:00:09Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-11-20T03:51:33Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-11-20 03:06 | ADSK | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-20 03:06 | ICE | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-20 03:06 | CAI | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-20 03:06 | GLIBA | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-20 03:06 | INTU | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-11-20 03:06 | ROPE | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-11-20 00:51 | TX | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-20 00:51 | FMS | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-20 00:51 | PACB | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-20 00:51 | CDXS | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-20 00:51 | GME | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-11-20 00:51 | OPEX | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-11-19 03:02 | GILD | control | other | active | 1 |  |  |  |  |  |
 | 2026-11-19 03:02 | RY | control | other | active | 1 |  |  |  |  |  |
 | 2026-11-19 03:02 | CRWD | candidate | other | active | 1 |  |  |  |  |  |
@@ -188,7 +200,7 @@ Updated 2026-11-19T23:00:09Z. Each candidate and control is followed for 20 trad
 | 2026-11-12 16:56 | CBRS | candidate | other | active | 6 | +19% |  | -7% |  |  |
 | 2026-11-12 16:04 | CVM | control | low_float_runner | active | 6 | +71% |  | +10% |  |  |
 | 2026-11-12 16:04 | NPT | control | low_float_runner | active | 6 | +10% |  | +10% |  |  |
-| 2026-11-12 16:04 | PLCE | candidate | other | active | 5 | +28% |  | -48% |  |  |
+| 2026-11-12 16:04 | PLCE | candidate | other | active | 6 | +28% |  | -48% |  |  |
 | 2026-11-12 14:43 | REPL | control | other | active | 6 | +3% |  | -8% |  |  |
 | 2026-11-12 14:43 | MUJ | control | other | active | 6 | +1% |  | -4% |  |  |
 | 2026-11-12 14:43 | LUNR | candidate | other | active | 6 | +5% |  | -28% |  |  |
