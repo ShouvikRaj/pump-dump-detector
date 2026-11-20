@@ -10,7 +10,7 @@ Live since 2026-10-07T12:32:05Z.
 | history / announcement | 2471 |
 | scan / spike | 1393 |
 | telegram / announcement | 151 |
-| telegram / call | 2026 |
+| telegram / call | 2029 |
 
 | Outcome status | Count |
 |---|---|
@@ -18,7 +18,7 @@ Live since 2026-10-07T12:32:05Z.
 | not_covered | 1579 |
 | partial | 26 |
 | pending | 206 |
-| settled | 3755 |
+| settled | 3758 |
 
 - `events.csv`: one row per event; `outcomes.csv`: crypto-label-v1 per event, rebuilt every run.
 - `bars/<source>/<event_id>.json.gz`: the event's 1-minute and hourly bars [open time ms, open, high, low,
