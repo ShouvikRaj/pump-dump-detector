@@ -5836,11 +5836,11 @@ scan-gate-MY-2026111310,scan,spike,settled,0.01376,0.02042,0.671512,31.0,1,1,0,0
 scan-gate-AMCLUB-2026111312,scan,spike,settled,0.68783,0.77578,0.305555,52.0,1,1,0,0.0,0.209144,-0.162134,0.243909,-0.012607,0,crypto-label-v1
 scan-gate-BLUE-2026111312,scan,spike,settled,0.00713,0.006944,0.332398,0.0,1,1,0,-0.000288,0.064372,-0.094038,0.411146,-0.002016,0,crypto-label-v1
 scan-kucoin-SOPH-2026111312,scan,spike,settled,0.00169,0.00172,0.532544,34.0,1,1,1,0.0,0.209302,-0.413372,0.488372,-0.093023,0,crypto-label-v1
-scan-mexc-BLUE-2026111315,scan,spike,pending,0.007087,0.0089,0.313109,24.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-mexc-BULLA-2026111315,scan,spike,pending,0.038602,0.040518,0.264209,45.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-gate-LYX-2026111315,scan,spike,pending,0.2251,0.2719,0.473123,53.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-mexc-PRSM-2026111316,scan,spike,pending,0.00087,0.001475,2.389655,7.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-mexc-YVE-2026111316,scan,spike,pending,8.2e-05,0.00015,3.207317,30.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-mexc-BLUE-2026111315,scan,spike,settled,0.007087,0.0089,0.313109,24.0,1,1,0,0.0,-0.17382,-0.281461,0.08618,-0.23191,0,crypto-label-v1
+scan-mexc-BULLA-2026111315,scan,spike,settled,0.038602,0.040518,0.264209,45.0,1,1,1,0.0,-0.336616,-0.683943,0.238956,-0.397502,0,crypto-label-v1
+scan-gate-LYX-2026111315,scan,spike,settled,0.2251,0.2719,0.473123,53.0,1,1,0,0.0,-0.153365,0.262597,0.09452,-0.199338,0,crypto-label-v1
+scan-mexc-PRSM-2026111316,scan,spike,settled,0.00087,0.001475,2.389655,7.0,1,1,1,0.0,-0.562034,-0.98339,0.138983,-0.586441,0,crypto-label-v1
+scan-mexc-YVE-2026111316,scan,spike,partial,8.2e-05,0.00015,3.207317,30.0,1,1,0,0.0,,,0.26,-0.4,1,crypto-label-v1
 scan-gate-SHELL-2026111317,scan,spike,pending,0.02437,0.03075,0.332786,57.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-kucoin-SHELL-2026111317,scan,spike,pending,0.02432,0.03078,0.331826,57.0,1,,,0.0,,,,,0,crypto-label-v1
 scan-kucoin-WARD-2026111317,scan,spike,pending,0.001992,0.002097,0.213353,42.0,1,1,,0.0,,,,,0,crypto-label-v1
@@ -6044,3 +6044,6 @@ tg-Whalesguide-19573,telegram,call,pending,,,,,,,,,,,,,,crypto-label-v1
 tg-Whalesguide-19574,telegram,call,pending,,,,,,,,,,,,,,crypto-label-v1
 tg-Whalesguide-19575,telegram,call,pending,,,,,,,,,,,,,,crypto-label-v1
 tg-Whalesguide-19576,telegram,call,pending,,,,,,,,,,,,,,crypto-label-v1
+scan-mexc-CHECK-2026112015,scan,spike,pending,0.007174,0.008165,0.231949,,1,,,0.0,,,,,0,crypto-label-v1
+scan-gate-CHECK-2026112015,scan,spike,pending,0.007188,0.008203,0.246661,,1,,,0.0,,,,,0,crypto-label-v1
+scan-kucoin-DEBIT-2026112015,scan,spike,pending,0.581,0.7866,0.390878,,1,,,0.0,,,,,0,crypto-label-v1
