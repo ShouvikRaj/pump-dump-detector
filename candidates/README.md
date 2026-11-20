@@ -1,21 +1,21 @@
 # Stage 1 candidates
 
-Updated 2026-11-20T18:50:10Z by run `44795876051`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-20T19:04:06Z by run `44797884853`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
 
 | Ticker | Flagged since (UTC) | Why | Mentions 24h | Baseline/day | Authors | Hype posts | Subreddits | Exchange | StockTwits | Example |
 |---|---|---|---|---|---|---|---|---|---|---|
-| GME | 2026-11-20 00:51 | mention spike | 30 | 17.14 | 27 | 0 | wallstreetbets 28, smallstreetbets 2 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y0qtxp/) |
+| GME | 2026-11-20 00:51 | mention spike | 30 | 16.86 | 27 | 0 | wallstreetbets 28, smallstreetbets 2 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y0qtxp/) |
 | INTU | 2026-11-20 03:06 | mention spike | 10 | 1.43 | 6 | 0 | wallstreetbets 10 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y10m65/comment/19sxhagxg7nr4/) |
 | OPEX | 2026-11-20 00:51 | mention spike | 11 | 1.71 | 8 | 0 | wallstreetbets 11 | Cboe BZX |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y10m65/comment/19sxhtritrbia/) |
 | ORCL | 2026-11-20 17:56 | mention spike | 12 | 4.29 | 11 | 0 | wallstreetbets 12 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y10m65/comment/19sxiq9388miq/) |
+| ROPE | 2026-11-20 03:06 | mention spike | 11 | 3.86 | 11 | 0 | wallstreetbets 11 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y1bi72/) |
 | SGOV | 2026-11-20 14:10 | mention spike | 11 | 2.29 | 9 | 0 | wallstreetbets 11 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y10m65/comment/19sx9na9jnz0h/) |
 | TLT | 2026-11-20 18:35 | mention spike | 10 | 4.14 | 8 | 0 | wallstreetbets 10 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y10m65/comment/19sxhtghue96o/) |
-| ROPE | 2026-11-20 03:06 | mention spike | 10 | 4.0 | 10 | 0 | wallstreetbets 10 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y10m65/comment/19sxiqnnafq4j/) |
-| AMD | 2026-11-20 14:10 | mention spike | 110 | 178.0 | 91 | 1 | wallstreetbets 103, smallstreetbets 7 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y19ev3/) |
-| ANT | 2026-11-19 00:42 | hype spike mention spike | 475 | 333.43 | 330 | 2 | wallstreetbets 472, smallstreetbets 3 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y1b30g/) |
+| AMD | 2026-11-20 14:10 | mention spike | 107 | 177.57 | 89 | 1 | wallstreetbets 101, smallstreetbets 6 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y19ev3/) |
+| ANT | 2026-11-19 00:42 | hype spike mention spike | 473 | 333.57 | 328 | 2 | wallstreetbets 470, smallstreetbets 3 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y1b30g/) |
 | PANW | 2026-11-18 21:40 | mention spike | 1 | 12.14 | 1 | 0 | wallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y0kpw2/comment/19sw23u1ms8dc/) |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
