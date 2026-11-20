@@ -1,6 +1,6 @@
 # Stage 4 labels
 
-Updated 2026-11-20T04:01:13Z. Every candidate and control gets the same rule, `label-v1`, written down before any outcome was looked at (docs/stage4.md in the code branch). Sessions count from the flag; returns are against the price at the flag. All rows: `labels/labels.csv`.
+Updated 2026-11-20T23:25:01Z. Every candidate and control gets the same rule, `label-v1`, written down before any outcome was looked at (docs/stage4.md in the code branch). Sessions count from the flag; returns are against the price at the flag. All rows: `labels/labels.csv`.
 
 - **pump**: up 50% or more within 5 sessions, then down 40% or more from that peak within the next 10
 - **real news**: earnings, a completed acquisition, a change of control, bankruptcy or a material agreement that isn't a share sale, filed with the SEC (8-K) between 72 hours before the flag and session 5; it beats pump
@@ -10,11 +10,11 @@ Updated 2026-11-20T04:01:13Z. Every candidate and control gets the same rule, `l
 | Archetype | Role | Pump | Real news | Not pump | Crash | Pending | Unknown |
 |---|---|---|---|---|---|---|---|
 | low float runner | candidate | 1 | 4 | 10 | 7 of 13 (54%) | 1 | 0 |
-| low float runner | control | 0 | 5 | 34 | 4 of 38 (11%) | 11 | 0 |
+| low float runner | control | 0 | 5 | 34 | 5 of 39 (13%) | 11 | 0 |
 | otc penny | candidate | 0 | 0 | 1 | 0 of 1 (0%) | 0 | 0 |
 | otc penny | control | 0 | 0 | 2 | 0 of 2 (0%) | 0 | 0 |
-| other | candidate | 5 | 134 | 267 | 23 of 387 (6%) | 70 | 0 |
-| other | control | 0 | 161 | 597 | 2 of 750 (0%) | 175 | 0 |
+| other | candidate | 6 | 134 | 275 | 25 of 397 (6%) | 65 | 0 |
+| other | control | 0 | 161 | 614 | 2 of 770 (0%) | 166 | 0 |
 | unknown | candidate | 0 | 0 | 0 | - | 0 | 5 |
 
 Crash counts the snapshots whose crash label has settled.
@@ -31,10 +31,12 @@ Crash counts the snapshots whose crash label has settled.
 | 2026-11-17 10:45 | SHAZ | candidate | other | real news |  |  |  |  | 8-K 2026-11-16T21:15 2.02,7.01,9.01 (news) |
 | 2026-11-17 01:13 | VVV | control | other | real news |  |  |  |  | 8-K 2026-11-19T12:03 2.02,7.01,9.01 (news) |
 | 2026-11-16 22:11 | RCAT | candidate | other | real news |  |  |  |  | 8-K 2026-11-16T21:06 2.02,9.01 (news) |
-| 2026-11-16 20:09 | LXEO | candidate | other | real news |  |  |  |  | 8-K 2026-11-16T12:02 2.02,7.01,8.01,9.01 (news) |
+| 2026-11-16 20:09 | LXEO | candidate | other | real news |  | +32% |  |  | 8-K 2026-11-16T12:02 2.02,7.01,8.01,9.01 (news) |
 | 2026-11-16 16:34 | ANT | candidate | unknown | unknown (no price at the flag) |  |  |  |  |  |
-| 2026-11-16 07:17 | WMT | candidate | other | real news |  |  |  |  | 8-K 2026-11-16T12:58 5.02,9.01; 8-K 2026-11-19T11:58 2.02,9.01 (news) |
-| 2026-11-14 02:06 | WMT | candidate | other | real news |  |  |  |  | 8-K 2026-11-16T12:58 5.02,9.01; 8-K 2026-11-19T11:58 2.02,9.01 (news) |
+| 2026-11-16 07:17 | WMT | candidate | other | real news |  | +2% |  |  | 8-K 2026-11-16T12:58 5.02,9.01; 8-K 2026-11-19T11:58 2.02,9.01 (news) |
+| 2026-11-14 02:06 | WMT | candidate | other | real news |  | +2% |  |  | 8-K 2026-11-16T12:58 5.02,9.01; 8-K 2026-11-19T11:58 2.02,9.01 (news) |
+| 2026-11-14 00:36 | DHS | candidate | other | not pump |  | +0% |  |  |  |
+| 2026-11-13 22:10 | ATC | candidate | other | not pump |  | -7% |  |  |  |
 | 2026-11-13 19:02 | IWM | candidate | other | not pump |  | +1% |  |  |  |
 | 2026-11-13 16:24 | ROLR | control | low float runner | real news |  | +8% |  |  | 8-K 2026-11-13T21:10 2.02,9.01 (news) |
 | 2026-11-13 16:24 | KLXE | control | other | real news |  | +13% |  |  | 8-K 2026-11-10T21:12 2.02,7.01,9.01 (news) |
@@ -50,7 +52,7 @@ Crash counts the snapshots whose crash label has settled.
 | 2026-11-12 17:04 | AIDX | control | other | real news |  | +6% |  |  | 8-K 2026-11-16T21:39 2.02,9.01 (news) |
 | 2026-11-12 16:56 | CBRS | candidate | other | real news |  | +19% |  |  | 8-K 2026-11-12T21:03 2.02,9.01 (news) |
 | 2026-11-12 14:43 | LUNR | candidate | other | real news |  | +5% |  |  | 8-K 2026-11-12T12:32 2.02,9.01 (news) |
-| 2026-11-11 07:39 | NVDL | candidate | other | not pump |  | +8% |  |  |  |
+| 2026-11-11 07:39 | NVDL | candidate | other | not pump | yes | +8% |  |  |  |
 | 2026-11-10 21:21 | RGTI | candidate | other | real news |  | +13% |  |  | 8-K 2026-11-10T21:05 2.02,9.01 (news) |
 | 2026-11-10 20:00 | CRWV | candidate | other | real news |  | +31% |  |  | 8-K 2026-11-10T21:05 2.02,9.01 (news) |
 | 2026-11-10 16:24 | TTWO | candidate | other | real news |  | +8% |  |  | 8-K 2026-11-09T21:10 2.02,9.01 (news) |
@@ -60,19 +62,17 @@ Crash counts the snapshots whose crash label has settled.
 | 2026-11-09 22:18 | TDG | control | other | real news |  | +4% |  |  | 8-K 2026-11-10T11:32 2.02,9.01 (news) |
 | 2026-11-09 21:25 | RKLB | candidate | other | real news |  | +24% |  |  | 8-K 2026-11-09T21:06 2.02,9.01 (news) |
 | 2026-11-09 21:11 | TTD | candidate | other | real news |  | -13% |  |  | 8-K 2026-11-09T21:09 2.02,8.01,9.01 (news) |
-| 2026-11-09 20:48 | ONDS | candidate | other | real news |  | +2% |  |  | 8-K 2026-11-12T13:24 2.02,9.01 (news) |
-| 2026-11-09 11:01 | FLR | control | other | real news |  | +11% |  |  | 8-K 2026-11-06T12:04 2.02,9.01 (news) |
-| 2026-11-07 03:40 | RKLB | candidate | other | real news |  | +27% |  |  | 8-K 2026-11-09T21:06 2.02,9.01 (news) |
-| 2026-11-07 02:18 | SPCE | candidate | other | real news | yes | +7% |  |  | 8-K 2026-11-12T21:31 2.02,7.01,8.01,9.01 (news); 8-K 2026-11-13T13:39 3.02,8.01 |
-| 2026-11-07 02:18 | TMCI | control | other | real news |  | +32% |  |  | 8-K 2026-11-06T12:05 2.02,9.01 (news) |
-| 2026-11-07 02:18 | RCKT | control | other | real news |  | +8% |  |  | 8-K 2026-11-12T21:15 2.02,9.01 (news) |
-| 2026-11-06 20:47 | LUNR | candidate | other | real news | no | +40% |  | -6% | 8-K 2026-11-12T12:32 2.02,9.01 (news) |
-| 2026-11-06 20:47 | TALO | control | other | real news | no | +8% |  | -2% | 8-K 2026-11-03T22:05 2.02,7.01,9.01 (news) |
-| 2026-11-06 20:47 | LBTYA | control | other | not pump | no | +9% |  | +0% |  |
-| 2026-11-06 18:22 | TRX | control | other | not pump | no | +9% |  | -23% |  |
-| 2026-11-06 18:22 | CNTB | control | other | not pump | no | +12% |  | -19% |  |
-| 2026-11-06 18:13 | ORCL | candidate | other | not pump | no | +15% |  | -3% | 8-K 2026-11-04T21:49 8.01,9.01 |
-| 2026-11-06 18:13 | MGA | control | other | not pump | no | +1% |  | -2% | 8-K/6-K 2026-11-05T11:38 no items; 6-K 2026-11-12T11:00 no items |
-| 2026-11-06 18:13 | BSVN | control | other | not pump | no | +3% |  | -3% |  |
+| 2026-11-09 20:48 | ONDS | candidate | other | real news | no | +2% |  | -38% | 8-K 2026-11-12T13:24 2.02,9.01 (news) |
+| 2026-11-09 20:48 | RGS | control | other | not pump | no | +1% |  | -20% | 8-K 2026-11-13T12:06 5.02 |
+| 2026-11-09 20:48 | LBTYK | control | other | not pump | no | +10% |  | +1% |  |
+| 2026-11-09 20:48 | CCU | control | other | not pump | no | +2% |  | -9% |  |
+| 2026-11-09 20:48 | AUBN | control | other | not pump | no | +2% |  | -5% | 8-K 2026-11-10T21:33 8.01,9.01 |
+| 2026-11-09 15:56 | AVGO | candidate | other | not pump | no | +16% |  | -5% |  |
+| 2026-11-09 15:56 | PVLA | control | other | not pump | no | +2% |  | -19% |  |
+| 2026-11-09 15:56 | AIT | control | other | not pump | no | +3% |  | -7% |  |
+| 2026-11-09 15:04 | NNN | candidate | other | not pump | no | +2% |  | -3% |  |
+| 2026-11-09 15:04 | GXO | control | other | not pump | no | +1% |  | -8% |  |
+| 2026-11-09 15:04 | BETA | control | other | not pump | no | +5% |  | -38% |  |
+| 2026-11-09 13:52 | CVS | candidate | other | not pump | no | +7% |  | -6% |  |
 
-1176 older rows are in `labels/labels.csv`.
+1202 older rows are in `labels/labels.csv`.
