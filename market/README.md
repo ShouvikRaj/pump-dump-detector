@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-20T14:10:37Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-20T17:56:32Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-500 candidates and 989 controls so far. Archetypes: other 478, low_float_runner 16, unknown 5, otc_penny 1.
+501 candidates and 991 controls so far. Archetypes: other 479, low_float_runner 16, unknown 5, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| ORCL | 2026-11-20 17:56 | other | listed | 102.4 | -7.4% | -13.0% | 0.7x | 1.89B | 2.4% | 5 |  |
 | SGOV | 2026-11-20 14:10 | other | listed | 100.6 | +0.0% | +0.1% | 1.2x |  |  |  |  |
 | AMD | 2026-11-20 14:10 | other | listed | 467.5 | -4.4% | -16.4% | 1.9x | 1.63B | 2.4% | 0 |  |
 | ROPE | 2026-11-20 03:06 | other | listed | 30.1 | +0.0% | -3.9% | 1.4x |  |  |  |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | RSP | 2026-11-17 03:38 | other | listed | 219.1 | +0.1% | -0.9% | 1.0x |  |  |  |  |
 | ASTS | 2026-11-17 03:28 | other | listed | 28.55 | -0.1% | -22.5% | 1.3x | 273.7M | 24.7% | 0 |  |
 | TQQQ | 2026-11-17 01:13 | other | listed | 53.16 | -7.8% | +10.4% | 1.0x |  |  |  |  |
-| INTC | 2026-11-17 00:48 | other | listed | 53.34 | -3.8% | -6.6% | 0.7x | 4.87B | 3.1% | 0 |  |
