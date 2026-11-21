@@ -1,13 +1,15 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-20T18:35:33Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-21T00:47:22Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-502 candidates and 993 controls so far. Archetypes: other 480, low_float_runner 16, unknown 5, otc_penny 1.
+504 candidates and 997 controls so far. Archetypes: other 482, low_float_runner 16, unknown 5, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| VWAV | 2026-11-21 00:46 | other | listed | 0.13 | -28.6% | -54.9% | 50.3x | 0.0M | 9966.0% | 2 |  |
+| SNDK | 2026-11-21 00:46 | other | listed | 81.22 | +2.5% | -28.4% | 1.2x | 1.12B | 0.4% | 0 |  |
 | TLT | 2026-11-20 18:35 | other | listed | 81.29 | +1.2% | +0.8% | 1.1x |  |  |  |  |
 | ORCL | 2026-11-20 17:56 | other | listed | 102.4 | -7.4% | -13.0% | 0.7x | 1.89B | 2.4% | 5 |  |
 | SGOV | 2026-11-20 14:10 | other | listed | 100.6 | +0.0% | +0.1% | 1.2x |  |  |  |  |
@@ -36,5 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | SNDK | 2026-11-17 10:05 | other | listed | 795.9 | -1.6% | -8.7% | 1.0x | 140.4M | 3.5% | 0 |  |
 | JPM | 2026-11-17 10:05 | other | listed | 336 | -0.7% | -1.1% | 1.1x | 2.64B | 0.9% | 5870 |  |
 | ROPE | 2026-11-17 06:59 | other | listed | 31.25 | +0.0% | +0.1% | 1.0x |  |  |  |  |
-| RSP | 2026-11-17 03:38 | other | listed | 219.1 | +0.1% | -0.9% | 1.0x |  |  |  |  |
-| ASTS | 2026-11-17 03:28 | other | listed | 28.55 | -0.1% | -22.5% | 1.3x | 273.7M | 24.7% | 0 |  |
