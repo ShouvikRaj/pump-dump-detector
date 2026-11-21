@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-21T22:29:10Z by run `44956522843`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-21T22:39:07Z by run `44957670369`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -11,7 +11,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | ORCL | 2026-11-20 17:56 | mention spike | 1 | 6.29 | 1 | 0 | wallstreetbets 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y1nt2e/) |
 | VWAV | 2026-11-21 00:46 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
 | SNDK | 2026-11-21 00:46 | mention spike | 5 | 47.57 | 4 | 0 | wallstreetbets 4, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y259ja/) |
-| VOO | 2026-11-21 00:55 | mention spike | 6 | 26.0 | 6 | 0 | wallstreetbets 5, smallstreetbets 1 | NYSE Arca | #17 | [link](https://www.reddit.com/r/wallstreetbets/comments/1y1i0rl/comment/19sz039z7i55t/) |
+| VOO | 2026-11-21 00:55 | mention spike | 7 | 26.0 | 7 | 0 | wallstreetbets 5, smallstreetbets 2 | NYSE Arca | #26 | [link](https://www.reddit.com/r/smallstreetbets/comments/1y1mrd5/comment/19szjy1dk85dv/) |
 | ASML | 2026-11-21 03:02 | mention spike | 1 | 7.29 | 1 | 0 | wallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y20zkd/comment/19szh15ny1268/) |
 | ROPE | 2026-11-20 03:06 | mention spike | 1 | 6.86 | 1 | 0 | wallstreetbets 1 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y1gajf/comment/19sy70b3x1agw/) |
 | SGOV | 2026-11-20 14:10 | mention spike | 2 | 4.29 | 2 | 0 | wallstreetbets 2 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y1had5/) |
