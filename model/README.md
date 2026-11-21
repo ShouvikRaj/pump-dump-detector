@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-21T00:19:04Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-21T06:58:01Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-16)
 
@@ -19,6 +19,11 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-21 03:02 | ASML | other | 0.2% | no model | 100% / 0% / 0% / 0% | Discussion on ASML's role in chip manufacturing, China restrictions, and a user buying shares. |
+| 2026-11-21 00:55 | CRWD | other | 0.2% | no model | 100% / 0% / 0% / 21% | Users discuss rumors of a CrowdStrike-Zscaler acquisition and the resulting stock price drop. |
+| 2026-11-21 00:55 | VOO | other | 0.3% | no model | 100% / 0% / 0% / 0% | Users discuss VOO performance, compare it to other assets, and debate passive investing strategies. |
+| 2026-11-21 00:46 | SNDK | other | **37%** | no model | 100% / 0% / 0% / 0% | Users discuss SNDK's stock price drop, split, and bearish sentiment following a short report. |
+| 2026-11-21 00:46 | VWAV | other | **79%** | no model | 100% / 7.7% / 46% / 0% | Users discuss VWAV price drops, warn of manipulation, and joke about the company's circular share swaps. |
 | 2026-11-20 18:35 | TLT | other | 0.1% | no model | 100% / 20% / 0% / 0% | Users discuss TLT as a hedge against recession and oil dips, with bullish sentiment and price targets. |
 | 2026-11-20 17:56 | ORCL | other | 0.7% | no model | 100% / 0% / 0% / 0% | Users discuss ORCL price movements, past losses, and potential earnings plays without specific event announcements. |
 | 2026-11-20 14:10 | AMD | other | 11% | no model | 100% / 0% / 0% / 0% | Chatter focuses on export control allegations, stock price volatility, and bearish sentiment regarding AMD. |
@@ -54,11 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-16 23:04 | PLTR | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss PLTR holdings, joke about price drops, and mention potential post-earnings sell-offs without specific event details. |
 | 2026-11-16 22:11 | RCAT | other | 4.8% | no model | 100% / 0% / 0% / 0% | Users discuss RCAT's poor earnings performance, price decline, and potential delisting. |
 | 2026-11-16 20:09 | LXEO | other | 1.8% | no model | 100% / 20% / 0% / 20% | Users discuss LXEO price targets, analyst upgrades, and potential entry points based on trial news. |
-| 2026-11-16 18:57 | IREN | other | 3.5% | no model | 100% / 0% / 10% / 3.3% | Users discuss IREN's price, express extreme bearishness, question its legitimacy as a scam, and mention an Intel stake. |
-| 2026-11-16 15:08 | HOOD | other | 0.3% | no model | 100% / 0% / 0% / 0% | Users discuss HOOD price, express confusion, fear of a drop, and mention buying alongside other stocks. |
-| 2026-11-16 07:17 | WMT | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss WMT valuation, earnings impact, and holiday shopping trends with mixed bearish and neutral sentiment. |
-| 2026-11-15 23:05 | ASML | other | 0.1% | no model | 100% / 0% / 0% / 0% | Discussions focus on ASML's monopoly, export bans to China, and technological barriers preventing reverse engineering. |
-| 2026-11-15 21:05 | COIN | other | 0.1% | no model | 90% / 0% / 0% / 0% | Users discuss COIN's performance relative to crypto market trends and compare it to other stocks. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
