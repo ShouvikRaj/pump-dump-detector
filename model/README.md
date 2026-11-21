@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-20T07:01:08Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-21T00:19:04Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-16)
 
@@ -19,6 +19,10 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-20 18:35 | TLT | other | 0.1% | no model | 100% / 20% / 0% / 0% | Users discuss TLT as a hedge against recession and oil dips, with bullish sentiment and price targets. |
+| 2026-11-20 17:56 | ORCL | other | 0.7% | no model | 100% / 0% / 0% / 0% | Users discuss ORCL price movements, past losses, and potential earnings plays without specific event announcements. |
+| 2026-11-20 14:10 | AMD | other | 11% | no model | 100% / 0% / 0% / 0% | Chatter focuses on export control allegations, stock price volatility, and bearish sentiment regarding AMD. |
+| 2026-11-20 14:10 | SGOV | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss holding SGOV as a safe haven or cash equivalent while waiting for other investments. |
 | 2026-11-20 03:06 | INTU | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss INTU's sharp price drop, joke about bankruptcy, and speculate on a move to $150. |
 | 2026-11-20 03:06 | ROPE | other | 0.1% | no model | 100% / 18% / 0% / 0% | Users discuss buying $ROPE calls and express bullish opinions on the ETF. |
 | 2026-11-20 00:51 | GME | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss GameStop stock, referencing memes, past squeezes, and general bullish sentiment without specific corporate events. |
@@ -55,10 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-16 07:17 | WMT | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss WMT valuation, earnings impact, and holiday shopping trends with mixed bearish and neutral sentiment. |
 | 2026-11-15 23:05 | ASML | other | 0.1% | no model | 100% / 0% / 0% / 0% | Discussions focus on ASML's monopoly, export bans to China, and technological barriers preventing reverse engineering. |
 | 2026-11-15 21:05 | COIN | other | 0.1% | no model | 90% / 0% / 0% / 0% | Users discuss COIN's performance relative to crypto market trends and compare it to other stocks. |
-| 2026-11-15 07:52 | TSM | other | 0.3% | no model | 100% / 0% / 0% / 0% | Users discuss geopolitical tensions involving Taiwan and TSM, with mixed opinions on stock impact and some jokes. |
-| 2026-11-14 23:53 | DXYZ | other | 0.1% | no model | 100% / 6.7% / 13% / 0% | Users discuss DXYZ's performance relative to the Anthropic IPO, debating its value as a fund versus a scam. |
-| 2026-11-14 03:08 | LHX | other | 0.1% | no model | 100% / 0% / 0% / 10% | Users discuss LHX price drops, shorting activity, and joke about a flight grounding event. |
-| 2026-11-14 02:06 | WMT | other | 0.2% | no model | 100% / 40% / 0% / 0% | Mixed chatter on WMT ranging from bullish mooning claims to bearish recession warnings and general portfolio mentions. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
@@ -68,28 +68,28 @@ Each development week replayed exactly as it would have run: its model trained o
 
 | Candidates | n | Positives | Base rate | Flagged | Precision | Recall | F1 | Lift | AP | AUC |
 |---|---|---|---|---|---|---|---|---|---|---|
-| all candidates | 90 | 9 | 10% | 11 | 73% | 89% | 0.80 | 7.3x | 0.80 | 0.89 |
+| all candidates | 100 | 11 | 11% | 11 | 73% | 73% | 0.73 | 6.6x | 0.74 | 0.89 |
 | low float runner | 2 | 2 | 100% | 2 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
-| other | 88 | 7 | 8.0% | 9 | 67% | 86% | 0.75 | 8.4x | 0.70 | 0.86 |
+| other | 98 | 9 | 9.2% | 9 | 67% | 67% | 0.67 | 7.3x | 0.64 | 0.87 |
 | pump types together | 2 | 2 | 100% | 2 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
 
 | Model | AP | Precision | Recall | F1 |
 |---|---|---|---|---|
-| all groups | 0.80 | 73% | 89% | 0.80 |
-| market only | 0.76 | 67% | 89% | 0.76 |
-| social only | 0.66 | 71% | 56% | 0.63 |
+| all groups | 0.74 | 73% | 73% | 0.73 |
+| market only | 0.71 | 67% | 73% | 0.70 |
+| social only | 0.58 | 71% | 45% | 0.56 |
 
 | Robustness check | Result | Detail |
 |---|---|---|
-| beats the base rate | not enough data | 9 positives (needs 10) |
+| beats the base rate | pass | precision 73% vs base rate 11%; AP 0.74 |
 | separate periods | not enough data | needs 3 positives in each of three blocks of weeks |
 | per pump type | not enough data | needs 5 positives in a pump type |
-| beats the control group | not enough data | 6 flagged with settled controls (needs 10) |
-| survives slippage | not enough data | 6 flagged with a 10-session return (needs 10) |
+| beats the control group | not enough data | 8 flagged with settled controls (needs 10) |
+| survives slippage | not enough data | 7 flagged with a 10-session return (needs 10) |
 
 Verdict: **not robust yet** (some checks need more labels).
 
-Feature groups: all used; weak groups are pruned once the replay holds 20 positive candidates (9 so far).
+Feature groups: all used; weak groups are pruned once the replay holds 20 positive candidates (11 so far).
 
 ### pump
 
