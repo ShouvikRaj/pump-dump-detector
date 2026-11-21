@@ -1,9 +1,24 @@
 # Stage 3 tracking
 
-Updated 2026-11-20T22:52:52Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-11-21T03:36:19Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-11-21 03:02 | ESLT | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-21 03:02 | GHC | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-21 03:02 | ASML | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-11-21 00:55 | SCCO | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-21 00:55 | GILD | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-21 00:55 | WWD | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-21 00:55 | SPOT | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-21 00:55 | CRWD | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-11-21 00:55 | VOO | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-11-21 00:46 | KMB | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-21 00:46 | NDAQ | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-21 00:46 | OGEN | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-21 00:46 | EDVA | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-21 00:46 | SNDK | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-11-21 00:46 | VWAV | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-11-20 18:35 | WLFC | control | other | active | 1 |  |  |  |  |  |
 | 2026-11-20 18:35 | FEIM | control | other | active | 1 |  |  |  |  |  |
 | 2026-11-20 18:35 | TLT | candidate | other | active | 1 |  |  |  |  |  |
@@ -59,7 +74,7 @@ Updated 2026-11-20T22:52:52Z. Each candidate and control is followed for 20 trad
 | 2026-11-17 23:46 | COCO | control | other | active | 3 |  |  |  |  |  |
 | 2026-11-17 23:46 | OSW | control | other | active | 3 |  |  |  |  |  |
 | 2026-11-17 23:46 | AAOI | candidate | other | active | 3 |  |  |  |  |  |
-| 2026-11-17 21:20 | CCZ | control | other | active | 2 |  |  |  |  |  |
+| 2026-11-17 21:20 | CCZ | control | other | active | 3 |  |  |  |  |  |
 | 2026-11-17 21:20 | COP | control | other | active | 3 |  |  |  |  |  |
 | 2026-11-17 21:20 | HSBC | candidate | other | active | 3 |  |  |  |  |  |
 | 2026-11-17 18:16 | TD | control | other | active | 4 |  |  |  |  |  |
@@ -138,7 +153,7 @@ Updated 2026-11-20T22:52:52Z. Each candidate and control is followed for 20 trad
 | 2026-11-14 02:06 | DLR | control | other | active | 5 | -1% |  | -11% |  |  |
 | 2026-11-14 02:06 | WMS | control | other | active | 5 | -0% |  | -12% |  |  |
 | 2026-11-14 02:06 | WMT | candidate | other | active | 5 | +2% |  | +0% |  |  |
-| 2026-11-14 01:03 | CCZ | control | other | active | 4 |  |  |  |  |  |
+| 2026-11-14 01:03 | CCZ | control | other | active | 5 | +0% |  | +0% |  |  |
 | 2026-11-14 01:03 | APH | control | other | active | 5 | +2% |  | -10% |  |  |
 | 2026-11-14 01:03 | HSBC | candidate | other | active | 5 | +1% |  | -10% |  |  |
 | 2026-11-14 00:36 | ALG | control | other | active | 5 | +0% |  | -10% |  |  |
@@ -212,7 +227,7 @@ Updated 2026-11-20T22:52:52Z. Each candidate and control is followed for 20 trad
 | 2026-11-12 16:56 | CBRS | candidate | other | active | 7 | +19% |  | -7% |  |  |
 | 2026-11-12 16:04 | CVM | control | low_float_runner | active | 7 | +71% |  | +10% |  |  |
 | 2026-11-12 16:04 | NPT | control | low_float_runner | active | 7 | +10% |  | +10% |  |  |
-| 2026-11-12 16:04 | PLCE | candidate | other | active | 6 | +28% |  | -48% |  |  |
+| 2026-11-12 16:04 | PLCE | candidate | other | active | 7 | +28% |  | -48% |  |  |
 | 2026-11-12 14:43 | REPL | control | other | active | 7 | +3% |  | -8% |  |  |
 | 2026-11-12 14:43 | MUJ | control | other | active | 7 | +1% |  | -4% |  |  |
 | 2026-11-12 14:43 | LUNR | candidate | other | active | 7 | +5% |  | -28% |  |  |
@@ -462,7 +477,7 @@ Updated 2026-11-20T22:52:52Z. Each candidate and control is followed for 20 trad
 | 2026-11-04 15:47 | DUOL | candidate | other | active | 13 | +5% | -13% | -7% |  | 0 |
 | 2026-11-04 15:47 | VST | candidate | other | active | 13 | +13% |  | +10% |  | 4 |
 | 2026-11-04 15:35 | NEE | control | other | active | 13 | +3% | -8% | -1% |  | 1 |
-| 2026-11-04 15:35 | CCZ | control | other | active | 12 | +0% | -2% | -2% |  | 0 |
+| 2026-11-04 15:35 | CCZ | control | other | active | 13 | +0% | -2% | -2% |  | 0 |
 | 2026-11-04 15:35 | UBER | candidate | other | active | 13 | +1% | -8% | -2% |  | 0 |
 | 2026-11-04 14:40 | ALMS | control | other | active | 13 | +1% | -35% | -4% |  | 1 |
 | 2026-11-04 14:40 | AMBP | control | other | active | 13 | +3% |  | +0% |  | 0 |
