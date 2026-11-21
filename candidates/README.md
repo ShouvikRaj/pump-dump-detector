@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-21T19:46:07Z by run `44942542269`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-21T20:03:11Z by run `44943700968`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -10,8 +10,8 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | CRWD | 2026-11-21 00:55 | mention spike | 27 | 6.14 | 23 | 0 | wallstreetbets 27 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y1jmoj/) |
 | ORCL | 2026-11-20 17:56 | mention spike | 3 | 6.14 | 3 | 0 | wallstreetbets 3 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y1nt2e/) |
 | VWAV | 2026-11-21 00:46 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
-| SNDK | 2026-11-21 00:46 | mention spike | 11 | 46.86 | 10 | 0 | wallstreetbets 10, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y259ja/) |
-| VOO | 2026-11-21 00:55 | mention spike | 20 | 24.14 | 18 | 0 | wallstreetbets 19, smallstreetbets 1 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y1i0rl/comment/19sz039z7i55t/) |
+| SNDK | 2026-11-21 00:46 | mention spike | 10 | 47.0 | 9 | 0 | wallstreetbets 9, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y259ja/) |
+| VOO | 2026-11-21 00:55 | mention spike | 20 | 24.0 | 18 | 0 | wallstreetbets 19, smallstreetbets 1 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y1i0rl/comment/19sz039z7i55t/) |
 | ASML | 2026-11-21 03:02 | mention spike | 2 | 7.14 | 2 | 0 | wallstreetbets 2 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y20zkd/comment/19szh15ny1268/) |
 | ROPE | 2026-11-20 03:06 | mention spike | 5 | 6.29 | 5 | 0 | wallstreetbets 5 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y1gajf/comment/19sy70b3x1agw/) |
 | SGOV | 2026-11-20 14:10 | mention spike | 3 | 4.14 | 3 | 0 | wallstreetbets 3 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y1had5/) |
