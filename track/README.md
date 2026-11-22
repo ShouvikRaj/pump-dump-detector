@@ -1,9 +1,15 @@
 # Stage 3 tracking
 
-Updated 2026-11-21T22:57:53Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
+Updated 2026-11-22T02:46:13Z. Each candidate and control is followed for 20 trading sessions after its flag (`track/daily.csv`, `track/filings.csv`); this table is rebuilt from those rows each run (`track/outcomes.csv`). Returns are against the price at the flag. Definitions: docs/stage3.md in the code branch.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Status | Sessions | Max high, 5 sessions | Drop from that peak, 10 after | Close after 5 | Close after 20 | 8-Ks by 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 2026-11-22 00:48 | RYAAY | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-22 00:48 | HONA | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-22 00:48 | DT | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-22 00:48 | TRMB | control | other | active | 0 |  |  |  |  |  |
+| 2026-11-22 00:48 | MSTR | candidate | other | active | 0 |  |  |  |  |  |
+| 2026-11-22 00:48 | NYT | candidate | other | active | 0 |  |  |  |  |  |
 | 2026-11-21 03:02 | ESLT | control | other | active | 0 |  |  |  |  |  |
 | 2026-11-21 03:02 | GHC | control | other | active | 0 |  |  |  |  |  |
 | 2026-11-21 03:02 | ASML | candidate | other | active | 0 |  |  |  |  |  |
