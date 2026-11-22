@@ -26,8 +26,8 @@
     "MSTR": {
       "episode_id": "MSTR-20261122T004851Z",
       "first_flagged_at": 1795308531.742693,
-      "last_flagged_at": 1795312090.6999738,
-      "n_flags": 7,
+      "last_flagged_at": 1795312868.7602413,
+      "n_flags": 8,
       "peak_mentions": 34,
       "peak_z": 2.867,
       "reasons_seen": [
@@ -37,8 +37,8 @@
     "NYT": {
       "episode_id": "NYT-20261122T004851Z",
       "first_flagged_at": 1795308531.742693,
-      "last_flagged_at": 1795312090.6999738,
-      "n_flags": 7,
+      "last_flagged_at": 1795312868.7602413,
+      "n_flags": 8,
       "peak_mentions": 26,
       "peak_z": 2.381,
       "reasons_seen": [
@@ -113,10 +113,10 @@
     }
   },
   "last_run": {
-    "finished_at": 1795312090.7508707,
-    "new_docs": 3,
-    "run_id": "44972746267",
-    "started_at": 1795311791.1261516
+    "finished_at": 1795312868.805358,
+    "new_docs": 8,
+    "run_id": "44973741995",
+    "started_at": 1795312589.6220973
   },
   "late_done_for": "2026-11-20",
   "live_since": 1791153669.8332794,
@@ -129,8 +129,8 @@
       "fallback_cursor": 1794937727,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1795311002.2291217,
-      "last_error": "Arctic Shift's archive stalled at 2026-11-22T01:27:51Z",
-      "last_error_at": 1795311802.5811355
+      "last_error": "Arctic Shift's archive stalled at 2026-11-22T01:36:39Z",
+      "last_error_at": 1795312599.6875548
     },
     "pennystocks/posts": {
       "complete_since": 1790376069.8332794,
@@ -140,8 +140,8 @@
       "fallback_cursor": 1794936997,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1795310998.6013377,
-      "last_error": "Arctic Shift's archive stalled at 2026-11-22T01:27:51Z",
-      "last_error_at": 1795311798.1321282
+      "last_error": "Arctic Shift's archive stalled at 2026-11-22T01:36:39Z",
+      "last_error_at": 1795312595.7525554
     },
     "smallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
@@ -151,8 +151,8 @@
       "fallback_cursor": 1794937705,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1795311003.9299128,
-      "last_error": "Arctic Shift's archive stalled at 2026-11-22T01:27:51Z",
-      "last_error_at": 1795311804.0186844
+      "last_error": "Arctic Shift's archive stalled at 2026-11-22T01:36:39Z",
+      "last_error_at": 1795312600.6452992
     },
     "smallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
@@ -162,30 +162,30 @@
       "fallback_cursor": 1794932867,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1795310999.7828147,
-      "last_error": "Arctic Shift's archive stalled at 2026-11-22T01:27:51Z",
-      "last_error_at": 1795311799.377391
+      "last_error": "Arctic Shift's archive stalled at 2026-11-22T01:36:39Z",
+      "last_error_at": 1795312597.1519017
     },
     "wallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1795310871,
+      "cursor": 1795311399,
       "fallback_complete_at": 1794937681.1815443,
       "fallback_cursor": 1794937651,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1795311005.4833786,
-      "last_error": "Arctic Shift's archive stalled at 2026-11-22T01:27:51Z",
-      "last_error_at": 1795311805.3125525
+      "last_error": "Arctic Shift's archive stalled at 2026-11-22T01:36:39Z",
+      "last_error_at": 1795312601.8109906
     },
     "wallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1795311680,
+      "cursor": 1795312281,
       "fallback_complete_at": 1794937142.8354933,
       "fallback_cursor": 1794936926,
       "initialized_at": 1791153669.8332794,
       "last_complete_at": 1795311000.831675,
-      "last_error": "Arctic Shift's archive stalled at 2026-11-22T01:27:51Z",
-      "last_error_at": 1795311800.6645923
+      "last_error": "Arctic Shift's archive stalled at 2026-11-22T01:36:39Z",
+      "last_error_at": 1795312598.498584
     }
   },
   "symbols_refresh_errors": 0,
