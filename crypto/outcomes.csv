@@ -5898,11 +5898,11 @@ scan-gate-CSPR-2026111515,scan,spike,settled,0.001713,0.002025,0.2662,24.0,1,1,0
 scan-gate-VINE-2026111516,scan,spike,settled,0.004883,0.009563,1.051198,59.0,1,0,0,0.0,0.105825,-0.067029,0.585695,-0.093904,0,crypto-label-v1
 scan-kucoin-CSPR-2026111515,scan,spike,settled,0.001717,0.002021,0.285381,17.0,1,1,0,0.0,-0.122712,-0.124196,0.237011,-0.153389,0,crypto-label-v1
 scan-kucoin-DAG-2026111518,scan,spike,settled,0.003014,0.003338,0.353019,39.0,1,1,0,0.0,-0.194128,-0.122528,0.003595,-0.367585,0,crypto-label-v1
-scan-mexc-LALA-2026111519,scan,spike,pending,0.00414,0.004066,0.350725,13.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-gate-RARE-2026111519,scan,spike,pending,0.008444,0.015142,0.893771,59.0,1,,,0.0,,,,,0,crypto-label-v1
-scan-binance-JUV-2026111519,scan,spike,pending,0.226,0.24,0.340708,44.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-binance-RARE-2026111519,scan,spike,pending,0.00844,0.015,0.874408,59.0,1,,,0.0,,,,,0,crypto-label-v1
-scan-binance-TKO-2026111519,scan,spike,pending,0.0404,0.0391,0.294554,40.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-mexc-LALA-2026111519,scan,spike,settled,0.00414,0.004066,0.350725,13.0,1,1,1,0.0,-0.205853,-0.877767,0.059764,-0.392523,0,crypto-label-v1
+scan-gate-RARE-2026111519,scan,spike,settled,0.008444,0.015142,0.893771,59.0,1,1,0,0.0,-0.024303,-0.109101,0.217805,-0.246203,0,crypto-label-v1
+scan-binance-JUV-2026111519,scan,spike,settled,0.226,0.24,0.340708,44.0,1,1,0,0.0,-0.066667,-0.083333,0.058333,-0.083333,0,crypto-label-v1
+scan-binance-RARE-2026111519,scan,spike,settled,0.00844,0.015,0.874408,59.0,1,1,0,0.0,-0.015333,-0.1,0.222667,-0.241333,0,crypto-label-v1
+scan-binance-TKO-2026111519,scan,spike,settled,0.0404,0.0391,0.294554,40.0,1,1,0,0.0,-0.005115,-0.046036,0.015345,-0.069054,0,crypto-label-v1
 scan-mexc-XRD-2026111520,scan,spike,pending,0.0006331,0.0007117,0.20218,41.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-gate-BLUR-2026111520,scan,spike,pending,0.006074,0.006134,0.275107,40.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-gate-TLM-2026111520,scan,spike,pending,0.0009473,0.0009864,0.321862,8.0,1,1,,0.0,,,,,0,crypto-label-v1
@@ -6094,3 +6094,4 @@ scan-gate-ALIGN-2026112217,scan,spike,pending,0.003199,0.004206,0.369803,,1,,,0.
 scan-gate-BABYSHARK-2026112217,scan,spike,pending,0.001348,0.001393,0.240356,,1,,,0.0,,,,,0,crypto-label-v1
 scan-gate-INFI-2026112217,scan,spike,pending,0.05938,0.05504,0.238969,,1,,,0.0,,,,,0,crypto-label-v1
 scan-kucoin-ALIGN-2026112217,scan,spike,pending,0.00319,0.00421,0.407524,,1,,,0.0,,,,,0,crypto-label-v1
+tg-Whalesguide-19587,telegram,call,pending,,,,,,,,,,,,,,crypto-label-v1
