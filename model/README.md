@@ -1,17 +1,17 @@
 # Stage 5 model
 
-Updated 2026-11-22T06:34:55Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-23T00:15:58Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
-## This week's models (week of 2026-11-16)
+## This week's models (week of 2026-11-23)
 
 | Target | Status | Trained on | Positives | Base rate | Flag at | Feature groups |
 |---|---|---|---|---|---|---|
-| crash | trained | 955 rows | 24 | 6.8% | 14% | chatter, text, llm, price_volume, size, short_interest, filings, history, technical |
-| pump | no model yet | 953 rows | 4 | - | - | chatter, text, llm, price_volume, size, short_interest, filings, history, technical |
+| crash | trained | 1213 rows | 30 | 6.6% | 13% | chatter, text, llm, price_volume, size, short_interest, filings, history, technical |
+| pump | trained | 1209 rows | 5 | 1.2% | 2.3% | chatter, text, llm, price_volume, size, short_interest, filings, history, technical |
 
-A week's model needs 50 rows and 5 positives whose labels were settled before the week began; a label settles 10 sessions (two weeks) after the flag, 15 after a 50% rise.
+What this week's crash model leans on (share of split gain): `volatility_20d` 14%, `pennystocks_share` 10%, `turnover_last` 9%, `si_days_to_cover` 7%, `days_since_report` 6%, `wsb_share` 4%, `price_log` 3%, `ret_1d` 2%.
 
-What this week's crash model leans on (share of split gain): `volatility_20d` 34%, `si_days_to_cover` 9%, `days_since_report` 4%, `turnover_last` 4%, `pennystocks_share` 3%, `authors_ratio` 3%, `ret_1d` 2%, `ret_5d` 2%.
+What this week's pump model leans on (share of split gain): `gap_open` 37%, `move_since_close` 8%, `length_log` 7%, `wsb_share` 6%, `si_change` 6%, `rel_vol_today_log` 4%, `vol_60m_rel` 4%, `institution_pct` 3%.
 
 ## Latest candidates (last 7 days)
 
