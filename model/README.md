@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-23T00:15:58Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-23T07:24:17Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-23)
 
@@ -19,6 +19,7 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-23 00:51 | SMCI | other | 0.2% | 0.0% | 100% / 0% / 23% / 0% | Users discuss SMCI's stock performance, alleging book cooking, and analyzing a market resolution regarding an AI industry downturn. |
 | 2026-11-22 00:48 | MSTR | other | 6.2% | no model | 100% / 8.8% / 12% / 0% | Users discuss MSTR's massive losses, debt, dilution fears, and potential for a pump-and-dump scheme. |
 | 2026-11-22 00:48 | NYT | other | 0.1% | no model | 0% / 0% / 0% / 0% | Chatter discusses NYT reporting on Jensen Huang, with no mention of the New York Times Company stock. |
 | 2026-11-21 03:02 | ASML | other | 0.2% | no model | 100% / 0% / 0% / 0% | Discussion on ASML's role in chip manufacturing, China restrictions, and a user buying shares. |
@@ -58,7 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-17 01:13 | TQQQ | other | **23%** | no model | 100% / 0% / 0% / 0% | Users discuss TQQQ volatility, losses, and trading strategies with mixed sentiment. |
 | 2026-11-17 00:48 | INTC | other | 12% | no model | 100% / 0% / 0% / 0% | Users discuss a shareholder lawsuit, Nvidia selling Intel shares, and general bearish sentiment regarding Intel's stock performance. |
 | 2026-11-17 00:31 | VOO | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss VOO as a safe index fund alternative to risky individual stocks. |
-| 2026-11-16 23:04 | PLTR | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss PLTR holdings, joke about price drops, and mention potential post-earnings sell-offs without specific event details. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
