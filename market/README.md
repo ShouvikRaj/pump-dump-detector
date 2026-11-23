@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-22T00:49:17Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-23T00:52:15Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-509 candidates and 1007 controls so far. Archetypes: other 487, low_float_runner 16, unknown 5, otc_penny 1.
+510 candidates and 1009 controls so far. Archetypes: other 488, low_float_runner 16, unknown 5, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SMCI | 2026-11-23 00:51 | other | listed | 22.16 | +2.4% | -19.4% | 1.1x | 560.0M | 13.4% | 0 |  |
 | NYT | 2026-11-22 00:48 | other | listed | 68.62 | +0.0% | -5.8% | 1.0x | 132.0M | 14.1% | 0 |  |
 | MSTR | 2026-11-22 00:48 | other | listed | 79.5 | +2.2% | -30.3% | 2.0x | 401.8M | 6.7% | 5 |  |
 | ASML | 2026-11-21 03:02 | other | listed | 1,292 | +2.0% | -15.3% | 1.9x | 21.28B | 0.0% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | HSBC | 2026-11-17 21:20 | other | listed | 87.28 | +0.0% | -2.9% | 0.9x | 13.55B | 0.0% | 6 |  |
 | SOXX | 2026-11-17 18:16 | other | listed | 139.3 | -1.4% | -3.8% | 0.9x |  |  |  |  |
 | SPCX | 2026-11-17 16:08 | other | listed | 140.6 | +2.3% | -3.3% | 0.9x | 3.05B | 4.6% | 0 |  |
-| SPAI | 2026-11-17 14:06 | low float runner | listed | 2.99 | +21.1% | -24.7% | 24.0x | 11.6M | 5.4% | 0 |  |
