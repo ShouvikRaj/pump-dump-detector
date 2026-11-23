@@ -27377,3 +27377,15 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 45240305079,2026-11-23T18:37:24Z,wallstreetbets/comments,feed,2026-11-17T17:47:31Z,0,0,0,0,2026-11-17T17:47:31Z,,,HTTP 404 for Reddit RSS comments r/wallstreetbets
 45240305079,2026-11-23T18:37:24Z,smallstreetbets/comments,feed,2026-11-17T17:48:25Z,0,0,0,0,2026-11-17T17:48:25Z,,,HTTP 404 for Reddit RSS comments r/smallstreetbets
 45240305079,2026-11-23T18:37:24Z,pennystocks/comments,feed,2026-11-17T17:48:47Z,0,0,0,0,2026-11-17T17:48:47Z,,,HTTP 404 for Reddit RSS comments r/pennystocks
+45242611290,2026-11-23T18:50:43Z,pennystocks/posts,live,2026-11-23T14:54:57Z,3,0,1,1,2026-11-23T17:54:57Z,20.0,,
+45242611290,2026-11-23T18:50:43Z,smallstreetbets/posts,live,2026-11-23T15:23:30Z,22,0,1,1,2026-11-23T18:23:30Z,15.0,,
+45242611290,2026-11-23T18:50:43Z,wallstreetbets/posts,live,2026-11-23T15:36:05Z,285,15,3,1,2026-11-23T18:50:18Z,15.0,511.4,
+45242611290,2026-11-23T18:50:43Z,pennystocks/comments,live,2026-11-23T14:49:47Z,2,0,1,1,2026-11-23T15:19:47Z,5215.5,,
+45242611290,2026-11-23T18:50:43Z,smallstreetbets/comments,live,2026-11-23T17:52:42Z,4,0,1,1,2026-11-23T18:22:42Z,802.0,,
+45242611290,2026-11-23T18:50:43Z,wallstreetbets/comments,live,2026-11-23T17:55:28Z,11,0,1,1,2026-11-23T18:25:28Z,445.0,,
+45242611290,2026-11-23T18:50:43Z,wallstreetbets/comments,fallback,2026-11-17T17:47:31Z,0,0,0,0,2026-11-17T17:47:31Z,,,HTTP 404 for Reddit RSS comments r/wallstreetbets
+45242611290,2026-11-23T18:50:43Z,smallstreetbets/comments,fallback,2026-11-17T17:48:25Z,0,0,0,0,2026-11-17T17:48:25Z,,,HTTP 404 for Reddit RSS comments r/smallstreetbets
+45242611290,2026-11-23T18:50:43Z,pennystocks/comments,fallback,2026-11-17T17:48:47Z,0,0,0,0,2026-11-17T17:48:47Z,,,HTTP 404 for Reddit RSS comments r/pennystocks
+45242611290,2026-11-23T18:50:43Z,wallstreetbets/posts,fallback,2026-11-23T18:50:18Z,0,0,0,0,2026-11-17T17:35:26Z,,,HTTP 404 for Reddit RSS posts r/wallstreetbets
+45242611290,2026-11-23T18:50:43Z,smallstreetbets/posts,fallback,2026-11-23T18:23:30Z,0,0,0,0,2026-11-17T16:27:47Z,,,HTTP 404 for Reddit RSS posts r/smallstreetbets
+45242611290,2026-11-23T18:50:43Z,pennystocks/posts,fallback,2026-11-23T17:54:57Z,0,0,0,0,2026-11-17T17:36:37Z,,,HTTP 404 for Reddit RSS posts r/pennystocks
