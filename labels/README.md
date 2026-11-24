@@ -1,6 +1,6 @@
 # Stage 4 labels
 
-Updated 2026-11-23T23:42:54Z. Every candidate and control gets the same rule, `label-v1`, written down before any outcome was looked at (docs/stage4.md in the code branch). Sessions count from the flag; returns are against the price at the flag. All rows: `labels/labels.csv`.
+Updated 2026-11-24T06:58:25Z. Every candidate and control gets the same rule, `label-v1`, written down before any outcome was looked at (docs/stage4.md in the code branch). Sessions count from the flag; returns are against the price at the flag. All rows: `labels/labels.csv`.
 
 - **pump**: up 50% or more within 5 sessions, then down 40% or more from that peak within the next 10
 - **real news**: earnings, a completed acquisition, a change of control, bankruptcy or a material agreement that isn't a share sale, filed with the SEC (8-K) between 72 hours before the flag and session 5; it beats pump
@@ -9,12 +9,12 @@ Updated 2026-11-23T23:42:54Z. Every candidate and control gets the same rule, `l
 
 | Archetype | Role | Pump | Real news | Not pump | Crash | Pending | Unknown |
 |---|---|---|---|---|---|---|---|
-| low float runner | candidate | 1 | 4 | 10 | 7 of 14 (50%) | 1 | 0 |
-| low float runner | control | 0 | 5 | 38 | 5 of 41 (12%) | 7 | 0 |
+| low float runner | candidate | 1 | 4 | 10 | 7 of 14 (50%) | 2 | 0 |
+| low float runner | control | 0 | 5 | 38 | 5 of 41 (12%) | 9 | 0 |
 | otc penny | candidate | 0 | 0 | 1 | 0 of 1 (0%) | 0 | 0 |
 | otc penny | control | 0 | 0 | 2 | 0 of 2 (0%) | 0 | 0 |
-| other | candidate | 6 | 136 | 286 | 25 of 408 (6%) | 60 | 0 |
-| other | control | 0 | 162 | 633 | 2 of 790 (0%) | 162 | 0 |
+| other | candidate | 6 | 137 | 286 | 25 of 408 (6%) | 64 | 0 |
+| other | control | 0 | 162 | 633 | 2 of 790 (0%) | 172 | 0 |
 | unknown | candidate | 0 | 0 | 0 | - | 0 | 5 |
 
 Crash counts the snapshots whose crash label has settled.
@@ -24,6 +24,7 @@ Crash counts the snapshots whose crash label has settled.
 
 | Flagged (UTC) | Ticker | Role | Archetype | Label | Crash | Peak, 5 sessions | Drop from peak | Lowest close, 10 sessions | News filings |
 |---|---|---|---|---|---|---|---|---|---|
+| 2026-11-24 00:45 | HPE | candidate | other | real news |  |  |  |  | 8-K 2026-11-23T21:12 2.02,7.01,9.01 (news) |
 | 2026-11-21 00:55 | CRWD | candidate | other | real news |  |  |  |  | 8-K 2026-11-23T11:04 2.02,9.01 (news); 8-K 2026-11-23T11:15 1.01,7.01,9.01 (news) |
 | 2026-11-21 00:55 | WWD | control | other | real news |  |  |  |  | 8-K 2026-11-18T21:00 2.02,9.01 (news) |
 | 2026-11-20 03:06 | INTU | candidate | other | real news |  |  |  |  | 8-K 2026-11-19T22:26 1.01,8.01,9.01 (news) |
@@ -73,6 +74,5 @@ Crash counts the snapshots whose crash label has settled.
 | 2026-11-10 17:08 | CI | control | other | not pump | no | +1% |  | -10% |  |
 | 2026-11-10 16:24 | TTWO | candidate | other | real news | no | +8% |  | -7% | 8-K 2026-11-09T21:10 2.02,9.01 (news) |
 | 2026-11-10 16:24 | XPO | control | other | not pump | no | +4% |  | -6% |  |
-| 2026-11-10 16:24 | DOV | control | other | not pump | no | +1% |  | -8% |  |
 
-1239 older rows are in `labels/labels.csv`.
+1240 older rows are in `labels/labels.csv`.
