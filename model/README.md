@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-24T00:23:29Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-24T09:44:16Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-23)
 
@@ -19,6 +19,12 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-24 00:45 | DJT | other | 1.7% | 0.0% | 100% / 0% / 3.3% / 0% | Chatter focuses on DJT's alleged influence over Nvidia and Jensen Huang's reinstatement, mixed with debt concerns and insults. |
+| 2026-11-24 00:45 | HPE | other | 1.1% | 1.0% | 100% / 3.6% / 0% / 14% | Users discuss HPE earnings results, with mixed reactions ranging from disappointment to optimism. |
+| 2026-11-24 00:45 | IVVD | other | 2.1% | 0.4% | 100% / 15% / 0% / 31% | Users discuss IVVD Phase 3 trial results, FDA alignment, and set a new price target. |
+| 2026-11-24 00:45 | MSS | low float runner | **53%** | 0.7% | 100% / 7.1% / 0% / 0% | Chatter discusses MSS stock price levels, volume, and potential trades, with one comment mentioning Nvidia executives. |
+| 2026-11-24 00:45 | NYT | other | 0.1% | 0.0% | 0% / 0% / 0% / 0% | Users discuss NYT reporting on Nvidia and Jensen Huang, labeling the newspaper as biased or a mouthpiece for the CIA. |
+| 2026-11-24 00:45 | SOAR | other | **51%** | 2.1% | 100% / 20% / 0% / 20% | Users discuss SOAR stock price movements, short interest, and recent positive news in a penny stock context. |
 | 2026-11-23 00:51 | SMCI | other | 0.2% | 0.0% | 100% / 0% / 23% / 0% | Users discuss SMCI's stock performance, alleging book cooking, and analyzing a market resolution regarding an AI industry downturn. |
 | 2026-11-22 00:48 | MSTR | other | 6.2% | no model | 100% / 8.8% / 12% / 0% | Users discuss MSTR's massive losses, debt, dilution fears, and potential for a pump-and-dump scheme. |
 | 2026-11-22 00:48 | NYT | other | 0.1% | no model | 0% / 0% / 0% / 0% | Chatter discusses NYT reporting on Jensen Huang, with no mention of the New York Times Company stock. |
@@ -53,12 +59,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-17 10:45 | SHAZ | other | 4.3% | no model | 100% / 0% / 0% / 0% | Users discuss a major shareholder's massive losses and the stock's sharp decline, mocking the investor. |
 | 2026-11-17 10:05 | JPM | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss a software bug and outage affecting JPM and other banks, while others mention buybacks. |
 | 2026-11-17 10:05 | SNDK | other | **33%** | no model | 100% / 0% / 0% / 0% | Chatter discusses SNDK price drops, compares it to other tech stocks, and mentions a user's call positions. |
-| 2026-11-17 06:59 | ROPE | other | 0.2% | no model | 100% / 55% / 0% / 0% | Users discuss buying ROPE, with some urging others to go all-in. |
-| 2026-11-17 03:38 | RSP | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss RSP as a broad market ETF alternative to concentrated tech stocks, noting its performance and holding it in portfolios. |
-| 2026-11-17 03:28 | ASTS | other | 8.4% | no model | 100% / 0% / 0% / 0% | Users discuss ASTS performance, compare it to SpaceX and RKLB, and debate its financial viability and future prospects. |
-| 2026-11-17 01:13 | TQQQ | other | **23%** | no model | 100% / 0% / 0% / 0% | Users discuss TQQQ volatility, losses, and trading strategies with mixed sentiment. |
-| 2026-11-17 00:48 | INTC | other | 12% | no model | 100% / 0% / 0% / 0% | Users discuss a shareholder lawsuit, Nvidia selling Intel shares, and general bearish sentiment regarding Intel's stock performance. |
-| 2026-11-17 00:31 | VOO | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss VOO as a safe index fund alternative to risky individual stocks. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
@@ -93,7 +93,28 @@ Feature groups: all used; weak groups are pruned once the replay holds 20 positi
 
 ### pump
 
-No scored candidate with a settled label yet.
+| Candidates | n | Positives | Base rate | Flagged | Precision | Recall | F1 | Lift | AP | AUC |
+|---|---|---|---|---|---|---|---|---|---|---|
+| all candidates | 1 | 0 | 0% | 0 | - | - | - | - | - | - |
+| other | 1 | 0 | 0% | 0 | - | - | - | - | - | - |
+
+| Model | AP | Precision | Recall | F1 |
+|---|---|---|---|---|
+| all groups | - | - | - | - |
+| market only | - | - | - | - |
+| social only | - | - | - | - |
+
+| Robustness check | Result | Detail |
+|---|---|---|
+| beats the base rate | not enough data | 0 positives (needs 10) |
+| separate periods | not enough data | needs 3 positives in each of three blocks of weeks |
+| per pump type | not enough data | needs 5 positives in a pump type |
+| beats the control group | not enough data | 0 flagged with settled controls (needs 10) |
+| survives slippage | not enough data | 0 flagged with a 10-session return (needs 10) |
+
+Verdict: **not robust yet** (some checks need more labels).
+
+Feature groups: all used; weak groups are pruned once the replay holds 20 positive candidates (0 so far).
 
 ## Hold-out (flags from 2027-01-04)
 
