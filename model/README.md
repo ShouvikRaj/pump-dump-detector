@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-23T07:24:17Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-24T00:23:29Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-23)
 
@@ -68,24 +68,24 @@ Each development week replayed exactly as it would have run: its model trained o
 
 | Candidates | n | Positives | Base rate | Flagged | Precision | Recall | F1 | Lift | AP | AUC |
 |---|---|---|---|---|---|---|---|---|---|---|
-| all candidates | 100 | 11 | 11% | 11 | 73% | 73% | 0.73 | 6.6x | 0.74 | 0.89 |
-| low float runner | 2 | 2 | 100% | 2 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
-| other | 98 | 9 | 9.2% | 9 | 67% | 67% | 0.67 | 7.3x | 0.64 | 0.87 |
-| pump types together | 2 | 2 | 100% | 2 | 100% | 100% | 1.00 | 1.0x | 1.00 | - |
+| all candidates | 112 | 11 | 9.8% | 12 | 67% | 73% | 0.70 | 6.8x | 0.72 | 0.89 |
+| low float runner | 3 | 2 | 67% | 3 | 67% | 100% | 0.80 | 1.0x | 1.00 | 1.00 |
+| other | 109 | 9 | 8.3% | 9 | 67% | 67% | 0.67 | 8.1x | 0.63 | 0.87 |
+| pump types together | 3 | 2 | 67% | 3 | 67% | 100% | 0.80 | 1.0x | 1.00 | 1.00 |
 
 | Model | AP | Precision | Recall | F1 |
 |---|---|---|---|---|
-| all groups | 0.74 | 73% | 73% | 0.73 |
-| market only | 0.71 | 67% | 73% | 0.70 |
-| social only | 0.58 | 71% | 45% | 0.56 |
+| all groups | 0.72 | 67% | 73% | 0.70 |
+| market only | 0.70 | 62% | 73% | 0.67 |
+| social only | 0.57 | 71% | 45% | 0.56 |
 
 | Robustness check | Result | Detail |
 |---|---|---|
-| beats the base rate | pass | precision 73% vs base rate 11%; AP 0.74 |
+| beats the base rate | pass | precision 67% vs base rate 9.8%; AP 0.72 |
 | separate periods | not enough data | needs 3 positives in each of three blocks of weeks |
 | per pump type | not enough data | needs 5 positives in a pump type |
-| beats the control group | not enough data | 8 flagged with settled controls (needs 10) |
-| survives slippage | not enough data | 7 flagged with a 10-session return (needs 10) |
+| beats the control group | not enough data | 9 flagged with settled controls (needs 10) |
+| survives slippage | not enough data | 8 flagged with a 10-session return (needs 10) |
 
 Verdict: **not robust yet** (some checks need more labels).
 
