@@ -1,13 +1,19 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-23T00:52:15Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-24T00:46:11Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-510 candidates and 1009 controls so far. Archetypes: other 488, low_float_runner 16, unknown 5, otc_penny 1.
+516 candidates and 1021 controls so far. Archetypes: other 493, low_float_runner 17, unknown 5, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SOAR | 2026-11-24 00:45 | other | listed | 0.1985 | -0.6% | +16.7% | 66.2x | 38.4M | 6.7% | 0 |  |
+| NYT | 2026-11-24 00:45 | other | listed | 68.32 | +0.0% | -7.0% | 0.7x | 132.0M | 14.1% | 0 |  |
+| MSS | 2026-11-24 00:45 | low float runner | listed | 1.32 | +10.0% | +53.3% | 2.1x | 0.4M | 14.7% | 0 |  |
+| IVVD | 2026-11-24 00:45 | other | listed | 0.4911 | +1.2% | -9.8% | 16.6x | 221.7M | 16.3% | 0 |  |
+| HPE | 2026-11-24 00:45 | other | listed | 44.66 | -7.0% | +3.1% | 3.0x | 1.32B | 3.5% | 0 |  |
+| DJT | 2026-11-24 00:45 | other | listed | 3.96 | +1.9% | -4.8% | 0.6x | 161.3M | 12.2% | 1 |  |
 | SMCI | 2026-11-23 00:51 | other | listed | 22.16 | +2.4% | -19.4% | 1.1x | 560.0M | 13.4% | 0 |  |
 | NYT | 2026-11-22 00:48 | other | listed | 68.62 | +0.0% | -5.8% | 1.0x | 132.0M | 14.1% | 0 |  |
 | MSTR | 2026-11-22 00:48 | other | listed | 79.5 | +2.2% | -30.3% | 2.0x | 401.8M | 6.7% | 5 |  |
@@ -32,9 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | TTWO | 2026-11-19 00:42 | other | listed | 222.7 | +2.8% | -6.4% | 3.2x | 186.4M | 5.0% | 0 |  |
 | GLD | 2026-11-19 00:42 | other | listed | 343.3 | +0.6% | -6.6% | 1.3x |  |  | 0 |  |
 | ANT | 2026-11-19 00:42 | unknown | listed |  |  |  |  | 965.7M |  | 5 |  |
-| PANW | 2026-11-18 21:40 | other | listed | 375.1 | +10.3% | +1.6% | 2.3x | 812.5M | 2.5% | 0 |  |
-| UNH | 2026-11-18 17:15 | other | listed | 356.8 | -8.4% | -3.8% | 1.6x | 893.4M | 1.6% | 0 |  |
-| AAOI | 2026-11-17 23:46 | other | listed | 41.72 | -7.7% | -6.4% | 1.2x | 86.8M | 20.8% | 2 |  |
-| HSBC | 2026-11-17 21:20 | other | listed | 87.28 | +0.0% | -2.9% | 0.9x | 13.55B | 0.0% | 6 |  |
-| SOXX | 2026-11-17 18:16 | other | listed | 139.3 | -1.4% | -3.8% | 0.9x |  |  |  |  |
-| SPCX | 2026-11-17 16:08 | other | listed | 140.6 | +2.3% | -3.3% | 0.9x | 3.05B | 4.6% | 0 |  |
