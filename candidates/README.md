@@ -1,17 +1,17 @@
 # Stage 1 candidates
 
-Updated 2026-11-24T16:38:10Z by run `45438409676`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-24T17:01:09Z by run `45443465058`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
 
 | Ticker | Flagged since (UTC) | Why | Mentions 24h | Baseline/day | Authors | Hype posts | Subreddits | Exchange | StockTwits | Example |
 |---|---|---|---|---|---|---|---|---|---|---|
-| HPE | 2026-11-24 00:45 | mention spike | 28 | 1.29 | 21 | 0 | wallstreetbets 28 | NYSE | #3 | [link](https://www.reddit.com/r/wallstreetbets/comments/1y3u28s/comment/19t3cgiyb5z2b/) |
-| DJT | 2026-11-24 00:45 | mention spike | 16 | 11.43 | 16 | 0 | wallstreetbets 16 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y3u28s/comment/19t4644ydnp34/) |
-| MSS | 2026-11-24 00:45 | mention spike | 3 | 2.0 | 2 | 0 | pennystocks 3 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1y44hxg/comment/19t41rnkd6tq9/) |
-| SOAR | 2026-11-24 00:45 | mention spike | 4 | 0.86 | 4 | 0 | pennystocks 4 | NYSE American |  | [link](https://www.reddit.com/r/pennystocks/comments/1y39myz/comment/19t2xtlugwjvm/) |
+| HPE | 2026-11-24 00:45 | mention spike | 28 | 1.29 | 21 | 0 | wallstreetbets 28 | NYSE | #2 | [link](https://www.reddit.com/r/wallstreetbets/comments/1y3u28s/comment/19t3cgiyb5z2b/) |
+| DJT | 2026-11-24 00:45 | mention spike | 14 | 11.14 | 14 | 0 | wallstreetbets 14 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y3u28s/comment/19t4644ydnp34/) |
+| MSS | 2026-11-24 00:45 | mention spike | 2 | 2.14 | 2 | 0 | pennystocks 2 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1y44hxg/comment/19t41rnkd6tq9/) |
+| SOAR | 2026-11-24 00:45 | mention spike | 3 | 1.0 | 3 | 0 | pennystocks 3 | NYSE American |  | [link](https://www.reddit.com/r/pennystocks/comments/1y39myz/comment/19t2xtlugwjvm/) |
 | IVVD | 2026-11-24 00:45 | mention spike | 1 | 1.71 | 1 | 0 | pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1y39myz/comment/19t38ha6mpxno/) |
-| NYT | 2026-11-24 00:45 | mention spike | 12 | 17.57 | 12 | 0 | wallstreetbets 12 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y41nrx/) |
+| NYT | 2026-11-24 00:45 | mention spike | 10 | 17.86 | 10 | 0 | wallstreetbets 10 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y41nrx/) |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
