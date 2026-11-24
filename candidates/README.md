@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-24T23:14:10Z by run `45507922578`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-24T23:41:08Z by run `45511711218`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -13,6 +13,6 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | MSS | 2026-11-24 00:45 | mention spike | 1 | 2.29 | 1 | 0 | pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1y44hxg/comment/19t41rnkd6tq9/) |
 | SOAR | 2026-11-24 00:45 | mention spike | 0 |  | 0 | 0 |  | NYSE American |  |  |
 | IVVD | 2026-11-24 00:45 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
-| NYT | 2026-11-24 00:45 | mention spike | 5 | 18.29 | 5 | 0 | wallstreetbets 5 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y41nrx/) |
+| NYT | 2026-11-24 00:45 | mention spike | 4 | 18.43 | 4 | 0 | wallstreetbets 4 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y41nrx/) |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
