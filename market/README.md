@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-25T00:43:43Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-25T21:55:30Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-518 candidates and 1025 controls so far. Archetypes: other 495, low_float_runner 17, unknown 5, otc_penny 1.
+519 candidates and 1027 controls so far. Archetypes: other 496, low_float_runner 17, unknown 5, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SGOV | 2026-11-25 21:55 | other | listed | 100.7 | +0.0% | +0.1% | 1.1x |  |  |  |  |
 | BENF | 2026-11-25 00:43 | other | listed | 0.805 | -12.0% | +63.1% | 1818.5x | 3.9M | 6.6% | 0 |  |
 | DELL | 2026-11-24 21:15 | other | listed | 289.4 | -2.0% | -8.5% | 2.0x | 292.2M | 3.6% | 2 |  |
 | SOAR | 2026-11-24 00:45 | other | listed | 0.1985 | -0.6% | +16.7% | 66.2x | 38.4M | 6.7% | 0 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | SPCX | 2026-11-19 00:49 | other | listed | 145 | +1.1% | +2.7% | 0.8x | 3.05B | 4.6% | 0 |  |
 | LULU | 2026-11-19 00:49 | other | listed | 110.1 | -0.6% | +3.1% | 1.2x | 101.7M | 13.7% | 0 |  |
 | AMZN | 2026-11-19 00:49 | other | listed | 272 | +1.6% | +0.6% | 0.8x | 9.84B | 1.0% | 2 |  |
-| TTWO | 2026-11-19 00:42 | other | listed | 222.7 | +2.8% | -6.4% | 3.2x | 186.4M | 5.0% | 0 |  |
