@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-25T00:19:46Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-25T08:19:15Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-23)
 
@@ -19,6 +19,7 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-25 00:43 | BENF | other | **46%** | **2.8%** | 100% / 0% / 0% / 0% | Users discuss BENF price targets, volume, and chart patterns with bullish sentiment. |
 | 2026-11-24 21:15 | DELL | other | 2.3% | 0.1% | 100% / 0% / 0% / 18% | Chatter focuses on Dell's reported earnings miss, guidance cuts, and subsequent stock price crash. |
 | 2026-11-24 00:45 | DJT | other | 1.7% | 0.0% | 100% / 0% / 3.3% / 0% | Chatter focuses on DJT's alleged influence over Nvidia and Jensen Huang's reinstatement, mixed with debt concerns and insults. |
 | 2026-11-24 00:45 | HPE | other | 1.1% | 1.0% | 100% / 3.6% / 0% / 14% | Users discuss HPE earnings results, with mixed reactions ranging from disappointment to optimism. |
