@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-25T11:55:08Z by run `45608509809`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-25T12:21:06Z by run `45612658662`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -10,7 +10,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | BENF | 2026-11-25 00:43 | mention spike | 13 | 0.0 | 7 | 0 | pennystocks 12, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1y4edv2/) |
 | DELL | 2026-11-24 21:15 | mention spike | 36 | 3.71 | 32 | 0 | wallstreetbets 36 | NYSE | #1 | [link](https://www.reddit.com/r/wallstreetbets/comments/1y4ug32/) |
 | HPE | 2026-11-24 00:45 | mention spike | 1 | 7.57 | 1 | 0 | wallstreetbets 1 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y3u28s/comment/19t4uwxevhmmd/) |
-| DJT | 2026-11-24 00:45 | mention spike | 6 | 12.57 | 6 | 0 | wallstreetbets 6 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y4rrfk/comment/19t58n1cxqhj8/) |
+| DJT | 2026-11-24 00:45 | mention spike | 6 | 12.43 | 6 | 0 | wallstreetbets 6 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y4rrfk/comment/19t58n1cxqhj8/) |
 | MSS | 2026-11-24 00:45 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
 | SOAR | 2026-11-24 00:45 | mention spike | 2 | 1.43 | 2 | 0 | pennystocks 2 | NYSE American |  | [link](https://www.reddit.com/r/pennystocks/comments/1y44hxg/comment/19t4lim86r20x/) |
 
