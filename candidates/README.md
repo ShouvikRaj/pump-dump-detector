@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-25T10:38:10Z by run `45596108702`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-25T10:52:08Z by run `45598207238`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -9,8 +9,8 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 |---|---|---|---|---|---|---|---|---|---|---|
 | BENF | 2026-11-25 00:43 | mention spike | 11 | 0.0 | 6 | 0 | pennystocks 10, smallstreetbets 1 | Nasdaq |  | [link](https://www.reddit.com/r/smallstreetbets/comments/1y4edv2/) |
 | DELL | 2026-11-24 21:15 | mention spike | 35 | 3.71 | 31 | 0 | wallstreetbets 35 | NYSE | #1 | [link](https://www.reddit.com/r/wallstreetbets/comments/1y4ug32/) |
-| HPE | 2026-11-24 00:45 | mention spike | 2 | 7.43 | 2 | 0 | wallstreetbets 2 | NYSE | #23 | [link](https://www.reddit.com/r/wallstreetbets/comments/1y3u28s/comment/19t4uwxevhmmd/) |
-| DJT | 2026-11-24 00:45 | mention spike | 7 | 12.43 | 7 | 0 | wallstreetbets 7 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y4rrfk/comment/19t58n1cxqhj8/) |
+| HPE | 2026-11-24 00:45 | mention spike | 2 | 7.43 | 2 | 0 | wallstreetbets 2 | NYSE | #20 | [link](https://www.reddit.com/r/wallstreetbets/comments/1y3u28s/comment/19t4uwxevhmmd/) |
+| DJT | 2026-11-24 00:45 | mention spike | 6 | 12.57 | 6 | 0 | wallstreetbets 6 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y4rrfk/comment/19t58n1cxqhj8/) |
 | MSS | 2026-11-24 00:45 | mention spike | 0 |  | 0 | 0 |  | Nasdaq |  |  |
 | SOAR | 2026-11-24 00:45 | mention spike | 2 | 1.43 | 2 | 0 | pennystocks 2 | NYSE American |  | [link](https://www.reddit.com/r/pennystocks/comments/1y44hxg/comment/19t4lim86r20x/) |
 | IVVD | 2026-11-24 00:45 | mention spike | 2 | 1.86 | 2 | 0 | pennystocks 2 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1y44hxg/comment/19t4jxdoc4a9s/) |
