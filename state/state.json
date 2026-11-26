@@ -48,8 +48,8 @@
     "NRSN": {
       "episode_id": "NRSN-20261126T004435Z",
       "first_flagged_at": 1795653875.8416755,
-      "last_flagged_at": 1795692428.176764,
-      "n_flags": 43,
+      "last_flagged_at": 1795693806.7838674,
+      "n_flags": 44,
       "peak_mentions": 13,
       "peak_z": 13.0,
       "reasons_seen": [
@@ -59,8 +59,8 @@
     "SGOV": {
       "episode_id": "SGOV-20261125T215506Z",
       "first_flagged_at": 1795643706.928942,
-      "last_flagged_at": 1795692428.176764,
-      "n_flags": 53,
+      "last_flagged_at": 1795693806.7838674,
+      "n_flags": 54,
       "peak_mentions": 24,
       "peak_z": 3.844,
       "reasons_seen": [
@@ -92,8 +92,8 @@
     "VTI": {
       "episode_id": "VTI-20261126T005415Z",
       "first_flagged_at": 1795654455.1152132,
-      "last_flagged_at": 1795692428.176764,
-      "n_flags": 42,
+      "last_flagged_at": 1795693806.7838674,
+      "n_flags": 43,
       "peak_mentions": 17,
       "peak_z": 2.834,
       "reasons_seen": [
@@ -102,77 +102,77 @@
     }
   },
   "last_run": {
-    "finished_at": 1795692428.214292,
-    "new_docs": 0,
-    "run_id": "45809798354",
-    "started_at": 1795692082.5561943
+    "finished_at": 1795693806.815789,
+    "new_docs": 240,
+    "run_id": "45813738401",
+    "started_at": 1795693675.88911
   },
   "late_done_for": "2026-11-24",
   "live_since": 1791153669.8332794,
   "streams": {
     "pennystocks/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 1,
-      "cursor": 1795681044,
+      "consecutive_errors": 0,
+      "cursor": 1795684551,
       "fallback_complete_at": 1794937800.9456909,
       "fallback_cursor": 1794937727,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1795686542.1285112,
+      "last_complete_at": 1795693686.149553,
       "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 530 for posts r/pennystocks after 6 tries: {'error': 'Cloudflare Tunnel error | arctic-shift.photon-reddit.com | Cloudflare'})",
       "last_error_at": 1795692148.7452314
     },
     "pennystocks/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 1,
-      "cursor": 1795681038,
+      "consecutive_errors": 0,
+      "cursor": 1795691243,
       "fallback_complete_at": 1794937263.2651505,
       "fallback_cursor": 1794936997,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1795686538.113239,
+      "last_complete_at": 1795693681.1384752,
       "last_error": "HTTP 530 for posts r/pennystocks after 6 tries: {'error': 'Cloudflare Tunnel error | arctic-shift.photon-reddit.com | Cloudflare'}",
       "last_error_at": 1795692148.7451215
     },
     "smallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 1,
+      "consecutive_errors": 0,
       "cursor": 1795687264,
       "fallback_complete_at": 1794937741.6143296,
       "fallback_cursor": 1794937705,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1795686545.6948736,
+      "last_complete_at": 1795693687.5130606,
       "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 530 for posts r/pennystocks after 6 tries: {'error': 'Cloudflare Tunnel error | arctic-shift.photon-reddit.com | Cloudflare'})",
       "last_error_at": 1795692148.745282
     },
     "smallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 1,
+      "consecutive_errors": 0,
       "cursor": 1795684553,
       "fallback_complete_at": 1794937202.868109,
       "fallback_cursor": 1794932867,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1795686539.1961439,
+      "last_complete_at": 1795693682.849467,
       "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 530 for posts r/pennystocks after 6 tries: {'error': 'Cloudflare Tunnel error | arctic-shift.photon-reddit.com | Cloudflare'})",
       "last_error_at": 1795692148.7451868
     },
     "wallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 1,
-      "cursor": 1795686883,
+      "consecutive_errors": 0,
+      "cursor": 1795693030,
       "fallback_complete_at": 1794937681.1815443,
       "fallback_cursor": 1794937651,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1795686546.978258,
+      "last_complete_at": 1795693692.1338336,
       "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 530 for posts r/pennystocks after 6 tries: {'error': 'Cloudflare Tunnel error | arctic-shift.photon-reddit.com | Cloudflare'})",
       "last_error_at": 1795692148.7453015
     },
     "wallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
-      "consecutive_errors": 1,
-      "cursor": 1795687336,
+      "consecutive_errors": 0,
+      "cursor": 1795693304,
       "fallback_complete_at": 1794937142.8354933,
       "fallback_cursor": 1794936926,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1795686540.534705,
+      "last_complete_at": 1795693684.2361188,
       "last_error": "skipped: Arctic Shift unreachable earlier in this run (HTTP 530 for posts r/pennystocks after 6 tries: {'error': 'Cloudflare Tunnel error | arctic-shift.photon-reddit.com | Cloudflare'})",
       "last_error_at": 1795692148.7452114
     }
