@@ -29672,3 +29672,13 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 45751467556,2026-11-26T03:51:04Z,smallstreetbets/posts,fallback,2026-11-26T02:20:55Z,0,0,0,0,2026-11-17T16:27:47Z,,,HTTP 404 for Reddit RSS posts r/smallstreetbets
 45751467556,2026-11-26T03:51:04Z,pennystocks/posts,fallback,2026-11-25T23:09:59Z,0,0,0,0,2026-11-17T17:36:37Z,,,HTTP 404 for Reddit RSS posts r/pennystocks
 45751467556,2026-11-26T03:51:04Z,wallstreetbets/comments,late,2026-11-24T23:10:12Z,100,91,1,0,,,103433.0,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
+45754231441,2026-11-26T04:17:24Z,pennystocks/posts,live,2026-11-25T20:09:59Z,2,0,1,1,2026-11-25T23:09:59Z,16.5,,
+45754231441,2026-11-26T04:17:24Z,smallstreetbets/posts,live,2026-11-25T23:20:55Z,4,1,1,1,2026-11-26T04:06:29Z,16.5,662.5,
+45754231441,2026-11-26T04:17:24Z,wallstreetbets/posts,live,2026-11-26T00:41:25Z,29,2,1,1,2026-11-26T04:16:46Z,13.0,362.6,
+45754231441,2026-11-26T04:17:24Z,pennystocks/comments,live,2026-11-26T03:12:17Z,3,0,1,1,2026-11-26T03:42:17Z,551.0,,
+45754231441,2026-11-26T04:17:24Z,smallstreetbets/comments,live,2026-11-26T00:53:31Z,2,1,1,1,2026-11-26T04:06:29Z,88.0,665.9,
+45754231441,2026-11-26T04:17:24Z,wallstreetbets/comments,live,2026-11-26T02:47:31Z,111,11,2,1,2026-11-26T04:08:31Z,400.0,4127.8,
+45754231441,2026-11-26T04:17:24Z,wallstreetbets/comments,feed,2026-11-18T04:17:24Z,0,0,0,0,2026-11-17T17:47:31Z,,,HTTP 404 for Reddit RSS comments r/wallstreetbets
+45754231441,2026-11-26T04:17:24Z,smallstreetbets/comments,feed,2026-11-18T04:17:24Z,0,0,0,0,2026-11-17T17:48:25Z,,,HTTP 404 for Reddit RSS comments r/smallstreetbets
+45754231441,2026-11-26T04:17:24Z,pennystocks/comments,feed,2026-11-18T04:17:24Z,0,0,0,0,2026-11-17T17:48:47Z,,,HTTP 404 for Reddit RSS comments r/pennystocks
+45754231441,2026-11-26T04:17:24Z,wallstreetbets/comments,late,2026-11-24T23:14:04Z,0,0,0,0,,,,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
