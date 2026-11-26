@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-26T00:20:07Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-26T08:04:22Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-23)
 
@@ -19,6 +19,12 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-26 00:54 | AAPL | other | 0.1% | 0.0% | 100% / 0% / 0% / 0% | Users discuss AAPL's resilience, price action, and market dominance while expressing mixed sentiments and skepticism. |
+| 2026-11-26 00:54 | META | other | 0.3% | 0.0% | 100% / 0% / 0% / 0% | Users discuss META's volatility, price drops, and potential rebounds without specific company events or pump-and-dump warnings. |
+| 2026-11-26 00:54 | VTI | other | 0.1% | 0.0% | 100% / 0% / 0% / 0% | Users discuss VTI performance, compare it to other funds, and advise on long-term holding strategies. |
+| 2026-11-26 00:44 | NRSN | low float runner | **76%** | **3.1%** | 100% / 17% / 0% / 17% | Chatter focuses on Phase 2b ALS trial data and aggressive price targets. |
+| 2026-11-26 00:44 | SOXL | other | 2.3% | 0.1% | 100% / 0% / 0% / 0% | Users discuss SOXL's severe drawdown, express regret over buying, and joke about its volatility. |
+| 2026-11-26 00:44 | SOXS | other | 12% | **2.7%** | 100% / 0% / 0% / 0% | Users discuss hedging strategies, price movements, and trading tactics for the SOXS ETF. |
 | 2026-11-25 21:55 | SGOV | other | 0.1% | 0.0% | 100% / 0% / 0% / 0% | Users discuss SGOV as a safe haven or cash parking spot amidst market losses, contrasting it with riskier assets. |
 | 2026-11-25 00:43 | BENF | other | **46%** | **2.8%** | 100% / 0% / 0% / 0% | Users discuss BENF price targets, volume, and chart patterns with bullish sentiment. |
 | 2026-11-24 21:15 | DELL | other | 2.3% | 0.1% | 100% / 0% / 0% / 18% | Chatter focuses on Dell's reported earnings miss, guidance cuts, and subsequent stock price crash. |
@@ -44,13 +50,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-20 03:06 | ROPE | other | 0.1% | no model | 100% / 18% / 0% / 0% | Users discuss buying $ROPE calls and express bullish opinions on the ETF. |
 | 2026-11-20 00:51 | GME | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss GameStop stock, referencing memes, past squeezes, and general bullish sentiment without specific corporate events. |
 | 2026-11-20 00:51 | OPEX | other | 9.9% | no model | 100% / 0% / 0% / 0% | Users discuss OPEX ETF volatility, liquidity issues, and market bleeding before an expiration date. |
-| 2026-11-19 03:02 | CRWD | other | 0.4% | no model | 100% / 0% / 0% / 8.3% | Users discuss CRWD cybersecurity stock, valuations, and mention upcoming earnings. |
-| 2026-11-19 01:56 | MU | other | 6.8% | no model | 100% / 0% / 0% / 0% | Users discuss Micron's earnings, demand, and price targets in a bullish manner. |
-| 2026-11-19 00:49 | AMZN | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users discuss AMZN's potential price rise due to an Anthropic IPO and general market optimism. |
-| 2026-11-19 00:49 | LULU | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss LULU price movements, express confusion over high prices, and report shorting losses. |
-| 2026-11-19 00:49 | SPCX | other | 1.6% | no model | 100% / 0% / 2.5% / 0% | Users discuss SPCX's past performance, compare it to the upcoming Anthropic IPO, and warn of potential pump-and-dump schemes. |
-| 2026-11-19 00:42 | GLD | other | 0.3% | no model | 100% / 0% / 0% / 0% | Users discuss GLD price levels, express bearish views on puts, and share unrelated jokes or opinions. |
-| 2026-11-19 00:42 | TTWO | other | 0.2% | no model | 100% / 2.5% / 5.0% / 0% | Users discuss TTWO stock price movements, GTA 6 launch expectations, and potential trading strategies. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
@@ -80,7 +79,7 @@ Each development week replayed exactly as it would have run: its model trained o
 | separate periods | not enough data | needs 3 positives in each of three blocks of weeks |
 | per pump type | not enough data | needs 5 positives in a pump type |
 | beats the control group | pass | flagged 64% vs their controls 4.5% |
-| survives slippage | pass | flagged mean 10-session return -48.8% vs unflagged -9.6% (needs -3% or lower) |
+| survives slippage | pass | flagged mean 10-session return -51.2% vs unflagged -9.6% (needs -3% or lower) |
 
 Verdict: **not robust yet** (some checks need more labels).
 
