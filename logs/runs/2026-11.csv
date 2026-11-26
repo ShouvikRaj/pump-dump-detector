@@ -29761,3 +29761,13 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 45767030327,2026-11-26T06:16:33Z,smallstreetbets/posts,fallback,2026-11-26T05:50:34Z,0,0,0,0,2026-11-17T16:27:47Z,,,HTTP 404 for Reddit RSS posts r/smallstreetbets
 45767030327,2026-11-26T06:16:33Z,pennystocks/posts,fallback,2026-11-26T05:01:10Z,0,0,0,0,2026-11-17T17:36:37Z,,,HTTP 404 for Reddit RSS posts r/pennystocks
 45767030327,2026-11-26T06:16:33Z,wallstreetbets/comments,late,2026-11-24T23:18:34Z,0,0,0,0,,,,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
+45770072438,2026-11-26T06:42:51Z,pennystocks/posts,live,2026-11-26T02:01:10Z,1,0,1,1,2026-11-26T05:01:10Z,31.0,,
+45770072438,2026-11-26T06:42:51Z,smallstreetbets/posts,live,2026-11-26T02:50:34Z,3,0,1,1,2026-11-26T05:50:34Z,20.0,,
+45770072438,2026-11-26T06:42:51Z,wallstreetbets/posts,live,2026-11-26T03:02:53Z,28,4,1,1,2026-11-26T06:37:14Z,15.5,616.2,
+45770072438,2026-11-26T06:42:51Z,pennystocks/comments,live,2026-11-26T04:11:05Z,3,0,1,1,2026-11-26T04:41:05Z,3006.0,,
+45770072438,2026-11-26T06:42:51Z,smallstreetbets/comments,live,2026-11-26T04:34:40Z,18,17,1,1,2026-11-26T06:26:31Z,3508.0,3768.8,
+45770072438,2026-11-26T06:42:51Z,wallstreetbets/comments,live,2026-11-26T05:19:41Z,68,29,1,1,2026-11-26T06:32:11Z,1144.5,3537.9,
+45770072438,2026-11-26T06:42:51Z,wallstreetbets/comments,feed,2026-11-18T06:42:51Z,0,0,0,0,2026-11-17T17:47:31Z,,,HTTP 404 for Reddit RSS comments r/wallstreetbets
+45770072438,2026-11-26T06:42:51Z,smallstreetbets/comments,feed,2026-11-18T06:42:51Z,0,0,0,0,2026-11-17T17:48:25Z,,,HTTP 404 for Reddit RSS comments r/smallstreetbets
+45770072438,2026-11-26T06:42:51Z,pennystocks/comments,feed,2026-11-18T06:42:51Z,0,0,0,0,2026-11-17T17:48:47Z,,,HTTP 404 for Reddit RSS comments r/pennystocks
+45770072438,2026-11-26T06:42:51Z,wallstreetbets/comments,late,2026-11-24T23:18:34Z,0,0,0,0,,,,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"

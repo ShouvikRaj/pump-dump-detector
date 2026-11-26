@@ -48,8 +48,8 @@
     "NRSN": {
       "episode_id": "NRSN-20261126T004435Z",
       "first_flagged_at": 1795653875.8416755,
-      "last_flagged_at": 1795674139.996105,
-      "n_flags": 22,
+      "last_flagged_at": 1795675590.5371423,
+      "n_flags": 23,
       "peak_mentions": 12,
       "peak_z": 12.0,
       "reasons_seen": [
@@ -59,8 +59,8 @@
     "SGOV": {
       "episode_id": "SGOV-20261125T215506Z",
       "first_flagged_at": 1795643706.928942,
-      "last_flagged_at": 1795674139.996105,
-      "n_flags": 32,
+      "last_flagged_at": 1795675590.5371423,
+      "n_flags": 33,
       "peak_mentions": 24,
       "peak_z": 3.844,
       "reasons_seen": [
@@ -92,20 +92,20 @@
     "VTI": {
       "episode_id": "VTI-20261126T005415Z",
       "first_flagged_at": 1795654455.1152132,
-      "last_flagged_at": 1795674139.996105,
-      "n_flags": 21,
+      "last_flagged_at": 1795675590.5371423,
+      "n_flags": 22,
       "peak_mentions": 17,
-      "peak_z": 2.798,
+      "peak_z": 2.834,
       "reasons_seen": [
         "mention_spike"
       ]
     }
   },
   "last_run": {
-    "finished_at": 1795674140.042352,
-    "new_docs": 16,
-    "run_id": "45767030327",
-    "started_at": 1795673793.7156186
+    "finished_at": 1795675590.6236398,
+    "new_docs": 50,
+    "run_id": "45770072438",
+    "started_at": 1795675371.664879
   },
   "late": {
     "after": {
@@ -135,7 +135,7 @@
       "fallback_complete_at": 1794937800.9456909,
       "fallback_cursor": 1794937727,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1795672218.3363633,
+      "last_complete_at": 1795675381.9682236,
       "last_error": "Arctic Shift's archive stalled at 2026-11-26T05:49:41Z",
       "last_error_at": 1795673804.765808
     },
@@ -146,18 +146,18 @@
       "fallback_complete_at": 1794937263.2651505,
       "fallback_cursor": 1794936997,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1795672214.2630067,
+      "last_complete_at": 1795675377.6610453,
       "last_error": "Arctic Shift's archive stalled at 2026-11-26T05:49:41Z",
       "last_error_at": 1795673800.591114
     },
     "smallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1795669480,
+      "cursor": 1795674391,
       "fallback_complete_at": 1794937741.6143296,
       "fallback_cursor": 1794937705,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1795672220.197358,
+      "last_complete_at": 1795675385.7832131,
       "last_error": "Arctic Shift's archive stalled at 2026-11-26T05:49:41Z",
       "last_error_at": 1795673806.1351454
     },
@@ -168,29 +168,29 @@
       "fallback_complete_at": 1794937202.868109,
       "fallback_cursor": 1794932867,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1795672215.1943603,
+      "last_complete_at": 1795675379.6508768,
       "last_error": "Arctic Shift's archive stalled at 2026-11-26T05:49:41Z",
       "last_error_at": 1795673802.0175097
     },
     "wallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1795672181,
+      "cursor": 1795674731,
       "fallback_complete_at": 1794937681.1815443,
       "fallback_cursor": 1794937651,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1795672223.1832423,
+      "last_complete_at": 1795675386.8999102,
       "last_error": "Arctic Shift's archive stalled at 2026-11-26T05:49:41Z",
       "last_error_at": 1795673807.2450593
     },
     "wallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1795672973,
+      "cursor": 1795675034,
       "fallback_complete_at": 1794937142.8354933,
       "fallback_cursor": 1794936926,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1795672216.7190027,
+      "last_complete_at": 1795675380.7226076,
       "last_error": "Arctic Shift's archive stalled at 2026-11-26T05:49:41Z",
       "last_error_at": 1795673803.2928944
     }
