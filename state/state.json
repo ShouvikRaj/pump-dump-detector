@@ -26,8 +26,8 @@
     "SGOV": {
       "episode_id": "SGOV-20261125T215506Z",
       "first_flagged_at": 1795643706.928942,
-      "last_flagged_at": 1795651028.1246548,
-      "n_flags": 9,
+      "last_flagged_at": 1795652651.7783806,
+      "n_flags": 10,
       "peak_mentions": 18,
       "peak_z": 2.38,
       "reasons_seen": [
@@ -36,10 +36,28 @@
     }
   },
   "last_run": {
-    "finished_at": 1795651028.16071,
-    "new_docs": 2,
-    "run_id": "45724612261",
-    "started_at": 1795650758.240715
+    "finished_at": 1795652651.8245442,
+    "new_docs": 140,
+    "run_id": "45727843421",
+    "started_at": 1795652351.6998522
+  },
+  "late": {
+    "after": {
+      "pennystocks/comments": 1795563094,
+      "pennystocks/posts": 1795555077,
+      "smallstreetbets/comments": 1795564648,
+      "smallstreetbets/posts": 1795563162,
+      "wallstreetbets/comments": 1795494490,
+      "wallstreetbets/posts": 1795564491
+    },
+    "day": "2026-11-24",
+    "done": [
+      "pennystocks/posts",
+      "smallstreetbets/posts",
+      "wallstreetbets/posts",
+      "pennystocks/comments",
+      "smallstreetbets/comments"
+    ]
   },
   "late_done_for": "2026-11-23",
   "live_since": 1791153669.8332794,
@@ -47,11 +65,11 @@
     "pennystocks/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1795648210,
+      "cursor": 1795650171,
       "fallback_complete_at": 1794937800.9456909,
       "fallback_cursor": 1794937727,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1795649973.002232,
+      "last_complete_at": 1795652362.0496836,
       "last_error": "Arctic Shift's archive stalled at 2026-11-25T23:35:36Z",
       "last_error_at": 1795650769.4071069
     },
@@ -62,18 +80,18 @@
       "fallback_complete_at": 1794937263.2651505,
       "fallback_cursor": 1794936997,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1795649967.2862387,
+      "last_complete_at": 1795652358.6116762,
       "last_error": "Arctic Shift's archive stalled at 2026-11-25T23:35:36Z",
       "last_error_at": 1795650763.4504755
     },
     "smallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1795643478,
+      "cursor": 1795650873,
       "fallback_complete_at": 1794937741.6143296,
       "fallback_cursor": 1794937705,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1795649977.4758852,
+      "last_complete_at": 1795652363.565342,
       "last_error": "Arctic Shift's archive stalled at 2026-11-25T23:35:36Z",
       "last_error_at": 1795650770.89951
     },
@@ -84,29 +102,29 @@
       "fallback_complete_at": 1794937202.868109,
       "fallback_cursor": 1794932867,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1795649968.3507636,
+      "last_complete_at": 1795652359.9218872,
       "last_error": "Arctic Shift's archive stalled at 2026-11-25T23:35:36Z",
       "last_error_at": 1795650764.6336448
     },
     "wallstreetbets/comments": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1795649736,
+      "cursor": 1795651811,
       "fallback_complete_at": 1794937681.1815443,
       "fallback_cursor": 1794937651,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1795649987.509953,
+      "last_complete_at": 1795652367.6466348,
       "last_error": "Arctic Shift's archive stalled at 2026-11-25T23:35:36Z",
       "last_error_at": 1795650774.606335
     },
     "wallstreetbets/posts": {
       "complete_since": 1790376069.8332794,
       "consecutive_errors": 0,
-      "cursor": 1795650491,
+      "cursor": 1795652223,
       "fallback_complete_at": 1794937142.8354933,
       "fallback_cursor": 1794936926,
       "initialized_at": 1791153669.8332794,
-      "last_complete_at": 1795649969.503229,
+      "last_complete_at": 1795652360.8945622,
       "last_error": "Arctic Shift's archive stalled at 2026-11-25T23:35:36Z",
       "last_error_at": 1795650766.0094967
     }

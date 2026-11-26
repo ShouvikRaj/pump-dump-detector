@@ -29496,3 +29496,18 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 45724612261,2026-11-25T23:52:38Z,wallstreetbets/posts,fallback,2026-11-25T23:48:11Z,0,0,0,0,2026-11-17T17:35:26Z,,,HTTP 404 for Reddit RSS posts r/wallstreetbets
 45724612261,2026-11-25T23:52:38Z,smallstreetbets/posts,fallback,2026-11-25T23:22:00Z,0,0,0,0,2026-11-17T16:27:47Z,,,HTTP 404 for Reddit RSS posts r/smallstreetbets
 45724612261,2026-11-25T23:52:38Z,pennystocks/posts,fallback,2026-11-25T23:09:59Z,0,0,0,0,2026-11-17T17:36:37Z,,,HTTP 404 for Reddit RSS posts r/pennystocks
+45727843421,2026-11-26T00:19:11Z,pennystocks/posts,live,2026-11-25T20:09:59Z,2,0,1,1,2026-11-25T23:09:59Z,16.5,,
+45727843421,2026-11-26T00:19:11Z,smallstreetbets/posts,live,2026-11-25T20:22:00Z,6,0,1,1,2026-11-25T23:22:00Z,12.5,,
+45727843421,2026-11-26T00:19:11Z,wallstreetbets/posts,live,2026-11-25T20:48:11Z,45,5,1,1,2026-11-26T00:17:03Z,14.0,700.9,
+45727843421,2026-11-26T00:19:11Z,pennystocks/comments,live,2026-11-25T22:40:10Z,5,4,1,1,2026-11-25T23:42:51Z,2307.0,3047.0,
+45727843421,2026-11-26T00:19:11Z,smallstreetbets/comments,live,2026-11-25T21:21:18Z,22,16,1,1,2026-11-25T23:54:33Z,4665.5,8345.6,
+45727843421,2026-11-26T00:19:11Z,wallstreetbets/comments,live,2026-11-25T23:05:36Z,239,1,3,1,2026-11-26T00:10:11Z,746.0,556.6,
+45727843421,2026-11-26T00:19:11Z,wallstreetbets/comments,feed,2026-11-18T00:19:11Z,0,0,0,0,2026-11-17T17:47:31Z,,,HTTP 404 for Reddit RSS comments r/wallstreetbets
+45727843421,2026-11-26T00:19:11Z,smallstreetbets/comments,feed,2026-11-18T00:19:11Z,0,0,0,0,2026-11-17T17:48:25Z,,,HTTP 404 for Reddit RSS comments r/smallstreetbets
+45727843421,2026-11-26T00:19:11Z,pennystocks/comments,feed,2026-11-18T00:19:11Z,0,0,0,0,2026-11-17T17:48:47Z,,,HTTP 404 for Reddit RSS comments r/pennystocks
+45727843421,2026-11-26T00:19:11Z,pennystocks/posts,late,2026-11-23T23:59:59Z,19,0,1,1,,,,
+45727843421,2026-11-26T00:19:11Z,smallstreetbets/posts,late,2026-11-23T23:59:59Z,34,0,1,1,,,,
+45727843421,2026-11-26T00:19:11Z,wallstreetbets/posts,late,2026-11-23T23:59:59Z,438,0,5,1,,,,
+45727843421,2026-11-26T00:19:11Z,pennystocks/comments,late,2026-11-23T23:59:59Z,166,23,2,1,,,101184.5,
+45727843421,2026-11-26T00:19:11Z,smallstreetbets/comments,late,2026-11-23T23:59:59Z,845,84,9,1,,,101834.6,
+45727843421,2026-11-26T00:19:11Z,wallstreetbets/comments,late,2026-11-23T23:59:59Z,7802,7,79,0,,,164970.4,
