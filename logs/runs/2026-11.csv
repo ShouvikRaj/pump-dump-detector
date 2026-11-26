@@ -29715,3 +29715,13 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 45758384572,2026-11-26T04:57:02Z,smallstreetbets/comments,feed,2026-11-18T04:57:02Z,0,0,0,0,2026-11-17T17:48:25Z,,,HTTP 404 for Reddit RSS comments r/smallstreetbets
 45758384572,2026-11-26T04:57:02Z,pennystocks/comments,feed,2026-11-18T04:57:02Z,0,0,0,0,2026-11-17T17:48:47Z,,,HTTP 404 for Reddit RSS comments r/pennystocks
 45758384572,2026-11-26T04:57:02Z,wallstreetbets/comments,late,2026-11-24T23:18:34Z,0,0,0,0,,,,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
+45759787071,2026-11-26T05:10:19Z,pennystocks/posts,live,2026-11-25T20:09:59Z,3,1,1,1,2026-11-26T05:01:10Z,19.0,555.8,
+45759787071,2026-11-26T05:10:19Z,smallstreetbets/posts,live,2026-11-26T01:06:29Z,4,1,1,1,2026-11-26T05:02:47Z,17.0,460.2,
+45759787071,2026-11-26T05:10:19Z,wallstreetbets/posts,live,2026-11-26T01:55:37Z,22,2,1,1,2026-11-26T05:04:16Z,14.5,443.1,
+45759787071,2026-11-26T05:10:19Z,pennystocks/comments,live,2026-11-26T03:12:17Z,3,0,1,1,2026-11-26T03:42:17Z,551.0,,
+45759787071,2026-11-26T05:10:19Z,smallstreetbets/comments,live,2026-11-26T03:36:29Z,1,0,1,1,2026-11-26T04:06:29Z,134.0,,
+45759787071,2026-11-26T05:10:19Z,wallstreetbets/comments,live,2026-11-26T04:17:51Z,88,86,1,1,2026-11-26T05:00:13Z,1527.5,2118.6,
+45759787071,2026-11-26T05:10:19Z,wallstreetbets/comments,feed,2026-11-18T05:10:19Z,0,0,0,0,2026-11-17T17:47:31Z,,,HTTP 404 for Reddit RSS comments r/wallstreetbets
+45759787071,2026-11-26T05:10:19Z,smallstreetbets/comments,feed,2026-11-18T05:10:19Z,0,0,0,0,2026-11-17T17:48:25Z,,,HTTP 404 for Reddit RSS comments r/smallstreetbets
+45759787071,2026-11-26T05:10:19Z,pennystocks/comments,feed,2026-11-18T05:10:19Z,0,0,0,0,2026-11-17T17:48:47Z,,,HTTP 404 for Reddit RSS comments r/pennystocks
+45759787071,2026-11-26T05:10:19Z,wallstreetbets/comments,late,2026-11-24T23:18:34Z,0,0,0,0,,,,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
