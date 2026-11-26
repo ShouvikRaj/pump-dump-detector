@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-25T08:19:15Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-26T00:20:07Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-23)
 
@@ -19,6 +19,7 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-25 21:55 | SGOV | other | 0.1% | 0.0% | 100% / 0% / 0% / 0% | Users discuss SGOV as a safe haven or cash parking spot amidst market losses, contrasting it with riskier assets. |
 | 2026-11-25 00:43 | BENF | other | **46%** | **2.8%** | 100% / 0% / 0% / 0% | Users discuss BENF price targets, volume, and chart patterns with bullish sentiment. |
 | 2026-11-24 21:15 | DELL | other | 2.3% | 0.1% | 100% / 0% / 0% / 18% | Chatter focuses on Dell's reported earnings miss, guidance cuts, and subsequent stock price crash. |
 | 2026-11-24 00:45 | DJT | other | 1.7% | 0.0% | 100% / 0% / 3.3% / 0% | Chatter focuses on DJT's alleged influence over Nvidia and Jensen Huang's reinstatement, mixed with debt concerns and insults. |
@@ -50,8 +51,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-19 00:49 | SPCX | other | 1.6% | no model | 100% / 0% / 2.5% / 0% | Users discuss SPCX's past performance, compare it to the upcoming Anthropic IPO, and warn of potential pump-and-dump schemes. |
 | 2026-11-19 00:42 | GLD | other | 0.3% | no model | 100% / 0% / 0% / 0% | Users discuss GLD price levels, express bearish views on puts, and share unrelated jokes or opinions. |
 | 2026-11-19 00:42 | TTWO | other | 0.2% | no model | 100% / 2.5% / 5.0% / 0% | Users discuss TTWO stock price movements, GTA 6 launch expectations, and potential trading strategies. |
-| 2026-11-18 21:40 | PANW | other | 0.8% | no model | 100% / 9.1% / 0% / 9.1% | Chatter focuses on PANW's massive AI acquisition, earnings results, and extremely high valuation metrics. |
-| 2026-11-18 17:15 | UNH | other | 0.1% | no model | 100% / 0% / 0% / 0% | Users express confusion and anger over UNH's significant price drop, with some selling shares and mocking the company. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
@@ -61,31 +60,31 @@ Each development week replayed exactly as it would have run: its model trained o
 
 | Candidates | n | Positives | Base rate | Flagged | Precision | Recall | F1 | Lift | AP | AUC |
 |---|---|---|---|---|---|---|---|---|---|---|
-| all candidates | 115 | 12 | 10% | 12 | 67% | 67% | 0.67 | 6.4x | 0.72 | 0.90 |
-| low float runner | 3 | 2 | 67% | 3 | 67% | 100% | 0.80 | 1.0x | 1.00 | 1.00 |
-| other | 112 | 10 | 8.9% | 9 | 67% | 60% | 0.63 | 7.5x | 0.64 | 0.88 |
-| pump types together | 3 | 2 | 67% | 3 | 67% | 100% | 0.80 | 1.0x | 1.00 | 1.00 |
+| all candidates | 129 | 13 | 10% | 13 | 69% | 69% | 0.69 | 6.9x | 0.75 | 0.90 |
+| low float runner | 4 | 2 | 50% | 3 | 67% | 100% | 0.80 | 1.3x | 1.00 | 1.00 |
+| other | 125 | 11 | 8.8% | 10 | 70% | 64% | 0.67 | 8.0x | 0.69 | 0.89 |
+| pump types together | 4 | 2 | 50% | 3 | 67% | 100% | 0.80 | 1.3x | 1.00 | 1.00 |
 | weeks of 2026-11-02 to 2026-11-02 | 87 | 4 | 4.6% | 6 | 50% | 75% | 0.60 | 10.9x | 0.64 | 0.78 |
-| weeks of 2026-11-09 to 2026-11-09 | 27 | 7 | 26% | 6 | 83% | 71% | 0.77 | 3.2x | 0.89 | 0.95 |
-| weeks of 2026-11-16 to 2026-11-16 | 1 | 1 | 100% | 0 | - | 0% | - | - | 1.00 | - |
+| weeks of 2026-11-09 to 2026-11-09 | 40 | 7 | 18% | 6 | 83% | 71% | 0.77 | 4.8x | 0.85 | 0.95 |
+| weeks of 2026-11-16 to 2026-11-16 | 2 | 2 | 100% | 1 | 100% | 50% | 0.67 | 1.0x | 1.00 | - |
 
 | Model | AP | Precision | Recall | F1 |
 |---|---|---|---|---|
-| all groups | 0.72 | 67% | 67% | 0.67 |
-| market only | 0.70 | 64% | 75% | 0.69 |
-| social only | 0.54 | 71% | 42% | 0.53 |
+| all groups | 0.75 | 69% | 69% | 0.69 |
+| market only | 0.73 | 67% | 77% | 0.71 |
+| social only | 0.58 | 75% | 46% | 0.57 |
 
 | Robustness check | Result | Detail |
 |---|---|---|
-| beats the base rate | pass | precision 67% vs base rate 10%; AP 0.72 |
+| beats the base rate | pass | precision 69% vs base rate 10%; AP 0.75 |
 | separate periods | not enough data | needs 3 positives in each of three blocks of weeks |
 | per pump type | not enough data | needs 5 positives in a pump type |
-| beats the control group | not enough data | 9 flagged with settled controls (needs 10) |
-| survives slippage | not enough data | 8 flagged with a 10-session return (needs 10) |
+| beats the control group | pass | flagged 64% vs their controls 4.5% |
+| survives slippage | pass | flagged mean 10-session return -48.8% vs unflagged -9.6% (needs -3% or lower) |
 
 Verdict: **not robust yet** (some checks need more labels).
 
-Feature groups: all used; weak groups are pruned once the replay holds 20 positive candidates (12 so far).
+Feature groups: all used; weak groups are pruned once the replay holds 20 positive candidates (13 so far).
 
 ### pump
 
