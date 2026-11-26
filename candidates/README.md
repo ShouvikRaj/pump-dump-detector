@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-26T02:49:07Z by run `45744425065`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-26T03:14:23Z by run `45747253976`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -9,12 +9,12 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 |---|---|---|---|---|---|---|---|---|---|---|
 | NRSN | 2026-11-26 00:44 | mention spike | 12 | 0.0 | 10 | 0 | pennystocks 8, smallstreetbets 2, wallstreetbets 2 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y5betx/) |
 | SGOV | 2026-11-25 21:55 | mention spike | 23 | 6.57 | 22 | 0 | wallstreetbets 23 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y56p4r/) |
-| SOXS | 2026-11-26 00:44 | mention spike | 16 | 7.43 | 13 | 0 | wallstreetbets 16 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y4wo51/) |
 | VTI | 2026-11-26 00:54 | mention spike | 17 | 7.14 | 15 | 0 | wallstreetbets 17 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y5anxn/) |
+| SOXS | 2026-11-26 00:44 | mention spike | 13 | 7.71 | 12 | 0 | wallstreetbets 13 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y54kwg/comment/19t6f4f9d6200/) |
 | META | 2026-11-26 00:54 | mention spike | 26 | 18.43 | 14 | 0 | wallstreetbets 26 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y5io1f/comment/19t6uk9zz4wmb/) |
-| SOXL | 2026-11-26 00:44 | mention spike | 67 | 41.14 | 53 | 0 | wallstreetbets 67 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y5dxq0/) |
+| SOXL | 2026-11-26 00:44 | mention spike | 65 | 41.43 | 51 | 0 | wallstreetbets 65 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y5dxq0/) |
 | AAPL | 2026-11-26 00:54 | mention spike | 56 | 30.29 | 31 | 0 | wallstreetbets 56 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y5io1f/comment/19t6t8v2m0lyd/) |
-| DELL | 2026-11-24 21:15 | mention spike | 46 | 21.0 | 33 | 0 | wallstreetbets 46 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y5io1f/comment/19t6uk9zz4wmb/) |
+| DELL | 2026-11-24 21:15 | mention spike | 44 | 21.29 | 32 | 0 | wallstreetbets 44 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y5io1f/comment/19t6uk9zz4wmb/) |
 | BENF | 2026-11-25 00:43 | mention spike | 2 | 1.71 | 2 | 0 | pennystocks 2 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1y4yruq/comment/19t5y651znmkg/) |
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
