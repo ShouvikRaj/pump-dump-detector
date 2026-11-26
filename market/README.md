@@ -1,13 +1,16 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-26T00:45:13Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-26T00:55:00Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-522 candidates and 1033 controls so far. Archetypes: other 498, low_float_runner 18, unknown 5, otc_penny 1.
+525 candidates and 1039 controls so far. Archetypes: other 501, low_float_runner 18, unknown 5, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| VTI | 2026-11-26 00:54 | other | listed | 355.2 | +0.6% | -1.7% | 1.3x |  |  |  |  |
+| META | 2026-11-26 00:54 | other | listed | 612.5 | +0.4% | -1.1% | 1.0x | 2.21B | 2.7% | 9 |  |
+| AAPL | 2026-11-26 00:54 | other | listed | 355.3 | -0.1% | +0.9% | 1.0x | 14.51B | 1.0% | 2 |  |
 | SOXS | 2026-11-26 00:44 | other | listed | 59.32 | -4.5% | +6.4% | 1.4x |  |  |  |  |
 | SOXL | 2026-11-26 00:44 | other | listed | 33.45 | +4.5% | -35.0% | 2.0x |  |  |  |  |
 | NRSN | 2026-11-26 00:44 | low float runner | listed | 1.83 | +4.0% | +28.5% | 1883.0x | 1.2M | 2.5% | 0 |  |
@@ -35,6 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | ROPE | 2026-11-20 03:06 | other | listed | 30.1 | +0.0% | -3.9% | 1.4x |  |  |  |  |
 | INTU | 2026-11-20 03:06 | other | listed | 279.7 | -9.8% | -8.9% | 1.6x | 260.9M | 3.4% | 1 |  |
 | OPEX | 2026-11-20 00:51 | other | listed | 1.21 | +10.0% | +25.0% | 3.1x |  |  |  |  |
-| GME | 2026-11-20 00:51 | other | listed | 27.1 | +0.6% | +5.1% | 2.8x | 460.4M | 9.2% | 0 |  |
-| CRWD | 2026-11-19 03:02 | other | listed | 251.2 | +6.0% | +3.5% | 1.3x | 1.01B | 2.2% | 1 |  |
-| MU | 2026-11-19 01:56 | other | listed | 718.4 | +0.8% | -1.8% | 1.1x | 1.13B | 2.1% | 0 |  |
