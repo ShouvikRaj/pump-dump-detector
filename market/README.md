@@ -1,13 +1,16 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-25T21:55:30Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-26T00:45:13Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-519 candidates and 1027 controls so far. Archetypes: other 496, low_float_runner 17, unknown 5, otc_penny 1.
+522 candidates and 1033 controls so far. Archetypes: other 498, low_float_runner 18, unknown 5, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SOXS | 2026-11-26 00:44 | other | listed | 59.32 | -4.5% | +6.4% | 1.4x |  |  |  |  |
+| SOXL | 2026-11-26 00:44 | other | listed | 33.45 | +4.5% | -35.0% | 2.0x |  |  |  |  |
+| NRSN | 2026-11-26 00:44 | low float runner | listed | 1.83 | +4.0% | +28.5% | 1883.0x | 1.2M | 2.5% | 0 |  |
 | SGOV | 2026-11-25 21:55 | other | listed | 100.7 | +0.0% | +0.1% | 1.1x |  |  |  |  |
 | BENF | 2026-11-25 00:43 | other | listed | 0.805 | -12.0% | +63.1% | 1818.5x | 3.9M | 6.6% | 0 |  |
 | DELL | 2026-11-24 21:15 | other | listed | 289.4 | -2.0% | -8.5% | 2.0x | 292.2M | 3.6% | 2 |  |
@@ -35,6 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | GME | 2026-11-20 00:51 | other | listed | 27.1 | +0.6% | +5.1% | 2.8x | 460.4M | 9.2% | 0 |  |
 | CRWD | 2026-11-19 03:02 | other | listed | 251.2 | +6.0% | +3.5% | 1.3x | 1.01B | 2.2% | 1 |  |
 | MU | 2026-11-19 01:56 | other | listed | 718.4 | +0.8% | -1.8% | 1.1x | 1.13B | 2.1% | 0 |  |
-| SPCX | 2026-11-19 00:49 | other | listed | 145 | +1.1% | +2.7% | 0.8x | 3.05B | 4.6% | 0 |  |
-| LULU | 2026-11-19 00:49 | other | listed | 110.1 | -0.6% | +3.1% | 1.2x | 101.7M | 13.7% | 0 |  |
-| AMZN | 2026-11-19 00:49 | other | listed | 272 | +1.6% | +0.6% | 0.8x | 9.84B | 1.0% | 2 |  |
