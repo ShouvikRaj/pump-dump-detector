@@ -30641,3 +30641,13 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 45923118597,2026-11-27T01:32:28Z,smallstreetbets/posts,fallback,2026-11-27T00:06:18Z,0,0,0,0,2026-11-17T16:27:47Z,,,HTTP 404 for Reddit RSS posts r/smallstreetbets
 45923118597,2026-11-27T01:32:28Z,pennystocks/posts,fallback,2026-11-27T01:22:07Z,0,0,0,0,2026-11-17T17:36:37Z,,,HTTP 404 for Reddit RSS posts r/pennystocks
 45923118597,2026-11-27T01:32:28Z,wallstreetbets/comments,late,2026-11-25T23:17:15Z,100,54,1,0,,,94661.3,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
+45924386468,2026-11-27T01:45:42Z,pennystocks/posts,live,2026-11-26T22:22:07Z,3,0,1,1,2026-11-27T01:22:07Z,15.0,,
+45924386468,2026-11-27T01:45:42Z,smallstreetbets/posts,live,2026-11-26T21:06:18Z,3,0,1,1,2026-11-27T00:06:18Z,14.0,,
+45924386468,2026-11-27T01:45:42Z,wallstreetbets/posts,live,2026-11-26T22:28:11Z,23,1,1,1,2026-11-27T01:44:57Z,12.0,57.4,
+45924386468,2026-11-27T01:45:42Z,pennystocks/comments,live,2026-11-27T00:50:14Z,1,0,1,1,2026-11-27T01:20:14Z,36.0,,
+45924386468,2026-11-27T01:45:42Z,smallstreetbets/comments,live,2026-11-27T00:09:40Z,8,0,1,1,2026-11-27T00:39:40Z,3358.0,,
+45924386468,2026-11-27T01:45:42Z,wallstreetbets/comments,live,2026-11-27T00:39:30Z,55,3,1,1,2026-11-27T01:31:30Z,922.0,872.9,
+45924386468,2026-11-27T01:45:42Z,wallstreetbets/comments,feed,2026-11-19T01:45:42Z,0,0,0,0,2026-11-17T17:47:31Z,,,HTTP 404 for Reddit RSS comments r/wallstreetbets
+45924386468,2026-11-27T01:45:42Z,smallstreetbets/comments,feed,2026-11-19T01:45:42Z,0,0,0,0,2026-11-17T17:48:25Z,,,HTTP 404 for Reddit RSS comments r/smallstreetbets
+45924386468,2026-11-27T01:45:42Z,pennystocks/comments,feed,2026-11-19T01:45:42Z,0,0,0,0,2026-11-17T17:48:47Z,,,HTTP 404 for Reddit RSS comments r/pennystocks
+45924386468,2026-11-27T01:45:42Z,wallstreetbets/comments,late,2026-11-25T23:21:39Z,495,315,5,0,,,94589.5,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
