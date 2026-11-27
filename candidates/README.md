@@ -1,6 +1,6 @@
 # Stage 1 candidates
 
-Updated 2026-11-27T00:21:09Z by run `45915405471`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-27T00:34:09Z by run `45916674307`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
@@ -11,7 +11,7 @@ posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at le
 | SGOV | 2026-11-25 21:55 | mention spike | 2 | 9.14 | 2 | 0 | wallstreetbets 2 | NYSE |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y66lyf/comment/19t8luxnmyxxc/) |
 | NRSN | 2026-11-26 00:44 | mention spike | 1 | 2.0 | 1 | 0 | pennystocks 1 | Nasdaq |  | [link](https://www.reddit.com/r/pennystocks/comments/1y5shjc/comment/19t7bcrd7hqv7/) |
 | SOXS | 2026-11-26 00:44 | mention spike | 0 |  | 0 | 0 |  | NYSE Arca |  |  |
-| META | 2026-11-26 00:54 | mention spike | 2 | 20.0 | 2 | 0 | wallstreetbets 2 | Nasdaq | #12 | [link](https://www.reddit.com/r/wallstreetbets/comments/1y68xxq/) |
+| META | 2026-11-26 00:54 | mention spike | 2 | 20.0 | 2 | 0 | wallstreetbets 2 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y68xxq/) |
 | SOXL | 2026-11-26 00:44 | mention spike | 2 | 49.14 | 2 | 0 | wallstreetbets 2 | NYSE Arca |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y5uxr1/) |
 | AAPL | 2026-11-26 00:54 | mention spike | 2 | 34.86 | 2 | 0 | wallstreetbets 2 | Nasdaq |  | [link](https://www.reddit.com/r/wallstreetbets/comments/1y68xxq/) |
 | DELL | 2026-11-24 21:15 | mention spike | 0 |  | 0 | 0 |  | NYSE |  |  |
