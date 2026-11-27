@@ -6035,11 +6035,11 @@ scan-gate-AKE-2026112009,scan,spike,settled,0.006147,0.008832,0.462014,54.0,1,1,
 scan-gate-ARG-2026112009,scan,spike,settled,0.05456,0.05681,0.247617,46.0,1,1,0,0.0,0.550959,0.737898,0.844746,-0.096638,0,crypto-label-v1
 scan-kucoin-AKE-2026112009,scan,spike,settled,0.0061292,0.0088044,0.468348,54.0,1,1,1,0.0,-0.416542,-0.874347,0.186895,-0.515401,0,crypto-label-v1
 scan-gate-IRON-2026112010,scan,spike,partial,0.003801,0.00374,1.261773,6.0,1,1,0,0.0,,,0.203209,-0.117647,1,crypto-label-v1
-scan-gate-CARV-2026112011,scan,spike,pending,0.02433,0.02548,0.25113,50.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-gate-KERNEL-2026112011,scan,spike,pending,0.04358,0.05044,0.330886,26.0,1,1,,0.00456,,,,,0,crypto-label-v1
-scan-kucoin-CARV-2026112011,scan,spike,pending,0.024439,0.025367,0.257212,49.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-kucoin-KERNEL-2026112011,scan,spike,pending,0.04319,0.05086,0.347071,31.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-binance-KERNEL-2026112011,scan,spike,pending,0.0433,0.0501,0.353349,26.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-gate-CARV-2026112011,scan,spike,settled,0.02433,0.02548,0.25113,50.0,1,1,0,0.0,-0.107143,-0.036107,0.093407,-0.139717,0,crypto-label-v1
+scan-gate-KERNEL-2026112011,scan,spike,settled,0.04358,0.05044,0.330886,26.0,1,1,0,0.00456,-0.147502,-0.135012,0.638382,-0.160785,0,crypto-label-v1
+scan-kucoin-CARV-2026112011,scan,spike,settled,0.024439,0.025367,0.257212,49.0,1,1,0,0.0,-0.099026,-0.034297,0.101431,-0.133559,0,crypto-label-v1
+scan-kucoin-KERNEL-2026112011,scan,spike,settled,0.04319,0.05086,0.347071,31.0,1,1,0,0.0,-0.158278,-0.145104,0.277821,-0.166536,0,crypto-label-v1
+scan-binance-KERNEL-2026112011,scan,spike,settled,0.0433,0.0501,0.353349,26.0,1,1,0,0.0,-0.143713,-0.131737,0.273453,-0.157685,0,crypto-label-v1
 tg-Whalesguide-19573,telegram,call,pending,17.34,17.28,0.008074,57.1,0,0,,0.006366,,,,,0,crypto-label-v1
 tg-Whalesguide-19574,telegram,call,pending,0.0208,0.0208,0.0,-0.8,0,0,,0.0,,,,,0,crypto-label-v1
 tg-Whalesguide-19575,telegram,call,pending,2.547,2.532,0.0,-0.9,0,0,,-0.000395,,,,,0,crypto-label-v1
@@ -6209,9 +6209,9 @@ scan-mexc-HAEDAL-2026112703,scan,spike,pending,0.0183,0.0235,0.839891,1.0,1,1,,0
 scan-binance-HAEDAL-2026112703,scan,spike,pending,0.0184,0.02385,0.624457,3.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-gate-0G-2026112704,scan,spike,pending,0.10331,0.1045,0.220114,0.0,1,1,,-0.003349,,,,,0,crypto-label-v1
 scan-kucoin-0G-2026112704,scan,spike,pending,0.1034,0.1047,0.231141,0.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-gate-AURORA-2026112708,scan,spike,pending,0.02986,0.03492,0.262559,,1,,,0.0,,,,,0,crypto-label-v1
-scan-kucoin-AURORA-2026112708,scan,spike,pending,0.03005,0.0353,0.260566,,1,,,0.0,,,,,0,crypto-label-v1
-scan-kucoin-YB-2026112708,scan,spike,pending,0.06265,0.0597,0.23352,,1,,,0.0,,,,,0,crypto-label-v1
+scan-gate-AURORA-2026112708,scan,spike,pending,0.02986,0.03492,0.262559,54.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-kucoin-AURORA-2026112708,scan,spike,pending,0.03005,0.0353,0.260566,54.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-kucoin-YB-2026112708,scan,spike,pending,0.06265,0.0597,0.23352,11.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-gate-CFG-2026112709,scan,spike,pending,0.05513,0.06331,0.256303,,1,,,0.0,,,,,0,crypto-label-v1
 scan-kucoin-CFG-2026112709,scan,spike,pending,0.0554,0.0635,0.252708,,1,,,0.0,,,,,0,crypto-label-v1
 scan-kucoin-PRAI-2026112709,scan,spike,pending,0.000521,0.000627,0.21881,,1,,,0.0,,,,,0,crypto-label-v1
@@ -6219,3 +6219,7 @@ scan-binance-CFG-2026112709,scan,spike,pending,0.0552,0.0633,0.266304,,1,,,0.0,,
 scan-binance-PORTAL-2026112709,scan,spike,pending,0.01238,0.01764,0.449919,,1,,,0.0,,,,,0,crypto-label-v1
 scan-mexc-PORTAL-2026112710,scan,spike,pending,0.017465,0.02139,0.224735,,1,,,0.0,,,,,0,crypto-label-v1
 scan-gate-PORTAL-2026112710,scan,spike,pending,0.017342,0.021209,0.231115,,1,,,0.0,,,,,0,crypto-label-v1
+tg-Whalesguide-19615,telegram,call,pending,,,,,,,,,,,,,,crypto-label-v1
+scan-kucoin-ACE-2026112711,scan,spike,pending,0.04302,0.04441,0.203626,,1,,,0.0,,,,,0,crypto-label-v1
+scan-kucoin-QI-2026112711,scan,spike,pending,0.001616,0.00197,0.266708,,1,,,0.0,,,,,0,crypto-label-v1
+scan-binance-QI-2026112711,scan,spike,pending,0.001605,0.002009,0.28972,,1,,,0.0,,,,,0,crypto-label-v1
