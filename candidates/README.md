@@ -1,12 +1,10 @@
 # Stage 1 candidates
 
-Updated 2026-11-27T15:46:05Z by run `46027092226`. A candidate is a ticker whose Reddit mentions (or hype-language
+Updated 2026-11-27T15:56:08Z by run `46029002804`. A candidate is a ticker whose Reddit mentions (or hype-language
 posts) in the last 24 hours jumped above its prior 7-day mean + 2 sd, with at least
 10 mentions from 5 different authors. It stays listed until it goes
 24 hours without a new flag. These are statistical flags, not accusations or advice.
 
-| Ticker | Flagged since (UTC) | Why | Mentions 24h | Baseline/day | Authors | Hype posts | Subreddits | Exchange | StockTwits | Example |
-|---|---|---|---|---|---|---|---|---|---|---|
-| VTI | 2026-11-26 00:54 | mention spike | 0 |  | 0 | 0 |  | NYSE Arca |  |  |
+No active candidates right now.
 
 Full history: `episodes.csv` (one row per first flag, with the numbers known at that moment).
