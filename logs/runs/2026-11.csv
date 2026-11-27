@@ -30618,3 +30618,13 @@ run_id,run_started_at_utc,stream,mode,after_utc,fetched,new,pages,complete,curso
 45920574116,2026-11-27T01:06:01Z,smallstreetbets/comments,feed,2026-11-19T01:06:01Z,0,0,0,0,2026-11-17T17:48:25Z,,,HTTP 404 for Reddit RSS comments r/smallstreetbets
 45920574116,2026-11-27T01:06:01Z,pennystocks/comments,feed,2026-11-19T01:06:01Z,0,0,0,0,2026-11-17T17:48:47Z,,,HTTP 404 for Reddit RSS comments r/pennystocks
 45920574116,2026-11-27T01:06:01Z,wallstreetbets/comments,late,2026-11-25T22:55:19Z,100,29,1,0,,,94195.9,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
+45921865067,2026-11-27T01:19:14Z,pennystocks/posts,live,2026-11-26T21:00:30Z,1,0,1,1,2026-11-27T00:00:30Z,15.0,,
+45921865067,2026-11-27T01:19:14Z,smallstreetbets/posts,live,2026-11-26T21:06:18Z,3,0,1,1,2026-11-27T00:06:18Z,14.0,,
+45921865067,2026-11-27T01:19:14Z,wallstreetbets/posts,live,2026-11-26T21:55:08Z,22,2,1,1,2026-11-27T01:16:43Z,12.5,456.7,
+45921865067,2026-11-27T01:19:14Z,pennystocks/comments,live,2026-11-26T18:13:33Z,2,0,1,1,2026-11-26T18:43:33Z,7153.0,,
+45921865067,2026-11-27T01:19:14Z,smallstreetbets/comments,live,2026-11-26T23:48:40Z,3,0,1,1,2026-11-27T00:18:40Z,908.0,,
+45921865067,2026-11-27T01:19:14Z,wallstreetbets/comments,live,2026-11-27T00:28:50Z,65,55,1,1,2026-11-27T01:09:30Z,1253.0,1876.7,
+45921865067,2026-11-27T01:19:14Z,wallstreetbets/comments,feed,2026-11-19T01:19:14Z,0,0,0,0,2026-11-17T17:47:31Z,,,HTTP 404 for Reddit RSS comments r/wallstreetbets
+45921865067,2026-11-27T01:19:14Z,smallstreetbets/comments,feed,2026-11-19T01:19:14Z,0,0,0,0,2026-11-17T17:48:25Z,,,HTTP 404 for Reddit RSS comments r/smallstreetbets
+45921865067,2026-11-27T01:19:14Z,pennystocks/comments,feed,2026-11-19T01:19:14Z,0,0,0,0,2026-11-17T17:48:47Z,,,HTTP 404 for Reddit RSS comments r/pennystocks
+45921865067,2026-11-27T01:19:14Z,wallstreetbets/comments,late,2026-11-25T23:00:30Z,395,231,4,0,,,94288.9,"HTTP 422 for comments r/wallstreetbets after 6 tries: {'data': None, 'error': 'Timeout. Maybe slow down a bit'}"
