@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-27T00:14:00Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-27T08:11:48Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-23)
 
@@ -46,10 +46,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-20 17:56 | ORCL | other | 0.7% | no model | 100% / 0% / 0% / 0% | Users discuss ORCL price movements, past losses, and potential earnings plays without specific event announcements. |
 | 2026-11-20 14:10 | AMD | other | 11% | no model | 100% / 0% / 0% / 0% | Chatter focuses on export control allegations, stock price volatility, and bearish sentiment regarding AMD. |
 | 2026-11-20 14:10 | SGOV | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss holding SGOV as a safe haven or cash equivalent while waiting for other investments. |
-| 2026-11-20 03:06 | INTU | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss INTU's sharp price drop, joke about bankruptcy, and speculate on a move to $150. |
-| 2026-11-20 03:06 | ROPE | other | 0.1% | no model | 100% / 18% / 0% / 0% | Users discuss buying $ROPE calls and express bullish opinions on the ETF. |
-| 2026-11-20 00:51 | GME | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss GameStop stock, referencing memes, past squeezes, and general bullish sentiment without specific corporate events. |
-| 2026-11-20 00:51 | OPEX | other | 9.9% | no model | 100% / 0% / 0% / 0% | Users discuss OPEX ETF volatility, liquidity issues, and market bleeding before an expiration date. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
