@@ -6025,10 +6025,10 @@ scan-gate-KOR-2026112000,scan,spike,settled,0.000152,0.0001765,0.25,14.0,1,1,1,0
 scan-gate-GRND-2026112001,scan,spike,settled,0.012138,0.013584,0.285961,13.0,1,1,0,0.0,0.007288,-0.246761,0.372718,-0.245215,0,crypto-label-v1
 scan-binance-BARD-2026112002,scan,spike,settled,0.0862,0.0937,0.207657,53.0,1,1,0,0.0,0.006403,-0.14301,0.258271,-0.080043,0,crypto-label-v1
 scan-gate-IKA-2026112005,scan,spike,settled,0.0007156,0.0010708,0.561347,51.0,1,1,0,0.0,-0.490661,-0.563971,0.03941,-0.516716,0,crypto-label-v1
-scan-mexc-CYBER-2026112008,scan,spike,pending,0.219,0.2958,0.453881,17.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-gate-CYBER-2026112008,scan,spike,pending,0.2185,0.2987,0.440275,22.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-kucoin-CYBER-2026112008,scan,spike,pending,0.216,0.298,0.518519,27.0,1,1,,0.0,,,,,0,crypto-label-v1
-scan-binance-CYBER-2026112008,scan,spike,pending,0.222,0.298,0.391892,44.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-mexc-CYBER-2026112008,scan,spike,settled,0.219,0.2958,0.453881,17.0,1,1,0,0.0,-0.258283,-0.281609,0.037525,-0.278229,0,crypto-label-v1
+scan-gate-CYBER-2026112008,scan,spike,settled,0.2185,0.2987,0.440275,22.0,1,1,0,0.0,-0.262471,-0.289253,0.031804,-0.289253,0,crypto-label-v1
+scan-kucoin-CYBER-2026112008,scan,spike,settled,0.216,0.298,0.518519,27.0,1,1,0,0.0,-0.258389,-0.285235,0.030201,-0.285235,0,crypto-label-v1
+scan-binance-CYBER-2026112008,scan,spike,settled,0.222,0.298,0.391892,44.0,1,1,0,0.0,-0.265101,-0.285235,0.04698,-0.288591,0,crypto-label-v1
 scan-mexc-AKE-2026112009,scan,spike,pending,0.0063221,0.0088091,0.416507,54.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-mexc-SYMM-2026112009,scan,spike,pending,0.0164,0.0207,0.378049,45.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-gate-AKE-2026112009,scan,spike,pending,0.006147,0.008832,0.462014,54.0,1,1,,0.0,,,,,0,crypto-label-v1
@@ -6209,3 +6209,6 @@ scan-mexc-HAEDAL-2026112703,scan,spike,pending,0.0183,0.0235,0.839891,1.0,1,1,,0
 scan-binance-HAEDAL-2026112703,scan,spike,pending,0.0184,0.02385,0.624457,3.0,1,1,,0.0,,,,,0,crypto-label-v1
 scan-gate-0G-2026112704,scan,spike,pending,0.10331,0.1045,0.220114,0.0,1,1,,-0.003349,,,,,0,crypto-label-v1
 scan-kucoin-0G-2026112704,scan,spike,pending,0.1034,0.1047,0.231141,0.0,1,1,,0.0,,,,,0,crypto-label-v1
+scan-gate-AURORA-2026112708,scan,spike,pending,0.02986,0.03492,0.262559,,1,,,0.0,,,,,0,crypto-label-v1
+scan-kucoin-AURORA-2026112708,scan,spike,pending,0.03005,0.0353,0.260566,,1,,,0.0,,,,,0,crypto-label-v1
+scan-kucoin-YB-2026112708,scan,spike,pending,0.06265,0.0597,0.23352,,1,,,0.0,,,,,0,crypto-label-v1
