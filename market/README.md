@@ -1,13 +1,14 @@
 # Stage 2 market snapshots
 
-Updated 2026-11-26T00:55:00Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
+Updated 2026-11-28T00:39:23Z. Each Stage 1 candidate's market data as of the moment it was flagged (price, volume vs
 its 20-day average, float, short interest, SEC dilution filings), plus two matched controls nobody was talking
 about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statistical context, not advice.
 
-525 candidates and 1039 controls so far. Archetypes: other 501, low_float_runner 18, unknown 5, otc_penny 1.
+526 candidates and 1041 controls so far. Archetypes: other 502, low_float_runner 18, unknown 5, otc_penny 1.
 
 | Ticker | Flagged (UTC) | Archetype | Venue | Price | Since close | 5 days | Rel. volume | Float | Short % float | Dilution filings 90d | Problems |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| SAP | 2026-11-28 00:38 | other | listed | 213.7 | +0.0% | +5.1% | 0.5x | 15.33B | 0.0% | 0 |  |
 | VTI | 2026-11-26 00:54 | other | listed | 355.2 | +0.6% | -1.7% | 1.3x |  |  |  |  |
 | META | 2026-11-26 00:54 | other | listed | 612.5 | +0.4% | -1.1% | 1.0x | 2.21B | 2.7% | 9 |  |
 | AAPL | 2026-11-26 00:54 | other | listed | 355.3 | -0.1% | +0.9% | 1.0x | 14.51B | 1.0% | 2 |  |
@@ -37,4 +38,3 @@ about. Full rows: `snapshots.csv`; definitions: docs/stage2.md on `main`. Statis
 | AMD | 2026-11-20 14:10 | other | listed | 467.5 | -4.4% | -16.4% | 1.9x | 1.63B | 2.4% | 0 |  |
 | ROPE | 2026-11-20 03:06 | other | listed | 30.1 | +0.0% | -3.9% | 1.4x |  |  |  |  |
 | INTU | 2026-11-20 03:06 | other | listed | 279.7 | -9.8% | -8.9% | 1.6x | 260.9M | 3.4% | 1 |  |
-| OPEX | 2026-11-20 00:51 | other | listed | 1.21 | +10.0% | +25.0% | 3.1x |  |  |  |  |
