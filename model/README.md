@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-27T08:11:48Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-28T00:19:42Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-23)
 
@@ -42,10 +42,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-21 00:55 | VOO | other | 0.3% | no model | 100% / 0% / 0% / 0% | Users discuss VOO performance, compare it to other assets, and debate passive investing strategies. |
 | 2026-11-21 00:46 | SNDK | other | **37%** | no model | 100% / 0% / 0% / 0% | Users discuss SNDK's stock price drop, split, and bearish sentiment following a short report. |
 | 2026-11-21 00:46 | VWAV | other | **79%** | no model | 100% / 7.7% / 46% / 0% | Users discuss VWAV price drops, warn of manipulation, and joke about the company's circular share swaps. |
-| 2026-11-20 18:35 | TLT | other | 0.1% | no model | 100% / 20% / 0% / 0% | Users discuss TLT as a hedge against recession and oil dips, with bullish sentiment and price targets. |
-| 2026-11-20 17:56 | ORCL | other | 0.7% | no model | 100% / 0% / 0% / 0% | Users discuss ORCL price movements, past losses, and potential earnings plays without specific event announcements. |
-| 2026-11-20 14:10 | AMD | other | 11% | no model | 100% / 0% / 0% / 0% | Chatter focuses on export control allegations, stock price volatility, and bearish sentiment regarding AMD. |
-| 2026-11-20 14:10 | SGOV | other | 0.2% | no model | 100% / 0% / 0% / 0% | Users discuss holding SGOV as a safe haven or cash equivalent while waiting for other investments. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
@@ -55,27 +51,27 @@ Each development week replayed exactly as it would have run: its model trained o
 
 | Candidates | n | Positives | Base rate | Flagged | Precision | Recall | F1 | Lift | AP | AUC |
 |---|---|---|---|---|---|---|---|---|---|---|
-| all candidates | 129 | 13 | 10% | 13 | 69% | 69% | 0.69 | 6.9x | 0.75 | 0.90 |
+| all candidates | 140 | 13 | 9.3% | 14 | 64% | 69% | 0.67 | 6.9x | 0.73 | 0.90 |
 | low float runner | 4 | 2 | 50% | 3 | 67% | 100% | 0.80 | 1.3x | 1.00 | 1.00 |
-| other | 125 | 11 | 8.8% | 10 | 70% | 64% | 0.67 | 8.0x | 0.69 | 0.89 |
+| other | 136 | 11 | 8.1% | 11 | 64% | 64% | 0.64 | 7.9x | 0.66 | 0.89 |
 | pump types together | 4 | 2 | 50% | 3 | 67% | 100% | 0.80 | 1.3x | 1.00 | 1.00 |
 | weeks of 2026-11-02 to 2026-11-02 | 87 | 4 | 4.6% | 6 | 50% | 75% | 0.60 | 10.9x | 0.64 | 0.78 |
-| weeks of 2026-11-09 to 2026-11-09 | 40 | 7 | 18% | 6 | 83% | 71% | 0.77 | 4.8x | 0.85 | 0.95 |
+| weeks of 2026-11-09 to 2026-11-09 | 51 | 7 | 14% | 7 | 71% | 71% | 0.71 | 5.2x | 0.80 | 0.94 |
 | weeks of 2026-11-16 to 2026-11-16 | 2 | 2 | 100% | 1 | 100% | 50% | 0.67 | 1.0x | 1.00 | - |
 
 | Model | AP | Precision | Recall | F1 |
 |---|---|---|---|---|
-| all groups | 0.75 | 69% | 69% | 0.69 |
-| market only | 0.73 | 67% | 77% | 0.71 |
-| social only | 0.58 | 75% | 46% | 0.57 |
+| all groups | 0.73 | 64% | 69% | 0.67 |
+| market only | 0.72 | 62% | 77% | 0.69 |
+| social only | 0.47 | 60% | 46% | 0.52 |
 
 | Robustness check | Result | Detail |
 |---|---|---|
-| beats the base rate | pass | precision 69% vs base rate 10%; AP 0.75 |
+| beats the base rate | pass | precision 64% vs base rate 9.3%; AP 0.73 |
 | separate periods | not enough data | needs 3 positives in each of three blocks of weeks |
 | per pump type | not enough data | needs 5 positives in a pump type |
-| beats the control group | pass | flagged 64% vs their controls 4.5% |
-| survives slippage | pass | flagged mean 10-session return -51.2% vs unflagged -9.6% (needs -3% or lower) |
+| beats the control group | pass | flagged 62% vs their controls 3.8% |
+| survives slippage | pass | flagged mean 10-session return -47.1% vs unflagged -9.1% (needs -3% or lower) |
 
 Verdict: **not robust yet** (some checks need more labels).
 
