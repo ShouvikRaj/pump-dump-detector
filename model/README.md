@@ -1,6 +1,6 @@
 # Stage 5 model
 
-Updated 2026-11-28T00:19:42Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
+Updated 2026-11-28T07:36:55Z. Rule `model-v3` (docs/stage5.md on the code branch), written down before any model was trained. Every candidate is scored once, by the LightGBM model of the week it was flagged in (trained on the labels available before that week began, recent ones weighted more), and the score goes into the prospective log `model/predictions.csv`. **crash**: a close 40% or more below the flag price within 10 sessions (the avoid signal, first). **pump**: Stage 4's pump label. A candidate is flagged when its score is at least twice the base rate.
 
 ## This week's models (week of 2026-11-23)
 
@@ -19,6 +19,7 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 
 | Flagged (UTC) | Ticker | Archetype | Crash risk | Pump risk | LLM about / pitch / warning / event | What the chatter was about |
 |---|---|---|---|---|---|---|
+| 2026-11-28 00:38 | SAP | other | 0.2% | 0.0% | 100% / 0% / 0% / 0% | Users discuss SAP layoffs, software quality, and internal issues without specific buy/sell calls or confirmed events. |
 | 2026-11-26 00:54 | AAPL | other | 0.1% | 0.0% | 100% / 0% / 0% / 0% | Users discuss AAPL's resilience, price action, and market dominance while expressing mixed sentiments and skepticism. |
 | 2026-11-26 00:54 | META | other | 0.3% | 0.0% | 100% / 0% / 0% / 0% | Users discuss META's volatility, price drops, and potential rebounds without specific company events or pump-and-dump warnings. |
 | 2026-11-26 00:54 | VTI | other | 0.1% | 0.0% | 100% / 0% / 0% / 0% | Users discuss VTI performance, compare it to other funds, and advise on long-term holding strategies. |
@@ -37,11 +38,6 @@ Scores as logged when each candidate was first seen; flagged ones in bold. The L
 | 2026-11-23 00:51 | SMCI | other | 0.2% | 0.0% | 100% / 0% / 23% / 0% | Users discuss SMCI's stock performance, alleging book cooking, and analyzing a market resolution regarding an AI industry downturn. |
 | 2026-11-22 00:48 | MSTR | other | 6.2% | no model | 100% / 8.8% / 12% / 0% | Users discuss MSTR's massive losses, debt, dilution fears, and potential for a pump-and-dump scheme. |
 | 2026-11-22 00:48 | NYT | other | 0.1% | no model | 0% / 0% / 0% / 0% | Chatter discusses NYT reporting on Jensen Huang, with no mention of the New York Times Company stock. |
-| 2026-11-21 03:02 | ASML | other | 0.2% | no model | 100% / 0% / 0% / 0% | Discussion on ASML's role in chip manufacturing, China restrictions, and a user buying shares. |
-| 2026-11-21 00:55 | CRWD | other | 0.2% | no model | 100% / 0% / 0% / 21% | Users discuss rumors of a CrowdStrike-Zscaler acquisition and the resulting stock price drop. |
-| 2026-11-21 00:55 | VOO | other | 0.3% | no model | 100% / 0% / 0% / 0% | Users discuss VOO performance, compare it to other assets, and debate passive investing strategies. |
-| 2026-11-21 00:46 | SNDK | other | **37%** | no model | 100% / 0% / 0% / 0% | Users discuss SNDK's stock price drop, split, and bearish sentiment following a short report. |
-| 2026-11-21 00:46 | VWAV | other | **79%** | no model | 100% / 7.7% / 46% / 0% | Users discuss VWAV price drops, warn of manipulation, and joke about the company's circular share swaps. |
 
 ## Development walk-forward (flags before 2027-01-04)
 
